@@ -70,7 +70,6 @@ cloning this project:
 $ bundle
 $ DATABASE_USERNAME=<username> DATABASE_PASSWORD=<password> bundle exec rake development_app
 $ npm i
-$ DATABASE_USERNAME=<username> DATABASE_PASSWORD=<password> bundle exec rake development_install
 ```
 
 Note that the database user has to have rights to create and drop a database in
