@@ -1,0 +1,50 @@
+en:
+  decidim:
+    components:
+      plans:
+        name: Plans
+        settings:
+          global:
+            announcement: Announcement
+            comments_enabled: Comments enabled
+            plan_answering_enabled: Plan answering enabled
+          step:
+            announcement: Announcement
+            comments_blocked: Comments blocked
+            creation_enabled: Creation enabled
+            plan_answering_enabled: Plan answering enabled
+    plans:
+      actions:
+        title: Actions
+        new: New plan
+        sections: Sections
+      admin:
+        plans:
+          index:
+            title: Plans
+            selected: Selected
+        sections:
+          form:
+            add_section: Add section
+          index:
+            title: Sections
+            save: Save
+          section:
+            body: Body
+            down: Down
+            remove: Remove
+            section: Section
+            up: Up
+      models:
+        plan:
+          fields:
+            id: ID
+            title: Title
+            category: Category
+            scope: Scope
+            state: State
+            comments: Comments
+            published_at: Published at
+      sections:
+        actions:
+          new: New section

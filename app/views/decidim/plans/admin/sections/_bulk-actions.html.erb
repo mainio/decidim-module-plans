@@ -1,0 +1,7 @@
+<div class="flex--cc flex-gap--1">
+  <div id="js-other-actions-wrapper">
+    <% if allowed_to? :create, :section %>
+      <%= link_to t("actions.new", scope: "decidim.plans.sections"), new_section_path, class: "button tiny button--simple" %>
+    <% end %>
+  </div>
+</div>

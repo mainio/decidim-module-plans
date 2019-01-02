@@ -1,0 +1,64 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title flex--sbc">
+      <div>
+        <%= t(".title") %>
+        <span id="js-selected-proposals-count" class="component-counter component-counter--inline" title="<%= t("decidim.plans.admin.plans.index.selected") %>"></span>
+      </div>
+      <%= render partial: "bulk-actions" %>
+    </h2>
+  </div>
+  <div class="card-section">
+    <div class="table-scroll">
+      <table class="table-list">
+        <thead>
+          <tr>
+            <th>
+              <%= sort_link(query, :id, t("models.plan.fields.id", scope: "decidim.plans"), default_order: :desc ) %>
+            </th>
+            <th>
+              <%= sort_link(query, :title, t("models.plan.fields.title", scope: "decidim.plans") ) %>
+            </th>
+            <th>
+              <%= sort_link(query, :category_name, t("models.plan.fields.category", scope: "decidim.plans") ) %>
+            </th>
+
+            <% if current_participatory_space.scopes_enabled? %>
+              <th>
+                <%= sort_link(query, :scope_name, t("models.plan.fields.scope", scope: "decidim.plans") ) %>
+              </th>
+            <% end %>
+
+            <th>
+              <%= sort_link(query, :state, t("models.plan.fields.state", scope: "decidim.plans") ) %>
+            </th>
+
+            <% if current_component.settings.comments_enabled? and !current_settings.comments_blocked? %>
+              <th>
+                <%= sort_link(query, :commentable_comments_count, t("models.plan.fields.comments", scope: "decidim.plans") ) %>
+              </th>
+            <% end %>
+
+            <% if allowed_to? :create, :proposal_note %>
+              <th>
+                <%= sort_link(query, :proposal_notes_count, t("models.plan.fields.notes", scope: "decidim.plans") ) %>
+              </th>
+            <% end %>
+
+            <th>
+              <%= sort_link(query, :published_at, t("models.plan.fields.published_at", scope: "decidim.plans") ) %>
+            </th>
+
+            <th class="actions"><%= t("actions.title", scope: "decidim.plans") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% plans.each do |plan| %>
+            <%= render partial: "plan-tr", locals: { plan: plan } %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate plans, theme: "decidim" %>
+    </div>
+  </div>
+</div>
