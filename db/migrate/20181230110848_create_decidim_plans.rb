@@ -11,6 +11,7 @@ class CreateDecidimPlans < ActiveRecord::Migration[5.2]
       t.integer :coauthorships_count, :integer, null: false, default: 0
       t.datetime :published_at, index: true
       t.references :decidim_component, index: true, null: false
+      t.references :decidim_category, index: true
       t.references :decidim_scope, index: true
 
       t.timestamps
