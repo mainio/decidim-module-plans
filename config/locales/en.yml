@@ -35,6 +35,9 @@ en:
             remove: Remove
             section: Section
             up: Up
+          update:
+            invalid: Error updating sections.
+            success: Sections updated successfully.
       models:
         plan:
           fields:

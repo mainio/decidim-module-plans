@@ -13,7 +13,7 @@ module Decidim
 
         def index
           enforce_permission_to :create, :sections
-          @form = form(Admin::PlanSectionsForm).from_params({})
+          @form = form(Admin::PlanSectionsForm).from_model(sections)
         end
 
         def new
@@ -23,7 +23,19 @@ module Decidim
 
         def create
           enforce_permission_to :create, :section
-          # TODO
+          @form = form(Admin::PlanSectionsForm).from_params(params)
+
+          Admin::UpdateSections.call(@form, sections) do
+            on(:ok) do
+              flash[:notice] = I18n.t("update.success", scope: i18n_flashes_scope)
+              redirect_to sections_url
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = I18n.t("update.invalid", scope: i18n_flashes_scope)
+              render template: "index"
+            end
+          end
         end
 
         def edit
@@ -36,6 +48,10 @@ module Decidim
         end
 
         private
+
+        def i18n_flashes_scope
+          "decidim.plans.admin.sections"
+        end
 
         def sections
           @sections ||= Section.where(component: current_component)

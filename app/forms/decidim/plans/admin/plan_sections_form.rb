@@ -8,6 +8,12 @@ module Decidim
         include Decidim::ApplicationHelper
 
         attribute :sections, Array[SectionForm]
+
+        def map_model(sections)
+          self.sections = sections.map do |section|
+            SectionForm.from_model(section)
+          end
+        end
       end
     end
   end
