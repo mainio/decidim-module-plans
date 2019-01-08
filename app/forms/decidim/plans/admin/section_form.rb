@@ -14,6 +14,9 @@ module Decidim
         attribute :position, Integer
         attribute :deleted, Boolean, default: false
 
+        validates :position, numericality: { greater_than_or_equal_to: 0 }
+        validates :body, translatable_presence: true, unless: :deleted
+
         def to_param
           id || "section-id"
         end
