@@ -50,7 +50,7 @@ module Decidim
             else
               record.update!(section_attributes)
             end
-          else
+          elsif !form_section.deleted?
             record.save!
           end
         end
