@@ -5,6 +5,8 @@ module Decidim
     module Admin
       # A command with all the business logic when a user creates a new plan.
       class CreatePlan < Rectify::Command
+        include AttachmentMethods
+
         # Public: Initializes the command.
         #
         # form - A form object with the params.
@@ -45,6 +47,7 @@ module Decidim
             author: form.author,
             action_user: form.current_user
           )
+          @attached_to = @plan
         end
 
         def attributes
@@ -55,38 +58,6 @@ module Decidim
             component: form.component,
             published_at: Time.current
           }
-        end
-
-        def build_attachment
-          @attachment = Attachment.new(
-            title: form.attachment.title,
-            file: form.attachment.file,
-            attached_to: @plan
-          )
-        end
-
-        def attachment_invalid?
-          if attachment.invalid? && attachment.errors.has_key?(:file)
-            form.attachment.errors.add :file, attachment.errors[:file]
-            true
-          end
-        end
-
-        def attachment_present?
-          attachments_allowed? && form.attachment.file.present?
-        end
-
-        def create_attachment
-          attachment.attached_to = plan
-          attachment.save!
-        end
-
-        def attachments_allowed?
-          form.current_component.settings.attachments_allowed?
-        end
-
-        def process_attachments?
-          attachments_allowed? && attachment_present?
         end
 
         def send_notification

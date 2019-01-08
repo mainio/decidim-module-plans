@@ -16,7 +16,7 @@ module Decidim
           case permission_action.action
           when :create
             permission_action.allow!
-          when :update, :destroy
+          when :edit, :update, :destroy
             permission_action.allow! if plan.present? || section.present?
           end
 

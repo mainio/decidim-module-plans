@@ -50,11 +50,9 @@ module Decidim
           Decidim.traceability.update!(
             plan,
             form.current_user,
+            title: form.title,
             category: form.category,
-            scope: form.scope,
-            address: form.address,
-            latitude: form.latitude,
-            longitude: form.longitude
+            scope: form.scope
           )
         end
 

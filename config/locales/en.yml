@@ -19,6 +19,7 @@ en:
         title: Actions
         new: New plan
         sections: Sections
+        edit_plan: Edit plan
       admin:
         actions:
           preview: Preview
@@ -29,12 +30,18 @@ en:
           new:
             title: New plan
             create: Create
+          edit:
+            title: Edit plan
+            update: Update
           form:
             select_a_category: Select a category
             attachment_legend: "(Optional) Add an attachment"
           create:
             invalid: Error creating plan.
             success: Plan created successfully.
+          update:
+            invalid: Error updating plan.
+            success: Plan updated successfully.
         sections:
           form:
             add_section: Add section
