@@ -5,18 +5,18 @@ module Decidim
     module Admin
       # A form object to be used when admin users want to create a plan.
       class PlanForm < Decidim::Form
+        include TranslatableAttributes
         include Decidim::ApplicationHelper
         mimic :plan
 
-        attribute :address, String
-        attribute :latitude, Float
-        attribute :longitude, Float
+        translatable_attribute :title, String
+
         attribute :category_id, Integer
         attribute :scope_id, Integer
         attribute :attachment, AttachmentForm
-        attribute :position, Integer
 
-        validates :address, geocoding: true, if: -> { current_component.settings.geocoding_enabled? }
+        validates :title, translatable_presence: true
+
         validates :category, presence: true, if: ->(form) { form.category_id.present? }
         validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
 

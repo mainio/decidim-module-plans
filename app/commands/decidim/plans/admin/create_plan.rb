@@ -49,12 +49,10 @@ module Decidim
 
         def attributes
           {
+            title: form.title,
             category: form.category,
             scope: form.scope,
             component: form.component,
-            address: form.address,
-            latitude: form.latitude,
-            longitude: form.longitude,
             published_at: Time.current
           }
         end
@@ -75,7 +73,7 @@ module Decidim
         end
 
         def attachment_present?
-          form.attachment.file.present?
+          attachments_allowed? && form.attachment.file.present?
         end
 
         def create_attachment
@@ -84,7 +82,7 @@ module Decidim
         end
 
         def attachments_allowed?
-          true
+          form.current_component.settings.attachments_allowed?
         end
 
         def process_attachments?
@@ -96,7 +94,7 @@ module Decidim
             event: "decidim.events.plans.plan_published",
             event_class: Decidim::Plans::PublishPlanEvent,
             resource: plan,
-            followers: @plan.participatory_space.followers,
+            recipient_ids: @plan.participatory_space.followers.pluck(:id),
             extra: {
               participatory_space: true
             }

@@ -8,6 +8,7 @@ en:
             announcement: Announcement
             comments_enabled: Comments enabled
             plan_answering_enabled: Plan answering enabled
+            attachments_allowed: Attachments allowed
           step:
             announcement: Announcement
             comments_blocked: Comments blocked
@@ -19,10 +20,21 @@ en:
         new: New plan
         sections: Sections
       admin:
+        actions:
+          preview: Preview
         plans:
           index:
             title: Plans
             selected: Selected
+          new:
+            title: New plan
+            create: Create
+          form:
+            select_a_category: Select a category
+            attachment_legend: "(Optional) Add an attachment"
+          create:
+            invalid: Error creating plan.
+            success: Plan created successfully.
         sections:
           form:
             add_section: Add section

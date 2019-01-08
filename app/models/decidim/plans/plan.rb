@@ -18,14 +18,6 @@ module Decidim
       include Decidim::Searchable
       include Decidim::Traceable
       include Decidim::Loggable
-      # include Decidim::Amendable # Will be available in 0.16
-
-      # TODO
-      # amendable(
-      #   fields: [:title, :body],
-      #   ignore: [:published_at, :reference, :state, :answered_at, :answer],
-      #   form:   "Decidim::Plans::PlanForm"
-      # )
 
       component_manifest_name "plans"
 
@@ -33,8 +25,6 @@ module Decidim
                class_name: "Decidim::Plans::PlanCollaboratorRequest",
                foreign_key: :decidim_plan_id,
                dependent: :destroy
-
-      geocoded_by :address, http_headers: ->(plan) { { "Referer" => plan.component.organization.host } }
 
       scope :accepted, -> { where(state: "accepted") }
       scope :rejected, -> { where(state: "rejected") }

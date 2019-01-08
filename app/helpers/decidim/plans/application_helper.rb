@@ -42,10 +42,6 @@ module Decidim
         Plan.where(component: current_component, author: current_user)
       end
 
-      def form_has_address?
-        @form.address.present? || @form.has_address
-      end
-
       def authors_for(plan)
         plan.identities.map { |identity| present(identity) }
       end

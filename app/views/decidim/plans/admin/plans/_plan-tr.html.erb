@@ -3,7 +3,7 @@
     <%= plan.id %><br />
   </td>
   <td>
-    <%= present(plan).title %><br />
+    <%= translated_attribute(plan.title) %><br />
   </td>
   <td>
     <% if plan.category %>
@@ -20,10 +20,8 @@
     </td>
   <% end %>
   <td>
-    <%= t("decidim/amendment", scope: "activerecord.models", count: 1) if plan.emendation? %>
-    <strong class="<%= proposal_state_css_class plan.state %>">
-      <%= t("decidim/amendment", scope: "activerecord.models", count: 1) if plan.emendation? %>
-      <%= humanize_proposal_state plan.state %>
+    <strong class="<%= plan_state_css_class plan.state %>">
+      <%= humanize_plan_state plan.state %>
     </strong>
   </td>
 
