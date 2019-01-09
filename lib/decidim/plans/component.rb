@@ -83,6 +83,14 @@ Decidim.register_component(:plans) do |component|
     end
 
     5.times do |n|
+      section = Decidim::Plans::Section.create!(
+        component: component,
+        body: Decidim::Faker::Localized.paragraph,
+        position: n
+      )
+    end
+
+    5.times do |n|
       state, answer = if n > 3
                         ["accepted", Decidim::Faker::Localized.sentence(10)]
                       elsif n > 2
