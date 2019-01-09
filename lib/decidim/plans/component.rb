@@ -83,7 +83,7 @@ Decidim.register_component(:plans) do |component|
     end
 
     5.times do |n|
-      section = Decidim::Plans::Section.create!(
+      Decidim::Plans::Section.create!(
         component: component,
         body: Decidim::Faker::Localized.paragraph,
         position: n
