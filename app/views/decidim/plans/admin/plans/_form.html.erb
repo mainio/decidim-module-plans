@@ -26,6 +26,12 @@
       </div>
     <% end %>
 
+    <% @form.contents.each_with_index do |content, idx| %>
+      <%= fields_for "contents[]", content do |content_form| %>
+        <%= render "content", form: content_form, id: tabs_id_for_content(idx) %>
+      <% end %>
+    <% end %>
+
     <% if component_settings.attachments_allowed? %>
       <div class="row column">
         <fieldset>

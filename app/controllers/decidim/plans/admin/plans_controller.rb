@@ -12,9 +12,8 @@ module Decidim
 
         def new
           enforce_permission_to :create, :plans
-          @form = form(Admin::PlanForm).from_params(
-            attachment: form(AttachmentForm).from_params({})
-          )
+          @form = form(Admin::PlanForm).from_model(Plan.new(component: current_component))
+          @form.attachment = form(AttachmentForm).from_params({})
         end
 
         def create
@@ -23,12 +22,12 @@ module Decidim
 
           Admin::CreatePlan.call(@form) do
             on(:ok) do
-              flash[:notice] = I18n.t("plans.create.success", scope: "decidim.plans.admin")
+              flash[:notice] = I18n.t("plans.create.success", scope: "decidim")
               redirect_to plans_path
             end
 
             on(:invalid) do
-              flash.now[:alert] = I18n.t("plans.create.invalid", scope: "decidim.plans.admin")
+              flash.now[:alert] = I18n.t("plans.create.invalid", scope: "decidim")
               render action: "new"
             end
           end
@@ -45,7 +44,7 @@ module Decidim
 
           @form = form(Admin::PlanForm).from_params(params)
           Admin::UpdatePlan.call(@form, @plan) do
-            on(:ok) do |_plan|
+            on(:ok) do
               flash[:notice] = I18n.t("plans.update.success", scope: "decidim")
               redirect_to plans_path
             end

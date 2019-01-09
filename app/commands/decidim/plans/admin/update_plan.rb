@@ -6,6 +6,7 @@ module Decidim
       # A command with all the business logic when a user updates a plan.
       class UpdatePlan < Rectify::Command
         include AttachmentMethods
+        include NestedUpdater
 
         # Public: Initializes the command.
         #
@@ -35,6 +36,7 @@ module Decidim
 
           transaction do
             update_plan
+            update_plan_contents
             update_plan_author
             create_attachment if process_attachments?
           end
@@ -54,6 +56,18 @@ module Decidim
             category: form.category,
             scope: form.scope
           )
+        end
+
+        def update_plan_contents
+          @form.contents.each do |content|
+            update_nested_model(
+              content,
+              { body: content.body,
+                section: content.section,
+                user: form.current_user },
+              @plan.contents
+            )
+          end
         end
 
         def update_plan_author

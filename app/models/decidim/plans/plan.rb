@@ -26,6 +26,8 @@ module Decidim
                foreign_key: :decidim_plan_id,
                dependent: :destroy
 
+      has_many :contents, foreign_key: :decidim_plan_id, dependent: :destroy
+
       scope :accepted, -> { where(state: "accepted") }
       scope :rejected, -> { where(state: "rejected") }
       scope :evaluating, -> { where(state: "evaluating") }
@@ -36,6 +38,10 @@ module Decidim
       scope :published, -> { where.not(published_at: nil) }
 
       acts_as_list scope: :decidim_component_id
+
+      def sections
+        Section.where(component: component).order(:position)
+      end
 
       def self.order_randomly(seed)
         transaction do

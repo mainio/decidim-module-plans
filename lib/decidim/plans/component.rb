@@ -131,6 +131,14 @@ Decidim.register_component(:plans) do |component|
         end
       end
 
+      Decidim::Plans::Section.where(component: component).each do |section|
+        plan.contents.create!(
+          body: Decidim::Faker::Localized.paragraph,
+          section: section,
+          user: admin_user
+        )
+      end
+
       Decidim::Comments::Seed.comments_for(plan)
     end
   end
