@@ -36,6 +36,14 @@ Decidim.register_component(:plans) do |component|
     resource.card = "decidim/plans/plan"
   end
 
+  component.register_stat :plans_count, primary: true, priority: Decidim::StatsRegistry::HIGH_PRIORITY do |components, start_at, end_at|
+    Decidim::Plans::FilteredPlans.for(components, start_at, end_at).published.except_withdrawn.not_hidden.count
+  end
+
+  component.register_stat :plans_accepted, primary: true, priority: Decidim::StatsRegistry::HIGH_PRIORITY do |components, start_at, end_at|
+    Decidim::Plans::FilteredPlans.for(components, start_at, end_at).accepted.count
+  end
+
   component.seeds do |participatory_space|
     admin_user = Decidim::User.find_by(
       organization: participatory_space.organization,
