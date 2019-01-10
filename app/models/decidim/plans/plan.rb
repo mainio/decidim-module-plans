@@ -116,7 +116,7 @@ module Decidim
       # user - the user to check for authorship
       def editable_by?(user)
         return true if draft?
-        !answered? && within_edit_time_limit? && !copied_from_other_component? && created_by?(user)
+        !answered? && within_edit_time_limit? && !copied_from_other_component? && authored_by?(user)
       end
 
       # Checks whether the user can withdraw the given plan.
@@ -129,6 +129,26 @@ module Decidim
       # Public: Whether the plan is a draft or not.
       def draft?
         published_at.nil?
+      end
+
+      def commentable?
+        component.settings.comments_enabled?
+      end
+
+      def accepts_new_comments?
+        commentable? && !component.current_settings.comments_blocked
+      end
+
+      def comments_have_alignment?
+        true
+      end
+
+      def comments_have_votes?
+        true
+      end
+
+      def users_to_notify_on_comment_created
+        followers
       end
 
       # method for sort_link by number of comments

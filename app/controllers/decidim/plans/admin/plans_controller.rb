@@ -50,7 +50,7 @@ module Decidim
             end
 
             on(:invalid) do
-              flash.now[:alert] = I18n.t("plans.update.error", scope: "decidim")
+              flash.now[:alert] = I18n.t("plans.update.invalid", scope: "decidim")
               render :edit
             end
           end
