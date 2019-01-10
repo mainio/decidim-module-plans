@@ -26,6 +26,9 @@ module Decidim
                foreign_key: :decidim_plan_id,
                dependent: :destroy
 
+      has_many :attached_proposals, foreign_key: :decidim_plan_id
+      has_many :proposals, :through => :attached_proposals
+
       has_many :contents, foreign_key: :decidim_plan_id, dependent: :destroy
 
       scope :accepted, -> { where(state: "accepted") }
