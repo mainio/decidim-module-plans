@@ -10,6 +10,13 @@ FactoryBot.define do
     component
   end
 
+  factory :content, class: Decidim::Plans::Content do
+    body { generate_localized_title }
+    plan
+    section { create(:section) }
+    user { create(:user, organization: plan.organization) }
+  end
+
   factory :plan_component, parent: :component do
     name { Decidim::Components::Namer.new(participatory_space.organization.available_locales, :plans).i18n_name }
     manifest_name { :plans }

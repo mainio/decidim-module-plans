@@ -144,6 +144,12 @@ module Decidim
           it { is_expected.not_to be_withdrawable_by(author) }
         end
       end
+
+      it "has an association of contents" do
+        create(:content, plan: subject, user: create(:user, organization: plan.component.organization))
+        create(:content, plan: subject, user: create(:user, organization: plan.component.organization))
+        expect(subject.reload.contents.count).to eq(2)
+      end
     end
   end
 end
