@@ -90,6 +90,9 @@ Decidim.register_component(:plans) do |component|
       )
     end
 
+    proposal_component = participatory_space.components.find_by(manifest_name: "proposals")
+    proposals = Decidim::Proposals::Proposal.where(component: proposal_component).to_a
+
     5.times do |n|
       state, answer = if n > 3
                         ["accepted", Decidim::Faker::Localized.sentence(10)]
@@ -121,6 +124,12 @@ Decidim.register_component(:plans) do |component|
         plan = Decidim::Plans::Plan.new(params)
         plan.add_coauthor(participatory_space.organization)
         plan.save!
+
+        unless proposals.empty?
+          puts "#{proposals.count} proposals left"
+          plan.proposals << proposals.slice!(0, 2)
+        end
+
         plan
       end
 
