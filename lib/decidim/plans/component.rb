@@ -126,7 +126,6 @@ Decidim.register_component(:plans) do |component|
         plan.save!
 
         unless proposals.empty?
-          puts "#{proposals.count} proposals left"
           plan.proposals << proposals.slice!(0, 2)
         end
 
