@@ -22,6 +22,12 @@ en:
             creation_enabled: Creation enabled
             plan_answering_enabled: Plan answering enabled
     plans:
+      answers:
+        accepted: Accepted
+        evaluating: Evaluating
+        not_answered: Not answered
+        rejected: Rejected
+        withdrawn: Withdrawn
       actions:
         title: Actions
         new: New plan
