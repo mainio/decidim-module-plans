@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     #
-    # Decorator for proposals
+    # Decorator for plans
     #
     class PlanPresenter < SimpleDelegator
       include Rails.application.routes.mounted_helpers

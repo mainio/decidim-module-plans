@@ -2,7 +2,7 @@
 
 module Decidim
   module Plans
-    # This is the engine that runs on the public interface of `decidim-proposals`.
+    # This is the engine that runs on the public interface of `decidim-plans`.
     class AdminEngine < ::Rails::Engine
       isolate_namespace Decidim::Plans::Admin
 

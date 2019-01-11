@@ -3,7 +3,7 @@
     <h2 class="card-title flex--sbc">
       <div>
         <%= t(".title") %>
-        <span id="js-selected-proposals-count" class="component-counter component-counter--inline" title="<%= t("decidim.plans.admin.plans.index.selected") %>"></span>
+        <span id="js-selected-plans-count" class="component-counter component-counter--inline" title="<%= t("decidim.plans.admin.plans.index.selected") %>"></span>
       </div>
       <%= render partial: "bulk-actions" %>
     </h2>
@@ -39,9 +39,9 @@
               </th>
             <% end %>
 
-            <% if allowed_to? :create, :proposal_note %>
+            <% if allowed_to? :create, :plan_note %>
               <th>
-                <%= sort_link(query, :proposal_notes_count, t("models.plan.fields.notes", scope: "decidim.plans") ) %>
+                <%= sort_link(query, :plan_notes_count, t("models.plan.fields.notes", scope: "decidim.plans") ) %>
               </th>
             <% end %>
 

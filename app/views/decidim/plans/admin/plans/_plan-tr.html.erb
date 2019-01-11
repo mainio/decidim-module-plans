@@ -37,7 +37,7 @@
 
   <td class="table-list__actions">
     <% if allowed_to? :edit, :plan, plan: plan %>
-      <%= icon_link_to "pencil", edit_plan_path(plan), t("actions.edit_plan", scope: "decidim.plans"), class: "action-icon--edit-proposal" %>
+      <%= icon_link_to "pencil", edit_plan_path(plan), t("actions.edit_plan", scope: "decidim.plans"), class: "action-icon--edit-plan" %>
     <% end %>
 
     <% if allowed_to? :create, :plan_answer and !plan.emendation? %>

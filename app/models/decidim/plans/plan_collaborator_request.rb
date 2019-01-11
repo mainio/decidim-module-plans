@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Proposals
+  module Plans
     # A collaborative_draft can accept requests to coauthor and contribute
     class PlanCollaboratorRequest < Plans::ApplicationRecord
       validates :plan, :user, presence: true

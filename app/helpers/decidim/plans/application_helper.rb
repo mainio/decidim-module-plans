@@ -2,25 +2,25 @@
 
 module Decidim
   module Plans
-    # Custom helpers, scoped to the proposals engine.
+    # Custom helpers, scoped to the plans engine.
     #
     module ApplicationHelper
       include Decidim::Comments::CommentsHelper
       include PaginateHelper
       include Decidim::MapHelper
 
-      # Public: The state of a proposal in a way a human can understand.
+      # Public: The state of a plan in a way a human can understand.
       #
-      # state - The String state of the proposal.
+      # state - The String state of the plan.
       #
       # Returns a String.
       def humanize_plan_state(state)
-        I18n.t(state, scope: "decidim.proposals.answers", default: :not_answered)
+        I18n.t(state, scope: "decidim.plans.answers", default: :not_answered)
       end
 
-      # Public: The css class applied based on the proposal state.
+      # Public: The css class applied based on the plan state.
       #
-      # state - The String state of the proposal.
+      # state - The String state of the plan.
       #
       # Returns a String.
       def plan_state_css_class(state)
@@ -48,19 +48,19 @@ module Decidim
 
       def filter_state_values
         [
-          ["except_rejected", t("decidim.proposals.application_helper.filter_state_values.except_rejected")],
-          ["accepted", t("decidim.proposals.application_helper.filter_state_values.accepted")],
-          ["evaluating", t("decidim.proposals.application_helper.filter_state_values.evaluating")],
-          ["rejected", t("decidim.proposals.application_helper.filter_state_values.rejected")],
-          ["all", t("decidim.proposals.application_helper.filter_state_values.all")]
+          ["except_rejected", t("decidim.plans.application_helper.filter_state_values.except_rejected")],
+          ["accepted", t("decidim.plans.application_helper.filter_state_values.accepted")],
+          ["evaluating", t("decidim.plans.application_helper.filter_state_values.evaluating")],
+          ["rejected", t("decidim.plans.application_helper.filter_state_values.rejected")],
+          ["all", t("decidim.plans.application_helper.filter_state_values.all")]
         ]
       end
 
       def filter_type_values
         [
-          ["all", t("decidim.proposals.application_helper.filter_type_values.all")],
-          ["proposals", t("decidim.proposals.application_helper.filter_type_values.proposals")],
-          ["amendments", t("decidim.proposals.application_helper.filter_type_values.amendments")]
+          ["all", t("decidim.plans.application_helper.filter_type_values.all")],
+          ["plans", t("decidim.plans.application_helper.filter_type_values.plans")],
+          ["amendments", t("decidim.plans.application_helper.filter_type_values.amendments")]
         ]
       end
     end
