@@ -59,7 +59,7 @@ module Decidim
         private
 
         def query
-          @query ||= Plan.where(component: current_component).published.ransack(params[:q])
+          @query ||= Plan.where(component: current_component).ransack(params[:q])
         end
 
         def plans
