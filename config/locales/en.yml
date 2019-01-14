@@ -1,3 +1,4 @@
+---
 en:
   activemodel:
     errors:
@@ -13,57 +14,100 @@ en:
         settings:
           global:
             announcement: Announcement
+            attachments_allowed: Attachments allowed
             comments_enabled: Comments enabled
             plan_answering_enabled: Plan answering enabled
-            attachments_allowed: Attachments allowed
           step:
             announcement: Announcement
             comments_blocked: Comments blocked
             creation_enabled: Creation enabled
             plan_answering_enabled: Plan answering enabled
     plans:
+      actions:
+        answer: Answer
+        edit_plan: Edit plan
+        new: New plan
+        sections: Sections
+        title: Actions
+      admin:
+        actions:
+          preview: Preview
+        plans:
+          edit:
+            title: Edit plan
+            update: Update
+          form:
+            attachment_legend: "(Optional) Add an attachment"
+            select_a_category: Select a category
+          index:
+            selected: Selected
+            title: Plans
+          new:
+            create: Create
+            title: New plan
+        sections:
+          form:
+            add_section: Add section
+          index:
+            save: Save
+            title: Sections
+          section:
+            body: Body
+            down: Down
+            remove: Remove
+            section: Section
+            up: Up
+          update:
+            invalid: Error updating sections.
+            success: Sections updated successfully.
+      answers:
+        accepted: Accepted
+        evaluating: Evaluating
+        not_answered: Not answered
+        rejected: Rejected
+        withdrawn: Withdrawn
+      application_helper:
+        filter_state_values:
+          accepted: Accepted
+          all: All
+          evaluating: Evaluating
+          except_rejected: All except rejected
+          rejected: Rejected
+        filter_type_values:
+          all: All
+          amendments: Amendments
+          plans: Plans
+      create:
+        invalid: Error creating plan.
+        success: Plan created successfully.
+      last_activity:
+        new_plan_at_html: "<span>New plan at %{link}</span>"
+      models:
+        plan:
+          fields:
+            authors: Authors
+            category: Category
+            comments: Comments
+            contributions: Contributions
+            id: ID
+            notes: Notes
+            official_plan: Official plan
+            published_at: Published at
+            scope: Scope
+            state: State
+            title: Title
       plans:
-        wizard_aside:
-          back: Back
-          info: You are creating a <strong>plan</strong>.
-        wizard_steps:
-          see_steps: see steps
-          step_1: Create your plan
-          step_2: Compare with plans
-          step_3: Complete your plan
-          step_of: Step %{current_step_num} of %{total_steps}
-        new:
-          title: Create plan
-          send: Continue
-        show:
-          back: Back
-          edit: Edit plan
-          hidden_authors_count:
-            one: and %{count} more person
-            other: and %{count} more people
-          of_versions: "(of %{number})"
-          publish: Publish
-          publish_info: Publish this version of the draft or
-          published_proposal: published proposal
-          request_access: Request access
-          requested_access: Access requested
-          see_other_versions: see other versions
-          version: Version %{number}
-          version_history: see version history for this proposal
-          withdraw: withdraw the draft
-        new_plan_button:
-          new_plan: New plan
+        attached_proposals:
+          attached_proposals: Attached proposals
+        compare:
+          no_similars_found: Well done! No similar plans found
         count:
           plans_count:
             one: "%{count} plan"
             other: "%{count} plans"
-        attached_proposals:
-          attached_proposals: Attached proposals
-        index:
-          new_plan: New plan
-          see_all_withdrawn: See all withdrawn plans
-        plan:
-          view_plan: View plan
+        create:
+          error: Error creating plan.
+          success: Plan created successfully.
         filters:
           accepted: Accepted
           activity: Activity
@@ -85,72 +129,72 @@ en:
           filter: Filter
           filter_by: Filter by
           unfold: Unfold
+        index:
+          new_plan: New plan
+          see_all_withdrawn: See all withdrawn plans
+        new:
+          send: Continue
+          title: Create plan
+        new_plan_button:
+          new_plan: New plan
         orders:
           label: 'Order plans by:'
           random: Random
           recent: Recent
-      answers:
-        accepted: Accepted
-        evaluating: Evaluating
-        not_answered: Not answered
-        rejected: Rejected
-        withdrawn: Withdrawn
-      actions:
-        title: Actions
-        new: New plan
-        sections: Sections
-        edit_plan: Edit plan
-      create:
-        invalid: Error creating plan.
-        success: Plan created successfully.
-      update:
-        invalid: Error updating plan.
-        success: Plan updated successfully.
-      admin:
-        actions:
-          preview: Preview
-        plans:
-          index:
-            title: Plans
-            selected: Selected
-          new:
-            title: New plan
-            create: Create
-          edit:
-            title: Edit plan
-            update: Update
-          form:
-            select_a_category: Select a category
-            attachment_legend: "(Optional) Add an attachment"
-        sections:
-          form:
-            add_section: Add section
-          index:
-            title: Sections
-            save: Save
-          section:
-            body: Body
-            down: Down
-            remove: Remove
-            section: Section
-            up: Up
-          update:
-            invalid: Error updating sections.
-            success: Sections updated successfully.
-      models:
         plan:
-          fields:
-            authors: Authors
-            category: Category
-            comments: Comments
-            comments: Comments
-            contributions: Contributions
-            id: ID
-            official_plan: Official plan
-            published_at: Published at
-            scope: Scope
-            state: State
-            title: Title
+          publish:
+            error: Error publishing plan.
+            success: Plan published successfully.
+          view_plan: View plan
+          withdraw:
+            error: Error withdrawing plan.
+            success: Plan withdrawn successfully.
+        show:
+          back: Back
+          edit: Edit plan
+          hidden_authors_count:
+            one: and %{count} more person
+            other: and %{count} more people
+          info-message: "This is a <strong>plan</strong> for a proposal. You can help its authors to shape it using the comment section below or improve it directly by requesting access to edit it. Once the authors grant you access, you'll be able to make changes to this plan."
+          of_versions: "(of %{number})"
+          plan_accepted_reason: 'This plan has been accepted because:'
+          plan_in_evaluation_reason: This proposal is being evaluated
+          plan_rejected_reason: 'This proposal has been rejected because:'
+          publish: Publish
+          publish_info: Publish this version of the draft or
+          published_proposal: published proposal
+          request_access: Request access
+          requested_access: Access requested
+          see_other_versions: see other versions
+          version: Version %{number}
+          version_history: see version history for this proposal
+          withdraw: withdraw the draft
+        update:
+          error: Error updating plan.
+          success: Plan updated successfully.
+        wizard_aside:
+          back: Back
+          info: You are creating a <strong>plan</strong>.
+        wizard_steps:
+          see_steps: see steps
+          step_1: Create your plan
+          step_2: Compare with plans
+          step_3: Complete your plan
+          step_of: Step %{current_step_num} of %{total_steps}
       sections:
         actions:
           new: New section
+      update:
+        invalid: Error updating plan.
+        success: Plan updated successfully.
+    proposals:
+      plans:
+        requests:
+          collaboration_requests:
+            accept_request: Accept
+            reject_request: Reject
+            title: Collaboration requests
+        show:
+          request_access: Request access
+    scopes:
+      global: Global
