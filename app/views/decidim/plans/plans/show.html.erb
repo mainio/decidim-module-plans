@@ -1,25 +1,106 @@
 <% add_decidim_meta_tags({
-  title: present(@plan).title,
-  url: plan_url(@plan.id)
+    title: present(@plan).title,
+    url: plan_url(@plan.id)
 }) %>
 
+<% if current_user.nil? || allowed_to?(:request_access, :plan, plan: @plan) %>
+  <div class="row">
+    <div class="columns">
+      <div class="callout secondary"><%= t(".info-message").html_safe %></div>
+    </div>
+  </div>
+<% end %>
+
 <div class="row column view-header">
-  <h2 class="heading2"><%= present(@plan).title %></h2>
+  <%= link_to plans_path do %>
+    <%= icon "chevron-left", class: "icon--small" %>
+    <%= t(".back") %>
+  <% end %>
+
+  <h2 class="heading2">
+    <%= present(@plan).title %>
+  </h2>
+
   <%= cell("decidim/coauthorships", @plan, has_actions: true, size: 3) %>
 </div>
 <div class="row">
   <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
-    <% if allowed_to?(:edit, :plan, plan: @plan) %>
-      <%= link_to t(".edit_plan"), edit_plan_path(@plan), class: "button secondary hollow expanded button-sc button--icon follow-button" %>
+    <% if allowed_to?(:publish, :plan, plan: @plan) %>
+      <div class="card text-center" id="plan_publish">
+        <div class="card__content">
+          <%= cell "decidim/plans/irreversible_action_modal", @plan, action: :publish %>
+          <small>
+            <%= t("publish_info", scope:"decidim.plans.plans.show") %>
+            <%= cell "decidim/plans/irreversible_action_modal", @plan, action: :withdraw %>
+          </small>
+        </div>
+      </div>
     <% end %>
-    <%= resource_reference(@plan) %>
+
+    <div class="card text-center">
+      <div class="card__content">
+        <div>
+          <strong class="text-large text-uppercase">
+            <%= t("version", scope:"decidim.plans.plans.show", number: "#{@plan.versions_count}") %>
+          </strong>
+          <small class="text-medium">
+            <%= t("of_versions", scope:"decidim.plans.plans.show", number: "#{@plan.versions_count}") %>
+          </small>
+        </div>
+
+        <div>
+          <span class="text-medium">
+            <%= link_to t("see_other_versions", scope:"decidim.plans.plans.show"), plan_versions_path(@plan) %>
+          </span>
+        </div>
+
+        <% if allowed_to?(:edit, :plan, plan: @plan) %>
+          <%= link_to t("edit", scope:"decidim.plans.plans.show"), edit_plan_path(@plan), class: "button secondary hollow expanded button--sc mt-s", id: "plan_edit" %>
+        <% end %>
+
+        <%= render "request_access_form" %>
+
+        <% if @plan.requesters.include? current_user %>
+          <button type="button" class="button secondary light expanded button--sc mt-s">
+            <%= t("requested_access", scope:"decidim.plans.plans.show") %>
+          </button>
+        <% end %>
+      </div>
+
+      <div class="card__status">
+        <ul class="card-data">
+          <li class="card-data__item authors_status">
+            <%= with_tooltip t("decidim.plans.models.plan.fields.authors") do %>
+              <%= icon("people", class: "icon--small") + " " + "#{@plan.versions.group_by(&:whodunnit).size}" %>
+            <% end %>
+          </li>
+
+          <li class="card-data__item versions_status">
+            <%= link_to plan_versions_path(@plan) do %>
+              <%= with_tooltip t("decidim.plans.models.plan.fields.contributions") do %>
+                <%= icon("pencil", class: "icon--small") + " " + "#{@plan.versions.count}" %>
+              <% end %>
+            <% end %>
+          </li>
+          <li class="card-data__item">
+            <%= link_to "#comments" do %>
+              <%= with_tooltip t("decidim.plans.models.plan.fields.comments") do %>
+                <%= icon("comment-square", class: "icon--small") + " " + "#{@plan.comments.count}" %>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <%= render partial: "collaborator_requests" %>
     <%= render partial: "decidim/shared/share_modal" %>
-    <%= embed_modal_for plan_plan_widget_url(@plan, format: :js) %>
   </div>
   <div class="columns mediumlarge-8 mediumlarge-pull-4">
     <div class="section">
       <%== cell("decidim/plans/plan_m", @plan, full_badge: true).badge %>
       <%= render partial: "contents" %>
+      <%= cell "decidim/tags", @plan, context: { extra_classes: ["tags--plan"] } %>
     </div>
     <% if @plan.answered? && translated_attribute(@plan.answer).present? %>
       <% if @plan.accepted? %>

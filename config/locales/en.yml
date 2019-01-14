@@ -23,6 +23,24 @@ en:
             plan_answering_enabled: Plan answering enabled
     plans:
       plans:
+        show:
+          back: Back
+          edit: Edit plan
+          hidden_authors_count:
+            one: and %{count} more person
+            other: and %{count} more people
+          of_versions: "(of %{number})"
+          publish: Publish
+          publish_info: Publish this version of the draft or
+          published_proposal: published proposal
+          request_access: Request access
+          requested_access: Access requested
+          see_other_versions: see other versions
+          version: Version %{number}
+          version_history: see version history for this proposal
+          withdraw: withdraw the draft
+        new_plan_button:
+          new_plan: New plan
         count:
           plans_count:
             one: "%{count} plan"
@@ -110,14 +128,17 @@ en:
       models:
         plan:
           fields:
-            id: ID
-            title: Title
+            authors: Authors
             category: Category
+            comments: Comments
+            comments: Comments
+            contributions: Contributions
+            id: ID
+            official_plan: Official plan
+            published_at: Published at
             scope: Scope
             state: State
-            comments: Comments
-            published_at: Published at
-            official_plan: Official plan
+            title: Title
       sections:
         actions:
           new: New section

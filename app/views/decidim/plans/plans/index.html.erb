@@ -5,17 +5,7 @@
     <h2 id="plans-count" class="title-action__title section-heading">
       <%= render partial: "count" %>
     </h2>
-    <% if current_settings.creation_enabled && current_component.participatory_space.can_participate?(current_user) %>
-      <%= action_authorized_link_to :create, new_plan_path, class: "title-action__action button small hollow", data: { "redirect_url" => new_plan_path } do %>
-        <%= t(".new_plan") %>
-        <%= icon "plus" %>
-      <% end %>
-    <% else %>
-      <span class="title-action__action button small hollow disabled">
-        <%= t(".new_plan") %>
-        <%= icon "plus" %>
-      </span>
-    <% end %>
+    <%= render "new_plan_button" %>
   </div>
 </div>
 <div class="row">
@@ -29,10 +19,5 @@
     <%= render partial: "plans" %>
   </div>
 </div>
-<div class="row">
-<div class="text-right">
-  <%= link_to t(".see_all_withdrawn"), plans_path("filter[state]" => "withdrawn") %>
-</div>
-</div>
-<%= javascript_include_tag("decidim/filters") %>
+<%= javascript_include_tag "decidim/filters" %>
 <%= javascript_include_tag "decidim/orders" %>
