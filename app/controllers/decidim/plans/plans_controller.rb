@@ -17,11 +17,11 @@ module Decidim
       before_action :edit_form, only: [:edit_draft, :edit]
       def index
         @plans = search
-                     .results
-                     .published
-                     .not_hidden
-                     .includes(:category)
-                     .includes(:scope)
+                 .results
+                 .published
+                 .not_hidden
+                 .includes(:category)
+                 .includes(:scope)
 
         @plans = paginate(@plans)
         @plans = reorder(@plans)
@@ -33,38 +33,38 @@ module Decidim
 
       def new
         enforce_permission_to :create, :plan
-      #   @step = :step_1
-      #   if plan_draft.present?
-      #     redirect_to edit_draft_plan_path(plan_draft, component_id: plan_draft.component.id, question_slug: plan_draft.component.participatory_space.slug)
-      #   else
-      #     @form = form(PlanWizardCreateStepForm).from_params({})
-      #   end
+        #   @step = :step_1
+        #   if plan_draft.present?
+        #     redirect_to edit_draft_plan_path(plan_draft, component_id: plan_draft.component.id, question_slug: plan_draft.component.participatory_space.slug)
+        #   else
+        #     @form = form(PlanWizardCreateStepForm).from_params({})
+        #   end
       end
 
       def create
         enforce_permission_to :create, :plan
-      #   @step = :step_1
-      #   @form = form(PlanWizardCreateStepForm).from_params(params)
+        #   @step = :step_1
+        #   @form = form(PlanWizardCreateStepForm).from_params(params)
 
-      #   CreatePlan.call(@form, current_user) do
-      #     on(:ok) do |plan|
-      #       flash[:notice] = I18n.t("plans.create.success", scope: "decidim")
+        #   CreatePlan.call(@form, current_user) do
+        #     on(:ok) do |plan|
+        #       flash[:notice] = I18n.t("plans.create.success", scope: "decidim")
 
-      #       redirect_to Decidim::ResourceLocatorPresenter.new(plan).path + "/compare"
-      #     end
+        #       redirect_to Decidim::ResourceLocatorPresenter.new(plan).path + "/compare"
+        #     end
 
-      #     on(:invalid) do
-      #       flash.now[:alert] = I18n.t("plans.create.error", scope: "decidim")
-      #       render :new
-      #     end
-      #   end
+        #     on(:invalid) do
+        #       flash.now[:alert] = I18n.t("plans.create.error", scope: "decidim")
+        #       render :new
+        #     end
+        #   end
       end
 
       def compare
         @step = :step_2
         @similar_plans ||= Decidim::Plans::SimilarPlans
-                               .for(current_component, @plan)
-                               .all
+                           .for(current_component, @plan)
+                           .all
 
         if @similar_plans.blank?
           flash[:notice] = I18n.t("plans.plans.compare.no_similars_found", scope: "decidim")

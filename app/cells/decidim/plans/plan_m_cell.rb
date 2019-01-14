@@ -15,11 +15,10 @@ module Decidim
       private
 
       def title
-        translated_attribute(present(model).title)
+        present(model).title
       end
 
-      def body
-      end
+      def body; end
 
       def has_state?
         model.published?
@@ -33,8 +32,7 @@ module Decidim
         model.published?
       end
 
-      def description
-      end
+      def description; end
 
       def badge_classes
         return super unless options[:full_badge]
