@@ -10,6 +10,10 @@ module Decidim
       belongs_to :plan, class_name: "Decidim::Plans::Plan", foreign_key: "decidim_plan_id"
       belongs_to :section, class_name: "Decidim::Plans::Section", foreign_key: "decidim_section_id"
       belongs_to :user, class_name: "Decidim::User", foreign_key: "decidim_user_id"
+
+      def title
+        section.body
+      end
     end
   end
 end

@@ -1,0 +1,67 @@
+<% add_decidim_meta_tags({
+  title: present(@plan).title,
+  url: plan_url(@plan.id)
+}) %>
+
+<div class="row column view-header">
+  <h2 class="heading2"><%= present(@plan).title %></h2>
+  <%= cell("decidim/coauthorships", @plan, has_actions: true, size: 3) %>
+</div>
+<div class="row">
+  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+    <% if allowed_to?(:edit, :plan, plan: @plan) %>
+      <%= link_to t(".edit_plan"), edit_plan_path(@plan), class: "button secondary hollow expanded button-sc button--icon follow-button" %>
+    <% end %>
+    <%= resource_reference(@plan) %>
+    <%= render partial: "decidim/shared/share_modal" %>
+    <%= embed_modal_for plan_plan_widget_url(@plan, format: :js) %>
+  </div>
+  <div class="columns mediumlarge-8 mediumlarge-pull-4">
+    <div class="section">
+      <%== cell("decidim/plans/plan_m", @plan, full_badge: true).badge %>
+      <%= render partial: "contents" %>
+    </div>
+    <% if @plan.answered? && translated_attribute(@plan.answer).present? %>
+      <% if @plan.accepted? %>
+        <div class="section">
+          <div class="callout success">
+            <h5><%= t(".plan_accepted_reason") %></h5>
+            <p><%= decidim_sanitize translated_attribute @plan.answer %></p>
+          </div>
+        </div>
+      <% elsif @plan.rejected? %>
+        <div class="section">
+          <div class="callout warning">
+            <h5><%= t(".plan_rejected_reason") %></h5>
+            <p><%= decidim_sanitize translated_attribute @plan.answer %></p>
+          </div>
+        </div>
+      <% else %>
+        <div class="section">
+          <div class="callout secondary">
+            <h5><%= t(".plan_in_evaluation_reason") %></h5>
+            <p><%= decidim_sanitize translated_attribute @plan.answer %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <%= linked_resources_for @plan, :results, "included_plans" %>
+    <%= linked_resources_for @plan, :projects, "included_plans" %>
+    <%= linked_resources_for @plan, :meetings, "plans_from_meeting" %>
+    <%= linked_resources_for @plan, :plans, "copied_from_component" %>
+  </div>
+</div>
+<%= attachments_for @plan %>
+
+<%= comments_for @plan %>
+
+<%= javascript_include_tag "decidim/plans/social_share" %>
+<%= stylesheet_link_tag "decidim/plans/social_share" %>
+
+<%=
+  render partial: "decidim/shared/flag_modal", locals: {
+    reportable: @plan,
+    form: @report_form,
+    url: decidim.report_path(sgid: @plan.to_sgid.to_s)
+  }
+%>

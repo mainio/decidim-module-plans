@@ -1,0 +1,8 @@
+<div class="plan-contents">
+  <% @plan.sections.each do |section| %>
+    <%= 
+    render partial: "content",
+    object: @plan.contents.find_by(section: section)
+    %>
+  <% end %>
+</div>

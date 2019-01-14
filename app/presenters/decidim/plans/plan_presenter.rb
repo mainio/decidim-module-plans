@@ -8,6 +8,7 @@ module Decidim
     class PlanPresenter < SimpleDelegator
       include Rails.application.routes.mounted_helpers
       include ActionView::Helpers::UrlHelper
+      include TranslatableAttributes
 
       def author
         coauthorship = coauthorships.first
@@ -24,6 +25,10 @@ module Decidim
 
       def plan_path
         Decidim::ResourceLocatorPresenter.new(plan).path
+      end
+
+      def title
+        translated_attribute(plan.title).html_safe
       end
     end
   end
