@@ -23,6 +23,8 @@ en:
             plan_answering_enabled: Plan answering enabled
     plans:
       plans:
+        attached_proposals:
+          attached_proposals: Attached proposals
         index:
           see_all_withdrawn: See all withdrawn plans
         plan:
