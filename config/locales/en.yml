@@ -22,6 +22,36 @@ en:
             creation_enabled: Creation enabled
             plan_answering_enabled: Plan answering enabled
     plans:
+      plans:
+        index:
+          see_all_withdrawn: See all withdrawn plans
+        plan:
+          view_plan: View plan
+        filters:
+          accepted: Accepted
+          activity: Activity
+          all: All
+          category: Category
+          category_prompt: Select a category
+          citizens: Citizens
+          evaluating: Evaluating
+          except_rejected: All except rejected
+          official: Official
+          origin: Origin
+          rejected: Rejected
+          related_to: Related to
+          search: Search
+          state: State
+          voted: Voted
+        filters_small_view:
+          close_modal: Close modal
+          filter: Filter
+          filter_by: Filter by
+          unfold: Unfold
+        orders:
+          label: 'Order plans by:'
+          random: Random
+          recent: Recent
       answers:
         accepted: Accepted
         evaluating: Evaluating
@@ -80,6 +110,7 @@ en:
             state: State
             comments: Comments
             published_at: Published at
+            official_plan: Official plan
       sections:
         actions:
           new: New section
