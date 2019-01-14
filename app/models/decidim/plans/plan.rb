@@ -37,6 +37,7 @@ module Decidim
 
       has_many :contents, foreign_key: :decidim_plan_id, dependent: :destroy
 
+      scope :open, -> { where(state: "open") }
       scope :accepted, -> { where(state: "accepted") }
       scope :rejected, -> { where(state: "rejected") }
       scope :evaluating, -> { where(state: "evaluating") }
@@ -71,6 +72,13 @@ module Decidim
         joins(:coauthorships)
           .where("decidim_coauthorships.coauthorable_type = ?", name)
           .where("decidim_coauthorships.decidim_author_id = ? AND decidim_coauthorships.decidim_author_type = ? ", author.id, author.class.base_class.name)
+      end
+
+      # Public: Checks if the plan is open for edits.
+      #
+      # Returns Boolean.
+      def open?
+        state == "open"
       end
 
       # Public: Checks if the plan has been published or not.

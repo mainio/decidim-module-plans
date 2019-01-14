@@ -5,7 +5,7 @@ module Decidim
     # Exposes the plan resource so users can view and create them.
     class PlansController < Decidim::Plans::ApplicationController
       helper Decidim::WidgetUrlsHelper
-      # helper PlanWizardHelper
+      helper PlanWizardHelper
       helper TooltipHelper
       include FormFactory
       include FilterResource
@@ -50,7 +50,7 @@ module Decidim
 
         if @similar_plans.blank?
           flash[:notice] = I18n.t("plans.plans.compare.no_similars_found", scope: "decidim")
-          redirect_to complete_plans_path(plan: { title: @form.title, body: @form.body })
+          redirect_to complete_plans_path(plan: { title: @form.title })
         end
       end
 

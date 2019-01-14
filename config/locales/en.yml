@@ -23,6 +23,18 @@ en:
             plan_answering_enabled: Plan answering enabled
     plans:
       plans:
+        wizard_aside:
+          back: Back
+          info: You are creating a <strong>plan</strong>.
+        wizard_steps:
+          see_steps: see steps
+          step_1: Create your plan
+          step_2: Compare with plans
+          step_3: Complete your plan
+          step_of: Step %{current_step_num} of %{total_steps}
+        new:
+          title: Create plan
+          send: Continue
         show:
           back: Back
           edit: Edit plan
