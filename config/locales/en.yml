@@ -60,6 +60,13 @@ en:
           update:
             invalid: Error updating sections.
             success: Sections updated successfully.
+      admin_log:
+        plan:
+          answer: "%{user_name} answered the %{resource_name} plan on the %{space_name} space."
+          create: "%{user_name} created the %{resource_name} plan on the %{space_name} space."
+          update: "%{user_name} updated the %{resource_name} official plan on the %{space_name} space."
+        plan_note:
+          create: "%{user_name} left a private note on the %{resource_name} plan on the %{space_name} space."
       answers:
         accepted: Accepted
         evaluating: Evaluating
