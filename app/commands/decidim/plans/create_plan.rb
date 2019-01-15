@@ -31,6 +31,7 @@ module Decidim
 
         transaction do
           create_plan
+          create_plan_contents
           create_attachment if process_attachments?
         end
 
@@ -60,6 +61,16 @@ module Decidim
         end
 
         @attached_to = @plan
+      end
+
+      def create_plan_contents
+        @form.contents.each do |content|
+          @plan.contents.create!(
+            body: content.body,
+            section: content.section,
+            user: @current_user
+          )
+        end
       end
 
       def user_group

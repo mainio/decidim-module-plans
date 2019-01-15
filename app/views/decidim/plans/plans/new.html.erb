@@ -1,22 +1,15 @@
 <div class="row">
-  <%= render partial: "decidim/plans/plans/wizard_aside" %>
-
-  <div class="columns large-6">
-    <%= render partial: "decidim/plans/plans/wizard_header" %>
-
+  <div class="columns large-6 small-centered">
     <div class="card">
       <div class="card__content">
         <%= decidim_form_for(@form) do |form| %>
-          <div class="field">
-            <%= form.translated :text_field, :title %>
-          </div>
+          <%= render partial: "form", object: form %>
 
           <div class="actions">
-            <%= form.submit t("decidim.plans.plans.new.send"), class: "button expanded mt-s mb-none", data: { disable: true } %>
+            <%= form.submit t(".send"), class: "button expanded mt-s mb-none", data: { disable: true } %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="columns large-3"></div>
 </div>

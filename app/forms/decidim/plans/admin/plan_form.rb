@@ -14,7 +14,7 @@ module Decidim
         attribute :category_id, Integer
         attribute :scope_id, Integer
         attribute :attachment, AttachmentForm
-        attribute :contents, Array[ContentForm]
+        attribute :contents, Array[Decidim::Plans::ContentForm]
 
         validates :title, translatable_presence: true
 

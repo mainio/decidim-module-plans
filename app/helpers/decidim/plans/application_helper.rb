@@ -63,6 +63,10 @@ module Decidim
           ["amendments", t("decidim.plans.application_helper.filter_type_values.amendments")]
         ]
       end
+
+      def tabs_id_for_content(idx)
+        "content_#{idx}"
+      end
     end
   end
 end

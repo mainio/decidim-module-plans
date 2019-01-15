@@ -5,14 +5,14 @@ module Decidim
     # Exposes the plan resource so users can view and create them.
     class PlansController < Decidim::Plans::ApplicationController
       helper Decidim::WidgetUrlsHelper
-      helper PlanWizardHelper
+      helper UserGroupHelper
       helper TooltipHelper
       include FormFactory
       include FilterResource
       include Orderable
       include Paginable
 
-      before_action :authenticate_user!, only: [:new, :create, :complete]
+      before_action :authenticate_user!, only: [:new, :create]
       before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :publish]
 
       def index
@@ -34,54 +34,25 @@ module Decidim
 
       def new
         enforce_permission_to :create, :plan
-        @step = :step_1
 
-        @form = form(PlanForm).from_params(
-          attachment: form(AttachmentForm).from_params({})
-        )
-      end
-
-      def compare
-        @step = :step_2
-        @similar_plans ||= Decidim::Plans::SimilarPlans
-                           .for(current_component, params[:plan])
-                           .all
-        @form = form(PlanForm).from_params(params)
-
-        if @similar_plans.blank?
-          flash[:notice] = I18n.t("plans.plans.compare.no_similars_found", scope: "decidim")
-          redirect_to complete_plans_path(plan: { title: @form.title })
-        end
-      end
-
-      def complete
-        enforce_permission_to :create, :plan
-        @step = :step_3
-        if params[:plan].present?
-          params[:plan][:attachment] = form(AttachmentForm).from_params({})
-          @form = form(PlanForm).from_params(params)
-        else
-          @form = form(PlanForm).from_params(
-            attachment: form(AttachmentForm).from_params({})
-          )
-        end
+        @form = form(PlanForm).from_model(Plan.new(component: current_component))
+        @form.attachment = form(AttachmentForm).from_params({})
       end
 
       def create
         enforce_permission_to :create, :plan
-        @step = :step_3
+
         @form = form(PlanForm).from_params(params)
 
         CreatePlan.call(@form, current_user) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.create.success", scope: "decidim")
-
             redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
           end
 
           on(:invalid) do
             flash.now[:alert] = I18n.t("plans.plans.create.error", scope: "decidim")
-            render :complete
+            render :new
           end
         end
       end

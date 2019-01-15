@@ -3,15 +3,23 @@
 module Decidim
   module Plans
     # A form object to be used when public users want to create a Plan.
-    class PlanForm < Decidim::Plans::PlanWizardCreateStepForm
+    class PlanForm < Decidim::Form
+      include TranslatableAttributes
       mimic :plan
 
+      alias component current_component
+
+      translatable_attribute :title, String
+
+      attribute :user_group_id, Integer
       attribute :category_id, Integer
       attribute :scope_id, Integer
       attribute :attachment, AttachmentForm
+      attribute :contents, Array[ContentForm]
 
       validates :category, presence: true, if: ->(form) { form.category_id.present? }
       validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
+      validates :title, translatable_presence: true
 
       validate :scope_belongs_to_participatory_space_scope
 
@@ -41,6 +49,15 @@ module Decidim
       end
 
       def map_model(model)
+        self.contents = model.sections.map do |section|
+          ContentForm.from_model(
+            Content
+              .where(plan: model, section: section)
+              .first_or_initialize(plan: model, section: section)
+          )
+        end
+
+        self.user_group_id = model.user_groups.first&.id
         return unless model.categorization
 
         self.category_id = model.categorization.decidim_category_id

@@ -62,11 +62,15 @@ en:
             success: Sections updated successfully.
       admin_log:
         plan:
-          answer: "%{user_name} answered the %{resource_name} plan on the %{space_name} space."
-          create: "%{user_name} created the %{resource_name} plan on the %{space_name} space."
-          update: "%{user_name} updated the %{resource_name} official plan on the %{space_name} space."
+          answer: "%{user_name} answered the %{resource_name} plan on the %{space_name}
+            space."
+          create: "%{user_name} created the %{resource_name} plan on the %{space_name}
+            space."
+          update: "%{user_name} updated the %{resource_name} official plan on the
+            %{space_name} space."
         plan_note:
-          create: "%{user_name} left a private note on the %{resource_name} plan on the %{space_name} space."
+          create: "%{user_name} left a private note on the %{resource_name} plan on
+            the %{space_name} space."
       answers:
         accepted: Accepted
         evaluating: Evaluating
@@ -106,8 +110,6 @@ en:
       plans:
         attached_proposals:
           attached_proposals: Attached proposals
-        compare:
-          no_similars_found: Well done! No similar plans found
         count:
           plans_count:
             one: "%{count} plan"
@@ -136,6 +138,9 @@ en:
           filter: Filter
           filter_by: Filter by
           unfold: Unfold
+        form:
+          attachment_legend: "(Optional) Add an attachment"
+          select_a_category: Select a category
         index:
           new_plan: New plan
           see_all_withdrawn: See all withdrawn plans
@@ -162,7 +167,10 @@ en:
           hidden_authors_count:
             one: and %{count} more person
             other: and %{count} more people
-          info-message: "This is a <strong>plan</strong> for a proposal. You can help its authors to shape it using the comment section below or improve it directly by requesting access to edit it. Once the authors grant you access, you'll be able to make changes to this plan."
+          info-message: This is a <strong>plan</strong> for a proposal. You can help
+            its authors to shape it using the comment section below or improve it
+            directly by requesting access to edit it. Once the authors grant you access,
+            you'll be able to make changes to this plan.
           of_versions: "(of %{number})"
           plan_accepted_reason: 'This plan has been accepted because:'
           plan_in_evaluation_reason: This proposal is being evaluated
@@ -179,15 +187,6 @@ en:
         update:
           error: Error updating plan.
           success: Plan updated successfully.
-        wizard_aside:
-          back: Back
-          info: You are creating a <strong>plan</strong>.
-        wizard_steps:
-          see_steps: see steps
-          step_1: Create your plan
-          step_2: Compare with plans
-          step_3: Complete your plan
-          step_of: Step %{current_step_num} of %{total_steps}
       sections:
         actions:
           new: New section
