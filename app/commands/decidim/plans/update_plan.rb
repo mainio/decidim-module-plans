@@ -63,7 +63,7 @@ module Decidim
         {
           title: @form.title,
           category: @form.category,
-          scope: @form.scope,
+          scope: @form.scope
         }
       end
     end
