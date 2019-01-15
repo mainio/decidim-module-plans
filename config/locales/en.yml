@@ -1,6 +1,13 @@
 ---
 en:
   activemodel:
+    attributes:
+      plan:
+        category_id: Category
+        decidim_scope_id: Scope
+        state: State
+        title: Title
+        user_group_id: Create plan as
     errors:
       models:
         plan:
@@ -195,6 +202,20 @@ en:
       update:
         invalid: Error updating plan.
         success: Plan updated successfully.
+      versions:
+        changes_at_title: Changes at "%{title}"
+        index:
+          title: Versions
+        stats:
+          back_to_plan: Go back to plan
+          number_of_versions: Versions
+          show_all_versions: Show all versions
+          version_author: Version author
+          version_created_at: Version created at
+          version_number: Version number
+          version_number_out_of_total: "%{current_version} out of %{total_count}"
+        version:
+          version_index: Version %{index}
     proposals:
       plans:
         requests:
