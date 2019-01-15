@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="columns large-6 small-centered">
+    <div class="card">
+      <div class="card__content">
+        <%= decidim_form_for(@form) do |form| %>
+          <%= render partial: "form", object: form %>
+
+          <div class="actions">
+            <%= form.submit t(".update"), class: "button expanded mt-s mb-none", data: { disable: true } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

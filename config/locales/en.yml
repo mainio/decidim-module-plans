@@ -117,6 +117,8 @@ en:
         create:
           error: Error creating plan.
           success: Plan created successfully.
+        edit:
+          update: Update
         filters:
           accepted: Accepted
           activity: Activity

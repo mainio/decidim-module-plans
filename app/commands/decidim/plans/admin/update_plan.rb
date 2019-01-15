@@ -64,7 +64,7 @@ module Decidim
               content,
               { body: content.body,
                 section: content.section,
-                user: form.current_user },
+                user: @form.current_user },
               @plan.contents
             )
           end
