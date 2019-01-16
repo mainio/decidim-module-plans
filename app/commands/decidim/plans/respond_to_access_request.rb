@@ -2,8 +2,7 @@
 
 module Decidim
   module Plans
-    # A command with all the business logic to respond to a user
-    # request to contribute to a plan.
+    # Common functionality for {Accept,Reject}AccessToPlan.
     class RespondToAccessRequest < Rectify::Command
       # Public: Initializes the command.
       #
@@ -42,12 +41,6 @@ module Decidim
         broadcast(:ok, @requester_user)
       end
 
-      def recipient_ids; end
-      def authors_event; end
-      def authors_event_class; end
-      def requester_event; end
-      def requester_event_class; end
-
       def notify_plan_authors
         Decidim::EventsManager.publish(
           event: authors_event,
@@ -68,6 +61,16 @@ module Decidim
           recipient_ids: [@requester_user.id]
         )
       end
+
+      def recipient_ids; end
+
+      def authors_event; end
+
+      def authors_event_class; end
+
+      def requester_event; end
+
+      def requester_event_class; end
     end
   end
 end

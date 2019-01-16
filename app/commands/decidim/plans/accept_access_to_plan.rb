@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # A command with all the business logic to accept a user request to
-    # contribute to a collaborative draft.
+    # contribute to a plan.
     class AcceptAccessToPlan < RespondToAccessRequest
       # Executes the command. Broadcasts these events:
       #
