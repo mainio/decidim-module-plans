@@ -95,6 +95,11 @@ en:
           all: All
           amendments: Amendments
           plans: Plans
+      attached_proposals_helper:
+        close: Close
+        current_selection: Current selection
+        select: Select
+        attach_proposal: Attach proposal
       create:
         invalid: Error creating plan.
         success: Plan created successfully.

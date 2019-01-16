@@ -54,7 +54,8 @@ module Decidim
             form.current_user,
             title: form.title,
             category: form.category,
-            scope: form.scope
+            scope: form.scope,
+            proposals: form.proposals
           )
         end
 

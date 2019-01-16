@@ -48,6 +48,7 @@ module Decidim
             author: form.author,
             action_user: form.current_user
           )
+          @plan.proposals << form.proposals
           @attached_to = @plan
         end
 

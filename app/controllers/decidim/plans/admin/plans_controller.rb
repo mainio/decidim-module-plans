@@ -6,9 +6,10 @@ module Decidim
       # This controller allows admins to manage plans in a participatory process.
       class PlansController < Admin::ApplicationController
         include Decidim::ApplicationHelper
+        include Plans::AttachedProposalsHelper
 
         helper Plans::ApplicationHelper
-        helper_method :plans, :query, :form_presenter
+        helper_method :plans, :query, :form_presenter, :attached_proposals_picker_field
 
         def new
           enforce_permission_to :create, :plans

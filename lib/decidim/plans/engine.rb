@@ -7,10 +7,7 @@ module Decidim
 
       routes do
         resources :plans, except: [:destroy] do
-          resource :plan_endorsement, only: [:create, :destroy] do
-            get :identities, on: :collection
-          end
-          resource :plan_vote, only: [:create, :destroy]
+          get "search_proposals"
           resource :plan_widget, only: :show, path: "embed"
           resources :versions, only: [:show, :index]
         end

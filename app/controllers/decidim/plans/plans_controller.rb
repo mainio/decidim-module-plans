@@ -7,10 +7,13 @@ module Decidim
       helper Decidim::WidgetUrlsHelper
       helper UserGroupHelper
       helper TooltipHelper
+      include AttachedProposalsHelper
       include FormFactory
       include FilterResource
       include Orderable
       include Paginable
+
+      helper_method :attached_proposals_picker_field
 
       before_action :authenticate_user!, only: [:new, :create]
       before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :publish]

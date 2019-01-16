@@ -26,6 +26,13 @@
       </div>
     <% end %>
 
+    <div class="row column">
+      <%= attached_proposals_picker_field form, :proposals %>
+    </div>
+
+    <%= javascript_include_tag "decidim/plans/proposal_picker" %>
+    <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
+
     <% @form.contents.each_with_index do |content, idx| %>
       <%= fields_for "contents[]", content do |content_form| %>
         <%= render "content", form: content_form, id: tabs_id_for_content(idx) %>

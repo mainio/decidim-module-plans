@@ -16,6 +16,7 @@ module Decidim
       attribute :scope_id, Integer
       attribute :attachment, AttachmentForm
       attribute :contents, Array[ContentForm]
+      attribute :proposal_ids, Array[Integer]
 
       validates :category, presence: true, if: ->(form) { form.category_id.present? }
       validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
@@ -65,6 +66,13 @@ module Decidim
 
       def user_group
         @user_group ||= Decidim::UserGroup.find user_group_id if user_group_id.present?
+      end
+
+      def proposals
+        @proposals ||= Decidim.find_resource_manifest(:proposals)
+                         .try(:resource_scope, current_component)
+                         &.where(id: proposal_ids)
+                         &.order(title: :asc)
       end
 
       private

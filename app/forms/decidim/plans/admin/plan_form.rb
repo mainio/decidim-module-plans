@@ -15,6 +15,7 @@ module Decidim
         attribute :scope_id, Integer
         attribute :attachment, AttachmentForm
         attribute :contents, Array[Decidim::Plans::ContentForm]
+        attribute :proposal_ids, Array[Integer]
 
         validates :title, translatable_presence: true
 
@@ -67,6 +68,13 @@ module Decidim
 
         def author
           current_organization
+        end
+
+        def proposals
+          @proposals ||= Decidim.find_resource_manifest(:proposals)
+                           .try(:resource_scope, current_component)
+                           &.where(id: proposal_ids)
+                           &.order(title: :asc)
         end
 
         private

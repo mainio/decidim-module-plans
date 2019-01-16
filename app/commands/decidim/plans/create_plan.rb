@@ -57,6 +57,7 @@ module Decidim
           )
           draft.coauthorships.build(author: @current_user, user_group: @form.user_group)
           draft.save!
+          draft.proposals << form.proposals
           draft
         end
 
