@@ -126,7 +126,7 @@ Decidim.register_component(:plans) do |component|
         plan.add_coauthor(participatory_space.organization)
         plan.save!
 
-        plan.proposals << proposals.slice!(0, 2) unless proposals.empty?
+        plan.proposals << proposals.slice!(0, 2) if proposals.length > 2
 
         plan
       end
