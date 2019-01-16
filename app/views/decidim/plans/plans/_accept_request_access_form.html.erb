@@ -3,6 +3,6 @@
     <%= form.hidden_field :id, value: @plan.id %>
     <%= form.hidden_field :state, value: @plan.state %>
     <%= form.hidden_field :requester_user_id, value: requester.id %>
-    <%= form.submit accept_request_button_label, class: "button hollow secondary small", data: { disable: true } %>
+    <%= form.submit t("decidim.plans.requests.accept_request"), class: "button hollow secondary small", data: { disable: true } %>
   <% end %>
 <% end %>

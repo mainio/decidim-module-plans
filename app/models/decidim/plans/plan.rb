@@ -132,8 +132,7 @@ module Decidim
       #
       # user - the user to check for authorship
       def editable_by?(user)
-        return true if draft?
-        !answered? && within_edit_time_limit? && !copied_from_other_component? && authored_by?(user)
+        !answered? && !copied_from_other_component? && authored_by?(user)
       end
 
       # Checks whether the user can withdraw the given plan.

@@ -96,10 +96,10 @@ en:
           amendments: Amendments
           plans: Plans
       attached_proposals_helper:
+        attach_proposal: Attach proposal
         close: Close
         current_selection: Current selection
         select: Select
-        attach_proposal: Attach proposal
       create:
         invalid: Error creating plan.
         success: Plan created successfully.
@@ -182,8 +182,9 @@ en:
             one: and %{count} more person
             other: and %{count} more people
           info-message: You can help this plan's authors to shape it using the comment
-            section below or improve it directly by requesting access to edit it. Once
-            the authors grant you access, you'll be able to make changes to this plan.
+            section below or improve it directly by requesting access to edit it.
+            Once the authors grant you access, you'll be able to make changes to this
+            plan.
           of_versions: "(of %{number})"
           plan_accepted_reason: 'This plan has been accepted because:'
           plan_in_evaluation_reason: This proposal is being evaluated
@@ -200,6 +201,19 @@ en:
         update:
           error: Error updating plan.
           success: Plan updated successfully.
+      requests:
+        accept_request: Accept
+        reject_request: Reject
+        title: Collaboration requests
+        accepted_request:
+          error: Could not be accepted as a collaborator, try again later.
+          success: "@%{user} has been successfully accepted as a collaborator."
+        access_requested:
+          error: Your request could not be completed, try again later.
+          success: Your request to collaborate has been sent successfully
+        rejected_request:
+          error: Could not be rejected as a collaborator, try again later.
+          success: "@%{user} has been successfully rejected as a collaborator."
       sections:
         actions:
           new: New section
@@ -220,14 +234,5 @@ en:
           version_number_out_of_total: "%{current_version} out of %{total_count}"
         version:
           version_index: Version %{index}
-    proposals:
-      plans:
-        requests:
-          collaboration_requests:
-            accept_request: Accept
-            reject_request: Reject
-            title: Collaboration requests
-        show:
-          request_access: Request access
     scopes:
       global: Global

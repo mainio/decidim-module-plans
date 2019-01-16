@@ -7,9 +7,14 @@ module Decidim
 
       routes do
         resources :plans, except: [:destroy] do
-          get "search_proposals"
+          get :search_proposals
           resource :plan_widget, only: :show, path: "embed"
           resources :versions, only: [:show, :index]
+          member do
+            post :request_access, controller: "plan_collaborator_requests"
+            post :request_accept, controller: "plan_collaborator_requests"
+            post :request_reject, controller: "plan_collaborator_requests"
+          end
         end
 
         root to: "plans#index"
