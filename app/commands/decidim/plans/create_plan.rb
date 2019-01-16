@@ -48,17 +48,17 @@ module Decidim
           Plan,
           @form.current_user
         ) do
-          draft = Plan.new(
+          plan = Plan.new(
             title: form.title,
             category: form.category,
             scope: form.scope,
             component: form.component,
             state: "open"
           )
-          draft.coauthorships.build(author: @current_user, user_group: @form.user_group)
-          draft.save!
-          draft.proposals << form.proposals
-          draft
+          plan.coauthorships.build(author: @current_user, user_group: @form.user_group)
+          plan.save!
+          plan.proposals << form.proposals
+          plan
         end
 
         @attached_to = @plan

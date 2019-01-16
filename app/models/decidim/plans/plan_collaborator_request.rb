@@ -2,7 +2,7 @@
 
 module Decidim
   module Plans
-    # A collaborative_draft can accept requests to coauthor and contribute
+    # A plan can accept requests to coauthor and contribute
     class PlanCollaboratorRequest < Plans::ApplicationRecord
       validates :plan, :user, presence: true
 
