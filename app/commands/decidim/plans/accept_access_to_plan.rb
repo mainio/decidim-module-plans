@@ -4,20 +4,7 @@ module Decidim
   module Plans
     # A command with all the business logic to accept a user request to
     # contribute to a collaborative draft.
-    class AcceptAccessToPlan < Rectify::Command
-      # Public: Initializes the command.
-      #
-      # form         - A form object with the params.
-      # plan     - A Decidim::Plans::Plan object.
-      # current_user - The current user.
-      # requester_user - The user that requested to collaborate.
-      def initialize(form, current_user)
-        @form = form
-        @plan = form.plan
-        @current_user = current_user
-        @requester_user = form.requester_user
-      end
-
+    class AcceptAccessToPlan < RespondToAccessRequest
       # Executes the command. Broadcasts these events:
       #
       # - :ok when everything is valid.
@@ -42,28 +29,24 @@ module Decidim
         broadcast(:ok, @requester_user)
       end
 
-      private
-
-      def notify_plan_authors
-        recipient_ids = @plan.authors.pluck(:id) - [@requester_user.id]
-        Decidim::EventsManager.publish(
-          event: "decidim.events.plans.plan_access_accepted",
-          event_class: Decidim::Plans::PlanAccessAcceptedEvent,
-          resource: @plan,
-          recipient_ids: recipient_ids.uniq,
-          extra: {
-            requester_id: @requester_user.id
-          }
-        )
+      def recipient_ids
+        @plan.authors.pluck(:id) - [@requester_user.id]
       end
 
-      def notify_plan_requester
-        Decidim::EventsManager.publish(
-          event: "decidim.events.plans.plan_access_requester_accepted",
-          event_class: Decidim::Plans::PlanAccessRequesterAcceptedEvent,
-          resource: @plan,
-          recipient_ids: [@requester_user.id]
-        )
+      def authors_event
+        "decidim.events.plans.plan_access_accepted"
+      end
+
+      def authors_event_class
+        Decidim::Plans::PlanAccessAcceptedEvent
+      end
+
+      def requester_event
+        "decidim.events.plans.plan_access_requester_accepted"
+      end
+
+      def requester_event_class
+        Decidim::Plans::PlanAccessRequesterAcceptedEvent
       end
     end
   end
