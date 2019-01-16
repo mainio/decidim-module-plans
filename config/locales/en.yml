@@ -181,10 +181,9 @@ en:
           hidden_authors_count:
             one: and %{count} more person
             other: and %{count} more people
-          info-message: This is a <strong>plan</strong> for a proposal. You can help
-            its authors to shape it using the comment section below or improve it
-            directly by requesting access to edit it. Once the authors grant you access,
-            you'll be able to make changes to this plan.
+          info-message: You can help this plan's authors to shape it using the comment
+            section below or improve it directly by requesting access to edit it. Once
+            the authors grant you access, you'll be able to make changes to this plan.
           of_versions: "(of %{number})"
           plan_accepted_reason: 'This plan has been accepted because:'
           plan_in_evaluation_reason: This proposal is being evaluated
