@@ -159,7 +159,7 @@ en:
           new_plan: New plan
           see_all_withdrawn: See all withdrawn plans
         new:
-          send: Continue
+          create: Create
           title: Create plan
         new_plan_button:
           new_plan: New plan
@@ -203,17 +203,17 @@ en:
           success: Plan updated successfully.
       requests:
         accept_request: Accept
-        reject_request: Reject
-        title: Collaboration requests
         accepted_request:
           error: Could not be accepted as a collaborator, try again later.
           success: "@%{user} has been successfully accepted as a collaborator."
         access_requested:
           error: Your request could not be completed, try again later.
           success: Your request to collaborate has been sent successfully
+        reject_request: Reject
         rejected_request:
           error: Could not be rejected as a collaborator, try again later.
           success: "@%{user} has been successfully rejected as a collaborator."
+        title: Collaboration requests
       sections:
         actions:
           new: New section
