@@ -64,6 +64,8 @@ module Decidim
         enforce_permission_to :edit, :plan, plan: @plan
 
         @form = form(PlanForm).from_model(@plan)
+        @form.attachment = form(AttachmentForm).from_model(@plan.attachments.first)
+        @form
       end
 
       def update

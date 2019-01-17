@@ -4,6 +4,7 @@ module Decidim
   module Plans
     # A command with all the business logic when a user updates a plan.
     class UpdatePlan < Rectify::Command
+      include AttachmentMethods
       include NestedUpdater
 
       # Public: Initializes the command.
@@ -15,6 +16,7 @@ module Decidim
         @form = form
         @current_user = current_user
         @plan = plan
+        @attached_to = plan
       end
 
       # Executes the command. Broadcasts these events:
@@ -27,9 +29,17 @@ module Decidim
         return broadcast(:invalid) if form.invalid?
         return broadcast(:invalid) unless plan.editable_by?(current_user)
 
+        if process_attachments?
+          @plan.attachments.destroy_all
+
+          build_attachment
+          return broadcast(:invalid) if attachment_invalid?
+        end
+
         transaction do
           update_plan
           update_plan_contents
+          create_attachment if process_attachments?
         end
 
         broadcast(:ok, plan)
@@ -37,7 +47,7 @@ module Decidim
 
       private
 
-      attr_reader :form, :plan, :current_user
+      attr_reader :form, :plan, :current_user, :attachment
 
       def update_plan
         Decidim.traceability.update!(
