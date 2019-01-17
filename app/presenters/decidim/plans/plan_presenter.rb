@@ -30,6 +30,20 @@ module Decidim
       def title
         translated_attribute(plan.title).html_safe
       end
+
+      def body
+        fields = plan.sections.map do |section|
+          content = plan.contents.find_by(section: section)
+
+          unless content.nil?
+            title = translated_attribute(content.title)
+            body = translated_attribute(content.body)
+            "<dt>#{title}</dt> <dd>#{body}</dd>"
+          end
+        end
+
+        "<dl>#{fields.join()}</dl>".html_safe()
+      end
     end
   end
 end

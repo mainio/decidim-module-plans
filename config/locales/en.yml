@@ -39,7 +39,17 @@ en:
       admin:
         actions:
           preview: Preview
+        plan_answers:
+          edit:
+            accepted: Accepted
+            answer_plan: Answer
+            evaluating: Evaluating
+            rejected: Rejected
+            title: Answer for plan %{title}
         plans:
+          answer:
+            invalid: Error answering plan.
+            success: Plan answered successfully.
           edit:
             title: Edit plan
             update: Update
@@ -67,6 +77,11 @@ en:
           update:
             invalid: Error updating sections.
             success: Sections updated successfully.
+        shared:
+          info_plan:
+            body: Body
+            created_at: Creation date
+            plans: Plans
       admin_log:
         plan:
           answer: "%{user_name} answered the %{resource_name} plan on the %{space_name}

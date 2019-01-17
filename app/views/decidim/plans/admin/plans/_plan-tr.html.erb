@@ -40,7 +40,7 @@
       <%= icon_link_to "pencil", edit_plan_path(plan), t("actions.edit_plan", scope: "decidim.plans"), class: "action-icon--edit-plan" %>
     <% end %>
 
-    <% if allowed_to? :create, :plan_answer and !plan.emendation? %>
+    <% if allowed_to? :create, :plan_answer %>
       <%= icon_link_to "comment-square", edit_plan_plan_answer_path(plan_id: plan.id, id: plan.id), t("actions.answer", scope: "decidim.plans"), class: " icon--small" %>
     <% else %>
       <%= icon "comment-square", scope: "decidim.plans.admin", class: "action-icon action-icon--disabled" %>

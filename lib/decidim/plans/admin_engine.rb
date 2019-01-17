@@ -12,7 +12,7 @@ module Decidim
       routes do
         resources :plans, only: [:index, :new, :create, :edit, :update] do
           get :search_proposals
-          resources :plans_answers, only: [:edit, :update]
+          resources :plan_answers, only: [:edit, :update]
         end
         resources :sections, only: [:index, :new, :create, :edit, :update]
 

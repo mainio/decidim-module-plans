@@ -8,6 +8,11 @@ module Decidim
           return permission_action unless user
 
           return permission_action if permission_action.scope != :admin
+
+          toggle_allow(admin_plan_answering_is_enabled?) if
+            permission_action.action == :create &&
+            permission_action.subject == :plan_answer
+
           return permission_action if permission_action.subject != :plan &&
                                       permission_action.subject != :plans &&
                                       permission_action.subject != :section &&
@@ -27,6 +32,11 @@ module Decidim
 
         def plan
           @plan ||= context.fetch(:plan, nil)
+        end
+
+        def admin_plan_answering_is_enabled?
+          current_settings.try(:plan_answering_enabled) &&
+            component_settings.try(:plan_answering_enabled)
         end
       end
     end
