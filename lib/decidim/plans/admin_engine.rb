@@ -21,7 +21,8 @@ module Decidim
 
       initializer "decidim_plans.admin_assets" do |app|
         app.config.assets.precompile += %w(admin/decidim_plans_manifest.js
-                                           decidim/plans/decidim_plans_manifest.js)
+                                           decidim/plans/decidim_plans_manifest.js
+                                           decidim/plans/proposal_picker.scss)
       end
     end
   end

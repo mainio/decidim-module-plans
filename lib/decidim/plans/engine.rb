@@ -24,7 +24,8 @@ module Decidim
         app.config.assets.precompile += %w(decidim_plans_manifest.js
                                            decidim_plans_manifest.css
                                            decidim/plans/identity_selector_dialog.js
-                                           decidim/plans/decidim_plans_manifest.js)
+                                           decidim/plans/decidim_plans_manifest.js
+                                           decidim/plans/proposal_picker.scss)
       end
 
       initializer "decidim_plans.add_cells_view_paths" do
