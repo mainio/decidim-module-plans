@@ -40,7 +40,11 @@ And then execute:
 
 ```bash
 $ bundle
+$ bundle exec rails decidim_plans:install:migrations
+$ bundle exec rails db:migrate
 ```
+
+To keep the gem up to date, you can use the commands above to also update it.
 
 ## Usage
 
