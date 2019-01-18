@@ -1,0 +1,253 @@
+---
+en:
+  activemodel:
+    attributes:
+      plan:
+        category_id: Kategoria
+        decidim_scope_id: Teema
+        state: Tila
+        title: Otsikko
+        user_group_id: Luo käyttäjänä
+    errors:
+      models:
+        plan:
+          attributes:
+            attachment:
+              needs_to_be_reattached: Pitää liittää uudestaan
+  decidim:
+    components:
+      plans:
+        name: Suunnitelmat
+        settings:
+          global:
+            announcement: Ilmoitus
+            attachments_allowed: Liitteet sallittu
+            comments_enabled: Kommentointi sallittu
+            plan_answering_enabled: Suunnitelmiin vastaaminen sallittu
+          step:
+            announcement: Ilmoitus
+            comments_blocked: Kommentointi estetty
+            creation_enabled: Luonti sallittu
+            plan_answering_enabled: Suunnitelmiin vastaaminen sallittu
+    plans:
+      actions:
+        answer: Vastaa
+        edit_plan: Muokkaa suunnitelmaa
+        new: Uusi suunnitelma
+        sections: Osiot
+        title: Toiminnot
+      admin:
+        actions:
+          preview: Esikatsele
+        plan_answers:
+          edit:
+            accepted: Hyväksytty
+            answer_plan: Vastaa
+            evaluating: Arvioitavana
+            rejected: Hylätty
+            title: Vastaa suunnitelmaan %{title}
+        plans:
+          answer:
+            invalid: Suunnitelmaan vastaamisessa tapahtui virhe.
+            success: Suunnitelmaan vastattu onnistuneesti.
+          edit:
+            title: Muokkaa suunnitelmaa
+            update: Päivitä
+          form:
+            attachment_legend: "(Valinnainen) Lisää liite"
+            select_a_category: Valitse kategoria
+          index:
+            selected: Valittu
+            title: Suunnitelmat
+          new:
+            create: Luo
+            title: Uusi suunnitelma
+        sections:
+          form:
+            add_section: Lisää osio
+          index:
+            save: Tallenna
+            title: Osiot
+          section:
+            body: Runkoteksti
+            down: Alas
+            remove: Poista
+            section: Osio
+            up: Ylös
+          update:
+            invalid: Osioiden päivityksessä tapahtui virhe.
+            success: Osiot päivitetty onnistuneesti.
+        shared:
+          info_plan:
+            body: Runkoteksti
+            created_at: Luontipäivä
+            plans: Suunnitelmat
+      admin_log:
+        plan:
+          answer: "%{user_name} vastasi suunnitelmaan kohteessa %{resource_name}
+            osallisuustilassa %{space_name}."
+          create: "%{user_name} loi suunnitelman kohteelle %{resource_name}
+            osallisuustilassa %{space_name}."
+          update: "%{user_name} päivitti virallista suunnitelmaa kohteessa
+            %{resource_name} osallisuustilassa %{space_name}."
+        plan_note:
+          create: "%{user_name} lisäsi yksityisen viestin kohteen
+            %{resource_name} suunnitelmaan osallisuustilassa %{space_name}."
+      answers:
+        accepted: Hyväksytty
+        evaluating: Arvioitavana
+        not_answered: Vastaamaton
+        rejected: Hylätty
+        withdrawn: Peruutettu
+      application_helper:
+        filter_state_values:
+          accepted: Hyväksytty
+          all: Kaikki
+          evaluating: Arvioitavana
+          except_rejected: Kaikki paitsi hylätyt
+          rejected: Hylätty
+        filter_type_values:
+          all: Kaikki
+          amendments: Muutokset
+          plans: Suunnitelmat
+      attached_proposals_helper:
+        attach_proposal: Liitä ehdotus
+        close: Sulje
+        current_selection: Aktiivinen valinta
+        select: Valitse
+      create:
+        invalid: Virhe luotaessa suunnitelmaa.
+        success: Suunnitelma luotu onnistuneesti.
+      last_activity:
+        new_plan_at_html: "<span>Uusi suunnitelma osoitteessa %{link}</span>"
+      models:
+        plan:
+          fields:
+            authors: Laatijat
+            category: Kategoria
+            comments: Kommentit
+            contributions: Osallistumiset
+            id: ID
+            notes: Muistiinpanot
+            official_plan: Virallinen suunnitelma
+            published_at: Julkaisuajankohta
+            scope: Teema
+            state: Tila
+            title: Otsikko
+      plans:
+        attached_proposals:
+          attached_proposals: Liitetyt ehdotukset
+        count:
+          plans_count:
+            one: "%{count} suunnitelma"
+            other: "%{count} suunnitelmaa"
+        create:
+          error: Virhe luotaessa suunnitelmaa.
+          success: Suunnitelma luotu onnistuneesti.
+        edit:
+          update: Päivitä
+        filters:
+          accepted: Hyväksytty
+          activity: Aktiviteetti
+          all: Kaikki
+          category: Kategoria
+          category_prompt: Valitse kategoria
+          citizens: Kansalaiset
+          evaluating: Arvioitavana
+          except_rejected: Kaikki paitsi hylätyt
+          official: Virallinen
+          origin: Alkuperä
+          rejected: Hylätty
+          related_to: Liittyy kohteeseen
+          search: Hae
+          state: Tila
+          voted: Kannatettu
+        filters_small_view:
+          close_modal: Sulje ikkuna
+          filter: Suodata
+          filter_by: Suodata
+          unfold: Avaa
+        form:
+          attachment_legend: "(Valinnainen) Lisää liite"
+          select_a_category: Valitse kategoria
+        index:
+          new_plan: Uusi suunnitelma
+          see_all_withdrawn: Näytä kaikki peruutetut suunnitelmat
+        new:
+          create: Luo
+          title: Luo suunnitelma
+        new_plan_button:
+          new_plan: Uusi suunnitelma
+        orders:
+          label: 'Järjestä suunnitelmat:'
+          random: Satunnainen
+          recent: Uusimmat
+        plan:
+          publish:
+            error: Virhe julkaistaessa suunnitelmaa.
+            success: Suunnitelma julkaistu onnistuneesti.
+          view_plan: Näytä suunnitelma
+          withdraw:
+            error: Virhe peruutettaessa suunnitelmaa.
+            success: Suunnitelma peruutettu onnistuneesti.
+        show:
+          back: Takaisin
+          edit: Muokkaa suunnitelmaa
+          hidden_authors_count:
+            one: ja %{count} muu henkilö
+            other: ja %{count} muuta henkilöä
+          info-message: Voit auttaa tämän suunnitelman laatijoita muokkaamaan
+            siitä paremman kommentoimalla sivun alalaidassa tai pyytämällä
+            pääsyä tämän suunnitelman muokkaajaksi. Kun laatijat antavat sinulle
+            pääsyn, voit tehdä muutoksia tähän suunnitelmaan.
+          of_versions: "(versioista %{number})"
+          plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
+          plan_in_evaluation_reason: Tätä suunnitelmaa arvioidaan
+          plan_rejected_reason: 'Tämä suunnitelma on hylätty, koska:'
+          publish: Julkaise
+          publish_info: Julkaise tämä luonnosversio tai
+          published_proposal: julkaistu suunnitelma
+          request_access: Pyydä pääsyä
+          requested_access: Pääsyä pyydetty
+          see_other_versions: näytä muut versiot
+          version: Versio %{number}
+          version_history: näytä tämän suunnitelman versiohistoria
+          withdraw: peru suunnitelma
+        update:
+          error: Virhe päivitettäessä suunnitelmaa.
+          success: Suunnitelma päivitetty onnistuneesti.
+      requests:
+        accept_request: Hyväksy
+        accepted_request:
+          error: Ei voitu hyväksyä osallistujaa, yritä myöhemmin uudestaan.
+          success: "@%{user} on hyväksytty osallistujaksi onnistuneesti."
+        access_requested:
+          error: Pyyntöäsi ei voitu käsitellä, yritä myöhemmin uudestaan
+          success: Pyyntösi osallistua on lähetetty onnistuneesti
+        reject_request: Hylkää
+        rejected_request:
+          error: Ei voitu hylätä osallistujaa, yritä myöhemmin uudestaan.
+          success: "Käyttäjän @%{user} muokkauspyyntö hylätty onnistuneesti."
+        title: Muokkauspyynnöt
+      sections:
+        actions:
+          new: Uusi osio
+      update:
+        invalid: Virhe päivitettäessä suunnitelmaa.
+        success: Suunnitelma päivitetty onnistuneesti.
+      versions:
+        changes_at_title: Muutokset kohteelle "%{title}"
+        index:
+          title: Versiot
+        stats:
+          back_to_plan: Takaisin suunnitelmaan
+          number_of_versions: Versiot
+          show_all_versions: Näytä kaikki versiot
+          version_author: Version laatija
+          version_created_at: Version luontiaika
+          version_number: Version numero
+          version_number_out_of_total: "%{current_version} / %{total_count}"
+        version:
+          version_index: Versio %{index}
+    scopes:
+      global: Yleinen
