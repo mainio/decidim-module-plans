@@ -251,3 +251,45 @@ sv:
           version_index: Version %{index}
     scopes:
       global: Global
+    events:
+      plans:
+        plan_access_accepted:
+          email_intro: '%{requester_name} has been accepted to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: "%{requester_name} has been accepted to access as a contributor of the %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+        plan_access_rejected:
+          email_intro: '%{requester_name} has been rejected to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: "%{requester_name} has been rejected to access as a contributor of the %{resource_title} plan."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+        plan_access_requested:
+          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_path}">%{resource_title}</a> plan page.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to the <a href="%{resource_path}">%{resource_title}</a> plan. Please <strong>accept or reject the request</strong>.
+        plan_access_requester_accepted:
+          email_intro: You have been accepted to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: You have been accepted as a contributor of %{resource_title}.
+          notification_title: You have been <strong>accepted to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+        plan_access_requester_rejected:
+          email_intro: You have been rejected to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: You have been rejected as a contributor of %{resource_title}.
+          notification_title: You have been <strong>rejected to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+        plan_accepted:
+          email_intro: 'The plan "%{resource_title}" has been accepted. You can read the answer in this page:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A plan you're following has been accepted
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan has been accepted.
+        plan_evaluating:
+          email_intro: 'The plan "%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A plan you're following is being evaluated
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan is being evaluated.
+        plan_rejected:
+          email_intro: 'The plan "%{resource_title}" has been rejected. You can read the answer in this page:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A plan you're following has been rejected
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan has been rejected.

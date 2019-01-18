@@ -93,6 +93,10 @@ FactoryBot.define do
       answered_at { Time.current }
     end
 
+    trait :open do
+      state { "open" }
+    end
+
     trait :draft do
       published_at { nil }
     end
