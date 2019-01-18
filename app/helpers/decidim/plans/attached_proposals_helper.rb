@@ -3,6 +3,8 @@
 module Decidim
   module Plans
     module AttachedProposalsHelper
+      include Decidim::ApplicationHelper
+
       def attached_proposals_picker_field(form, name)
         picker_options = {
           id: "attached_proposals",
