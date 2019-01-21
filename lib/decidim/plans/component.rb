@@ -44,6 +44,11 @@ Decidim.register_component(:plans) do |component|
     Decidim::Plans::FilteredPlans.for(components, start_at, end_at).accepted.count
   end
 
+  component.register_stat :comments_count, tag: :comments do |components, start_at, end_at|
+    plans = Decidim::Plans::FilteredPlans.for(components, start_at, end_at).published.not_hidden
+    Decidim::Comments::Comment.where(root_commentable: plans).count
+  end
+
   component.seeds do |participatory_space|
     admin_user = Decidim::User.find_by(
       organization: participatory_space.organization,
