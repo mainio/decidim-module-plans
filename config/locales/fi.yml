@@ -3,6 +3,7 @@ fi:
   activemodel:
     attributes:
       plan:
+        proposals: Ehdotukset
         category_id: Kategoria
         decidim_scope_id: Teema
         state: Tila
