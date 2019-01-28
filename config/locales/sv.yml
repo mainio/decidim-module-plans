@@ -147,6 +147,9 @@ sv:
           success: Plan created successfully.
         edit:
           update: Update
+        preview:
+          modify: Modify
+          publish: Publish
         filters:
           accepted: Accepted
           activity: Activity

@@ -15,8 +15,9 @@ module Decidim
 
       helper_method :attached_proposals_picker_field
 
-      before_action :authenticate_user!, only: [:new, :create]
-      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :publish]
+      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish]
+      before_action :check_draft, only: [:new]
+      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish]
 
       def index
         @plans = search
@@ -50,7 +51,7 @@ module Decidim
         CreatePlan.call(@form, current_user) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.create.success", scope: "decidim")
-            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
+            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path + "/preview"
           end
 
           on(:invalid) do
@@ -75,7 +76,10 @@ module Decidim
         UpdatePlan.call(@form, current_user, @plan) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.update.success", scope: "decidim")
-            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
+
+            return redirect_to Decidim::ResourceLocatorPresenter.new(plan).path if plan.published?
+
+            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path + "/preview"
           end
 
           on(:invalid) do
@@ -98,6 +102,8 @@ module Decidim
         redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
       end
 
+      def preview; end
+
       def publish
         PublishPlan.call(@plan, current_user) do
           on(:ok) do |plan|
@@ -113,6 +119,14 @@ module Decidim
       end
 
       private
+
+      def check_draft
+        redirect_to edit_plan_path(plan_draft) if plan_draft.present?
+      end
+
+      def plan_draft
+        Plan.from_all_author_identities(current_user).not_hidden.where(component: current_component).find_by(published_at: nil)
+      end
 
       def retrieve_plan
         @plan = Plan.where(component: current_component).find(params[:id])

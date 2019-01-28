@@ -18,7 +18,9 @@ module Decidim
         present(model).title
       end
 
-      def body; end
+      def body
+        present(model).body
+      end
 
       def has_state?
         model.published?
@@ -32,10 +34,19 @@ module Decidim
         model.published?
       end
 
-      def description; end
+      def description
+        model_body = strip_tags(body)
+
+        if options[:full_description]
+          model_body.gsub(/\n/, "<br>")
+        else
+          truncate(model_body, length: 100)
+        end
+      end
 
       def badge_classes
         return super unless options[:full_badge]
+
         state_classes.concat(["label", "plan-status"]).join(" ")
       end
 

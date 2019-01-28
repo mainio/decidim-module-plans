@@ -11,6 +11,8 @@ module Decidim
           resource :plan_widget, only: :show, path: "embed"
           resources :versions, only: [:show, :index]
           member do
+            get :preview
+            post :publish
             post :request_access, controller: "plan_collaborator_requests"
             post :request_accept, controller: "plan_collaborator_requests"
             post :request_reject, controller: "plan_collaborator_requests"

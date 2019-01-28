@@ -147,6 +147,9 @@ fi:
           success: Suunnitelma luotu onnistuneesti.
         edit:
           update: Päivitä
+        preview:
+          modify: Muokkaa
+          publish: Julkaise
         filters:
           accepted: Hyväksytty
           activity: Aktiviteetti

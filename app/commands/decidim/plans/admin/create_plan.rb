@@ -44,7 +44,7 @@ module Decidim
 
         def create_plan
           @plan = Decidim::Plans::PlanBuilder.create(
-            attributes: attributes,
+            attributes: { published_at: Time.current }.merge(attributes),
             author: form.author,
             action_user: form.current_user
           )

@@ -41,7 +41,7 @@ module Decidim
           "<dt>#{title}</dt> <dd>#{body}</dd>"
         end
 
-        "<dl>#{fields.join}</dl>".html_safe
+        "<dl>#{fields.join("\n")}</dl>".html_safe
       end
     end
   end
