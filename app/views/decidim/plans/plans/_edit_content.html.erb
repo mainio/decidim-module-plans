@@ -7,12 +7,15 @@
       :body,
       tabs_id: id,
       label: content.label,
+      help_text: content.help,
       rows: 4
     ) %>
   <% else %>
     <%= form.text_area(
       "body_#{current_locale}".to_sym,
+      tabs_id: id,
       label: content.label,
+      help_text: content.help,
       rows: 4
     ) %>
   <% end %>

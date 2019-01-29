@@ -76,6 +76,7 @@ sv:
           section:
             body: Body
             down: Down
+            help: Hjälp
             remove: Remove
             section: Section
             up: Up

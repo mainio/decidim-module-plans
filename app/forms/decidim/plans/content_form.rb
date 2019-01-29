@@ -33,6 +33,10 @@ module Decidim
         translated_attribute(section.body)
       end
 
+      def help
+        translated_attribute(section.help)
+      end
+
       # Public: Map the correct fields.
       #
       # Returns nothing.

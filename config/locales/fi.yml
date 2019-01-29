@@ -76,6 +76,7 @@ fi:
           section:
             body: Runkoteksti
             down: Alas
+            help: Ohjeteksti
             remove: Poista
             section: Osio
             up: Ylös

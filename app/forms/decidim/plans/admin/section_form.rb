@@ -11,6 +11,7 @@ module Decidim
         mimic :section
 
         translatable_attribute :body, String
+        translatable_attribute :help, String
         attribute :position, Integer
         attribute :deleted, Boolean, default: false
 

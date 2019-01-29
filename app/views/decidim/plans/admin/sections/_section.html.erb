@@ -23,14 +23,21 @@
 
   <div class="card-section">
     <div class="row column">
-      <%=
-        form.translated(
-          :text_field,
-          :body,
+      <%= form.translated(
+        :text_field,
+        :body,
+        tabs_id: id,
+        label: t(".body"),
+      ) %>
+    </div>
+    <div class="row column">
+      <%= form.translated(
+          :text_area,
+          :help,
           tabs_id: id,
-          label: t(".body"),
-        )
-      %>
+          label: t(".help"),
+          rows: 4
+      ) %>
     </div>
 
     <%= form.hidden_field :id %>

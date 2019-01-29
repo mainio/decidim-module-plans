@@ -76,6 +76,7 @@ en:
           section:
             body: Body
             down: Down
+            help: Help
             remove: Remove
             section: Section
             up: Up

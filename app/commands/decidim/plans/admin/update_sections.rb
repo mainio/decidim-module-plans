@@ -36,8 +36,11 @@ module Decidim
           @form.sections.each do |form_section|
             update_nested_model(
               form_section,
-              { body: form_section.body,
-                position: form_section.position },
+              {
+                body: form_section.body,
+                help: form_section.help,
+                position: form_section.position
+              },
               @sections
             )
           end
