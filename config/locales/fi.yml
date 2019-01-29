@@ -29,6 +29,7 @@ fi:
             comments_enabled: Kommentointi sallittu
             multilingual_answers: Monikieliset vastaukset
             plan_answering_enabled: Suunnitelmiin vastaaminen sallittu
+            plan_title_length: Suunnitelman otsikon pituus
           step:
             announcement: Ilmoitus
             comments_blocked: Kommentointi estetty
@@ -74,6 +75,7 @@ fi:
             save: Tallenna
             title: Osiot
           section:
+            answer_length: Vastauksen pituus
             body: Runkoteksti
             down: Alas
             help: Ohjeteksti

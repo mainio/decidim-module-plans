@@ -29,6 +29,7 @@ sv:
             comments_enabled: Comments enabled
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Plan answering enabled
+            plan_title_length: Plan title length
           step:
             announcement: Announcement
             comments_blocked: Comments blocked
@@ -74,6 +75,7 @@ sv:
             save: Save
             title: Sections
           section:
+            answer_length: Answer length
             body: Body
             down: Down
             help: Hjälp

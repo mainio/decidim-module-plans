@@ -1,10 +1,27 @@
 <%
 content = form.object
+data = {}
+options = {
+  label: content.label,
+  help_text: content.help
+}
+
 form_field = case content.section.section_type
 when 'field_text'
   :text_field
 else
+  options[:rows] = 4
   :text_area
+end
+
+remaining_characters_id = "plan_section_#{content.section.id}_remaining_characters"
+remaining_characters = content.section.answer_length
+
+if remaining_characters > 0
+  options[:maxlength] = remaining_characters
+  options[:data] = {
+    remaining_characters: "##{remaining_characters_id}"
+  }
 end
 %>
 
@@ -13,20 +30,20 @@ end
     <%= form.translated(
       form_field,
       :body,
-      tabs_id: id,
-      label: content.label,
-      help_text: content.help,
-      rows: 4
+      {
+        tabs_id: id
+      }.merge(options)
     ) %>
   <% else %>
     <%= form.public_send(
       form_field,
       "body_#{current_locale}".to_sym,
-      tabs_id: id,
-      label: content.label,
-      help_text: content.help,
-      rows: 4
+      options
     ) %>
+  <% end %>
+
+  <% if remaining_characters > 0 %>
+    <%= render "decidim/plans/shared/remaining_characters_container", remaining_characters_id: remaining_characters_id %>
   <% end %>
 </div>
 

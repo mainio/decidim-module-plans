@@ -18,6 +18,7 @@ Decidim.register_component(:plans) do |component|
   component.permissions_class_name = "Decidim::Plans::Permissions"
 
   component.settings(:global) do |settings|
+    settings.attribute :plan_title_length, type: :integer, default: 100
     settings.attribute :plan_answering_enabled, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true

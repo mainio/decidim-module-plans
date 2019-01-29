@@ -1,3 +1,7 @@
+// = require ./remaining_characters
+// = require ./tab_focus
+// = require_self
+
 $(() => {
-  // Add the needed JS initialization code here
+  $("form.plans-form [data-remaining-characters]").remainingCharacters();
 });

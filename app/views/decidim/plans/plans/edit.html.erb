@@ -2,7 +2,7 @@
   <div class="columns large-6 small-centered">
     <div class="card">
       <div class="card__content">
-        <%= decidim_form_for(@form) do |form| %>
+        <%= decidim_form_for(@form, html: { class: "plans-form" }) do |form| %>
           <%= render partial: "form", object: form %>
 
           <div class="actions">

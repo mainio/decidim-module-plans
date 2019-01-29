@@ -51,6 +51,13 @@
         label: t(".mandatory")
       ) %>
     </div>
+    <div class="row column">
+      <%= form.number_field(
+        :answer_length,
+        min: 0,
+        label: t(".answer_length")
+      ) %>
+    </div>
 
     <%= form.hidden_field :id %>
     <%= form.hidden_field :position, value: section.position || 0 %>
