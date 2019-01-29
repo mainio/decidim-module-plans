@@ -67,7 +67,9 @@ Decidim.register_component(:plans) do |component|
       manifest_name: :plans,
       published_at: Time.current,
       participatory_space: participatory_space,
-      settings: {},
+      settings: {
+        multilingual_answers: true
+      },
       step_settings: step_settings
     }
 
@@ -92,7 +94,10 @@ Decidim.register_component(:plans) do |component|
       Decidim::Plans::Section.create!(
         component: component,
         body: Decidim::Faker::Localized.paragraph,
-        position: n
+        help: Decidim::Faker::Localized.paragraph,
+        mandatory: false,
+        position: n,
+        section_type: Decidim::Plans::Section::TYPES.first
       )
     end
 
