@@ -19,6 +19,7 @@ module Decidim
 
         optionally_translatable_validate_presence :title
 
+        validates :proposals, presence: true
         validates :category, presence: true, if: ->(form) { form.category_id.present? }
         validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
 
