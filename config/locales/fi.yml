@@ -243,8 +243,8 @@ fi:
         actions:
           new: Uusi osio
       section_types:
-        field_text_multiline: Kenttä - Yksirivinen
-        field_text: Kenttä - Monirivinen
+        field_text_multiline: Kenttä - Monirivinen
+        field_text: Kenttä - Yksirivinen
       update:
         invalid: Virhe päivitettäessä suunnitelmaa.
         success: Suunnitelma päivitetty onnistuneesti.
