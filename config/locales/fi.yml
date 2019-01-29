@@ -18,6 +18,9 @@ fi:
   decidim:
     components:
       plans:
+        actions:
+          create: Luo
+          withdraw: Peruuta
         name: Suunnitelmat
         settings:
           global:

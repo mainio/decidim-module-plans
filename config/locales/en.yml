@@ -18,6 +18,9 @@ en:
   decidim:
     components:
       plans:
+        actions:
+          create: Create
+          withdraw: Withdraw
         name: Plans
         settings:
           global:
