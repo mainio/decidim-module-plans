@@ -7,6 +7,10 @@ module Decidim
     # the plans are stored in the Decidim::Plans::Content records.
     class Section < Plans::ApplicationRecord
       include Decidim::HasComponent
+
+      TYPES = %w(field_text_multiline field_text).freeze
+
+      validates :section_type, inclusion: { in: TYPES }
     end
   end
 end

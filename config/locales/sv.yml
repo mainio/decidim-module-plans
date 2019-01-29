@@ -242,6 +242,9 @@ sv:
       sections:
         actions:
           new: New section
+      section_types:
+        field_text_multiline: Field - Multiple lines
+        field_text: Field - Single line
       update:
         invalid: Error updating plan.
         success: Plan updated successfully.

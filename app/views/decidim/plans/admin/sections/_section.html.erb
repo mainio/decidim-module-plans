@@ -23,6 +23,12 @@
 
   <div class="card-section">
     <div class="row column">
+      <%= form.select(
+        :section_type,
+        options_from_collection_for_select(section_types, :first, :last, section.section_type)
+      ) %>
+    </div>
+    <div class="row column">
       <%= form.translated(
         :text_field,
         :body,

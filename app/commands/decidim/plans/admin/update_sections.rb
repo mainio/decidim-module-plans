@@ -40,7 +40,8 @@ module Decidim
                 body: form_section.body,
                 help: form_section.help,
                 mandatory: form_section.mandatory,
-                position: form_section.position
+                position: form_section.position,
+                section_type: form_section.section_type
               },
               @sections
             )

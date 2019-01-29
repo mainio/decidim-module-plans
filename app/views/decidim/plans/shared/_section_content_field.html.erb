@@ -1,9 +1,17 @@
-<% content = form.object %>
+<%
+content = form.object
+form_field = case content.section.section_type
+when 'field_text'
+  :text_field
+else
+  :text_area
+end
+%>
 
 <div class="row column">
   <% if component_settings.multilingual_answers? %>
     <%= form.translated(
-      :text_area,
+      form_field,
       :body,
       tabs_id: id,
       label: content.label,
@@ -11,7 +19,8 @@
       rows: 4
     ) %>
   <% else %>
-    <%= form.text_area(
+    <%= form.public_send(
+      form_field,
       "body_#{current_locale}".to_sym,
       tabs_id: id,
       label: content.label,

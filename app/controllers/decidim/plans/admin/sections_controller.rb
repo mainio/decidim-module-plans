@@ -9,7 +9,7 @@ module Decidim
 
         helper Plans::ApplicationHelper
 
-        helper_method :blank_section
+        helper_method :blank_section, :section_types
 
         def index
           enforce_permission_to :create, :sections
@@ -40,7 +40,6 @@ module Decidim
 
         def edit
           enforce_permission_to :edit, :section, section: section
-          # TODO
         end
 
         def update
@@ -54,7 +53,7 @@ module Decidim
         end
 
         def sections
-          @sections ||= Section.where(component: current_component)
+          @sections ||= Section.where(component: current_component).order(:position)
         end
 
         def section
@@ -63,6 +62,12 @@ module Decidim
 
         def blank_section
           @blank_section ||= Admin::SectionForm.new
+        end
+
+        def section_types
+          @section_types ||= Section::TYPES.map do |section_type|
+            [section_type, I18n.t("decidim.plans.section_types.#{section_type}")]
+          end
         end
       end
     end
