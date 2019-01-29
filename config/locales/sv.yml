@@ -24,6 +24,7 @@ sv:
             announcement: Announcement
             attachments_allowed: Attachments allowed
             comments_enabled: Comments enabled
+            multilingual_answers: Multilingual answers
             plan_answering_enabled: Plan answering enabled
           step:
             announcement: Announcement

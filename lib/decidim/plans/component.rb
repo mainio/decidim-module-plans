@@ -22,6 +22,7 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
     settings.attribute :attachments_allowed, type: :boolean, default: false
+    settings.attribute :multilingual_answers, type: :boolean, default: true
   end
 
   component.settings(:step) do |settings|

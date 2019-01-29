@@ -6,7 +6,15 @@
 <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
 
 <div class="field">
-  <%= form.translated :text_field, :title %>
+  <% if component_settings.multilingual_answers? %>
+    <%= form.translated :text_field, :title %>
+  <% else %>
+    <% key = "title_#{current_locale}".to_sym %>
+    <%= form.text_field key,
+      value: form.object.title[current_locale],
+      label: form.label(:title)
+    %>
+  <% end %>
 </div>
 
 <% if @form.categories&.any? %>

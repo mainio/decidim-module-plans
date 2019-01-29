@@ -4,12 +4,12 @@ module Decidim
   module Plans
     # A form object to be used when public users want to create a Plan.
     class PlanForm < Decidim::Form
-      include TranslatableAttributes
+      include OptionallyTranslatableAttributes
       mimic :plan
 
       alias component current_component
 
-      translatable_attribute :title, String
+      optionally_translatable_attribute :title, String
 
       attribute :user_group_id, Integer
       attribute :category_id, Integer

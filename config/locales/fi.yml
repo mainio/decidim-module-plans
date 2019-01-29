@@ -24,6 +24,7 @@ fi:
             announcement: Ilmoitus
             attachments_allowed: Liitteet sallittu
             comments_enabled: Kommentointi sallittu
+            multilingual_answers: Monikieliset vastaukset
             plan_answering_enabled: Suunnitelmiin vastaaminen sallittu
           step:
             announcement: Ilmoitus

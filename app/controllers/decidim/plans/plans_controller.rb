@@ -46,7 +46,7 @@ module Decidim
       def create
         enforce_permission_to :create, :plan
 
-        @form = form(PlanForm).from_params(params)
+        @form = form(PlanForm).from_params(params, compontent: current_component)
 
         CreatePlan.call(@form, current_user) do
           on(:ok) do |plan|
@@ -72,7 +72,7 @@ module Decidim
       def update
         enforce_permission_to :edit, :plan, plan: @plan
 
-        @form = form(PlanForm).from_params(params)
+        @form = form(PlanForm).from_params(params, compontent: current_component)
         UpdatePlan.call(@form, current_user, @plan) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.update.success", scope: "decidim")
