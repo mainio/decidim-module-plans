@@ -2,25 +2,19 @@
 
 <div class="row column">
   <% if component_settings.multilingual_answers? %>
-    <%=
-    form.translated(
-        :text_area,
-        :body,
-        tabs_id: id,
-        label: content.label,
-        rows: 4
-    )
-    %>
+    <%= form.translated(
+      :text_area,
+      :body,
+      tabs_id: id,
+      label: content.label,
+      rows: 4
+    ) %>
   <% else %>
-    <% key = "body_#{current_locale}".to_sym %>
-    <%=
-    form.text_area(
-        key,
-        label: content.label,
-        rows: 4,
-        value: content.body[current_locale]
-    )
-    %>
+    <%= form.text_area(
+      "body_#{current_locale}".to_sym,
+      label: content.label,
+      rows: 4
+    ) %>
   <% end %>
 </div>
 

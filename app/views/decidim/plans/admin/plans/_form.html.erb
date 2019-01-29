@@ -12,13 +12,18 @@
     <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
 
     <div class="row column">
-      <%=
-      form.translated(
+      <% if component_settings.multilingual_answers? %>
+        <%= form.translated(
           :text_field,
           :title,
           tabs_id: "title-tabs"
-      )
-      %>
+        ) %>
+      <% else %>
+        <%= form.text_field(
+          "title_#{current_locale}".to_sym,
+          label: form.label(:title)
+        ) %>
+      <% end %>
     </div>
 
     <% if @form.categories&.any? %>

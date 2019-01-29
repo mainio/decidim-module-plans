@@ -1,15 +1,25 @@
 <% content = form.object %>
 
 <div class="row column">
-  <%=
-  form.translated(
-      :text_area,
-      :body,
-      tabs_id: id,
-      label: content.label,
-      rows: 4
-  )
-  %>
+  <% if component_settings.multilingual_answers? %>
+    <%=
+    form.translated(
+        :text_area,
+        :body,
+        tabs_id: id,
+        label: content.label,
+        rows: 4
+    )
+    %>
+  <% else %>
+    <%=
+    form.text_area(
+        "body_#{current_locale}".to_sym,
+        label: content.label,
+        rows: 4
+    )
+    %>
+  <% end %>
 </div>
 
 <%= form.hidden_field :id %>

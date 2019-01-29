@@ -9,11 +9,10 @@
   <% if component_settings.multilingual_answers? %>
     <%= form.translated :text_field, :title %>
   <% else %>
-    <% key = "title_#{current_locale}".to_sym %>
-    <%= form.text_field key,
-      value: form.object.title[current_locale],
+    <%= form.text_field(
+      "title_#{current_locale}".to_sym,
       label: form.label(:title)
-    %>
+    ) %>
   <% end %>
 </div>
 
