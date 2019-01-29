@@ -14,7 +14,7 @@ $(function() {
         const maxCharacters = parseInt($(this).attr("maxlength"), 10);
 
         if ($target.length > 0 && maxCharacters > 0) {
-          const messagesJson = $input.data("remaining-characters-messages");
+          const messagesJson = $target.data("remaining-characters-messages");
           const messages = $.extend({
             one: `${COUNT_KEY} character left`,
             many: `${COUNT_KEY} characters left`
