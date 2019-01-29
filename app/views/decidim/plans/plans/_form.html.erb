@@ -11,7 +11,7 @@
   <% else %>
     <%= form.text_field(
       "title_#{current_locale}".to_sym,
-      label: form.label(:title)
+      label: form.label(:title).gsub(/<\/?label[^>]*>/, '')
     ) %>
   <% end %>
 </div>

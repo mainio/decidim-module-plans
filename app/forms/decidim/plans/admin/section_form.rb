@@ -12,6 +12,7 @@ module Decidim
 
         translatable_attribute :body, String
         translatable_attribute :help, String
+        attribute :mandatory, Boolean, default: false
         attribute :position, Integer
         attribute :deleted, Boolean, default: false
 

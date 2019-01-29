@@ -16,10 +16,12 @@ module Decidim
       attribute :section_id, Integer
       attribute :plan_id, Integer
 
-      # validates :body, translatable_presence: true
+      optionally_translatable_validate_presence :body, if: :mandatory
 
       attr_writer :section
       attr_writer :plan
+
+      delegate :mandatory, to: :section
 
       def section
         @section ||= Decidim::Plans::Section.find(section_id)

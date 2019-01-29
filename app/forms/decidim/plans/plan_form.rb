@@ -20,7 +20,7 @@ module Decidim
 
       validates :category, presence: true, if: ->(form) { form.category_id.present? }
       validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
-      validates :title, translatable_presence: true
+      optionally_translatable_validate_presence :title
 
       validate :scope_belongs_to_participatory_space_scope
 

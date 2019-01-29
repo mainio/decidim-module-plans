@@ -4,6 +4,7 @@ module Decidim
   module Plans
     module OptionallyTranslatableAttributes
       extend ActiveSupport::Concern
+      include LocaleAware
       include TranslatableAttributes
 
       class_methods do
@@ -13,8 +14,45 @@ module Decidim
           translatable_attribute(name, type, *options)
         end
 
+        def optionally_translatable_validate_presence(attribute, options = {})
+          if_conditional_proc = conditional_proc(options[:if])
+          unless_conditional_proc = conditional_proc(options[:unless])
+          multilingual_proc = proc { |record|
+            record.component.settings.multilingual_answers?
+          }
+
+          multilingual_options = options.dup
+          localized_options = options.dup
+
+          multilingual_options[:if] = proc { |record|
+            multilingual_proc.call(record) && if_conditional_proc.call(record)
+          }
+          localized_options[:unless] = proc { |record|
+            multilingual_proc.call(record) && unless_conditional_proc.call(record)
+          }
+
+          multilingual_options[:translatable_presence] = true
+          localized_options[:presence] = true
+
+          localized_attribute = "#{attribute}_#{current_locale}".to_sym
+          validates attribute, multilingual_options
+          validates localized_attribute, localized_options
+        end
+
         def translatable_attributes
           @translatable_attributes
+        end
+
+        def conditional_proc(condition)
+          return proc { true } if condition.nil?
+
+          if condition.is_a?(String) || condition.is_a?(Symbol)
+            return proc { |record|
+              record.send(condition)
+            }
+          end
+
+          proc { |record| condition.call(record) }
         end
       end
 
@@ -24,8 +62,12 @@ module Decidim
 
       private
 
+      def multilingual?
+        component.settings.multilingual_answers?
+      end
+
       def handle_multilingual_fields
-        return if component.settings.multilingual_answers?
+        return if multilingual?
 
         self.class.translatable_attributes.each do |name|
           attr_src_name = "#{name}_#{current_locale}"
@@ -37,21 +79,6 @@ module Decidim
             public_send("#{attr_name}=", value)
           end
         end
-      end
-
-      # The current locale for the user. Available as a helper for the views.
-      #
-      # Returns a String.
-      def current_locale
-        @current_locale ||= I18n.locale.to_s
-      end
-
-      # The available locales in the application. Available as a helper for the
-      # views.
-      #
-      # Returns an Array of Strings.
-      def available_locales
-        @available_locales ||= (current_organization || Decidim).public_send(:available_locales)
       end
     end
   end

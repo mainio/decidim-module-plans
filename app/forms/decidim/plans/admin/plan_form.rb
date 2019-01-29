@@ -5,11 +5,11 @@ module Decidim
     module Admin
       # A form object to be used when admin users want to create a plan.
       class PlanForm < Decidim::Form
-        include TranslatableAttributes
+        include OptionallyTranslatableAttributes
         include Decidim::ApplicationHelper
         mimic :plan
 
-        translatable_attribute :title, String
+        optionally_translatable_attribute :title, String
 
         attribute :category_id, Integer
         attribute :scope_id, Integer
@@ -17,7 +17,7 @@ module Decidim
         attribute :contents, Array[Decidim::Plans::ContentForm]
         attribute :proposal_ids, Array[Integer]
 
-        validates :title, translatable_presence: true
+        optionally_translatable_validate_presence :title
 
         validates :category, presence: true, if: ->(form) { form.category_id.present? }
         validates :scope, presence: true, if: ->(form) { form.scope_id.present? }

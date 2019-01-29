@@ -39,6 +39,12 @@
           rows: 4
       ) %>
     </div>
+    <div class="row column">
+      <%= form.check_box(
+        :mandatory,
+        label: t(".mandatory")
+      ) %>
+    </div>
 
     <%= form.hidden_field :id %>
     <%= form.hidden_field :position, value: section.position || 0 %>

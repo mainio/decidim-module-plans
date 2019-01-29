@@ -77,6 +77,7 @@ sv:
             body: Body
             down: Down
             help: Hjälp
+            mandatory: Mandatory
             remove: Remove
             section: Section
             up: Up
