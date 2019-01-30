@@ -10,7 +10,7 @@ module Decidim
         #
         # Returns an HTML-safe String.
         def present_resource_name
-          Decidim::Plans::PlanPresenter.new(resource).title
+          Decidim::Plans::PlanPresenter.new(resource).title if resource
         end
       end
     end
