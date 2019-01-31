@@ -303,6 +303,11 @@ en:
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
           email_subject: A plan you're following is being evaluated
           notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan is being evaluated.
+        plan_published_for_space:
+          email_intro: 'The plan "%{resource_title}" has been published. You can see it here:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A plan you're following has been published
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> has been published.
         plan_rejected:
           email_intro: 'The plan "%{resource_title}" has been rejected. You can read the answer in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
