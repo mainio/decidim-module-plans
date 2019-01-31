@@ -34,7 +34,6 @@ module Decidim
                     .find_resource_manifest(:proposals)
                     .try(:resource_scope, current_component)
                     &.order(title: :asc)
-                    &.where("id not in (?)", AttachedProposal.select(:decidim_proposal_id))
                     &.where("title ilike ?", "%#{params[:term]}%")
             render json: query.all.collect { |p| [present(p).title, p.id] }
           end
