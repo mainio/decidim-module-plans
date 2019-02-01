@@ -42,12 +42,6 @@ module Decidim
           template += link_to file.file.filename, file.url, target: "_blank"
         end
 
-        if form.object.errors[attribute].any?
-          template += content_tag :p, class: "is-invalid-label" do
-            safe_join form.object.errors[attribute], "<br/>".html_safe
-          end
-        end
-
         template.html_safe
       end
     end
