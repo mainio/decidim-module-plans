@@ -16,6 +16,9 @@ fi:
             file:
               needs_to_be_reattached: Pitää liittää uudestaan
   decidim:
+    assemblies:
+      statistics:
+        plans_count: Suunnitelmaa
     components:
       plans:
         actions:
@@ -35,6 +38,9 @@ fi:
             comments_blocked: Kommentointi estetty
             creation_enabled: Luonti sallittu
             plan_answering_enabled: Suunnitelmiin vastaaminen sallittu
+    participatory_processes:
+      statistics:
+        plans_count: Suunnitelmaa
     plans:
       actions:
         answer: Vastaa

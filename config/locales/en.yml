@@ -16,6 +16,9 @@ en:
             file:
               needs_to_be_reattached: Needs to be reattached
   decidim:
+    assemblies:
+      statistics:
+        plans_count: Plans
     components:
       plans:
         actions:
@@ -35,6 +38,9 @@ en:
             comments_blocked: Comments blocked
             creation_enabled: Creation enabled
             plan_answering_enabled: Plan answering enabled
+    participatory_processes:
+      statistics:
+        plans_count: Plans
     plans:
       actions:
         answer: Answer
