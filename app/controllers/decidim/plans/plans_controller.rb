@@ -18,8 +18,8 @@ module Decidim
 
       before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish]
       before_action :check_draft, only: [:new]
-      before_action :set_plan, only: [:show, :withdraw]
-      before_action :retrieve_plan, only: [:edit, :update, :preview, :publish]
+      before_action :retrieve_plan, only: [:show, :edit, :update, :preview, :publish, :withdraw]
+      before_action :ensure_published!, only: [:show, :withdraw]
 
       def index
         @plans = search
@@ -91,6 +91,9 @@ module Decidim
       end
 
       def withdraw
+        raise ActionController::RoutingError, "Not Found" if @plan.withdrawn?
+        enforce_permission_to :withdraw, :plan, plan: @plan
+
         WithdrawPlan.call(@plan, current_user) do
           on(:ok) do
             flash[:notice] = t("withdraw.success", scope: "decidim.plans.plans")
@@ -129,12 +132,17 @@ module Decidim
         Plan.drafts.from_all_author_identities(current_user).not_hidden.where(component: current_component)
       end
 
-      def set_plan
-        @plan = Plan.published.not_hidden.where(component: current_component).find(params[:id])
-      end
-
       def retrieve_plan
         @plan = Plan.where(component: current_component).find(params[:id])
+      end
+
+      def ensure_published!
+        return unless @plan
+        return if @plan.published?
+
+        raise ActionController::RoutingError, "Not Found" unless @plan.editable_by?(current_user)
+
+        redirect_to preview_plan_path(@plan)
       end
 
       def search_klass
