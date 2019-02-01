@@ -15,7 +15,7 @@ module Decidim
 
       # Handle the search_text filter
       def search_search_text
-        query.where("title ILIKE ?", "%#{search_text}%")
+        query.where(localized_search_text_in(:title), text: "%#{search_text}%")
       end
 
       # Handle the origin filter
@@ -74,6 +74,21 @@ module Decidim
              .where(decidim_resource_links: { from_type: related_to.camelcase })
 
         query.where(id: from).or(query.where(id: to))
+      end
+
+      private
+
+      # Internal: builds the needed query to search for a text in the organization's
+      # available locales. Note that it is intended to be used as follows:
+      #
+      # Example:
+      #   Resource.where(localized_search_text_for(:title, text: "my_query"))
+      #
+      # The Hash with the `:text` key is required or it won't work.
+      def localized_search_text_in(field)
+        options[:organization].available_locales.map do |l|
+          "#{field} ->> '#{l}' ILIKE :text"
+        end.join(" OR ")
       end
     end
   end

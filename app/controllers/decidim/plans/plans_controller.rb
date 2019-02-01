@@ -160,6 +160,13 @@ module Decidim
           related_to: ""
         }
       end
+
+      def context_params
+        {
+          component: current_component,
+          organization: current_organization
+        }
+      end
     end
   end
 end
