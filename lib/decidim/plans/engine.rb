@@ -29,7 +29,8 @@ module Decidim
                                            decidim/plans/decidim_plans_manifest.js
                                            decidim/plans/social_share.js
                                            decidim/plans/proposal_picker.scss
-                                           decidim/plans/social_share.css.scss)
+                                           decidim/plans/social_share.css.scss
+                                           decidim/plans/plans_form.scss)
       end
 
       initializer "decidim_plans.add_cells_view_paths" do
