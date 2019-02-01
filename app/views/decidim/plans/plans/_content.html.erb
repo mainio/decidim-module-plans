@@ -1,6 +1,6 @@
 <% unless content.nil? || present(content).body.empty? %>
   <div class="section">
-    <h2 class="section-heading"><%= present(content).title %></h2>
+    <h3 class="section-heading"><%= present(content).title %></h3>
     <div class="section-content"><%= present(content).body %></div>
   </div>
 <% end %>
