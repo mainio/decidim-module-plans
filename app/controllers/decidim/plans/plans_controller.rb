@@ -18,11 +18,14 @@ module Decidim
 
       before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish]
       before_action :check_draft, only: [:new]
-      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish]
+      before_action :set_plan, only: [:show, :withdraw]
+      before_action :retrieve_plan, only: [:edit, :update, :preview, :publish]
 
       def index
         @plans = search
                  .results
+                 .published
+                 .not_hidden
                  .includes(:category)
                  .includes(:scope)
 
@@ -90,11 +93,11 @@ module Decidim
       def withdraw
         WithdrawPlan.call(@plan, current_user) do
           on(:ok) do
-            flash[:notice] = t("withdraw.success", scope: "decidim.plans.plans.plan")
+            flash[:notice] = t("withdraw.success", scope: "decidim.plans.plans")
           end
 
           on(:invalid) do
-            flash.now[:alert] = t("withdraw.error", scope: "decidim.plans.plans.plan")
+            flash.now[:alert] = t("withdraw.error", scope: "decidim.plans.plans")
           end
         end
         redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
@@ -123,7 +126,11 @@ module Decidim
       end
 
       def plan_draft
-        Plan.from_all_author_identities(current_user).not_hidden.where(component: current_component).find_by(published_at: nil)
+        Plan.drafts.from_all_author_identities(current_user).not_hidden.where(component: current_component)
+      end
+
+      def set_plan
+        @plan = Plan.published.not_hidden.where(component: current_component).find(params[:id])
       end
 
       def retrieve_plan

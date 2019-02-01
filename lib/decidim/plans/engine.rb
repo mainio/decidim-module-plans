@@ -13,6 +13,7 @@ module Decidim
           member do
             get :preview
             post :publish
+            put :withdraw
             post :request_access, controller: "plan_collaborator_requests"
             post :request_accept, controller: "plan_collaborator_requests"
             post :request_reject, controller: "plan_collaborator_requests"

@@ -184,7 +184,7 @@ en:
           select_a_category: Select a category
         index:
           new_plan: New plan
-          see_all_withdrawn: See all withdrawn plans
+          see_all_withdrawn: See all withdrawn
         new:
           create: Create
           title: Create plan
@@ -219,15 +219,22 @@ en:
           publish: Publish
           publish_info: Publish this version of the draft or
           published_proposal: published proposal
+          report: Report
           request_access: Request access
           requested_access: Access requested
           see_other_versions: see other versions
           version: Version %{number}
           version_history: see version history for this proposal
           withdraw: withdraw the draft
+          withdraw_btn: Withdraw
+          withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
+          withdraw_confirmation: Are you sure to withdraw this item?
         update:
-          error: Error updating plan.
-          success: Plan updated successfully.
+          error: Error updating.
+          success: Updated successfully.
+        withdraw:
+          error: Error withdrawing the item.
+          success: Item withdrawn successfully.
       requests:
         accept_request: Accept
         accepted_request:

@@ -184,7 +184,7 @@ fi:
           select_a_category: Valitse kategoria
         index:
           new_plan: Uusi suunnitelma
-          see_all_withdrawn: Näytä kaikki peruutetut suunnitelmat
+          see_all_withdrawn: Näytä kaikki peruutetut
         new:
           create: Luo
           title: Luo suunnitelma
@@ -219,15 +219,22 @@ fi:
           publish: Julkaise
           publish_info: Julkaise tämä luonnosversio tai
           published_proposal: julkaistu suunnitelma
+          report: Ilmoita
           request_access: Pyydä pääsyä
           requested_access: Pääsyä pyydetty
           see_other_versions: näytä muut versiot
           version: Versio %{number}
           version_history: näytä tämän suunnitelman versiohistoria
           withdraw: peru suunnitelma
+          withdraw_btn: Peru
+          withdraw_btn_hint: Jos muutat mieltäsi, voit perua tämän kohteen, mikäli se ei ole vielä kerännyt tukea. Kohdetta ei poisteta, se jää näkyviin peruttujen kohteiden listaan.
+          withdraw_confirmation: Haluatko varmasti perua?
         update:
-          error: Virhe päivitettäessä suunnitelmaa.
-          success: Suunnitelma päivitetty onnistuneesti.
+          error: Virhe päivitettäessä.
+          success: Päivitetty onnistuneesti.
+        withdraw:
+          error: Virhe kohteen peruutuksessa.
+          success: Kohde peruutettu onnistuneesti.
       requests:
         accept_request: Hyväksy
         accepted_request:
