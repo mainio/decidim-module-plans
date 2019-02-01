@@ -6,7 +6,7 @@ module Decidim
     # plans in a participatory process.
     class PlanSearch < ResourceSearch
       # Public: Initializes the service.
-      # component     - A Decidim::Component to get the plans from.
+      # component   - A Decidim::Component to get the plans from.
       # page        - The page number to paginate the results.
       # per_page    - The number of plans to return per page.
       def initialize(options = {})
