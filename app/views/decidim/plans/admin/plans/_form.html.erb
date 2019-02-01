@@ -12,17 +12,17 @@
     <%= stylesheet_link_tag "decidim/plans/proposal_picker" %>
 
     <div class="row column">
-      <% if component_settings.multilingual_answers? %>
-        <%= form.translated(
-          :text_field,
-          :title,
-          tabs_id: "title-tabs"
-        ) %>
-      <% else %>
-        <%= form.text_field(
-          "title_#{current_locale}".to_sym,
-          label: form.label_for(:title)
-        ) %>
+      <%= remaining_characters("plans_title", component_settings.plan_title_length) do |opts| %>
+        <% if component_settings.multilingual_answers? %>
+          <%= form.translated :text_field, :title, opts.merge(tabs_id: "title-tabs") %>
+        <% else %>
+          <%= form.text_field(
+            "title_#{current_locale}".to_sym,
+            {
+              label: form.label_for(:title)
+            }.merge(opts)
+          ) %>
+        <% end %>
       <% end %>
     </div>
 

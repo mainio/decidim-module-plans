@@ -8,6 +8,7 @@ module Decidim
       helper UserGroupHelper
       helper TooltipHelper
       helper Plans::AttachmentsHelper
+      helper Plans::RemainingCharactersHelper
       include AttachedProposalsHelper
       include FormFactory
       include FilterResource
