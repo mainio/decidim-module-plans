@@ -20,15 +20,15 @@ module Decidim
       # form         - The form object for which to create the field.
       # attribute    - The String/Symbol name of the attribute to build the
       #                field.
-      # options      - A Hash with options to build the field.
-      #              * optional: Whether the file can be optional or not.
-      def upload_field(form, attribute, options = {})
-        options[:optional] = options[:optional].nil? ? true : options[:optional]
-
+      def upload_field(form, attribute)
         file = form.object.send attribute
+        required = file.nil?
+
+        label_content = form.label_for(attribute)
+        label_content += required_tag if required
         template = ""
-        template += label(attribute, form.label_for(attribute) + form.send(:required_for_attribute, attribute))
-        template += form.file_field attribute, label: false
+        template += form.label(attribute, label_content)
+        template += form.file_field attribute, label: false, required: required
 
         if form.send(:file_is_image?, file)
           template += if file.present?
@@ -43,6 +43,16 @@ module Decidim
         end
 
         template.html_safe
+      end
+
+      def required_tag
+        content_tag(
+          :abbr,
+          "*",
+          title: I18n.t("required", scope: "forms"),
+          data: { tooltip: true, disable_hover: false }, 'aria-haspopup': true,
+          class: "label-required"
+        ).html_safe
       end
     end
   end

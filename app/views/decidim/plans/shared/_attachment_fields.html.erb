@@ -22,11 +22,22 @@
   <div class="card-section">
     <div class="row column">
       <div class="field">
-        <%= form.text_field :title %>
+        <% if form.send(:attribute_required?, :title) %>
+          <%= form.text_field :title %>
+        <% else %>
+          <%
+          # Force the required tag on the form to indicate the user that the
+          # title is required always when the file is given.
+          %>
+          <%= form.text_field :title,
+            label: form.label_for(:title) + required_tag,
+            required: true
+          %>
+        <% end %>
       </div>
 
       <div class="field">
-        <%= upload_field form, :file, optional: false %>
+        <%= upload_field form, :file %>
       </div>
 
       <%= form.hidden_field :id %>
