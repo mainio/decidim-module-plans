@@ -139,7 +139,7 @@ module Decidim
       #
       # user - the user to check for withdrawability.
       def withdrawable_by?(user)
-        user && !withdrawn? && authored_by?(user) && !copied_from_other_component?
+        user && !withdrawn? && creator_author == user && !copied_from_other_component?
       end
 
       # Public: Whether the plan is a draft or not.
