@@ -28,17 +28,20 @@ module Decidim
           return broadcast(:invalid) if form.invalid?
 
           if process_attachments?
-            @plan.attachments.destroy_all
+            prepare_attachments
+            return broadcast(:invalid) if attachments_invalid?
+          end
 
-            build_attachment
-            return broadcast(:invalid) if attachment_invalid?
+          if form.invalid?
+            mark_attachment_reattachment
+            return broadcast(:invalid)
           end
 
           transaction do
             update_plan
             update_plan_contents
             update_plan_author
-            create_attachment if process_attachments?
+            update_attachments if process_attachments?
           end
 
           broadcast(:ok, plan)

@@ -11,9 +11,9 @@ fi:
         user_group_id: Luo käyttäjänä
     errors:
       models:
-        plan:
+        attachment:
           attributes:
-            attachment:
+            file:
               needs_to_be_reattached: Pitää liittää uudestaan
   decidim:
     components:
@@ -247,6 +247,15 @@ fi:
       section_types:
         field_text_multiline: Kenttä - Monirivinen
         field_text: Kenttä - Yksirivinen
+      shared:
+        attachment_fields:
+          attachment_legend: Liite
+          down: Alas
+          remove: Poista
+          up: Ylös
+        attachments:
+          legend: Liitteet
+          add_attachment: Lisää liite
       update:
         invalid: Virhe päivitettäessä suunnitelmaa.
         success: Suunnitelma päivitetty onnistuneesti.

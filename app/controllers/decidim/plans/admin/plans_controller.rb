@@ -9,12 +9,12 @@ module Decidim
         include Plans::AttachedProposalsHelper
 
         helper Plans::ApplicationHelper
+        helper Plans::AttachmentsHelper
         helper_method :plans, :query, :form_presenter, :attached_proposals_picker_field
 
         def new
           enforce_permission_to :create, :plans
           @form = form(Admin::PlanForm).from_model(Plan.new(component: current_component))
-          @form.attachment = form(AttachmentForm).from_params({})
         end
 
         def create
@@ -37,7 +37,6 @@ module Decidim
         def edit
           enforce_permission_to :edit, :plan, plan: plan
           @form = form(Admin::PlanForm).from_model(plan)
-          @form.attachment = form(AttachmentForm).from_params({})
         end
 
         def update

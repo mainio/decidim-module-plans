@@ -7,6 +7,7 @@ module Decidim
       helper Decidim::WidgetUrlsHelper
       helper UserGroupHelper
       helper TooltipHelper
+      helper Plans::AttachmentsHelper
       include AttachedProposalsHelper
       include FormFactory
       include FilterResource
@@ -40,7 +41,6 @@ module Decidim
         enforce_permission_to :create, :plan
 
         @form = form(PlanForm).from_model(Plan.new(component: current_component))
-        @form.attachment = form(AttachmentForm).from_params({})
       end
 
       def create
@@ -65,8 +65,6 @@ module Decidim
         enforce_permission_to :edit, :plan, plan: @plan
 
         @form = form(PlanForm).from_model(@plan)
-        @form.attachment = form(AttachmentForm).from_model(@plan.attachments.first)
-        @form
       end
 
       def update

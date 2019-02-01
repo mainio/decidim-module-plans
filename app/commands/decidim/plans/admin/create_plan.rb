@@ -21,17 +21,19 @@ module Decidim
         #
         # Returns nothing.
         def call
-          return broadcast(:invalid) if form.invalid?
-
           if process_attachments?
-            build_attachment
-            return broadcast(:invalid) if attachment_invalid?
+            return broadcast(:invalid) if attachments_invalid?
+          end
+
+          if form.invalid?
+            mark_attachment_reattachment
+            return broadcast(:invalid)
           end
 
           transaction do
             create_plan
             create_plan_contents
-            create_attachment if process_attachments?
+            update_attachments if process_attachments?
             send_notification
           end
 

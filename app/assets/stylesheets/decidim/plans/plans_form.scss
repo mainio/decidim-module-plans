@@ -1,0 +1,26 @@
+.multifield-fields{
+  .multifield-field-divider{
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+  }
+
+  .card-title{
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .card-title-text{
+      display: inline-block;
+      padding-top: .2rem;
+      padding-bottom: .2em;
+    }
+  }
+
+  .button--title{
+    float: right;
+    margin-left: 1rem;
+
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+}

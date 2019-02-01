@@ -46,18 +46,7 @@
 
     <% if component_settings.attachments_allowed? %>
       <div class="row column">
-        <fieldset>
-          <legend><%= t(".attachment_legend") %></legend>
-          <%= form.fields_for :attachment, @form.attachment do |form| %>
-            <div class="row column">
-              <%= form.text_field :title %>
-            </div>
-
-            <div class="row column">
-              <%= form.upload :file, optional: false %>
-            </div>
-          <% end %>
-        </fieldset>
+        <%= render partial: "decidim/plans/shared/attachments", object: form, locals: { form: form, blank_attachment: blank_attachment, component_settings: component_settings } %>
       </div>
     <% end %>
   </div>

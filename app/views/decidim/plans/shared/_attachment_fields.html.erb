@@ -1,0 +1,37 @@
+<div class="card multifield-field" id="<%= id %>-field">
+  <div class="card-divider multifield-field-divider">
+    <h3 class="heading6 card-title">
+      <span class="card-title-text">
+        <%== t(".attachment_legend") %>
+      </span>
+
+      <button class="button tiny alert hollow remove-field button--title" aria-label="<%= t(".remove") %>">
+        <%== icon("trash") %>
+      </button>
+
+      <button class="button tiny alert hollow move-down-field button--title hide-for-small-only" aria-label="<%= t(".down") %>">
+        <%== icon("arrow-bottom") %>
+      </button>
+
+      <button class="button tiny alert hollow move-up-field button--title hide-for-small-only" aria-label="<%= t(".up") %>">
+        <%== icon("arrow-top") %>
+      </button>
+    </h2>
+  </div>
+
+  <div class="card-section">
+    <div class="row column">
+      <div class="field">
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="field">
+        <%= upload_field form, :file, optional: false %>
+      </div>
+
+      <%= form.hidden_field :id %>
+      <%= form.hidden_field :weight, value: form.object.weight || 0, class: "position-input" %>
+      <%= form.hidden_field :deleted %>
+    </div>
+  </div>
+</div>

@@ -11,9 +11,9 @@ en:
         user_group_id: Create plan as
     errors:
       models:
-        plan:
+        attachment:
           attributes:
-            attachment:
+            file:
               needs_to_be_reattached: Needs to be reattached
   decidim:
     components:
@@ -247,6 +247,15 @@ en:
       section_types:
         field_text_multiline: Field - Multiple lines
         field_text: Field - Single line
+      shared:
+        attachment_fields:
+          attachment_legend: Attachment
+          down: Down
+          remove: Remove
+          up: Up
+        attachments:
+          legend: Attachments
+          add_attachment: Add attachment
       update:
         invalid: Error updating plan.
         success: Plan updated successfully.
