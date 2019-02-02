@@ -5,6 +5,7 @@ sv:
       plan:
         proposals: Proposals
         category_id: Category
+        decidim_category_id: Category
         decidim_scope_id: Scope
         state: State
         title: Title

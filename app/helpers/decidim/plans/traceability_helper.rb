@@ -7,11 +7,45 @@ module Decidim
       include Decidim::TraceabilityHelper
 
       # Caches a DiffRenderer instance for the `current_version`.
-      def diff_renderer
-        @diff_renderer ||= Decidim::Plans::DiffRenderer.new(current_version)
+      def item_diff_renderers
+        @item_diff_renderers ||= item_versions.map do |version|
+          renderer_for(version)
+        end.compact
+      end
+
+      def associated_diff_renderers
+        @associated_diff_renderers ||= associated_versions.map do |version|
+          renderer_for(version)
+        end.compact
+      end
+
+      def content_diff_renderers
+        @content_diff_renderers ||= content_versions.map do |version|
+          renderer_for(version)
+        end.compact
+      end
+
+      def diff_renderers
+        item_diff_renderers + associated_diff_renderers + content_diff_renderers
       end
 
       private
+
+      def renderer_for(version)
+        locale = current_locale unless component_settings.multilingual_answers?
+
+        renderer_klass =
+          case version.item.class.name
+          when "Decidim::Plans::Plan"
+            Decidim::Plans::DiffRenderer::Plan
+          when "Decidim::Plans::Content"
+            Decidim::Plans::DiffRenderer::Content
+          when "Decidim::Categorization"
+            Decidim::Plans::DiffRenderer::Categorization
+          end
+
+        renderer_klass.new(version, locale)
+      end
 
       # Renders the given value in a user-friendly way based on the value class.
       #

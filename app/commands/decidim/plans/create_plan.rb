@@ -31,10 +31,12 @@ module Decidim
           return broadcast(:invalid)
         end
 
-        transaction do
-          create_plan
-          create_plan_contents
-          update_attachments if process_attachments?
+        Decidim::Plans.tracer.trace!(@form.current_user) do
+          transaction do
+            create_plan
+            create_plan_contents
+            update_attachments if process_attachments?
+          end
         end
 
         broadcast(:ok, plan)
@@ -45,7 +47,7 @@ module Decidim
       attr_reader :form, :plan, :attachments
 
       def create_plan
-        @plan = Decidim.traceability.perform_action!(
+        @plan = Decidim::Plans.loggability.perform_action!(
           :create,
           Plan,
           @form.current_user

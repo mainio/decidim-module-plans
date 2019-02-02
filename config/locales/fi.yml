@@ -5,6 +5,7 @@ fi:
       plan:
         proposals: Ehdotukset
         category_id: Kategoria
+        decidim_category_id: Kategoria
         decidim_scope_id: Teema
         state: Tila
         title: Otsikko

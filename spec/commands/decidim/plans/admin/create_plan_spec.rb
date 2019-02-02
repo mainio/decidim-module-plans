@@ -87,7 +87,7 @@ module Decidim
             end
 
             it "traces the action", versioning: true do
-              expect(Decidim.traceability)
+              expect(Decidim::Plans.loggability)
                 .to receive(:perform_action!)
                 .with(:create, Decidim::Plans::Plan, kind_of(Decidim::User))
                 .and_call_original

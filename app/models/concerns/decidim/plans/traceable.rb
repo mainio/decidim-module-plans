@@ -21,7 +21,8 @@ module Decidim
       included do
         # This is customized with the `:ignore` option since we don't want to
         # store another version when the item is published.
-        has_paper_trail ignore: [:published_at]
+        has_paper_trail ignore: [:published_at],
+                        class_name: "Decidim::Plans::PaperTrail::Version"
 
         delegate :count, to: :versions, prefix: true
 

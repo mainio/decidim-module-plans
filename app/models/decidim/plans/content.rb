@@ -5,6 +5,8 @@ module Decidim
     # The content record is the actual content for each plan section for a
     # single plan.
     class Content < Plans::ApplicationRecord
+      include Decidim::Plans::Traceable
+
       self.table_name = "decidim_plans_plan_contents"
 
       belongs_to :plan, class_name: "Decidim::Plans::Plan", foreign_key: "decidim_plan_id"

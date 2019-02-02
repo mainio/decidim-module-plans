@@ -38,10 +38,13 @@ module Decidim
           return broadcast(:invalid)
         end
 
-        transaction do
-          update_plan
-          update_plan_contents
-          update_attachments if process_attachments?
+        Decidim::Plans.tracer.trace!(@current_user) do
+          transaction do
+            update_plan
+            update_plan_contents
+            update_attachments if process_attachments?
+            ensure_new_version
+          end
         end
 
         broadcast(:ok, plan)
@@ -52,7 +55,7 @@ module Decidim
       attr_reader :form, :plan, :current_user, :attachments
 
       def update_plan
-        Decidim.traceability.update!(
+        Decidim::Plans.loggability.update!(
           @plan,
           @current_user,
           attributes
@@ -69,6 +72,12 @@ module Decidim
             @plan.contents
           )
         end
+      end
+
+      def ensure_new_version
+        # Ensure the plan has changed by updating the token field
+        plan.update_token = Time.now.to_i
+        plan.save!
       end
 
       def attributes

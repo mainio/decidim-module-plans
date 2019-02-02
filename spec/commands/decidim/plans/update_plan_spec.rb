@@ -83,9 +83,7 @@ module Decidim
           end
 
           it "creates a new version for the plan", versioning: true do
-            expect do
-              command.call
-            end.to change { plan.versions.count }.by(1)
+            expect { command.call }.to(change { plan.versions.count })
             expect(plan.versions.last.whodunnit).to eq author.to_gid.to_s
           end
 

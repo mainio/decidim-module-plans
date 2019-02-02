@@ -6,7 +6,8 @@ module Decidim
     # has been updated through time.
     class VersionsController < Decidim::Plans::ApplicationController
       helper Decidim::Plans::TraceabilityHelper
-      helper_method :current_version, :item
+      helper_method :current_version, :item_versions, :associated_versions,
+                    :content_versions, :item
 
       private
 
@@ -17,6 +18,33 @@ module Decidim
       def current_version
         return nil if params[:id].to_i < 1
         @current_version ||= item.versions[params[:id].to_i - 1]
+      end
+
+      def item_versions
+        # There may be multiple updates on the item during the same transaction
+        Decidim::Plans::PaperTrail::Version.where(
+          transaction_id: current_version.transaction_id,
+          item_type: "Decidim::Plans::Plan"
+        ).order(:created_at)
+      end
+
+      def associated_versions
+        @associated_versions ||= Decidim::Plans::PaperTrail::Version.where(
+          transaction_id: current_version.transaction_id
+        ).where.not(
+          item_type: ["Decidim::Plans::Plan", "Decidim::Plans::Content"]
+        )
+      end
+
+      def content_versions
+        @content_versions ||= item.sections.map do |section|
+          content = item.contents.find_by(section: section)
+          next unless content
+
+          content.versions.find_by(
+            transaction_id: current_version.transaction_id
+          )
+        end.compact
       end
     end
   end

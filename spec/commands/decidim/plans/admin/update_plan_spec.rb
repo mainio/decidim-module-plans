@@ -61,7 +61,7 @@ describe Decidim::Plans::Admin::UpdatePlan do
       end
 
       it "traces the update", versioning: true do
-        expect(Decidim.traceability)
+        expect(Decidim::Plans.loggability)
           .to receive(:update!)
           .with(plan, user, a_kind_of(Hash))
           .and_call_original
