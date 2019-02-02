@@ -45,12 +45,20 @@ module Decidim
         attr_reader :form, :plan, :attachment
 
         def create_plan
-          @plan = Decidim::Plans::PlanBuilder.create(
-            attributes: { published_at: Time.current }.merge(attributes),
-            author: form.author,
-            action_user: form.current_user
-          )
-          @plan.proposals << form.proposals
+          @plan = Decidim.traceability.perform_action!(
+            :create,
+            Plan,
+            @form.current_user
+          ) do
+            plan = Plan.new(
+              { published_at: Time.current }.merge(attributes)
+            )
+            plan.coauthorships.build(author: form.author)
+            plan.save!
+            plan.proposals << form.proposals
+            plan
+          end
+
           @attached_to = @plan
         end
 
@@ -70,6 +78,7 @@ module Decidim
             category: form.category,
             scope: form.scope,
             component: form.component,
+            state: "open",
             published_at: Time.current
           }
         end

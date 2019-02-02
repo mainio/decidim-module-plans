@@ -16,7 +16,7 @@ module Decidim
       include Decidim::Followable
       include Decidim::Comments::Commentable
       include Decidim::Searchable
-      include Decidim::Traceable
+      include Decidim::Plans::Traceable
       include Decidim::Loggable
 
       component_manifest_name "plans"
