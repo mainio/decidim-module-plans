@@ -15,18 +15,22 @@ module Decidim
             "sections" => {
               "0" => {
                 "body" => { "en" => "First section" },
+                "section_type" => Decidim::Plans::Section::TYPES.first,
                 "position" => "0"
               },
               "1" => {
                 "body" => { "en" => "Second section" },
+                "section_type" => Decidim::Plans::Section::TYPES.second,
                 "position" => "1"
               },
               "2" => {
                 "body" => { "en" => "Third section" },
+                "section_type" => Decidim::Plans::Section::TYPES.first,
                 "position" => "2"
               },
               "3" => {
                 "body" => { "en" => "Fourth section" },
+                "section_type" => Decidim::Plans::Section::TYPES.second,
                 "position" => "3"
               }
             }

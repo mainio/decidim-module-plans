@@ -30,7 +30,8 @@ module Decidim
         let(:form_params) do
           {
             title: { en: "This is the plan title" },
-            user_group_id: user_group.try(:id)
+            user_group_id: user_group.try(:id),
+            proposal_ids: plan.proposals.map(&:id)
           }
         end
 
@@ -40,7 +41,7 @@ module Decidim
 
         describe "when the form is not valid" do
           before do
-            expect(form).to receive(:invalid?).and_return(true)
+            expect(form).to receive(:invalid?).twice.and_return(true)
           end
 
           it "broadcasts invalid" do

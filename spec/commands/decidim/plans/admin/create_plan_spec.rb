@@ -8,6 +8,7 @@ module Decidim
       describe CreatePlan do
         let(:form_klass) { PlanForm }
         let(:component) { create(:plan_component) }
+        let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
         let(:organization) { component.organization }
         let(:user) { create :user, :admin, :confirmed, organization: organization }
         let(:form) do
@@ -26,8 +27,9 @@ module Decidim
           let(:form_params) do
             {
               title: { en: "A reasonable plan title" },
-              attachment: attachment_params,
-              user_group_id: nil
+              attachments: attachment_params.nil? ? nil : [attachment_params],
+              user_group_id: nil,
+              proposal_ids: [create(:proposal, component: proposal_component).id]
             }
           end
 
@@ -37,7 +39,7 @@ module Decidim
 
           describe "when the form is not valid" do
             before do
-              expect(form).to receive(:invalid?).and_return(true)
+              expect(form).to receive(:invalid?).twice.and_return(true)
             end
 
             it "broadcasts invalid" do
@@ -48,6 +50,22 @@ module Decidim
               expect do
                 command.call
               end.not_to change(Decidim::Plans::Plan, :count)
+            end
+
+            describe "with an attachment" do
+              let(:component) { create(:plan_component, :with_attachments_allowed) }
+              let(:attachment_params) do
+                {
+                  title: "My attachment",
+                  file: Decidim::Dev.test_file("city.jpeg", "image/jpeg"),
+                  weight: 0
+                }
+              end
+
+              it "adds an error to the attachment's `:file` field" do
+                command.call
+                expect(form.attachments.first.errors.keys).to match_array([:file])
+              end
             end
           end
 
@@ -84,7 +102,8 @@ module Decidim
               let(:attachment_params) do
                 {
                   title: "My attachment",
-                  file: Decidim::Dev.test_file("city.jpeg", "image/jpeg")
+                  file: Decidim::Dev.test_file("city.jpeg", "image/jpeg"),
+                  weight: 0
                 }
               end
 
@@ -98,7 +117,8 @@ module Decidim
               context "when attachment is left blank" do
                 let(:attachment_params) do
                   {
-                    title: ""
+                    title: "",
+                    weight: 0
                   }
                 end
 

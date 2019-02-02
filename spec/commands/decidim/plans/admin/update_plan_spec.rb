@@ -24,7 +24,8 @@ describe Decidim::Plans::Admin::UpdatePlan do
   describe "call" do
     let(:form_params) do
       {
-        title: { en: "A reasonable plan title" }
+        title: { en: "A reasonable plan title" },
+        proposal_ids: plan.proposals.map(&:id)
       }
     end
 

@@ -5,6 +5,7 @@ require "decidim/participatory_processes/test/factories"
 
 FactoryBot.define do
   factory :section, class: Decidim::Plans::Section do
+    section_type { Decidim::Plans::Section::TYPES.first }
     body { generate_localized_title }
     position { 0 }
     component
@@ -39,9 +40,15 @@ FactoryBot.define do
     end
   end
 
+  factory :attached_proposal, class: "Decidim::Plans::AttachedProposal" do
+    plan
+    proposal
+  end
+
   factory :plan, class: "Decidim::Plans::Plan" do
     transient do
       users { nil }
+      plan_proposals { nil }
       # user_groups correspondence to users is by sorting order
       user_groups { [] }
     end
@@ -57,6 +64,10 @@ FactoryBot.define do
           user_group = evaluator.user_groups[idx]
           plan.coauthorships.build(author: user, user_group: user_group)
         end
+
+        proposal_component = create(:proposal_component, participatory_space: plan.component.participatory_space)
+        proposals = evaluator.plan_proposals || [create(:proposal, component: proposal_component)]
+        plan.attached_proposals = proposals.map { |p| create(:attached_proposal, plan: plan, proposal: p) }
       end
     end
 

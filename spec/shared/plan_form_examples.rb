@@ -6,8 +6,10 @@ shared_examples "a plan form" do |options|
   let(:organization) { create(:organization, available_locales: [:en]) }
   let(:participatory_space) { create(:participatory_process, :with_steps, organization: organization) }
   let(:component) { create(:plan_component, participatory_space: participatory_space) }
+  let(:proposal_component) { create(:proposal_component, participatory_space: participatory_space) }
   let(:title) { { en: "A reasonable plan title" } }
   let(:author) { create(:user, organization: organization) }
+  let(:proposal_ids) { [create(:proposal, component: proposal_component).id] }
   let(:user_group) { create(:user_group, :verified, users: [author], organization: organization) }
   let(:user_group_id) { user_group.id }
   let(:category) { create(:category, participatory_space: participatory_space) }
@@ -17,11 +19,12 @@ shared_examples "a plan form" do |options|
   let(:attachment_params) { nil }
   let(:params) do
     {
+      proposal_ids: proposal_ids,
       title: title,
       author: author,
       category_id: category_id,
       scope_id: scope_id,
-      attachment: attachment_params
+      attachments: attachment_params.nil? ? nil : [attachment_params]
     }
   end
 
@@ -143,26 +146,6 @@ shared_examples "a plan form" do |options|
       plan = create(:plan, component: component, users: [author], user_groups: [user_group])
 
       expect(described_class.from_model(plan).user_group_id).to eq(user_group_id)
-    end
-  end
-
-  context "when the attachment is present" do
-    let(:attachment_params) do
-      {
-        title: "My attachment",
-        file: Decidim::Dev.test_file("city.jpeg", "image/jpeg")
-      }
-    end
-
-    it { is_expected.to be_valid }
-
-    context "when the form has some errors" do
-      let(:title) { nil }
-
-      it "adds an error to the `:attachment` field" do
-        expect(subject).not_to be_valid
-        expect(subject.errors.keys).to match_array([:title_en, :attachment])
-      end
     end
   end
 end

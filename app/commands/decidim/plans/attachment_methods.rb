@@ -18,7 +18,7 @@ module Decidim
       end
 
       def mark_attachment_reattachment
-        if @form.errors.any?
+        if @form.invalid? || @form.errors.any?
           @form.attachments.each do |at|
             at.errors.add(:file, :needs_to_be_reattached) if at.present? && at.id.blank?
           end
