@@ -49,6 +49,17 @@ module Decidim
 
       acts_as_list scope: :decidim_component_id
 
+      searchable_fields(
+        {
+          scope_id: :decidim_scope_id,
+          participatory_space: { component: :participatory_space },
+          A: :search_title,
+          datetime: :published_at
+        },
+        index_on_create: ->(proposal) { proposal.visible? },
+        index_on_update: ->(proposal) { proposal.visible? }
+      )
+
       def sections
         Section.where(component: component).order(:position)
       end

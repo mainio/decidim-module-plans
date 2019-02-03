@@ -6,7 +6,7 @@ module Decidim
       isolate_namespace Decidim::Plans
 
       routes do
-        resources :plans, except: [:destroy] do
+        resources :plans do
           get :search_proposals
           resource :plan_widget, only: :show, path: "embed"
           resources :versions, only: [:show, :index]

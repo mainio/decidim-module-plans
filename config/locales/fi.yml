@@ -160,7 +160,12 @@ fi:
         create:
           error: Virhe luotaessa suunnitelmaa.
           success: Suunnitelma luotu onnistuneesti.
+        destroy:
+          error: Virhe poistettaessa suunnitelmaa.
+          success: Suunnitelma poistettu onnistuneesti.
         edit:
+          discard: Tuhoa tämä luonnos
+          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
           update: Päivitä
         preview:
           modify: Muokkaa

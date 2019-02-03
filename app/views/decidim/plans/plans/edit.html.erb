@@ -8,6 +8,12 @@
           <div class="actions">
             <%= form.submit t(".update"), class: "button expanded mt-s mb-none", data: { disable: true } %>
           </div>
+
+          <% if @plan.draft? %>
+            <div class="row column flex-center">
+              <%= link_to t(".discard"), plan_path(@plan), method: :delete, data: { confirm: t(".discard_confirmation") } %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

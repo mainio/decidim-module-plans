@@ -17,9 +17,9 @@ module Decidim
 
       helper_method :attached_proposals_picker_field
 
-      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish]
+      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :destroy]
       before_action :check_draft, only: [:new]
-      before_action :retrieve_plan, only: [:show, :edit, :update, :preview, :publish, :withdraw]
+      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :destroy]
       before_action :ensure_published!, only: [:show, :withdraw]
 
       def index
@@ -86,6 +86,25 @@ module Decidim
 
           on(:invalid) do
             flash.now[:alert] = I18n.t("plans.plans.update.error", scope: "decidim")
+            render :edit
+          end
+        end
+      end
+
+      def destroy
+        enforce_permission_to :edit, :plan, plan: @plan
+
+        # Form needed in case destroing fails
+        @form = form(PlanForm).from_model(@plan)
+
+        DestroyPlan.call(@plan, current_user) do
+          on(:ok) do
+            flash[:notice] = I18n.t("plans.plans.destroy.success", scope: "decidim")
+            redirect_to new_plan_path
+          end
+
+          on(:invalid) do
+            flash.now[:alert] = I18n.t("plans.plans.destroy.error", scope: "decidim")
             render :edit
           end
         end

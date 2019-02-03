@@ -160,7 +160,12 @@ en:
         create:
           error: Error creating plan.
           success: Plan created successfully.
+        destroy:
+          error: Error deleting the plan.
+          success: Plan deleted successfully.
         edit:
+          discard: Discard this draft
+          discard_confirmation: Are you sure you want to discard this draft?
           update: Update
         preview:
           modify: Modify
