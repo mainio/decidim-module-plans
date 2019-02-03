@@ -29,10 +29,7 @@
           # Force the required tag on the form to indicate the user that the
           # title is required always when the file is given.
           %>
-          <%= form.text_field :title,
-            label: form.label_for(:title) + required_tag,
-            required: true
-          %>
+          <%= form.text_field :title, label: form.label_for(:title) + required_tag %>
         <% end %>
       </div>
 

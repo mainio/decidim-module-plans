@@ -28,7 +28,7 @@ module Decidim
         label_content += required_tag if required
         template = ""
         template += form.label(attribute, label_content)
-        template += form.file_field attribute, label: false, required: required
+        template += form.file_field attribute, label: false
 
         if form.send(:file_is_image?, file)
           template += if file.present?
