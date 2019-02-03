@@ -43,7 +43,6 @@ module Decidim
               update_plan_contents
               update_plan_author
               update_attachments if process_attachments?
-              ensure_new_version
             end
           end
 
@@ -58,10 +57,7 @@ module Decidim
           Decidim::Plans.loggability.update!(
             plan,
             form.current_user,
-            title: form.title,
-            category: form.category,
-            scope: form.scope,
-            proposals: form.proposals
+            attributes
           )
         end
 
@@ -84,10 +80,17 @@ module Decidim
           plan
         end
 
-        def ensure_new_version
-          # Ensure the plan has changed by updating the token field
-          plan.update_token = Time.now.to_i
-          plan.save!
+        def attributes
+          {
+            title: form.title,
+            category: form.category,
+            scope: form.scope,
+            proposals: form.proposals,
+            # The update token ensures a new version is always created even if
+            # the other attributes have not changed. This is needed to force a
+            # new version to show the changes to associated models.
+            update_token: Time.now.to_f
+          }
         end
       end
     end
