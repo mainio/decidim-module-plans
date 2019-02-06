@@ -19,7 +19,7 @@ describe Decidim::Plans::RejectedPlanEvent do
   describe "email_intro" do
     it "is generated correctly" do
       expect(subject.email_intro)
-        .to eq("The plan \"#{resource_title}\" has been rejected. You can read the answer in this page:")
+        .to eq("\"#{resource_title}\" has been rejected. You can read the answer in this page:")
     end
   end
 
@@ -33,7 +33,7 @@ describe Decidim::Plans::RejectedPlanEvent do
   describe "notification_title" do
     it "is generated correctly" do
       expect(subject.notification_title)
-        .to include("The <a href=\"#{resource_path}\">#{resource_title}</a> plan has been rejected")
+        .to include("<a href=\"#{resource_path}\">#{resource_title}</a> has been rejected")
     end
   end
 end

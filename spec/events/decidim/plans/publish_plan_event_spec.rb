@@ -19,7 +19,7 @@ describe Decidim::Plans::PublishPlanEvent do
   describe "email_intro" do
     it "is generated correctly" do
       expect(subject.email_intro)
-        .to eq("The plan \"#{resource_title}\" has been published. You can see it here:")
+        .to eq("\"#{resource_title}\" has been published. You can see it here:")
     end
   end
 
@@ -33,7 +33,7 @@ describe Decidim::Plans::PublishPlanEvent do
   describe "notification_title" do
     it "is generated correctly" do
       expect(subject.notification_title)
-        .to include("The <a href=\"#{resource_path}\">#{resource_title}</a> plan has been published.")
+        .to include("<a href=\"#{resource_path}\">#{resource_title}</a> has been published.")
     end
   end
 end

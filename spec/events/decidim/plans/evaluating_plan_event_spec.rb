@@ -19,7 +19,7 @@ describe Decidim::Plans::EvaluatingPlanEvent do
   describe "email_intro" do
     it "is generated correctly" do
       expect(subject.email_intro)
-        .to eq("The plan \"#{resource_title}\" is currently being evaluated. You can check for an answer in this page:")
+        .to eq("\"#{resource_title}\" is currently being evaluated. You can check for an answer in this page:")
     end
   end
 
@@ -33,7 +33,7 @@ describe Decidim::Plans::EvaluatingPlanEvent do
   describe "notification_title" do
     it "is generated correctly" do
       expect(subject.notification_title)
-        .to include("The <a href=\"#{resource_path}\">#{resource_title}</a> plan is being evaluated")
+        .to include("<a href=\"#{resource_path}\">#{resource_title}</a> is being evaluated")
     end
   end
 end

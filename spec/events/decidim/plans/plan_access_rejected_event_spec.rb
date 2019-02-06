@@ -28,14 +28,14 @@ describe Decidim::Plans::PlanAccessRejectedEvent do
 
     describe "email_subject" do
       it "is generated correctly" do
-        expect(subject.email_subject).to eq("#{requester_name} has been rejected to access as a contributor of the #{resource_title} plan.")
+        expect(subject.email_subject).to eq("#{requester_name} has been rejected to access as a contributor of #{resource_title}.")
       end
     end
 
     describe "email_intro" do
       it "is generated correctly" do
         expect(subject.email_intro)
-          .to eq(%(#{requester_name} has been rejected to access as a contributor of the <a href="#{resource_path}">#{resource_title}</a> plan.))
+          .to eq(%(#{requester_name} has been rejected to access as a contributor of <a href="#{resource_path}">#{resource_title}</a>.))
       end
     end
 
@@ -49,7 +49,7 @@ describe Decidim::Plans::PlanAccessRejectedEvent do
     describe "notification_title" do
       it "is generated correctly" do
         expect(subject.notification_title)
-          .to include(%(<a href="#{requester_path}">#{requester_name} #{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of the <a href="#{resource_path}">#{resource_title}</a> plan.))
+          .to include(%(<a href="#{requester_path}">#{requester_name} #{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="#{resource_path}">#{resource_title}</a>.))
       end
     end
   end
@@ -68,7 +68,7 @@ describe Decidim::Plans::PlanAccessRejectedEvent do
     describe "email_intro" do
       it "is generated correctly" do
         expect(subject.email_intro)
-          .to eq(%(You have been rejected to access as a contributor of the <a href="#{resource_path}">#{resource_title}</a> plan.))
+          .to eq(%(You have been rejected to access as a contributor of <a href="#{resource_path}">#{resource_title}</a>.))
       end
     end
 
@@ -82,7 +82,7 @@ describe Decidim::Plans::PlanAccessRejectedEvent do
     describe "notification_title" do
       it "is generated correctly" do
         expect(subject.notification_title)
-          .to eq(%(You have been <strong>rejected to access as a contributor</strong> of the <a href="#{resource_path}">#{resource_title}</a> plan.))
+          .to eq(%(You have been <strong>rejected to access as a contributor</strong> of <a href="#{resource_path}">#{resource_title}</a>.))
       end
     end
   end
