@@ -42,6 +42,8 @@ module Decidim
             Decidim::Plans::DiffRenderer::Content
           when "Decidim::Categorization"
             Decidim::Plans::DiffRenderer::Categorization
+          when "Decidim::Component"
+            Decidim::Plans::DiffRenderer::Component
           end
 
         renderer_klass.new(version, locale)
