@@ -32,21 +32,21 @@ fi:
             attachments_allowed: Liitteet sallittu
             comments_enabled: Kommentointi sallittu
             multilingual_answers: Monikieliset vastaukset
-            plan_answering_enabled: Suunnitelmiin vastaaminen sallittu
-            plan_title_length: Suunnitelman otsikon pituus
+            plan_answering_enabled: Vastaaminen sallittu
+            plan_title_length: Otsikon pituus
           step:
             announcement: Ilmoitus
             comments_blocked: Kommentointi estetty
             creation_enabled: Luonti sallittu
-            plan_answering_enabled: Suunnitelmiin vastaaminen sallittu
+            plan_answering_enabled: Vastaaminen sallittu
     participatory_processes:
       statistics:
         plans_count: Suunnitelmaa
     plans:
       actions:
         answer: Vastaa
-        edit_plan: Muokkaa suunnitelmaa
-        new: Uusi suunnitelma
+        edit_plan: Muokkaa
+        new: Tee uusi suunnitelma
         sections: Osiot
         title: Toiminnot
       admin:
@@ -58,23 +58,23 @@ fi:
             answer_plan: Vastaa
             evaluating: Arvioitavana
             rejected: Hylätty
-            title: Vastaa suunnitelmaan %{title}
+            title: Vastaa kohteeseen %{title}
         plans:
           answer:
-            invalid: Suunnitelmaan vastaamisessa tapahtui virhe.
-            success: Suunnitelmaan vastattu onnistuneesti.
+            invalid: Vastaamisessa tapahtui virhe.
+            success: Vastattu onnistuneesti.
           edit:
-            title: Muokkaa suunnitelmaa
+            title: Muokkaa
             update: Päivitä
           form:
-            attachment_legend: "(Valinnainen) Lisää liite"
+            attachment_legend: "Lisää liite"
             select_a_category: Valitse kategoria
           index:
             selected: Valittu
             title: Suunnitelmat
           new:
             create: Luo
-            title: Uusi suunnitelma
+            title: Tee uusi suunnitelma
         sections:
           form:
             add_section: Lisää osio
@@ -100,15 +100,15 @@ fi:
             plans: Suunnitelmat
       admin_log:
         plan:
-          answer: "%{user_name} vastasi suunnitelmaan kohteessa %{resource_name}
+          answer: "%{user_name} vastasi sisältöön %{resource_name}
             osallisuustilassa %{space_name}."
-          create: "%{user_name} loi suunnitelman kohteelle %{resource_name}
+          create: "%{user_name} loi sisällön %{resource_name} osallisuustilassa
+            %{space_name}."
+          update: "%{user_name} päivitti sisältöä %{resource_name}
             osallisuustilassa %{space_name}."
-          update: "%{user_name} päivitti virallista suunnitelmaa kohteessa
-            %{resource_name} osallisuustilassa %{space_name}."
         plan_note:
-          create: "%{user_name} lisäsi yksityisen viestin kohteen
-            %{resource_name} suunnitelmaan osallisuustilassa %{space_name}."
+          create: "%{user_name} lisäsi yksityisen viestin sisältöön
+            %{resource_name} osallisuustilassa %{space_name}."
       answers:
         accepted: Hyväksytty
         evaluating: Arvioitavana
@@ -129,11 +129,11 @@ fi:
       attached_proposals_helper:
         attach_proposal: Liitä ehdotus
         close: Sulje
-        current_selection: Aktiivinen valinta
+        current_selection: Hae ehdotuksia nimellä
         select: Valitse
       create:
         invalid: Virhe luotaessa suunnitelmaa.
-        success: Suunnitelma luotu onnistuneesti.
+        success: Luonti onnistui.
       last_activity:
         new_plan_at_html: "<span>Uusi suunnitelma osoitteessa %{link}</span>"
       models:
@@ -142,7 +142,7 @@ fi:
             authors: Laatijat
             category: Kategoria
             comments: Kommentit
-            contributions: Osallistumiset
+            contributions: Muokkaukset
             id: ID
             notes: Muistiinpanot
             official_plan: Virallinen suunnitelma
@@ -158,11 +158,11 @@ fi:
             one: "%{count} suunnitelma"
             other: "%{count} suunnitelmaa"
         create:
-          error: Virhe luotaessa suunnitelmaa.
-          success: Suunnitelma luotu onnistuneesti.
+          error: Uuden sisällön luominen epäonnistui.
+          success: Luonti onnistui.
         destroy:
-          error: Virhe poistettaessa suunnitelmaa.
-          success: Suunnitelma poistettu onnistuneesti.
+          error: Virhe poistettaessa sisältöä.
+          success: Poisto onnistui.
         edit:
           discard: Tuhoa tämä luonnos
           discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
@@ -192,7 +192,7 @@ fi:
           filter_by: Suodata
           unfold: Avaa
         form:
-          attachment_legend: "(Valinnainen) Lisää liite"
+          attachment_legend: "Lisää liite"
           select_a_category: Valitse kategoria
         index:
           new_plan: Uusi suunnitelma
@@ -208,42 +208,40 @@ fi:
           recent: Uusimmat
         plan:
           publish:
-            error: Virhe julkaistaessa suunnitelmaa.
-            success: Suunnitelma julkaistu onnistuneesti.
+            error: Uuden sisällön julkaiseminen epäonnistui.
+            success: Julkaisu onnistui.
           view_plan: Näytä suunnitelma
           withdraw:
-            error: Virhe peruutettaessa suunnitelmaa.
-            success: Suunnitelma peruutettu onnistuneesti.
+            error: Peruuttaminen epäonnistui.
+            success: Peruuttaminen onnistui.
         show:
           back: Takaisin
-          edit: Muokkaa suunnitelmaa
+          edit: Muokkaa
           hidden_authors_count:
             one: ja %{count} muu henkilö
             other: ja %{count} muuta henkilöä
-          info-message: Voit auttaa tämän suunnitelman laatijoita muokkaamaan
-            siitä paremman kommentoimalla sivun alalaidassa tai pyytämällä
-            pääsyä tämän suunnitelman muokkaajaksi. Kun laatijat antavat sinulle
-            pääsyn, voit tehdä muutoksia tähän suunnitelmaan.
+          info-message: Voit osalllistua joko jättämällä kommentin sivun
+            alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
           of_versions: "(versioista %{number})"
           plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
-          plan_in_evaluation_reason: Tätä suunnitelmaa arvioidaan
+          plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana
           plan_rejected_reason: 'Tämä suunnitelma on hylätty, koska:'
           publish: Julkaise
           publish_info: Julkaise tämä luonnosversio tai
           published_proposal: julkaistu suunnitelma
           report: Ilmoita
-          request_access: Pyydä pääsyä
-          requested_access: Pääsyä pyydetty
+          request_access: Pyydä muokkausoikeudet
+          requested_access: Muokkausoikeudet pyydetty
           see_other_versions: näytä muut versiot
           version: Versio %{number}
-          version_history: näytä tämän suunnitelman versiohistoria
+          version_history: näytä versiohistoria
           withdraw: peru suunnitelma
           withdraw_btn: Peru
           withdraw_btn_hint: Jos muutat mieltäsi, voit perua tämän kohteen, mikäli se ei ole vielä kerännyt tukea. Kohdetta ei poisteta, se jää näkyviin peruttujen kohteiden listaan.
           withdraw_confirmation: Haluatko varmasti perua?
         update:
-          error: Virhe päivitettäessä.
-          success: Päivitetty onnistuneesti.
+          error: Sisälllön päivitys epäonnistui.
+          success: Sisälllön päivitys onnistui.
         withdraw:
           error: Virhe kohteen peruutuksessa.
           success: Kohde peruutettu onnistuneesti.
@@ -276,14 +274,14 @@ fi:
           legend: Liitteet
           add_attachment: Lisää liite
       update:
-        invalid: Virhe päivitettäessä suunnitelmaa.
-        success: Suunnitelma päivitetty onnistuneesti.
+        invalid: Sisällön päivittäminen epäonnistui.
+        success: Päivitys onnistui.
       versions:
         changes_at_title: Muutokset kohteelle "%{title}"
         index:
           title: Versiot
         stats:
-          back_to_plan: Takaisin suunnitelmaan
+          back_to_plan: Takaisin
           number_of_versions: Versiot
           show_all_versions: Näytä kaikki versiot
           version_author: Version laatija
@@ -297,47 +295,47 @@ fi:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} on annettu käyttöoikeus suunnitelmaan <a href="%{resource_path}">%{resource_title}</a> osallistujana.'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistuja suunnitelmassa <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: "%{requester_name} on hyväksytty osallistujaksi suunnitelmaan %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> on <strong>hyväksytty osallistujaksi</strong> suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} on annettu oikeus muokata sisältöä <a href="%{resource_path}">%{resource_title}</a> osallistujana.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut sisällön <a href="%{resource_path}">%{resource_title}</a> muokkaukseen.
+          email_subject: "%{requester_name} on hyväksytty muokkaajaksi sisältöön %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> on <strong>hyväksytty muokkaajaksi</strong> sisältöön <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: 'Käyttäjän %{requester_name} osallistuminen suunnitelmaan <a href="%{resource_path}">%{resource_title} </a>on estetty.'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistuja suunnitelmassa <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: 'Käyttäjän %{requester_name} muokkausoikeudet sisältöön <a href="%{resource_path}">%{resource_title} </a> on estetty.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut sisällön <a href="%{resource_path}">%{resource_title}</a> muokkaukseen.
           email_subject: "%{requester_name} hakemus osallistua suunnitelmaan %{resource_title} on hylätty."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>osallistujaoikeudet on hylätty</strong> suunnitelmasta <a href="%{resource_path}">%{resource_title}</a>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>pyyntö muokata sisältöä on hylätty</strong> kohteelle <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} pyysi pääsyä osallistujaksi. Voit <strong>hyväksyä tai hylätä pyynnön</strong> suunnitelman <a href="%{resource_path}">%{resource_title}</a> sivulta.'
+          email_intro: '%{requester_name} pyysi pääsyä osallistujaksi. Voit <strong>hyväksyä tai hylätä pyynnön</strong> sivulla <a href="%{resource_path}">%{resource_title}</a>.'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistuja suunnitelmassa <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} pyysi osallistumisoikeutta suunnitelmaan %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pyysi saada osallistua suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>. <strong>Hyväksy tai hylkää pyyntö</strong>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pyysi saada muokata sisältöä <a href="%{resource_path}">%{resource_title}</a>. <strong>Hyväksy tai hylkää pyyntö</strong>.
         plan_access_requester_accepted:
-          email_intro: Sinut on hyväksytty osallistujaksi suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet hakenut osallistujaksi suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: Sinut on hyväksytty osallistujaksi suunnitelmaan %{resource_title}.
-          notification_title: Sinut on <strong>hyväksytty osallistujaksi </strong> suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Sinut on hyväksytty osallistujaksi sisältöön <a href="%{resource_path}">%{resource_title}</a>.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet hakenut muokkausoikeuksia sisältöön <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: Sinut on hyväksytty osallistujaksi sisältöön %{resource_title}.
+          notification_title: Sinut on <strong>hyväksytty osallistujaksi </strong> sisältöön <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: Sinua ei ole hyväksytty osallistujaksi suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet pyytänyt pääsyä osallistujaksi suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: Sinua ei ole hyväksytty osallistujaksi suunnitelmaan %{resource_title}.
-          notification_title: Sinua <strong>ei ole hyväksytty osallistujaksi</strong> suunnitelmaan <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Sinua ei ole hyväksytty osallistujaksi sisältöön <a href="%{resource_path}">%{resource_title}</a>.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet pyytänyt pääsyä osallistujaksi sisältöön <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: Sinua ei ole hyväksytty osallistujaksi sisältöön %{resource_title}.
+          notification_title: Sinua <strong>ei ole hyväksytty osallistujaksi</strong> sisältöön <a href="%{resource_path}">%{resource_title}</a>.
         plan_accepted:
-          email_intro: 'Suunnitelma "%{resource_title}" on hyväksytty. Voit lukea vastauksen täältä:'
+          email_intro: '"%{resource_title}" on hyväksytty. Voit lukea vastauksen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi suunnitelma on hyväksytty
-          notification_title: Suunnitelma <a href="%{resource_path}">%{resource_title}</a> on hyväksytty.
+          email_subject: Seuraamasi kohde on hyväksytty
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> on hyväksytty.
         plan_evaluating:
-          email_intro: 'Suunnitelmaa "%{resource_title}" arvioidaan parhaillaan. Voit tarkistaa vastauksen tältä sivulla:'
+          email_intro: '"%{resource_title}" arvioidaan parhaillaan. Voit tarkistaa vastauksen tältä sivulla:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi suunnitelma on arvioitavana
-          notification_title: Suunnitelma <a href="%{resource_path}">%{resource_title}</a> on arvioitavana.
+          email_subject: Seuraamasi kohde on arvioitavana
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> on arvioitavana.
         plan_published_for_space:
-          email_intro: 'Suunnitelma "%{resource_title}" on julkaistu. Näet sen täältä:'
+          email_intro: '"%{resource_title}" on julkaistu. Näet sen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi suunnitelma on julkaistu
-          notification_title: Suunnitelma <a href="%{resource_path}">%{resource_title}</a> on julkaistu.
+          email_subject: Seuraamasi kohde on julkaistu
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> on julkaistu.
         plan_rejected:
-          email_intro: 'Suunnitelma "%{resource_title}" on hylätty. Voit lukea vastauksen tällä sivulla:'
+          email_intro: '"%{resource_title}" on hylätty. Voit lukea vastauksen tällä sivulla:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi suunnitelma on hylätty
-          notification_title: Suunnitelma <a href="%{resource_path}">%{resource_title}</a> on hylätty.
+          email_subject: Seuraamasi kohde on hylätty
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> on hylätty.

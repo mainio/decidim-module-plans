@@ -9,7 +9,7 @@ en:
         decidim_scope_id: Scope
         state: State
         title: Title
-        user_group_id: Create plan as
+        user_group_id: Create as
     errors:
       models:
         attachment:
@@ -32,21 +32,21 @@ en:
             attachments_allowed: Attachments allowed
             comments_enabled: Comments enabled
             multilingual_answers: Multilingual answers
-            plan_answering_enabled: Plan answering enabled
-            plan_title_length: Plan title length
+            plan_answering_enabled: Answering enabled
+            plan_title_length: Title length
           step:
             announcement: Announcement
             comments_blocked: Comments blocked
             creation_enabled: Creation enabled
-            plan_answering_enabled: Plan answering enabled
+            plan_answering_enabled: Answering enabled
     participatory_processes:
       statistics:
         plans_count: Plans
     plans:
       actions:
         answer: Answer
-        edit_plan: Edit plan
-        new: New plan
+        edit_plan: Edit
+        new: Submit new plan
         sections: Sections
         title: Actions
       admin:
@@ -58,23 +58,23 @@ en:
             answer_plan: Answer
             evaluating: Evaluating
             rejected: Rejected
-            title: Answer for plan %{title}
+            title: Answer for %{title}
         plans:
           answer:
-            invalid: Error answering plan.
-            success: Plan answered successfully.
+            invalid: Error occured while answering.
+            success: Answered successfully.
           edit:
-            title: Edit plan
+            title: Edit
             update: Update
           form:
-            attachment_legend: "(Optional) Add an attachment"
+            attachment_legend: "Add an attachment"
             select_a_category: Select a category
           index:
             selected: Selected
             title: Plans
           new:
             create: Create
-            title: New plan
+            title: Submit new plan
         sections:
           form:
             add_section: Add section
@@ -100,15 +100,15 @@ en:
             plans: Plans
       admin_log:
         plan:
-          answer: "%{user_name} answered the %{resource_name} plan on the %{space_name}
+          answer: "%{user_name} answered %{resource_name} on the %{space_name}
             space."
-          create: "%{user_name} created the %{resource_name} plan on the %{space_name}
+          create: "%{user_name} created %{resource_name} on the %{space_name}
             space."
-          update: "%{user_name} updated the %{resource_name} official plan on the
-            %{space_name} space."
+          update: "%{user_name} updated %{resource_name} on the %{space_name}
+            space."
         plan_note:
-          create: "%{user_name} left a private note on the %{resource_name} plan on
-            the %{space_name} space."
+          create: "%{user_name} left a private note on %{resource_name} on the
+            %{space_name} space."
       answers:
         accepted: Accepted
         evaluating: Evaluating
@@ -129,11 +129,11 @@ en:
       attached_proposals_helper:
         attach_proposal: Attach proposal
         close: Close
-        current_selection: Current selection
+        current_selection: Search proposals by name
         select: Select
       create:
-        invalid: Error creating plan.
-        success: Plan created successfully.
+        invalid: Failed to create new content.
+        success: Created successfully.
       last_activity:
         new_plan_at_html: "<span>New plan at %{link}</span>"
       models:
@@ -158,11 +158,11 @@ en:
             one: "%{count} plan"
             other: "%{count} plans"
         create:
-          error: Error creating plan.
-          success: Plan created successfully.
+          error: Failed to create new content.
+          success: Created successfully.
         destroy:
-          error: Error deleting the plan.
-          success: Plan deleted successfully.
+          error: Error deleting the item.
+          success: Deleted successfully.
         edit:
           discard: Discard this draft
           discard_confirmation: Are you sure you want to discard this draft?
@@ -192,7 +192,7 @@ en:
           filter_by: Filter by
           unfold: Unfold
         form:
-          attachment_legend: "(Optional) Add an attachment"
+          attachment_legend: "Add an attachment"
           select_a_category: Select a category
         index:
           new_plan: New plan
@@ -208,41 +208,39 @@ en:
           recent: Recent
         plan:
           publish:
-            error: Error publishing plan.
-            success: Plan published successfully.
+            error: Error publishing new content.
+            success: Published successfully.
           view_plan: View plan
           withdraw:
-            error: Error withdrawing plan.
-            success: Plan withdrawn successfully.
+            error: Error withdrawing.
+            success: Withdrawn successfully.
         show:
           back: Back
-          edit: Edit plan
+          edit: Edit
           hidden_authors_count:
             one: and %{count} more person
             other: and %{count} more people
-          info-message: You can help this plan's authors to shape it using the comment
-            section below or improve it directly by requesting access to edit it.
-            Once the authors grant you access, you'll be able to make changes to this
-            plan.
+          info-message: You can participate either by submitting a comment or by
+            asking for a permission to edit content directly.
           of_versions: "(of %{number})"
           plan_accepted_reason: 'This plan has been accepted because:'
-          plan_in_evaluation_reason: This proposal is being evaluated
-          plan_rejected_reason: 'This proposal has been rejected because:'
+          plan_in_evaluation_reason: This plan is being evaluated
+          plan_rejected_reason: 'This plan has been rejected because:'
           publish: Publish
           publish_info: Publish this version of the draft or
-          published_proposal: published proposal
+          published_proposal: published plan
           report: Report
-          request_access: Request access
-          requested_access: Access requested
+          request_access: Request editing permissions
+          requested_access: Editing permissions requested
           see_other_versions: see other versions
           version: Version %{number}
-          version_history: see version history for this proposal
+          version_history: see version history
           withdraw: withdraw the draft
           withdraw_btn: Withdraw
           withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
           withdraw_confirmation: Are you sure to withdraw this item?
         update:
-          error: Error updating.
+          error: Error updating content.
           success: Updated successfully.
         withdraw:
           error: Error withdrawing the item.
@@ -276,14 +274,14 @@ en:
           legend: Attachments
           add_attachment: Add attachment
       update:
-        invalid: Error updating plan.
-        success: Plan updated successfully.
+        invalid: Error updating content.
+        success: Updated successfully.
       versions:
         changes_at_title: Changes at "%{title}"
         index:
           title: Versions
         stats:
-          back_to_plan: Go back to plan
+          back_to_plan: Go back
           number_of_versions: Versions
           show_all_versions: Show all versions
           version_author: Version author
@@ -297,47 +295,47 @@ en:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} has been accepted to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.'
+          email_intro: '%{requester_name} has been accepted to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.'
           email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been accepted to access as a contributor of the %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          email_subject: "%{requester_name} has been accepted to access as a contributor of %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: '%{requester_name} has been rejected to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.'
+          email_intro: '%{requester_name} has been rejected to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.'
           email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been rejected to access as a contributor of the %{resource_title} plan."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          email_subject: "%{requester_name} has been rejected to access as a contributor of %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_path}">%{resource_title}</a> plan page.'
+          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_path}">%{resource_title}</a> page.'
           email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to the <a href="%{resource_path}">%{resource_title}</a> plan. Please <strong>accept or reject the request</strong>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_path}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
         plan_access_requester_accepted:
-          email_intro: You have been accepted to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          email_intro: You have been accepted to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.
           email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: You have been accepted as a contributor of %{resource_title}.
-          notification_title: You have been <strong>accepted to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          notification_title: You have been <strong>accepted to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: You have been rejected to access as a contributor of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          email_intro: You have been rejected to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.
           email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: You have been rejected as a contributor of %{resource_title}.
-          notification_title: You have been <strong>rejected to access as a contributor</strong> of the <a href="%{resource_path}">%{resource_title}</a> plan.
+          notification_title: You have been <strong>rejected to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
         plan_accepted:
           email_intro: 'The plan "%{resource_title}" has been accepted. You can read the answer in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
           email_subject: A plan you're following has been accepted
-          notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan has been accepted.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been accepted.
         plan_evaluating:
-          email_intro: 'The plan "%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
+          email_intro: '"%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
           email_subject: A plan you're following is being evaluated
-          notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan is being evaluated.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> is being evaluated.
         plan_published_for_space:
-          email_intro: 'The plan "%{resource_title}" has been published. You can see it here:'
+          email_intro: '"%{resource_title}" has been published. You can see it here:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
           email_subject: A plan you're following has been published
-          notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan has been published.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been published.
         plan_rejected:
-          email_intro: 'The plan "%{resource_title}" has been rejected. You can read the answer in this page:'
+          email_intro: '"%{resource_title}" has been rejected. You can read the answer in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
           email_subject: A plan you're following has been rejected
-          notification_title: The <a href="%{resource_path}">%{resource_title}</a> plan has been rejected.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been rejected.
