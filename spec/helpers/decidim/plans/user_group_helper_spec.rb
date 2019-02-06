@@ -25,11 +25,11 @@ describe Decidim::Plans::UserGroupHelper do
       it "calls form.select with correct arguments" do
         expect(form).to receive(:select).with(
           field_name,
-          [
+          a_collection_containing_exactly(
             [group1.name, group1.id],
             [group2.name, group2.id],
             [group3.name, group3.id]
-          ],
+          ),
           selected: nil,
           include_blank: manager.name
         )
