@@ -8,6 +8,8 @@ FactoryBot.define do
     section_type { Decidim::Plans::Section::TYPES.first }
     body { generate_localized_title }
     position { 0 }
+    mandatory { false }
+    answer_length { 0 }
     component
   end
 
@@ -35,6 +37,14 @@ FactoryBot.define do
       settings do
         {
           attachments_allowed: true
+        }
+      end
+    end
+
+    trait :with_single_language_answers do
+      settings do
+        {
+          multilingual_answers: false
         }
       end
     end
@@ -111,5 +121,10 @@ FactoryBot.define do
     trait :draft do
       published_at { nil }
     end
+  end
+
+  factory :plan_collaborator_request, class: "Decidim::Plans::PlanCollaboratorRequest" do
+    plan
+    user
   end
 end
