@@ -51,7 +51,7 @@ module Decidim
           event: "decidim.events.plans.plan_published",
           event_class: Decidim::Plans::PublishPlanEvent,
           resource: @plan,
-          recipient_ids: coauthors_followers
+          followers: coauthors_followers
         )
       end
 
@@ -60,7 +60,7 @@ module Decidim
           event: "decidim.events.plans.plan_published",
           event_class: Decidim::Plans::PublishPlanEvent,
           resource: @plan,
-          recipient_ids: @plan.participatory_space.followers.pluck(:id) - coauthors_followers,
+          followers: @plan.participatory_space.followers - coauthors_followers,
           extra: {
             participatory_space: true
           }
@@ -68,11 +68,7 @@ module Decidim
       end
 
       def coauthors_followers
-        followers_ids = []
-        @plan.authors.each do |author|
-          followers_ids += author.followers.pluck(:id)
-        end
-        followers_ids
+        @coauthors_followers ||= @plan.authors.flat_map(&:followers)
       end
     end
   end

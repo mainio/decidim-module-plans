@@ -49,7 +49,7 @@ module Decidim
                 event: "decidim.events.plans.plan_access_rejected",
                 event_class: Decidim::Plans::PlanAccessRejectedEvent,
                 resource: plan,
-                recipient_ids: plan.authors.pluck(:id),
+                followers: plan.authors,
                 extra: {
                   requester_id: requester_user_id
                 }
@@ -61,7 +61,7 @@ module Decidim
                 event: "decidim.events.plans.plan_access_requester_rejected",
                 event_class: Decidim::Plans::PlanAccessRequesterRejectedEvent,
                 resource: plan,
-                recipient_ids: [requester_user_id]
+                affected_users: [requester_user]
               )
 
             command.call

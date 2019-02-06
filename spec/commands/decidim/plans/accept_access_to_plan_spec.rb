@@ -54,8 +54,8 @@ module Decidim
               .with(
                 event: "decidim.events.plans.plan_access_accepted",
                 event_class: Decidim::Plans::PlanAccessAcceptedEvent,
-                resource: plan,
-                recipient_ids: plan.authors.pluck(:id) - [requester_user_id],
+                resource: be_an_instance_of(Decidim::Plans::Plan),
+                followers: plan.authors - [requester_user],
                 extra: {
                   requester_id: requester_user_id
                 }
@@ -67,7 +67,7 @@ module Decidim
                 event: "decidim.events.plans.plan_access_requester_accepted",
                 event_class: Decidim::Plans::PlanAccessRequesterAcceptedEvent,
                 resource: plan,
-                recipient_ids: [requester_user_id]
+                affected_users: [requester_user]
               )
 
             command.call

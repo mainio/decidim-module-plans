@@ -7,7 +7,8 @@ describe Decidim::Plans::CoauthorshipsCell, type: :cell do
 
   let(:my_cell) { cell("decidim/plans/coauthorships", model) }
 
-  let(:model) { create(:plan) }
+  let(:plan) { create(:plan) }
+  let(:model) { plan }
 
   describe "#show" do
     it "renders collapsible author cell" do
@@ -19,7 +20,7 @@ describe Decidim::Plans::CoauthorshipsCell, type: :cell do
     end
 
     context "when authorable" do
-      let(:model) { create(:coauthorship) }
+      let(:model) { plan.coauthorships.first }
 
       it "renders author cell" do
         expect(my_cell).to receive(:cell).with(

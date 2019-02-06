@@ -34,12 +34,11 @@ module Decidim
       private
 
       def notify_plan_authors
-        recipient_ids = @plan.authors.pluck(:id)
         Decidim::EventsManager.publish(
           event: "decidim.events.plans.plan_access_requested",
           event_class: Decidim::Plans::PlanAccessRequestedEvent,
           resource: @plan,
-          recipient_ids: recipient_ids.uniq,
+          followers: @plan.authors,
           extra: {
             requester_id: @current_user.id
           }

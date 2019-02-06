@@ -42,7 +42,7 @@ module Decidim
                 event: "decidim.events.plans.plan_access_requested",
                 event_class: Decidim::Plans::PlanAccessRequestedEvent,
                 resource: plan,
-                recipient_ids: plan.authors.pluck(:id),
+                followers: plan.authors,
                 extra: {
                   requester_id: current_user.id
                 }

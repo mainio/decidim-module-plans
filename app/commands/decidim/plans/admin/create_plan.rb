@@ -90,7 +90,7 @@ module Decidim
             event: "decidim.events.plans.plan_published",
             event_class: Decidim::Plans::PublishPlanEvent,
             resource: plan,
-            recipient_ids: @plan.participatory_space.followers.pluck(:id),
+            followers: plan.participatory_space.followers,
             extra: {
               participatory_space: true
             }

@@ -22,8 +22,8 @@ module Decidim
         broadcast(:ok, @requester_user)
       end
 
-      def recipient_ids
-        @plan.authors.pluck(:id)
+      def recipients
+        @plan.authors
       end
 
       def authors_event

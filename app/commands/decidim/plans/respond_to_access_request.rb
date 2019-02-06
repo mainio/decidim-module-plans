@@ -46,7 +46,7 @@ module Decidim
           event: authors_event,
           event_class: authors_event_class,
           resource: @plan,
-          recipient_ids: recipient_ids.uniq,
+          followers: recipients.uniq,
           extra: {
             requester_id: @requester_user.id
           }
@@ -58,11 +58,11 @@ module Decidim
           event: requester_event,
           event_class: requester_event_class,
           resource: @plan,
-          recipient_ids: [@requester_user.id]
+          affected_users: [@requester_user]
         )
       end
 
-      def recipient_ids; end
+      def recipients; end
 
       def authors_event; end
 
