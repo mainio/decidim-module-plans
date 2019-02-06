@@ -51,6 +51,8 @@ module Decidim
       end
 
       def statuses
+        return [:comments_count] if model.draft?
+
         [:creation_date, :follow, :comments_count]
       end
 
