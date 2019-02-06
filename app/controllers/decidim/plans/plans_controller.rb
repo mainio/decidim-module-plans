@@ -50,7 +50,7 @@ module Decidim
       def create
         enforce_permission_to :create, :plan
 
-        @form = form(PlanForm).from_params(params, compontent: current_component)
+        @form = form(PlanForm).from_params(params, component: current_component)
 
         CreatePlan.call(@form, current_user) do
           on(:ok) do |plan|
