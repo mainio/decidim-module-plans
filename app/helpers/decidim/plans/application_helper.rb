@@ -39,7 +39,13 @@ module Decidim
       end
 
       def current_user_plans
-        Plan.where(component: current_component, author: current_user)
+        Plan.joins(:coauthorships).where(
+          component: current_component,
+          decidim_coauthorships: {
+            decidim_author_id: current_user.id,
+            decidim_author_type: "Decidim::UserBaseEntity"
+          }
+        )
       end
 
       def authors_for(plan)
