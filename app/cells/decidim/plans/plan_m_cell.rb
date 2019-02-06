@@ -53,6 +53,10 @@ module Decidim
       def statuses
         [:creation_date, :follow, :comments_count]
       end
+
+      def creation_date_status
+        l(model.published_at.to_date, format: :decidim_short)
+      end
     end
   end
 end
