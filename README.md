@@ -1,7 +1,5 @@
 # Decidim::Plans
 
-**THIS MODULE IS CURRENTLY UNDER DEVELOPMENT**
-
 A [Decidim](https://github.com/decidim/decidim) module that provides a new
 component that can be added to any participatory space in Decidim. The component
 allows users to write plans together that link to specific proposals. Further on
