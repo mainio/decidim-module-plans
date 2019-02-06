@@ -31,7 +31,7 @@ following differences:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'decidim-plans', :git => 'git@github.com:mainio/decidim-module-plans.git'
+gem 'decidim-plans'
 ```
 
 And then execute:
