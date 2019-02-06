@@ -39,6 +39,10 @@ fi:
             comments_blocked: Kommentointi estetty
             creation_enabled: Luonti sallittu
             plan_answering_enabled: Vastaaminen sallittu
+    pages:
+      home:
+        statistics:
+          plans_count: Suunnitelmia
     participatory_processes:
       statistics:
         plans_count: Suunnitelmaa

@@ -39,6 +39,10 @@ sv:
             comments_blocked: Comments blocked
             creation_enabled: Creation enabled
             plan_answering_enabled: Answering enabled
+    pages:
+      home:
+        statistics:
+          plans_count: Plans
     participatory_processes:
       statistics:
         plans_count: Plans
