@@ -1,5 +1,8 @@
 ---
 fi:
+  activerecord:
+    models:
+      decidim/plans/plan: Suunnitelma
   activemodel:
     attributes:
       plan:

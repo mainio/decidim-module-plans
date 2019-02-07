@@ -1,5 +1,8 @@
 ---
 en:
+  activerecord:
+    models:
+      decidim/plans/plan: Plan
   activemodel:
     attributes:
       plan:
