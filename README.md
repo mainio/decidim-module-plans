@@ -1,5 +1,9 @@
 # Decidim::Plans
 
+[![Build Status](https://travis-ci.com/mainio/decidim-module-plans.svg?branch=master)](https://travis-ci.com/mainio/decidim-module-plans)
+
+The gem has been developed by [Mainio Tech](https://www.mainiotech.fi/).
+
 A [Decidim](https://github.com/decidim/decidim) module that provides a new
 component that can be added to any participatory space in Decidim. The component
 allows users to write plans together that link to specific proposals. Further on
@@ -25,6 +29,9 @@ following differences:
   component once they are finished. When converting, the different sections are
   converted to sub-headings in the budgeting project's description and the
   budget needs to be specified by the user doing the conversion.
+
+Development of this gem has been sponsored by the
+[City of Helsinki](https://www.hel.fi/).
 
 ## Installation
 
