@@ -1,0 +1,96 @@
+# frozen_string_literal: true
+
+require "spec_helper"
+
+module Decidim
+  module Plans
+    describe Admin::PlansController, type: :controller do
+      routes { Decidim::Plans::AdminEngine.routes }
+
+      let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
+
+      let(:params) do
+        {
+          component_id: component.id,
+          participatory_process_slug: component.participatory_space.slug
+        }
+      end
+
+      before do
+        request.env["decidim.current_organization"] = component.organization
+        request.env["decidim.current_participatory_space"] = component.participatory_space
+        request.env["decidim.current_component"] = component
+        sign_in user
+      end
+
+      describe "GET index" do
+        render_views
+
+        let(:component) { create(:plan_component) }
+
+        before do
+          set_default_url_options
+          create_list(:plan, 10, component: component)
+        end
+
+        it "renders the index listing" do
+          get :index
+          expect(response).to have_http_status(:ok)
+          expect(subject).to render_template(:index)
+          expect(assigns(:plans).length).to eq(10)
+        end
+      end
+
+      describe "GET new" do
+        let(:component) { create(:plan_component, :with_creation_enabled) }
+
+        it "renders the empty form" do
+          get :new, params: params
+          expect(response).to have_http_status(:ok)
+          expect(subject).to render_template(:new)
+        end
+      end
+
+      describe "POST create" do
+        before do
+          set_default_url_options
+        end
+
+        context "when creation is not enabled" do
+          let(:component) { create(:plan_component) }
+
+          it "raises an error" do
+            post :create, params: params
+
+            expect(flash[:alert]).not_to be_empty
+          end
+        end
+
+        context "when creation is enabled" do
+          let(:component) { create(:plan_component, :with_creation_enabled) }
+          let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
+
+          it "creates a plan" do
+            post :create, params: params.merge(
+              title: {
+                en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+              },
+              proposal_ids: [create(:proposal, component: proposal_component).id]
+            )
+
+            expect(flash[:notice]).not_to be_empty
+            expect(response).to have_http_status(:found)
+          end
+        end
+      end
+
+      def set_default_url_options
+        allow(subject).to receive(:default_url_options).and_return(
+          participatory_process_slug: component.participatory_space.slug,
+          assembly_slug: component.participatory_space.slug,
+          component_id: component.id
+        )
+      end
+    end
+  end
+end

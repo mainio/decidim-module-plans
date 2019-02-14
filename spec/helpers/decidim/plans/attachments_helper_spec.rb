@@ -50,5 +50,38 @@ describe Decidim::Plans::AttachmentsHelper do
       expect(output).to have_css("label[for='object_test']:contains(Test)")
       expect(output).to have_css("input[type='file'][name='object[test]']")
     end
+
+    context "when image file is set" do
+      let(:file) { double }
+      let(:url) { "http://url.to/file.jpg" }
+
+      it "links to image file" do
+        allow(form_object).to receive(attribute).and_return(file)
+        allow(file).to receive(:url).and_return(url)
+        expect(form).to receive(:file_is_image?).with(file).and_return(true)
+        expect(file).to receive(:present?).and_return(true)
+
+        output = ctx.upload_field(form, attribute)
+        expect(output).to have_css("img[src='#{url}']")
+      end
+    end
+
+    context "when document file is set" do
+      let(:file) { double }
+      let(:fileobj) { double }
+      let(:url) { "http://url.to/file.pdf" }
+
+      it "links to document file" do
+        allow(form_object).to receive(attribute).and_return(file)
+        allow(file).to receive(:url).and_return(url)
+        allow(file).to receive(:file).and_return(fileobj)
+        allow(fileobj).to receive(:filename).and_return("file.pdf")
+        expect(form).to receive(:file_is_image?).with(file).and_return(false)
+        expect(form).to receive(:file_is_present?).with(file).and_return(true)
+
+        output = ctx.upload_field(form, attribute)
+        expect(output).to have_css("a[href='#{url}']")
+      end
+    end
   end
 end
