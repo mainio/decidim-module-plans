@@ -16,11 +16,6 @@ module Decidim
           @form = form(Admin::PlanSectionsForm).from_model(sections)
         end
 
-        def new
-          enforce_permission_to :create, :sections
-          # TODO
-        end
-
         def create
           enforce_permission_to :create, :section
           @form = form(Admin::PlanSectionsForm).from_params(params)
@@ -33,7 +28,7 @@ module Decidim
 
             on(:invalid) do
               flash.now[:alert] = I18n.t("update.invalid", scope: i18n_flashes_scope)
-              render template: "index"
+              render action: :index
             end
           end
         end
