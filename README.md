@@ -1,6 +1,7 @@
 # Decidim::Plans
 
 [![Build Status](https://travis-ci.com/mainio/decidim-module-plans.svg?branch=master)](https://travis-ci.com/mainio/decidim-module-plans)
+[![codecov](https://codecov.io/gh/mainio/decidim-module-plans/branch/master/graph/badge.svg)](https://codecov.io/gh/mainio/decidim-module-plans)
 
 The gem has been developed by [Mainio Tech](https://www.mainiotech.fi/).
 
