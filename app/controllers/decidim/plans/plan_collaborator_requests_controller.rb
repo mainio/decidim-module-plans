@@ -8,6 +8,8 @@ module Decidim
       before_action :retrieve_plan, only: [:request_access, :request_accept, :request_reject]
 
       def request_access
+        enforce_permission_to :request_access, :plan, plan: @plan
+
         @request_access_form = form(RequestAccessToPlanForm).from_params(params)
         RequestAccessToPlan.call(@request_access_form, current_user) do
           on(:ok) do |_plan|
@@ -22,6 +24,8 @@ module Decidim
       end
 
       def request_accept
+        enforce_permission_to :edit, :plan, plan: @plan
+
         @accept_request_form = form(AcceptAccessToPlanForm).from_params(params)
         AcceptAccessToPlan.call(@accept_request_form, current_user) do
           on(:ok) do |requester_user|
@@ -36,6 +40,8 @@ module Decidim
       end
 
       def request_reject
+        enforce_permission_to :edit, :plan, plan: @plan
+
         @reject_request_form = form(RejectAccessToPlanForm).from_params(params)
         RejectAccessToPlan.call(@reject_request_form, current_user) do
           on(:ok) do |requester_user|
