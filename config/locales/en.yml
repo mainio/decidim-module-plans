@@ -9,6 +9,7 @@ en:
         proposals: Proposals
         category_id: Category
         decidim_category_id: Category
+        decidim_component_id: Component
         decidim_scope_id: Scope
         state: State
         title: Title

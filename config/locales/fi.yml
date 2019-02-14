@@ -9,6 +9,7 @@ fi:
         proposals: Ehdotukset
         category_id: Kategoria
         decidim_category_id: Kategoria
+        decidim_component_id: Komponentti
         decidim_scope_id: Teema
         state: Tila
         title: Otsikko
