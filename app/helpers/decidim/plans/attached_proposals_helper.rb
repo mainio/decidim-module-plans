@@ -35,6 +35,8 @@ module Decidim
                     .try(:resource_scope, current_component)
                     &.order(title: :asc)
                     &.where("title ilike ?", "%#{params[:term]}%")
+                    &.where&.not(state: "rejected")
+                    &.where&.not(published_at: nil)
             render json: query.all.collect { |p| [present(p).title, p.id] }
           end
         end

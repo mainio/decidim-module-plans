@@ -4,7 +4,9 @@ require "spec_helper"
 
 describe Decidim::Plans::AttachedProposalsHelper do
   let(:form) { double }
-  let(:current_component) { create :plan_component }
+  let(:participatory_space) { create(:participatory_process, :with_steps) }
+  let(:current_component) { create(:plan_component, participatory_space: participatory_space) }
+  let(:proposal_component) { create(:proposal_component, participatory_space: participatory_space) }
   let(:search_proposals_path) { "/search_proposals" }
 
   before do
@@ -34,25 +36,128 @@ describe Decidim::Plans::AttachedProposalsHelper do
   describe "#search_proposals" do
     let(:format) { double }
 
-    it "calls the " do
-      expect(format).to receive(:html).and_yield
-      expect(format).to receive(:json).and_yield
-      expect(helper).to receive(:respond_to).and_yield(format)
+    context "with no proposals available" do
+      it "returns the proposals" do
+        expect(format).to receive(:html).and_yield
+        expect(format).to receive(:json).and_yield
+        expect(helper).to receive(:respond_to).and_yield(format)
 
-      # html
-      expect(helper).to receive(:render).with(
-        hash_including(
-          partial: "decidim/plans/attached_proposals/proposals"
+        # html
+        expect(helper).to receive(:render).with(
+          hash_including(
+            partial: "decidim/plans/attached_proposals/proposals"
+          )
         )
-      )
-      # json
-      expect(helper).to receive(:render).with(
-        hash_including(
-          json: []
+        # json
+        expect(helper).to receive(:render).with(
+          hash_including(
+            json: []
+          )
         )
-      )
 
-      helper.search_proposals
+        helper.search_proposals
+      end
+    end
+
+    context "with accepted, evaluating and unpublished proposals" do
+      let(:amount) { 10 }
+
+      before do
+        create_list(
+          :proposal,
+          amount,
+          :accepted,
+          published_at: Time.current,
+          component: proposal_component
+        )
+        create_list(
+          :proposal,
+          amount,
+          :evaluating,
+          published_at: Time.current,
+          component: proposal_component
+        )
+        create_list(
+          :proposal,
+          amount,
+          :unpublished,
+          component: proposal_component
+        )
+      end
+
+      it "returns the proposals" do
+        expect(format).to receive(:html).and_yield
+        expect(format).to receive(:json).and_yield
+        expect(helper).to receive(:respond_to).and_yield(format)
+
+        # html
+        expect(helper).to receive(:render).with(
+          hash_including(
+            partial: "decidim/plans/attached_proposals/proposals"
+          )
+        )
+        # json
+        proposals = Decidim::Proposals::Proposal.where(
+          component: proposal_component
+        ).where.not(
+          published_at: nil
+        ).order(title: :asc).all.collect { |p| [p.title, p.id] }
+        expect(helper).to receive(:render).with(
+          hash_including(
+            json: proposals
+          )
+        )
+
+        helper.search_proposals
+      end
+    end
+
+    context "with accepted and rejected proposals" do
+      let(:amount) { 10 }
+
+      before do
+        create_list(
+          :proposal,
+          amount,
+          :accepted,
+          published_at: Time.current,
+          component: proposal_component
+        )
+        create_list(
+          :proposal,
+          amount,
+          :rejected,
+          published_at: Time.current,
+          component: proposal_component
+        )
+      end
+
+      it "returns the proposals" do
+        expect(format).to receive(:html).and_yield
+        expect(format).to receive(:json).and_yield
+        expect(helper).to receive(:respond_to).and_yield(format)
+
+        # html
+        expect(helper).to receive(:render).with(
+          hash_including(
+            partial: "decidim/plans/attached_proposals/proposals"
+          )
+        )
+        # json
+        proposals = Decidim::Proposals::Proposal.where(
+          component: proposal_component
+        ).where.not(
+          published_at: nil,
+          state: "rejected"
+        ).order(title: :asc).all.collect { |p| [p.title, p.id] }
+        expect(helper).to receive(:render).with(
+          hash_including(
+            json: proposals
+          )
+        )
+
+        helper.search_proposals
+      end
     end
   end
 end
