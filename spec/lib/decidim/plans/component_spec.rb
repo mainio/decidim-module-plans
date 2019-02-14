@@ -77,4 +77,22 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
       end
     end
   end
+
+  describe ".seed!" do
+    let(:space) { component.participatory_space }
+
+    before do
+      # Create the admin user needed by the seeds
+      create(
+        :user,
+        :confirmed,
+        email: "admin@example.org",
+        organization: component.organization
+      )
+    end
+
+    it "actually seeds" do
+      expect { component.manifest.seed!(space) }.not_to raise_error
+    end
+  end
 end
