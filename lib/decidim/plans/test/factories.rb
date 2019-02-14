@@ -41,10 +41,10 @@ FactoryBot.define do
       end
     end
 
-    trait :with_single_language_answers do
+    trait :with_multilingual_answers do
       settings do
         {
-          multilingual_answers: false
+          multilingual_answers: true
         }
       end
     end

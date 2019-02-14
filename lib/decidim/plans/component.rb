@@ -23,7 +23,7 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
     settings.attribute :attachments_allowed, type: :boolean, default: false
-    settings.attribute :multilingual_answers, type: :boolean, default: true
+    settings.attribute :multilingual_answers, type: :boolean
   end
 
   component.settings(:step) do |settings|
@@ -69,7 +69,7 @@ Decidim.register_component(:plans) do |component|
       published_at: Time.current,
       participatory_space: participatory_space,
       settings: {
-        multilingual_answers: true
+        multilingual_answers: false
       },
       step_settings: step_settings
     }

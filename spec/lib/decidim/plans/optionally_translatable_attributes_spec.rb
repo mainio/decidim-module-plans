@@ -41,7 +41,7 @@ describe Decidim::Plans::OptionallyTranslatableAttributes do
   end
 
   context "with multilingual answers" do
-    let(:component) { create(:plan_component) }
+    let(:component) { create(:plan_component, :with_multilingual_answers) }
 
     it "does not copy the answers" do
       expect(subject).not_to receive(:ota_fi=)
@@ -55,7 +55,7 @@ describe Decidim::Plans::OptionallyTranslatableAttributes do
   end
 
   context "with single language answers" do
-    let(:component) { create(:plan_component, :with_single_language_answers) }
+    let(:component) { create(:plan_component) }
 
     it "copies the answers to other languages" do
       expect(subject).to receive(:ota_fi=).with(params[:ota_en])

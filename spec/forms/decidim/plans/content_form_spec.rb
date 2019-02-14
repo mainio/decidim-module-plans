@@ -22,7 +22,7 @@ module Decidim
       end
 
       context "with multiple languages" do
-        let(:component) { create :plan_component }
+        let(:component) { create :plan_component, :with_multilingual_answers }
         let(:params) do
           {
             body_en: body_en,
@@ -51,7 +51,7 @@ module Decidim
       end
 
       context "with single language" do
-        let(:component) { create :plan_component, :with_single_language_answers }
+        let(:component) { create :plan_component }
         let(:params) do
           {
             body_en: body_en,
