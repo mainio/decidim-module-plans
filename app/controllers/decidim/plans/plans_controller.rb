@@ -129,6 +129,8 @@ module Decidim
       def preview; end
 
       def publish
+        enforce_permission_to :publish, :plan, plan: @plan
+
         PublishPlan.call(@plan, current_user) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("publish.success", scope: "decidim.plans.plans.plan")
