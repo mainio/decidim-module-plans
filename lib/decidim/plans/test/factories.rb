@@ -89,6 +89,13 @@ FactoryBot.define do
       published_at { nil }
     end
 
+    trait :official do
+      after :build do |plan|
+        plan.coauthorships.clear
+        plan.coauthorships.build(author: plan.organization)
+      end
+    end
+
     trait :evaluating do
       state { "evaluating" }
       answered_at { Time.current }
