@@ -82,7 +82,7 @@ module Decidim
           )
         end
 
-        def parse_i18n_changeset(attribute, values, type, diff)
+        def parse_i18n_changeset(attribute, values, _type, diff)
           values.last.each_key do |locale, _value|
             next if display_locale && display_locale != locale
 
