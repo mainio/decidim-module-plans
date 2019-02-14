@@ -23,6 +23,8 @@ module Decidim
             permission_action.allow!
           when :edit, :update, :destroy
             permission_action.allow! if plan.present? || section.present?
+          when :close
+            permission_action.allow! if plan.present?
           end
 
           permission_action

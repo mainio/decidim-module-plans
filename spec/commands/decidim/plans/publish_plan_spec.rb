@@ -11,7 +11,7 @@ describe Decidim::Plans::PublishPlan do
   let(:plan) { create(:plan, state, component: component, users: [author]) }
 
   describe "call" do
-    describe "when called by the author" do
+    context "when called by the author" do
       let(:subject) do
         described_class.new(plan, author)
       end
@@ -22,7 +22,7 @@ describe Decidim::Plans::PublishPlan do
       end
     end
 
-    describe "when called by non-author" do
+    context "when called by non-author" do
       let(:subject) do
         described_class.new(plan, non_author)
       end

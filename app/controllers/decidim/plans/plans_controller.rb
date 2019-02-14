@@ -17,9 +17,9 @@ module Decidim
 
       helper_method :attached_proposals_picker_field
 
-      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :destroy]
+      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :reopen, :destroy]
       before_action :check_draft, only: [:new]
-      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :destroy]
+      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :reopen, :destroy]
       before_action :ensure_published!, only: [:show, :withdraw]
 
       def index
@@ -139,6 +139,38 @@ module Decidim
 
           on(:invalid) do
             flash.now[:alert] = t("publish.error", scope: "decidim.plans.plans.plan")
+            redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
+          end
+        end
+      end
+
+      def close
+        enforce_permission_to :close, :plan, plan: @plan
+
+        ClosePlan.call(@plan, current_user) do
+          on(:ok) do |plan|
+            flash[:notice] = I18n.t("close.success", scope: "decidim.plans.plans.plan")
+            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
+          end
+
+          on(:invalid) do
+            flash.now[:alert] = t("close.error", scope: "decidim.plans.plans.plan")
+            redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
+          end
+        end
+      end
+
+      def reopen
+        enforce_permission_to :close, :plan, plan: @plan
+
+        ReopenPlan.call(@plan, current_user) do
+          on(:ok) do |plan|
+            flash[:notice] = I18n.t("reopen.success", scope: "decidim.plans.plans.plan")
+            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
+          end
+
+          on(:invalid) do
+            flash.now[:alert] = t("reopen.error", scope: "decidim.plans.plans.plan")
             redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
           end
         end

@@ -99,6 +99,13 @@ module Decidim
         published_at.present?
       end
 
+      # Public: Checks if the plan has been closed or not.
+      #
+      # Returns Boolean.
+      def closed?
+        closed_at.present?
+      end
+
       # Public: Checks if the organization has given an answer for the plan.
       #
       # Returns Boolean.

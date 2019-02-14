@@ -13,6 +13,10 @@ module Decidim
         resources :plans, only: [:index, :new, :create, :edit, :update] do
           get :search_proposals
           resources :plan_answers, only: [:edit, :update]
+          member do
+            post :close
+            post :reopen
+          end
         end
         resources :sections, only: [:index, :new, :create, :edit, :update]
 

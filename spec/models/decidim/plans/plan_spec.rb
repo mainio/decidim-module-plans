@@ -87,6 +87,20 @@ module Decidim
         end
       end
 
+      describe "#closed?" do
+        context "when plan is closed" do
+          let(:plan) { build :plan, closed_at: Time.current }
+
+          it { expect(plan.closed?).to be(true) }
+        end
+
+        context "when plan is not closed" do
+          let(:plan) { build :plan }
+
+          it { expect(plan.closed?).to be(false) }
+        end
+      end
+
       describe "#withdrawn?" do
         context "when plan is withdrawn" do
           let(:plan) { build :plan, :withdrawn }

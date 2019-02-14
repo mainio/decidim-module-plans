@@ -85,4 +85,14 @@ describe Decidim::Plans::Admin::Permissions do
       it { is_expected.to eq false }
     end
   end
+
+  describe "plan closing" do
+    let(:action) do
+      { scope: :admin, action: :close, subject: :plan }
+    end
+
+    let(:plan) { create :plan, component: current_component }
+
+    it { is_expected.to eq true }
+  end
 end

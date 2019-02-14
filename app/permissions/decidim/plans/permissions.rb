@@ -35,6 +35,8 @@ module Decidim
           can_withdraw_plan?
         when :publish
           can_publish_plan?
+        when :close
+          can_close_plan?
         when :request_access
           can_request_access_plan?
         end
@@ -45,7 +47,7 @@ module Decidim
       end
 
       def can_edit_plan?
-        toggle_allow(plan.open? && plan.editable_by?(user))
+        toggle_allow(plan.open? && !plan.closed? && plan.editable_by?(user))
       end
 
       def can_withdraw_plan?
@@ -54,6 +56,10 @@ module Decidim
 
       def can_publish_plan?
         toggle_allow(plan.open? && plan.editable_by?(user))
+      end
+
+      def can_close_plan?
+        toggle_allow(plan && plan.created_by?(user))
       end
 
       def can_request_access_plan?

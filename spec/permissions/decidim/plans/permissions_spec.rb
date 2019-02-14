@@ -111,6 +111,22 @@ describe Decidim::Plans::Permissions do
     end
   end
 
+  context "when closing a plan" do
+    let(:action) do
+      { scope: :public, action: :close, subject: :plan }
+    end
+
+    context "when plan author is the user trying to close" do
+      it { is_expected.to eq true }
+    end
+
+    context "when trying by another user" do
+      let(:user) { build :user }
+
+      it { is_expected.to eq false }
+    end
+  end
+
   # describe "endorsing" do
   #   let(:action) do
   #     { scope: :public, action: :endorse, subject: :plan }

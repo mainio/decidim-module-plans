@@ -57,6 +57,38 @@ module Decidim
           end
         end
 
+        def close
+          enforce_permission_to :close, :plan, plan: plan
+
+          ClosePlan.call(plan, current_user) do
+            on(:ok) do
+              flash[:notice] = I18n.t("close.success", scope: "decidim.plans.plans.plan")
+              redirect_to plans_path
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = t("close.error", scope: "decidim.plans.plans.plan")
+              redirect_to plans_path
+            end
+          end
+        end
+
+        def reopen
+          enforce_permission_to :close, :plan, plan: plan
+
+          ReopenPlan.call(plan, current_user) do
+            on(:ok) do
+              flash[:notice] = I18n.t("reopen.success", scope: "decidim.plans.plans.plan")
+              redirect_to plans_path
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = t("reopen.error", scope: "decidim.plans.plans.plan")
+              redirect_to plans_path
+            end
+          end
+        end
+
         private
 
         def query

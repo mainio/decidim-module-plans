@@ -53,8 +53,10 @@ fi:
     plans:
       actions:
         answer: Vastaa
+        close_plan: Merkitse valmiiksi
         edit_plan: Muokkaa
         new: Tee uusi suunnitelma
+        reopen_plan: Avaa muokattavaksi
         sections: Osiot
         title: Toiminnot
       admin:
@@ -215,15 +217,24 @@ fi:
           random: Satunnainen
           recent: Uusimmat
         plan:
+          close:
+            error: Valmiiksi merkitseminen epäonnistui.
+            success: Valmiiksi merkitseminen onnistui.
           publish:
             error: Uuden sisällön julkaiseminen epäonnistui.
             success: Julkaisu onnistui.
+          reopen:
+            error: Muokattavaksi avaaminen epäonnistui.
+            success: Muokattavaksi avaaminen onnistui.
           view_plan: Näytä suunnitelma
           withdraw:
             error: Peruuttaminen epäonnistui.
             success: Peruuttaminen onnistui.
         show:
           back: Takaisin
+          close: Merkitse valmiiksi
+          close_confirm: Haluatko varmasti merkitä tämän kohteen valmiiksi? Kun
+            kohde on merkitty valmiiksi, sitä ei voi enää muokata.
           edit: Muokkaa
           hidden_authors_count:
             one: ja %{count} muu henkilö
@@ -237,6 +248,8 @@ fi:
           publish: Julkaise
           publish_info: Julkaise tämä luonnosversio tai
           published_proposal: julkaistu suunnitelma
+          reopen: Avaa muokattavaksi
+          reopen_confirm: Haluatko varmasti avata tämän kohteen muokattavaksi?
           report: Ilmoita
           request_access: Pyydä muokkausoikeudet
           requested_access: Muokkausoikeudet pyydetty

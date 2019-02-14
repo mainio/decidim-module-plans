@@ -84,6 +84,36 @@ module Decidim
         end
       end
 
+      describe "POST close" do
+        let(:component) { create(:plan_component) }
+        let(:plan) { create(:plan, component: component, users: [user]) }
+
+        before do
+          set_default_url_options
+        end
+
+        it "closes the plan" do
+          post :close, params: { id: plan.id }
+          expect(response).to have_http_status(:found)
+          expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(true)
+        end
+      end
+
+      describe "POST reopen" do
+        let(:component) { create(:plan_component) }
+        let(:plan) { create(:plan, closed_at: Time.current, component: component, users: [user]) }
+
+        before do
+          set_default_url_options
+        end
+
+        it "reopens the plan" do
+          post :reopen, params: { id: plan.id }
+          expect(response).to have_http_status(:found)
+          expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(false)
+        end
+      end
+
       def set_default_url_options
         allow(subject).to receive(:default_url_options).and_return(
           participatory_process_slug: component.participatory_space.slug,

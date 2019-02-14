@@ -53,8 +53,10 @@ en:
     plans:
       actions:
         answer: Answer
+        close_plan: Mark as done
         edit_plan: Edit
         new: Submit new plan
+        reopen_plan: Open for editing
         sections: Sections
         title: Actions
       admin:
@@ -215,15 +217,24 @@ en:
           random: Random
           recent: Recent
         plan:
+          close:
+            error: Error marking the item as done.
+            success: Item marked done successfully.
           publish:
             error: Error publishing new content.
             success: Published successfully.
+          reopen:
+            error: Error opening item for editing.
+            success: Item opened for editing successfully.
           view_plan: View plan
           withdraw:
             error: Error withdrawing.
             success: Withdrawn successfully.
         show:
           back: Back
+          close: Mark as done
+          close_confirm: Are you sure you want to mark this item done? After
+            marking done, the item can no longer be edited.
           edit: Edit
           hidden_authors_count:
             one: and %{count} more person
@@ -237,6 +248,8 @@ en:
           publish: Publish
           publish_info: Publish this version of the draft or
           published_proposal: published plan
+          reopen: Open for editing
+          reopen_confirm: Are you sure you want to open this item for editing?
           report: Report
           request_access: Request editing permissions
           requested_access: Editing permissions requested

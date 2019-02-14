@@ -131,7 +131,7 @@ module Decidim
           set_default_url_options
         end
 
-        it "sorts plans by search defaults" do
+        it "destroys the plan" do
           plan_to_destroy = plan
           expect do
             delete :destroy, params: { id: plan_to_destroy.id }
@@ -148,10 +148,40 @@ module Decidim
           set_default_url_options
         end
 
-        it "sorts plans by search defaults" do
+        it "publishes the plan" do
           post :publish, params: { id: plan.id }
           expect(response).to have_http_status(:found)
           expect(Decidim::Plans::Plan.find(plan.id).published?).to be(true)
+        end
+      end
+
+      describe "POST close" do
+        let(:component) { create(:plan_component) }
+        let(:plan) { create(:plan, component: component, users: [user]) }
+
+        before do
+          set_default_url_options
+        end
+
+        it "closes the plan" do
+          post :close, params: { id: plan.id }
+          expect(response).to have_http_status(:found)
+          expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(true)
+        end
+      end
+
+      describe "POST reopen" do
+        let(:component) { create(:plan_component) }
+        let(:plan) { create(:plan, closed_at: Time.current, component: component, users: [user]) }
+
+        before do
+          set_default_url_options
+        end
+
+        it "reopens the plan" do
+          post :reopen, params: { id: plan.id }
+          expect(response).to have_http_status(:found)
+          expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(false)
         end
       end
 
