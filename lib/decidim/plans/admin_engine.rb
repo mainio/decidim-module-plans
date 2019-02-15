@@ -17,6 +17,9 @@ module Decidim
             post :close
             post :reopen
           end
+          collection do
+            resource :budgets_export, only: [:new, :create]
+          end
         end
         resources :sections, only: [:index, :new, :create, :edit, :update]
 

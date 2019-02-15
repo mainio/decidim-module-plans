@@ -55,6 +55,7 @@ en:
         answer: Answer
         close_plan: Mark as done
         edit_plan: Edit
+        export_budgets: Convert to projects
         new: Submit new plan
         reopen_plan: Open for editing
         sections: Sections
@@ -62,6 +63,14 @@ en:
       admin:
         actions:
           preview: Preview
+        budgets_exports:
+          create:
+            invalid: There's been a problem exporting the items into budgeting projects
+            success: "%{number} items successfully exported into budgeting projects"
+          new:
+            create: Export to projects
+            no_components: There are no other budgets components in this participatory space to export the items into projects.
+            select_component: Please select a component
         exports:
           plans: Plans
         plan_answers:

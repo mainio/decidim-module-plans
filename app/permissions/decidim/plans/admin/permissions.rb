@@ -19,7 +19,7 @@ module Decidim
                                       permission_action.subject != :sections
 
           case permission_action.action
-          when :create
+          when :create, :export_budgets
             permission_action.allow!
           when :edit, :update, :destroy
             permission_action.allow! if plan.present? || section.present?

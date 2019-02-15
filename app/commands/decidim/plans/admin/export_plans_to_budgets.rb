@@ -1,0 +1,111 @@
+# frozen_string_literal: true
+
+module Decidim
+  module Plans
+    module Admin
+      # A command with all the business logic when an admin exports plans to a
+      # single budget component.
+      class ExportPlansToBudgets < Rectify::Command
+        # Public: Initializes the command.
+        #
+        # form - A form object with the params.
+        def initialize(form)
+          @form = form
+        end
+
+        # Executes the command. Broadcasts these events:
+        #
+        # - :ok when everything is valid.
+        # - :invalid if the form wasn't valid and we couldn't proceed.
+        #
+        # Returns nothing.
+        def call
+          return broadcast(:invalid) unless @form.valid?
+
+          broadcast(:ok, create_projects_from_closed_plans)
+        end
+
+        private
+
+        attr_reader :form
+
+        def create_projects_from_closed_plans
+          transaction do
+            plans.map do |original_plan|
+              next if plan_already_copied?(original_plan, target_component)
+
+              project = Decidim::Budgets::Project.new
+              project.title = original_plan.title
+              project.description = project_description(original_plan)
+              project.budget = form.default_budget
+              project.category = original_plan.category
+              project.component = target_component
+              original_plan.attachments.each do |at|
+                project.attachments.build(
+                  title: at.title,
+                  file: at.file
+                )
+              end
+              project.save!
+
+              # Link included proposals to the project
+              project.link_resources(original_plan.proposals, "included_proposals")
+
+              # Link the plan to the project
+              project.link_resources([original_plan], "included_plans")
+            end.compact
+          end
+        end
+
+        def plans
+          Decidim::Plans::Plan.where(component: origin_component)
+                              .where.not(closed_at: nil)
+        end
+
+        def origin_component
+          @form.current_component
+        end
+
+        def target_component
+          @form.target_component
+        end
+
+        def plan_already_copied?(original_plan, target_component)
+          original_plan.linked_resources(:projects, "included_plans").any? do |plan|
+            plan.component == target_component
+          end
+        end
+
+        def project_description(original_plan)
+          pr_desc = {}
+
+          # Add content for all sections and languages
+          original_plan.sections.each do |section|
+            content = original_plan.contents.find_by(section: section)
+            content.body.each do |locale, body_text|
+              title = section.body[locale]
+              pr_desc[locale] ||= ""
+              pr_desc[locale] += "<h3>#{title}</h3>\n"
+
+              # In case the text is already HTML, append as is.
+              # Wrap non-HTML strings within a <p> tag and replace newlines with
+              # <br>.
+              pr_desc[locale] += (
+                if body_text =~ %r{<\/?[^>]*>}
+                  "#{body_text}\n"
+                else
+                  "<p>#{body_text.gsub(/\n/, "<br>")}</p>\n"
+                end
+              )
+            end
+          end
+
+          # Cleanup the unnecessary whitespace
+          pr_desc.each_value(&:strip!)
+
+          pr_desc
+        end
+      end
+    end
+  end
+end

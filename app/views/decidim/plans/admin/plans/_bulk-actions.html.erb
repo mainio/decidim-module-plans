@@ -6,6 +6,10 @@
       <%= link_to t("actions.new", scope: "decidim.plans"), new_plan_path, class: "button tiny button--simple" %>
     <% end %>
 
+    <% if allowed_to? :export_budgets, :plans %>
+      <%= link_to t("actions.export_budgets", scope: "decidim.plans"), new_budgets_export_path, class: "button tiny button--simple" %>
+    <% end %>
+
     <%= export_dropdown %>
   </div>
 </div>

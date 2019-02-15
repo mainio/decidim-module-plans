@@ -95,4 +95,12 @@ describe Decidim::Plans::Admin::Permissions do
 
     it { is_expected.to eq true }
   end
+
+  describe "plan budget exporting" do
+    let(:action) do
+      { scope: :admin, action: :export_budgets, subject: :plans }
+    end
+
+    it { is_expected.to eq true }
+  end
 end

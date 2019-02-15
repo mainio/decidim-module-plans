@@ -55,6 +55,7 @@ fi:
         answer: Vastaa
         close_plan: Merkitse valmiiksi
         edit_plan: Muokkaa
+        export_budgets: Muunna projekteiksi
         new: Tee uusi suunnitelma
         reopen_plan: Avaa muokattavaksi
         sections: Osiot
@@ -62,6 +63,14 @@ fi:
       admin:
         actions:
           preview: Esikatsele
+        budgets_exports:
+          create:
+            invalid: Kohteiden vienti budjetointiprojekteiksi epäonnistui
+            success: "%{number} kohdetta viety onnistuneesti budjetointiprojekteiksi"
+          new:
+            create: Vie projekteiksi
+            no_components: Tässä osallisuustilassa ei ole yhtään budjetointikomponenttia, johon projektit voitaisiin luoda.
+            select_component: Valitse komponentti
         exports:
           plans: Suunnitelmat
         plan_answers:
