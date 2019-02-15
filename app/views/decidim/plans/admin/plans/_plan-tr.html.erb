@@ -44,7 +44,7 @@
       <% if plan.closed? %>
         <%= icon_link_to "action-undo", reopen_plan_path(plan), t("actions.reopen_plan", scope: "decidim.plans"), method: :post, class: "action-icon--reopen-plan" %>
       <% else %>
-        <%= icon_link_to "ban", close_plan_path(plan), t("actions.close_plan", scope: "decidim.plans"), method: :post, class: "action-icon--close-plan" %>
+        <%= icon_link_to "check", close_plan_path(plan), t("actions.close_plan", scope: "decidim.plans"), method: :post, class: "action-icon--close-plan" %>
       <% end %>
     <% end %>
 
