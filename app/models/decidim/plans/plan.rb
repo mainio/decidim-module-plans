@@ -198,6 +198,14 @@ module Decidim
         Arel.sql(query)
       end
 
+      def self.export_serializer
+        Decidim::Plans::PlanSerializer
+      end
+
+      def self.data_portability_images(user)
+        user_collection(user).map { |p| p.attachments.collect(&:file) }
+      end
+
       # Checks whether the plan is inside the time window to be editable or not once published.
       def within_edit_time_limit?
         true

@@ -164,6 +164,10 @@ module Decidim
         create(:content, plan: subject, user: create(:user, organization: plan.component.organization))
         expect(subject.reload.contents.count).to eq(2)
       end
+
+      describe ".export_serializer" do
+        it { expect(described_class.export_serializer).to be(Decidim::Plans::PlanSerializer) }
+      end
     end
   end
 end
