@@ -78,6 +78,21 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
     end
   end
 
+  describe "exports" do
+    before do
+      create_list(:plan, 10, :published, component: component)
+    end
+
+    it "includes plans export collection" do
+      expect(component.manifest.export_manifests.map(&:name)).to include(:plans)
+
+      e_plans = component.manifest.export_manifests.find { |m| m.name == :plans }
+      expect(e_plans.include_in_open_data).to be(true)
+      expect(e_plans.collection.call(component).count).to eq(10)
+      expect(e_plans.serializer).to be(Decidim::Plans::PlanSerializer)
+    end
+  end
+
   describe ".seed!" do
     let(:space) { component.participatory_space }
 

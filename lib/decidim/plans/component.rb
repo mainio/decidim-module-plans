@@ -13,7 +13,7 @@ Decidim.register_component(:plans) do |component|
 
   component.data_portable_entities = ["Decidim::Plans::Plan"]
 
-  component.actions = %w(create withdraw)
+  component.actions = %w(create withdraw close reopen)
 
   component.permissions_class_name = "Decidim::Plans::Permissions"
 
@@ -49,6 +49,19 @@ Decidim.register_component(:plans) do |component|
   component.register_stat :comments_count, tag: :comments do |components, start_at, end_at|
     plans = Decidim::Plans::FilteredPlans.for(components, start_at, end_at).published.not_hidden
     Decidim::Comments::Comment.where(root_commentable: plans).count
+  end
+
+  component.exports :plans do |exports|
+    exports.collection do |component_instance|
+      Decidim::Plans::Plan
+        .published
+        .where(component: component_instance)
+        .includes(:category, component: { participatory_space: :organization })
+    end
+
+    exports.include_in_open_data = true
+
+    exports.serializer Decidim::Plans::PlanSerializer
   end
 
   component.seeds do |participatory_space|

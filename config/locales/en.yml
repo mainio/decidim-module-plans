@@ -62,6 +62,8 @@ en:
       admin:
         actions:
           preview: Preview
+        exports:
+          plans: Plans
         plan_answers:
           edit:
             accepted: Accepted

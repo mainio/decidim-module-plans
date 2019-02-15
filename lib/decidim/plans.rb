@@ -6,11 +6,13 @@ require_relative "plans/engine"
 require_relative "plans/admin_engine"
 require_relative "plans/paper_trail"
 require_relative "plans/component"
-require_relative "plans/locale_aware"
-require_relative "plans/optionally_translatable_attributes"
 
 module Decidim
   module Plans
+    autoload :LocaleAware, "decidim/plans/locale_aware"
+    autoload :OptionallyTranslatableAttributes, "decidim/plans/optionally_translatable_attributes"
+    autoload :PlanSerializer, "decidim/plans/plan_serializer"
+
     # Public: Stores an instance of Loggability
     def self.loggability
       @loggability ||= Loggability.new

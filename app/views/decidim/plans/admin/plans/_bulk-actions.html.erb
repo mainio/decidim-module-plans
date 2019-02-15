@@ -5,5 +5,7 @@
     <% if allowed_to? :create, :plan %>
       <%= link_to t("actions.new", scope: "decidim.plans"), new_plan_path, class: "button tiny button--simple" %>
     <% end %>
+
+    <%= export_dropdown %>
   </div>
 </div>

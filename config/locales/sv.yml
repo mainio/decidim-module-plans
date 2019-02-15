@@ -10,6 +10,7 @@ sv:
         category_id: Category
         decidim_category_id: Category
         decidim_component_id: Component
+        decidim_proposal_id: Proposal
         decidim_scope_id: Scope
         state: State
         title: Title
@@ -62,6 +63,8 @@ sv:
       admin:
         actions:
           preview: Preview
+        exports:
+          plans: Plans
         plan_answers:
           edit:
             accepted: Accepted

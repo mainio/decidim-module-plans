@@ -62,6 +62,8 @@ fi:
       admin:
         actions:
           preview: Esikatsele
+        exports:
+          plans: Suunnitelmat
         plan_answers:
           edit:
             accepted: Hyväksytty
