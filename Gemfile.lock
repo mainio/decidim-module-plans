@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    decidim-plans (0.16.0)
+    decidim-plans (0.16.1)
       decidim-core (~> 0.16.0)
       decidim-proposals (~> 0.16.0)
 
