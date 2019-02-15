@@ -64,6 +64,20 @@ module Decidim
             expect(subject).to render_template(:new)
           end
         end
+
+        context "when draft plan exist from signed in user" do
+          let!(:draft) { create(:plan, :draft, component: component, users: [user]) }
+
+          before do
+            set_default_url_options
+          end
+
+          it "redirects to the draft edit view" do
+            get :new, params: params
+            expect(response).to have_http_status(:found)
+            expect(subject).to redirect_to(edit_plan_path(draft))
+          end
+        end
       end
 
       describe "POST create" do
