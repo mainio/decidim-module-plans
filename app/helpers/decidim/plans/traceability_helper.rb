@@ -32,21 +32,17 @@ module Decidim
       private
 
       def renderer_for(version)
+        return nil if version.item.nil?
+
         locale = current_locale unless component_settings.multilingual_answers?
 
-        renderer_klass =
-          case version.item.class.name
-          when "Decidim::Plans::Plan"
-            Decidim::Plans::DiffRenderer::Plan
-          when "Decidim::Plans::Content"
-            Decidim::Plans::DiffRenderer::Content
-          when "Decidim::Categorization"
-            Decidim::Plans::DiffRenderer::Categorization
-          when "Decidim::Component"
-            Decidim::Plans::DiffRenderer::Component
-          end
+        item_klass = version.item.class.name
+        lastpart = item_klass.split("::").last
+        renderer_klass = "Decidim::Plans::DiffRenderer::#{lastpart}"
 
-        renderer_klass.new(version, locale)
+        return nil unless defined?(renderer_klass)
+
+        renderer_klass.constantize.new(version, locale)
       end
 
       # Renders the given value in a user-friendly way based on the value class.
