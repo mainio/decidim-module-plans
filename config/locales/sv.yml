@@ -1,4 +1,3 @@
----
 sv:
   activerecord:
     models:
@@ -10,7 +9,6 @@ sv:
         category_id: Category
         decidim_category_id: Category
         decidim_component_id: Component
-        decidim_proposal_id: Proposal
         decidim_scope_id: Scope
         state: State
         title: Title
@@ -113,15 +111,11 @@ sv:
             plans: Plans
       admin_log:
         plan:
-          answer: "%{user_name} answered %{resource_name} on the %{space_name}
-            space."
-          create: "%{user_name} created %{resource_name} on the %{space_name}
-            space."
-          update: "%{user_name} updated %{resource_name} on the %{space_name}
-            space."
+          answer: "%{user_name} answered %{resource_name} on the %{space_name} space."
+          create: "%{user_name} created %{resource_name} on the %{space_name} space."
+          update: "%{user_name} updated %{resource_name} on the %{space_name} space."
         plan_note:
-          create: "%{user_name} left a private note on %{resource_name} on the
-            %{space_name} space."
+          create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
       answers:
         accepted: Accepted
         evaluating: Evaluating
@@ -236,14 +230,12 @@ sv:
         show:
           back: Back
           close: Mark as done
-          close_confirm: Are you sure you want to mark this item done? After
-            marking done, the item can no longer be edited.
+          close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
           edit: Edit
           hidden_authors_count:
             one: and %{count} more person
             other: and %{count} more people
-          info-message: You can participate either by submitting a comment or by
-            asking for a permission to edit content directly.
+          info-message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
           of_versions: "(of %{number})"
           plan_accepted_reason: 'This plan has been accepted because:'
           plan_in_evaluation_reason: This plan is being evaluated
