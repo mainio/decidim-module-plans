@@ -21,6 +21,8 @@ module Decidim
       end
 
       def item_versions
+        return [] if current_version.transaction_id.nil?
+
         # There may be multiple updates on the item during the same transaction
         Decidim::Plans::PaperTrail::Version.where(
           transaction_id: current_version.transaction_id,
@@ -29,6 +31,8 @@ module Decidim
       end
 
       def associated_versions
+        return [] if current_version.transaction_id.nil?
+
         @associated_versions ||= Decidim::Plans::PaperTrail::Version.where(
           transaction_id: current_version.transaction_id
         ).where.not(
@@ -37,6 +41,8 @@ module Decidim
       end
 
       def content_versions
+        return [] if current_version.transaction_id.nil?
+
         @content_versions ||= item.sections.map do |section|
           content = item.contents.find_by(section: section)
           next unless content
