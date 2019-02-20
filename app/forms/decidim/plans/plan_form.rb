@@ -18,7 +18,7 @@ module Decidim
       attribute :contents, Array[ContentForm]
       attribute :proposal_ids, Array[Integer]
 
-      validates :proposals, presence: true
+      validates :proposals, presence: true, if: ->(form) { form.current_component.settings.proposal_linking_enabled? }
       validates :category, presence: true, if: ->(form) { form.category_id.present? }
       validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
       optionally_translatable_validate_presence :title

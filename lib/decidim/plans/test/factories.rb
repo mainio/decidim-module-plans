@@ -48,6 +48,14 @@ FactoryBot.define do
         }
       end
     end
+
+    trait :with_proposal_linking_disabled do
+      settings do
+        {
+          proposal_linking_enabled: false
+        }
+      end
+    end
   end
 
   factory :attached_proposal, class: "Decidim::Plans::AttachedProposal" do

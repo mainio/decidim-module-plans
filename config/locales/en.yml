@@ -34,10 +34,13 @@ en:
           global:
             announcement: Announcement
             attachments_allowed: Attachments allowed
+            categories_enabled: Categories enabled
             comments_enabled: Comments enabled
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Answering enabled
             plan_title_length: Title length
+            proposal_linking_enabled: Proposal linking enabled
+            scopes_enabled: Scopes enabled
           step:
             announcement: Announcement
             comments_blocked: Comments blocked

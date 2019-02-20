@@ -40,6 +40,16 @@ shared_examples "a plan form" do |options|
     it { is_expected.to be_valid }
   end
 
+  context "when proposal linking is not enabled" do
+    let(:component) { create(:plan_component, :with_proposal_linking_disabled, participatory_space: participatory_space) }
+
+    context "with no proposals linked" do
+      let(:proposal_ids) { nil }
+
+      it { is_expected.to be_valid }
+    end
+  end
+
   context "when there's no title" do
     let(:title) { nil }
 
