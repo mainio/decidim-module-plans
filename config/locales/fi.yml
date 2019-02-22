@@ -330,12 +330,12 @@ fi:
         plan_access_rejected:
           email_intro: 'Käyttäjän %{requester_name} muokkausoikeudet sisältöön <a href="%{resource_path}">%{resource_title} </a> on estetty.'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut sisällön <a href="%{resource_path}">%{resource_title}</a> muokkaukseen.
-          email_subject: "%{requester_name} hakemus osallistua suunnitelmaan %{resource_title} on hylätty."
+          email_subject: "%{requester_name} hakemus osallistua kohteen %{resource_title} muokkaukseen on hylätty."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>pyyntö muokata sisältöä on hylätty</strong> kohteelle <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} pyysi pääsyä osallistujaksi. Voit <strong>hyväksyä tai hylätä pyynnön</strong> sivulla <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistuja suunnitelmassa <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: "%{requester_name} pyysi osallistumisoikeutta suunnitelmaan %{resource_title}."
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistuja kohteessa <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: "%{requester_name} pyysi osallistumisoikeutta kohteeseen %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pyysi saada muokata sisältöä <a href="%{resource_path}">%{resource_title}</a>. <strong>Hyväksy tai hylkää pyyntö</strong>.
         plan_access_requester_accepted:
           email_intro: Sinut on hyväksytty osallistujaksi sisältöön <a href="%{resource_path}">%{resource_title}</a>.
