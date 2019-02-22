@@ -112,10 +112,17 @@ describe Decidim::Plans::AttachedProposalsHelper do
       end
     end
 
-    context "with accepted and rejected proposals" do
+    context "with unanswered, accepted and rejected proposals" do
       let(:amount) { 10 }
 
       before do
+        create_list(
+          :proposal,
+          amount,
+          :published,
+          published_at: Time.current,
+          component: proposal_component
+        )
         create_list(
           :proposal,
           amount,
@@ -147,8 +154,10 @@ describe Decidim::Plans::AttachedProposalsHelper do
         proposals = Decidim::Proposals::Proposal.where(
           component: proposal_component
         ).where.not(
-          published_at: nil,
-          state: "rejected"
+          published_at: nil
+        ).where(
+          "state IS NULL OR state != ?",
+          "rejected"
         ).order(title: :asc).all.collect { |p| [p.title, p.id] }
         expect(helper).to receive(:render).with(
           hash_including(
