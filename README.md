@@ -39,7 +39,7 @@ Development of this gem has been sponsored by the
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'decidim-plans'
+gem "decidim-plans"
 ```
 
 And then execute:
