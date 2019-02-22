@@ -26,7 +26,9 @@ module Decidim
         }
 
         def to_param
-          id || "section-id"
+          return id if id.present?
+
+          "section-id"
         end
       end
     end

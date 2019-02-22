@@ -13,7 +13,9 @@ module Decidim
       validates :title, presence: true, if: ->(form) { form.file.present? || form.id.present? }
 
       def to_param
-        id || "attachment-id"
+        return id if id.present?
+
+        "attachment-id"
       end
     end
   end
