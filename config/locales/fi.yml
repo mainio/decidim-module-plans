@@ -151,7 +151,7 @@ fi:
         current_selection: Hae ehdotuksia nimellä
         select: Valitse
       create:
-        invalid: Virhe luotaessa suunnitelmaa.
+        invalid: Virhe luotaessa sisältöä.
         success: Luonti onnistui.
       last_activity:
         new_plan_at_html: "<span>Uusi suunnitelma osoitteessa %{link}</span>"
@@ -263,7 +263,7 @@ fi:
           see_other_versions: näytä muut versiot
           version: Versio %{number}
           version_history: näytä versiohistoria
-          withdraw: peru suunnitelma
+          withdraw: withdraw the plan
           withdraw_btn: Peru
           withdraw_btn_hint: Jos muutat mieltäsi, voit perua tämän kohteen, mikäli se ei ole vielä kerännyt tukea. Kohdetta ei poisteta, se jää näkyviin peruttujen kohteiden listaan.
           withdraw_confirmation: Haluatko varmasti perua?
