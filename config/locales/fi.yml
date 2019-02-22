@@ -263,7 +263,7 @@ fi:
           see_other_versions: näytä muut versiot
           version: Versio %{number}
           version_history: näytä versiohistoria
-          withdraw: withdraw the plan
+          withdraw: peru suunnitelma
           withdraw_btn: Peru
           withdraw_btn_hint: Jos muutat mieltäsi, voit perua tämän kohteen, mikäli se ei ole vielä kerännyt tukea. Kohdetta ei poisteta, se jää näkyviin peruttujen kohteiden listaan.
           withdraw_confirmation: Haluatko varmasti perua?
