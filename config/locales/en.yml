@@ -270,7 +270,7 @@ en:
           see_other_versions: see other versions
           version: Version %{number}
           version_history: see version history
-          withdraw: withdraw the draft
+          withdraw: withdraw the plan
           withdraw_btn: Withdraw
           withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
           withdraw_confirmation: Are you sure to withdraw this item?
