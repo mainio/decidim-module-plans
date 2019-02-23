@@ -151,7 +151,7 @@ fi:
         current_selection: Hae ehdotuksia nimellä
         select: Valitse
       create:
-        invalid: Virhe luotaessa suunnitelmaa.
+        invalid: Virhe luotaessa sisältöä.
         success: Luonti onnistui.
       last_activity:
         new_plan_at_html: "<span>Uusi suunnitelma osoitteessa %{link}</span>"
