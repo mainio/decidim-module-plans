@@ -12,14 +12,14 @@ describe Decidim::Plans::AcceptedPlanEvent do
 
   describe "email_subject" do
     it "is generated correctly" do
-      expect(subject.email_subject).to eq("A plan you're following has been accepted")
+      expect(subject.email_subject).to eq("A resource you're following has been accepted")
     end
   end
 
   describe "email_intro" do
     it "is generated correctly" do
       expect(subject.email_intro)
-        .to eq("The plan \"#{resource_title}\" has been accepted. You can read the answer in this page:")
+        .to eq("\"#{resource_title}\" has been accepted. You can read the answer in this page:")
     end
   end
 

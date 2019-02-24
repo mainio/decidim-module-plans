@@ -12,7 +12,7 @@ describe Decidim::Plans::EvaluatingPlanEvent do
 
   describe "email_subject" do
     it "is generated correctly" do
-      expect(subject.email_subject).to eq("A plan you're following is being evaluated")
+      expect(subject.email_subject).to eq("A resource you're following is being evaluated")
     end
   end
 
