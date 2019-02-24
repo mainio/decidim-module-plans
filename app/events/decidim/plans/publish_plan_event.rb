@@ -12,13 +12,18 @@ module Decidim
       private
 
       def i18n_scope
-        return super unless participatory_space_event?
+        return "decidim.events.plans.plan_published_for_space" if participatory_space_event?
+        return "decidim.events.plans.plan_published_for_proposals" if proposal_author_event?
 
-        "decidim.events.plans.plan_published_for_space"
+        super
       end
 
       def participatory_space_event?
         extra.dig(:participatory_space)
+      end
+
+      def proposal_author_event?
+        extra.dig(:proposal_author)
       end
     end
   end

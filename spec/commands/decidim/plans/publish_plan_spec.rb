@@ -20,6 +20,31 @@ describe Decidim::Plans::PublishPlan do
         expect { subject.call }.to broadcast(:ok)
         expect(plan.published_at).not_to be_nil
       end
+
+      it "publishes the expected events" do
+        expect(Decidim::EventsManager).to receive(:publish).with(
+          hash_including(
+            event: "decidim.events.plans.plan_published",
+            event_class: Decidim::Plans::PublishPlanEvent
+          )
+        )
+        expect(Decidim::EventsManager).to receive(:publish).with(
+          hash_including(
+            event: "decidim.events.plans.plan_published",
+            event_class: Decidim::Plans::PublishPlanEvent,
+            extra: { participatory_space: true }
+          )
+        )
+        expect(Decidim::EventsManager).to receive(:publish).with(
+          hash_including(
+            event: "decidim.events.plans.plan_published",
+            event_class: Decidim::Plans::PublishPlanEvent,
+            extra: { proposal_author: true }
+          )
+        )
+
+        subject.call
+      end
     end
 
     context "when called by non-author" do

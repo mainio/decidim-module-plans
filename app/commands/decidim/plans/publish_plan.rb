@@ -26,6 +26,7 @@ module Decidim
           publish_plan
           send_notification
           send_notification_to_participatory_space
+          send_notification_to_proposal_authors
         end
 
         broadcast(:ok, @plan)
@@ -67,8 +68,26 @@ module Decidim
         )
       end
 
+      def send_notification_to_proposal_authors
+        Decidim::EventsManager.publish(
+          event: "decidim.events.plans.plan_published",
+          event_class: Decidim::Plans::PublishPlanEvent,
+          resource: @plan,
+          followers: proposal_authors,
+          extra: {
+            proposal_author: true
+          }
+        )
+      end
+
       def coauthors_followers
         @coauthors_followers ||= @plan.authors.flat_map(&:followers)
+      end
+
+      def proposal_authors
+        @proposal_authors ||= @plan.proposals.flat_map(
+          &:authors
+        ).select { |a| a.is_a?(Decidim::User) }
       end
     end
   end

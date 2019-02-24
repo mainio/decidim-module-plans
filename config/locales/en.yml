@@ -364,6 +364,16 @@ en:
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
           email_subject: A plan you're following is being evaluated
           notification_title: <a href="%{resource_path}">%{resource_title}</a> is being evaluated.
+        plan_published:
+          email_intro: '"%{resource_title}" has been published. You can see it here:'
+          email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A user you're following has published a plan
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been published.
+        plan_published_for_proposals:
+          email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
+          email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.
+          email_subject: A proposal you have authored has been linked to a plan
+          notification_title: A proposal you have authored has been linked to <a href="%{resource_path}">%{resource_title}</a>.
         plan_published_for_space:
           email_intro: '"%{resource_title}" has been published. You can see it here:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
