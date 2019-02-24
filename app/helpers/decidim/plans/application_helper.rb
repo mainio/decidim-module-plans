@@ -70,6 +70,17 @@ module Decidim
         ]
       end
 
+      # We need a custom filter form helper because of the following bug in the
+      # core: https://github.com/decidim/decidim/issues/4584
+      def plan_filter_form_for(filter, url = url_for)
+        namespace = SecureRandom.hex(10)
+        content_tag :div, class: "filters" do
+          form_for filter, namespace: "filters_#{namespace}", builder: FilterFormBuilder, url: url, as: :filter, method: :get, remote: true, html: { id: nil } do |form|
+            yield form
+          end
+        end
+      end
+
       def tabs_id_for_content(idx)
         "content_#{idx}"
       end
