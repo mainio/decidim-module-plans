@@ -9,6 +9,7 @@ module Decidim
       include Rails.application.routes.mounted_helpers
       include ActionView::Helpers::UrlHelper
       include TranslatableAttributes
+      include Plans::RichPresenter
 
       def author
         coauthorship = coauthorships.first
@@ -28,7 +29,7 @@ module Decidim
       end
 
       def title
-        translated_attribute(plan.title).html_safe
+        sanitize(translated_attribute(plan.title))
       end
 
       def body
@@ -36,9 +37,9 @@ module Decidim
           content = plan.contents.find_by(section: section)
           next if content.nil?
 
-          title = translated_attribute(content.title)
-          body = translated_attribute(content.body)
-          "<dt>#{title}</dt> <dd>#{body}</dd>"
+          section_title = sanitize(translated_attribute(content.title))
+          section_body = sanitize(translated_attribute(content.body))
+          "<dt>#{section_title}</dt> <dd>#{section_body}</dd>"
         end
 
         "<dl>#{fields.join("\n")}</dl>".html_safe

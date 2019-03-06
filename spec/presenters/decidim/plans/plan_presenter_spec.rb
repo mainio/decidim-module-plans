@@ -29,6 +29,20 @@ module Decidim
         it "returns title in current locale" do
           expect(subject.title).to eq(plan.title["en"])
         end
+
+        context "when title contains malicious HTML" do
+          let(:malicious_content) { "<script>alert('XSS');</script>" }
+          let(:plan) do
+            create(
+              :plan,
+              title: Decidim::Faker::Localized.localized { malicious_content }
+            )
+          end
+
+          it "sanitizes the HTML" do
+            expect(subject.title).not_to include(malicious_content)
+          end
+        end
       end
 
       describe "#body" do
@@ -43,6 +57,30 @@ module Decidim
           end
 
           expect(subject.body).to eq("<dl>#{fields.join("\n")}</dl>")
+        end
+
+        context "when body contains malicious HTML" do
+          let(:malicious_content) { "<script>alert('XSS');</script>" }
+          let(:section) do
+            create(
+              :section,
+              component: plan.component,
+              body: Decidim::Faker::Localized.localized { malicious_content }
+            )
+          end
+
+          before do
+            create(
+              :content,
+              plan: plan,
+              section: section,
+              body: Decidim::Faker::Localized.localized { malicious_content }
+            )
+          end
+
+          it "sanitizes the HTML" do
+            expect(subject.body).not_to include(malicious_content)
+          end
         end
       end
     end

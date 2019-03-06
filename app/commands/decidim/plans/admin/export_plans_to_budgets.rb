@@ -6,6 +6,8 @@ module Decidim
       # A command with all the business logic when an admin exports plans to a
       # single budget component.
       class ExportPlansToBudgets < Rectify::Command
+        include ActionView::Helpers::TextHelper
+
         # Public: Initializes the command.
         #
         # form - A form object with the params.
@@ -35,7 +37,7 @@ module Decidim
               next if plan_already_copied?(original_plan, target_component)
 
               project = Decidim::Budgets::Project.new
-              project.title = original_plan.title
+              project.title = sanitize_localized(original_plan.title)
               project.description = project_description(original_plan)
               project.budget = form.default_budget
               project.category = original_plan.category
@@ -83,20 +85,13 @@ module Decidim
           original_plan.sections.each do |section|
             content = original_plan.contents.find_by(section: section)
             content.body.each do |locale, body_text|
-              title = section.body[locale]
+              title = sanitize(section.body[locale])
               pr_desc[locale] ||= ""
               pr_desc[locale] += "<h3>#{title}</h3>\n"
 
-              # In case the text is already HTML, append as is.
               # Wrap non-HTML strings within a <p> tag and replace newlines with
-              # <br>.
-              pr_desc[locale] += (
-                if body_text =~ %r{<\/?[^>]*>}
-                  "#{body_text}\n"
-                else
-                  "<p>#{body_text.gsub(/\n/, "<br>")}</p>\n"
-                end
-              )
+              # <br>. This also takes care of sanitization.
+              pr_desc[locale] += simple_format(body_text)
             end
           end
 
@@ -104,6 +99,12 @@ module Decidim
           pr_desc.each_value(&:strip!)
 
           pr_desc
+        end
+
+        def sanitize_localized(hash)
+          hash.each do |locale, value|
+            hash[locale] = sanitize(value)
+          end
         end
       end
     end

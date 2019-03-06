@@ -62,6 +62,47 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
           command.call
         end.to change(Decidim::Budgets::Project, :count).by(10)
       end
+
+      context "when the plans contain malicious HTML" do
+        let(:malicious_content) { "<script>alert('XSS');</script>" }
+
+        let!(:plans) do
+          create_list(
+            :plan,
+            10,
+            :published,
+            title: Decidim::Faker::Localized.localized { malicious_content },
+            closed_at: Time.current,
+            component: component
+          )
+        end
+
+        before do
+          section = create(
+            :section,
+            component: component,
+            body: Decidim::Faker::Localized.localized { malicious_content }
+          )
+
+          plans.each do |plan|
+            create(
+              :content,
+              plan: plan,
+              section: section,
+              body: Decidim::Faker::Localized.localized { malicious_content }
+            )
+          end
+        end
+
+        it "should sanitize the malicious content" do
+          command.call
+
+          Decidim::Budgets::Project.all.each do |project|
+            expect(project.title).not_to include(malicious_content)
+            expect(project.description).not_to include(malicious_content)
+          end
+        end
+      end
     end
   end
 end

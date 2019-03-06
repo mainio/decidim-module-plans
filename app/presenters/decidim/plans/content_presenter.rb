@@ -8,17 +8,18 @@ module Decidim
     class ContentPresenter < SimpleDelegator
       include Rails.application.routes.mounted_helpers
       include TranslatableAttributes
+      include Plans::RichPresenter
 
       def content
         __getobj__
       end
 
       def title
-        translated_attribute(content.title).html_safe
+        sanitize(translated_attribute(content.title))
       end
 
       def body
-        translated_attribute(content.body).html_safe
+        rich_content(translated_attribute(content.body))
       end
     end
   end
