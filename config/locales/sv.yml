@@ -8,7 +8,7 @@ sv:
         proposals: Förslag
         category_id: Kategori
         decidim_category_id: Kategori
-        decidim_component_id: Component
+        decidim_component_id: Komponent
         decidim_scope_id: Tema
         state: Status
         title: Rubrik
@@ -33,13 +33,13 @@ sv:
           global:
             announcement: Meddelande
             attachments_allowed: Bilagor tillåtna
-            categories_enabled: Categories enabled
+            categories_enabled: Kategorier aktiverade
             comments_enabled: Kommentarer tillåtna
             multilingual_answers: Flerspråkiga svar
             plan_answering_enabled: Svar tillåtna
             plan_title_length: Rubrikens längd
-            proposal_linking_enabled: Proposal linking enabled
-            scopes_enabled: Scopes enabled
+            proposal_linking_enabled: Förslagslänk aktiverat
+            scopes_enabled: Omfattningar aktiverade
           step:
             announcement: Meddelande
             comments_blocked: Kommentarer blockerade
@@ -55,11 +55,11 @@ sv:
     plans:
       actions:
         answer: Svara
-        close_plan: Mark as done
+        close_plan: Markera som gjort
         edit_plan: Redigera
-        export_budgets: Convert to projects
+        export_budgets: Konvertera till projekt
         new: Gör ny plan
-        reopen_plan: Open for editing
+        reopen_plan: Öppna för redigering
         sections: Avsnitt
         title: Funktioner
       admin:
@@ -67,14 +67,14 @@ sv:
           preview: Förhandsgranska
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects
-            success: "%{number} items successfully exported into budgeting projects"
+            invalid: Det har varit ett problem att exportera objekten till budgetprojekt
+            success: "%{number} poster exporterades framgångsrikt till budgetprojekt"
           new:
-            create: Export to projects
-            no_components: There are no other budgets components in this participatory space to export the items into projects.
-            select_component: Please select a component
+            create: Exportera till projekt
+            no_components: Det finns inga andra budgetkomponenter i detta deltagande utrymme för att exportera objekten till projekt.
+            select_component: Var god välj en komponent
         exports:
-          plans: Plans
+          plans: Planer
         plan_answers:
           edit:
             accepted: Godkänd
@@ -123,11 +123,11 @@ sv:
             plans: Planer
       admin_log:
         plan:
-          answer: "\\\"%{user_name} svarade på innehållet %{resource_name} osallisuustilassa %{space_name}.\""
-          create: "\\\"%{user_name} skapade innehållet %{resource_name} i delaktighetslokalen %{space_name}.\""
-          update: "\\\"%{user_name} uppdaterade innehållet %{resource_name} osallisuustilassa %{space_name}.\""
+          answer: "%{user_name} svarade på innehållet %{resource_name} i delaktighetslokalen %{space_name}."
+          create: "%{user_name} skapade innehållet %{resource_name} i delaktighetslokalen %{space_name}."
+          update: "%{user_name} uppdaterade innehållet %{resource_name} i delaktighetslokalen %{space_name}."
         plan_note:
-          create: "\\\"%{user_name} lade till ett privat meddelande i innehållet %{resource_name} osallisuustilassa %{space_name}.\""
+          create: "%{user_name} lade till ett privat meddelande i innehållet %{resource_name} i delaktighetslokalen %{space_name}."
       answers:
         accepted: Godkänd
         evaluating: Bedöms
@@ -227,27 +227,27 @@ sv:
           recent: Nyaste
         plan:
           close:
-            error: Error marking the item as done.
-            success: Item marked done successfully.
+            error: Fel markerade objektet som gjort.
+            success: Objektet markerat gjort framgångsrikt.
           publish:
             error: Det gick inte att publicera nytt innehåll.
             success: Nytt innehåll har publicerats.
           reopen:
-            error: Error opening item for editing.
-            success: Item opened for editing successfully.
+            error: Det gick inte att öppna objektet för redigering.
+            success: Artikeln öppnades för redigering med framgång.
           view_plan: Visa planen
           withdraw:
             error: Det gick inte att annullera.
             success: Annulleringen lyckades.
         show:
           back: Tillbaka
-          close: Mark as done
-          close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
+          close: Markera som gjort
+          close_confirm: Är du säker på att du vill markera det här objektet gjort? Efter att markeringen är klar kan objektet inte längre redigeras.
           edit: Redigera
           hidden_authors_count:
             one: och %{count} annan person
             other: och %{count} andra personer
-          info-message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+          info-message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
           of_versions: "(av versioner %{number})"
           plan_accepted_reason: 'Planen har godkänts eftersom:'
           plan_in_evaluation_reason: Planen bedöms
@@ -255,8 +255,8 @@ sv:
           publish: Publicera
           publish_info: Publicera detta utkast eller
           published_proposal: publicerad plan
-          reopen: Open for editing
-          reopen_confirm: Are you sure you want to open this item for editing?
+          reopen: Öppna för redigering
+          reopen_confirm: Är du säker på att du vill öppna det här objektet för redigering?
           report: Meddela
           request_access: Begär redigeringsrättigheter
           requested_access: Redigeringsrätt har begärts
@@ -331,14 +331,14 @@ sv:
           email_intro: 'Rättigheterna för användaren %{requester_name} att redigera innehållet <a href="%{resource_path}">%{resource_title} </a> har blockerats.'
           email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} ansökan om att få delta i planen %{resource_title} har avslagits."
-          notification_title: <a href=\"%{requester_path}\">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera innehållet har avslagits</strong> för objektet <a href=\"%{resource_path}\">%{resource_title}</a>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera innehållet har avslagits</strong> för objektet <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} begärde om att få bli deltagare. Du kan <strong>godkänna eller avslå begäran</strong> på <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Du fick detta meddelande eftersom du är deltagare i planen <a href=\"%{resource_path}\">%{resource_title}</a>.
+          email_outro: Du fick detta meddelande eftersom du är deltagare i planen <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} begärde om rätt att få delta i planen %{resource_title}."
-          notification_title: <a href=\"%{requester_path}\">%{requester_name} %{requester_nickname}</a> begärde om att få redigera innehållet <a href=\"%{resource_path}\">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> begärde om att få redigera innehållet <a href="%{resource_path}">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
         plan_access_requester_accepted:
-          email_intro: Du har godkänts som deltagare för innehållet <a href=\"%{resource_path}\">%{resource_title}</a>.
+          email_intro: Du har godkänts som deltagare för innehållet <a href="%{resource_path}">%{resource_title}</a>.
           email_outro: Du fick detta meddelande eftersom du har ansökt om rätt att redigera innehållet <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Du har godkänts som deltagare för innehållet %{resource_title}.
           notification_title: Du har <strong>godkänts som deltagare </strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
@@ -346,34 +346,34 @@ sv:
           email_intro: Du har inte godkänts som deltagare för innehållet <a href="%{resource_path}">%{resource_title}</a>.
           email_outro: Du fick detta meddelande eftersom du har ansökt om att få delta i innehållet <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Du har inte godkänts som deltagare för innehållet %{resource_title}.
-          notification_title: Du <strong>har inte godkänts som deltagare</strong> för innehållet <a href=\"%{resource_path}\">%{resource_title}</a>.
+          notification_title: Du <strong>har inte godkänts som deltagare</strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" har godkänts. Du kan läsa svaret här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet \"%{resource_title}\". Klicka på länken ovan för att sluta följa det.
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer har godkänts
-          notification_title: <a href=\"%{resource_path}\">%{resource_title}</a> har godkänts.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har godkänts.
         plan_evaluating:
           email_intro: '"%{resource_title}" bedöms just nu. Du kan kontrollera svaret här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet \"%{resource_title}\". Klicka på länken ovan för att sluta följa det.
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer bedöms
-          notification_title: <a href=\"%{resource_path}\">%{resource_title}</a> bedöms.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> bedöms.
         plan_published:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A user you're following has published a resource
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" har publicerats. Du kan se den här:'
+          email_outro: Du har fått den här meddelandet eftersom du följer författaren till "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: En användare du följer har publicerat en resurs
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har publicerats.
         plan_published_for_proposals:
-          email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.
-          email_subject: A proposal you have authored has been linked to new content
-          notification_title: A proposal you have authored has been linked to <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: 'Ett förslag som du har skapat har kopplats till "%{resource_title}". Du kan se den här:'
+          email_outro: Du fick detta meddelande eftersom du följer "%{resource_title}" genom de föreslagna förslagen. Du kan avfölja det från föregående länk.
+          email_subject: Ett förslag som du har skapat har kopplats till nytt innehåll
+          notification_title: Ett förslag som du har skapat har kopplats till <a href="%{resource_path}">%{resource_title}</a>.
         plan_published_for_space:
           email_intro: '"%{resource_title}" har publicerats. Du kan se det här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet \"%{resource_title}\". Klicka på länken ovan för att sluta följa det.
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer har publicerats
-          notification_title: <a href=\"%{resource_path}\">%{resource_title}</a> har publicerats.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har publicerats.
         plan_rejected:
           email_intro: '"%{resource_title}" har avslagits. Du kan läsa svaret här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet \"%{resource_title}\". Klicka på länken ovan för att sluta följa det.
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer har avslagits
-          notification_title: <a href=\"%{resource_path}\">%{resource_title}</a> har avslagits.
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har avslagits.
