@@ -1,3 +1,5 @@
+<% help_text = translated_attribute(component_settings.attachment_help).strip %>
+
 <div class="card multifield-field" id="<%= id %>-field">
   <div class="card-divider multifield-field-divider">
     <h3 class="heading6 card-title">
@@ -21,6 +23,10 @@
 
   <div class="card-section">
     <div class="row column">
+      <% if help_text && help_text.length > 0 %>
+        <p class="help-text"><%= help_text %></p>
+      <% end %>
+
       <div class="field">
         <% if form.send(:attribute_required?, :title) %>
           <%= form.text_field :title %>

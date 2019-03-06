@@ -34,6 +34,7 @@ en:
           global:
             announcement: Announcement
             attachments_allowed: Attachments allowed
+            attachment_help: Attachment help text
             categories_enabled: Categories enabled
             comments_enabled: Comments enabled
             multilingual_answers: Multilingual answers
@@ -41,6 +42,7 @@ en:
             plan_title_length: Title length
             proposal_linking_enabled: Proposal linking enabled
             scopes_enabled: Scopes enabled
+            title_help: Title help text
           step:
             announcement: Announcement
             comments_blocked: Comments blocked

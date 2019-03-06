@@ -22,6 +22,8 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :plan_answering_enabled, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
+    settings.attribute :title_help, type: :text, translated: true
+    settings.attribute :attachment_help, type: :text, translated: true
     settings.attribute :scopes_enabled, type: :boolean, default: true
     settings.attribute :categories_enabled, type: :boolean, default: true
     settings.attribute :proposal_linking_enabled, type: :boolean, default: true
