@@ -28,9 +28,9 @@ $(function() {
         renderItem: function (item, search) {
           let sanitizedSearch = search.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
           let re = new RegExp(`(${sanitizedSearch.split(" ").join("|")})`, "gi");
-          let title = item[0];
+          let title = item[0].replace(/"/g, "&quot;");
           let modelId = item[1];
-          return `<div class="autocomplete-suggestion" data-model-id="${modelId}" data-val ="${title}">${title.replace(re, "<b>$1</b>")}</div>`;
+          return `<div class="autocomplete-suggestion" data-model-id="${modelId}" data-val="${title}">${title.replace(re, "<b>$1</b>")}</div>`;
         },
         onSelect: function(event, term, item) {
           let choose = $("#proposal-picker-choose");
