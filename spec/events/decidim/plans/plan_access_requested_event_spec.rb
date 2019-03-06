@@ -7,7 +7,7 @@ describe Decidim::Plans::PlanAccessRequestedEvent do
 
   let(:event_name) { "decidim.events.plans.plan_access_requested" }
   let(:resource) { create :plan }
-  let(:resource_path) { Decidim::ResourceLocatorPresenter.new(resource).path }
+  let(:resource_url) { Decidim::ResourceLocatorPresenter.new(resource).url }
   let(:resource_title) { resource.title["en"] }
   let(:author) { resource.authors.first }
   let(:author_id) { author.id }
@@ -35,21 +35,21 @@ describe Decidim::Plans::PlanAccessRequestedEvent do
     describe "email_intro" do
       it "is generated correctly" do
         expect(subject.email_intro)
-          .to eq(%(#{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="#{resource_path}">#{resource_title}</a> page.))
+          .to eq(%(#{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="#{resource_url}">#{resource_title}</a> page.))
       end
     end
 
     describe "email_outro" do
       it "is generated correctly" do
         expect(subject.email_outro)
-          .to eq(%(You have received this notification because you are a collaborator of <a href="#{resource_path}">#{resource_title}</a>.))
+          .to eq(%(You have received this notification because you are a collaborator of <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
 
     describe "notification_title" do
       it "is generated correctly" do
         expect(subject.notification_title)
-          .to include(%(<a href="#{requester_path}">#{requester_name} #{requester_nickname}</a> requested access to contribute to <a href="#{resource_path}">#{resource_title}</a>. Please <strong>accept or reject the request</strong>.))
+          .to include(%(<a href="#{requester_path}">#{requester_name} #{requester_nickname}</a> requested access to contribute to <a href="#{resource_url}">#{resource_title}</a>. Please <strong>accept or reject the request</strong>.))
       end
     end
   end

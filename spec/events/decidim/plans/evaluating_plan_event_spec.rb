@@ -33,7 +33,7 @@ describe Decidim::Plans::EvaluatingPlanEvent do
   describe "notification_title" do
     it "is generated correctly" do
       expect(subject.notification_title)
-        .to include("<a href=\"#{resource_path}\">#{resource_title}</a> is being evaluated")
+        .to include("<a href=\"#{resource_url}\">#{resource_title}</a> is being evaluated")
     end
   end
 end

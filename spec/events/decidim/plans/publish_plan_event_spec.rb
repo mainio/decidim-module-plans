@@ -33,7 +33,7 @@ describe Decidim::Plans::PublishPlanEvent do
   describe "notification_title" do
     it "is generated correctly" do
       expect(subject.notification_title)
-        .to include("<a href=\"#{resource_path}\">#{resource_title}</a> has been published.")
+        .to include("<a href=\"#{resource_url}\">#{resource_title}</a> has been published.")
     end
   end
 
@@ -63,7 +63,7 @@ describe Decidim::Plans::PublishPlanEvent do
     describe "notification_title" do
       it "is generated correctly" do
         expect(subject.notification_title)
-          .to include("<a href=\"#{resource_path}\">#{resource_title}</a> has been published.")
+          .to include("<a href=\"#{resource_url}\">#{resource_title}</a> has been published.")
       end
     end
   end
@@ -94,7 +94,7 @@ describe Decidim::Plans::PublishPlanEvent do
     describe "notification_title" do
       it "is generated correctly" do
         expect(subject.notification_title)
-          .to include("A proposal you have authored has been linked to <a href=\"#{resource_path}\">#{resource_title}</a>.")
+          .to include("A proposal you have authored has been linked to <a href=\"#{resource_url}\">#{resource_title}</a>.")
       end
     end
   end
