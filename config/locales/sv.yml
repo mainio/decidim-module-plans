@@ -5,375 +5,375 @@ sv:
   activemodel:
     attributes:
       plan:
-        proposals: Proposals
-        category_id: Category
-        decidim_category_id: Category
-        decidim_component_id: Component
-        decidim_scope_id: Scope
-        state: State
-        title: Title
-        user_group_id: Create as
+        proposals: Förslag
+        category_id: Kategori
+        decidim_category_id: Kategori
+        decidim_component_id: Komponent
+        decidim_scope_id: Tema
+        state: Status
+        title: Rubrik
+        user_group_id: Skapa som användare
     errors:
       models:
         attachment:
           attributes:
             file:
-              needs_to_be_reattached: Needs to be reattached
+              needs_to_be_reattached: Måste bifogas på nytt
   decidim:
     assemblies:
       statistics:
-        plans_count: Plans
+        plans_count: Planer
     components:
       plans:
         actions:
-          create: Create
-          withdraw: Withdraw
-        name: Plans
+          create: Skapa
+          withdraw: Annullera
+        name: Planer
         settings:
           global:
-            announcement: Announcement
-            attachments_allowed: Attachments allowed
-            categories_enabled: Categories enabled
-            comments_enabled: Comments enabled
-            multilingual_answers: Multilingual answers
-            plan_answering_enabled: Answering enabled
-            plan_title_length: Title length
-            proposal_linking_enabled: Proposal linking enabled
-            scopes_enabled: Scopes enabled
+            announcement: Meddelande
+            attachments_allowed: Bilagor tillåtna
+            categories_enabled: Kategorier aktiverade
+            comments_enabled: Kommentarer tillåtna
+            multilingual_answers: Flerspråkiga svar
+            plan_answering_enabled: Svar tillåtna
+            plan_title_length: Rubrikens längd
+            proposal_linking_enabled: Förslagslänk aktiverat
+            scopes_enabled: Omfattningar aktiverade
           step:
-            announcement: Announcement
-            comments_blocked: Comments blocked
-            creation_enabled: Creation enabled
-            plan_answering_enabled: Answering enabled
+            announcement: Meddelande
+            comments_blocked: Kommentarer blockerade
+            creation_enabled: Skapande tillåtet
+            plan_answering_enabled: Svar tillåtna
     pages:
       home:
         statistics:
-          plans_count: Plans
+          plans_count: Planer
     participatory_processes:
       statistics:
-        plans_count: Plans
+        plans_count: Planer
     plans:
       actions:
-        answer: Answer
-        close_plan: Mark as done
-        edit_plan: Edit
-        export_budgets: Convert to projects
-        new: Submit new plan
-        reopen_plan: Open for editing
-        sections: Sections
-        title: Actions
+        answer: Svara
+        close_plan: Markera som gjort
+        edit_plan: Redigera
+        export_budgets: Konvertera till projekt
+        new: Gör ny plan
+        reopen_plan: Öppna för redigering
+        sections: Avsnitt
+        title: Funktioner
       admin:
         actions:
-          preview: Preview
+          preview: Förhandsgranska
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects
-            success: "%{number} items successfully exported into budgeting projects"
+            invalid: Det har varit ett problem att exportera objekten till budgetprojekt
+            success: "%{number} poster exporterades framgångsrikt till budgetprojekt"
           new:
-            create: Export to projects
-            no_components: There are no other budgets components in this participatory space to export the items into projects.
-            select_component: Please select a component
+            create: Exportera till projekt
+            no_components: Det finns inga andra budgetkomponenter i detta deltagande utrymme för att exportera objekten till projekt.
+            select_component: Var god välj en komponent
         exports:
-          plans: Plans
+          plans: Planer
         plan_answers:
           edit:
-            accepted: Accepted
-            answer_plan: Answer
-            evaluating: Evaluating
-            rejected: Rejected
-            title: Answer for %{title}
+            accepted: Godkänd
+            answer_plan: Svara
+            evaluating: Bedöms
+            rejected: Avslagen
+            title: Svara till %{title}
         plans:
           answer:
-            invalid: Error occured while answering.
-            success: Answered successfully.
+            invalid: Det inträffade ett fel vid svarande.
+            success: Svaret har skickats.
           edit:
-            title: Edit
-            update: Update
+            title: Redigera
+            update: Uppdatera
           form:
-            attachment_legend: "Add an attachment"
-            select_a_category: Select a category
+            attachment_legend: "Lägg till bilaga"
+            select_a_category: Välj kategori
           index:
-            selected: Selected
-            title: Plans
+            selected: Vald
+            title: Planer
           new:
-            create: Create
-            title: Submit new plan
+            create: Skapa
+            title: Gör ny plan
         sections:
           form:
-            add_section: Add section
+            add_section: Lägg till avsnitt
           index:
-            save: Save
-            title: Sections
+            save: Spara
+            title: Avsnitt
           section:
-            answer_length: Answer length
-            body: Body
-            down: Down
-            help: Help
-            mandatory: Mandatory
-            remove: Remove
-            section: Section
-            up: Up
+            answer_length: Svarets längd
+            body: Brödtext
+            down: Ner
+            help: Hjälp
+            mandatory: Obligatorisk
+            remove: Radera
+            section: Avsnitt
+            up: Upp
           update:
-            invalid: Error updating sections.
-            success: Sections updated successfully.
+            invalid: Det inträffade ett fel vid uppdatering av avsnitten.
+            success: Avsnitten har uppdaterats.
         shared:
           info_plan:
-            body: Body
-            created_at: Creation date
-            plans: Plans
+            body: Brödtext
+            created_at: Skapats
+            plans: Planer
       admin_log:
         plan:
-          answer: "%{user_name} answered %{resource_name} on the %{space_name} space."
-          create: "%{user_name} created %{resource_name} on the %{space_name} space."
-          update: "%{user_name} updated %{resource_name} on the %{space_name} space."
+          answer: "%{user_name} svarade på innehållet %{resource_name} i delaktighetslokalen %{space_name}."
+          create: "%{user_name} skapade innehållet %{resource_name} i delaktighetslokalen %{space_name}."
+          update: "%{user_name} uppdaterade innehållet %{resource_name} i delaktighetslokalen %{space_name}."
         plan_note:
-          create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
+          create: "%{user_name} lade till ett privat meddelande i innehållet %{resource_name} i delaktighetslokalen %{space_name}."
       answers:
-        accepted: Accepted
-        evaluating: Evaluating
-        not_answered: Not answered
-        rejected: Rejected
-        withdrawn: Withdrawn
+        accepted: Godkänd
+        evaluating: Bedöms
+        not_answered: Väntar på svar
+        rejected: Avslagen
+        withdrawn: Annullerad
       application_helper:
         filter_state_values:
-          accepted: Accepted
-          all: All
-          evaluating: Evaluating
-          except_rejected: All except rejected
-          rejected: Rejected
+          accepted: Godkänd
+          all: Alla
+          evaluating: Bedöms
+          except_rejected: Alla utom avslagna
+          rejected: Avslagen
         filter_type_values:
-          all: All
-          amendments: Amendments
-          plans: Plans
+          all: Alla
+          amendments: Ändringar
+          plans: Planer
       attached_proposals_helper:
-        attach_proposal: Attach proposal
-        close: Close
-        current_selection: Search proposals by name
-        select: Select
+        attach_proposal: Bifoga förslag
+        close: Stäng
+        current_selection: Sök förslag på namn
+        select: Välj
       create:
-        invalid: Failed to create new content.
-        success: Created successfully.
+        invalid: Det inträffade ett fel vid skapande av planen.
+        success: Planen har skapats.
       last_activity:
-        new_plan_at_html: "<span>New plan at %{link}</span>"
+        new_plan_at_html: "<span>En ny plan på %{link}</span>"
       models:
         plan:
           fields:
-            authors: Authors
-            category: Category
-            comments: Comments
-            contributions: Contributions
+            authors: Författare
+            category: Kategori
+            comments: Kommentarer
+            contributions: Redigeringar
             id: ID
-            notes: Notes
-            official_plan: Official plan
-            published_at: Published at
-            scope: Scope
-            state: State
-            title: Title
+            notes: Anteckningar
+            official_plan: Officiell plan
+            published_at: Publikationsdatum
+            scope: Tema
+            state: Status
+            title: Rubrik
       plans:
         attached_proposals:
-          attached_proposals: Attached proposals
+          attached_proposals: Bifogade förslag
         count:
           plans_count:
             one: "%{count} plan"
-            other: "%{count} plans"
+            other: "%{count} planer"
         create:
-          error: Failed to create new content.
-          success: Created successfully.
+          error: Det gick inte att skapa nytt innehåll.
+          success: Innehållet har skapats.
         destroy:
-          error: Error deleting the item.
-          success: Deleted successfully.
+          error: Det inträffade ett fel vid radering av innehållet.
+          success: Innehållet har raderats.
         edit:
-          discard: Discard this draft
-          discard_confirmation: Are you sure you want to discard this draft?
-          update: Update
+          discard: Radera utkastet
+          discard_confirmation: Är du säker på att du vill radera utkastet?
+          update: Uppdatera
         preview:
-          modify: Modify
-          publish: Publish
+          modify: Redigera
+          publish: Publicera
         filters:
-          accepted: Accepted
-          activity: Activity
-          all: All
-          category: Category
-          category_prompt: Select a category
-          citizens: Citizens
-          evaluating: Evaluating
-          except_rejected: All except rejected
-          official: Official
-          origin: Origin
-          rejected: Rejected
-          related_to: Related to
-          search: Search
-          state: State
-          voted: Voted
+          accepted: Godkänd
+          activity: Aktivitet
+          all: Alla
+          category: Kategori
+          category_prompt: Välj kategori
+          citizens: Medborgare
+          evaluating: Bedöms
+          except_rejected: Alla utom avslagna
+          official: Officiell
+          origin: Ursprung
+          rejected: Avslagen
+          related_to: Anknyter till
+          search: Sök
+          state: Status
+          voted: Understödd
         filters_small_view:
-          close_modal: Close modal
-          filter: Filter
-          filter_by: Filter by
-          unfold: Unfold
+          close_modal: Stäng fönstret
+          filter: Filtrera
+          filter_by: Filtrera
+          unfold: Öppna
         form:
-          attachment_legend: "Add an attachment"
-          select_a_category: Select a category
+          attachment_legend: "Lägg till bilaga"
+          select_a_category: Välj kategori
         index:
-          new_plan: New plan
-          see_all_withdrawn: See all withdrawn
+          new_plan: Ny plan
+          see_all_withdrawn: Visa alla annullerade
         new:
-          create: Create
-          title: Create plan
+          create: Skapa
+          title: Skapa plan
         new_plan_button:
-          new_plan: New plan
+          new_plan: Ny plan
         orders:
-          label: 'Order plans by:'
-          random: Random
-          recent: Recent
+          label: 'Ordna planer:'
+          random: Slumpmässig
+          recent: Nyaste
         plan:
           close:
-            error: Error marking the item as done.
-            success: Item marked done successfully.
+            error: Fel markerade objektet som gjort.
+            success: Objektet markerat gjort framgångsrikt.
           publish:
-            error: Error publishing new content.
-            success: Published successfully.
+            error: Det gick inte att publicera nytt innehåll.
+            success: Nytt innehåll har publicerats.
           reopen:
-            error: Error opening item for editing.
-            success: Item opened for editing successfully.
-          view_plan: View plan
+            error: Det gick inte att öppna objektet för redigering.
+            success: Artikeln öppnades för redigering med framgång.
+          view_plan: Visa planen
           withdraw:
-            error: Error withdrawing.
-            success: Withdrawn successfully.
+            error: Det gick inte att annullera.
+            success: Annulleringen lyckades.
         show:
-          back: Back
-          close: Mark as done
-          close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
-          edit: Edit
+          back: Tillbaka
+          close: Markera som gjort
+          close_confirm: Är du säker på att du vill markera det här objektet gjort? Efter att markeringen är klar kan objektet inte längre redigeras.
+          edit: Redigera
           hidden_authors_count:
-            one: and %{count} more person
-            other: and %{count} more people
-          info-message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-          of_versions: "(of %{number})"
-          plan_accepted_reason: 'This plan has been accepted because:'
-          plan_in_evaluation_reason: This plan is being evaluated
-          plan_rejected_reason: 'This plan has been rejected because:'
-          publish: Publish
-          publish_info: Publish this version of the draft or
-          published_proposal: published plan
-          reopen: Open for editing
-          reopen_confirm: Are you sure you want to open this item for editing?
-          report: Report
-          request_access: Request editing permissions
-          requested_access: Editing permissions requested
-          see_other_versions: see other versions
+            one: och %{count} annan person
+            other: och %{count} andra personer
+          info-message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+          of_versions: "(av versioner %{number})"
+          plan_accepted_reason: 'Planen har godkänts eftersom:'
+          plan_in_evaluation_reason: Planen bedöms
+          plan_rejected_reason: 'Planen har avslagits eftersom:'
+          publish: Publicera
+          publish_info: Publicera detta utkast eller
+          published_proposal: publicerad plan
+          reopen: Öppna för redigering
+          reopen_confirm: Är du säker på att du vill öppna det här objektet för redigering?
+          report: Meddela
+          request_access: Begär redigeringsrättigheter
+          requested_access: Redigeringsrätt har begärts
+          see_other_versions: visa övriga versioner
           version: Version %{number}
-          version_history: see version history
-          withdraw: withdraw the plan
-          withdraw_btn: Withdraw
-          withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
-          withdraw_confirmation: Are you sure to withdraw this item?
+          version_history: visa versionshistorik
+          withdraw: annullera plan
+          withdraw_btn: Annullera
+          withdraw_btn_hint: Om du ändrar dig kan du annullera detta objekt, om det ännu inte har understötts. Objektet raderas inte utan det finns kvar i listan över annullerade objekt.
+          withdraw_confirmation: Är du säker på att du vill annullera?
         update:
-          error: Error updating content.
-          success: Updated successfully.
+          error: Det gick inte att uppdatera innehållet.
+          success: Innehållet har uppdaterats.
         withdraw:
-          error: Error withdrawing the item.
-          success: Item withdrawn successfully.
+          error: Det inträffade ett fel vid annullering av objektet.
+          success: Objektet har annullerats.
       requests:
-        accept_request: Accept
+        accept_request: Godkänn
         accepted_request:
-          error: Could not be accepted as a collaborator, try again later.
-          success: "@%{user} has been successfully accepted as a collaborator."
+          error: Deltagaren kunde inte godkännas, försök igen senare.
+          success: "@%{user} har godkänts som deltagare."
         access_requested:
-          error: Your request could not be completed, try again later.
-          success: Your request to collaborate has been sent successfully
-        reject_request: Reject
+          error: Din begäran kunde inte behandlas, försök igen senare.
+          success: Din begäran om att få delta har skickats
+        reject_request: Avslå
         rejected_request:
-          error: Could not be rejected as a collaborator, try again later.
-          success: "@%{user} has been successfully rejected as a collaborator."
-        title: Collaboration requests
+          error: Deltagaren kunde inte avslås, försök igen senare.
+          success: "Redigeringsbegäran från användaren @%{user} har avslagits."
+        title: Redigeringsbegäran
       sections:
         actions:
-          new: New section
+          new: Nytt avsnitt
       section_types:
-        field_text_multiline: Field - Multiple lines
-        field_text: Field - Single line
+        field_text_multiline: Fält - Med flera rader
+        field_text: Fält - Med en rad
       shared:
         attachment_fields:
-          attachment_legend: Attachment
-          down: Down
-          remove: Remove
-          up: Up
+          attachment_legend: Bilaga
+          down: Ner
+          remove: Radera
+          up: Upp
         attachments:
-          legend: Attachments
-          add_attachment: Add attachment
+          legend: Bilagor
+          add_attachment: Lägg till bilaga
       update:
-        invalid: Error updating content.
-        success: Updated successfully.
+        invalid: Det gick inte att uppdatera innehållet.
+        success: Innehållet har uppdaterats.
       versions:
-        changes_at_title: Changes at "%{title}"
+        changes_at_title: Förändringar för objektet "%{title}"
         index:
-          title: Versions
+          title: Versioner
         stats:
-          back_to_plan: Go back
-          number_of_versions: Versions
-          show_all_versions: Show all versions
-          version_author: Version author
-          version_created_at: Version created at
-          version_number: Version number
-          version_number_out_of_total: "%{current_version} out of %{total_count}"
+          back_to_plan: Tillbaka
+          number_of_versions: Versioner
+          show_all_versions: Visa alla versioner
+          version_author: Versionen utarbetad av
+          version_created_at: Versionen skapades
+          version_number: Versionsnummer
+          version_number_out_of_total: "%{current_version} / %{total_count}"
         version:
           version_index: Version %{index}
     scopes:
-      global: Global
+      global: Allmän
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} has been accepted to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been accepted to access as a contributor of %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} har beviljats rätt att redigera innehållet <a href="%{resource_path}">%{resource_title}</a> som deltagare.'
+          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: "%{requester_name} har godkänts som redigerare för innehållet %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har <strong>godkänts som redigerare</strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: '%{requester_name} has been rejected to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been rejected to access as a contributor of %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: 'Rättigheterna för användaren %{requester_name} att redigera innehållet <a href="%{resource_path}">%{resource_title} </a> har blockerats.'
+          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: "%{requester_name} ansökan om att få delta i planen %{resource_title} har avslagits."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera innehållet har avslagits</strong> för objektet <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_path}">%{resource_title}</a> page.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_path}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
+          email_intro: '%{requester_name} begärde om att få bli deltagare. Du kan <strong>godkänna eller avslå begäran</strong> på <a href="%{resource_path}">%{resource_title}</a>.'
+          email_outro: Du fick detta meddelande eftersom du är deltagare i planen <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: "%{requester_name} begärde om rätt att få delta i planen %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> begärde om att få redigera innehållet <a href="%{resource_path}">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
         plan_access_requester_accepted:
-          email_intro: You have been accepted to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: You have been accepted as a contributor of %{resource_title}.
-          notification_title: You have been <strong>accepted to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Du har godkänts som deltagare för innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_outro: Du fick detta meddelande eftersom du har ansökt om rätt att redigera innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: Du har godkänts som deltagare för innehållet %{resource_title}.
+          notification_title: Du har <strong>godkänts som deltagare </strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: You have been rejected to access as a contributor of <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_path}">%{resource_title}</a>.
-          email_subject: You have been rejected as a contributor of %{resource_title}.
-          notification_title: You have been <strong>rejected to access as a contributor</strong> of <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Du har inte godkänts som deltagare för innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_outro: Du fick detta meddelande eftersom du har ansökt om att få delta i innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_subject: Du har inte godkänts som deltagare för innehållet %{resource_title}.
+          notification_title: Du <strong>har inte godkänts som deltagare</strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
         plan_accepted:
-          email_intro: '"%{resource_title}" has been accepted. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been accepted
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been accepted.
+          email_intro: '"%{resource_title}" har godkänts. Du kan läsa svaret här:'
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Objektet som du följer har godkänts
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har godkänts.
         plan_evaluating:
-          email_intro: '"%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following is being evaluated
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> is being evaluated.
+          email_intro: '"%{resource_title}" bedöms just nu. Du kan kontrollera svaret här:'
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Objektet som du följer bedöms
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> bedöms.
         plan_published:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A user you're following has published a resource
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" har publicerats. Du kan se den här:'
+          email_outro: Du har fått den här meddelandet eftersom du följer författaren till "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: En användare du följer har publicerat en resurs
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har publicerats.
         plan_published_for_proposals:
-          email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.
-          email_subject: A proposal you have authored has been linked to new content
-          notification_title: A proposal you have authored has been linked to <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: 'Ett förslag som du har skapat har kopplats till "%{resource_title}". Du kan se den här:'
+          email_outro: Du fick detta meddelande eftersom du följer "%{resource_title}" genom de föreslagna förslagen. Du kan avfölja det från föregående länk.
+          email_subject: Ett förslag som du har skapat har kopplats till nytt innehåll
+          notification_title: Ett förslag som du har skapat har kopplats till <a href="%{resource_path}">%{resource_title}</a>.
         plan_published_for_space:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been published
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" har publicerats. Du kan se det här:'
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Objektet som du följer har publicerats
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har publicerats.
         plan_rejected:
-          email_intro: '"%{resource_title}" has been rejected. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been rejected
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> has been rejected.
+          email_intro: '"%{resource_title}" har avslagits. Du kan läsa svaret här:'
+          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Objektet som du följer har avslagits
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> har avslagits.
