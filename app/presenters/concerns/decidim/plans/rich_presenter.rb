@@ -17,7 +17,7 @@ module Decidim
       protected
 
       def allowed_rich_tags
-        ["strong", "em", "b", "i"]
+        %w(strong em b i)
       end
     end
   end

@@ -64,7 +64,14 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
       end
 
       context "when the plans contain malicious HTML" do
-        let(:malicious_content) { "<script>alert('XSS');</script>" }
+        let(:malicious_content_array) do
+          [
+            "<script>alert('XSS');</script>",
+            "<img src='https://www.decidim.org'>",
+            "<a href='http://www.decidim.org'>Link</a>"
+          ]
+        end
+        let(:malicious_content) { malicious_content_array.join("\n") }
 
         let!(:plans) do
           create_list(
@@ -94,12 +101,14 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
           end
         end
 
-        it "should sanitize the malicious content" do
+        it "sanitizes the malicious content" do
           command.call
 
           Decidim::Budgets::Project.all.each do |project|
-            expect(project.title).not_to include(malicious_content)
-            expect(project.description).not_to include(malicious_content)
+            malicious_content_array.each do |mc|
+              expect(project.title).not_to include(mc)
+              expect(project.description).not_to include(mc)
+            end
           end
         end
       end

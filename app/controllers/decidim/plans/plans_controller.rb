@@ -17,9 +17,9 @@ module Decidim
 
       helper_method :attached_proposals_picker_field
 
-      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :reopen, :destroy]
+      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy]
       before_action :check_draft, only: [:new]
-      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :reopen, :destroy]
+      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy]
       before_action :ensure_published!, only: [:show, :withdraw]
 
       def index
