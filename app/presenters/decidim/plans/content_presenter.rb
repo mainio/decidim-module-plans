@@ -15,7 +15,7 @@ module Decidim
       end
 
       def title
-        sanitize(translated_attribute(content.title))
+        plain_content(translated_attribute(content.title))
       end
 
       def body

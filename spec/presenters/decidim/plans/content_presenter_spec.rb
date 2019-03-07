@@ -9,13 +9,21 @@ module Decidim
       let(:plan) { create(:plan) }
       let(:content) { create(:content, plan: plan) }
 
+      let(:malicious_content_array) do
+        [
+          "<script>alert('XSS');</script>",
+          "<img src='https://www.decidim.org'>",
+          "<a href='http://www.decidim.org'>Link</a>"
+        ]
+      end
+      let(:malicious_content) { malicious_content_array.join("\n") }
+
       describe "#title" do
         it "returns title in current locale" do
           expect(subject.title).to eq(content.section.body["en"])
         end
 
         context "when title contains malicious HTML" do
-          let(:malicious_content) { "<script>alert('XSS');</script>" }
           let(:section) do
             create(
               :section,
@@ -25,7 +33,9 @@ module Decidim
           let(:content) { create(:content, section: section, plan: plan) }
 
           it "sanitizes the HTML" do
-            expect(subject.title).not_to include(malicious_content)
+            malicious_content_array.each do |mc|
+              expect(subject.title).not_to include(mc)
+            end
           end
         end
       end
@@ -36,7 +46,6 @@ module Decidim
         end
 
         context "when body contains malicious HTML" do
-          let(:malicious_content) { "<script>alert('XSS');</script>" }
           let(:content) do
             create(
               :content,
@@ -46,7 +55,9 @@ module Decidim
           end
 
           it "sanitizes the HTML" do
-            expect(subject.body).not_to include(malicious_content)
+            malicious_content_array.each do |mc|
+              expect(subject.body).not_to include(mc)
+            end
           end
         end
       end

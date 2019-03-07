@@ -29,7 +29,7 @@ module Decidim
       end
 
       def title
-        sanitize(translated_attribute(plan.title))
+        plain_content(translated_attribute(plan.title))
       end
 
       def body
@@ -37,8 +37,8 @@ module Decidim
           content = plan.contents.find_by(section: section)
           next if content.nil?
 
-          section_title = sanitize(translated_attribute(content.title))
-          section_body = sanitize(translated_attribute(content.body))
+          section_title = plain_content(translated_attribute(content.title))
+          section_body = plain_content(translated_attribute(content.body))
           "<dt>#{section_title}</dt> <dd>#{section_body}</dd>"
         end
 

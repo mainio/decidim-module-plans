@@ -6,7 +6,7 @@ module Decidim
       # A command with all the business logic when an admin exports plans to a
       # single budget component.
       class ExportPlansToBudgets < Rectify::Command
-        include ActionView::Helpers::TextHelper
+        include Decidim::Plans::RichPresenter
 
         # Public: Initializes the command.
         #
@@ -85,13 +85,14 @@ module Decidim
           original_plan.sections.each do |section|
             content = original_plan.contents.find_by(section: section)
             content.body.each do |locale, body_text|
-              title = sanitize(section.body[locale])
+              title = plain_content(section.body[locale])
               pr_desc[locale] ||= ""
               pr_desc[locale] += "<h3>#{title}</h3>\n"
 
               # Wrap non-HTML strings within a <p> tag and replace newlines with
-              # <br>. This also takes care of sanitization.
-              pr_desc[locale] += simple_format(body_text)
+              # <br>. This also takes care of sanitization and specific styling
+              # of the text, such as bold, italics, etc.
+              pr_desc[locale] += rich_content(body_text)
             end
           end
 
@@ -103,7 +104,7 @@ module Decidim
 
         def sanitize_localized(hash)
           hash.each do |locale, value|
-            hash[locale] = sanitize(value)
+            hash[locale] = plain_content(value)
           end
         end
       end
