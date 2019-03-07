@@ -33,6 +33,7 @@ sv:
           global:
             announcement: Meddelande
             attachments_allowed: Bilagor tillåtna
+            attachment_help: Attachment help text
             categories_enabled: Kategorier aktiverade
             comments_enabled: Kommentarer tillåtna
             multilingual_answers: Flerspråkiga svar
@@ -40,6 +41,7 @@ sv:
             plan_title_length: Rubrikens längd
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
+            title_help: Title help text
           step:
             announcement: Meddelande
             comments_blocked: Kommentarer blockerade
@@ -323,57 +325,57 @@ sv:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} har beviljats rätt att redigera innehållet <a href="%{resource_path}">%{resource_title}</a> som deltagare.'
-          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} has been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} har godkänts som redigerare för innehållet %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har <strong>godkänts som redigerare</strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: 'Rättigheterna för användaren %{requester_name} att redigera innehållet <a href="%{resource_path}">%{resource_title} </a> har blockerats.'
-          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} has been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} ansökan om att få delta i planen %{resource_title} har avslagits."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera innehållet har avslagits</strong> för objektet <a href="%{resource_path}">%{resource_title}</a>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} begärde om att få bli deltagare. Du kan <strong>godkänna eller avslå begäran</strong> på <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Du fick detta meddelande eftersom du är deltagare i planen <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} begärde om rätt att få delta i planen %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> begärde om att få redigera innehållet <a href="%{resource_path}">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
         plan_access_requester_accepted:
-          email_intro: Du har godkänts som deltagare för innehållet <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Du fick detta meddelande eftersom du har ansökt om rätt att redigera innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: You have been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: Du har godkänts som deltagare för innehållet %{resource_title}.
-          notification_title: Du har <strong>godkänts som deltagare </strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          notification_title: You have been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: Du har inte godkänts som deltagare för innehållet <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Du fick detta meddelande eftersom du har ansökt om att få delta i innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: You have been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: Du har inte godkänts som deltagare för innehållet %{resource_title}.
-          notification_title: Du <strong>har inte godkänts som deltagare</strong> för innehållet <a href="%{resource_path}">%{resource_title}</a>.
+          notification_title: You have been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" har godkänts. Du kan läsa svaret här:'
           email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer har godkänts
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> har godkänts.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been accepted.
         plan_evaluating:
           email_intro: '"%{resource_title}" bedöms just nu. Du kan kontrollera svaret här:'
           email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer bedöms
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> bedöms.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> is being evaluated.
         plan_published:
           email_intro: '"%{resource_title}" har publicerats. Du kan se den här:'
           email_outro: Du har fått den här meddelandet eftersom du följer författaren till "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: En användare du följer har publicerat en resurs
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> har publicerats.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
         plan_published_for_proposals:
           email_intro: 'Ett förslag som du har skapat har kopplats till "%{resource_title}". Du kan se den här:'
           email_outro: Du fick detta meddelande eftersom du följer "%{resource_title}" genom de föreslagna förslagen. Du kan avfölja det från föregående länk.
           email_subject: Ett förslag som du har skapat har kopplats till nytt innehåll
-          notification_title: Ett förslag som du har skapat har kopplats till <a href="%{resource_path}">%{resource_title}</a>.
+          notification_title: A proposal you have authored has been linked to <a href="%{resource_url}">%{resource_title}</a>.
         plan_published_for_space:
           email_intro: '"%{resource_title}" har publicerats. Du kan se det här:'
           email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer har publicerats
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> har publicerats.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
         plan_rejected:
           email_intro: '"%{resource_title}" har avslagits. Du kan läsa svaret här:'
           email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: Objektet som du följer har avslagits
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> har avslagits.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been rejected.
