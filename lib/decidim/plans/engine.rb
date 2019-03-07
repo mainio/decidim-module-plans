@@ -14,7 +14,6 @@ module Decidim
             get :preview
             post :publish
             post :close
-            post :reopen
             put :withdraw
             post :request_access, controller: "plan_collaborator_requests"
             post :request_accept, controller: "plan_collaborator_requests"

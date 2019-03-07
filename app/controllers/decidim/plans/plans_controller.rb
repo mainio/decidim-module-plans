@@ -160,22 +160,6 @@ module Decidim
         end
       end
 
-      def reopen
-        enforce_permission_to :close, :plan, plan: @plan
-
-        ReopenPlan.call(@plan, current_user) do
-          on(:ok) do |plan|
-            flash[:notice] = I18n.t("reopen.success", scope: "decidim.plans.plans.plan")
-            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
-          end
-
-          on(:invalid) do
-            flash.now[:alert] = t("reopen.error", scope: "decidim.plans.plans.plan")
-            redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
-          end
-        end
-      end
-
       private
 
       def check_draft

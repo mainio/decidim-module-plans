@@ -184,21 +184,6 @@ module Decidim
         end
       end
 
-      describe "POST reopen" do
-        let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, closed_at: Time.current, component: component, users: [user]) }
-
-        before do
-          set_default_url_options
-        end
-
-        it "reopens the plan" do
-          post :reopen, params: { id: plan.id }
-          expect(response).to have_http_status(:found)
-          expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(false)
-        end
-      end
-
       describe "withdraw a plan" do
         let(:component) { create(:plan_component, :with_creation_enabled) }
 
