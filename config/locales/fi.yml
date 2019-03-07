@@ -33,7 +33,7 @@ fi:
           global:
             announcement: Ilmoitus
             attachments_allowed: Liitteet sallittu
-            attachment_help: Attachment help text
+            attachment_help: Liitteen ohjeteksti
             categories_enabled: Kategoriat käytössä
             comments_enabled: Kommentointi sallittu
             multilingual_answers: Monikieliset vastaukset
@@ -41,7 +41,7 @@ fi:
             plan_title_length: Otsikon pituus
             proposal_linking_enabled: Ehdotusten linkkaaminen käytössä
             scopes_enabled: Teemat käytössä
-            title_help: Title help text
+            title_help: Otsikon ohjeteksti
           step:
             announcement: Ilmoitus
             comments_blocked: Kommentointi estetty
@@ -325,57 +325,57 @@ fi:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} has been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} on annettu oikeus muokata sisältöä <a href="%{resource_url}">%{resource_title}</a> osallistujana.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut sisällön <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
           email_subject: "%{requester_name} on hyväksytty muokkaajaksi sisältöön %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> on <strong>hyväksytty muokkaajaksi</strong> sisältöön <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: '%{requester_name} has been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Käyttäjän %{requester_name} muokkausoikeudet sisältöön <a href="%{resource_url}">%{resource_title} </a> on estetty.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut sisällön <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
           email_subject: "%{requester_name} hakemus osallistua kohteen %{resource_title} muokkaukseen on hylätty."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>pyyntö muokata sisältöä on hylätty</strong> kohteelle <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} pyysi pääsyä osallistujaksi. Voit <strong>hyväksyä tai hylätä pyynnön</strong> sivulla <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistuja kohteessa <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} pyysi osallistumisoikeutta kohteeseen %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pyysi saada muokata sisältöä <a href="%{resource_url}">%{resource_title}</a>. <strong>Hyväksy tai hylkää pyyntö</strong>.
         plan_access_requester_accepted:
-          email_intro: You have been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Sinut on hyväksytty osallistujaksi sisältöön <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet hakenut muokkausoikeuksia sisältöön <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: Sinut on hyväksytty osallistujaksi sisältöön %{resource_title}.
-          notification_title: You have been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          notification_title: Sinut on <strong>hyväksytty osallistujaksi </strong> sisältöön <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: You have been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Sinua ei ole hyväksytty osallistujaksi sisältöön <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet pyytänyt pääsyä osallistujaksi sisältöön <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: Sinua ei ole hyväksytty osallistujaksi sisältöön %{resource_title}.
-          notification_title: You have been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          notification_title: Sinua <strong>ei ole hyväksytty osallistujaksi</strong> sisältöön <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" on hyväksytty. Voit lukea vastauksen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi kohde on hyväksytty
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been accepted.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> on hyväksytty.
         plan_evaluating:
           email_intro: '"%{resource_title}" arvioidaan parhaillaan. Voit tarkistaa vastauksen tältä sivulla:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi kohde on arvioitavana
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> is being evaluated.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> on arvioitavana.
         plan_published:
           email_intro: '"%{resource_title}" on julkaistu. Näet sen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohteen "%{resource_title}" laatijaa. Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi käyttäjä on julkaissut uutta sisältöä
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_published_for_proposals:
           email_intro: 'Laatimasi ehdotus on linkitetty kohteeseen "%{resource_title}". Näet sen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}" laatimisesi ehdotusten kautta. Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
           email_subject: Laatimasi ehdotus on linkitetty uuteen sisältöön
-          notification_title: A proposal you have authored has been linked to <a href="%{resource_url}">%{resource_title}</a>.
+          notification_title: Laatimasi ehdotus on linkitetty kohteeseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_published_for_space:
           email_intro: '"%{resource_title}" on julkaistu. Näet sen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi kohde on julkaistu
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_rejected:
           email_intro: '"%{resource_title}" on hylätty. Voit lukea vastauksen tällä sivulla:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi kohde on hylätty
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been rejected.
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> on hylätty.
