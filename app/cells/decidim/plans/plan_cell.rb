@@ -28,7 +28,7 @@ module Decidim
       end
 
       def resource_path
-        resource_locator(model).path
+        resource_locator(model).path + request_params_query
       end
 
       def current_participatory_space

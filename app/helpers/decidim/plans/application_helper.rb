@@ -5,6 +5,7 @@ module Decidim
     # Custom helpers, scoped to the plans engine.
     #
     module ApplicationHelper
+      include Decidim::Plans::LinksHelper
       include Decidim::Comments::CommentsHelper
       include PaginateHelper
       include Decidim::MapHelper

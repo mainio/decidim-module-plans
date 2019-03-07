@@ -12,10 +12,12 @@
 <% end %>
 
 <div class="row column view-header">
-  <%= link_to plans_path do %>
-    <%= icon "chevron-left", class: "icon--small" %>
-    <%= t(".back") %>
-  <% end %>
+  <p class="h5">
+    <%= link_to plans_path(request_params) do %>
+      <%= icon "chevron-left", class: "icon--small" %>
+      <%= t(".back") %>
+    <% end %>
+  </p>
 
   <h2 class="heading2">
     <%= present(@plan).title %>
