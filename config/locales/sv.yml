@@ -33,6 +33,7 @@ sv:
           global:
             announcement: Meddelande
             attachments_allowed: Bilagor tillåtna
+            attachment_help: Bilag hjälptext
             categories_enabled: Kategorier aktiverade
             comments_enabled: Kommentarer tillåtna
             multilingual_answers: Flerspråkiga svar
@@ -40,6 +41,7 @@ sv:
             plan_title_length: Rubrikens längd
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
+            title_help: Titel hjälptext
           step:
             announcement: Meddelande
             comments_blocked: Kommentarer blockerade

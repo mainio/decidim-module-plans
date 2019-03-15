@@ -33,6 +33,7 @@ fi:
           global:
             announcement: Ilmoitus
             attachments_allowed: Liitteet sallittu
+            attachment_help: Liitteen ohjeteksti
             categories_enabled: Kategoriat käytössä
             comments_enabled: Kommentointi sallittu
             multilingual_answers: Monikieliset vastaukset
@@ -40,6 +41,7 @@ fi:
             plan_title_length: Otsikon pituus
             proposal_linking_enabled: Ehdotusten linkkaaminen käytössä
             scopes_enabled: Teemat käytössä
+            title_help: Otsikon ohjeteksti
           step:
             announcement: Ilmoitus
             comments_blocked: Kommentointi estetty
