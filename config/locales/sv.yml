@@ -35,6 +35,7 @@ sv:
             attachments_allowed: Bilagor tillåtna
             attachment_help: Bilag hjälptext
             categories_enabled: Kategorier aktiverade
+            closing_allowed: Tillåta plan författarna att markera planerna som gjort
             comments_enabled: Kommentarer tillåtna
             multilingual_answers: Flerspråkiga svar
             plan_answering_enabled: Svar tillåtna
@@ -95,6 +96,8 @@ sv:
             attachment_legend: "Lägg till bilaga"
             select_a_category: Välj kategori
           index:
+            draft_plans: Utkast
+            published_plans: Publicerad
             selected: Vald
             title: Planer
           new:
@@ -188,6 +191,11 @@ sv:
           discard: Radera utkastet
           discard_confirmation: Är du säker på att du vill radera utkastet?
           update: Uppdatera
+        evaluation_modal:
+          button_text: OK
+          close: Stäng fönstret
+          description: Planen utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
+          title: Planen beräknas
         preview:
           modify: Redigera
           publish: Publicera
@@ -254,6 +262,7 @@ sv:
           plan_accepted_reason: 'Planen har godkänts eftersom:'
           plan_in_evaluation_reason: Planen bedöms
           plan_rejected_reason: 'Planen har avslagits eftersom:'
+          plan_waiting_for_evaluation: Planen beräknas, redigering är inte tillåten.
           publish: Publicera
           publish_info: Publicera detta utkast eller
           published_proposal: publicerad plan
