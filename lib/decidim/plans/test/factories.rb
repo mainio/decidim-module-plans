@@ -41,6 +41,14 @@ FactoryBot.define do
       end
     end
 
+    trait :with_closing_allowed do
+      settings do
+        {
+          closing_allowed: true
+        }
+      end
+    end
+
     trait :with_multilingual_answers do
       settings do
         {

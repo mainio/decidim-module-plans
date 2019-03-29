@@ -177,10 +177,20 @@ module Decidim
           set_default_url_options
         end
 
-        it "closes the plan" do
+        it "does not close the plan" do
           post :close, params: { id: plan.id }
           expect(response).to have_http_status(:found)
-          expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(true)
+          expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(false)
+        end
+
+        context "when closing is allowed" do
+          let(:component) { create(:plan_component, :with_closing_allowed) }
+
+          it "closes the plan" do
+            post :close, params: { id: plan.id }
+            expect(response).to have_http_status(:found)
+            expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(true)
+          end
         end
       end
 
