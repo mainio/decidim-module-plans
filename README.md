@@ -59,7 +59,8 @@ can start writing the plans when plan creation is enabled.
 
 ## Contributing
 
-For instructions how to setup your development environment for Decidim, see [Decidim](https://github.com/decidim/decidim). Also follow Decidim's general
+For instructions how to setup your development environment for Decidim, see
+[Decidim](https://github.com/decidim/decidim). Also follow Decidim's general
 instructions for development for this project as well.
 
 ### Developing
