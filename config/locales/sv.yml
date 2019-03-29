@@ -35,7 +35,7 @@ sv:
             attachments_allowed: Bilagor tillåtna
             attachment_help: Bilag hjälptext
             categories_enabled: Kategorier aktiverade
-            closing_allowed: Allow plan authors to mark the plans as done
+            closing_allowed: Tillåta plan författarna att markera planerna som gjort
             comments_enabled: Kommentarer tillåtna
             multilingual_answers: Flerspråkiga svar
             plan_answering_enabled: Svar tillåtna
@@ -96,8 +96,8 @@ sv:
             attachment_legend: "Lägg till bilaga"
             select_a_category: Välj kategori
           index:
-            draft_plans: Drafts
-            published_plans: Published
+            draft_plans: Utkast
+            published_plans: Publicerad
             selected: Vald
             title: Planer
           new:
