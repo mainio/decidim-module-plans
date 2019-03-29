@@ -191,6 +191,11 @@ fi:
           discard: Tuhoa tämä luonnos
           discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
           update: Päivitä
+        evaluation_modal:
+          button_text: OK
+          close: Close modal
+          description: The plan is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
+          title: The plan is being evaluated
         preview:
           modify: Muokkaa
           publish: Julkaise
@@ -257,6 +262,7 @@ fi:
           plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
           plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana
           plan_rejected_reason: 'Tämä suunnitelma on hylätty, koska:'
+          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
           publish: Julkaise
           publish_info: Julkaise tämä luonnosversio tai
           published_proposal: julkaistu suunnitelma
