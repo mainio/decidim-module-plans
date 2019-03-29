@@ -39,6 +39,12 @@ module Decidim
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::Plans::Engine.root}/app/cells")
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::Plans::Engine.root}/app/views") # for partials
       end
+
+      initializer "decidim_plans.content_processors" do |_app|
+        Decidim.configure do |config|
+          config.content_processors += [:plan]
+        end
+      end
     end
   end
 end

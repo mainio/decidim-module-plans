@@ -23,4 +23,12 @@ module Decidim
       @tracer ||= Tracer.new
     end
   end
+
+  module ContentParsers
+    autoload :PlanParser, "decidim/content_parsers/plan_parser"
+  end
+
+  module ContentRenderers
+    autoload :PlanRenderer, "decidim/content_renderers/plan_renderer"
+  end
 end

@@ -44,6 +44,10 @@ module Decidim
 
         "<dl>#{fields.join("\n")}</dl>".html_safe
       end
+
+      def display_mention
+        link_to title, plan_path
+      end
     end
   end
 end
