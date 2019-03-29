@@ -95,6 +95,8 @@ sv:
             attachment_legend: "Lägg till bilaga"
             select_a_category: Välj kategori
           index:
+            draft_plans: Drafts
+            published_plans: Published
             selected: Vald
             title: Planer
           new:
