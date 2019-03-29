@@ -95,8 +95,8 @@ fi:
             attachment_legend: "Lisää liite"
             select_a_category: Valitse kategoria
           index:
-            draft_plans: Drafts
-            published_plans: Published
+            draft_plans: Luonnoksia
+            published_plans: Julkaistuja
             selected: Valittu
             title: Suunnitelmat
           new:
