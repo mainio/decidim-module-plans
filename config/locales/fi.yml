@@ -35,6 +35,7 @@ fi:
             attachments_allowed: Liitteet sallittu
             attachment_help: Liitteen ohjeteksti
             categories_enabled: Kategoriat käytössä
+            closing_allowed: Allow plan authors to mark the plans as done
             comments_enabled: Kommentointi sallittu
             multilingual_answers: Monikieliset vastaukset
             plan_answering_enabled: Vastaaminen sallittu
