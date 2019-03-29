@@ -1,10 +1,10 @@
 <% if component_settings.attachments_allowed? %>
   <div class="multifield-fields attachments-container" data-placeholder-id="<%= blank_attachment.to_param %>">
-    <template>
+    <script type="text/template" class="decidim-template">
       <%= fields_for "#{form.object_name}[attachments][#{blank_attachment.to_param}]", blank_attachment do |attachment_form| %>
         <%= render partial: "decidim/plans/shared/attachment_fields", object: attachment_form, locals: { form: attachment_form, id: tabs_id_for_attachment(blank_attachment) } %>
       <% end %>
-    </template>
+    </script>
 
     <fieldset>
       <legend><%= t(".legend") %></legend>
