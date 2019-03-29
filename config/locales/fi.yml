@@ -193,9 +193,9 @@ fi:
           update: Päivitä
         evaluation_modal:
           button_text: OK
-          close: Close modal
-          description: The plan is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
-          title: The plan is being evaluated
+          close: Sulje ikkuna
+          description: Suunnitelmaa arvioidaan ja sitä ei voi muokata tällä hetkellä. Saat ilmoituksen, kun arviointi valmistuu.
+          title: Suunnitelmaa arvioidaan
         preview:
           modify: Muokkaa
           publish: Julkaise
@@ -262,7 +262,7 @@ fi:
           plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
           plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana
           plan_rejected_reason: 'Tämä suunnitelma on hylätty, koska:'
-          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
+          plan_waiting_for_evaluation: Suunnitelma on arvioinnissa, muokkaaminen estetty.
           publish: Julkaise
           publish_info: Julkaise tämä luonnosversio tai
           published_proposal: julkaistu suunnitelma
