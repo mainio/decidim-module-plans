@@ -116,14 +116,36 @@ describe Decidim::Plans::Permissions do
       { scope: :public, action: :close, subject: :plan }
     end
 
-    context "when plan author is the user trying to close" do
-      it { is_expected.to eq true }
+    context "when closing is allowed" do
+      before do
+        expect(component_settings).to receive(:closing_allowed?).and_return(true)
+      end
+
+      context "when plan author is the user trying to close" do
+        it { is_expected.to eq true }
+      end
+
+      context "when trying by another user" do
+        let(:user) { build :user }
+
+        it { is_expected.to eq false }
+      end
     end
 
-    context "when trying by another user" do
-      let(:user) { build :user }
+    context "when closing is not allowed" do
+      before do
+        expect(component_settings).to receive(:closing_allowed?).and_return(false)
+      end
 
-      it { is_expected.to eq false }
+      context "when plan author is the user trying to close" do
+        it { is_expected.to eq false }
+      end
+
+      context "when trying by another user" do
+        let(:user) { build :user }
+
+        it { is_expected.to eq false }
+      end
     end
   end
 

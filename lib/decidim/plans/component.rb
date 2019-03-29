@@ -28,6 +28,7 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :categories_enabled, type: :boolean, default: true
     settings.attribute :proposal_linking_enabled, type: :boolean, default: true
     settings.attribute :attachments_allowed, type: :boolean, default: false
+    settings.attribute :closing_allowed, type: :boolean, default: false
     settings.attribute :multilingual_answers, type: :boolean
   end
 

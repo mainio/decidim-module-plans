@@ -59,6 +59,8 @@ module Decidim
       end
 
       def can_close_plan?
+        return toggle_allow(false) unless component_settings.closing_allowed?
+
         toggle_allow(plan && plan.created_by?(user))
       end
 

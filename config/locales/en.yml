@@ -36,6 +36,7 @@ en:
             attachments_allowed: Attachments allowed
             attachment_help: Attachment help text
             categories_enabled: Categories enabled
+            closing_allowed: Allow plan authors to mark the plans as done
             comments_enabled: Comments enabled
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Answering enabled
