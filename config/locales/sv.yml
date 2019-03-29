@@ -193,9 +193,9 @@ sv:
           update: Uppdatera
         evaluation_modal:
           button_text: OK
-          close: Close modal
-          description: The plan is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
-          title: The plan is being evaluated
+          close: Stäng fönstret
+          description: Planen utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
+          title: Planen beräknas
         preview:
           modify: Redigera
           publish: Publicera
@@ -262,7 +262,7 @@ sv:
           plan_accepted_reason: 'Planen har godkänts eftersom:'
           plan_in_evaluation_reason: Planen bedöms
           plan_rejected_reason: 'Planen har avslagits eftersom:'
-          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
+          plan_waiting_for_evaluation: Planen beräknas, redigering är inte tillåten.
           publish: Publicera
           publish_info: Publicera detta utkast eller
           published_proposal: publicerad plan
