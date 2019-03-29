@@ -101,7 +101,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
           component: proposal_component
         ).where.not(
           published_at: nil
-        ).order(title: :asc).all.collect { |p| [p.title, p.id] }
+        ).order(title: :asc).all.collect { |p| ["#{p.title} (##{p.id})", p.id] }
         expect(helper).to receive(:render).with(
           hash_including(
             json: proposals
@@ -120,7 +120,6 @@ describe Decidim::Plans::AttachedProposalsHelper do
           :proposal,
           amount,
           :published,
-          published_at: Time.current,
           component: proposal_component
         )
         create_list(
@@ -158,7 +157,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         ).where(
           "state IS NULL OR state != ?",
           "rejected"
-        ).order(title: :asc).all.collect { |p| [p.title, p.id] }
+        ).order(title: :asc).all.collect { |p| ["#{p.title} (##{p.id})", p.id] }
         expect(helper).to receive(:render).with(
           hash_including(
             json: proposals
@@ -166,6 +165,133 @@ describe Decidim::Plans::AttachedProposalsHelper do
         )
 
         helper.search_proposals
+      end
+    end
+
+    context "when searching with title" do
+      let(:title) { "Search this title" }
+
+      let!(:proposal) do
+        create(
+          :proposal,
+          :published,
+          component: proposal_component,
+          title: title
+        )
+      end
+
+      context "with matching term" do
+        it "returns the proposals" do
+          expect(format).to receive(:html).and_yield
+          expect(format).to receive(:json).and_yield
+          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:params).and_return(
+            term: "this"
+          )
+
+          # html
+          expect(helper).to receive(:render).with(
+            hash_including(
+              partial: "decidim/plans/attached_proposals/proposals"
+            )
+          )
+          # json
+          expect(helper).to receive(:render).with(
+            hash_including(
+              json: [["#{proposal.title} (##{proposal.id})", proposal.id]]
+            )
+          )
+
+          helper.search_proposals
+        end
+      end
+
+      context "with unmatching term" do
+        it "returns the proposals" do
+          expect(format).to receive(:html).and_yield
+          expect(format).to receive(:json).and_yield
+          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:params).and_return(
+            term: "blablabla"
+          )
+
+          # html
+          expect(helper).to receive(:render).with(
+            hash_including(
+              partial: "decidim/plans/attached_proposals/proposals"
+            )
+          )
+          # json
+          expect(helper).to receive(:render).with(
+            hash_including(
+              json: []
+            )
+          )
+
+          helper.search_proposals
+        end
+      end
+    end
+
+    context "when searching with ID" do
+      let!(:proposal) do
+        create(
+          :proposal,
+          :published,
+          component: proposal_component
+        )
+      end
+
+      context "with matching ID" do
+        it "returns the proposals" do
+          expect(format).to receive(:html).and_yield
+          expect(format).to receive(:json).and_yield
+          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:params).and_return(
+            term: "##{proposal.id}"
+          )
+
+          # html
+          expect(helper).to receive(:render).with(
+            hash_including(
+              partial: "decidim/plans/attached_proposals/proposals"
+            )
+          )
+          # json
+          expect(helper).to receive(:render).with(
+            hash_including(
+              json: [["#{proposal.title} (##{proposal.id})", proposal.id]]
+            )
+          )
+
+          helper.search_proposals
+        end
+      end
+
+      context "with unmatching ID" do
+        it "returns the proposals" do
+          expect(format).to receive(:html).and_yield
+          expect(format).to receive(:json).and_yield
+          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:params).and_return(
+            term: "#9#{proposal.id}9"
+          )
+
+          # html
+          expect(helper).to receive(:render).with(
+            hash_including(
+              partial: "decidim/plans/attached_proposals/proposals"
+            )
+          )
+          # json
+          expect(helper).to receive(:render).with(
+            hash_including(
+              json: []
+            )
+          )
+
+          helper.search_proposals
+        end
       end
     end
   end

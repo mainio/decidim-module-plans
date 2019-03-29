@@ -34,10 +34,26 @@ module Decidim
                     .find_resource_manifest(:proposals)
                     .try(:resource_scope, current_component)
                     &.order(title: :asc)
-                    &.where("title ilike ?", "%#{params[:term]}%")
                     &.where("state IS NULL OR state != ?", "rejected")
                     &.where&.not(published_at: nil)
-            render json: query.all.collect { |p| [present(p).title, p.id] }
+
+            # In case the search term starts with a hash character and contains
+            # only numbers, the user wants to search with the ID.
+            query = if params[:term] =~ /^#[0-9]+$/
+                      idterm = params[:term].sub(/#/, "")
+                      query&.where(
+                        "id::text like ?",
+                        "%#{idterm}%"
+                      )
+                    else
+                      query&.where("title ilike ?", "%#{params[:term]}%")
+                    end
+
+            proposals_list = query.all.collect do |p|
+              ["#{present(p).title} (##{p.id})", p.id]
+            end
+
+            render json: proposals_list
           end
         end
       end
