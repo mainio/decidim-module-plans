@@ -96,6 +96,8 @@ en:
             attachment_legend: "Add an attachment"
             select_a_category: Select a category
           index:
+            draft_plans: Drafts
+            published_plans: Published
             selected: Selected
             title: Plans
           new:

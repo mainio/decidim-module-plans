@@ -11,7 +11,7 @@ module Decidim
         helper Plans::ApplicationHelper
         helper Plans::AttachmentsHelper
         helper Plans::RemainingCharactersHelper
-        helper_method :plans, :query, :form_presenter, :attached_proposals_picker_field
+        helper_method :plans, :query, :counts, :form_presenter, :attached_proposals_picker_field
 
         def new
           enforce_permission_to :create, :plans
@@ -92,11 +92,18 @@ module Decidim
         private
 
         def query
-          @query ||= Plan.where(component: current_component).ransack(params[:q])
+          @query ||= Plan.published.where(component: current_component).ransack(params[:q])
         end
 
         def plans
           @plans ||= query.result.page(params[:page]).per(15)
+        end
+
+        def counts
+          @counts ||= {
+            published: Plan.published.where(component: current_component).count,
+            drafts: Plan.drafts.where(component: current_component).count
+          }
         end
 
         def plan

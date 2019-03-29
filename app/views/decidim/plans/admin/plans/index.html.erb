@@ -61,4 +61,9 @@
       <%= paginate plans, theme: "decidim" %>
     </div>
   </div>
+  <div class="card-divider">
+    <strong><%= t ".published_plans" %>:&nbsp;</strong><span><%= counts[:published] %></span>
+    <span>&nbsp;|&nbsp;</span>
+    <strong><%= t ".draft_plans" %>:&nbsp;</strong><span><%= counts[:drafts] %></span>
+  </div>
 </div>

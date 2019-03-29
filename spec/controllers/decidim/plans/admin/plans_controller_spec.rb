@@ -30,7 +30,8 @@ module Decidim
 
         before do
           set_default_url_options
-          create_list(:plan, 10, component: component)
+          create_list(:plan, 10, :published, component: component)
+          create_list(:plan, 5, :unpublished, component: component)
         end
 
         it "renders the index listing" do
@@ -38,6 +39,10 @@ module Decidim
           expect(response).to have_http_status(:ok)
           expect(subject).to render_template(:index)
           expect(assigns(:plans).length).to eq(10)
+          expect(assigns(:counts)).to include(
+            published: 10,
+            drafts: 5
+          )
         end
       end
 
