@@ -196,6 +196,13 @@ en:
           discard: Discard this draft
           discard_confirmation: Are you sure you want to discard this draft?
           update: Update
+        evaluation_modal:
+          button_text: OK
+          close: Close modal
+          description: The plan is being evaluated and it cannot be edited
+            during this time. You will get notified once the evaluation is
+            completed.
+          title: The plan is being evaluated
         preview:
           modify: Modify
           publish: Publish
@@ -264,6 +271,7 @@ en:
           plan_accepted_reason: 'This plan has been accepted because:'
           plan_in_evaluation_reason: This plan is being evaluated
           plan_rejected_reason: 'This plan has been rejected because:'
+          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
           publish: Publish
           publish_info: Publish this version of the draft or
           published_proposal: published plan

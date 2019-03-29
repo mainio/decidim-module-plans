@@ -128,12 +128,19 @@ Decidim.register_component(:plans) do |component|
       state, answer = if n > 3
                         ["accepted", Decidim::Faker::Localized.sentence(10)]
                       elsif n > 2
-                        ["rejected", nil]
+                        ["rejected", Decidim::Faker::Localized.sentence(10)]
                       elsif n > 1
                         ["evaluating", nil]
                       else
                         [nil, nil]
                       end
+
+      # Check whether the plan is answered and set it closed by random if not.
+      is_answered = !state.nil?
+      is_closed = is_answered || rand < 0.5
+
+      # Force the state to be "evaluating" for closed but unanswered plans
+      state = "evaluating" if is_closed && !is_answered
 
       params = {
         component: component,
@@ -142,7 +149,8 @@ Decidim.register_component(:plans) do |component|
         title: Decidim::Faker::Localized.sentence(2),
         state: state,
         answer: answer,
-        answered_at: Time.current,
+        closed_at: is_closed ? Time.current : nil,
+        answered_at: is_answered ? Time.current : nil,
         published_at: Time.current
       }
 

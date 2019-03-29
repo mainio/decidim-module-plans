@@ -36,7 +36,15 @@ module Decidim
           @current_user,
           visibility: "public-only"
         ) do
-          @plan.update closed_at: Time.current
+          # Unless the plan has already been answered, change the state to
+          # "evaluating".
+          state = @plan.state
+          state = "evaluating" unless @plan.answered?
+
+          @plan.update!(
+            state: state,
+            closed_at: Time.current
+          )
         end
       end
     end

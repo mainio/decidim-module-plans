@@ -101,6 +101,45 @@ module Decidim
         end
       end
 
+      describe "#waiting_for_evaluation?" do
+        context "when plan is closed and unanswered" do
+          let(:plan) { build :plan, closed_at: Time.current }
+
+          it { expect(plan.waiting_for_evaluation?).to be(true) }
+        end
+
+        context "when plan is closed and answered" do
+          let(:plan) do
+            build(
+              :plan,
+              closed_at: Time.current,
+              answered_at: Time.current,
+              state: "accepted"
+            )
+          end
+
+          it { expect(plan.waiting_for_evaluation?).to be(false) }
+        end
+
+        context "when plan is not closed and unanswered" do
+          let(:plan) { build :plan }
+
+          it { expect(plan.closed?).to be(false) }
+        end
+
+        context "when plan is not closed and answered" do
+          let(:plan) do
+            build(
+              :plan,
+              answered_at: Time.current,
+              state: "accepted"
+            )
+          end
+
+          it { expect(plan.closed?).to be(false) }
+        end
+      end
+
       describe "#withdrawn?" do
         context "when plan is withdrawn" do
           let(:plan) { build :plan, :withdrawn }

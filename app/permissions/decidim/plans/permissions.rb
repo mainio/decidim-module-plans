@@ -47,7 +47,7 @@ module Decidim
       end
 
       def can_edit_plan?
-        toggle_allow(plan.open? && !plan.closed? && plan.editable_by?(user))
+        toggle_allow(plan.open? && plan.editable_by?(user))
       end
 
       def can_withdraw_plan?

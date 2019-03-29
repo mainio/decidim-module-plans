@@ -46,6 +46,11 @@
 
         <% if allowed_to?(:edit, :plan, plan: @plan) %>
           <%= link_to t("edit", scope:"decidim.plans.plans.show"), edit_plan_path(@plan), class: "button secondary hollow expanded button--sc mt-s", id: "plan_edit" %>
+        <% elsif @plan.editable_by?(current_user) && @plan.waiting_for_evaluation? %>
+          <span class="button secondary hollow expanded button--sc mt-s disabled" data-open="evaluationModal">
+            <%= t("edit", scope:"decidim.plans.plans.show") %>
+          </span>
+          <p><%= t("plan_waiting_for_evaluation", scope:"decidim.plans.plans.show") %></p>
         <% end %>
         <% if allowed_to?(:close, :plan, plan: @plan) && !@plan.closed? %>
           <%= link_to t("close", scope:"decidim.plans.plans.show"), close_plan_path(@plan), method: :post, class: "button secondary hollow expanded button--sc mt-s", id: "plan_close", data: { confirm: t("close_confirm", scope:"decidim.plans.plans.show") } %>
@@ -136,3 +141,6 @@
     url: decidim.report_path(sgid: @plan.to_sgid.to_s)
   }
 %>
+<% if @plan.editable_by?(current_user) && @plan.waiting_for_evaluation? %>
+  <%= render partial: "evaluation_modal" %>
+<% end %>

@@ -36,7 +36,15 @@ module Decidim
           @current_user,
           visibility: "public-only"
         ) do
-          @plan.update closed_at: nil
+          # Unless the plan has already been answered, change the state back to
+          # "open".
+          state = @plan.state
+          state = "open" unless @plan.answered?
+
+          @plan.update!(
+            state: state,
+            closed_at: nil
+          )
         end
       end
     end

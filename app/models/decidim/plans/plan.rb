@@ -106,6 +106,14 @@ module Decidim
         closed_at.present?
       end
 
+      # Public: Checks if the plan has been closed AND not yet answered. This is
+      #         interpreted as the plan waiting to be evaluated.
+      #
+      # Returns Boolean.
+      def waiting_for_evaluation?
+        closed? && !answered?
+      end
+
       # Public: Checks if the organization has given an answer for the plan.
       #
       # Returns Boolean.

@@ -40,7 +40,7 @@
       <%= icon_link_to "pencil", edit_plan_path(plan), t("actions.edit_plan", scope: "decidim.plans"), class: "action-icon--edit-plan" %>
     <% end %>
 
-    <% if allowed_to? :close, :plan, plan: plan %>
+    <% if !plan.answered? && allowed_to?(:close, :plan, plan: plan) %>
       <% if plan.closed? %>
         <%= icon_link_to "action-undo", reopen_plan_path(plan), t("actions.reopen_plan", scope: "decidim.plans"), method: :post, class: "action-icon--reopen-plan" %>
       <% else %>

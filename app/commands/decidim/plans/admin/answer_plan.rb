@@ -39,7 +39,10 @@ module Decidim
             plan,
             form.current_user
           ) do
+            closed_at = plan.closed_at || Time.current
+
             plan.update!(
+              closed_at: closed_at,
               state: @form.state,
               answer: @form.answer,
               answered_at: Time.current

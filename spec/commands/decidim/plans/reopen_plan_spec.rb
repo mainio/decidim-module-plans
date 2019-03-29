@@ -14,9 +14,28 @@ describe Decidim::Plans::ReopenPlan do
         described_class.new(plan, user)
       end
 
-      it "broadcasts ok" do
-        expect { subject.call }.to broadcast(:ok)
-        expect(plan.closed_at).to be_nil
+      context "with unanswered plan" do
+        it "broadcasts ok" do
+          expect { subject.call }.to broadcast(:ok)
+          expect(plan.closed_at).to be_nil
+          expect(plan.state).to eq("open")
+        end
+      end
+
+      context "with answered plan" do
+        let(:plan) do
+          create(
+            :plan,
+            component: component,
+            users: [user],
+            state: "accepted",
+            answered_at: Time.current
+          )
+        end
+
+        it "does not change state" do
+          expect { subject.call }.not_to change(plan, :state)
+        end
       end
     end
 

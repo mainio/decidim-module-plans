@@ -58,6 +58,7 @@ describe Decidim::Plans::Admin::AnswerPlan do
         expect do
           command.call
         end.to change(plan, :answer).and change(plan, :answered_at)
+          .and change(plan, :closed_at)
       end
     end
   end
