@@ -191,6 +191,11 @@ sv:
           discard: Radera utkastet
           discard_confirmation: Är du säker på att du vill radera utkastet?
           update: Uppdatera
+        evaluation_modal:
+          button_text: OK
+          close: Close modal
+          description: The plan is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
+          title: The plan is being evaluated
         preview:
           modify: Redigera
           publish: Publicera
@@ -257,6 +262,7 @@ sv:
           plan_accepted_reason: 'Planen har godkänts eftersom:'
           plan_in_evaluation_reason: Planen bedöms
           plan_rejected_reason: 'Planen har avslagits eftersom:'
+          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
           publish: Publicera
           publish_info: Publicera detta utkast eller
           published_proposal: publicerad plan
