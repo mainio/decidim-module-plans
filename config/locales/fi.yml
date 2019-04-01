@@ -58,10 +58,17 @@ fi:
     plans:
       actions:
         answer: Vastaa
+        back: Back
+        confirm_destroy: Are you sure you want to delete this?
         close_plan: Merkitse valmiiksi
+        destroy: Delete
+        edit: Edit
         edit_plan: Muokkaa
         export_budgets: Muunna projekteiksi
+        manage_tags: Manage tags
         new: Tee uusi suunnitelma
+        new_tag: New tag
+        plan_taggings: Tags
         reopen_plan: Avaa muokattavaksi
         sections: Osiot
         title: Toiminnot
@@ -93,7 +100,7 @@ fi:
             title: Muokkaa
             update: Päivitä
           form:
-            attachment_legend: "Lisää liite"
+            attachment_legend: Lisää liite
             select_a_category: Valitse kategoria
           index:
             draft_plans: Luonnoksia
@@ -103,6 +110,14 @@ fi:
           new:
             create: Luo
             title: Tee uusi suunnitelma
+          taggings:
+            no_results: "Create new tag: %{name}"
+            search: Search
+            title: Tags
+            update: Update
+          update_taggings:
+            invalid: Error updating the tags.
+            success: Tags updated successfully.
         sections:
           form:
             add_section: Lisää osio
@@ -126,6 +141,27 @@ fi:
             body: Runkoteksti
             created_at: Luontipäivä
             plans: Suunnitelmat
+        tags:
+          create:
+            error: Failed to create.
+            success: Created successfully.
+          destroy:
+            error: Error deleting.
+            success: Deleted successfully.
+          edit:
+            title: Edit tag
+            update: Update
+          form:
+            tags: Tags
+          index:
+            tags: Tags
+            title: Manage tags
+          new:
+            create: Create
+            title: New tag
+          update:
+            invalid: Error updating.
+            success: Updated successfully.
       admin_log:
         plan:
           answer: "%{user_name} vastasi sisältöön %{resource_name} osallisuustilassa %{space_name}."
@@ -173,7 +209,13 @@ fi:
             published_at: Julkaisuajankohta
             scope: Teema
             state: Tila
+            tags: Tags
             title: Otsikko
+        plan_tags:
+          fields:
+            id: ID
+            name: Name
+            taggings_count: Number of uses
       plans:
         attached_proposals:
           attached_proposals: Liitetyt ehdotukset
@@ -214,6 +256,8 @@ fi:
           related_to: Liittyy kohteeseen
           search: Hae
           state: Tila
+          tag: Tags
+          tag_prompt: Select tags
           voted: Kannatettu
         filters_small_view:
           close_modal: Sulje ikkuna
@@ -221,7 +265,7 @@ fi:
           filter_by: Suodata
           unfold: Avaa
         form:
-          attachment_legend: "Lisää liite"
+          attachment_legend: Lisää liite
           select_a_category: Valitse kategoria
         index:
           new_plan: Uusi suunnitelma
