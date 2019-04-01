@@ -1,0 +1,67 @@
+<div class="card" id="add-translations-search">
+  <div class="card-divider">
+    <h2 class="card-title flex--sbc">
+      <div>
+        <%= link_to "#{translated_attribute(plan.title)}", plans_path %>
+        &gt;
+        <%= t(".title") %>
+      </div>
+
+      <div class="flex--cc flex-gap--1">
+        <%= link_to t("actions.back", scope: "decidim.plans"), plans_path, class: "button hollow tiny button--simple" %>
+        <%= link_to t("actions.manage_tags", scope: "decidim.plans"), plan_tags_path(plan), class: "button tiny button--simple" if allowed_to? :create, :plan_tags %>
+      </div>
+    </h2>
+  </div>
+  <div class="card-section">
+    <div class="filters row" id="add-tags-search">
+      <div class="column medium-4">
+        <%= form_tag plan_tags_path(plan), method: :get do %>
+          <div class="filters__search">
+            <%= search_field_tag :term, nil, label: false, id: "data_picker-autocomplete", class: "input-group-field", placeholder: t(".search"), data: {
+              no_results_text: t(".no_results", name: "{{term}}"),
+              no_results_url: "#{new_plan_tag_path(plan, name: '', back_to_plan: 1)}{{term}}"
+            } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= decidim_form_for(@form, url: update_taggings_plan_path(plan), html: { class: "form translations-form update_taggings plan_taggings_form_admin" }) do |f| %>
+  <div class="card hide" id="plan-tags-results" data-results="<%= plan.tags.collect { |t| [t.id, translated_attribute(t.name)] } %>">
+    <div class="card-section">
+      <div class="table-scroll">
+        <script type="text/template" class="decidim-template">
+          <tr>
+            <td>{{tag_id}}</td>
+            <td>{{tag_name}}</td>
+            <td>
+              <input type="hidden" name="tags[]" value="{{tag_id}}">
+              <%= icon_link_to "circle-x", "#", t("actions.destroy", scope: "decidim.plans"), class: "remove-tagging action-icon--remove" %>
+            </td>
+          </tr>
+        </script>
+
+        <table class="table-list">
+          <thead>
+            <tr>
+              <th><%= t("models.plan_tags.fields.id", scope: "decidim.plans") %></th>
+              <th><%= t("models.plan_tags.fields.name", scope: "decidim.plans") %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="button--double form-general-submit">
+    <%= f.submit t(".update") %>
+  </div>
+<% end %>
+
+<%= javascript_include_tag "decidim/plans/admin/plans" %>

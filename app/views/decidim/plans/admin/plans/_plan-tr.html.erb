@@ -20,6 +20,13 @@
     </td>
   <% end %>
   <td>
+    <% plan.tags.each do |tag| %>
+      <span class="label secondary">
+        <%= translated_attribute(tag.name) %>
+      </span>
+    <% end %>
+  </td>
+  <td>
     <strong class="<%= plan_state_css_class plan.state %>">
       <%= humanize_plan_state plan.state %>
     </strong>
@@ -46,6 +53,10 @@
       <% else %>
         <%= icon_link_to "check", close_plan_path(plan), t("actions.close_plan", scope: "decidim.plans"), method: :post, class: "action-icon--close-plan" %>
       <% end %>
+    <% end %>
+
+    <% if allowed_to? :edit_taggings, :plan, plan: plan %>
+      <%= icon_link_to "tag", taggings_plan_path(plan), t("actions.plan_taggings", scope: "decidim.plans"), class: "action-icon--plan-taggings" %>
     <% end %>
 
     <% if allowed_to? :create, :plan_answer %>

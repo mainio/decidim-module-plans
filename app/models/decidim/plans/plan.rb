@@ -37,6 +37,12 @@ module Decidim
 
       has_many :contents, foreign_key: :decidim_plan_id, dependent: :destroy
 
+      has_many :taggings,
+               class_name: "Decidim::Plans::PlanTagging",
+               foreign_key: :decidim_plan_id,
+               dependent: :destroy
+      has_many :tags, through: :taggings
+
       scope :open, -> { where(state: "open") }
       scope :accepted, -> { where(state: "accepted") }
       scope :rejected, -> { where(state: "rejected") }

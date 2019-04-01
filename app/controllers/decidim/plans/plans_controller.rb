@@ -15,7 +15,7 @@ module Decidim
       include Orderable
       include Paginable
 
-      helper_method :attached_proposals_picker_field
+      helper_method :attached_proposals_picker_field, :available_tags
 
       before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy]
       before_action :check_draft, only: [:new]
@@ -185,6 +185,10 @@ module Decidim
         redirect_to preview_plan_path(@plan)
       end
 
+      def available_tags
+        @available_tags ||= ComponentPlanTags.new(current_component).query
+      end
+
       def search_klass
         PlanSearch
       end
@@ -197,7 +201,8 @@ module Decidim
           category_id: "",
           state: "except_rejected",
           scope_id: nil,
-          related_to: ""
+          related_to: "",
+          tag_id: []
         }
       end
 

@@ -28,5 +28,9 @@
     <%= form.categories_select :category_id, current_component.categories, legend_title: t(".category"), disable_parents: false, label: false, prompt: t(".category_prompt") %>
   <% end %>
 
+  <% if available_tags.any? %>
+    <%= form.collection_check_boxes :tag_id, available_tags, :id, ->(p) { translated_attribute(p.name) }, legend_title: t(".tag"), disable_parents: false, label: false, prompt: t(".tag_prompt") %>
+  <% end %>
+
   <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
 <% end %>

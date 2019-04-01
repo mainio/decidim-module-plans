@@ -77,6 +77,7 @@ FactoryBot.define do
       plan_proposals { nil }
       # user_groups correspondence to users is by sorting order
       user_groups { [] }
+      tags { [] }
     end
 
     title { generate_localized_title }
@@ -94,6 +95,9 @@ FactoryBot.define do
         proposal_component = create(:proposal_component, participatory_space: plan.component.participatory_space)
         proposals = evaluator.plan_proposals || [create(:proposal, component: proposal_component)]
         plan.attached_proposals = proposals.map { |p| create(:attached_proposal, plan: plan, proposal: p) }
+      end
+      if evaluator.tags && evaluator.tags.count > 0
+        plan.update!(tags: evaluator.tags)
       end
     end
 
@@ -149,5 +153,10 @@ FactoryBot.define do
   factory :plan_collaborator_request, class: "Decidim::Plans::PlanCollaboratorRequest" do
     plan
     user
+  end
+
+  factory :tag, class: "Decidim::Plans::Tag" do
+    name { generate_localized_title }
+    organization { create(:organization) }
   end
 end

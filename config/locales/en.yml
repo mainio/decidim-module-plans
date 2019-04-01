@@ -59,10 +59,17 @@ en:
     plans:
       actions:
         answer: Answer
+        back: Back
+        confirm_destroy: Are you sure you want to delete this?
         close_plan: Mark as done
+        destroy: Delete
+        edit: Edit
         edit_plan: Edit
         export_budgets: Convert to projects
+        manage_tags: Manage tags
         new: Submit new plan
+        new_tag: New tag
+        plan_taggings: Tags
         reopen_plan: Open for editing
         sections: Sections
         title: Actions
@@ -94,7 +101,7 @@ en:
             title: Edit
             update: Update
           form:
-            attachment_legend: "Add an attachment"
+            attachment_legend: Add an attachment
             select_a_category: Select a category
           index:
             draft_plans: Drafts
@@ -104,6 +111,14 @@ en:
           new:
             create: Create
             title: Submit new plan
+          taggings:
+            no_results: "Create new tag: %{name}"
+            search: Search
+            title: Tags
+            update: Update
+          update_taggings:
+            invalid: Error updating the tags.
+            success: Tags updated successfully.
         sections:
           form:
             add_section: Add section
@@ -127,6 +142,27 @@ en:
             body: Body
             created_at: Creation date
             plans: Plans
+        tags:
+          create:
+            error: Failed to create.
+            success: Created successfully.
+          destroy:
+            error: Error deleting.
+            success: Deleted successfully.
+          edit:
+            title: Edit tag
+            update: Update
+          form:
+            tags: Tags
+          index:
+            tags: Tags
+            title: Manage tags
+          new:
+            create: Create
+            title: New tag
+          update:
+            invalid: Error updating.
+            success: Updated successfully.
       admin_log:
         plan:
           answer: "%{user_name} answered %{resource_name} on the %{space_name}
@@ -178,7 +214,13 @@ en:
             published_at: Published at
             scope: Scope
             state: State
+            tags: Tags
             title: Title
+        plan_tags:
+          fields:
+            id: ID
+            name: Name
+            taggings_count: Number of uses
       plans:
         attached_proposals:
           attached_proposals: Attached proposals
@@ -221,6 +263,8 @@ en:
           related_to: Related to
           search: Search
           state: State
+          tag: Tags
+          tag_prompt: Select tags
           voted: Voted
         filters_small_view:
           close_modal: Close modal
@@ -228,7 +272,7 @@ en:
           filter_by: Filter by
           unfold: Unfold
         form:
-          attachment_legend: "Add an attachment"
+          attachment_legend: Add an attachment
           select_a_category: Select a category
         index:
           new_plan: New plan

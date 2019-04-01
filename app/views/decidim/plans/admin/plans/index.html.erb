@@ -30,6 +30,10 @@
             <% end %>
 
             <th>
+              <%= t("models.plan.fields.tags", scope: "decidim.plans")%>
+            </th>
+
+            <th>
               <%= sort_link(query, :state, t("models.plan.fields.state", scope: "decidim.plans") ) %>
             </th>
 

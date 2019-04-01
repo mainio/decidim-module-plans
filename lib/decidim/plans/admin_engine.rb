@@ -13,7 +13,10 @@ module Decidim
         resources :plans, only: [:index, :new, :create, :edit, :update] do
           get :search_proposals
           resources :plan_answers, only: [:edit, :update]
+          resources :tags, except: [:show]
           member do
+            get :taggings
+            patch :update_taggings
             post :close
             post :reopen
           end

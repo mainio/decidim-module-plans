@@ -25,11 +25,26 @@ module Decidim
       describe "GET index" do
         let(:component) { create(:plan_component) }
 
+        let(:available_tags) { create_list(:tag, 5, organization: component.organization) }
+        let!(:other_tags) { create_list(:tag, 5, organization: component.organization) }
+
+        let!(:plans) { create_list(:plan, 10, component: component, tags: available_tags) }
+
+        render_views
+
+        before do
+          set_default_url_options
+        end
+
         it "sorts plans by search defaults" do
           get :index
           expect(response).to have_http_status(:ok)
           expect(subject).to render_template(:index)
           expect(assigns(:plans).order_values).to eq(["RANDOM()"])
+          expect(assigns(:plans).count).to eq(plans.count)
+          expect(
+            assigns(:available_tags).collect { |t| t.id }
+          ).to match_array(available_tags.collect { |t| t.id })
         end
       end
 

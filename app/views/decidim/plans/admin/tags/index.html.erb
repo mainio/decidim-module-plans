@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title flex--sbc">
+      <div>
+        <%= link_to "#{translated_attribute(plan.title)}", plans_path %>
+        &gt;
+        <%= link_to t(".tags"), taggings_plan_path(plan) %>
+        &gt;
+        <%= t(".title") %>
+      </div>
+
+      <div class="flex--cc flex-gap--1">
+        <%= link_to t("actions.back", scope: "decidim.plans"), taggings_plan_path(plan), class: "button hollow tiny button--simple" %>
+        <%= link_to t("actions.new_tag", scope: "decidim.plans"), new_plan_tag_path(plan), class: "button tiny button--simple" if allowed_to? :create, :plan_tags %>
+      </div>
+    </h2>
+  </div>
+
+  <div class="card-section">
+    <div class="table-scroll">
+      <table class="table-list">
+        <thead>
+          <tr>
+            <th><%= t("models.plan_tags.fields.id", scope: "decidim.plans") %></th>
+            <th><%= t("models.plan_tags.fields.name", scope: "decidim.plans") %></th>
+            <th><%= t("models.plan_tags.fields.taggings_count", scope: "decidim.plans") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tags.each do |tag| %>
+            <tr>
+              <td><%= tag.id %></td>
+              <td><%= translated_attribute(tag.name) %></td>
+              <td><%= tag.plan_taggings_count %></td>
+              <td class="table-list__actions">
+                <% if allowed_to? :edit, :plan_tag, tag: tag %>
+                  <%= icon_link_to "pencil", edit_plan_tag_path(plan, tag), t("actions.edit", scope: "decidim.plans"), class: "action-icon--edit" %>
+                <% end %>
+
+                <% if allowed_to? :destroy, :plan_tag, tag: tag %>
+                  <%= icon_link_to "circle-x", plan_tag_path(plan, tag), t("actions.destroy", scope: "decidim.plans"), method: :delete, class: "action-icon--remove", data: { confirm: t("actions.confirm_destroy", scope: "decidim.plans") } %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate tags, theme: "decidim" %>
+    </div>
+  </div>
+</div>

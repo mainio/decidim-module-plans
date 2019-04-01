@@ -11,7 +11,7 @@ module Decidim
         helper Plans::ApplicationHelper
         helper Plans::AttachmentsHelper
         helper Plans::RemainingCharactersHelper
-        helper_method :plans, :query, :counts, :form_presenter, :attached_proposals_picker_field
+        helper_method :plans, :plan, :query, :counts, :form_presenter, :attached_proposals_picker_field
 
         def new
           enforce_permission_to :create, :plans
@@ -85,6 +85,29 @@ module Decidim
             on(:invalid) do
               flash.now[:alert] = t("reopen.error", scope: "decidim.plans.plans.plan")
               redirect_to plans_path
+            end
+          end
+        end
+
+        def taggings
+          enforce_permission_to :edit_taggings, :plan, plan: plan
+
+          @form = form(Admin::TaggingsForm).from_model(plan)
+        end
+
+        def update_taggings
+          enforce_permission_to :edit_taggings, :plan, plan: plan
+
+          @form = form(Admin::TaggingsForm).from_params(params)
+          Admin::UpdatePlanTaggings.call(@form, plan) do
+            on(:ok) do
+              flash[:notice] = I18n.t("plans.update_taggings.success", scope: "decidim.plans.admin")
+              redirect_to plans_path
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = I18n.t("plans.update_taggings.invalid", scope: "decidim.plans.admin")
+              render :taggings
             end
           end
         end

@@ -76,6 +76,12 @@ module Decidim
         query.where(id: from).or(query.where(id: to))
       end
 
+      def search_tag_id
+        return query unless tag_id.is_a? Array
+
+        query.joins(:tags).where(decidim_plans_tags: { id: tag_id })
+      end
+
       private
 
       # Internal: builds the needed query to search for a text in the organization's

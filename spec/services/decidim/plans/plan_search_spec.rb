@@ -25,7 +25,8 @@ module Decidim
             origin: origin,
             related_to: related_to,
             scope_id: scope_id,
-            current_user: user
+            current_user: user,
+            tag_id: tag_id
           ).results
         end
 
@@ -35,6 +36,7 @@ module Decidim
         let(:related_to) { nil }
         let(:state) { "not_withdrawn" }
         let(:scope_id) { nil }
+        let(:tag_id) { [] }
 
         it "only includes plans from the given component" do
           other_plan = create(:plan)
@@ -206,6 +208,62 @@ module Decidim
               related_plan2.link_resources([dummy_resource], "included_plans")
 
               expect(subject).to match_array([related_plan, related_plan2])
+            end
+          end
+        end
+
+        describe "tag_id filter" do
+          context "when tag_id is empty" do
+            let(:other_component) { create(:component, manifest_name: "plans", organization: organization) }
+
+            let!(:plans) { create_list(:plan, 10, component: component) }
+            let!(:other_plans) { create_list(:plan, 10, component: other_component) }
+
+            it "does not filter by tags" do
+              expect(subject.count).to eq(11)
+            end
+          end
+
+          context "when tag_id is not set" do
+            let(:other_component) { create(:component, manifest_name: "plans", organization: organization) }
+            let(:tag_id) { nil }
+
+            let!(:plans) { create_list(:plan, 10, component: component) }
+            let!(:other_plans) { create_list(:plan, 10, component: other_component) }
+
+            it "does not filter by tags" do
+              expect(subject.count).to eq(11)
+            end
+          end
+
+          context "when tag_id is set" do
+            let(:other_component) { create(:component, manifest_name: "plans", organization: organization) }
+            let(:tag) { create(:tag, organization: organization) }
+            let(:loose_tag) { create(:tag, organization: organization) }
+            let(:tag_id) { [tag.id] }
+
+            let!(:tagged_plans) { create_list(:plan, 10, component: component, tags: [tag]) }
+            let!(:not_tagged_plans) { create_list(:plan, 10, component: component) }
+            let!(:other_plans) { create_list(:plan, 10, component: other_component) }
+
+            it "does filters by tags" do
+              expect(subject.count).to eq(10)
+            end
+          end
+
+          context "when tag_id is multiple tags" do
+            let(:other_component) { create(:component, manifest_name: "plans", organization: organization) }
+            let(:tag1) { create(:tag, organization: organization) }
+            let(:tag2) { create(:tag, organization: organization) }
+            let(:loose_tag) { create(:tag, organization: organization) }
+            let(:tag_id) { [tag1.id, tag2.id] }
+
+            let!(:tagged_plans) { create_list(:plan, 10, component: component, tags: [tag1]) }
+            let!(:other_tagged_plans) { create_list(:plan, 10, component: component, tags: [tag2]) }
+            let!(:other_plans) { create_list(:plan, 10, component: other_component) }
+
+            it "does filters by tags" do
+              expect(subject.count).to eq(20)
             end
           end
         end

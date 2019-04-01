@@ -35,6 +35,31 @@ module Decidim
         it { is_expected.to be_rejected }
       end
 
+      context "when it has taggings" do
+        let(:tags) { create_list(:tag, 10, organization: organization) }
+        let(:plan) { build(:plan, component: component, tags: tags) }
+
+        it "has the taggings" do
+          expect(plan.taggings.count).to eq(tags.count)
+        end
+
+        it "has the tags" do
+          expect(plan.tags.pluck(:id)).to eq(tags.pluck(:id))
+        end
+
+        it "removes the taggings when the plan is destroyed" do
+          plan.save!
+
+          expect(Decidim::Plans::Tag.count).to eq(tags.count)
+          expect(Decidim::Plans::PlanTagging.count).to eq(tags.count)
+
+          plan.destroy!
+
+          expect(Decidim::Plans::Tag.count).to eq(tags.count)
+          expect(Decidim::Plans::PlanTagging.count).to eq(0)
+        end
+      end
+
       describe "#users_to_notify_on_comment_created" do
         let!(:follows) { create_list(:follow, 3, followable: subject) }
         let(:followers) { follows.map(&:user) }

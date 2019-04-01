@@ -119,6 +119,36 @@ module Decidim
         end
       end
 
+      describe "GET taggings" do
+        let(:component) { create(:plan_component) }
+        let(:plan) { create(:plan, component: component, users: [user]) }
+
+        it "renders the taggings list" do
+          get :taggings, params: params.merge(id: plan.id)
+          expect(response).to have_http_status(:ok)
+          expect(subject).to render_template(:taggings)
+        end
+      end
+
+      describe "PATCH update_taggings" do
+        let(:component) { create(:plan_component) }
+        let(:plan) { create(:plan, component: component, users: [user]) }
+        let(:tags) { create_list(:tag, 5, organization: component.organization) }
+
+        before do
+          set_default_url_options
+        end
+
+        it "updates the taggings" do
+          patch :update_taggings, params: params.merge(
+            id: plan.id,
+            tags: tags.collect { |t| t.id }
+          )
+          expect(response).to have_http_status(:found)
+          expect(Decidim::Plans::Plan.find(plan.id).tags).to eq(tags)
+        end
+      end
+
       def set_default_url_options
         allow(subject).to receive(:default_url_options).and_return(
           participatory_process_slug: component.participatory_space.slug,
