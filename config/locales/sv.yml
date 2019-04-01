@@ -58,17 +58,17 @@ sv:
     plans:
       actions:
         answer: Svara
-        back: Back
-        confirm_destroy: Are you sure you want to delete this?
+        back: Tillbaka
+        confirm_destroy: Är du säker på att du vill ta bort objektet?
         close_plan: Markera som gjort
-        destroy: Delete
-        edit: Edit
+        destroy: Ta bort
+        edit: Redigera
         edit_plan: Redigera
         export_budgets: Konvertera till projekt
-        manage_tags: Manage tags
+        manage_tags: Hantera taggar
         new: Gör ny plan
-        new_tag: New tag
-        plan_taggings: Tags
+        new_tag: Ny tagg
+        plan_taggings: Taggar
         reopen_plan: Öppna för redigering
         sections: Avsnitt
         title: Funktioner
@@ -111,13 +111,13 @@ sv:
             create: Skapa
             title: Gör ny plan
           taggings:
-            no_results: "Create new tag: %{name}"
-            search: Search
-            title: Tags
-            update: Update
+            no_results: "Skapa ny tagg: %{name}"
+            search: Sök
+            title: Taggar
+            update: Uppdatera
           update_taggings:
-            invalid: Error updating the tags.
-            success: Tags updated successfully.
+            invalid: Fel vid uppdatering av taggarna.
+            success: Taggar uppdaterats.
         sections:
           form:
             add_section: Lägg till avsnitt
@@ -143,25 +143,25 @@ sv:
             plans: Planer
         tags:
           create:
-            error: Failed to create.
-            success: Created successfully.
+            error: Det gick inte att skapa.
+            success: Skapats.
           destroy:
-            error: Error deleting.
-            success: Deleted successfully.
+            error: Fel vid borttagning.
+            success: Innehållet har raderats.
           edit:
-            title: Edit tag
-            update: Update
+            title: Redigera tagg
+            update: Uppdatera
           form:
-            tags: Tags
+            tags: Taggar
           index:
-            tags: Tags
-            title: Manage tags
+            tags: Taggar
+            title: Hantera taggar
           new:
-            create: Create
-            title: New tag
+            create: Skapa
+            title: Ny tagg
           update:
-            invalid: Error updating.
-            success: Updated successfully.
+            invalid: Fel uppdatering.
+            success: Uppdaterats.
       admin_log:
         plan:
           answer: "%{user_name} svarade på innehållet %{resource_name} i delaktighetslokalen %{space_name}."
@@ -209,13 +209,13 @@ sv:
             published_at: Publikationsdatum
             scope: Tema
             state: Status
-            tags: Tags
+            tags: Taggar
             title: Rubrik
         plan_tags:
           fields:
             id: ID
-            name: Name
-            taggings_count: Number of uses
+            name: Namn
+            taggings_count: Antal användningsområden
       plans:
         attached_proposals:
           attached_proposals: Bifogade förslag
@@ -256,8 +256,8 @@ sv:
           related_to: Anknyter till
           search: Sök
           state: Status
-          tag: Tags
-          tag_prompt: Select tags
+          tag: Taggar
+          tag_prompt: Välj taggar
           voted: Understödd
         filters_small_view:
           close_modal: Stäng fönstret
