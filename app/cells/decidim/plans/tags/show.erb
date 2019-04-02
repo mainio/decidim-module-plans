@@ -1,0 +1,7 @@
+<%= content_tag :ul, class: tags_classes do %>
+  <%= cell("decidim/plans/tags", model).category %>
+
+  <%= cell("decidim/plans/tags", model).scope %>
+
+  <%= cell("decidim/plans/tags", model).taggings %>
+<% end %>

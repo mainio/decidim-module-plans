@@ -98,7 +98,7 @@
     <div class="section">
       <%== cell("decidim/plans/plan_m", @plan, full_badge: true).badge %>
       <%= render partial: "contents" %>
-      <%= cell "decidim/tags", @plan, context: { extra_classes: ["tags--plan"] } %>
+      <%= cell "decidim/plans/tags", @plan, context: { extra_classes: ["tags--plan"] } %>
     </div>
     <% if @plan.answered? && translated_attribute(@plan.answer).present? %>
       <% if @plan.accepted? %>
