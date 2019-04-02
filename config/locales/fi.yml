@@ -58,10 +58,17 @@ fi:
     plans:
       actions:
         answer: Vastaa
+        back: Takaisin
+        confirm_destroy: Oletko varma että haluat poistaa tämän kohteen?
         close_plan: Merkitse valmiiksi
+        destroy: Poista
+        edit: Muokkaa
         edit_plan: Muokkaa
         export_budgets: Muunna projekteiksi
+        manage_tags: Hallinnoi merkintöjä
         new: Tee uusi suunnitelma
+        new_tag: Uusi merkintä
+        plan_taggings: Merkinnät
         reopen_plan: Avaa muokattavaksi
         sections: Osiot
         title: Toiminnot
@@ -93,7 +100,7 @@ fi:
             title: Muokkaa
             update: Päivitä
           form:
-            attachment_legend: "Lisää liite"
+            attachment_legend: Lisää liite
             select_a_category: Valitse kategoria
           index:
             draft_plans: Luonnoksia
@@ -103,6 +110,14 @@ fi:
           new:
             create: Luo
             title: Tee uusi suunnitelma
+          taggings:
+            no_results: "Luo uusi merkintä: %{name}"
+            search: Hae
+            title: Merkinnät
+            update: Päivitä
+          update_taggings:
+            invalid: Virhe päivitettäessä merkintöjä.
+            success: Merkintöjen päivitys onnistui.
         sections:
           form:
             add_section: Lisää osio
@@ -126,6 +141,27 @@ fi:
             body: Runkoteksti
             created_at: Luontipäivä
             plans: Suunnitelmat
+        tags:
+          create:
+            error: Luonti epäonnistui.
+            success: Luonti onnistui.
+          destroy:
+            error: Virhe poistettaessa.
+            success: Poisto onnistui.
+          edit:
+            title: Muokkaa merkintää
+            update: Päivitä
+          form:
+            tags: Merkinnät
+          index:
+            tags: Merkinnät
+            title: Hallinnoi merkintöjä
+          new:
+            create: Luo
+            title: Uusi merkintä
+          update:
+            invalid: Virhe päivitettäessä.
+            success: Päivitys onnistui.
       admin_log:
         plan:
           answer: "%{user_name} vastasi sisältöön %{resource_name} osallisuustilassa %{space_name}."
@@ -173,7 +209,13 @@ fi:
             published_at: Julkaisuajankohta
             scope: Teema
             state: Tila
+            tags: Merkinnät
             title: Otsikko
+        plan_tags:
+          fields:
+            id: ID
+            name: Nimi
+            taggings_count: Käyttömäärä
       plans:
         attached_proposals:
           attached_proposals: Liitetyt ehdotukset
@@ -214,6 +256,8 @@ fi:
           related_to: Liittyy kohteeseen
           search: Hae
           state: Tila
+          tag: Merkinnät
+          tag_prompt: Valitse merkinnät
           voted: Kannatettu
         filters_small_view:
           close_modal: Sulje ikkuna
@@ -221,7 +265,7 @@ fi:
           filter_by: Suodata
           unfold: Avaa
         form:
-          attachment_legend: "Lisää liite"
+          attachment_legend: Lisää liite
           select_a_category: Valitse kategoria
         index:
           new_plan: Uusi suunnitelma

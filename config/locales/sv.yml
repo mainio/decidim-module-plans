@@ -58,10 +58,17 @@ sv:
     plans:
       actions:
         answer: Svara
+        back: Tillbaka
+        confirm_destroy: Är du säker på att du vill ta bort objektet?
         close_plan: Markera som gjort
+        destroy: Ta bort
+        edit: Redigera
         edit_plan: Redigera
         export_budgets: Konvertera till projekt
+        manage_tags: Hantera taggar
         new: Gör ny plan
+        new_tag: Ny tagg
+        plan_taggings: Taggar
         reopen_plan: Öppna för redigering
         sections: Avsnitt
         title: Funktioner
@@ -93,7 +100,7 @@ sv:
             title: Redigera
             update: Uppdatera
           form:
-            attachment_legend: "Lägg till bilaga"
+            attachment_legend: Lägg till bilaga
             select_a_category: Välj kategori
           index:
             draft_plans: Utkast
@@ -103,6 +110,14 @@ sv:
           new:
             create: Skapa
             title: Gör ny plan
+          taggings:
+            no_results: "Skapa ny tagg: %{name}"
+            search: Sök
+            title: Taggar
+            update: Uppdatera
+          update_taggings:
+            invalid: Fel vid uppdatering av taggarna.
+            success: Taggar uppdaterats.
         sections:
           form:
             add_section: Lägg till avsnitt
@@ -126,6 +141,27 @@ sv:
             body: Brödtext
             created_at: Skapats
             plans: Planer
+        tags:
+          create:
+            error: Det gick inte att skapa.
+            success: Skapats.
+          destroy:
+            error: Fel vid borttagning.
+            success: Innehållet har raderats.
+          edit:
+            title: Redigera tagg
+            update: Uppdatera
+          form:
+            tags: Taggar
+          index:
+            tags: Taggar
+            title: Hantera taggar
+          new:
+            create: Skapa
+            title: Ny tagg
+          update:
+            invalid: Fel uppdatering.
+            success: Uppdaterats.
       admin_log:
         plan:
           answer: "%{user_name} svarade på innehållet %{resource_name} i delaktighetslokalen %{space_name}."
@@ -173,7 +209,13 @@ sv:
             published_at: Publikationsdatum
             scope: Tema
             state: Status
+            tags: Taggar
             title: Rubrik
+        plan_tags:
+          fields:
+            id: ID
+            name: Namn
+            taggings_count: Antal användningsområden
       plans:
         attached_proposals:
           attached_proposals: Bifogade förslag
@@ -214,6 +256,8 @@ sv:
           related_to: Anknyter till
           search: Sök
           state: Status
+          tag: Taggar
+          tag_prompt: Välj taggar
           voted: Understödd
         filters_small_view:
           close_modal: Stäng fönstret
@@ -221,7 +265,7 @@ sv:
           filter_by: Filtrera
           unfold: Öppna
         form:
-          attachment_legend: "Lägg till bilaga"
+          attachment_legend: Lägg till bilaga
           select_a_category: Välj kategori
         index:
           new_plan: Ny plan
