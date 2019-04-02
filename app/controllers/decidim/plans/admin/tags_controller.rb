@@ -51,7 +51,7 @@ module Decidim
             on(:ok) do
               flash[:notice] = I18n.t("create.success", scope: i18n_flashes_scope)
 
-              return redirect_to taggings_plan_path(plan) if @form.back_to_plan
+              return redirect_to taggings_plan_path(plan) if @form.back_to_plan == true
 
               redirect_to plan_tags_path(plan)
             end

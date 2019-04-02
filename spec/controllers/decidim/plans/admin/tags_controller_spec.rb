@@ -79,6 +79,17 @@ module Decidim
 
               expect(flash[:notice]).not_to be_empty
               expect(response).to have_http_status(:found)
+              expect(subject).to redirect_to(plan_tags_path(plan))
+            end
+
+            context "with back_to_plan set to true" do
+              it "creates a tag and redirects back to the plan taggings" do
+                post :create, params: params.merge(back_to_plan: "true")
+
+                expect(flash[:notice]).not_to be_empty
+                expect(response).to have_http_status(:found)
+                expect(subject).to redirect_to(taggings_plan_path(plan))
+              end
             end
           end
         end
