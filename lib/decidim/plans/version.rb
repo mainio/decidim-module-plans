@@ -2,7 +2,7 @@
 
 module Decidim
   module Plans
-    VERSION = "0.16.7"
+    VERSION = "0.16.8"
     DECIDIM_VERSION = "~> 0.16.0"
   end
 end
