@@ -79,7 +79,16 @@ module Decidim
       def search_tag_id
         return query unless tag_id.is_a? Array
 
-        query.joins(:tags).where(decidim_plans_tags: { id: tag_id })
+        # Fetch the plan IDs as a separate query in order to avoid duplicate
+        # entries in the final result. We could also use `.distinct` on the
+        # main query but that would limit what the user could further on do with
+        # that query. Therefore, in this context it is safer to just fetch these
+        # in a completely separate query.
+        plan_ids = Plan.joins(:tags).where(
+          decidim_plans_tags: { id: tag_id }
+        ).distinct.pluck(:id)
+
+        query.where(id: plan_ids)
       end
 
       private

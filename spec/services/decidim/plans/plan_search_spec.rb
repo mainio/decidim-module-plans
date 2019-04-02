@@ -266,6 +266,23 @@ module Decidim
               expect(subject.count).to eq(20)
             end
           end
+
+          context "when tag_id is multiple tags with plans matching all the tags" do
+            let(:other_component) { create(:component, manifest_name: "plans", organization: organization) }
+            let(:tag1) { create(:tag, organization: organization) }
+            let(:tag2) { create(:tag, organization: organization) }
+            let(:loose_tag) { create(:tag, organization: organization) }
+            let(:tag_id) { [tag1.id, tag2.id] }
+
+            let!(:tagged_plans) { create_list(:plan, 10, component: component, tags: [tag1]) }
+            let!(:other_tagged_plans) { create_list(:plan, 10, component: component, tags: [tag2]) }
+            let!(:both_tagged_plans) { create_list(:plan, 10, component: component, tags: [tag1, tag2]) }
+            let!(:other_plans) { create_list(:plan, 10, component: other_component) }
+
+            it "does filters by tags" do
+              expect(subject.count).to eq(30)
+            end
+          end
         end
       end
     end
