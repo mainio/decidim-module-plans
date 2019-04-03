@@ -5,10 +5,12 @@
       &gt;
       <%= link_to t(".tags"), taggings_plan_path(plan) %>
       &gt;
+      <%= link_to t("decidim.plans.admin.tags.index.title"), plan_tags_path(plan) %>
+      &gt;
       <%= title %>
 
       <div class="button--title">
-        <%= link_to t("actions.back", scope: "decidim.plans"), taggings_plan_path(plan), class: "button hollow tiny button--simple" %>
+        <%= link_to t("actions.back", scope: "decidim.plans"), plan_tags_path(plan), class: "button hollow tiny button--simple" %>
       </div>
     </h2>
   </div>
