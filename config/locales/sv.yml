@@ -13,6 +13,8 @@ sv:
         state: Status
         title: Rubrik
         user_group_id: Skapa som användare
+      tag:
+        name: Name
     errors:
       models:
         attachment:
