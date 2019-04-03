@@ -14,7 +14,7 @@ sv:
         title: Rubrik
         user_group_id: Skapa som användare
       tag:
-        name: Name
+        name: Namn
     errors:
       models:
         attachment:
