@@ -96,9 +96,7 @@ FactoryBot.define do
         proposals = evaluator.plan_proposals || [create(:proposal, component: proposal_component)]
         plan.attached_proposals = proposals.map { |p| create(:attached_proposal, plan: plan, proposal: p) }
       end
-      if evaluator.tags && evaluator.tags.count > 0
-        plan.update!(tags: evaluator.tags)
-      end
+      plan.update!(tags: evaluator.tags) if evaluator.tags && evaluator.tags.count.positive?
     end
 
     trait :published do
