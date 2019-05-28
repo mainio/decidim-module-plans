@@ -41,7 +41,6 @@ module Decidim
             transaction do
               update_plan
               update_plan_contents
-              update_plan_author
               update_attachments if process_attachments?
             end
           end
@@ -71,13 +70,6 @@ module Decidim
               @plan.contents
             )
           end
-        end
-
-        def update_plan_author
-          plan.coauthorships.clear
-          plan.add_coauthor(form.author)
-          plan.save!
-          plan
         end
 
         def attributes

@@ -72,6 +72,12 @@ describe Decidim::Plans::Admin::UpdatePlan do
         expect(action_log.version).to be_present
         expect(action_log.version.event).to eq "update"
       end
+
+      it "does not update the plan authors" do
+        expect do
+          command.call
+        end.not_to change(plan, :authors)
+      end
     end
   end
 end
