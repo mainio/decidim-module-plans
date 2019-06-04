@@ -5,6 +5,10 @@ require "spec_helper"
 describe Decidim::Plans::PlanActivityCell, type: :cell do
   subject { my_cell }
 
+  # Required for the path helpers to work in the cell (which is needed for the
+  # title call)
+  let(:controller_class) { Decidim::Plans::PlansController }
+
   let(:my_cell) { cell("decidim/plans/plan_activity", model) }
 
   let(:plan) { create(:plan) }
