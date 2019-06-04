@@ -219,8 +219,6 @@ sv:
             name: Namn
             taggings_count: Antal användningsområden
       plans:
-        attached_proposals:
-          attached_proposals: Bifogade förslag
         count:
           plans_count:
             one: "%{count} plan"
@@ -375,6 +373,9 @@ sv:
           version_number_out_of_total: "%{current_version} / %{total_count}"
         version:
           version_index: Version %{index}
+    resource_links:
+      included_proposals:
+        plan_proposal: Bifogade förslag
     scopes:
       global: Allmän
     events:

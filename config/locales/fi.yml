@@ -219,8 +219,6 @@ fi:
             name: Nimi
             taggings_count: Käyttömäärä
       plans:
-        attached_proposals:
-          attached_proposals: Liitetyt ehdotukset
         count:
           plans_count:
             one: "%{count} suunnitelma"
@@ -375,6 +373,9 @@ fi:
           version_number_out_of_total: "%{current_version} / %{total_count}"
         version:
           version_index: Versio %{index}
+    resource_links:
+      included_proposals:
+        plan_proposal: Liitetyt ehdotukset
     scopes:
       global: Yleinen
     events:
