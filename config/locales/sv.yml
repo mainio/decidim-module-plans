@@ -375,7 +375,7 @@ sv:
           version_index: Version %{index}
     resource_links:
       included_proposals:
-        plan_proposal: Related proposals
+        plan_proposal: Bifogade förslag
     scopes:
       global: Allmän
     events:
