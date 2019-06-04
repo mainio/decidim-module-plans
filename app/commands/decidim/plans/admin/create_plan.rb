@@ -34,6 +34,7 @@ module Decidim
             transaction do
               create_plan
               create_plan_contents
+              link_proposals
               update_attachments if process_attachments?
               send_notification
             end
@@ -57,7 +58,6 @@ module Decidim
             )
             plan.coauthorships.build(author: form.author)
             plan.save!
-            plan.proposals << form.proposals
             plan
           end
 
@@ -74,6 +74,10 @@ module Decidim
           end
         end
 
+        def link_proposals
+          plan.link_resources(proposals, "included_proposals")
+        end
+
         def attributes
           {
             title: form.title,
@@ -83,6 +87,12 @@ module Decidim
             state: "open",
             published_at: Time.current
           }
+        end
+
+        def proposals
+          @proposals ||= plan.sibling_scope(:proposals).where(
+            id: @form.proposal_ids
+          )
         end
 
         def send_notification

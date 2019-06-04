@@ -35,6 +35,7 @@ module Decidim
           transaction do
             create_plan
             create_plan_contents
+            link_proposals
             update_attachments if process_attachments?
           end
         end
@@ -61,7 +62,6 @@ module Decidim
           )
           plan.coauthorships.build(author: @current_user, user_group: @form.user_group)
           plan.save!
-          plan.proposals << form.proposals
           plan
         end
 
@@ -78,12 +78,22 @@ module Decidim
         end
       end
 
+      def link_proposals
+        plan.link_resources(proposals, "included_proposals")
+      end
+
       def user_group
         @user_group ||= Decidim::UserGroup.find_by(organization: organization, id: form.user_group_id)
       end
 
       def organization
         @organization ||= @current_user.organization
+      end
+
+      def proposals
+        @proposals ||= plan.sibling_scope(:proposals).where(
+          id: @form.proposal_ids
+        )
       end
     end
   end

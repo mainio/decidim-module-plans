@@ -42,6 +42,7 @@ module Decidim
           transaction do
             update_plan
             update_plan_contents
+            link_proposals
             update_attachments if process_attachments?
           end
         end
@@ -73,17 +74,26 @@ module Decidim
         end
       end
 
+      def link_proposals
+        plan.link_resources(proposals, "included_proposals")
+      end
+
       def attributes
         {
           title: @form.title,
           category: @form.category,
           scope: @form.scope,
-          proposals: @form.proposals,
           # The update token ensures a new version is always created even if
           # the other attributes have not changed. This is needed to force a new
           # version to show the changes to associated models.
           update_token: Time.now.to_f
         }
+      end
+
+      def proposals
+        @proposals ||= plan.sibling_scope(:proposals).where(
+          id: @form.proposal_ids
+        )
       end
     end
   end

@@ -6,6 +6,7 @@ describe Decidim::Plans::Admin::UpdatePlan do
   let(:form_klass) { Decidim::Plans::Admin::PlanForm }
 
   let(:component) { create(:plan_component) }
+  let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
   let(:organization) { component.organization }
   let(:user) { create :user, :admin, :confirmed, organization: organization }
   let(:form) do
@@ -22,10 +23,12 @@ describe Decidim::Plans::Admin::UpdatePlan do
   let!(:plan) { create :plan, component: component }
 
   describe "call" do
+    let(:proposals) { plan.linked_resources(:proposals, "included_proposals") }
+
     let(:form_params) do
       {
         title: { en: "A reasonable plan title" },
-        proposal_ids: plan.proposals.map(&:id)
+        proposal_ids: proposals.map(&:id)
       }
     end
 
@@ -46,6 +49,17 @@ describe Decidim::Plans::Admin::UpdatePlan do
         expect do
           command.call
         end.not_to change(plan, :title)
+      end
+
+      context "with updated proposals" do
+        let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
+        let!(:original_proposals) { plan.linked_resources(:proposals, "included_proposals") }
+
+        it "does not update the linked proposals" do
+          command.call
+          linked_proposals = plan.linked_resources(:proposals, "included_proposals")
+          expect(linked_proposals).to match_array(original_proposals)
+        end
       end
     end
 
@@ -77,6 +91,16 @@ describe Decidim::Plans::Admin::UpdatePlan do
         expect do
           command.call
         end.not_to change(plan, :authors)
+      end
+
+      context "with updated proposals" do
+        let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
+
+        it "updates the linked proposals" do
+          command.call
+          linked_proposals = plan.linked_resources(:proposals, "included_proposals")
+          expect(linked_proposals).to match_array(proposals)
+        end
       end
     end
   end

@@ -66,11 +66,6 @@ FactoryBot.define do
     end
   end
 
-  factory :attached_proposal, class: "Decidim::Plans::AttachedProposal" do
-    plan
-    proposal
-  end
-
   factory :plan, class: "Decidim::Plans::Plan" do
     transient do
       users { nil }
@@ -94,7 +89,7 @@ FactoryBot.define do
 
         proposal_component = create(:proposal_component, participatory_space: plan.component.participatory_space)
         proposals = evaluator.plan_proposals || [create(:proposal, component: proposal_component)]
-        plan.attached_proposals = proposals.map { |p| create(:attached_proposal, plan: plan, proposal: p) }
+        plan.link_resources(proposals, "included_proposals")
       end
       plan.update!(tags: evaluator.tags) if evaluator.tags && evaluator.tags.count.positive?
     end

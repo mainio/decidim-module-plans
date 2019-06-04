@@ -51,7 +51,8 @@ module Decidim
               project.save!
 
               # Link included proposals to the project
-              project.link_resources(original_plan.proposals, "included_proposals")
+              proposals = original_plan.linked_resources(:proposals, "included_proposals")
+              project.link_resources(proposals, "included_proposals")
 
               # Link the plan to the project
               project.link_resources([original_plan], "included_plans")

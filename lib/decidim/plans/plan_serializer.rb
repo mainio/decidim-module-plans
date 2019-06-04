@@ -64,12 +64,16 @@ module Decidim
         plan.component
       end
 
+      def related_proposals
+        plan.linked_resources(:proposals, "included_proposals")
+      end
+
       def related_proposal_ids
-        plan.proposals.map(&:id)
+        related_proposals.map(&:id)
       end
 
       def related_proposal_urls
-        plan.proposals.map do |proposal|
+        related_proposals.map do |proposal|
           Decidim::ResourceLocatorPresenter.new(proposal).url
         end
       end

@@ -34,6 +34,8 @@ module Decidim
 
       private
 
+      attr_reader :plan
+
       def publish_plan
         Decidim.traceability.perform_action!(
           "publish",
@@ -85,9 +87,10 @@ module Decidim
       end
 
       def proposal_authors
-        @proposal_authors ||= @plan.proposals.flat_map(
-          &:authors
-        ).select { |a| a.is_a?(Decidim::User) }
+        @proposal_authors ||= begin
+          proposals = plan.linked_resources(:proposals, "included_proposals")
+          proposals.flat_map(&:authors).select { |a| a.is_a?(Decidim::User) }
+        end
       end
     end
   end

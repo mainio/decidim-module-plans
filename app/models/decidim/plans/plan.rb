@@ -32,9 +32,6 @@ module Decidim
                class_name: "Decidim::User",
                foreign_key: :decidim_user_id
 
-      has_many :attached_proposals, foreign_key: :decidim_plan_id, dependent: :destroy
-      has_many :proposals, through: :attached_proposals
-
       has_many :contents, foreign_key: :decidim_plan_id, dependent: :destroy
 
       has_many :taggings,

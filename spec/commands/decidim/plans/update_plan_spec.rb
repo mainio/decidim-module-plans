@@ -8,6 +8,7 @@ module Decidim
       let(:form_klass) { PlanForm }
 
       let(:component) { create(:plan_component) }
+      let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
       let(:organization) { component.organization }
       let(:form) do
         form_klass.from_params(
@@ -27,11 +28,13 @@ module Decidim
       end
 
       describe "call" do
+        let(:proposals) { plan.linked_resources(:proposals, "included_proposals") }
+
         let(:form_params) do
           {
             title: { en: "This is the plan title" },
             user_group_id: user_group.try(:id),
-            proposal_ids: plan.proposals.map(&:id)
+            proposal_ids: proposals.map(&:id)
           }
         end
 
@@ -52,6 +55,17 @@ module Decidim
             expect do
               command.call
             end.not_to change(plan, :title)
+          end
+
+          context "with updated proposals" do
+            let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
+            let!(:original_proposals) { plan.linked_resources(:proposals, "included_proposals") }
+
+            it "does not update the linked proposals" do
+              command.call
+              linked_proposals = plan.linked_resources(:proposals, "included_proposals")
+              expect(linked_proposals).to match_array(original_proposals)
+            end
           end
         end
 
@@ -99,6 +113,16 @@ module Decidim
               expect(plan.coauthorships.count).to eq(1)
               expect(plan.authors.count).to eq(1)
               expect(plan.authors.first).to eq(author)
+            end
+          end
+
+          context "with updated proposals" do
+            let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
+
+            it "updates the linked proposals" do
+              command.call
+              linked_proposals = plan.linked_resources(:proposals, "included_proposals")
+              expect(linked_proposals).to match_array(proposals)
             end
           end
         end

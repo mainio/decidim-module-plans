@@ -164,7 +164,16 @@ Decidim.register_component(:plans) do |component|
         plan.add_coauthor(participatory_space.organization)
         plan.save!
 
-        plan.proposals << proposals.slice!(0, 2) if proposals.length > 2
+        unless proposals.empty?
+          linked_proposals = begin
+            if proposals.length > 2
+              proposals.slice!(0, 2)
+            else
+              proposals
+            end
+          end
+          plan.link_resources(linked_proposals, "included_proposals")
+        end
 
         plan
       end

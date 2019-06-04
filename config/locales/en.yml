@@ -224,8 +224,6 @@ en:
             name: Name
             taggings_count: Number of uses
       plans:
-        attached_proposals:
-          attached_proposals: Attached proposals
         count:
           plans_count:
             one: "%{count} plan"
@@ -384,6 +382,9 @@ en:
           version_number_out_of_total: "%{current_version} out of %{total_count}"
         version:
           version_index: Version %{index}
+    resource_links:
+      included_proposals:
+        plan_proposal: Related proposals
     scopes:
       global: Global
     events:

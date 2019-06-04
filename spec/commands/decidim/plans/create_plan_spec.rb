@@ -30,12 +30,14 @@ module Decidim
       let(:attachment_params) { nil }
 
       describe "call" do
+        let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
+
         let(:form_params) do
           {
             title: { en: "This is the plan title" },
             attachments: attachment_params.nil? ? nil : [attachment_params],
             user_group_id: user_group.try(:id),
-            proposal_ids: [create(:proposal, component: proposal_component).id]
+            proposal_ids: [proposals.map(&:id)]
           }
         end
 
@@ -84,6 +86,14 @@ module Decidim
             expect do
               command.call
             end.to change(Decidim::Plans::Plan, :count).by(1)
+          end
+
+          it "links proposals" do
+            command.call
+            plan = Decidim::Plans::Plan.last
+
+            linked_proposals = plan.linked_resources(:proposals, "included_proposals")
+            expect(linked_proposals).to match_array(proposals)
           end
 
           context "with an author" do
