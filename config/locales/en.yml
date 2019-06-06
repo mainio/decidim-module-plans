@@ -57,6 +57,7 @@ en:
     pages:
       home:
         statistics:
+          plans_accepted: Accepted plans
           plans_count: Plans
     participatory_processes:
       statistics:
