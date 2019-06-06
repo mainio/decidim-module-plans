@@ -50,6 +50,9 @@ fi:
             comments_blocked: Kommentointi estetty
             creation_enabled: Luonti sallittu
             plan_answering_enabled: Vastaaminen sallittu
+    filters:
+      linked_classes:
+        plan: Plans
     pages:
       home:
         statistics:
@@ -270,6 +273,8 @@ fi:
         index:
           new_plan: Uusi suunnitelma
           see_all_withdrawn: Näytä kaikki peruutetut
+        linked_plans:
+          plan_authors: Number of authors
         new:
           create: Luo
           title: Luo suunnitelma
@@ -376,6 +381,7 @@ fi:
     resource_links:
       included_proposals:
         plan_proposal: Liitetyt ehdotukset
+        proposal_plan: Related plans
     scopes:
       global: Yleinen
     events:
