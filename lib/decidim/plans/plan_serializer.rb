@@ -17,6 +17,7 @@ module Decidim
       def serialize
         values = {
           id: plan.id,
+          authors: author_details,
           category: {
             id: plan.category.try(:id),
             name: plan.category.try(:name)
@@ -59,6 +60,12 @@ module Decidim
       private
 
       attr_reader :plan
+
+      def author_details
+        plan.authors.map do |author|
+          "#{author.class}/#{author.id}"
+        end
+      end
 
       def component
         plan.component

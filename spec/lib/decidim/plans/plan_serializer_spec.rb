@@ -22,6 +22,7 @@ describe Decidim::Plans::PlanSerializer do
       expect(subject.serialize.keys).to include(
         *[
           :id,
+          :authors,
           :category,
           :scope,
           :participatory_space,
@@ -37,6 +38,12 @@ describe Decidim::Plans::PlanSerializer do
           :related_proposals,
           :title
         ].concat(sectionkeys)
+      )
+    end
+
+    it "serializes the plan authors to correct format" do
+      expect(subject.serialize[:authors]).to match_array(
+        plan.authors.map { |a| "#{a.class}/#{a.id}" }
       )
     end
   end
