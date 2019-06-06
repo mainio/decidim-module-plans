@@ -52,7 +52,7 @@ sv:
             plan_answering_enabled: Svar tillåtna
     filters:
       linked_classes:
-        plan: Plans
+        plan: Planer
     pages:
       home:
         statistics:
@@ -274,7 +274,7 @@ sv:
           new_plan: Ny plan
           see_all_withdrawn: Visa alla annullerade
         linked_plans:
-          plan_authors: Number of authors
+          plan_authors: Antal författare
         new:
           create: Skapa
           title: Skapa plan
@@ -381,7 +381,7 @@ sv:
     resource_links:
       included_proposals:
         plan_proposal: Bifogade förslag
-        proposal_plan: Related plans
+        proposal_plan: Relaterade planer
     scopes:
       global: Allmän
     events:
