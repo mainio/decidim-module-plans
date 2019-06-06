@@ -1,5 +1,5 @@
 <%
-proposals = @plan.linked_resources(:proposals, "included_proposals")
+proposals = @plan.linked_resources(:proposals, "included_proposals").not_hidden
 %>
 
 <% if proposals.count.nonzero? %>
@@ -8,7 +8,7 @@ proposals = @plan.linked_resources(:proposals, "included_proposals")
       <%= t("decidim.resource_links.included_proposals.plan_proposal") %>
     </h4>
     <div class="collapsible-list row small-up-1 medium-up-2 card-grid">
-      <% proposals.not_hidden.each do |proposal| %>
+      <% proposals.each do |proposal| %>
         <%= card_for proposal, from: proposal %>
       <% end %>
     </div>
