@@ -51,6 +51,9 @@ en:
             comments_blocked: Comments blocked
             creation_enabled: Creation enabled
             plan_answering_enabled: Answering enabled
+    filters:
+      linked_classes:
+        plan: Plans
     pages:
       home:
         statistics:
@@ -277,6 +280,8 @@ en:
         index:
           new_plan: New plan
           see_all_withdrawn: See all withdrawn
+        linked_plans:
+          plan_authors: Number of authors
         new:
           create: Create
           title: Create plan
@@ -385,6 +390,7 @@ en:
     resource_links:
       included_proposals:
         plan_proposal: Related proposals
+        proposal_plan: Related plans
     scopes:
       global: Global
     events:
