@@ -52,7 +52,7 @@ fi:
             plan_answering_enabled: Vastaaminen sallittu
     filters:
       linked_classes:
-        plan: Plans
+        plan: Suunnitelmat
     pages:
       home:
         statistics:
@@ -274,7 +274,7 @@ fi:
           new_plan: Uusi suunnitelma
           see_all_withdrawn: Näytä kaikki peruutetut
         linked_plans:
-          plan_authors: Number of authors
+          plan_authors: Laatijoiden määrä
         new:
           create: Luo
           title: Luo suunnitelma
@@ -381,7 +381,7 @@ fi:
     resource_links:
       included_proposals:
         plan_proposal: Liitetyt ehdotukset
-        proposal_plan: Related plans
+        proposal_plan: Liitetyt suunnitelmat
     scopes:
       global: Yleinen
     events:
