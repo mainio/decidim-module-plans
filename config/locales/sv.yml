@@ -50,6 +50,9 @@ sv:
             comments_blocked: Kommentarer blockerade
             creation_enabled: Skapande tillåtet
             plan_answering_enabled: Svar tillåtna
+    filters:
+      linked_classes:
+        plan: Plans
     pages:
       home:
         statistics:
@@ -270,6 +273,8 @@ sv:
         index:
           new_plan: Ny plan
           see_all_withdrawn: Visa alla annullerade
+        linked_plans:
+          plan_authors: Number of authors
         new:
           create: Skapa
           title: Skapa plan
@@ -376,6 +381,7 @@ sv:
     resource_links:
       included_proposals:
         plan_proposal: Bifogade förslag
+        proposal_plan: Related plans
     scopes:
       global: Allmän
     events:
