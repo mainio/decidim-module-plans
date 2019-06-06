@@ -56,7 +56,7 @@ fi:
     pages:
       home:
         statistics:
-          plans_accepted: Accepted plans
+          plans_accepted: Hyväksyttyjä suunnitelmia
           plans_count: Suunnitelmia
     participatory_processes:
       statistics:
