@@ -1,12 +1,15 @@
 <div class="row">
-  <div class="columns large-6 large-push-3">
+  <div class="columns large-8 large-push-2">
     <div class="card">
       <div class="p-l">
         <%= render partial: "plan_preview", locals: { plan: @plan } %>
-        <div class="row column flex-center">
-          <%= link_to t(".modify"), edit_plan_path(@plan) %>
+        <br>
+        <div class="actions">
+          <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button expanded button--nomargin" %>
 
-          <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button button--nomargin small" %>
+          <div class="text-center">
+            <%= link_to t(".modify"), edit_plan_path(@plan) %>
+          </div>
         </div>
       </div>
     </div>
