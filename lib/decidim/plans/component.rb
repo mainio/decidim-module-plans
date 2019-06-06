@@ -41,6 +41,7 @@ Decidim.register_component(:plans) do |component|
 
   component.register_resource(:plan) do |resource|
     resource.model_class_name = "Decidim::Plans::Plan"
+    resource.template = "decidim/plans/plans/linked_plans"
     resource.card = "decidim/plans/plan"
   end
 
