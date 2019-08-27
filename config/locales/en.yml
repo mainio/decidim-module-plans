@@ -61,6 +61,7 @@ en:
           plans_count: Plans
     participatory_processes:
       statistics:
+        plans_accepted: Accepted plans
         plans_count: Plans
     plans:
       actions:
