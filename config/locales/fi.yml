@@ -60,6 +60,7 @@ fi:
           plans_count: Suunnitelmia
     participatory_processes:
       statistics:
+        plans_accepted: Hyväksyttyjä suunnitelmia
         plans_count: Suunnitelmaa
     plans:
       actions:

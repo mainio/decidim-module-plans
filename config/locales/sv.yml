@@ -60,6 +60,7 @@ sv:
           plans_count: Planer
     participatory_processes:
       statistics:
+        plans_accepted: Accepterade planer
         plans_count: Planer
     plans:
       actions:
