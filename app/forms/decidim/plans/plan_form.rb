@@ -57,10 +57,10 @@ module Decidim
           )
         end
 
+        self.proposal_ids = model.linked_resources(:proposals, "included_proposals").pluck(:id)
         self.user_group_id = model.user_groups.first&.id
-        return unless model.categorization
-
-        self.category_id = model.categorization.decidim_category_id
+        self.scope_id = model.decidim_scope_id if model.scope
+        self.category_id = model.categorization.decidim_category_id if model.categorization
       end
 
       def user_group
