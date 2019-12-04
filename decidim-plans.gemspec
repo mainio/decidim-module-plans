@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "decidim-core", Decidim::Plans::DECIDIM_VERSION
   spec.add_dependency "decidim-proposals", Decidim::Plans::DECIDIM_VERSION
+  spec.add_dependency "paper_trail-association_tracking", "~> 2.0"
 
   spec.add_development_dependency "decidim-admin", Decidim::Plans::DECIDIM_VERSION
   spec.add_development_dependency "decidim-assemblies", Decidim::Plans::DECIDIM_VERSION
