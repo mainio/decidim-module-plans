@@ -11,6 +11,7 @@ en:
         decidim_category_id: Category
         decidim_component_id: Component
         decidim_scope_id: Scope
+        scope_id: Scope
         state: State
         title: Title
         user_group_id: Create as
@@ -29,7 +30,9 @@ en:
     components:
       plans:
         actions:
+          close: Close
           create: Create
+          reopen: Open for editing
           withdraw: Withdraw
         name: Plans
         settings:
