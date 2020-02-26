@@ -10,6 +10,7 @@ sv:
         decidim_category_id: Kategori
         decidim_component_id: Komponent
         decidim_scope_id: Tema
+        scope_id: Scope
         state: Status
         title: Rubrik
         user_group_id: Skapa som användare
@@ -28,7 +29,9 @@ sv:
     components:
       plans:
         actions:
+          close: Close
           create: Skapa
+          reopen: Open for editing
           withdraw: Annullera
         name: Planer
         settings:
