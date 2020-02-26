@@ -10,7 +10,7 @@ fi:
         decidim_category_id: Kategoria
         decidim_component_id: Komponentti
         decidim_scope_id: Teema
-        scope_id: Scope
+        scope_id: Teema
         state: Tila
         title: Otsikko
         user_group_id: Luo käyttäjänä
@@ -29,9 +29,9 @@ fi:
     components:
       plans:
         actions:
-          close: Close
+          close: Sulje
           create: Luo
-          reopen: Open for editing
+          reopen: Avaa muokattavaksi
           withdraw: Peruuta
         name: Suunnitelmat
         settings:
