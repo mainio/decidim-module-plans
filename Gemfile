@@ -14,7 +14,7 @@ gem "decidim", Decidim::Plans::DECIDIM_VERSION
 gem "decidim-plans", path: "."
 
 gem "bootsnap", "~> 1.4"
-gem "puma", "~> 3.12"
+gem "puma", "~> 3.12.2"
 gem "uglifier", "~> 4.1"
 
 group :development, :test do
@@ -38,6 +38,3 @@ end
 
 # Remediate CVE-2019-5420
 gem "railties", ">= 5.2.2.1"
-
-# See: https://github.com/decidim/decidim/pull/5303
-gem "ransack", "~> 2.1.1"
