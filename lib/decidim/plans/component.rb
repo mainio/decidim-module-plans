@@ -15,6 +15,8 @@ Decidim.register_component(:plans) do |component|
 
   component.actions = %w(create withdraw close reopen)
 
+  component.query_type = "Decidim::Plans::PlansType"
+
   component.permissions_class_name = "Decidim::Plans::Permissions"
 
   component.settings(:global) do |settings|

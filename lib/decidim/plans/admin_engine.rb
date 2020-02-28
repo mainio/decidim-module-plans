@@ -34,6 +34,12 @@ module Decidim
                                            decidim/plans/decidim_plans_manifest.js
                                            decidim/plans/proposal_picker.scss)
       end
+
+      initializer "decidim_plans.mutation_extensions", after: "decidim-api.graphiql" do
+        Decidim::Api::MutationType.define do
+          MutationExtensions.define(self)
+        end
+      end
     end
   end
 end

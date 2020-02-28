@@ -2,6 +2,7 @@
 
 require_relative "plans/version"
 require_relative "plans/admin"
+require_relative "plans/api"
 require_relative "plans/engine"
 require_relative "plans/admin_engine"
 require_relative "plans/paper_trail"
@@ -12,6 +13,7 @@ module Decidim
     autoload :LocaleAware, "decidim/plans/locale_aware"
     autoload :OptionallyTranslatableAttributes, "decidim/plans/optionally_translatable_attributes"
     autoload :PlanSerializer, "decidim/plans/plan_serializer"
+    autoload :MutationExtensions, "decidim/plans/mutation_extensions"
 
     # Public: Stores an instance of Loggability
     def self.loggability
