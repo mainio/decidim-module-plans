@@ -112,11 +112,10 @@ describe Decidim::Plans::ApplicationHelper do
     it "returns the correct state values" do
       expect(helper.filter_state_values).to match_array(
         [
-          ["except_rejected", "All except rejected"],
+          %w(all All),
           %w(accepted Accepted),
-          %w(evaluating Evaluating),
           %w(rejected Rejected),
-          %w(all All)
+          %w(evaluating Evaluating)
         ]
       )
     end

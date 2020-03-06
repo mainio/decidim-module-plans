@@ -55,11 +55,10 @@ module Decidim
 
       def filter_state_values
         [
-          ["except_rejected", t("decidim.plans.application_helper.filter_state_values.except_rejected")],
+          ["all", t("decidim.plans.application_helper.filter_state_values.all")],
           ["accepted", t("decidim.plans.application_helper.filter_state_values.accepted")],
-          ["evaluating", t("decidim.plans.application_helper.filter_state_values.evaluating")],
           ["rejected", t("decidim.plans.application_helper.filter_state_values.rejected")],
-          ["all", t("decidim.plans.application_helper.filter_state_values.all")]
+          ["evaluating", t("decidim.plans.application_helper.filter_state_values.evaluating")]
         ]
       end
 
