@@ -42,6 +42,9 @@ sv:
             categories_enabled: Kategorier aktiverade
             closing_allowed: Tillåta plan författarna att markera planerna som gjort
             comments_enabled: Kommentarer tillåtna
+            default_answer: Standardplansvar
+            default_answer_none: (Ingen)
+            default_state: Standardplanstillstånd
             multilingual_answers: Flerspråkiga svar
             plan_answering_enabled: Svar tillåtna
             plan_title_length: Rubrikens längd
