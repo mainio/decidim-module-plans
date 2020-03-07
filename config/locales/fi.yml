@@ -42,9 +42,9 @@ fi:
             categories_enabled: Kategoriat käytössä
             closing_allowed: Salli suunnitelmien laatijoiden merkata suunnitelmia valmiiksi
             comments_enabled: Kommentointi sallittu
-            default_answer: Default plan answer
-            default_answer_none: (None)
-            default_state: Default plan state
+            default_answer: Suunnitelmien oletusvastaus
+            default_answer_none: (Ei mitään)
+            default_state: Suunnitelmien oletustila
             multilingual_answers: Monikieliset vastaukset
             plan_answering_enabled: Vastaaminen sallittu
             plan_title_length: Otsikon pituus
