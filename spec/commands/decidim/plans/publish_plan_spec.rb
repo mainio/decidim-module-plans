@@ -45,6 +45,57 @@ describe Decidim::Plans::PublishPlan do
 
         subject.call
       end
+
+      shared_examples "default state and answer defined" do |options|
+        let(:component) { create(:plan_component, :with_default_state, default_state: options[:state]) }
+
+        it "creates a plan with #{options[:state]} state" do
+          subject.call
+          plan = Decidim::Plans::Plan.last
+
+          if options[:state] == "accepted"
+            expect(plan.accepted?).to be(true)
+          elsif options[:state] == "rejected"
+            expect(plan.rejected?).to be(true)
+          elsif options[:state] == "evaluating"
+            expect(plan.evaluating?).to be(true)
+          end
+          expect(plan.answer).to be_nil
+        end
+
+        context "when a default answer is specified with the #{options[:state]} state" do
+          let(:component) do
+            create(
+              :plan_component,
+              :with_default_state,
+              default_state: options[:state],
+              default_answer: {
+                "en" => "Default plan answer"
+              }
+            )
+          end
+
+          it "sets the answer for the plan" do
+            subject.call
+            plan = Decidim::Plans::Plan.last
+
+            if options[:state] == "accepted"
+              expect(plan.accepted?).to be(true)
+            elsif options[:state] == "rejected"
+              expect(plan.rejected?).to be(true)
+            elsif options[:state] == "evaluating"
+              expect(plan.evaluating?).to be(true)
+            end
+            expect(plan.answer).to include(
+              "en" => "Default plan answer"
+            )
+          end
+        end
+      end
+
+      it_behaves_like "default state and answer defined", state: "accepted"
+      it_behaves_like "default state and answer defined", state: "rejected"
+      it_behaves_like "default state and answer defined", state: "evaluating"
     end
 
     context "when called by non-author" do

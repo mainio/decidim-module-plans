@@ -4,7 +4,7 @@ require "decidim/core/test/factories"
 require "decidim/participatory_processes/test/factories"
 
 FactoryBot.define do
-  factory :section, class: Decidim::Plans::Section do
+  factory :section, class: "Decidim::Plans::Section" do
     section_type { Decidim::Plans::Section::TYPES.first }
     body { generate_localized_title }
     position { 0 }
@@ -13,7 +13,7 @@ FactoryBot.define do
     component
   end
 
-  factory :content, class: Decidim::Plans::Content do
+  factory :content, class: "Decidim::Plans::Content" do
     body { generate_localized_title }
     plan
     section { create(:section) }
@@ -61,6 +61,20 @@ FactoryBot.define do
       settings do
         {
           proposal_linking_enabled: false
+        }
+      end
+    end
+
+    trait :with_default_state do
+      transient do
+        default_state { nil }
+        default_answer { nil }
+      end
+
+      settings do
+        {
+          default_state: default_state,
+          default_answer: default_answer
         }
       end
     end

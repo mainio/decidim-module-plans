@@ -36,6 +36,7 @@ module Decidim
               create_plan_contents
               link_proposals
               update_attachments if process_attachments?
+              answer_plan
               send_notification
             end
           end
@@ -76,6 +77,31 @@ module Decidim
 
         def link_proposals
           plan.link_resources(proposals, "included_proposals")
+        end
+
+        def answer_plan
+          default_state = @plan.component.settings.default_state
+          return if default_state.nil?
+          return if default_state.empty?
+
+          default_answer = @plan.component.settings.default_answer
+
+          default_answer = nil if default_answer.all? do |_key, val|
+            val.empty?
+          end
+
+          Decidim.traceability.perform_action!(
+            "publish",
+            @plan,
+            @current_user,
+            visibility: "public-only"
+          ) do
+            @plan.update!(
+              state: default_state,
+              answer: default_answer,
+              answered_at: Time.current
+            )
+          end
         end
 
         def attributes

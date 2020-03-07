@@ -40,6 +40,13 @@ module Decidim
           MutationExtensions.define(self)
         end
       end
+
+      config.to_prepare do
+        Decidim::Admin::SettingsHelper.send(
+          :include,
+          Decidim::Plans::Admin::ArrayComponentSettings
+        )
+      end
     end
   end
 end

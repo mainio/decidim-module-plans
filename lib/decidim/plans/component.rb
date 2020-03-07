@@ -32,6 +32,8 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :attachments_allowed, type: :boolean, default: false
     settings.attribute :closing_allowed, type: :boolean, default: false
     settings.attribute :multilingual_answers, type: :boolean
+    settings.attribute :default_state, type: :plan_state
+    settings.attribute :default_answer, type: :text, translated: true, editor: true
   end
 
   component.settings(:step) do |settings|
