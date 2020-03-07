@@ -68,6 +68,7 @@ module Decidim
         return toggle_allow(false) unless plan.open?
         return toggle_allow(false) if plan.editable_by?(user)
         return toggle_allow(false) if plan.requesters.include? user
+
         toggle_allow(plan && !plan.editable_by?(user))
       end
     end

@@ -24,6 +24,7 @@ module Decidim
 
         transaction do
           publish_plan
+          answer_plan
           send_notification
           send_notification_to_participatory_space
           send_notification_to_proposal_authors
@@ -44,6 +45,29 @@ module Decidim
           visibility: "public-only"
         ) do
           @plan.update published_at: Time.current
+        end
+      end
+
+      def answer_plan
+        default_state = @plan.component.settings.default_state
+        return if default_state.blank?
+
+        default_answer = @plan.component.settings.default_answer
+        default_answer = nil if default_answer.all? do |_key, val|
+          val.blank?
+        end
+
+        Decidim.traceability.perform_action!(
+          "publish",
+          @plan,
+          @current_user,
+          visibility: "public-only"
+        ) do
+          @plan.update!(
+            state: default_state,
+            answer: default_answer,
+            answered_at: Time.current
+          )
         end
       end
 

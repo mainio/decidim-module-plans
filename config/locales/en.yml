@@ -43,6 +43,9 @@ en:
             categories_enabled: Categories enabled
             closing_allowed: Allow plan authors to mark the plans as done
             comments_enabled: Comments enabled
+            default_answer: Default plan answer
+            default_answer_none: (None)
+            default_state: Default plan state
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Answering enabled
             plan_title_length: Title length

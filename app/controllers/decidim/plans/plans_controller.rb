@@ -112,6 +112,7 @@ module Decidim
 
       def withdraw
         raise ActionController::RoutingError, "Not Found" if @plan.withdrawn?
+
         enforce_permission_to :withdraw, :plan, plan: @plan
 
         WithdrawPlan.call(@plan, current_user) do
