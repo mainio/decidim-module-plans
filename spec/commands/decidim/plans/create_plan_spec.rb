@@ -141,7 +141,7 @@ module Decidim
               }
             end
 
-            it "creates an atachment for the plan" do
+            it "creates an attachment for the plan" do
               expect { command.call }.to change(Decidim::Attachment, :count).by(1)
               last_plan = Decidim::Plans::Plan.last
               last_attachment = Decidim::Attachment.last
