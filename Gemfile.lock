@@ -4,6 +4,7 @@ PATH
     decidim-plans (0.20.0)
       decidim-core (~> 0.20.0)
       decidim-proposals (~> 0.20.0)
+      graphql (~> 1.9.19)
       paper_trail-association_tracking (~> 2.0)
 
 GEM
@@ -392,7 +393,7 @@ GEM
     graphiql-rails (1.4.11)
       railties
       sprockets-rails
-    graphql (1.10.3)
+    graphql (1.9.19)
     hashdiff (1.0.1)
     hashie (3.6.0)
     highline (2.0.3)
