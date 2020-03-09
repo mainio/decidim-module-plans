@@ -46,24 +46,31 @@ module Decidim
       end
 
       def enforce_permission_to(action, subject, extra_context = {})
-        raise Decidim::ActionForbidden unless allowed_to?(action, subject, extra_context)
+        raise Decidim::Plans::ActionForbidden unless allowed_to?(action, subject, extra_context)
       end
 
       def allowed_to?(action, subject, extra_context = {}, user = current_user)
         scope ||= :admin
         permission_action = Decidim::PermissionAction.new(scope: scope, action: action, subject: subject)
 
-        Decidim::Plans::Admin::Permissions.new(
-          user,
-          permission_action,
-          permissions_context.merge(extra_context)
-        ).permissions.allowed?
+        permission_class_chain.inject(permission_action) do |current_permission_action, permission_class|
+          permission_class.new(
+            user,
+            current_permission_action,
+            permissions_context.merge(extra_context)
+          ).permissions
+        end.allowed?
       rescue Decidim::PermissionAction::PermissionNotSetError
         false
       end
 
       def permission_class_chain
-        ::Decidim.permissions_registry.chain_for(::Decidim::Admin::ApplicationController)
+        [
+          object.component.manifest.permissions_class,
+          object.participatory_space.manifest.permissions_class,
+          ::Decidim::Admin::Permissions,
+          ::Decidim::Permissions
+        ]
       end
 
       def permissions_context
@@ -73,6 +80,9 @@ module Decidim
           current_organization: object.organization,
           current_component: object.component
         }
+      end
+
+      class ::Decidim::Plans::ActionForbidden < StandardError
       end
     end
   end
