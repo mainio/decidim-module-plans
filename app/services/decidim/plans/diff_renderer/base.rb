@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     module DiffRenderer
-      class Base
+      class Base < Decidim::BaseDiffRenderer
         include ::Decidim::ApplicationHelper
 
         def initialize(version, locale)
@@ -47,6 +47,7 @@ module Decidim
         def generate_i18n_label(attribute, locale)
           label = I18n.t(attribute, scope: i18n_scope)
           return label if display_locale
+
           "#{label} (#{locale_name(locale)})"
         end
 
@@ -72,6 +73,8 @@ module Decidim
         end
 
         def parse_changeset(attribute, values, type, diff)
+          values = render_values(values, type)
+
           diff.update(
             attribute => {
               type: type,
@@ -101,6 +104,37 @@ module Decidim
             )
           end
           diff
+        end
+
+        # Clears the values and makes them user friendly.
+        #
+        # values - an array of two objects to be rendered
+        # type - the type of the object
+        def render_values(values, type)
+          [
+            render_value(values[0], type),
+            render_value(values[1], type)
+          ]
+        end
+
+        # Renders the given value in a user-friendly way based on the value
+        # class.
+        #
+        # value - an object to be rendered
+        # type - the type of the object
+        def render_value(value, type)
+          return "" if value.blank?
+
+          case type
+          when :date
+            l value, format: :long
+          when :percentage
+            number_to_percentage value, precision: 2
+          when :translatable
+            value.to_s
+          else
+            value
+          end
         end
       end
     end

@@ -5,7 +5,7 @@ module Decidim
     # Exposes Plan versions so users can see how a Plan
     # has been updated through time.
     class VersionsController < Decidim::Plans::ApplicationController
-      helper Decidim::Plans::TraceabilityHelper
+      helper Decidim::TraceabilityHelper
       helper_method :current_version, :item_versions, :associated_versions,
                     :content_versions, :item
 
@@ -17,6 +17,7 @@ module Decidim
 
       def current_version
         return nil if params[:id].to_i < 1
+
         @current_version ||= item.versions[params[:id].to_i - 1]
       end
 
