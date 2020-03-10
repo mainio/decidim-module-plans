@@ -36,10 +36,10 @@ module Decidim
                       else
                         content_tag :label, I18n.t("default_image", scope: "decidim.forms")
                       end
-          template += link_to image_tag(file.url), file.url, target: "_blank"
+          template += link_to image_tag(file.url), file.url, target: "_blank", rel: "noopener"
         elsif form.send(:file_is_present?, file)
           template += label_tag I18n.t("current_file", scope: "decidim.forms")
-          template += link_to file.file.filename, file.url, target: "_blank"
+          template += link_to file.file.filename, file.url, target: "_blank", rel: "noopener"
         end
 
         template.html_safe
