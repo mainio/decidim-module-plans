@@ -2,7 +2,6 @@
 
 require_relative "plans/version"
 require_relative "plans/admin"
-require_relative "plans/api"
 require_relative "plans/engine"
 require_relative "plans/admin_engine"
 require_relative "plans/paper_trail"
