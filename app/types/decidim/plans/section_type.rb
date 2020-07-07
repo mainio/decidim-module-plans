@@ -6,7 +6,7 @@ module Decidim
       graphql_name "Section"
       description "A plan section"
 
-      implements Decidim::Plans::TimestampsInterface
+      implements Decidim::Core::TimestampsInterface
 
       field :id, ID, null: false
       field :position, Integer, description: "This section's order position", null: false

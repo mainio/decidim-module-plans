@@ -6,7 +6,7 @@ module Decidim
       graphql_name "Content"
       description "A plan content"
 
-      implements Decidim::Plans::TimestampsInterface
+      implements Decidim::Core::TimestampsInterface
 
       field :id, ID, null: false
       field :title, Decidim::Core::TranslatedFieldType, description: "What is the title text for this section (i.e. the section body).", null: false

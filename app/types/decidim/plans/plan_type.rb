@@ -7,12 +7,12 @@ module Decidim
       description "A plan"
 
       implements Decidim::Comments::CommentableInterface
-      implements Decidim::Plans::CoauthorableInterface
+      implements Decidim::Core::CoauthorableInterface
       implements Decidim::Core::CategorizableInterface
       implements Decidim::Core::ScopableInterface
       implements Decidim::Core::AttachableInterface
-      implements Decidim::Plans::TraceableInterface
-      implements Decidim::Plans::TimestampsInterface
+      implements Decidim::Core::TraceableInterface
+      implements Decidim::Core::TimestampsInterface
 
       field :id, ID, null: false
       field :title, Decidim::Core::TranslatedFieldType, description: "This plan's title", null: false
