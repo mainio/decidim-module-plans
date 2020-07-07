@@ -17,7 +17,7 @@ module Decidim
       include_examples "categorizable interface"
       include_examples "scopable interface"
       include_examples "attachable interface"
-      include_examples "coauthorable interface"
+      include_examples "plan coauthorable interface"
 
       describe "id" do
         let(:query) { "{ id }" }
