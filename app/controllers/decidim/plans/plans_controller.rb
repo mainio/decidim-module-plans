@@ -12,7 +12,8 @@ module Decidim
       include AttachedProposalsHelper
       include FormFactory
       include FilterResource
-      include Orderable
+      include Decidim::Orderable
+      include Plans::Orderable
       include Paginable
 
       helper_method :attached_proposals_picker_field, :available_tags
