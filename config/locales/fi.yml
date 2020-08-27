@@ -7,7 +7,7 @@ fi:
       plan:
         proposals: Ehdotukset
         category_id: Kategoria
-        created_at: Created at
+        created_at: Luontiaika
         decidim_category_id: Kategoria
         decidim_component_id: Komponentti
         decidim_scope_id: Teema
