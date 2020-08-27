@@ -22,6 +22,7 @@ module Decidim
       def gid(author)
         return if author.blank?
         return author.to_gid if author.respond_to?(:to_gid)
+
         author
       end
     end

@@ -61,7 +61,8 @@ module Decidim
       end
 
       def creation_date_status
-        l(model.published_at.to_date, format: :decidim_short)
+        explanation = content_tag(:strong, t("activemodel.attributes.plan.created_at"))
+        "#{explanation}<br>#{l(model.published_at.to_date, format: :decidim_short)}"
       end
     end
   end

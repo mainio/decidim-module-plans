@@ -14,7 +14,7 @@ gem "decidim", Decidim::Plans::DECIDIM_VERSION
 gem "decidim-plans", path: "."
 
 gem "bootsnap", "~> 1.4"
-gem "puma", "~> 3.12.2"
+gem "puma", "~> 3.12.4"
 gem "uglifier", "~> 4.1"
 
 group :development, :test do

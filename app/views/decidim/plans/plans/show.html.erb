@@ -14,7 +14,7 @@
 <div class="row column view-header">
   <p class="h5">
     <%= link_to plans_path(request_params) do %>
-      <%= icon "chevron-left", class: "icon--small" %>
+      <%= icon "chevron-left", class: "icon--small", role: "img", "aria-hidden": true %>
       <%= t(".back") %>
     <% end %>
   </p>
