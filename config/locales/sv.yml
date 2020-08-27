@@ -7,7 +7,7 @@ sv:
       plan:
         proposals: Förslag
         category_id: Kategori
-        created_at: Skapad vid
+        created_at: Skapat på
         decidim_category_id: Kategori
         decidim_component_id: Komponent
         decidim_scope_id: Tema
