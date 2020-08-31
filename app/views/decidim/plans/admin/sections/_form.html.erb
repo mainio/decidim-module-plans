@@ -15,7 +15,7 @@
 
   <div class="sections-list">
     <% @form.sections.each do |section| %>
-      <%= fields_for "sections[]", section do |section_form| %>
+      <%= fields_for "sections[#{section.to_param}]", section do |section_form| %>
         <%= render "section", form: section_form, id: tabs_id_for_section(section) %>
       <% end %>
     <% end %>

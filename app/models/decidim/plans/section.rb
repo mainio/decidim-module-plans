@@ -8,9 +8,19 @@ module Decidim
     class Section < Plans::ApplicationRecord
       include Decidim::HasComponent
 
-      TYPES = %w(field_text_multiline field_text).freeze
+      def self.types
+        @types ||= %w(
+          field_text_multiline
+          field_text
+          field_checkbox
+          field_area_scope
+          field_category
+          field_map_point
+          content
+        )
+      end
 
-      validates :section_type, inclusion: { in: TYPES }
+      validates :section_type, inclusion: { in: self.types }
     end
   end
 end

@@ -1,39 +1,15 @@
-<%
-content = form.object
-options = {
-  id: "plan_section_answer_#{content.section.id}",
-  label: content.label,
-  help_text: content.help
-}
+<% content = form.object %>
 
-form_field = case content.section.section_type
-when 'field_text'
-  :text_field
-else
-  options[:rows] = 4
-  :text_area
-end
-%>
-
-<div class="row column">
-  <%= remaining_characters("plan_section_#{content.section.id}", content.section.answer_length) do |rc_opts| %>
-    <% if component_settings.multilingual_answers? %>
-      <%= form.translated(
-        form_field,
-        :body,
-        {
-          tabs_id: id
-        }.merge(options).merge(rc_opts)
-      ) %>
-    <% else %>
-      <%= form.public_send(
-        form_field,
-        "body_#{current_locale}".to_sym,
-        options.merge(rc_opts)
-      ) %>
-    <% end %>
-  <% end %>
-</div>
+<%= cell(
+  "decidim/plans/section_cell/#{content.section.section_type}",
+  content,
+  multilingual_answers: component_settings.multilingual_answers?,
+  context: {
+    form: form,
+    parent_form: parent_form,
+    current_component: current_component
+  }
+) %>
 
 <%= form.hidden_field :id %>
 <%= form.hidden_field :section_id %>

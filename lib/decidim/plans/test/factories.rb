@@ -5,7 +5,7 @@ require "decidim/participatory_processes/test/factories"
 
 FactoryBot.define do
   factory :section, class: "Decidim::Plans::Section" do
-    section_type { Decidim::Plans::Section::TYPES.first }
+    section_type { Decidim::Plans::Section.types.first }
     body { generate_localized_title }
     position { 0 }
     mandatory { false }

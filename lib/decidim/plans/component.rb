@@ -24,6 +24,7 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :plan_answering_enabled, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
+    settings.attribute :title_text, type: :string, translated: true
     settings.attribute :title_help, type: :text, translated: true
     settings.attribute :attachment_help, type: :text, translated: true
     settings.attribute :scopes_enabled, type: :boolean, default: true
@@ -122,7 +123,7 @@ Decidim.register_component(:plans) do |component|
         help: Decidim::Faker::Localized.paragraph,
         mandatory: false,
         position: n,
-        section_type: Decidim::Plans::Section::TYPES.first
+        section_type: Decidim::Plans::Section.types.first
       )
     end
 

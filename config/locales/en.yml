@@ -16,6 +16,8 @@ en:
         state: State
         title: Title
         user_group_id: Create as
+      section:
+        area_scope_parent: Area scope parent
       tag:
         name: Name
     errors:
@@ -53,6 +55,7 @@ en:
             proposal_linking_enabled: Proposal linking enabled
             scopes_enabled: Scopes enabled
             title_help: Title help text
+            title_text: Title text
           step:
             announcement: Announcement
             comments_blocked: Comments blocked
@@ -144,7 +147,11 @@ en:
             body: Body
             down: Down
             help: Help
+            information: Information
+            information_label: Information label
             mandatory: Mandatory
+            map_center_latitude: Map center latitude
+            map_center_longitude: Map center longitude
             remove: Remove
             section: Section
             up: Up
@@ -368,8 +375,15 @@ en:
         actions:
           new: New section
       section_types:
+        content: Content
+        field_area_scope: Field - Area scope
+        field_category: Field - Category
+        field_checkbox: Field - Checkbox
+        field_map_point: Field - Map point
         field_text_multiline: Field - Multiple lines
         field_text: Field - Single line
+        link_proposals: Link proposals
+        link_ideas: Link ideas
       shared:
         attachment_fields:
           attachment_legend: Attachment
