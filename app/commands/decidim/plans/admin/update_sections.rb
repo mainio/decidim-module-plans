@@ -37,12 +37,14 @@ module Decidim
             update_nested_model(
               form_section,
               {
-                body: form_section.body,
+                body: form_section.body_text,
                 help: form_section.help,
+                information_label: form_section.information_label,
+                information: form_section.information,
                 mandatory: form_section.mandatory,
-                answer_length: form_section.answer_length,
                 position: form_section.position,
-                section_type: form_section.section_type
+                section_type: form_section.section_type,
+                settings: form_section.settings
               },
               @sections
             )

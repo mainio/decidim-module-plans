@@ -60,7 +60,7 @@ module Decidim
         end
 
         def section_types
-          @section_types ||= Section::TYPES.map do |section_type|
+          @section_types ||= Section.types.map do |section_type|
             [I18n.t("decidim.plans.section_types.#{section_type}"), section_type]
           end
         end
