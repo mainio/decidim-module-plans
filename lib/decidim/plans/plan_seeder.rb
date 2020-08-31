@@ -57,9 +57,10 @@ module Decidim
         amount.times do
           coordinates = dummy_coordinates
 
+          title = ::Faker::Lorem.sentence(2)
           plan = Plan.new(
             component: component,
-            title: ::Faker::Lorem.sentence(2),
+            title: Decidim::Faker::Localized.localized { title },
             published_at: Time.current
           )
           @authors.sample(rand(1..3)).each do |author|
@@ -82,7 +83,8 @@ module Decidim
           if ::Faker::Boolean.boolean
             # Add versions to the plan
             rand(1..3).times do
-              plan.update!(title: ::Faker::Lorem.sentence(2))
+              title = ::Faker::Lorem.sentence(2)
+              plan.update!(title: Decidim::Faker::Localized.localized { title })
 
               plan.contents.each do |content|
                 next if content.section.section_type == "content"
