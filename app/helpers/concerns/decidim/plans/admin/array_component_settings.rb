@@ -22,7 +22,7 @@ module Decidim
                     [t("decidim.plans.answers.rejected"), "rejected"],
                     [t("decidim.plans.answers.evaluating"), "evaluating"]
                   ],
-                  options.merge(extra_options_for(name))
+                  options.merge(extra_options_for_type(name))
                 )
                 settings_js = javascript_include_tag("decidim/plans/admin/component_settings")
 
