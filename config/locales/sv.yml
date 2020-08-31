@@ -15,6 +15,8 @@ sv:
         state: Status
         title: Rubrik
         user_group_id: Skapa som användare
+      section:
+        area_scope_parent: Area scope parent
       tag:
         name: Namn
     errors:
@@ -52,6 +54,7 @@ sv:
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
             title_help: Titel hjälptext
+            title_text: Titel text
           step:
             announcement: Meddelande
             comments_blocked: Kommentarer blockerade
@@ -143,7 +146,11 @@ sv:
             body: Brödtext
             down: Ner
             help: Hjälp
+            information: Information
+            information_label: Information label
             mandatory: Obligatorisk
+            map_center_latitude: Map center latitude
+            map_center_longitude: Map center longitude
             remove: Radera
             section: Avsnitt
             up: Upp
@@ -359,8 +366,15 @@ sv:
         actions:
           new: Nytt avsnitt
       section_types:
+        content: Content
+        field_area_scope: Fält - Area scope
+        field_category: Fält - Category
+        field_checkbox: Fält - Checkbox
+        field_map_point: Fält - Map point
         field_text_multiline: Fält - Med flera rader
         field_text: Fält - Med en rad
+        link_proposals: Länk proposals
+        link_ideas: Länk ideas
       shared:
         attachment_fields:
           attachment_legend: Bilaga

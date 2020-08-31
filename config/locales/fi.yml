@@ -15,6 +15,8 @@ fi:
         state: Tila
         title: Otsikko
         user_group_id: Luo käyttäjänä
+      section:
+        area_scope_parent: Alueteeman isäntä
       tag:
         name: Nimi
     errors:
@@ -52,6 +54,7 @@ fi:
             proposal_linking_enabled: Ehdotusten linkkaaminen käytössä
             scopes_enabled: Teemat käytössä
             title_help: Otsikon ohjeteksti
+            title_text: Otsikon teksti
           step:
             announcement: Ilmoitus
             comments_blocked: Kommentointi estetty
@@ -143,7 +146,11 @@ fi:
             body: Runkoteksti
             down: Alas
             help: Ohjeteksti
+            information: Tietoa-osio
+            information_label: Tietoa-osion otsake
             mandatory: Pakollinen
+            map_center_latitude: Kartan keskipisteen leveysarvo
+            map_center_longitude: Kartan keskipisteen pituusarvo
             remove: Poista
             section: Osio
             up: Ylös
@@ -359,8 +366,15 @@ fi:
         actions:
           new: Uusi osio
       section_types:
+        content: Sisältö
+        field_area_scope: Kenttä - Alueteema
+        field_category: Kenttä - Kategoria
+        field_checkbox: Kenttä - Valintalaatikko
+        field_map_point: Kenttä - Karttapiste
         field_text_multiline: Kenttä - Monirivinen
         field_text: Kenttä - Yksirivinen
+        link_proposals: Liitetyt ehdotukset
+        link_ideas: Liitetyt ideat
       shared:
         attachment_fields:
           attachment_legend: Liite
