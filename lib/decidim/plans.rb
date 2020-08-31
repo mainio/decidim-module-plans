@@ -7,6 +7,7 @@ require_relative "plans/admin_engine"
 require_relative "plans/paper_trail"
 require_relative "plans/component_settings_extensions"
 require_relative "plans/component"
+require_relative "plans/api"
 
 module Decidim
   module Plans
