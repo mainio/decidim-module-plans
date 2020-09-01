@@ -84,7 +84,16 @@ module Decidim
           on(:ok) do
             return plan
           end
+          on(:invalid) do
+            return GraphQL::ExecutionError.new(
+              form.errors.full_messages.join(', ')
+            )
+          end
         end
+
+        GraphQL::ExecutionError.new(
+          I18n.t("decidim.plans.admin.plans.answer.invalid")
+        )
       end
 
       private
