@@ -5,18 +5,20 @@ module Decidim
     # A form object to be used when admin users want to create or edit
     # a plan content field.
     class ContentForm < Decidim::Form
-      include OptionallyTranslatableAttributes
+      # include OptionallyTranslatableAttributes
       include Decidim::TranslationsHelper
 
       mimic :content
 
       alias component current_component
 
-      optionally_translatable_attribute :body, String
+      # optionally_translatable_attribute :body, String
+      attribute :body, Hash
       attribute :section_id, Integer
       attribute :plan_id, Integer
 
-      optionally_translatable_validate_presence :body, if: :mandatory
+      # TODO: Validate field specific types for the :body attribute
+      # optionally_translatable_validate_presence :body, if: :mandatory
 
       attr_writer :section
       attr_writer :plan
