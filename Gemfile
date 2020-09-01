@@ -20,7 +20,7 @@ gem "uglifier", "~> 4.1"
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
-  gem "decidim-dev", Decidim::Plans::DECIDIM_VERSION
+  gem "decidim-dev", ">= 0.22.0", Decidim::Plans::DECIDIM_VERSION
 end
 
 group :development do
