@@ -54,7 +54,10 @@ module Decidim
           argument(:map_point, ::Decidim::Plans::ContentMutation::FieldMapPointAttributes, required: false)
           argument(:checkbox, ::Decidim::Plans::ContentMutation::FieldCheckboxAttributes, required: false)
           argument(:category, ::Decidim::Plans::ContentMutation::FieldCategoryAttributes, required: false)
+          argument(:scope, ::Decidim::Plans::ContentMutation::FieldScopeAttributes, required: false)
           argument(:area_scope, ::Decidim::Plans::ContentMutation::FieldAreaScopeAttributes, required: false)
+          argument(:attachments, ::Decidim::Plans::ContentMutation::FieldAttachmentsAttributes, required: false)
+          argument(:images, ::Decidim::Plans::ContentMutation::FieldImageAttachmentsAttributes, required: false)
         end
       end
     end

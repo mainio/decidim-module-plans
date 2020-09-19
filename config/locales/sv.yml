@@ -16,7 +16,8 @@ sv:
         title: Rubrik
         user_group_id: Skapa som användare
       section:
-        area_scope_parent: Area scope parent
+        area_scope_parent: Områdetema förälder
+        scope_parent: Tema förälder
       tag:
         name: Namn
     errors:
@@ -142,15 +143,16 @@ sv:
             save: Spara
             title: Avsnitt
           section:
+            attachments_input_type: Inmatningsfält typ av bilaga
             answer_length: Svarets längd
             body: Brödtext
             down: Ner
             help: Hjälp
             information: Information
-            information_label: Information label
+            information_label: Informationsetikett
             mandatory: Obligatorisk
-            map_center_latitude: Map center latitude
-            map_center_longitude: Map center longitude
+            map_center_latitude: Kartcentrums latitud
+            map_center_longitude: Kartcentrums longitud
             remove: Radera
             section: Avsnitt
             up: Upp
@@ -207,6 +209,9 @@ sv:
           all: Alla
           amendments: Ändringar
           plans: Planer
+      attachment_input_types:
+        single: En bilaga
+        multi: Flera bilagor
       attached_proposals_helper:
         attach_proposal: Bifoga förslag
         close: Stäng
@@ -368,9 +373,12 @@ sv:
       section_types:
         content: Content
         field_area_scope: Fält - Area scope
+        field_attachments: Field - Attachments
         field_category: Fält - Category
         field_checkbox: Fält - Checkbox
+        field_image_attachments: Fält - Image attachments
         field_map_point: Fält - Map point
+        field_scope: Fält - Scope
         field_text_multiline: Fält - Med flera rader
         field_text: Fält - Med en rad
         link_proposals: Länk proposals

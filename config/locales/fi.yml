@@ -17,6 +17,7 @@ fi:
         user_group_id: Luo käyttäjänä
       section:
         area_scope_parent: Alueteeman isäntä
+        scope_parent: Teeman isäntä
       tag:
         name: Nimi
     errors:
@@ -143,6 +144,7 @@ fi:
             title: Osiot
           section:
             answer_length: Vastauksen pituus
+            attachments_input_type: Liitteiden syöttökentän tyyppi
             body: Runkoteksti
             down: Alas
             help: Ohjeteksti
@@ -207,6 +209,9 @@ fi:
           all: Kaikki
           amendments: Muutokset
           plans: Suunnitelmat
+      attachment_input_types:
+        single: Yksi liite
+        multi: Useita liitteitä
       attached_proposals_helper:
         attach_proposal: Liitä ehdotus
         close: Sulje
@@ -368,9 +373,12 @@ fi:
       section_types:
         content: Sisältö
         field_area_scope: Kenttä - Alueteema
+        field_attachments: Kenttä - Liitteet
         field_category: Kenttä - Kategoria
         field_checkbox: Kenttä - Valintalaatikko
+        field_image_attachments: Kenttä - Kuvaliitteet
         field_map_point: Kenttä - Karttapiste
+        field_scope: Kenttä - Teema
         field_text_multiline: Kenttä - Monirivinen
         field_text: Kenttä - Yksirivinen
         link_proposals: Liitetyt ehdotukset

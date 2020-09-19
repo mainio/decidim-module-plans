@@ -6,13 +6,26 @@ module Decidim
   module Plans
     # This class seeds new plans to the database using faker.
     class PlanSeeder
-      def initialize(component:, ideas_component: nil, authors: nil, locale: nil, bbox: nil, area_scope: nil)
+      def initialize(
+        component:,
+        ideas_component: nil,
+        authors: nil,
+        locale: nil,
+        bbox: nil,
+        area_scope: nil,
+        scope: nil,
+        images: nil,
+        attachments: nil
+      )
         @component = component
         @ideas_component = ideas_component
         @authors = authors
         @locale = locale
         @bbox = bbox
         @area_scope = area_scope
+        @scope = scope
+        @images = images
+        @attachments = attachments
       end
 
       def seed!(amount: 5)
@@ -68,11 +81,28 @@ module Decidim
           end
           plan.save!
 
+          attachments_weight = 0
+
           plan.sections.each do |section|
             next if section.section_type == "content"
 
+            body = begin
+              case section.section_type
+              when "field_image_attachments"
+                attachment_ids = create_attachments_from(images.sample(1), plan, attachments_weight)
+                attachments_weight += attachment_ids.length
+                { "attachment_ids" => attachment_ids }
+              when "field_attachments"
+                attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, attachments_weight)
+                attachments_weight += attachment_ids.length
+                { "attachment_ids" => attachment_ids }
+              else
+                dummy_section_body(section)
+              end
+            end
+
             plan.contents.create!(
-              body: dummy_section_body(section),
+              body: body,
               section: section
             )
 
@@ -87,7 +117,7 @@ module Decidim
               plan.update!(title: Decidim::Faker::Localized.localized { title })
 
               plan.contents.each do |content|
-                next if content.section.section_type == "content"
+                next if %w(content field_attachments field_image_attachments).include?(content.section.section_type)
 
                 content.update!(body: dummy_section_body(content.section))
               end
@@ -100,15 +130,63 @@ module Decidim
         I18n.available_locales = original_locales
       end
 
+      def seed_attachments!
+        raise "Please define a component" unless component
+        raise "No images or attachments provided" if images.blank? && attachments.blank?
+
+        Plan.where(component: component).each do |plan|
+          # No need to seed when the plan already has attachments
+          next if plan.attachments.count > 0
+
+          seed_plan_images_and_attachments!(plan)
+        end
+      end
+
       private
 
-      attr_reader :component, :authors, :locale, :bbox
+      attr_reader :component, :authors, :locale, :bbox, :images, :attachments
+
+      def seed_plan_images_and_attachments!(plan)
+        # Decide whether to add image and/or attachments
+        add_image = ::Faker::Boolean.boolean
+        add_attachments = ::Faker::Boolean.boolean
+        return if !add_image && !add_attachments
+
+        weight = 0
+
+        plan.sections.each do |section|
+          next unless %w(field_attachments field_image_attachments).include?(section.section_type)
+
+          content = plan.contents.find_by(section: section)
+          unless content
+            content = plan.contents.create!(
+              body: { "attachment_ids" => [] },
+              section: section
+            )
+          end
+
+          if add_image && section.section_type == "field_image_attachments"
+            attachment_ids = create_attachments_from(images.sample(1), plan, weight)
+            content.update!(body: { "attachment_ids" => attachment_ids })
+            weight += attachment_ids.length
+          end
+          if add_attachments && section.section_type == "field_attachments"
+            attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, weight)
+            content.update!(body: { "attachment_ids" => attachment_ids })
+            weight += attachment_ids.length
+          end
+        end
+      end
 
       def dummy_section_body(section)
         case section.section_type
         when "field_area_scope"
           {
             scope_id: @area_scope.children.sample.id
+          }
+        when "field_scope"
+          {
+            scope_id: @scope.children.sample.id
           }
         when "field_category"
           {
@@ -128,6 +206,20 @@ module Decidim
         when "field_text", "field_text_multiline"
           value = ::Faker::Lorem.paragraph(3)
           Decidim::Faker::Localized.localized { value }
+        end
+      end
+
+      def create_attachments_from(files, plan, start_weight = 0)
+        weight = start_weight
+        files.map do |file|
+          attachment = plan.attachments.create!(
+            weight: weight,
+            title: ::Faker::Lorem.sentence(rand(3..6)),
+            file: file
+          )
+          weight += 1
+
+          attachment.id
         end
       end
 

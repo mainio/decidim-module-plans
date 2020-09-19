@@ -18,6 +18,7 @@ en:
         user_group_id: Create as
       section:
         area_scope_parent: Area scope parent
+        scope_parent: Scope parent
       tag:
         name: Name
     errors:
@@ -144,6 +145,7 @@ en:
             title: Sections
           section:
             answer_length: Answer length
+            attachments_input_type: Attachments input type
             body: Body
             down: Down
             help: Help
@@ -212,6 +214,9 @@ en:
           all: All
           amendments: Amendments
           plans: Plans
+      attachment_input_types:
+        single: Single attachment
+        multi: Multiple attachments
       attached_proposals_helper:
         attach_proposal: Attach proposal
         close: Close
@@ -377,9 +382,12 @@ en:
       section_types:
         content: Content
         field_area_scope: Field - Area scope
+        field_attachments: Field - Attachments
         field_category: Field - Category
         field_checkbox: Field - Checkbox
+        field_image_attachments: Field - Image attachments
         field_map_point: Field - Map point
+        field_scope: Field - Scope
         field_text_multiline: Field - Multiple lines
         field_text: Field - Single line
         link_proposals: Link proposals
