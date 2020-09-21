@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic when a user updates a plan.
       class UpdatePlan < Rectify::Command
-        include AttachmentMethods
+        include ::Decidim::Plans::AttachmentMethods
         include NestedUpdater
 
         # Public: Initializes the command.
