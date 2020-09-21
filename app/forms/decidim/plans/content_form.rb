@@ -8,6 +8,31 @@ module Decidim
       include OptionallyTranslatableAttributes
       include Decidim::TranslationsHelper
 
+      # Customized method in order to avoid the translated keys to be saved
+      # for all attribute types.
+      def self.translatable_attribute(name, type, *options)
+        attribute name, Hash, default: {}
+
+        locales.each do |locale|
+          attribute_name = "#{name}_#{locale}".gsub("-", "__")
+          attribute attribute_name, type, *options
+
+          define_method attribute_name do
+            field = public_send(name) || {}
+            field[locale.to_s] || field[locale.to_sym]
+          end
+
+          define_method "#{attribute_name}=" do |value|
+            return unless can_be_translated?
+
+            field = public_send(name) || {}
+            public_send("#{name}=", field.merge(locale => super(value)))
+          end
+
+          yield(attribute_name, locale) if block_given?
+        end
+      end
+
       mimic :content
 
       alias component current_component
