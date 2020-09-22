@@ -38,6 +38,13 @@ module Decidim
       # The values field contains the actual values for each content section
       # which can be different depending on the section type.
       field :values, [Decidim::Plans::ContentSubject], method: :contents, description: "The content values in this plan.", null: false
+      # These are the resources that are linked from the plan to the related
+      # object.
+      field :linkedResources, [Decidim::Plans::ResourceLinkSubject], method: :linked_resources, description: "The linked resources for this plan.", null: false
+
+      def linked_resources
+        object.resource_links_from.map { |link| link.to }
+      end
     end
   end
 end
