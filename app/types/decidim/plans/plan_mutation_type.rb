@@ -13,6 +13,7 @@ module Decidim
 
         argument :title, GraphQL::Types::JSON, description: "The plan title localized hash, e.g. {\"en\": \"English title\"}", required: true
         argument :contents, [Decidim::Plans::ContentMutationAttributes], required: true
+        argument :version_comment, GraphQL::Types::JSON, description: "The plan version comment localized hash, e.g. {\"en\": \"Fixed a typo\"}", required: false
       end
 
       field :answer, Decidim::Plans::PlanType, null: true do
@@ -22,12 +23,13 @@ module Decidim
         argument :answer_content, GraphQL::Types::JSON, description: "The answer feedback for the status for this plan", required: false
       end
 
-      def update(title:, contents:)
+      def update(title:, contents:, version_comment: nil)
         enforce_permission_to :edit, :plan, plan: object
 
         params = {
           "plan" => {
             "title" => title || object.title,
+            "version_comment" => version_comment,
             "contents" => contents.map do |content|
               next unless content
               next unless content.decidim_plan_id == object.id

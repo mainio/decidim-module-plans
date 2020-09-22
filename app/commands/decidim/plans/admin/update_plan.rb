@@ -85,7 +85,9 @@ module Decidim
             # The update token ensures a new version is always created even if
             # the other attributes have not changed. This is needed to force a
             # new version to show the changes to associated models.
-            update_token: Time.now.to_f
+            update_token: Time.now.to_f,
+            # Optional version comments to be stored against the version
+            version_comment: form.version_comment
           }
         end
 

@@ -22,9 +22,12 @@ module Decidim
         # This is customized with the `:ignore` option since we don't want to
         # store another version when the item is published.
         has_paper_trail ignore: [:published_at],
-                        versions: { class_name: "Decidim::Plans::PaperTrail::Version" }
+                        versions: { class_name: "Decidim::Plans::PaperTrail::Version" },
+                        meta: { comment: :version_comment }
 
         delegate :count, to: :versions, prefix: true
+
+        attr_accessor :version_comment
 
         def last_whodunnit
           versions.last.try(:whodunnit)
