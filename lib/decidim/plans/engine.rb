@@ -51,6 +51,7 @@ module Decidim
         # extend the field types from external modules.
         Decidim::Plans::ContentMutationAttributes.class_eval do
           argument(:text, ::Decidim::Plans::ContentMutation::FieldTextAttributes, required: false)
+          argument(:number, ::Decidim::Plans::ContentMutation::FieldNumberAttributes, required: false)
           argument(:map_point, ::Decidim::Plans::ContentMutation::FieldMapPointAttributes, required: false)
           argument(:checkbox, ::Decidim::Plans::ContentMutation::FieldCheckboxAttributes, required: false)
           argument(:category, ::Decidim::Plans::ContentMutation::FieldCategoryAttributes, required: false)

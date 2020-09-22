@@ -378,6 +378,7 @@ sv:
         field_checkbox: Fält - Checkbox
         field_image_attachments: Fält - Image attachments
         field_map_point: Fält - Map point
+        field_number: Fält - Nummer
         field_scope: Fält - Scope
         field_text_multiline: Fält - Med flera rader
         field_text: Fält - Med en rad

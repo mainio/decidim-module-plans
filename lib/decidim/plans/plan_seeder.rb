@@ -203,6 +203,10 @@ module Decidim
             latitude: coords[0],
             longitude: coords[1]
           }
+        when "field_number"
+          {
+            value: ::Faker::Number.number(rand(5..8).to_i)
+          }
         when "field_text", "field_text_multiline"
           value = ::Faker::Lorem.paragraph(3)
           Decidim::Faker::Localized.localized { value }

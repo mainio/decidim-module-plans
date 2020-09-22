@@ -12,6 +12,7 @@ module Decidim
         @types ||= %w(
           field_text_multiline
           field_text
+          field_number
           field_checkbox
           field_scope
           field_area_scope

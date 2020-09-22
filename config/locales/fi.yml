@@ -378,6 +378,7 @@ fi:
         field_checkbox: Kenttä - Valintalaatikko
         field_image_attachments: Kenttä - Kuvaliitteet
         field_map_point: Kenttä - Karttapiste
+        field_number: Kenttä - Numero
         field_scope: Kenttä - Teema
         field_text_multiline: Kenttä - Monirivinen
         field_text: Kenttä - Yksirivinen

@@ -17,7 +17,8 @@ module Decidim
         Decidim::Plans::SectionContent::FieldImageAttachmentsType,
         Decidim::Plans::SectionContent::FieldMapPointType,
         Decidim::Plans::SectionContent::FieldScopeType,
-        Decidim::Plans::SectionContent::FieldTextType
+        Decidim::Plans::SectionContent::FieldTextType,
+        Decidim::Plans::SectionContent::FieldNumberType
       )
 
       def self.resolve_type(object, _context)

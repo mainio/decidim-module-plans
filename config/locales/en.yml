@@ -387,6 +387,7 @@ en:
         field_checkbox: Field - Checkbox
         field_image_attachments: Field - Image attachments
         field_map_point: Field - Map point
+        field_number: Field - Number
         field_scope: Field - Scope
         field_text_multiline: Field - Multiple lines
         field_text: Field - Single line
