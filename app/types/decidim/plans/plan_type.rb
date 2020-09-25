@@ -40,10 +40,13 @@ module Decidim
       field :values, [Decidim::Plans::ContentSubject], method: :contents, description: "The content values in this plan.", null: false
       # These are the resources that are linked from the plan to the related
       # object.
-      field :linkedResources, [Decidim::Plans::ResourceLinkSubject], method: :linked_resources, description: "The linked resources for this plan.", null: false
+      field :linkedResources, [Decidim::Plans::ResourceLinkSubject], method: :linked_resources, description: "The linked resources for this plan.", null: true
 
       def linked_resources
-        object.resource_links_from.map { |link| link.to }
+        resources = object.resource_links_from.map { |link| link.to }
+        return nil unless resources.any?
+
+        resources
       end
     end
   end
