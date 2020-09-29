@@ -52,6 +52,14 @@ module Decidim
 
       delegate :mandatory, to: :section
 
+      def initialize(attributes = nil)
+        # The section definition is already needed when setting the other
+        # attributes in order to fetch the section settings.
+        self.section_id = attributes[:section_id] if attributes && attributes[:section_id]
+
+        super
+      end
+
       # NOTE: Even when the field is not configured to be translated, the data
       # still needs to be stored in translated format in order to allow enabling
       # multilingual answers afterwards. Therefore, we are listing here all the
