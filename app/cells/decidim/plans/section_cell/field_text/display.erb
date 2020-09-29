@@ -1,5 +1,5 @@
 <%= remaining_characters("plan_section_#{model.section.id}", model.section.settings["answer_length"]) do |rc_opts| %>
-  <% if component_settings.multilingual_answers? %>
+  <% if multilingual_answers? %>
     <%= form.translated(
       :text_field,
       :body,
