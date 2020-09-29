@@ -8,7 +8,18 @@ module Decidim
       graphql_name "PlanContentSubject"
       description "A plan content detailed values"
 
-      possible_types(*Decidim::Plans.api_content_types)
+      possible_types(
+        Decidim::Plans::SectionContent::ContentType,
+        Decidim::Plans::SectionContent::FieldAttachmentsType,
+        Decidim::Plans::SectionContent::FieldAreaScopeType,
+        Decidim::Plans::SectionContent::FieldCategoryType,
+        Decidim::Plans::SectionContent::FieldCheckboxType,
+        Decidim::Plans::SectionContent::FieldImageAttachmentsType,
+        Decidim::Plans::SectionContent::FieldMapPointType,
+        Decidim::Plans::SectionContent::FieldScopeType,
+        Decidim::Plans::SectionContent::FieldTextType,
+        Decidim::Plans::SectionContent::FieldNumberType
+      )
 
       def self.resolve_type(object, _context)
         type_class = "#{object.section.section_type.camelize}Type"

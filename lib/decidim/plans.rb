@@ -25,29 +25,6 @@ module Decidim
     def self.tracer
       @tracer ||= Tracer.new
     end
-
-    # Public: Stores the possible content types and adds the possibility to add
-    # new ones.
-    def self.api_content_types
-      [
-        Decidim::Plans::SectionContent::ContentType,
-        Decidim::Plans::SectionContent::FieldAttachmentsType,
-        Decidim::Plans::SectionContent::FieldAreaScopeType,
-        Decidim::Plans::SectionContent::FieldCategoryType,
-        Decidim::Plans::SectionContent::FieldCheckboxType,
-        Decidim::Plans::SectionContent::FieldImageAttachmentsType,
-        Decidim::Plans::SectionContent::FieldMapPointType,
-        Decidim::Plans::SectionContent::FieldScopeType,
-        Decidim::Plans::SectionContent::FieldTextType,
-        Decidim::Plans::SectionContent::FieldNumberType
-      ]
-    end
-
-    # Public: Stores the possible resource link types and adds the possibility
-    # to add new ones.
-    def self.api_resource_link_types
-      @api_resource_link_types ||= [Decidim::Proposals::ProposalType]
-    end
   end
 
   module ContentParsers
