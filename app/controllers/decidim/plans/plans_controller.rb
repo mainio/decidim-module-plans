@@ -75,7 +75,7 @@ module Decidim
       def update
         enforce_permission_to :edit, :plan, plan: @plan
 
-        @form = form(PlanForm).from_params(params, compontent: current_component)
+        @form = form(PlanForm).from_params(params, component: current_component)
         UpdatePlan.call(@form, current_user, @plan) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.update.success", scope: "decidim")
