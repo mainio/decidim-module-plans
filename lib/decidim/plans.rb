@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "decidim/favorites"
+
 require_relative "plans/version"
 require_relative "plans/admin"
 require_relative "plans/engine"

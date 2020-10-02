@@ -18,6 +18,7 @@ module Decidim
       include Decidim::Searchable
       include Decidim::Plans::Traceable
       include Decidim::Loggable
+      include Decidim::Favorites::Favoritable
 
       component_manifest_name "plans"
 
