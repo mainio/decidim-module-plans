@@ -199,7 +199,7 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
-  revision: ecfa51c1664a3ebb773f46b60f674cd77843146d
+  revision: 673208bd2d8a3ba713f0ca99a664d7e319630067
   branch: master
   specs:
     decidim-favorites (0.22.0)
