@@ -17,6 +17,10 @@ module Decidim
         attribute :contents, Array[Decidim::Plans::ContentForm]
         attribute :proposal_ids, Array[Integer]
 
+        # When a plan is updated, the user can optionally pass a version comment
+        # in the version_comment attribute.
+        translatable_attribute :version_comment, String
+
         optionally_translatable_validate_presence :title
 
         validates :proposals, presence: true, if: ->(form) { form.current_component.settings.proposal_linking_enabled? }

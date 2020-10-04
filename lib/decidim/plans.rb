@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "decidim/favorites"
+
 require_relative "plans/version"
 require_relative "plans/admin"
 require_relative "plans/engine"
@@ -7,6 +9,7 @@ require_relative "plans/admin_engine"
 require_relative "plans/paper_trail"
 require_relative "plans/component_settings_extensions"
 require_relative "plans/component"
+require_relative "plans/api"
 
 module Decidim
   module Plans

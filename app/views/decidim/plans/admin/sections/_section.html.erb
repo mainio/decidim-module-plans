@@ -28,35 +28,107 @@
         options_for_select(section_types, section.section_type)
       ) %>
     </div>
-    <div class="row column">
-      <%= form.translated(
-        :text_field,
-        :body,
-        tabs_id: id,
-        label: t(".body"),
-      ) %>
-    </div>
-    <div class="row column">
-      <%= form.translated(
-          :text_area,
-          :help,
+    <div class="section-type-controls">
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.translated(
+          :text_field,
+          :body,
           tabs_id: id,
-          label: t(".help"),
-          rows: 4
-      ) %>
-    </div>
-    <div class="row column">
-      <%= form.check_box(
-        :mandatory,
-        label: t(".mandatory")
-      ) %>
-    </div>
-    <div class="row column">
-      <%= form.number_field(
-        :answer_length,
-        min: 0,
-        label: t(".answer_length")
-      ) %>
+          label: t(".body"),
+        ) %>
+      </div>
+
+      <div class="row column hide" data-section-type="content">
+        <%= form.translated(
+            :editor,
+            :body_rich,
+            tabs_id: id,
+            label: t(".body")
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.translated(
+            :text_area,
+            :help,
+            tabs_id: id,
+            label: t(".help"),
+            rows: 4
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.translated(
+            :text_field,
+            :information_label,
+            tabs_id: id,
+            label: t(".information_label")
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.translated(
+            :editor,
+            :information,
+            tabs_id: id,
+            label: t(".information")
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.check_box(
+          :mandatory,
+          label: t(".mandatory")
+        ) %>
+      </div>
+
+      <div class="row column hide" data-section-type="field_text field_text_multiline">
+        <%= form.number_field(
+          :answer_length,
+          min: 0,
+          label: t(".answer_length")
+        ) %>
+      </div>
+
+      <div class="row column hide" data-section-type="field_scope">
+        <%= scopes_picker_field(
+          form,
+          :scope_parent,
+          root: nil
+        ) %>
+      </div>
+
+      <div class="row column hide" data-section-type="field_area_scope">
+        <%= scopes_picker_field(
+          form,
+          :area_scope_parent,
+          root: nil
+        ) %>
+      </div>
+
+      <div class="row column hide" data-section-type="field_map_point">
+        <%= form.number_field(
+          :map_center_latitude,
+          min: 0,
+          label: t(".map_center_latitude")
+        ) %>
+      </div>
+
+      <div class="row column hide" data-section-type="field_map_point">
+        <%= form.number_field(
+          :map_center_longitude,
+          min: 0,
+          label: t(".map_center_longitude")
+        ) %>
+      </div>
+
+      <div class="row column hide" data-section-type="field_attachments field_image_attachments">
+        <%= form.select(
+          :attachments_input_type,
+          options_for_select(attachment_input_types, section.attachments_input_type),
+          label: t(".attachments_input_type")
+        ) %>
+      </div>
     </div>
 
     <%= form.hidden_field :id %>

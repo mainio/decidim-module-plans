@@ -45,6 +45,22 @@ module Decidim
           config.content_processors += [:plan]
         end
       end
+
+      initializer "decidim_plans.register_api_fields" do
+        # These are defined dynamically in order to show an example on how to
+        # extend the field types from external modules.
+        Decidim::Plans::ContentMutationAttributes.class_eval do
+          argument(:text, ::Decidim::Plans::ContentMutation::FieldTextAttributes, required: false)
+          argument(:number, ::Decidim::Plans::ContentMutation::FieldNumberAttributes, required: false)
+          argument(:map_point, ::Decidim::Plans::ContentMutation::FieldMapPointAttributes, required: false)
+          argument(:checkbox, ::Decidim::Plans::ContentMutation::FieldCheckboxAttributes, required: false)
+          argument(:category, ::Decidim::Plans::ContentMutation::FieldCategoryAttributes, required: false)
+          argument(:scope, ::Decidim::Plans::ContentMutation::FieldScopeAttributes, required: false)
+          argument(:area_scope, ::Decidim::Plans::ContentMutation::FieldAreaScopeAttributes, required: false)
+          argument(:attachments, ::Decidim::Plans::ContentMutation::FieldAttachmentsAttributes, required: false)
+          argument(:images, ::Decidim::Plans::ContentMutation::FieldImageAttachmentsAttributes, required: false)
+        end
+      end
     end
   end
 end

@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic when a user creates a new plan.
       class CreatePlan < Rectify::Command
-        include AttachmentMethods
+        include ::Decidim::Plans::AttachmentMethods
 
         # Public: Initializes the command.
         #

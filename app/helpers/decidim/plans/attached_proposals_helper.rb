@@ -19,8 +19,10 @@ module Decidim
         }
 
         form.data_picker(name, picker_options, prompt_params) do |item|
-          { url: plan_search_proposals_path(current_component, format: :json),
-            text: item.title }
+          {
+            url: plan_search_proposals_path(current_component, format: :json),
+            text: item.title
+          }
         end
       end
 

@@ -1,0 +1,16 @@
+<%= remaining_characters("plan_section_#{model.section.id}", model.section.settings["answer_length"]) do |rc_opts| %>
+  <% if multilingual_answers? %>
+    <%= form.translated(
+      :text_field,
+      :body,
+      {
+        tabs_id: id
+      }.merge(field_options).merge(rc_opts)
+    ) %>
+  <% else %>
+    <%= form.text_field(
+      "body_#{current_locale}".to_sym,
+      field_options
+    ) %>
+  <% end %>
+<% end %>

@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic when a user updates a plan.
       class UpdatePlan < Rectify::Command
-        include AttachmentMethods
+        include ::Decidim::Plans::AttachmentMethods
         include NestedUpdater
 
         # Public: Initializes the command.
@@ -85,7 +85,9 @@ module Decidim
             # The update token ensures a new version is always created even if
             # the other attributes have not changed. This is needed to force a
             # new version to show the changes to associated models.
-            update_token: Time.now.to_f
+            update_token: Time.now.to_f,
+            # Optional version comments to be stored against the version
+            version_comment: form.version_comment
           }
         end
 

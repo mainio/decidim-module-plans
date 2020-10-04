@@ -10,8 +10,11 @@ base_path = ""
 base_path = "../" if File.basename(__dir__) == "development_app"
 require_relative "#{base_path}lib/decidim/plans/version"
 
-gem "decidim", Decidim::Plans::DECIDIM_VERSION
+DECIDIM_VERSION = Decidim::Plans::DECIDIM_VERSION
+
+gem "decidim", DECIDIM_VERSION
 gem "decidim-plans", path: "."
+gem "decidim-favorites", { github: "mainio/decidim-module-favorites", ref: "294672f" }
 
 gem "bootsnap", "~> 1.4"
 gem "puma", "~> 4.3.3"
@@ -20,7 +23,7 @@ gem "uglifier", "~> 4.1"
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
-  gem "decidim-dev", Decidim::Plans::DECIDIM_VERSION
+  gem "decidim-dev", DECIDIM_VERSION
 end
 
 group :development do
@@ -35,6 +38,3 @@ end
 group :test do
   gem "codecov", require: false
 end
-
-# Remediate CVE-2019-5420
-gem "railties", ">= 5.2.2.1"

@@ -12,7 +12,7 @@ module Decidim
           unless respond_to?(:settings_attribute_input_orig_plans)
             alias_method :settings_attribute_input_orig_plans, :settings_attribute_input
 
-            def settings_attribute_input(form, attribute, name, options = {})
+            def settings_attribute_input(form, attribute, name, i18n_scope, options = {})
               if attribute.type == :plan_state
                 state_select = form.select(
                   name,
@@ -22,13 +22,13 @@ module Decidim
                     [t("decidim.plans.answers.rejected"), "rejected"],
                     [t("decidim.plans.answers.evaluating"), "evaluating"]
                   ],
-                  options.merge(extra_options_for(name))
+                  options.merge(extra_options_for_type(name))
                 )
                 settings_js = javascript_include_tag("decidim/plans/admin/component_settings")
 
                 state_select + settings_js
               else
-                settings_attribute_input_orig_plans(form, attribute, name, options)
+                settings_attribute_input_orig_plans(form, attribute, name, i18n_scope, options)
               end
             end
           end

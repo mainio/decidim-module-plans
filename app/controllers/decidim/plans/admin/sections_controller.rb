@@ -9,7 +9,7 @@ module Decidim
 
         helper Plans::ApplicationHelper
 
-        helper_method :blank_section, :section_types
+        helper_method :blank_section, :section_types, :attachment_input_types
 
         def index
           enforce_permission_to :create, :sections
@@ -60,8 +60,14 @@ module Decidim
         end
 
         def section_types
-          @section_types ||= Section::TYPES.map do |section_type|
+          @section_types ||= Section.types.map do |section_type|
             [I18n.t("decidim.plans.section_types.#{section_type}"), section_type]
+          end
+        end
+
+        def attachment_input_types
+          @attachment_input_types ||= Section.attachment_input_types.map do |input_type|
+            [I18n.t("decidim.plans.attachment_input_types.#{input_type}"), input_type]
           end
         end
       end

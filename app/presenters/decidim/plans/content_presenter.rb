@@ -19,7 +19,14 @@ module Decidim
       end
 
       def body
-        rich_content(translated_attribute(content.body))
+        content_body = begin
+          if %w(field_text field_text_multiline).include?(content.section.section_type)
+            plain_content(translated_attribute(content.body))
+          else
+            "" # TODO: Other types
+          end
+        end
+        rich_content(translated_attribute(content_body))
       end
     end
   end

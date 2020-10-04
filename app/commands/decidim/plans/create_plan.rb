@@ -4,7 +4,7 @@ module Decidim
   module Plans
     # A command with all the business logic when a user creates a new plan.
     class CreatePlan < Rectify::Command
-      include AttachmentMethods
+      include ::Decidim::Plans::AttachmentMethods
       # Public: Initializes the command.
       #
       # form         - A form object with the params.

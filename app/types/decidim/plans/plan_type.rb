@@ -13,6 +13,7 @@ module Decidim
       implements Decidim::Core::AttachableInterface
       implements Decidim::Core::TraceableInterface
       implements Decidim::Core::TimestampsInterface
+      implements Decidim::Favorites::Api::FavoritesInterface
 
       field :id, ID, null: false
       field :title, Decidim::Core::TranslatedFieldType, description: "This plan's title", null: false
@@ -31,8 +32,23 @@ module Decidim
         description "The date and time this plan was published"
       end
 
-      field :sections, [SectionType], description: "Sections in this plan.", null: true
-      field :contents, [ContentType], description: "Contents in this plan.", null: true
+      field :sections, [SectionType], description: "Sections in this plan.", null: false
+      # The contents field is a text representation for each content section in
+      # each language.
+      field :contents, [Decidim::Plans::ContentType], description: "Contents in this plan.", null: false
+      # The values field contains the actual values for each content section
+      # which can be different depending on the section type.
+      field :values, [Decidim::Plans::ContentSubject], method: :contents, description: "The content values in this plan.", null: false
+      # These are the resources that are linked from the plan to the related
+      # object.
+      field :linkedResources, [Decidim::Plans::ResourceLinkSubject], method: :linked_resources, description: "The linked resources for this plan.", null: true
+
+      def linked_resources
+        resources = object.resource_links_from.map { |link| link.to }
+        return nil unless resources.any?
+
+        resources
+      end
     end
   end
 end

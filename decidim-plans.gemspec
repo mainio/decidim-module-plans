@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "decidim-core", Decidim::Plans::DECIDIM_VERSION
+  spec.add_dependency "decidim-favorites", Decidim::Plans::DECIDIM_VERSION
   spec.add_dependency "decidim-proposals", Decidim::Plans::DECIDIM_VERSION
   spec.add_dependency "paper_trail-association_tracking", "~> 2.0"
 
