@@ -28,6 +28,7 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :title_help, type: :text, translated: true
     settings.attribute :attachment_help, type: :text, translated: true
     settings.attribute :scopes_enabled, type: :boolean, default: true
+    settings.attribute :scope_id, type: :scope
     settings.attribute :categories_enabled, type: :boolean, default: true
     settings.attribute :proposal_linking_enabled, type: :boolean, default: true
     settings.attribute :attachments_allowed, type: :boolean, default: false
