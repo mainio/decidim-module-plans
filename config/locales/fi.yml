@@ -15,6 +15,9 @@ fi:
         state: Tila
         title: Otsikko
         user_group_id: Luo käyttäjänä
+      section:
+        area_scope_parent: Area scope parent
+        scope_parent: Scope parent
       tag:
         name: Nimi
     errors:
@@ -52,6 +55,7 @@ fi:
             proposal_linking_enabled: Ehdotusten linkkaaminen käytössä
             scopes_enabled: Teemat käytössä
             title_help: Otsikon ohjeteksti
+            title_text: Title text
           step:
             announcement: Ilmoitus
             comments_blocked: Kommentointi estetty
@@ -140,10 +144,15 @@ fi:
             title: Osiot
           section:
             answer_length: Vastauksen pituus
+            attachments_input_type: Attachments input type
             body: Runkoteksti
             down: Alas
             help: Ohjeteksti
+            information: Information
+            information_label: Information label
             mandatory: Pakollinen
+            map_center_latitude: Map center latitude
+            map_center_longitude: Map center longitude
             remove: Poista
             section: Osio
             up: Ylös
@@ -200,6 +209,9 @@ fi:
           all: Kaikki
           amendments: Muutokset
           plans: Suunnitelmat
+      attachment_input_types:
+        single: Single attachment
+        multi: Multiple attachments
       attached_proposals_helper:
         attach_proposal: Liitä ehdotus
         close: Sulje
@@ -359,8 +371,19 @@ fi:
         actions:
           new: Uusi osio
       section_types:
+        content: Content
+        field_area_scope: Field - Area scope
+        field_attachments: Field - Attachments
+        field_category: Field - Category
+        field_checkbox: Field - Checkbox
+        field_image_attachments: Field - Image attachments
+        field_map_point: Field - Map point
+        field_number: Field - Number
+        field_scope: Field - Scope
         field_text_multiline: Kenttä - Monirivinen
         field_text: Kenttä - Yksirivinen
+        link_proposals: Link proposals
+        link_ideas: Link ideas
       shared:
         attachment_fields:
           attachment_legend: Liite
