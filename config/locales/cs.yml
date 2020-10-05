@@ -189,37 +189,37 @@ cs:
         plan:
           answer: "%{user_name} odpověděl %{resource_name} ve skupině %{space_name}."
           create: "%{user_name} vytvořil %{resource_name} ve skupině %{space_name}."
-          update: "%{user_name} updated %{resource_name} on the %{space_name} space."
+          update: "%{user_name} aktualizoval %{resource_name} ve skupině %{space_name}."
         plan_note:
-          create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
+          create: "%{user_name} zanechal soukromou poznámku %{resource_name} ve skupině %{space_name}."
       answers:
         accepted: Přijato
         evaluating: Hodnocení
         not_answered: Nezodpovězeno
         rejected: Odmítnuto
-        withdrawn: Withdrawn
+        withdrawn: Odebráno
       application_helper:
         filter_state_values:
-          accepted: Accepted
-          all: All
-          evaluating: Evaluating
-          except_rejected: All except rejected
-          rejected: Rejected
+          accepted: Přijato
+          all: Vše
+          evaluating: Hodnocení
+          except_rejected: Vše s výjimkou odmítnuto
+          rejected: Odmítnuto
         filter_type_values:
-          all: All
-          amendments: Amendments
-          plans: Plans
+          all: Vše
+          amendments: Pozměňovací návrhy
+          plans: Plány
       attachment_input_types:
-        single: Single attachment
-        multi: Multiple attachments
+        single: Jednotlivá příloha
+        multi: Více příloh
       attached_proposals_helper:
-        attach_proposal: Attach proposal
-        close: Close
-        current_selection: Search proposals by name
-        select: Select
+        attach_proposal: Připojit návrh
+        close: Zavřít
+        current_selection: Hledat návrhy podle jména
+        select: Vybrat
       create:
-        invalid: Failed to create new content.
-        success: Created successfully.
+        invalid: Nepodařilo se vytvořit nový obsah.
+        success: Úspěšně vytvořeno.
       last_activity:
         new_plan_at_html: "<span>New plan at %{link}</span>"
       models:
@@ -289,27 +289,27 @@ cs:
           close_modal: Close modal
           filter: Filter
           filter_by: Filter by
-          unfold: Unfold
+          unfold: Rozbalit
         form:
-          attachment_legend: Add an attachment
-          select_a_category: Select a category
+          attachment_legend: Přidat přílohu
+          select_a_category: Vyberte kategorii
         index:
-          new_plan: New plan
-          see_all_withdrawn: See all withdrawn
+          new_plan: Nový plán
+          see_all_withdrawn: Zobrazit všechny stažené
         linked_plans:
-          plan_authors: Number of authors
+          plan_authors: Počet autorů
         new:
-          create: Create
-          title: Create plan
+          create: Vytvořit
+          title: Vytvořit plán
         new_plan_button:
-          new_plan: New plan
+          new_plan: Nový plán
         orders:
-          label: 'Order plans by:'
-          random: Random
-          recent: Recent
+          label: 'Seřadit plány podle:'
+          random: Náhodně
+          recent: Nedávné
         plan:
           close:
-            error: Error marking the item as done.
+            error: Chyba při označování položky jako hotové.
             success: Item marked done successfully.
           publish:
             error: Error publishing new content.
