@@ -1,65 +1,65 @@
 cs:
   activerecord:
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan: Plán
   activemodel:
     attributes:
       plan:
-        proposals: Proposals
-        category_id: Category
-        created_at: Created at
-        decidim_category_id: Category
-        decidim_component_id: Component
-        decidim_scope_id: Scope
-        scope_id: Scope
-        state: State
-        title: Title
-        user_group_id: Create as
+        proposals: Návrhy
+        category_id: Kategorie
+        created_at: Vytvořeno v
+        decidim_category_id: Kategorie
+        decidim_component_id: Komponenta
+        decidim_scope_id: Oblast působnosti
+        scope_id: Oblast působnosti
+        state: Stav
+        title: Název
+        user_group_id: Vytvořit jako
       section:
-        area_scope_parent: Area scope parent
-        scope_parent: Scope parent
+        area_scope_parent: Nadřazený rozsah oblasti
+        scope_parent: Nadrazená Oblasti působnosti
       tag:
-        name: Name
+        name: Název
     errors:
       models:
         attachment:
           attributes:
             file:
-              needs_to_be_reattached: Needs to be reattached
+              needs_to_be_reattached: Potřebuje být znovu připojen
   decidim:
     assemblies:
       statistics:
-        plans_count: Plans
+        plans_count: Plány
     components:
       plans:
         actions:
-          close: Close
-          create: Create
-          reopen: Open for editing
-          withdraw: Withdraw
-        name: Plans
+          close: Zavřít
+          create: Vytvořit
+          reopen: Otevřít pro úpravy
+          withdraw: Odebrat
+        name: Plány
         settings:
           global:
-            announcement: Announcement
-            attachments_allowed: Attachments allowed
-            attachment_help: Attachment help text
-            categories_enabled: Categories enabled
-            closing_allowed: Allow plan authors to mark the plans as done
-            comments_enabled: Comments enabled
-            default_answer: Default plan answer
-            default_answer_none: (None)
-            default_state: Default plan state
-            multilingual_answers: Multilingual answers
-            plan_answering_enabled: Answering enabled
-            plan_title_length: Title length
-            proposal_linking_enabled: Proposal linking enabled
-            scopes_enabled: Scopes enabled
-            title_help: Title help text
-            title_text: Title text
+            announcement: Oznámení
+            attachments_allowed: Povolené přílohy
+            attachment_help: Text nápovědy k příloze
+            categories_enabled: Kategorie povoleny
+            closing_allowed: Povolit autorům plánu označit plány jako dokončené
+            comments_enabled: Komentáře povoleny
+            default_answer: Výchozí odpověď na plán
+            default_answer_none: (Žádné)
+            default_state: Výchozí stav plánu
+            multilingual_answers: Vícejazyčné odpovědi
+            plan_answering_enabled: Odpověď povolena
+            plan_title_length: Délka názvu
+            proposal_linking_enabled: Propojení Návrhu povoleno
+            scopes_enabled: Oblasti působnosti povoleny
+            title_help: Text nápovědy nadpisu
+            title_text: Text nadpisu
           step:
-            announcement: Announcement
-            comments_blocked: Comments blocked
-            creation_enabled: Creation enabled
+            announcement: Oznámení
+            comments_blocked: Komentáře blokovány
+            creation_enabled: Vytvoření povoleno
             plan_answering_enabled: Answering enabled
     filters:
       linked_classes:
