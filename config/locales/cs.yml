@@ -79,15 +79,15 @@ cs:
         back: Zpět
         confirm_destroy: Jste si jisti, že to chcete odstranit?
         close_plan: Označit jako hotové
-        destroy: Delete
-        edit: Edit
-        edit_plan: Edit
-        export_budgets: Convert to projects
-        manage_tags: Manage tags
-        new: Submit new plan
-        new_tag: New tag
-        plan_taggings: Tags
-        reopen_plan: Open for editing
+        destroy: Vymazat
+        edit: Upravit
+        edit_plan: Upravit
+        export_budgets: Převést na projekty
+        manage_tags: Spravovat štítky
+        new: Odeslat nový plán
+        new_tag: Nový štítek
+        plan_taggings: Štítky
+        reopen_plan: Otevřít pro úpravy
         sections: Sections
         title: Actions
       admin:
