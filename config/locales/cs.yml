@@ -60,25 +60,25 @@ cs:
             announcement: Oznámení
             comments_blocked: Komentáře blokovány
             creation_enabled: Vytvoření povoleno
-            plan_answering_enabled: Answering enabled
+            plan_answering_enabled: Odpověď povolena
     filters:
       linked_classes:
-        plan: Plans
+        plan: Plány
     pages:
       home:
         statistics:
-          plans_accepted: Accepted plans
-          plans_count: Plans
+          plans_accepted: Přijaté plány
+          plans_count: Plány
     participatory_processes:
       statistics:
-        plans_accepted: Accepted plans
-        plans_count: Plans
+        plans_accepted: Přijaté plány
+        plans_count: Plány
     plans:
       actions:
-        answer: Answer
-        back: Back
-        confirm_destroy: Are you sure you want to delete this?
-        close_plan: Mark as done
+        answer: Odpověď
+        back: Zpět
+        confirm_destroy: Jste si jisti, že to chcete odstranit?
+        close_plan: Označit jako hotové
         destroy: Delete
         edit: Edit
         edit_plan: Edit
@@ -149,41 +149,41 @@ cs:
             down: Down
             help: Help
             information: Information
-            information_label: Information label
-            mandatory: Mandatory
-            map_center_latitude: Map center latitude
-            map_center_longitude: Map center longitude
-            remove: Remove
-            section: Section
-            up: Up
+            information_label: Popisek informací
+            mandatory: Vyžadováno
+            map_center_latitude: Zeměpisná šířka středu mapy
+            map_center_longitude: Zeměpisná délka středu mapy
+            remove: Odstranit
+            section: Sekce
+            up: Nahoru
           update:
-            invalid: Error updating sections.
-            success: Sections updated successfully.
+            invalid: Chyba při aktualizaci sekcí.
+            success: Sekce byly úspěšně aktualizovány.
         shared:
           info_plan:
-            body: Body
-            created_at: Creation date
-            plans: Plans
+            body: Tělo
+            created_at: Datum vytvoření
+            plans: Plány
         tags:
           create:
-            error: Failed to create.
-            success: Created successfully.
+            error: Vytvoření se nezdařilo.
+            success: Úspěšně vytvořeno.
           destroy:
-            error: Error deleting.
-            success: Deleted successfully.
+            error: Chyba při mazání.
+            success: Úspěšně odstraněno.
           edit:
-            title: Edit tag
-            update: Update
+            title: Upravit štítek
+            update: Aktualizovat
           form:
-            tags: Tags
+            tags: Štítky
           index:
-            tags: Tags
-            title: Manage tags
+            tags: Štítky
+            title: Spravovat štítky
           new:
-            create: Create
-            title: New tag
+            create: Vytvořit
+            title: Nový štítek
           update:
-            invalid: Error updating.
+            invalid: Chyba při aktualizaci.
             success: Updated successfully.
       admin_log:
         plan:
