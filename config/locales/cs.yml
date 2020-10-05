@@ -184,19 +184,19 @@ cs:
             title: Nový štítek
           update:
             invalid: Chyba při aktualizaci.
-            success: Updated successfully.
+            success: Aktualizováno úspěšně.
       admin_log:
         plan:
-          answer: "%{user_name} answered %{resource_name} on the %{space_name} space."
+          answer: "%{user_name} odpověděl %{resource_name} ve skupině %{space_name}."
           create: "%{user_name} created %{resource_name} on the %{space_name} space."
           update: "%{user_name} updated %{resource_name} on the %{space_name} space."
         plan_note:
           create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
       answers:
-        accepted: Accepted
-        evaluating: Evaluating
-        not_answered: Not answered
-        rejected: Rejected
+        accepted: Přijato
+        evaluating: Hodnocení
+        not_answered: Nezodpovězeno
+        rejected: Odmítnuto
         withdrawn: Withdrawn
       application_helper:
         filter_state_values:
