@@ -1,0 +1,479 @@
+cs:
+  activerecord:
+    models:
+      decidim/plans/plan: Plan
+  activemodel:
+    attributes:
+      plan:
+        proposals: Proposals
+        category_id: Category
+        created_at: Created at
+        decidim_category_id: Category
+        decidim_component_id: Component
+        decidim_scope_id: Scope
+        scope_id: Scope
+        state: State
+        title: Title
+        user_group_id: Create as
+      section:
+        area_scope_parent: Area scope parent
+        scope_parent: Scope parent
+      tag:
+        name: Name
+    errors:
+      models:
+        attachment:
+          attributes:
+            file:
+              needs_to_be_reattached: Needs to be reattached
+  decidim:
+    assemblies:
+      statistics:
+        plans_count: Plans
+    components:
+      plans:
+        actions:
+          close: Close
+          create: Create
+          reopen: Open for editing
+          withdraw: Withdraw
+        name: Plans
+        settings:
+          global:
+            announcement: Announcement
+            attachments_allowed: Attachments allowed
+            attachment_help: Attachment help text
+            categories_enabled: Categories enabled
+            closing_allowed: Allow plan authors to mark the plans as done
+            comments_enabled: Comments enabled
+            default_answer: Default plan answer
+            default_answer_none: (None)
+            default_state: Default plan state
+            multilingual_answers: Multilingual answers
+            plan_answering_enabled: Answering enabled
+            plan_title_length: Title length
+            proposal_linking_enabled: Proposal linking enabled
+            scopes_enabled: Scopes enabled
+            title_help: Title help text
+            title_text: Title text
+          step:
+            announcement: Announcement
+            comments_blocked: Comments blocked
+            creation_enabled: Creation enabled
+            plan_answering_enabled: Answering enabled
+    filters:
+      linked_classes:
+        plan: Plans
+    pages:
+      home:
+        statistics:
+          plans_accepted: Accepted plans
+          plans_count: Plans
+    participatory_processes:
+      statistics:
+        plans_accepted: Accepted plans
+        plans_count: Plans
+    plans:
+      actions:
+        answer: Answer
+        back: Back
+        confirm_destroy: Are you sure you want to delete this?
+        close_plan: Mark as done
+        destroy: Delete
+        edit: Edit
+        edit_plan: Edit
+        export_budgets: Convert to projects
+        manage_tags: Manage tags
+        new: Submit new plan
+        new_tag: New tag
+        plan_taggings: Tags
+        reopen_plan: Open for editing
+        sections: Sections
+        title: Actions
+      admin:
+        actions:
+          preview: Preview
+        budgets_exports:
+          create:
+            invalid: There's been a problem exporting the items into budgeting projects
+            success: "%{number} items successfully exported into budgeting projects"
+          new:
+            create: Export to projects
+            no_components: There are no other budgets components in this participatory space to export the items into projects.
+            select_component: Please select a component
+        exports:
+          plans: Plans
+        plan_answers:
+          edit:
+            accepted: Accepted
+            answer_plan: Answer
+            evaluating: Evaluating
+            rejected: Rejected
+            title: Answer for %{title}
+        plans:
+          answer:
+            invalid: Error occured while answering.
+            success: Answered successfully.
+          edit:
+            title: Edit
+            update: Update
+          form:
+            attachment_legend: Add an attachment
+            select_a_category: Select a category
+          index:
+            draft_plans: Drafts
+            published_plans: Published
+            selected: Selected
+            title: Plans
+          new:
+            create: Create
+            title: Submit new plan
+          taggings:
+            no_results: "Create new tag: %{name}"
+            search: Search
+            title: Tags
+            update: Update
+          update_taggings:
+            invalid: Error updating the tags.
+            success: Tags updated successfully.
+        sections:
+          form:
+            add_section: Add section
+          index:
+            save: Save
+            title: Sections
+          section:
+            answer_length: Answer length
+            attachments_input_type: Attachments input type
+            body: Body
+            down: Down
+            help: Help
+            information: Information
+            information_label: Information label
+            mandatory: Mandatory
+            map_center_latitude: Map center latitude
+            map_center_longitude: Map center longitude
+            remove: Remove
+            section: Section
+            up: Up
+          update:
+            invalid: Error updating sections.
+            success: Sections updated successfully.
+        shared:
+          info_plan:
+            body: Body
+            created_at: Creation date
+            plans: Plans
+        tags:
+          create:
+            error: Failed to create.
+            success: Created successfully.
+          destroy:
+            error: Error deleting.
+            success: Deleted successfully.
+          edit:
+            title: Edit tag
+            update: Update
+          form:
+            tags: Tags
+          index:
+            tags: Tags
+            title: Manage tags
+          new:
+            create: Create
+            title: New tag
+          update:
+            invalid: Error updating.
+            success: Updated successfully.
+      admin_log:
+        plan:
+          answer: "%{user_name} answered %{resource_name} on the %{space_name} space."
+          create: "%{user_name} created %{resource_name} on the %{space_name} space."
+          update: "%{user_name} updated %{resource_name} on the %{space_name} space."
+        plan_note:
+          create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
+      answers:
+        accepted: Accepted
+        evaluating: Evaluating
+        not_answered: Not answered
+        rejected: Rejected
+        withdrawn: Withdrawn
+      application_helper:
+        filter_state_values:
+          accepted: Accepted
+          all: All
+          evaluating: Evaluating
+          except_rejected: All except rejected
+          rejected: Rejected
+        filter_type_values:
+          all: All
+          amendments: Amendments
+          plans: Plans
+      attachment_input_types:
+        single: Single attachment
+        multi: Multiple attachments
+      attached_proposals_helper:
+        attach_proposal: Attach proposal
+        close: Close
+        current_selection: Search proposals by name
+        select: Select
+      create:
+        invalid: Failed to create new content.
+        success: Created successfully.
+      last_activity:
+        new_plan_at_html: "<span>New plan at %{link}</span>"
+      models:
+        plan:
+          fields:
+            authors: Authors
+            category: Category
+            comments: Comments
+            contributions: Contributions
+            id: ID
+            notes: Notes
+            official_plan: Official plan
+            published_at: Published at
+            scope: Scope
+            state: State
+            tags: Tags
+            title: Title
+        plan_tags:
+          fields:
+            id: ID
+            name: Name
+            taggings_count: Number of uses
+      plans:
+        count:
+          plans_count:
+            one: "%{count} plan"
+            few: "%{count} plans"
+            many: "%{count} plans"
+            other: "%{count} plans"
+        create:
+          error: Failed to create new content.
+          success: Created successfully.
+        destroy:
+          error: Error deleting the item.
+          success: Deleted successfully.
+        edit:
+          discard: Discard this draft
+          discard_confirmation: Are you sure you want to discard this draft?
+          update: Update
+        evaluation_modal:
+          button_text: OK
+          close: Close modal
+          description: The plan is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
+          title: The plan is being evaluated
+        preview:
+          modify: Modify
+          publish: Publish
+        filters:
+          accepted: Accepted
+          activity: Activity
+          all: All
+          category: Category
+          category_prompt: Select a category
+          citizens: Citizens
+          evaluating: Evaluating
+          except_rejected: All except rejected
+          official: Official
+          origin: Origin
+          rejected: Rejected
+          related_to: Related to
+          search: Search
+          state: State
+          tag: Tags
+          tag_prompt: Select tags
+          voted: Voted
+        filters_small_view:
+          close_modal: Close modal
+          filter: Filter
+          filter_by: Filter by
+          unfold: Unfold
+        form:
+          attachment_legend: Add an attachment
+          select_a_category: Select a category
+        index:
+          new_plan: New plan
+          see_all_withdrawn: See all withdrawn
+        linked_plans:
+          plan_authors: Number of authors
+        new:
+          create: Create
+          title: Create plan
+        new_plan_button:
+          new_plan: New plan
+        orders:
+          label: 'Order plans by:'
+          random: Random
+          recent: Recent
+        plan:
+          close:
+            error: Error marking the item as done.
+            success: Item marked done successfully.
+          publish:
+            error: Error publishing new content.
+            success: Published successfully.
+          reopen:
+            error: Error opening item for editing.
+            success: Item opened for editing successfully.
+          view_plan: View plan
+          withdraw:
+            error: Error withdrawing.
+            success: Withdrawn successfully.
+        show:
+          back: Back
+          close: Mark as done
+          close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
+          edit: Edit
+          hidden_authors_count:
+            one: and %{count} more person
+            few: and %{count} more people
+            many: and %{count} more people
+            other: and %{count} more people
+          info-message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+          of_versions: "(of %{number})"
+          plan_accepted_reason: 'This plan has been accepted because:'
+          plan_in_evaluation_reason: This plan is being evaluated
+          plan_rejected_reason: 'This plan has been rejected because:'
+          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
+          publish: Publish
+          publish_info: Publish this version of the draft or
+          published_proposal: published plan
+          reopen: Open for editing
+          reopen_confirm: Are you sure you want to open this item for editing?
+          report: Report
+          request_access: Request editing permissions
+          requested_access: Editing permissions requested
+          see_other_versions: see other versions
+          version: Version %{number}
+          version_history: see version history
+          withdraw: withdraw the plan
+          withdraw_btn: Withdraw
+          withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
+          withdraw_confirmation: Are you sure to withdraw this item?
+        update:
+          error: Error updating content.
+          success: Updated successfully.
+        withdraw:
+          error: Error withdrawing the item.
+          success: Item withdrawn successfully.
+      requests:
+        accept_request: Accept
+        accepted_request:
+          error: Could not be accepted as a collaborator, try again later.
+          success: "@%{user} has been successfully accepted as a collaborator."
+        access_requested:
+          error: Your request could not be completed, try again later.
+          success: Your request to collaborate has been sent successfully
+        reject_request: Reject
+        rejected_request:
+          error: Could not be rejected as a collaborator, try again later.
+          success: "@%{user} has been successfully rejected as a collaborator."
+        title: Collaboration requests
+      sections:
+        actions:
+          new: New section
+      section_types:
+        content: Content
+        field_area_scope: Field - Area scope
+        field_attachments: Field - Attachments
+        field_category: Field - Category
+        field_checkbox: Field - Checkbox
+        field_image_attachments: Field - Image attachments
+        field_map_point: Field - Map point
+        field_number: Field - Number
+        field_scope: Field - Scope
+        field_text_multiline: Field - Multiple lines
+        field_text: Field - Single line
+        link_proposals: Link proposals
+        link_ideas: Link ideas
+      shared:
+        attachment_fields:
+          attachment_legend: Attachment
+          down: Down
+          remove: Remove
+          up: Up
+        attachments:
+          legend: Attachments
+          add_attachment: Add attachment
+      update:
+        invalid: Error updating content.
+        success: Updated successfully.
+      versions:
+        changes_at_title: Changes at "%{title}"
+        index:
+          title: Versions
+        stats:
+          back_to_plan: Go back
+          number_of_versions: Versions
+          show_all_versions: Show all versions
+          version_author: Version author
+          version_created_at: Version created at
+          version_number: Version number
+          version_number_out_of_total: "%{current_version} out of %{total_count}"
+        version:
+          version_index: Version %{index}
+    resource_links:
+      included_proposals:
+        plan_proposal: Related proposals
+        proposal_plan: Related plans
+    scopes:
+      global: Global
+    events:
+      plans:
+        plan_access_accepted:
+          email_intro: '%{requester_name} has been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} has been accepted to access as a contributor of %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+        plan_access_rejected:
+          email_intro: '%{requester_name} has been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} has been rejected to access as a contributor of %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+        plan_access_requested:
+          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
+          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
+        plan_access_requester_accepted:
+          email_intro: You have been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: You have been accepted as a contributor of %{resource_title}.
+          notification_title: You have been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+        plan_access_requester_rejected:
+          email_intro: You have been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: You have been rejected as a contributor of %{resource_title}.
+          notification_title: You have been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+        plan_accepted:
+          email_intro: '"%{resource_title}" has been accepted. You can read the answer in this page:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A resource you're following has been accepted
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been accepted.
+        plan_evaluating:
+          email_intro: '"%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A resource you're following is being evaluated
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> is being evaluated.
+        plan_published:
+          email_intro: '"%{resource_title}" has been published. You can see it here:'
+          email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A user you're following has published a resource
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+        plan_published_for_proposals:
+          email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
+          email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.
+          email_subject: A proposal you have authored has been linked to new content
+          notification_title: A proposal you have authored has been linked to <a href="%{resource_url}">%{resource_title}</a>.
+        plan_published_for_space:
+          email_intro: '"%{resource_title}" has been published. You can see it here:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A resource you're following has been published
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+        plan_rejected:
+          email_intro: '"%{resource_title}" has been rejected. You can read the answer in this page:'
+          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_subject: A resource you're following has been rejected
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been rejected.
