@@ -37,18 +37,23 @@ module Decidim
               next if plan_already_copied?(original_plan, target_component)
 
               project = Decidim::Budgets::Project.new
+              project.budget = form.details.target_budget
+              project.scope = original_plan.scope
+              project.category = original_plan.category
               project.title = sanitize_localized(original_plan.title)
               project.description = project_description(original_plan)
-              project.budget = form.default_budget
-              project.category = original_plan.category
+              project.budget_amount = form.default_budget_amount
               project.component = target_component
+              project.save!
+
+              # Create the attachments
               original_plan.attachments.each do |at|
-                project.attachments.build(
+                Decidim::Attachment.create!(
+                  attached_to: project,
                   title: at.title,
                   file: at.file
                 )
               end
-              project.save!
 
               # Link included proposals to the project
               proposals = original_plan.linked_resources(:proposals, "included_proposals")
@@ -61,8 +66,12 @@ module Decidim
         end
 
         def plans
-          Decidim::Plans::Plan.where(component: origin_component)
-                              .where.not(closed_at: nil)
+          results = Decidim::Plans::Plan.where(
+            component: origin_component
+          ).where.not(closed_at: nil)
+          return results.where(scope: @form.scope) if @form.scope
+
+          results
         end
 
         def origin_component
@@ -83,8 +92,13 @@ module Decidim
           pr_desc = {}
 
           # Add content for all sections and languages
+          export_types = %w(field_text field_text_multiline)
           original_plan.sections.each do |section|
+            next unless export_types.include?(section.section_type)
+
             content = original_plan.contents.find_by(section: section)
+            next unless content
+
             content.body.each do |locale, body_text|
               title = plain_content(section.body[locale])
               pr_desc[locale] ||= ""

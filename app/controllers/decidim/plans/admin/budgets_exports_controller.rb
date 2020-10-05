@@ -7,7 +7,9 @@ module Decidim
         def new
           enforce_permission_to :export_budgets, :plans
 
-          @form = form(Admin::PlanExportBudgetsForm).instance
+          @form = form(Admin::PlanExportBudgetsForm).from_model(
+            current_component
+          )
         end
 
         def create
