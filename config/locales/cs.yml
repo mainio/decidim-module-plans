@@ -188,7 +188,7 @@ cs:
       admin_log:
         plan:
           answer: "%{user_name} odpověděl %{resource_name} ve skupině %{space_name}."
-          create: "%{user_name} created %{resource_name} on the %{space_name} space."
+          create: "%{user_name} vytvořil %{resource_name} ve skupině %{space_name}."
           update: "%{user_name} updated %{resource_name} on the %{space_name} space."
         plan_note:
           create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
