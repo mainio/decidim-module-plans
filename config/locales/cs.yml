@@ -310,53 +310,53 @@ cs:
         plan:
           close:
             error: Chyba při označování položky jako hotové.
-            success: Item marked done successfully.
+            success: Položka byla úspěšně označena jako hotová.
           publish:
-            error: Error publishing new content.
-            success: Published successfully.
+            error: Chyba při publikování nového obsahu.
+            success: Úspěšně zveřejněno.
           reopen:
-            error: Error opening item for editing.
-            success: Item opened for editing successfully.
-          view_plan: View plan
+            error: Chyba při otevírání položky pro úpravu.
+            success: Položka byla úspěšně otevřena pro úpravy.
+          view_plan: Zobrazit plán
           withdraw:
-            error: Error withdrawing.
-            success: Withdrawn successfully.
+            error: Chyba při stahování.
+            success: Úspěšně staženo.
         show:
-          back: Back
-          close: Mark as done
-          close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
-          edit: Edit
+          back: Zpět
+          close: Označit jako dokončené
+          close_confirm: Jste si jisti, že chcete označit tuto položku za hotovou? Po označení již nelze položku upravovat.
+          edit: Upravit
           hidden_authors_count:
             one: and %{count} more person
             few: and %{count} more people
             many: and %{count} more people
             other: and %{count} more people
-          info-message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-          of_versions: "(of %{number})"
-          plan_accepted_reason: 'This plan has been accepted because:'
-          plan_in_evaluation_reason: This plan is being evaluated
-          plan_rejected_reason: 'This plan has been rejected because:'
-          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
-          publish: Publish
-          publish_info: Publish this version of the draft or
-          published_proposal: published plan
-          reopen: Open for editing
-          reopen_confirm: Are you sure you want to open this item for editing?
-          report: Report
-          request_access: Request editing permissions
-          requested_access: Editing permissions requested
-          see_other_versions: see other versions
-          version: Version %{number}
-          version_history: see version history
-          withdraw: withdraw the plan
-          withdraw_btn: Withdraw
-          withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
-          withdraw_confirmation: Are you sure to withdraw this item?
+          info-message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
+          of_versions: "(z %{number})"
+          plan_accepted_reason: 'Tento plán byl přijat z těchto důvodů:'
+          plan_in_evaluation_reason: Tento plán je hodnocen
+          plan_rejected_reason: 'Tento plán byl zamítnut, protože:'
+          plan_waiting_for_evaluation: Plán je hodnocen, úprava není povolena.
+          publish: Zveřejnit
+          publish_info: Zveřejnit tuto verzi konceptu nebo
+          published_proposal: zveřejněný plán
+          reopen: Otevřít pro úpravy
+          reopen_confirm: Jste si jisti, že chcete otevřít tuto položku pro úpravy?
+          report: Hlášení
+          request_access: Žádost o oprávnění k úpravám
+          requested_access: Oprávnění k úpravě požadováno
+          see_other_versions: viz ostatní verze
+          version: Verze %{number}
+          version_history: viz historie verzí
+          withdraw: stáhnout plán
+          withdraw_btn: Odebrat
+          withdraw_btn_hint: Tuto položku můžete stáhnout, pokud změníte názor, pokud jste neobdrželi žádnou podporu. Položka není smazána, zobrazí se v seznamu stažených položek.
+          withdraw_confirmation: Opravdu chcete stáhnout tuto položku?
         update:
-          error: Error updating content.
-          success: Updated successfully.
+          error: Chyba při aktualizaci obsahu.
+          success: Aktualizováno úspěšně.
         withdraw:
-          error: Error withdrawing the item.
+          error: Chyba při stahování položky.
           success: Item withdrawn successfully.
       requests:
         accept_request: Accept
