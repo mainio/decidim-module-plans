@@ -100,55 +100,55 @@ cs:
           new:
             create: Exportovat do projektů
             no_components: V tomto participačním prostoru nejsou žádné další složky rozpočtu na export položek do projektů.
-            select_component: Please select a component
+            select_component: Vyberte komponentu
         exports:
-          plans: Plans
+          plans: Plány
         plan_answers:
           edit:
-            accepted: Accepted
-            answer_plan: Answer
-            evaluating: Evaluating
-            rejected: Rejected
-            title: Answer for %{title}
+            accepted: Přijato
+            answer_plan: Odpověď
+            evaluating: Hodnocení
+            rejected: Odmítnuto
+            title: Odpověď na %{title}
         plans:
           answer:
-            invalid: Error occured while answering.
-            success: Answered successfully.
+            invalid: Při odpovědi došlo k chybě.
+            success: Odpovězeno úspěšně.
           edit:
-            title: Edit
-            update: Update
+            title: Upravit
+            update: Aktualizovat
           form:
-            attachment_legend: Add an attachment
-            select_a_category: Select a category
+            attachment_legend: Přidat přílohu
+            select_a_category: Vyberte kategorii
           index:
-            draft_plans: Drafts
-            published_plans: Published
-            selected: Selected
-            title: Plans
+            draft_plans: Koncepty
+            published_plans: Zveřejněno
+            selected: Vybráno
+            title: Plány
           new:
-            create: Create
-            title: Submit new plan
+            create: Vytvořit
+            title: Odeslat nový plán
           taggings:
-            no_results: "Create new tag: %{name}"
-            search: Search
-            title: Tags
-            update: Update
+            no_results: "Vytvořit nový štítek: %{name}"
+            search: Hledat
+            title: Štítky
+            update: Aktualizovat
           update_taggings:
-            invalid: Error updating the tags.
-            success: Tags updated successfully.
+            invalid: Chyba při aktualizaci štítků.
+            success: Štítky byly úspěšně aktualizovány.
         sections:
           form:
-            add_section: Add section
+            add_section: Přidat sekci
           index:
-            save: Save
-            title: Sections
+            save: Uložit
+            title: Sekce
           section:
-            answer_length: Answer length
-            attachments_input_type: Attachments input type
-            body: Body
-            down: Down
-            help: Help
-            information: Information
+            answer_length: Délka odpovědi
+            attachments_input_type: Vstupní typ příloh
+            body: Tělo
+            down: Dolů
+            help: Nápověda
+            information: Informace
             information_label: Popisek informací
             mandatory: Vyžadováno
             map_center_latitude: Zeměpisná šířka středu mapy
@@ -221,18 +221,18 @@ cs:
         invalid: Nepodařilo se vytvořit nový obsah.
         success: Úspěšně vytvořeno.
       last_activity:
-        new_plan_at_html: "<span>New plan at %{link}</span>"
+        new_plan_at_html: "<span>Nový plán na %{link}</span>"
       models:
         plan:
           fields:
-            authors: Authors
-            category: Category
-            comments: Comments
-            contributions: Contributions
+            authors: Autoři
+            category: Kategorie
+            comments: Komentáře
+            contributions: Příspěvky
             id: ID
-            notes: Notes
-            official_plan: Official plan
-            published_at: Published at
+            notes: Poznámky
+            official_plan: Oficiální plán
+            published_at: Zveřejněno
             scope: Scope
             state: State
             tags: Tags
@@ -369,7 +369,7 @@ cs:
         reject_request: Reject
         rejected_request:
           error: Could not be rejected as a collaborator, try again later.
-          success: "@%{user} has been successfully rejected as a collaborator."
+          success: "@%{user} byl úspěšně odmítnut jako spolupracovník."
         title: Collaboration requests
       sections:
         actions:
