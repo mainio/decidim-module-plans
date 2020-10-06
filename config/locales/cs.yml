@@ -434,12 +434,12 @@ cs:
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> byl <strong>odmítnut přístup jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} požádal o přístup jako přispěvatel. Můžete <strong>přijmout nebo odmítnout požadavek</strong> ze stránky <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
+          email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} požádal o přístup k příspění k %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> požádal o přístup k přispění do <a href="%{resource_url}">%{resource_title}</a>. Prosím, <strong>žádost přijměte nebo odmítněte</strong>.
         plan_access_requester_accepted:
-          email_intro: You have been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Byl jste přijat k přístupu jako přispěvatel <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Obdrželi jste toto oznámení, protože jste požádali o spolupráci na <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: Byli jste přijati jako přispěvatel %{resource_title}.
           notification_title: Byl jste <strong>přijat k přístupu jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
