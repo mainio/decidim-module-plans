@@ -233,62 +233,62 @@ cs:
             notes: Poznámky
             official_plan: Oficiální plán
             published_at: Zveřejněno
-            scope: Scope
-            state: State
-            tags: Tags
-            title: Title
+            scope: Oblast působnosti
+            state: Stav
+            tags: Štítky
+            title: Název
         plan_tags:
           fields:
             id: ID
-            name: Name
-            taggings_count: Number of uses
+            name: Název
+            taggings_count: Počet použití
       plans:
         count:
           plans_count:
             one: "%{count} plan"
             few: "%{count} plans"
             many: "%{count} plans"
-            other: "%{count} plans"
+            other: "%{count} plánů"
         create:
-          error: Failed to create new content.
-          success: Created successfully.
+          error: Nepodařilo se vytvořit nový obsah.
+          success: Úspěšně vytvořeno.
         destroy:
-          error: Error deleting the item.
-          success: Deleted successfully.
+          error: Chyba při odstraňování položky.
+          success: Úspěšně odstraněno.
         edit:
-          discard: Discard this draft
-          discard_confirmation: Are you sure you want to discard this draft?
-          update: Update
+          discard: Zahodit koncept
+          discard_confirmation: Jste si jisti, že chcete zahodit tento návrh?
+          update: Aktualizovat
         evaluation_modal:
           button_text: OK
-          close: Close modal
-          description: The plan is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
-          title: The plan is being evaluated
+          close: Zavřít okno
+          description: Plán je hodnocen a nelze jej během této doby upravovat. Po dokončení hodnocení budete informováni.
+          title: Plán je hodnocen
         preview:
-          modify: Modify
-          publish: Publish
+          modify: Změnit
+          publish: Zveřejnit
         filters:
-          accepted: Accepted
-          activity: Activity
-          all: All
-          category: Category
-          category_prompt: Select a category
-          citizens: Citizens
-          evaluating: Evaluating
-          except_rejected: All except rejected
-          official: Official
-          origin: Origin
-          rejected: Rejected
-          related_to: Related to
-          search: Search
-          state: State
-          tag: Tags
-          tag_prompt: Select tags
-          voted: Voted
+          accepted: Přijato
+          activity: Aktivita
+          all: Vše
+          category: Kategorie
+          category_prompt: Vyberte kategorii
+          citizens: Občané
+          evaluating: Hodnocení
+          except_rejected: Vše s výjimkou odmítnuto
+          official: Oficiální
+          origin: Původ
+          rejected: Odmítnuto
+          related_to: Související s
+          search: Hledat
+          state: Stav
+          tag: Štítky
+          tag_prompt: Vybrat štítky
+          voted: Hlasováno
         filters_small_view:
-          close_modal: Close modal
-          filter: Filter
-          filter_by: Filter by
+          close_modal: Zavřít okno
+          filter: Filtr
+          filter_by: Filtrovat podle
           unfold: Rozbalit
         form:
           attachment_legend: Přidat přílohu
@@ -330,7 +330,7 @@ cs:
             one: and %{count} more person
             few: and %{count} more people
             many: and %{count} more people
-            other: and %{count} more people
+            other: a %{count} dalších lidí
           info-message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
           of_versions: "(z %{number})"
           plan_accepted_reason: 'Tento plán byl přijat z těchto důvodů:'
@@ -357,25 +357,25 @@ cs:
           success: Aktualizováno úspěšně.
         withdraw:
           error: Chyba při stahování položky.
-          success: Item withdrawn successfully.
+          success: Položka byla úspěšně odebrána.
       requests:
-        accept_request: Accept
+        accept_request: Přijmout
         accepted_request:
-          error: Could not be accepted as a collaborator, try again later.
-          success: "@%{user} has been successfully accepted as a collaborator."
+          error: Nelze přijmout jako spolupracovníka, zkuste to znovu později.
+          success: "@%{user} byl úspěšně přijat jako spolupracovník."
         access_requested:
-          error: Your request could not be completed, try again later.
-          success: Your request to collaborate has been sent successfully
-        reject_request: Reject
+          error: Váš požadavek nelze dokončit, zkuste to znovu později.
+          success: Váš požadavek na spolupráci byl úspěšně odeslán
+        reject_request: Odmítnout
         rejected_request:
-          error: Could not be rejected as a collaborator, try again later.
+          error: Nelze odmítnout jako spolupracovníka, zkuste to znovu později.
           success: "@%{user} byl úspěšně odmítnut jako spolupracovník."
-        title: Collaboration requests
+        title: Žádosti o spolupráci
       sections:
         actions:
-          new: New section
+          new: Nová sekce
       section_types:
-        content: Content
+        content: Obsah
         field_area_scope: Field - Area scope
         field_attachments: Field - Attachments
         field_category: Field - Category
@@ -440,40 +440,40 @@ cs:
         plan_access_requester_accepted:
           email_intro: You have been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
           email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been accepted as a contributor of %{resource_title}.
-          notification_title: You have been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Byli jste přijati jako přispěvatel %{resource_title}.
+          notification_title: Byl jste <strong>přijat k přístupu jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: You have been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been rejected as a contributor of %{resource_title}.
-          notification_title: You have been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Byl vám odmítnut přístup jako přispěvatel k <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Obdrželi jste toto oznámení, protože jste požádali o spolupráci <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Byl jste odmítnut jako přispěvatel %{resource_title}.
+          notification_title: Byl vám <strong>odmítnut přístup jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
-          email_intro: '"%{resource_title}" has been accepted. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been accepted
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been accepted.
+          email_intro: '"%{resource_title}" byl přijat. Odpověď si můžete přečíst na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj byl přijat
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl přijat.
         plan_evaluating:
-          email_intro: '"%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following is being evaluated
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> is being evaluated.
+          email_intro: '"%{resource_title}" se právě hodnotí. Můžete zkontrolovat odpověď na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj který sledujete je hodnocen
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> se vyhodnocuje.
         plan_published:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A user you're following has published a resource
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete autora "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Uživatel, kterého sledujete, zveřejnil zdroj
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_published_for_proposals:
-          email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.
-          email_subject: A proposal you have authored has been linked to new content
-          notification_title: A proposal you have authored has been linked to <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Návrh, kterého jste autorem, byl propojen s "%{resource_title}". Můžete jej vidět zde:'
+          email_outro: Toto oznámení jste obdrželi, protože sledujete "%{resource_title}" prostřednictvím autorizovaných návrhů. Můžete skedování zrušit z předchozího odkazu.
+          email_subject: Návrh, který jste vytvořili, byl propojen s novým obsahem
+          notification_title: Návrh, kterého jste autorem, byl propojen s <a href="%{resource_url}">%{resource_title}</a>.
         plan_published_for_space:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been published
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj, který sledujete, byl zveřejněn
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_rejected:
-          email_intro: '"%{resource_title}" has been rejected. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been rejected
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been rejected.
+          email_intro: '"%{resource_title}" bylo odmítnut. Odpověď si můžete přečíst na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj, který sledujete, byl odmítnut
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zamítnut.
