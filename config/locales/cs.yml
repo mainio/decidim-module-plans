@@ -376,64 +376,64 @@ cs:
           new: Nová sekce
       section_types:
         content: Obsah
-        field_area_scope: Field - Area scope
-        field_attachments: Field - Attachments
-        field_category: Field - Category
-        field_checkbox: Field - Checkbox
-        field_image_attachments: Field - Image attachments
-        field_map_point: Field - Map point
-        field_number: Field - Number
-        field_scope: Field - Scope
-        field_text_multiline: Field - Multiple lines
-        field_text: Field - Single line
-        link_proposals: Link proposals
-        link_ideas: Link ideas
+        field_area_scope: Pole - rozsah působnosti
+        field_attachments: Pole - Přílohy
+        field_category: Pole - Kategorie
+        field_checkbox: Pole - zaškrtávací políčko
+        field_image_attachments: Pole - přílohy obrázku
+        field_map_point: Pole - bod na mapě
+        field_number: Pole - číslo
+        field_scope: Pole - Oblast působnosti
+        field_text_multiline: Pole - více řádků
+        field_text: Pole - Jedna řádka
+        link_proposals: Odkazy návrhů
+        link_ideas: Odkaz nápadů
       shared:
         attachment_fields:
-          attachment_legend: Attachment
-          down: Down
-          remove: Remove
-          up: Up
+          attachment_legend: Příloha
+          down: Dolů
+          remove: Smazat
+          up: Nahoru
         attachments:
-          legend: Attachments
-          add_attachment: Add attachment
+          legend: Přílohy
+          add_attachment: Přidat přílohu
       update:
-        invalid: Error updating content.
-        success: Updated successfully.
+        invalid: Chyba při aktualizaci obsahu.
+        success: Aktualizováno úspěšně.
       versions:
-        changes_at_title: Changes at "%{title}"
+        changes_at_title: Změny v "%{title}"
         index:
-          title: Versions
+          title: Verze
         stats:
-          back_to_plan: Go back
-          number_of_versions: Versions
-          show_all_versions: Show all versions
-          version_author: Version author
-          version_created_at: Version created at
-          version_number: Version number
-          version_number_out_of_total: "%{current_version} out of %{total_count}"
+          back_to_plan: Zpět
+          number_of_versions: Verze
+          show_all_versions: Ukázat všechny verze
+          version_author: Autor verze
+          version_created_at: Verze vytvořena v
+          version_number: Číslo verze
+          version_number_out_of_total: "%{current_version} z %{total_count}"
         version:
-          version_index: Version %{index}
+          version_index: Verze %{index}
     resource_links:
       included_proposals:
-        plan_proposal: Related proposals
-        proposal_plan: Related plans
+        plan_proposal: Související návrhy
+        proposal_plan: Související plány
     scopes:
-      global: Global
+      global: Globalní
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} has been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been accepted to access as a contributor of %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} byl přijat k přístupu jako přispěvatel <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} byl přijat k přístupu jako přispěvatel %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> bylo přijat <strong>pro přístup jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: '%{requester_name} has been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been rejected to access as a contributor of %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} byl odmítnut k přístupu jako přispěvatel <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} byl odmítnut k přístupu jako přispěvatel %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> byl <strong>odmítnut přístup jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
+          email_intro: '%{requester_name} požádal o přístup jako přispěvatel. Můžete <strong>přijmout nebo odmítnout požadavek</strong> ze stránky <a href="%{resource_url}">%{resource_title}</a>.'
           email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
