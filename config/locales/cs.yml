@@ -88,15 +88,15 @@ cs:
         new_tag: Nový štítek
         plan_taggings: Štítky
         reopen_plan: Otevřít pro úpravy
-        sections: Sections
-        title: Actions
+        sections: Sekce
+        title: Akce
       admin:
         actions:
-          preview: Preview
+          preview: Náhled
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects
-            success: "%{number} items successfully exported into budgeting projects"
+            invalid: Vyskytl se problém při exportu položek do rozpočtových projektů
+            success: "%{number} položek bylo úspěšně exportováno do rozpočtových projektů"
           new:
             create: Export to projects
             no_components: There are no other budgets components in this participatory space to export the items into projects.
