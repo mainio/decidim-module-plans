@@ -98,8 +98,8 @@ cs:
             invalid: Vyskytl se problém při exportu položek do rozpočtových projektů
             success: "%{number} položek bylo úspěšně exportováno do rozpočtových projektů"
           new:
-            create: Export to projects
-            no_components: There are no other budgets components in this participatory space to export the items into projects.
+            create: Exportovat do projektů
+            no_components: V tomto participačním prostoru nejsou žádné další složky rozpočtu na export položek do projektů.
             select_component: Please select a component
         exports:
           plans: Plans
