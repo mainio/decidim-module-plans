@@ -95,7 +95,8 @@ Decidim.register_component(:plans) do |component|
       published_at: Time.current,
       participatory_space: participatory_space,
       settings: {
-        multilingual_answers: false
+        multilingual_answers: false,
+        scope_id: participatory_space.scope&.id
       },
       step_settings: step_settings
     }
