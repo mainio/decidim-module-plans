@@ -245,9 +245,9 @@ cs:
       plans:
         count:
           plans_count:
-            one: "%{count} plan"
-            few: "%{count} plans"
-            many: "%{count} plans"
+            one: "%{count} plán"
+            few: "%{count} plány"
+            many: "%{count} plánů"
             other: "%{count} plánů"
         create:
           error: Nepodařilo se vytvořit nový obsah.
@@ -327,9 +327,9 @@ cs:
           close_confirm: Jste si jisti, že chcete označit tuto položku za hotovou? Po označení již nelze položku upravovat.
           edit: Upravit
           hidden_authors_count:
-            one: and %{count} more person
-            few: and %{count} more people
-            many: and %{count} more people
+            one: a %{count} další osoba
+            few: a %{count} další osoby
+            many: a %{count} dalších osob
             other: a %{count} dalších lidí
           info-message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
           of_versions: "(z %{number})"
