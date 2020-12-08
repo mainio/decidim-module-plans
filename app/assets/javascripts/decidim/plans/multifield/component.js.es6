@@ -4,6 +4,7 @@
   const initMultifield = ($wrapper) => {
     const wrapperSelector = `#${$wrapper.attr("id")}`;
     const placeholderId = $wrapper.data("placeholder-id");
+    const isSingle = $wrapper.data("multifield-type") === "single";
 
     const fieldSelector = ".multifield-field";
 
@@ -53,10 +54,18 @@
 
         autoLabelByPosition.run();
         autoButtonsByPosition.run();
+
+        if (isSingle) {
+          $(".add-field", $wrapper).addClass("hide");
+        }
       },
       onRemoveField: () => {
         autoLabelByPosition.run();
         autoButtonsByPosition.run();
+
+        if (isSingle) {
+          $(".add-field", $wrapper).removeClass("hide");
+        }
       },
       onMoveUpField: () => {
         autoLabelByPosition.run();
@@ -70,7 +79,7 @@
 
     createSortableList();
 
-    $(fieldSelector).each((idx, el) => {
+    $(fieldSelector).each((_i, el) => {
       const $target = $(el);
 
       hideDeletedSection($target);
@@ -78,24 +87,21 @@
 
     autoLabelByPosition.run();
     autoButtonsByPosition.run();
+
+    if (isSingle && $(`${wrapperSelector} ${fieldSelector}:not(.hide)`).length > 0) {
+      $(".add-field", $wrapper).addClass("hide");
+    }
   }
 
   $.fn.multifield = function() {
-    $(this).each(
-
-      /**
-       * @this HTMLElement
-       * @return {void}
-       */
-      function() {
-        const $elem = $(this);
-        let id = $elem.attr("id");
-        if (!id || id.length < 1) {
-          id = `multifield-${Math.random().toString(16).slice(2)}`;
-          $elem.attr("id", id);
-        }
-        initMultifield($elem);
+    $(this).each((_i, el) => {
+      const $elem = $(el);
+      let id = $elem.attr("id");
+      if (!id || id.length < 1) {
+        id = `multifield-${Math.random().toString(16).slice(2)}`;
+        $elem.attr("id", id);
       }
-    )
+      initMultifield($elem);
+    });
   }
 })(window);

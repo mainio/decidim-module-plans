@@ -43,6 +43,10 @@ module Decidim
       # object.
       field :linkedResources, [Decidim::Plans::ResourceLinkSubject], method: :linked_resources, description: "The linked resources for this plan.", null: true
 
+      def sections
+        object.sections.visible_in_api
+      end
+
       def linked_resources
         resources = object.resource_links_from.map { |link| link.to }
         return nil unless resources.any?

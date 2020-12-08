@@ -8,7 +8,19 @@
   </div>
 </div>
 
-<div class="row small-up-1 medium-up-2 card-grid">
+<div class="row small-up-1 medium-up-3 card-grid">
   <%= render @plans %>
 </div>
-<%= decidim_paginate @plans, random_seed: random_seed %>
+
+<% if @plans.empty? %>
+  <div class="row columns">
+    <div class="callout secondary">
+      <% if params[:filter].present? %>
+        <p><%= t(".empty_filters") %></p>
+      <% else %>
+        <p><%= t(".empty") %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%= decidim_paginate @plans %>

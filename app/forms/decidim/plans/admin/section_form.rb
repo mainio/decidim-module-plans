@@ -10,16 +10,21 @@ module Decidim
 
         mimic :section
 
+        attribute :handle, String
         translatable_attribute :body, String
         translatable_attribute :body_rich, String
         translatable_attribute :help, String
         translatable_attribute :information_label, String
         translatable_attribute :information, String
+        attribute :visible_form, Boolean, default: true
+        attribute :visible_view, Boolean, default: true
+        attribute :visible_api, Boolean, default: true
         attribute :mandatory, Boolean, default: false
         attribute :section_type, String
         attribute :position, Integer
         attribute :deleted, Boolean, default: false
 
+        validates :handle, presence: true
         validates :position, numericality: { greater_than_or_equal_to: 0 }
         validates :body, translatable_presence: true, if: ->(form) { !form.deleted && !form.rich_text_body? }
         validates :body_rich, translatable_presence: true, if: ->(form) { !form.deleted && form.rich_text_body? }
@@ -64,7 +69,7 @@ module Decidim
 
         def map_model(model)
           case model.section_type
-          when "field_text", "field_text_multiline"
+          when "field_title", "field_text", "field_text_multiline"
             self.answer_length = model.settings["answer_length"].to_i
           when "field_scope"
             self.scope_parent = model.settings["scope_parent"].to_i
@@ -99,7 +104,7 @@ module Decidim
         def settings
           {}.tap do |hash|
             case section_type
-            when "field_text", "field_text_multiline"
+            when "field_title", "field_text", "field_text_multiline"
               hash[:answer_length] = answer_length
             when "field_scope"
               hash[:scope_parent] = scope_parent

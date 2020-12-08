@@ -2,7 +2,8 @@
 
 # Extend the SettingsManifest types
 types = Decidim::SettingsManifest::Attribute::TYPES.merge(
-  plan_state: { klass: String, default: nil }
+  plan_state: { klass: String, default: nil },
+  plan_layout: { klass: String, default: "default" }
 )
 Decidim::SettingsManifest::Attribute.send(:remove_const, :TYPES)
 Decidim::SettingsManifest::Attribute::TYPES = types.freeze

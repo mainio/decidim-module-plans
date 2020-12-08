@@ -9,6 +9,7 @@ module Decidim
       helper TooltipHelper
       helper Plans::AttachmentsHelper
       helper Plans::RemainingCharactersHelper
+      helper Plans::PlanLayoutHelper
       include AttachedProposalsHelper
       include FormFactory
       include FilterResource
@@ -24,12 +25,9 @@ module Decidim
       before_action :ensure_published!, only: [:show, :withdraw]
 
       def index
-        @plans = search
-                 .results
-                 .published
-                 .not_hidden
-                 .includes(:category)
-                 .includes(:scope)
+        base_query = search.results.published.not_hidden
+        @plans = base_query
+        @geocoded_plans = base_query.geocoded_data_for(current_component)
 
         @plans = paginate(@plans)
         @plans = reorder(@plans)

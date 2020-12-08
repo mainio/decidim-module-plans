@@ -20,14 +20,6 @@
     <%= form.collection_radio_buttons :related_to, linked_classes_filter_values_for(Decidim::Plans::Plan), :first, :last, legend_title: t(".related_to") %>
   <% end %>
 
-  <% if component_settings.scopes_enabled? && current_participatory_space.has_subscopes? %>
-    <%= scopes_picker_filter form, :scope_id %>
-  <% end %>
-
-  <% if component_settings.categories_enabled? && current_component.categories.any? %>
-    <%= form.categories_select :category_id, current_component.categories, legend_title: t(".category"), disable_parents: false, label: false, prompt: t(".category_prompt") %>
-  <% end %>
-
   <% if available_tags.any? %>
     <%= form.collection_check_boxes :tag_id, available_tags, ->(p) { "#{p.id}" }, ->(p) { translated_attribute(p.name) }, legend_title: t(".tag"), disable_parents: false, label: false, prompt: t(".tag_prompt") %>
   <% end %>

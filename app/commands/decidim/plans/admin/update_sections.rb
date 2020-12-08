@@ -37,6 +37,7 @@ module Decidim
             update_nested_model(
               form_section,
               {
+                handle: form_section.handle,
                 body: form_section.body_text,
                 help: form_section.help,
                 information_label: form_section.information_label,
@@ -44,6 +45,9 @@ module Decidim
                 mandatory: form_section.mandatory,
                 position: form_section.position,
                 section_type: form_section.section_type,
+                visible_form: form_section.visible_form,
+                visible_view: form_section.visible_view,
+                visible_api: form_section.visible_api,
                 settings: form_section.settings
               },
               @sections

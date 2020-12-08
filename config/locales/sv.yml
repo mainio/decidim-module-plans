@@ -56,11 +56,16 @@ sv:
             default_answer: Standardplansvar
             default_answer_none: (Ingen)
             default_state: Standardplanstillstånd
+            layout: Layout
+            materials_text: Materialtext
             multilingual_answers: Flerspråkiga svar
+            new_plan_help_text: Hjälptext för ny planen
             plan_answering_enabled: Svar tillåtna
+            plan_listing_intro: Planera introduktionstextsida
             plan_title_length: Rubrikens längd
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
+            scope_id: Omfattningar ID
             title_help: Titel hjälptext
             title_text: Titel text
           step:
@@ -155,6 +160,7 @@ sv:
             answer_length: Svarets längd
             body: Brödtext
             down: Ner
+            handle: Identifierare
             help: Hjälp
             information: Information
             information_label: Informationsetikett
@@ -164,6 +170,10 @@ sv:
             remove: Radera
             section: Avsnitt
             up: Upp
+            visible_api: Visa i API
+            visible_form: Visa i formuläret
+            visible_view: Visa i vyn
+            visibility: Synlighet
           update:
             invalid: Det inträffade ett fel vid uppdatering av avsnitten.
             success: Avsnitten har uppdaterats.
@@ -228,8 +238,13 @@ sv:
       create:
         invalid: Det inträffade ett fel vid skapande av planen.
         success: Planen har skapats.
+      info:
+        show:
+          back: Tillbaka till föregående sida
       last_activity:
         new_plan_at_html: "<span>En ny plan på %{link}</span>"
+      layouts:
+        default: Standardlayout
       models:
         plan:
           fields:
@@ -250,6 +265,15 @@ sv:
             id: ID
             name: Namn
             taggings_count: Antal användningsområden
+      plan_form:
+        required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+      plan_view:
+        back: Tillbaka
+        characters_min: "(minst %count% tecken krävs)"
+        characters_used: "%count%/%total% tecken används"
+        close_window: Stäng fönstret
+        share: Dela
+        share_link: Länk som ska delas
       plans:
         count:
           plans_count:
@@ -262,8 +286,12 @@ sv:
           error: Det inträffade ett fel vid radering av innehållet.
           success: Innehållet har raderats.
         edit:
+          back: Tillbacka
+          create: Skapa
           discard: Radera utkastet
           discard_confirmation: Är du säker på att du vill radera utkastet?
+          material_title: Information för att stödja ditt förslag
+          save: Spara
           update: Uppdatera
         evaluation_modal:
           button_text: OK
@@ -300,8 +328,15 @@ sv:
           attachment_legend: Lägg till bilaga
           select_a_category: Välj kategori
         index:
-          new_plan: Ny plan
+          draft_plan_title: Du har ett oavslutat förslag!
+          draft_plan_continue: Fortsätt ditt förslag
+          draft_plan_description: Du har tidigare sparat ett pågående förslag. Du kan nu fortsätta skriva den.
+          leave_your_plan: Skicka in ditt eget förslag!
+          new_plan: Nytt förslag
           see_all_withdrawn: Visa alla annullerade
+          subtitle: Hitta och utforska förslag!
+          title: Bläddra bland förslag
+          view_plan: Visa förslag
         linked_plans:
           plan_authors: Antal författare
         new:
@@ -327,6 +362,9 @@ sv:
           withdraw:
             error: Det gick inte att annullera.
             success: Annulleringen lyckades.
+        plans:
+          empty: Det finns inga förslag ännu
+          empty_filters: Det finns ingen förslag med dessa kriterier
         show:
           back: Tillbaka
           close: Markera som gjort
@@ -375,6 +413,39 @@ sv:
           error: Deltagaren kunde inte avslås, försök igen senare.
           success: "Redigeringsbegäran från användaren @%{user} har avslagits."
         title: Redigeringsbegäran
+      section_type_display:
+        field_attachments:
+          documents:
+            one: Dokument
+            other: Dokument
+          download: Ladda ner
+          related_documents: Relaterade dokument
+          related_photos: Relaterade bilder
+        field_checkbox:
+          'no': 'Nej'
+          'yes': 'Ja'
+        field_image_attachments:
+          related_photos: Relaterade bilder
+      section_type_edit:
+        field_attachments:
+          add_attachment: Lägg till bilaga
+          attachment_legend: Bilaga
+          down: Ner
+          remove: Radera
+          up: Upp
+        field_category:
+          select_a_category: Välj ett primärt tema
+          select_a_sub_category: Välj ett undertema
+          sub_category_label: Välj ett undertema
+        field_map_point:
+          address_lookup_button: Slå upp
+          reset_field: Återställ fältet
+        field_image_attachments:
+          add_attachment: Lägg till bild
+          attachment_legend: Bild
+          down: Ner
+          remove: Radera
+          up: Upp
       sections:
         actions:
           new: Nytt avsnitt
@@ -390,6 +461,7 @@ sv:
         field_scope: Fält - Scope
         field_text_multiline: Fält - Med flera rader
         field_text: Fält - Med en rad
+        field_title: Fält - Titel
         link_proposals: Länk proposals
         link_ideas: Länk ideas
       shared:

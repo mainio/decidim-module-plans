@@ -19,6 +19,14 @@ module Decidim
             post :request_accept, controller: "plan_collaborator_requests"
             post :request_reject, controller: "plan_collaborator_requests"
           end
+          collection do
+            resources :info, only: [:show], param: :section
+            resource :geocoding, only: [:create] do
+              collection do
+                post :reverse
+              end
+            end
+          end
         end
 
         root to: "plans#index"
@@ -30,6 +38,8 @@ module Decidim
                                            decidim/plans/identity_selector_dialog.js
                                            decidim/plans/decidim_plans_manifest.js
                                            decidim/plans/social_share.js
+                                           decidim/plans/map.js
+                                           decidim/plans/plans_list.js
                                            decidim/plans/proposal_picker.scss
                                            decidim/plans/social_share.css.scss
                                            decidim/plans/plans_form.scss)
@@ -46,6 +56,77 @@ module Decidim
         end
       end
 
+      initializer "decidim_plans.register_section_types" do
+        registry = Decidim::Plans.section_types
+
+        registry.register(:field_title) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_title"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldTitleForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Title"
+        end
+        registry.register(:field_text) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_text"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldTextForm"
+        end
+        registry.register(:field_text_multiline) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_text_multiline"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldTextForm"
+        end
+        registry.register(:field_number) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_number"
+          type.display_cell = "decidim/plans/section_type_display/field_number"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldNumberForm"
+        end
+        registry.register(:field_checkbox) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_checkbox"
+          type.display_cell = "decidim/plans/section_type_display/field_checkbox"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldCheckboxForm"
+        end
+        registry.register(:field_scope) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_scope"
+          type.display_cell = "decidim/plans/section_type_display/field_scope"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldScopeForm"
+        end
+        registry.register(:field_area_scope) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_area_scope"
+          type.display_cell = "decidim/plans/section_type_display/field_scope"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldScopeForm"
+        end
+        registry.register(:field_category) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_category"
+          type.display_cell = "decidim/plans/section_type_display/field_category"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldCategoryForm"
+        end
+        registry.register(:field_map_point) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_map_point"
+          type.display_cell = "decidim/plans/section_type_display/field_map_point"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldMapPointForm"
+        end
+        registry.register(:field_attachments) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_attachments"
+          type.display_cell = "decidim/plans/section_type_display/field_attachments"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldAttachmentsForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Attachments"
+        end
+        registry.register(:field_image_attachments) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_image_attachments"
+          type.display_cell = "decidim/plans/section_type_display/field_image_attachments"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldAttachmentsForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Attachments"
+        end
+        registry.register(:content) do |type|
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Content"
+        end
+      end
+
+      initializer "decidim_plans.register_layouts" do
+        registry = Decidim::Plans.layouts
+
+        registry.register(:default) do |layout|
+          layout.public_name_key = "decidim.plans.layouts.default"
+        end
+      end
+
       initializer "decidim_plans.register_api_fields" do
         # These are defined dynamically in order to show an example on how to
         # extend the field types from external modules.
@@ -59,6 +140,22 @@ module Decidim
           argument(:area_scope, ::Decidim::Plans::ContentMutation::FieldAreaScopeAttributes, required: false)
           argument(:attachments, ::Decidim::Plans::ContentMutation::FieldAttachmentsAttributes, required: false)
           argument(:images, ::Decidim::Plans::ContentMutation::FieldImageAttachmentsAttributes, required: false)
+        end
+      end
+
+      initializer "decidim_plans.proposals_integration" do
+        next unless Decidim.const_defined?("Proposals")
+
+        Decidim::Plans::ContentMutationAttributes.class_eval do
+          argument(:proposals, ::Decidim::Plans::ContentMutation::FieldProposalsAttributes, required: false)
+        end
+        Decidim::Plans::ResourceLinkSubject.class_eval do
+          possible_types(Decidim::Proposals::ProposalType)
+        end
+        Decidim::Plans.section_types.register(:link_proposals) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/link_proposals"
+          type.content_form_class_name = "Decidim::Plans::ContentData::LinkProposalsForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::LinkProposals"
         end
       end
     end

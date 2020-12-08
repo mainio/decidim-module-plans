@@ -1,7 +1,7 @@
 <% content = form.object %>
 
 <%= cell(
-  "decidim/plans/section_cell/#{content.section.section_type}",
+  content.section_type_manifest.edit_cell,
   content,
   multilingual_answers: component_settings.multilingual_answers?,
   context: {

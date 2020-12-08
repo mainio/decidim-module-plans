@@ -11,6 +11,7 @@ module Decidim
         helper Plans::ApplicationHelper
         helper Plans::AttachmentsHelper
         helper Plans::RemainingCharactersHelper
+        helper Plans::PlanLayoutHelper
         helper_method :plans, :plan, :query, :counts, :form_presenter, :attached_proposals_picker_field
 
         def new

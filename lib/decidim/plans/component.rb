@@ -20,22 +20,17 @@ Decidim.register_component(:plans) do |component|
   component.permissions_class_name = "Decidim::Plans::Permissions"
 
   component.settings(:global) do |settings|
-    settings.attribute :plan_title_length, type: :integer, default: 100
     settings.attribute :plan_answering_enabled, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
-    settings.attribute :title_text, type: :string, translated: true
-    settings.attribute :title_help, type: :text, translated: true
-    settings.attribute :attachment_help, type: :text, translated: true
-    settings.attribute :scopes_enabled, type: :boolean, default: true
-    settings.attribute :scope_id, type: :scope
-    settings.attribute :categories_enabled, type: :boolean, default: true
-    settings.attribute :proposal_linking_enabled, type: :boolean, default: true
-    settings.attribute :attachments_allowed, type: :boolean, default: false
     settings.attribute :closing_allowed, type: :boolean, default: false
     settings.attribute :multilingual_answers, type: :boolean
+    settings.attribute :layout, type: :plan_layout
     settings.attribute :default_state, type: :plan_state
     settings.attribute :default_answer, type: :text, translated: true, editor: true
+    settings.attribute :plan_listing_intro, type: :text, translated: true, editor: true
+    settings.attribute :new_plan_help_text, type: :text, translated: true, editor: true
+    settings.attribute :materials_text, type: :text, translated: true, editor: true
   end
 
   component.settings(:step) do |settings|

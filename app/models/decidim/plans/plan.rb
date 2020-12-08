@@ -89,6 +89,82 @@ module Decidim
           .where("decidim_coauthorships.decidim_author_id = ? AND decidim_coauthorships.decidim_author_type = ? ", author.id, author.class.base_class.name)
       end
 
+      def self.geocoded_data_for(component)
+        locale = Arel::Nodes.build_quoted(I18n.locale.to_s).to_sql
+
+        # left_outer_joins(:moderation).where.not(Decidim::Moderation.arel_table[:hidden_at].eq nil
+
+        types = %w(
+          field_map_point
+          field_area_scope
+          field_text_multiline
+        )
+        cls = Arel.sql("Decidim::Plans::Plan")
+        raw_data = Decidim::Plans::Content.joins(:section).joins(
+          "INNER JOIN decidim_plans_plans ON decidim_plans_plans.id = decidim_plans_plan_contents.decidim_plan_id"
+        ).joins(
+          "LEFT OUTER JOIN decidim_moderations ON decidim_moderations.decidim_reportable_type = '#{cls}' AND decidim_moderations.decidim_reportable_id = decidim_plans_plans.id"
+        ).where(
+          decidim_plans_sections: { decidim_component_id: component.id }
+        ).where.not(
+          decidim_plans_plans: { published_at: nil }
+        ).where(
+          decidim_moderations: { hidden_at: nil }
+        ).with_section_type(types).pluck(
+          :decidim_plan_id,
+          "decidim_plans_plans.title",
+          "decidim_plans_sections.section_type",
+          :body
+        )
+
+        plans = {}
+        raw_data.each do |datapoint|
+          plan_id = datapoint[0]
+          plan_title = datapoint[1]
+          type = datapoint[2]
+          body = datapoint[3]
+
+          plan = plans[plan_id] || {}
+          plan[:id] = plan_id
+          plan[:title] = plan_title
+          plan[:points] ||= []
+
+          if type == "field_map_point"
+            plan[:points] << body.symbolize_keys
+          elsif type == "field_area_scope"
+            # TODO: We should resolve the area scope coordinates, otherwise
+            # it is hard to put them to the map.
+            # plan[:latitude] ||= scope_point_latitude
+            # plan[:longitude] ||= scope_point_latitude
+          elsif type == "field_text_multiline"
+            body = plan[:body] || {}
+            plan[:body] = body.map do |locale, value|
+              value = "#{body[locale]} #{value}".strip
+              [locale, value]
+            end.to_h
+          end
+
+          plans[plan_id] = plan
+        end
+
+        plans.map do |id, plan|
+          next if plan[:points].empty?
+
+          plan[:points].map do |point|
+            next if point[:latitude].blank? || point[:longitude].blank?
+
+            {
+              id: id,
+              title: plan[:title],
+              body: plan[:body],
+              address: point[:address],
+              latitude: point[:latitude],
+              longitude: point[:longitude]
+            }
+          end.compact
+        end.compact.flatten
+      end
+
       # Public: Checks if the plan is open for edits.
       #
       # Returns Boolean.

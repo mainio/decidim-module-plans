@@ -1,9 +1,9 @@
+<%= render partial: "plan_preview", locals: { plan: @plan } %>
+
 <div class="row">
   <div class="columns large-8 large-push-2">
     <div class="card">
       <div class="p-l">
-        <%= render partial: "plan_preview", locals: { plan: @plan } %>
-        <br>
         <div class="actions">
           <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button expanded button--nomargin" %>
 

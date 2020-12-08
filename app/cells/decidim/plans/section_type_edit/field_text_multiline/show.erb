@@ -1,0 +1,20 @@
+<div class="field with-character-counter">
+  <%= plain_label form, :body %>
+
+  <% if multilingual_answers? %>
+    <%= form.translated(
+      :text_area,
+      :body,
+      {
+        tabs_id: id
+      }.merge(field_options).merge(rc_opts)
+    ) %>
+  <% else %>
+    <%= form.text_area(
+      "body_#{current_locale}".to_sym,
+      field_options.merge(rows: 10)
+    ) %>
+  <% end %>
+
+  <div class="field-character-counter-info field-info text-right"></div>
+</div>

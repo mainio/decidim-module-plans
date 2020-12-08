@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic when a user creates a new plan.
       class CreatePlan < Rectify::Command
-        include ::Decidim::Plans::AttachmentMethods
+        include Decidim::Plans::PlanContentMethods
 
         # Public: Initializes the command.
         #
@@ -21,32 +21,29 @@ module Decidim
         #
         # Returns nothing.
         def call
-          if process_attachments?
-            return broadcast(:invalid) if attachments_invalid?
-          end
-
+          prepare_plan_contents
           if form.invalid?
-            mark_attachment_reattachment
+            fail_plan_contents
             return broadcast(:invalid)
           end
 
           Decidim::Plans.tracer.trace!(@form.current_user) do
             transaction do
               create_plan
-              create_plan_contents
-              link_proposals
-              update_attachments if process_attachments?
+              save_plan_contents
               answer_plan
               send_notification
             end
           end
+
+          finalize_plan_contents
 
           broadcast(:ok, plan)
         end
 
         private
 
-        attr_reader :form, :plan, :attachment
+        attr_reader :form, :plan
 
         def create_plan
           @plan = Decidim::Plans.loggability.perform_action!(
@@ -61,22 +58,6 @@ module Decidim
             plan.save!
             plan
           end
-
-          @attached_to = @plan
-        end
-
-        def create_plan_contents
-          @form.contents.each do |content|
-            @plan.contents.create!(
-              body: content.body,
-              section: content.section,
-              user: form.current_user
-            )
-          end
-        end
-
-        def link_proposals
-          plan.link_resources(proposals, "included_proposals")
         end
 
         def answer_plan
@@ -106,19 +87,10 @@ module Decidim
 
         def attributes
           {
-            title: form.title,
-            category: form.category,
-            scope: form.scope,
             component: form.component,
             state: "open",
             published_at: Time.current
           }
-        end
-
-        def proposals
-          @proposals ||= plan.sibling_scope(:proposals).where(
-            id: @form.proposal_ids
-          )
         end
 
         def send_notification

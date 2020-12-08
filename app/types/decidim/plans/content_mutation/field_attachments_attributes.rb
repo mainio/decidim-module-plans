@@ -11,7 +11,7 @@ module Decidim
 
         def to_h
           existing_ids = ids.map do |id|
-            attachment = Decidim::Attachment.find(id)
+            attachment = Decidim::Attachment.find_by(id: id)
             attachment&.id
           end
 

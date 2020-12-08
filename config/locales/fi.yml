@@ -56,11 +56,16 @@ fi:
             default_answer: Suunnitelmien oletusvastaus
             default_answer_none: (Ei mitään)
             default_state: Suunnitelmien oletustila
+            layout: Ulkoasu
+            materials_text: Materiaalien teksti
             multilingual_answers: Monikieliset vastaukset
+            new_plan_help_text: Uuden suunnitelman teksti
             plan_answering_enabled: Vastaaminen sallittu
+            plan_listing_intro: Suunnitelmien listassivun teksti
             plan_title_length: Otsikon pituus
             proposal_linking_enabled: Ehdotusten linkkaaminen käytössä
             scopes_enabled: Teemat käytössä
+            scope_id: Teeman ID
             title_help: Otsikon ohjeteksti
             title_text: Otsikon teksti
           step:
@@ -155,6 +160,7 @@ fi:
             attachments_input_type: Liitteiden syöttökentän tyyppi
             body: Runkoteksti
             down: Alas
+            handle: Tunniste
             help: Ohjeteksti
             information: Tietoa-osio
             information_label: Tietoa-osion otsake
@@ -164,6 +170,10 @@ fi:
             remove: Poista
             section: Osio
             up: Ylös
+            visible_api: Näytä rajapinnassa
+            visible_form: Näytä lomakkeella
+            visible_view: Näytä näkymässä
+            visibility: Näkyvyys
           update:
             invalid: Osioiden päivityksessä tapahtui virhe.
             success: Osiot päivitetty onnistuneesti.
@@ -225,11 +235,16 @@ fi:
         close: Sulje
         current_selection: Hae ehdotuksia nimellä
         select: Valitse
+      info:
+        show:
+          back: Takaisin edelliselle sivulle
       create:
         invalid: Virhe luotaessa sisältöä.
         success: Luonti onnistui.
       last_activity:
         new_plan_at_html: "<span>Uusi suunnitelma osoitteessa %{link}</span>"
+      layouts:
+        default: Oletusulkoasu
       models:
         plan:
           fields:
@@ -250,6 +265,15 @@ fi:
             id: ID
             name: Nimi
             taggings_count: Käyttömäärä
+      plan_form:
+        characters_min: "(vähintään %count% merkkiä vaaditaan)"
+        characters_used: "%count%/%total% merkkiä käytetty"
+        required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+      plan_view:
+        back: Takaisin
+        close_window: Sulje ikkuna
+        share: Jaa
+        share_link: Jaettava linkki
       plans:
         count:
           plans_count:
@@ -262,8 +286,12 @@ fi:
           error: Virhe poistettaessa sisältöä.
           success: Poisto onnistui.
         edit:
+          back: Takaisin
+          create: Luo
           discard: Tuhoa tämä luonnos
           discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
+          material_title: Tietoa ehdotuksen tueksi
+          save: Tallenna
           update: Päivitä
         evaluation_modal:
           button_text: OK
@@ -300,8 +328,15 @@ fi:
           attachment_legend: Lisää liite
           select_a_category: Valitse kategoria
         index:
-          new_plan: Uusi suunnitelma
+          draft_plan_continue: Jatka ehdotustasi
+          draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen kirjoittamista.
+          draft_plan_title: Sinulla on keskeneräinen ehdotus!
+          leave_your_plan: Käy jättämässä oma ehdotuksesi!
+          new_plan: Uusi ehdotus
           see_all_withdrawn: Näytä kaikki peruutetut
+          subtitle: Etsi ja tutki ehdotuksia!
+          title: Tutustu ehdotuksiin
+          view_plan: Näytä ehdotus
         linked_plans:
           plan_authors: Laatijoiden määrä
         new:
@@ -327,6 +362,9 @@ fi:
           withdraw:
             error: Peruuttaminen epäonnistui.
             success: Peruuttaminen onnistui.
+        plans:
+          empty: Ei vielä ehdotuksia
+          empty_filters: Ehdotuksia ei löytynyt valituilla hakuehdoilla
         show:
           back: Takaisin
           close: Merkitse valmiiksi
@@ -375,6 +413,39 @@ fi:
           error: Ei voitu hylätä osallistujaa, yritä myöhemmin uudestaan.
           success: "Käyttäjän @%{user} muokkauspyyntö hylätty onnistuneesti."
         title: Muokkauspyynnöt
+      section_type_display:
+        field_attachments:
+          documents:
+            one: Asiakirja
+            other: Asiakirjaa
+          download: Lataa
+          related_documents: Liittyvät asiakirjat
+          related_photos: Liittyvät kuvat
+        field_checkbox:
+          'no': Ei
+          'yes': Kyllä
+        field_image_attachments:
+          related_photos: Liittyvät kuvat
+      section_type_edit:
+        field_attachments:
+          add_attachment: Lisää liite
+          attachment_legend: Liite
+          down: Alas
+          remove: Poista
+          up: Ylös
+        field_category:
+          select_a_category: Valitse ensisijainen teema
+          select_a_sub_category: Valitse alateema
+          sub_category_label: Valitse alateema
+        field_map_point:
+          address_lookup_button: Etsi
+          reset_field: Tyhjennä kenttä
+        field_image_attachments:
+          add_attachment: Lisää kuva
+          attachment_legend: Kuva
+          down: Alas
+          remove: Poista
+          up: Ylös
       sections:
         actions:
           new: Uusi osio
@@ -390,6 +461,7 @@ fi:
         field_scope: Kenttä - Teema
         field_text_multiline: Kenttä - Monirivinen
         field_text: Kenttä - Yksirivinen
+        field_title: Kenttä - Otsikko
         link_proposals: Liitetyt ehdotukset
         link_ideas: Liitetyt ideat
       shared:

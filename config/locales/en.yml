@@ -57,11 +57,16 @@ en:
             default_answer: Default plan answer
             default_answer_none: (None)
             default_state: Default plan state
+            layout: Layout
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Answering enabled
+            plan_listing_intro: Plan listing page intro text
+            materials_text: Materials text
+            new_plan_help_text: New plan help text
             plan_title_length: Title length
             proposal_linking_enabled: Proposal linking enabled
             scopes_enabled: Scopes enabled
+            scope_id: Scope ID
             title_help: Title help text
             title_text: Title text
           step:
@@ -156,6 +161,7 @@ en:
             attachments_input_type: Attachments input type
             body: Body
             down: Down
+            handle: Handle
             help: Help
             information: Information
             information_label: Information label
@@ -165,6 +171,10 @@ en:
             remove: Remove
             section: Section
             up: Up
+            visible_api: Show in the API
+            visible_form: Show in the form
+            visible_view: Show in the view
+            visibility: Visibility
           update:
             invalid: Error updating sections.
             success: Sections updated successfully.
@@ -233,8 +243,13 @@ en:
       create:
         invalid: Failed to create new content.
         success: Created successfully.
+      info:
+        show:
+          back: Back to previous page
       last_activity:
         new_plan_at_html: "<span>New plan at %{link}</span>"
+      layouts:
+        default: Default layout
       models:
         plan:
           fields:
@@ -255,6 +270,15 @@ en:
             id: ID
             name: Name
             taggings_count: Number of uses
+      plan_form:
+        characters_min: "(at least %count% characters required)"
+        characters_used: "%count%/%total% characters used"
+        required_fields_text: Required fields are marked with the *-character.
+      plan_view:
+        back: Back
+        close_window: Close window
+        share: Share
+        share_link: Share link
       plans:
         count:
           plans_count:
@@ -267,8 +291,12 @@ en:
           error: Error deleting the item.
           success: Deleted successfully.
         edit:
+          back: Back
+          create: Create
           discard: Discard this draft
           discard_confirmation: Are you sure you want to discard this draft?
+          material_title: Information to support your proposal
+          save: Save
           update: Update
         evaluation_modal:
           button_text: OK
@@ -307,8 +335,16 @@ en:
           attachment_legend: Add an attachment
           select_a_category: Select a category
         index:
-          new_plan: New plan
+          new_plan: New proposal
           see_all_withdrawn: See all withdrawn
+          subtitle: Find and explore proposals!
+          title: Browse proposals
+          draft_plan_title: You have a proposal draft!
+          draft_plan_continue: Continue your proposal
+          draft_plan_description: You have previously saved a proposal as a draft. You can now continue writing it.
+          leave_your_plan: Submit your own proposal!
+          new_plan: New proposal
+          view_plan: View proposal
         linked_plans:
           plan_authors: Number of authors
         new:
@@ -334,6 +370,9 @@ en:
           withdraw:
             error: Error withdrawing.
             success: Withdrawn successfully.
+        plans:
+          empty: There are no ideas yet
+          empty_filters: There isn't any idea with this criteria
         show:
           back: Back
           close: Mark as done
@@ -384,6 +423,39 @@ en:
           error: Could not be rejected as a collaborator, try again later.
           success: "@%{user} has been successfully rejected as a collaborator."
         title: Collaboration requests
+      section_type_display:
+        field_attachments:
+          documents:
+            one: Document
+            other: Documents
+          download: Download
+          related_documents: Related documents
+          related_photos: Related photos
+        field_checkbox:
+          'no': 'No'
+          'yes': 'Yes'
+        field_image_attachments:
+          related_photos: Related photos
+      section_type_edit:
+        field_attachments:
+          add_attachment: Add attachment
+          attachment_legend: Attachment
+          down: Down
+          remove: Remove
+          up: Up
+        field_category:
+          select_a_category: Choose a primary theme
+          select_a_sub_category: Choose a subtheme
+          sub_category_label: Choose a subtheme
+        field_map_point:
+          address_lookup_button: Lookup
+          reset_field: Reset field
+        field_image_attachments:
+          add_attachment: Add image
+          attachment_legend: Image
+          down: Down
+          remove: Remove
+          up: Up
       sections:
         actions:
           new: New section
@@ -399,6 +471,7 @@ en:
         field_scope: Field - Scope
         field_text_multiline: Field - Multiple lines
         field_text: Field - Single line
+        field_title: Field - Title
         link_proposals: Link proposals
         link_ideas: Link ideas
       shared:

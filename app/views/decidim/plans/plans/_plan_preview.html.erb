@@ -1,11 +1,1 @@
-<div class="row column view-header">
-  <h2 class="heading2"><%= present(plan).title %></h2>
-  <%= cell("decidim/plans/coauthorships", plan, has_actions: false, size: 3, context: { current_user: current_user }) %>
-</div>
-<div class="row column">
-  <%= render partial: "contents" %>
-  <%= cell "decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] } %>
-</div>
-<br />
-<%= render partial: "attached_proposals" %>
-<%= attachments_for plan %>
+<%= render_plan_view(@plan) %>

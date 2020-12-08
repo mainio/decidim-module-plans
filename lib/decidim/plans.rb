@@ -17,6 +17,11 @@ module Decidim
     autoload :OptionallyTranslatableAttributes, "decidim/plans/optionally_translatable_attributes"
     autoload :PlanSerializer, "decidim/plans/plan_serializer"
     autoload :MutationExtensions, "decidim/plans/mutation_extensions"
+    autoload :ManifestRegistry, "decidim/plans/manifest_registry"
+    autoload :SectionTypeManifest, "decidim/plans/section_type_manifest"
+    autoload :SectionTypeRegistry, "decidim/plans/section_type_registry"
+    autoload :LayoutManifest, "decidim/plans/layout_manifest"
+    autoload :LayoutRegistry, "decidim/plans/layout_registry"
 
     # Public: Stores an instance of Loggability
     def self.loggability
@@ -26,6 +31,16 @@ module Decidim
     # Public: Stores an instance of Tracer
     def self.tracer
       @tracer ||= Tracer.new
+    end
+
+    # Public: Stores the registry of section types
+    def self.section_types
+      @section_types ||= SectionTypeRegistry.new
+    end
+
+    # Public: Stores the registry of layouts
+    def self.layouts
+      @layouts ||= LayoutRegistry.new
     end
   end
 

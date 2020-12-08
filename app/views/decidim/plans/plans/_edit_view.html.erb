@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="columns large-12">
+    <%= decidim_form_for(form_object, url: defined?(form_url) ? form_url : nil) do |form| %>
+      <%= render partial: "form", locals: { form: form, show_terms: show_terms } %>
+
+
+    <% end %>
+  </div>
+</div>

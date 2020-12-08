@@ -1,0 +1,37 @@
+<div class="row columns">
+  <div class="lead">
+    <p><%= t(".required_fields_text") %></p>
+  </div>
+</div>
+
+<% if false && (current_user.nil? || allowed_to?(:request_access, :plan, plan: plan)) %>
+  <div class="row">
+    <div class="columns">
+      <div class="callout secondary"><%= t(".info-message").html_safe %></div>
+    </div>
+  </div>
+<% end %>
+
+<%= user_group_field %>
+
+<%= contents_edit %>
+
+<%
+js_options = {
+  messages: {
+    charactersMin: t(".characters_min"),
+    charactersUsed: t(".characters_used")
+  }
+}
+%>
+<script>
+$(function() {
+  DecidimPlansCharacters.configure(<%== js_options.to_json %>);
+  $(".field.with-character-counter").each((_i, el) => {
+    const $wrapper = $(el);
+    const $input = $("input, textarea", $wrapper);
+    const $info = $(".field-character-counter-info", $wrapper);
+    DecidimPlansCharacters.bindCharacterCounter($input, $info);
+  });
+});
+</script>
