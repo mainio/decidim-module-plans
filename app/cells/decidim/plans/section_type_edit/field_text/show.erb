@@ -1,5 +1,5 @@
 <div class="field with-character-counter">
-  <%= plain_label form, :body %>
+  <%= plain_label form, "body_#{current_locale}".to_sym %>
 
   <div class="row">
     <div class="columns large-8">
@@ -23,3 +23,5 @@
     </div>
   </div>
 </div>
+
+<div id="plans-dummy-counter-<%= section.id %>" class="hide" aria-hidden="true"></div>
