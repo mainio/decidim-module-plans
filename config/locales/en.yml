@@ -297,6 +297,7 @@ en:
           discard_confirmation: Are you sure you want to discard this draft?
           material_title: Information to support your proposal
           save: Save
+          title: Edit proposal
           update: Update
         evaluation_modal:
           button_text: OK
@@ -349,9 +350,9 @@ en:
           plan_authors: Number of authors
         new:
           create: Create
-          title: Create plan
+          title: Create proposal
         new_plan_button:
-          new_plan: New plan
+          new_plan: New proposal
         orders:
           label: 'Order plans by:'
           random: Random

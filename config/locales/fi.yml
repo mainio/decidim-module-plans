@@ -292,6 +292,7 @@ fi:
           discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
           material_title: Tietoa ehdotuksen tueksi
           save: Tallenna
+          title: Muokkaa ehdotusta
           update: Päivitä
         evaluation_modal:
           button_text: OK
@@ -341,9 +342,9 @@ fi:
           plan_authors: Laatijoiden määrä
         new:
           create: Luo
-          title: Luo suunnitelma
+          title: Luo ehdotus
         new_plan_button:
-          new_plan: Uusi suunnitelma
+          new_plan: Uusi ehdotus
         orders:
           label: 'Järjestä suunnitelmat:'
           random: Satunnainen

@@ -292,6 +292,7 @@ sv:
           discard_confirmation: Är du säker på att du vill radera utkastet?
           material_title: Information för att stödja ditt förslag
           save: Spara
+          title: Redigera förslaget
           update: Uppdatera
         evaluation_modal:
           button_text: OK
@@ -341,9 +342,9 @@ sv:
           plan_authors: Antal författare
         new:
           create: Skapa
-          title: Skapa plan
+          title: Skapa förslag
         new_plan_button:
-          new_plan: Ny plan
+          new_plan: Ny förslag
         orders:
           label: 'Ordna planer:'
           random: Slumpmässig
