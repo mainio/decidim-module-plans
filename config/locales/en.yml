@@ -273,10 +273,12 @@ en:
       plan_form:
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
+        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         required_fields_text: Required fields are marked with the *-character.
       plan_view:
         back: Back
         close_window: Close window
+        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         share: Share
         share_link: Share link
       plans:
@@ -383,8 +385,6 @@ en:
           hidden_authors_count:
             one: and %{count} more person
             other: and %{count} more people
-          info-message: You can participate either by submitting a comment or by
-            asking for a permission to edit content directly.
           of_versions: "(of %{number})"
           plan_accepted_reason: 'This plan has been accepted because:'
           plan_in_evaluation_reason: This plan is being evaluated

@@ -268,10 +268,12 @@ fi:
       plan_form:
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
+        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         required_fields_text: Pakolliset kentät on merkitty *-merkillä.
       plan_view:
         back: Takaisin
         close_window: Sulje ikkuna
+        info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         share: Jaa
         share_link: Jaettava linkki
       plans:
@@ -374,7 +376,6 @@ fi:
           hidden_authors_count:
             one: ja %{count} muu henkilö
             other: ja %{count} muuta henkilöä
-          info-message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
           of_versions: "(versioista %{number})"
           plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
           plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana

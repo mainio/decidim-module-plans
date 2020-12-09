@@ -1,7 +1,7 @@
 <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
   <div class="row">
     <div class="columns">
-      <div class="callout secondary"><%= t(".info-message").html_safe %></div>
+      <div class="callout secondary"><%= t(".info_message").html_safe %></div>
     </div>
   </div>
 <% end %>

@@ -266,12 +266,14 @@ sv:
             name: Namn
             taggings_count: Antal användningsområden
       plan_form:
+        characters_min: "(minst %count% tecken krävs)"
+        characters_used: "%count%/%total% tecken används"
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         required_fields_text: Obligatoriska fält är markerade med *-tecknet.
       plan_view:
         back: Tillbaka
-        characters_min: "(minst %count% tecken krävs)"
-        characters_used: "%count%/%total% tecken används"
         close_window: Stäng fönstret
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         share: Dela
         share_link: Länk som ska delas
       plans:
@@ -374,7 +376,6 @@ sv:
           hidden_authors_count:
             one: och %{count} annan person
             other: och %{count} andra personer
-          info-message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
           of_versions: "(av versioner %{number})"
           plan_accepted_reason: 'Planen har godkänts eftersom:'
           plan_in_evaluation_reason: Planen bedöms
