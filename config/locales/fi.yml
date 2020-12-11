@@ -266,6 +266,11 @@ fi:
             name: Nimi
             taggings_count: Käyttömäärä
       plan_form:
+        buttons:
+          create: Luo
+          discard: Tuhoa tämä luonnos
+          save: Tallenna
+          you_can_invite_others: Mikäli haluatte jättää ehdotuksen porukalla, voit kutsua muita ehdotuksen tekijöiksi sen jättämisen jälkeen.
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
@@ -274,6 +279,10 @@ fi:
         back: Takaisin
         close_window: Sulje ikkuna
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
+        plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana
+        plan_rejected_reason: 'Tämä suunnitelma on hylätty, koska:'
+        plan_waiting_for_evaluation: Suunnitelma on arvioinnissa, muokkaaminen estetty.
         share: Jaa
         share_link: Jaettava linkki
       plans:
@@ -289,11 +298,8 @@ fi:
           success: Poisto onnistui.
         edit:
           back: Takaisin
-          create: Luo
-          discard: Tuhoa tämä luonnos
           discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
           material_title: Tietoa ehdotuksen tueksi
-          save: Tallenna
           title: Muokkaa ehdotusta
           update: Päivitä
         evaluation_modal:
@@ -377,10 +383,6 @@ fi:
             one: ja %{count} muu henkilö
             other: ja %{count} muuta henkilöä
           of_versions: "(versioista %{number})"
-          plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
-          plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana
-          plan_rejected_reason: 'Tämä suunnitelma on hylätty, koska:'
-          plan_waiting_for_evaluation: Suunnitelma on arvioinnissa, muokkaaminen estetty.
           publish: Julkaise
           publish_info: Julkaise tämä luonnosversio tai
           published_proposal: julkaistu suunnitelma
@@ -465,7 +467,6 @@ fi:
         field_text: Kenttä - Yksirivinen
         field_title: Kenttä - Otsikko
         link_proposals: Liitetyt ehdotukset
-        link_ideas: Liitetyt ideat
       shared:
         attachment_fields:
           attachment_legend: Liite

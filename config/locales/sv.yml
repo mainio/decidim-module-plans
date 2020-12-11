@@ -266,6 +266,11 @@ sv:
             name: Namn
             taggings_count: Antal användningsområden
       plan_form:
+        buttons:
+          create: Skapa
+          discard: Radera utkastet
+          save: Spara
+          you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
         characters_min: "(minst %count% tecken krävs)"
         characters_used: "%count%/%total% tecken används"
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
@@ -274,6 +279,10 @@ sv:
         back: Tillbaka
         close_window: Stäng fönstret
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        plan_accepted_reason: 'Planen har godkänts eftersom:'
+        plan_in_evaluation_reason: Planen bedöms
+        plan_rejected_reason: 'Planen har avslagits eftersom:'
+        plan_waiting_for_evaluation: Planen beräknas, redigering är inte tillåten.
         share: Dela
         share_link: Länk som ska delas
       plans:
@@ -289,11 +298,8 @@ sv:
           success: Innehållet har raderats.
         edit:
           back: Tillbacka
-          create: Skapa
-          discard: Radera utkastet
           discard_confirmation: Är du säker på att du vill radera utkastet?
           material_title: Information för att stödja ditt förslag
-          save: Spara
           title: Redigera förslaget
           update: Uppdatera
         evaluation_modal:
@@ -377,10 +383,6 @@ sv:
             one: och %{count} annan person
             other: och %{count} andra personer
           of_versions: "(av versioner %{number})"
-          plan_accepted_reason: 'Planen har godkänts eftersom:'
-          plan_in_evaluation_reason: Planen bedöms
-          plan_rejected_reason: 'Planen har avslagits eftersom:'
-          plan_waiting_for_evaluation: Planen beräknas, redigering är inte tillåten.
           publish: Publicera
           publish_info: Publicera detta utkast eller
           published_proposal: publicerad plan
@@ -465,7 +467,6 @@ sv:
         field_text: Fält - Med en rad
         field_title: Fält - Titel
         link_proposals: Länk proposals
-        link_ideas: Länk ideas
       shared:
         attachment_fields:
           attachment_legend: Bilaga

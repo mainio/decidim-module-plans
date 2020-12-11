@@ -271,6 +271,11 @@ en:
             name: Name
             taggings_count: Number of uses
       plan_form:
+        buttons:
+          create: Create
+          discard: Discard this draft
+          save: Save
+          you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
@@ -279,6 +284,10 @@ en:
         back: Back
         close_window: Close window
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        plan_accepted_reason: 'This plan has been accepted because:'
+        plan_in_evaluation_reason: This plan is being evaluated
+        plan_rejected_reason: 'This plan has been rejected because:'
+        plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
         share: Share
         share_link: Share link
       plans:
@@ -294,11 +303,8 @@ en:
           success: Deleted successfully.
         edit:
           back: Back
-          create: Create
-          discard: Discard this draft
           discard_confirmation: Are you sure you want to discard this draft?
           material_title: Information to support your proposal
-          save: Save
           title: Edit proposal
           update: Update
         evaluation_modal:
@@ -386,10 +392,6 @@ en:
             one: and %{count} more person
             other: and %{count} more people
           of_versions: "(of %{number})"
-          plan_accepted_reason: 'This plan has been accepted because:'
-          plan_in_evaluation_reason: This plan is being evaluated
-          plan_rejected_reason: 'This plan has been rejected because:'
-          plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
           publish: Publish
           publish_info: Publish this version of the draft or
           published_proposal: published plan
@@ -474,7 +476,6 @@ en:
         field_text: Field - Single line
         field_title: Field - Title
         link_proposals: Link proposals
-        link_ideas: Link ideas
       shared:
         attachment_fields:
           attachment_legend: Attachment
