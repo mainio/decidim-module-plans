@@ -1,5 +1,5 @@
-<% object.contents.each_with_index do |content, idx| %>
-  <%= fields_for "contents[#{idx}]", content, namespace: "plans_section_#{content.section.id}" do |content_form| %>
+<% object.contents.each do |content| %>
+  <%= fields_for "contents[#{content.section.id}]", content, namespace: "plans_section_#{content.section.id}" do |content_form| %>
     <% content = content_form.object %>
 
     <%= cell(
@@ -17,3 +17,23 @@
     <%= content_form.hidden_field :section_id %>
   <% end %>
 <% end %>
+
+<%
+js_options = {
+  messages: {
+    charactersMin: t(".characters_min"),
+    charactersUsed: t(".characters_used")
+  }
+}
+%>
+<script>
+$(function() {
+  DecidimPlansCharacters.configure(<%== js_options.to_json %>);
+  $(".field.with-character-counter").each(function(_i, el) {
+    var $wrapper = $(el);
+    var $input = $("input, textarea", $wrapper);
+    var $info = $(".field-character-counter-info", $wrapper);
+    DecidimPlansCharacters.bindCharacterCounter($input, $info);
+  });
+});
+</script>

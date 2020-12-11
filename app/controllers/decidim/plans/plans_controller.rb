@@ -162,6 +162,15 @@ module Decidim
 
       private
 
+      def layout
+        case action_name
+        when "new", "create", "edit", "update", "preview"
+          "decidim/plans/participatory_space_plain"
+        else
+          super
+        end
+      end
+
       def check_draft
         redirect_to edit_plan_path(plan_draft) if plan_draft.present?
       end

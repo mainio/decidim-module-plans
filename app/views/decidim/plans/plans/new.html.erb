@@ -49,34 +49,6 @@
     <div class="row">
       <div class="columns large-12">
         <%= render partial: "form", object: form %>
-
-        <% if user_signed_in? %>
-          <div class="actions text-center">
-            <% if @plan && @plan.persisted? && @plan.draft? %>
-              <%= link_to t("decidim.plans.plans.edit.discard"), destroy_draft_plan_path(@plan), class: "mr-2 discard-draft-link", method: :delete, data: { confirm: t("decidim.plans.plans.edit.discard_confirmation") } %>
-            <% end %>
-            <% if @plan && (!@plan.persisted? || @plan.draft?) %>
-              <%= form.submit t("decidim.plans.plans.edit.save"), name: "save", class: "button hollow primary large mr-2", data: { disable: true } %>
-            <% end %>
-            <div class="actions">
-              <%= form.submit t("decidim.plans.plans.edit.create"), class: "button expanded mt-s mb-none", data: { disable: true } %>
-            </div>
-          </div>
-        <% else %>
-          <div class="row">
-            <div class="columns large-8 large-push-2">
-              <div class="text-center">
-                <p class="lead"><%= t("decidim.plans.plans.edit.sign_in_before_submitting") %></p>
-                <p><%= t(".you_can_invite_others") %></p>
-                <p>
-                  <%= action_authorized_link_to :create, new_plan_path, class: "title-action__action button large primary", data: { "redirect_url" => new_plan_path } do %>
-                    <%= t("decidim.plans.plans.edit.sign_in") %>
-                  <% end %>
-                </p>
-              </div>
-            </div>
-          </div>
-        <% end %>
       </div>
     </div>
   <% end %>

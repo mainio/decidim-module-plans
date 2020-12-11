@@ -6,7 +6,14 @@ module Decidim
       include Decidim::Plans::ApplicationHelper
       include ActionView::Helpers::FormOptionsHelper
 
-      delegate :current_user, :component_settings, :current_component, :snippets, to: :controller
+      delegate(
+        :current_user,
+        :user_signed_in?,
+        :component_settings,
+        :current_component,
+        :snippets,
+        to: :controller
+      )
 
       def user_group_field
         return unless manageable_user_groups.any?
@@ -22,6 +29,10 @@ module Decidim
 
       def form
         model
+      end
+
+      def plan
+        context[:plan]
       end
 
       def object

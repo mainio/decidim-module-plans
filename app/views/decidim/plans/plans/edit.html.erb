@@ -20,18 +20,6 @@
     <div class="row">
       <div class="columns large-12">
         <%= render partial: "form", object: form %>
-
-        <div class="actions text-center">
-          <% if @plan && @plan.persisted? && @plan.draft? %>
-            <%= link_to t("decidim.plans.plans.edit.discard"), destroy_draft_plan_path(@plan), class: "mr-2 discard-draft-link", method: :delete, data: { confirm: t("decidim.plans.plans.edit.discard_confirmation") } %>
-          <% end %>
-          <% if @plan && (!@plan.persisted? || @plan.draft?) %>
-            <%= form.submit t("decidim.plans.plans.edit.save"), name: "save", class: "button hollow primary large mr-2", data: { disable: true } %>
-          <% end %>
-          <div class="actions">
-            <%= form.submit t("decidim.plans.plans.edit.update"), class: "button expanded mt-s mb-none", data: { disable: true } %>
-          </div>
-        </div>
       </div>
     </div>
   <% end %>

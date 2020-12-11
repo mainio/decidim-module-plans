@@ -9,11 +9,11 @@ module Decidim
         @layout_manifest ||= Decidim::Plans.layouts.find(current_component.settings.layout)
       end
 
-      def render_plan_form(plan)
+      def render_plan_form(form, plan)
         cell(
           layout_manifest.form_layout,
-          plan,
-          context: { current_component: current_component }
+          form,
+          context: { plan: plan, current_component: current_component }
         )
       end
 
