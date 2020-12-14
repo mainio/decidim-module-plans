@@ -9,8 +9,16 @@ module Decidim
       # either prepration or post processing procedures during the saving
       # process.
       class Base
-        def initialize(form)
+        def initialize(form = nil)
           @form = form
+        end
+
+        def search_params_for(section)
+          {}
+        end
+
+        def search(query, section, params)
+          query
         end
 
         def content_for(plan)

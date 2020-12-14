@@ -1,0 +1,11 @@
+<div class="card__info">
+  <% if has_visible_area_scope? %>
+    <div class="card__info__item">
+      <%= translated_attribute(area_scope.name) %>
+    </div>
+  <% end %>
+
+  <div class="card__info__item text-right">
+    #<%= model.id %>
+  </div>
+</div>

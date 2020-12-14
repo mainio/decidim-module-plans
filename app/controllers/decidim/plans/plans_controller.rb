@@ -17,7 +17,7 @@ module Decidim
       include Plans::Orderable
       include Paginable
 
-      helper_method :attached_proposals_picker_field, :available_tags
+      helper_method :attached_proposals_picker_field, :available_tags, :trigger_feedback?
 
       before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy]
       before_action :check_draft, only: [:new]
@@ -134,6 +134,7 @@ module Decidim
         PublishPlan.call(@plan, current_user) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("publish.success", scope: "decidim.plans.plans.plan")
+            session["decidim-plans.published"] = true
             redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
           end
 
@@ -161,6 +162,10 @@ module Decidim
       end
 
       private
+
+      def trigger_feedback?
+        @trigger_feedback ||= session.delete("decidim-plans.published")
+      end
 
       def layout
         case action_name
@@ -194,10 +199,6 @@ module Decidim
         redirect_to preview_plan_path(@plan)
       end
 
-      def available_tags
-        @available_tags ||= ComponentPlanTags.new(current_component).query
-      end
-
       def search_klass
         PlanSearch
       end
@@ -205,21 +206,30 @@ module Decidim
       def default_filter_params
         {
           search_text: "",
-          origin: "all",
+          origin: default_filter_origin_params,
           activity: "",
           category_id: "",
-          state: "all",
+          section: default_section_filter_params,
+          state: %w(accepted rejected evaluating not_answered),
           scope_id: nil,
           related_to: "",
           tag_id: []
         }
       end
 
-      def context_params
-        {
-          component: current_component,
-          organization: current_organization
-        }
+      def default_section_filter_params
+        Decidim::Plans::Section.where(component: current_component).map do |section|
+          manifest = section.section_type_manifest
+          control = section.section_type_manifest.content_control_class.new
+
+          [section.id, control.search_params_for(section)]
+        end.to_h
+      end
+
+      def default_filter_origin_params
+        filter_origin_params = %w(citizens)
+        filter_origin_params << "user_group" if current_organization.user_groups_enabled?
+        filter_origin_params
       end
     end
   end

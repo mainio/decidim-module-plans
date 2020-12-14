@@ -1,1 +1,5 @@
-<%= card_for plan, from: plan %>
+<% if defined?(card_cell) && card_cell %>
+  <%= cell(card_cell, plan) %>
+<% else %>
+  <%= card_for plan, from: plan %>
+<% end %>

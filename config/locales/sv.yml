@@ -164,6 +164,7 @@ sv:
             help: Hjälp
             information: Information
             information_label: Informationsetikett
+            searchable: Sökbar
             mandatory: Obligatorisk
             map_center_latitude: Kartcentrums latitud
             map_center_longitude: Kartcentrums longitud
@@ -230,6 +231,13 @@ sv:
       attachment_input_types:
         single: En bilaga
         multi: Flera bilagor
+      attachments:
+        documents:
+          one: Dokument
+          other: Dokument
+        download: Hämta fil
+        related_documents: Relaterade dokument
+        related_photos: Relaterade bilder
       attached_proposals_helper:
         attach_proposal: Bifoga förslag
         close: Stäng
@@ -275,6 +283,37 @@ sv:
         characters_used: "%count%/%total% tecken används"
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+      plan_index:
+        draft_plan_title: Du har ett oavslutat förslag!
+        draft_plan_continue: Fortsätt ditt förslag
+        draft_plan_description: Du har tidigare sparat ett pågående förslag. Du kan nu fortsätta skriva den.
+        filters:
+          activity:
+            all: Alla
+            my_favorites: Mina favoriter
+            my_plans: Mina förslag
+          close_modal: Stäng fönstret
+          filter: Filtrera
+          filter_by: Filtrera
+          related_to: Anknyter till
+          search: Sök
+          state:
+            legend: Status
+            evaluating: Bedöms
+            rejected: Avslagen
+            accepted: Godkänd
+            all: Alla
+          tag: Taggar
+          tag_prompt: Välj taggar
+          unfold: Öppna
+        leave_your_plan: Skicka in ditt eget förslag!
+        new_plan: Nytt förslag
+        see_all_withdrawn: Visa alla annullerade
+        subtitle: Hitta och utforska förslag!
+        title: Bläddra bland förslag
+        view_plan: Visa förslag
+      plan_m:
+        view_plan: Visa förslag
       plan_view:
         back: Tillbaka
         close_window: Stäng fönstret
@@ -310,42 +349,9 @@ sv:
         preview:
           modify: Redigera
           publish: Publicera
-        filters:
-          accepted: Godkänd
-          activity: Aktivitet
-          all: Alla
-          category: Kategori
-          category_prompt: Välj kategori
-          citizens: Medborgare
-          evaluating: Bedöms
-          except_rejected: Alla utom avslagna
-          official: Officiell
-          origin: Ursprung
-          rejected: Avslagen
-          related_to: Anknyter till
-          search: Sök
-          state: Status
-          tag: Taggar
-          tag_prompt: Välj taggar
-          voted: Understödd
-        filters_small_view:
-          close_modal: Stäng fönstret
-          filter: Filtrera
-          filter_by: Filtrera
-          unfold: Öppna
         form:
           attachment_legend: Lägg till bilaga
           select_a_category: Välj kategori
-        index:
-          draft_plan_title: Du har ett oavslutat förslag!
-          draft_plan_continue: Fortsätt ditt förslag
-          draft_plan_description: Du har tidigare sparat ett pågående förslag. Du kan nu fortsätta skriva den.
-          leave_your_plan: Skicka in ditt eget förslag!
-          new_plan: Nytt förslag
-          see_all_withdrawn: Visa alla annullerade
-          subtitle: Hitta och utforska förslag!
-          title: Bläddra bland förslag
-          view_plan: Visa förslag
         linked_plans:
           plan_authors: Antal författare
         new:

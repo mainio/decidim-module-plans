@@ -20,6 +20,7 @@ module Decidim
         attribute :visible_view, Boolean, default: true
         attribute :visible_api, Boolean, default: true
         attribute :mandatory, Boolean, default: false
+        attribute :searchable, Boolean, default: false
         attribute :section_type, String
         attribute :position, Integer
         attribute :deleted, Boolean, default: false

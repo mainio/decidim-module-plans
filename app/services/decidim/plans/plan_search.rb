@@ -10,12 +10,26 @@ module Decidim
       # page        - The page number to paginate the results.
       # per_page    - The number of plans to return per page.
       def initialize(options = {})
-        super(Plan.all, options)
+        @component = options[:component]
+        @current_user = options[:current_user]
+
+        base = options[:state]&.member?("withdrawn") ? Plan.withdrawn : Plan.except_withdrawn
+        super(base, options)
       end
 
       # Handle the search_text filter
       def search_search_text
         query.where(localized_search_text_in(:title), text: "%#{search_text}%")
+      end
+
+      def search_section
+        final = query
+        @section_controls ||= Decidim::Plans::Section.where(component: @component).each do |s|
+          manifest = s.section_type_manifest
+          control = s.section_type_manifest.content_control_class.new
+          final = control.search(final, s, section[s.id.to_s])
+        end
+        final
       end
 
       # Handle the origin filter
@@ -32,7 +46,18 @@ module Decidim
 
       # Handle the activity filter
       def search_activity
-        query
+        case activity
+        when "my_plans"
+          query
+            .where.not(coauthorships_count: 0)
+            .joins(:coauthorships)
+            .where(decidim_coauthorships: { decidim_author_type: "Decidim::UserBaseEntity" })
+            .where(decidim_coauthorships: { decidim_author_id: @current_user })
+        when "my_favorites"
+          query.user_favorites(@current_user)
+        else # Assume 'all'
+          query
+        end
       end
 
       # Handle the state filter

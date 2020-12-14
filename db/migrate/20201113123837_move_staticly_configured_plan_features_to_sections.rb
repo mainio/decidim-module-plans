@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2]
   def up
     Decidim::Component.where(manifest_name: "plans").find_each do |component|

@@ -75,6 +75,13 @@
       </div>
 
       <div class="row column" data-section-type-inverse="content">
+        <%= form.check_box(
+          :searchable,
+          label: t(".searchable")
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
         <%= form.translated(
             :text_area,
             :help,

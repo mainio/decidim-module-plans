@@ -86,16 +86,19 @@ module Decidim
           type.edit_cell = "decidim/plans/section_type_edit/field_scope"
           type.display_cell = "decidim/plans/section_type_display/field_scope"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldScopeForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Scope"
         end
         registry.register(:field_area_scope) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_area_scope"
           type.display_cell = "decidim/plans/section_type_display/field_scope"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldScopeForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Scope"
         end
         registry.register(:field_category) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_category"
           type.display_cell = "decidim/plans/section_type_display/field_category"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldCategoryForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Category"
         end
         registry.register(:field_map_point) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_map_point"

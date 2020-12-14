@@ -169,6 +169,7 @@ en:
             map_center_latitude: Map center latitude
             map_center_longitude: Map center longitude
             remove: Remove
+            searchable: Searchable
             section: Section
             up: Up
             visible_api: Show in the API
@@ -235,6 +236,13 @@ en:
       attachment_input_types:
         single: Single attachment
         multi: Multiple attachments
+      attachments:
+        documents:
+          one: Document
+          other: Documents
+        download: Download file
+        related_documents: Related documents
+        related_photos: Related images
       attached_proposals_helper:
         attach_proposal: Attach proposal
         close: Close
@@ -280,6 +288,37 @@ en:
         characters_used: "%count%/%total% characters used"
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         required_fields_text: Required fields are marked with the *-character.
+      plan_index:
+        draft_plan_title: You have a proposal draft!
+        draft_plan_continue: Continue your proposal
+        draft_plan_description: You have previously saved a proposal as a draft. You can now continue writing it.
+        filters:
+          activity:
+            all: All
+            my_favorites: My favorites
+            my_plans: My proposals
+          close_modal: Close modal
+          filter: Filter
+          filter_by: Filter by
+          related_to: Related to
+          search: Search
+          state:
+            legend: State
+            evaluating: Evaluating
+            rejected: Rejected
+            accepted: Accepted
+            all: All
+          tag: Tags
+          tag_prompt: Select tags
+          unfold: Unfold
+        leave_your_plan: Submit your own proposal!
+        new_plan: New proposal
+        see_all_withdrawn: See all withdrawn
+        subtitle: Find and explore proposals!
+        title: Browse proposals
+        view_plan: View proposal
+      plan_m:
+        view_plan: View proposal
       plan_view:
         back: Back
         close_window: Close window
@@ -317,43 +356,9 @@ en:
         preview:
           modify: Modify
           publish: Publish
-        filters:
-          accepted: Accepted
-          activity: Activity
-          all: All
-          category: Category
-          category_prompt: Select a category
-          citizens: Citizens
-          evaluating: Evaluating
-          except_rejected: All except rejected
-          official: Official
-          origin: Origin
-          rejected: Rejected
-          related_to: Related to
-          search: Search
-          state: State
-          tag: Tags
-          tag_prompt: Select tags
-          voted: Voted
-        filters_small_view:
-          close_modal: Close modal
-          filter: Filter
-          filter_by: Filter by
-          unfold: Unfold
         form:
           attachment_legend: Add an attachment
           select_a_category: Select a category
-        index:
-          new_plan: New proposal
-          see_all_withdrawn: See all withdrawn
-          subtitle: Find and explore proposals!
-          title: Browse proposals
-          draft_plan_title: You have a proposal draft!
-          draft_plan_continue: Continue your proposal
-          draft_plan_description: You have previously saved a proposal as a draft. You can now continue writing it.
-          leave_your_plan: Submit your own proposal!
-          new_plan: New proposal
-          view_plan: View proposal
         linked_plans:
           plan_authors: Number of authors
         new:

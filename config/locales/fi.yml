@@ -168,6 +168,7 @@ fi:
             map_center_latitude: Kartan keskipisteen leveysarvo
             map_center_longitude: Kartan keskipisteen pituusarvo
             remove: Poista
+            searchable: Haettavissa
             section: Osio
             up: Ylös
             visible_api: Näytä rajapinnassa
@@ -230,6 +231,13 @@ fi:
       attachment_input_types:
         single: Yksi liite
         multi: Useita liitteitä
+      attachments:
+        documents:
+          one: Asiakirja
+          other: Asiakirjaa
+        download: Lataa tiedosto
+        related_documents: Liittyvät dokumentit
+        related_photos: Liittyvät kuvat
       attached_proposals_helper:
         attach_proposal: Liitä ehdotus
         close: Sulje
@@ -275,6 +283,37 @@ fi:
         characters_used: "%count%/%total% merkkiä käytetty"
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+      plan_index:
+        draft_plan_title: Sinulla on keskeneräinen ehdotus!
+        draft_plan_continue: Jatka ehdotustasi
+        draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen kirjoittamista.
+        filters:
+          activity:
+            all: Kaikki
+            my_favorites: Omat suosikit
+            my_plans: Omat ehdotukset
+          close_modal: Sulje ikkuna
+          filter: Suodata
+          filter_by: Suodata
+          related_to: Liittyy kohteeseen
+          search: Hae
+          state:
+            legend: Tila
+            evaluating: Arvioitavana
+            rejected: Hylätty
+            accepted: Hyväksytty
+            all: Kaikki
+          tag: Merkinnät
+          tag_prompt: Valitse merkinnät
+          unfold: Avaa
+        leave_your_plan: Käy jättämässä oma ehdotuksesi!
+        new_plan: Uusi ehdotus
+        see_all_withdrawn: Näytä kaikki peruutetut
+        subtitle: Etsi ja tutki ehdotuksia!
+        title: Tutustu ehdotuksiin
+        view_plan: Näytä ehdotus
+      plan_m:
+        view_plan: Näytä ehdotus
       plan_view:
         back: Takaisin
         close_window: Sulje ikkuna
@@ -310,42 +349,9 @@ fi:
         preview:
           modify: Muokkaa
           publish: Julkaise
-        filters:
-          accepted: Hyväksytty
-          activity: Aktiviteetti
-          all: Kaikki
-          category: Kategoria
-          category_prompt: Valitse kategoria
-          citizens: Kansalaiset
-          evaluating: Arvioitavana
-          except_rejected: Kaikki paitsi hylätyt
-          official: Virallinen
-          origin: Alkuperä
-          rejected: Hylätty
-          related_to: Liittyy kohteeseen
-          search: Hae
-          state: Tila
-          tag: Merkinnät
-          tag_prompt: Valitse merkinnät
-          voted: Kannatettu
-        filters_small_view:
-          close_modal: Sulje ikkuna
-          filter: Suodata
-          filter_by: Suodata
-          unfold: Avaa
         form:
           attachment_legend: Lisää liite
           select_a_category: Valitse kategoria
-        index:
-          draft_plan_continue: Jatka ehdotustasi
-          draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen kirjoittamista.
-          draft_plan_title: Sinulla on keskeneräinen ehdotus!
-          leave_your_plan: Käy jättämässä oma ehdotuksesi!
-          new_plan: Uusi ehdotus
-          see_all_withdrawn: Näytä kaikki peruutetut
-          subtitle: Etsi ja tutki ehdotuksia!
-          title: Tutustu ehdotuksiin
-          view_plan: Näytä ehdotus
         linked_plans:
           plan_authors: Laatijoiden määrä
         new:

@@ -43,6 +43,7 @@ module Decidim
                 information_label: form_section.information_label,
                 information: form_section.information,
                 mandatory: form_section.mandatory,
+                searchable: form_section.searchable,
                 position: form_section.position,
                 section_type: form_section.section_type,
                 visible_form: form_section.visible_form,

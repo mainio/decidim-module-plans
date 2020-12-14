@@ -1,0 +1,15 @@
+<figure>
+  <ul class="tags tags--idea tags--list">
+    <% if category.present? %>
+      <li>
+        <%= link_to translated_attribute(category.name), resource_locator(model).index(filter: { category_id: [category.id.to_s] }) %>
+      </li>
+    <% end %>
+
+    <% if has_visible_area_scope? %>
+      <li>
+        <%= link_to translated_attribute(area_scope.name), resource_locator(model).index(filter: { scope_id: [area_scope.id] }) %>
+      </li>
+    <% end %>
+  </ul>
+</figure>

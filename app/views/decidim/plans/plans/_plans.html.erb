@@ -4,15 +4,20 @@
   </div>
 
   <div class="column">
-    <%= render partial: "decidim/shared/results_per_page" %>
+    <%= render partial: "decidim/shared/results_per_page.html" %>
   </div>
 </div>
 
 <div class="row small-up-1 medium-up-3 card-grid">
-  <%= render @plans %>
+  <% plans.each do |plan| %>
+    <%= render partial: "decidim/plans/plans/plan.html", locals: {
+      plan: plan,
+      card_cell: defined?(card_cell) ? card_cell : nil
+    } %>
+  <% end %>
 </div>
 
-<% if @plans.empty? %>
+<% if plans.empty? %>
   <div class="row columns">
     <div class="callout secondary">
       <% if params[:filter].present? %>
@@ -23,4 +28,4 @@
     </div>
   </div>
 <% end %>
-<%= decidim_paginate @plans %>
+<%= decidim_paginate plans %>

@@ -3,7 +3,7 @@
     url: plan_url(@plan.id)
 }) %>
 
-<%= render_plan_view(@plan) %>
+<%= render_plan_view(@plan, trigger_feedback: trigger_feedback?) %>
 
 <%= comments_for @plan %>
 

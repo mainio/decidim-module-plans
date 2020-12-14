@@ -9,19 +9,37 @@ module Decidim
         @layout_manifest ||= Decidim::Plans.layouts.find(current_component.settings.layout)
       end
 
-      def render_plan_form(form, plan)
+      def render_plan_index(data = {})
         cell(
-          layout_manifest.form_layout,
-          form,
-          context: { plan: plan, current_component: current_component }
+          layout_manifest.index_layout,
+          current_component,
+          data
         )
       end
 
-      def render_plan_view(plan)
+      def render_plan_form(form, plan, data = {})
+        context = data[:context] || {}
+        data = data.merge(
+          context: context.merge(plan: plan, current_component: current_component)
+        )
+
+        cell(
+          layout_manifest.form_layout,
+          form,
+          data
+        )
+      end
+
+      def render_plan_view(plan, data = {})
+        context = data[:context] || {}
+        data = data.merge(
+          context: context.merge(current_component: current_component)
+        )
+
         cell(
           layout_manifest.view_layout,
           plan,
-          context: { current_component: current_component }
+          data
         )
       end
     end
