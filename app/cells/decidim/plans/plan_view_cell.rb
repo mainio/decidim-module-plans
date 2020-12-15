@@ -19,6 +19,13 @@ module Decidim
 
       delegate :allowed_to?, :current_component, :current_user, to: :controller
 
+      def collaborator_requests
+        return unless allowed_to?(:edit, :plan, plan: plan)
+        return unless plan.requesters.any?
+
+        render :collaborator_requests
+      end
+
       private
 
       def plan
@@ -31,6 +38,12 @@ module Decidim
 
       def show_controls?
         allowed_to?(:edit, :plan, plan: plan)
+      end
+
+      def access_request_pending?
+        return false unless current_user
+
+        plan.collaborator_requests.exists?(user: current_user)
       end
 
       def withdrawable?

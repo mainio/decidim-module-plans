@@ -1,20 +1,18 @@
-<% if plan.requesters.presence && allowed_to?(:edit, :plan, plan: plan) %>
-  <div class="card extra">
-    <div class="definition-data__item">
-      <span class="definition-data__title">
-        <%= t("decidim.plans.requests.title") %>
-      </span>
-    </div>
-    <% @plan.requesters.each do |requester| %>
-      <div class="definition-data__item expanded" id="request_<%= requester.id %>">
-        <%= cell "decidim/author", present(requester), options: { extra_classes: ["author-data--small"] }, has_actions: false %>
-
-        <div>
-          <%= render :request_access_accept_form, locals: { requester: requester } %>
-
-          <%= render :reject_request_access_form, locals: { requester: requester } %>
-        </div>
-      </div>
-    <% end %>
+<div class="card extra">
+  <div class="definition-data__item">
+    <span class="definition-data__title">
+      <%= t("decidim.plans.requests.title") %>
+    </span>
   </div>
-<% end %>
+  <% @plan.requesters.each do |requester| %>
+    <div class="definition-data__item expanded" id="request_<%= requester.id %>">
+      <%= cell "decidim/author", present(requester), options: { extra_classes: ["author-data--small"] }, has_actions: false %>
+
+      <div>
+        <%= render partial: "decidim/plans/plan_view/request_access_accept_form", locals: { requester: requester } %>
+
+        <%= render partial: "decidim/plans/plan_view/request_access_reject_form", locals: { requester: requester } %>
+      </div>
+    </div>
+  <% end %>
+</div>
