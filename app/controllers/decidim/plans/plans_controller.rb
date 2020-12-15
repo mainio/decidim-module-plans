@@ -50,11 +50,16 @@ module Decidim
         enforce_permission_to :create, :plan
 
         @form = form(PlanForm).from_params(params, component: current_component)
+        show_preview = params[:save_type] != "save"
 
         CreatePlan.call(@form, current_user) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.create.success", scope: "decidim")
-            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path + "/preview"
+            if show_preview
+              redirect_to preview_plan_path(plan)
+            else
+              redirect_to edit_plan_path(plan)
+            end
           end
 
           on(:invalid) do
@@ -74,13 +79,19 @@ module Decidim
         enforce_permission_to :edit, :plan, plan: @plan
 
         @form = form(PlanForm).from_params(params, component: current_component)
+        show_preview = params[:save_type] != "save"
+
         UpdatePlan.call(@form, current_user, @plan) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.update.success", scope: "decidim")
 
             return redirect_to Decidim::ResourceLocatorPresenter.new(plan).path if plan.published?
 
-            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path + "/preview"
+            if show_preview
+              redirect_to preview_plan_path(plan)
+            else
+              redirect_to edit_plan_path(plan)
+            end
           end
 
           on(:invalid) do
