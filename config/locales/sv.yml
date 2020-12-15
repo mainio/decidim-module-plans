@@ -347,6 +347,8 @@ sv:
           description: Planen utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
           title: Planen beräknas
         preview:
+          not_published: Din förslag har ännu inte publicerats
+          not_published_description: Din förslag har sparats som ett utkast. Idén måste publiceras för att den ska visas på webbplatsen.
           modify: Redigera
           publish: Publicera
         form:

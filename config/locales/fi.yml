@@ -347,6 +347,8 @@ fi:
           description: Suunnitelmaa arvioidaan ja sitä ei voi muokata tällä hetkellä. Saat ilmoituksen, kun arviointi valmistuu.
           title: Suunnitelmaa arvioidaan
         preview:
+          not_published: Ehdotustasi ei ole vielä julkaistu
+          not_published_description: Ehdotus on tallennettu keskeneräisenä luonnoksena. Se pitää julkaista, jotta se tulee näkyviin sivustolle.
           modify: Muokkaa
           publish: Julkaise
         form:

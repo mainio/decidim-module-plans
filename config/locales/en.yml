@@ -354,6 +354,8 @@ en:
             completed.
           title: The plan is being evaluated
         preview:
+          not_published: Your proposal has not yet been published
+          not_published_description: Your proposal has been saved as a draft. It needs to be published for it to appear on the site.
           modify: Modify
           publish: Publish
         form:
