@@ -19,7 +19,7 @@ module Decidim
       alias component model
       alias current_component model
 
-      delegate :user_signed_in?, :current_user, :snippets, to: :controller
+      delegate :user_signed_in?, :current_user, :allowed_to?, :snippets, to: :controller
 
       private
 
