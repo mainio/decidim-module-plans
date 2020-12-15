@@ -11,7 +11,7 @@ module Decidim
       include Decidim::TranslatableAttributes
 
       def show
-        return unless model.attachments.any?
+        return unless attachments.any?
 
         render
       end
@@ -30,8 +30,24 @@ module Decidim
 
       private
 
+      def attachments
+        @attachments ||= begin
+          if model.is_a?(Decidim::Plans::Content)
+            ids = model.body["attachment_ids"]
+
+            if ids.is_a?(Array)
+              Decidim::Attachment.includes(:attachment_collection).where(id: ids)
+            else
+              []
+            end
+          else
+            model.attachments.includes(:attachment_collection)
+          end
+        end
+      end
+
       def documents
-        model.documents
+        @documents ||= attachments.select(&:document?)
       end
 
       def documents_without_collection
@@ -45,7 +61,7 @@ module Decidim
       end
 
       def photos
-        model.photos
+        @photos ||= attachments.select(&:photo?)
       end
 
       # Renders the attachment's title.
