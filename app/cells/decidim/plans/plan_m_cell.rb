@@ -168,14 +168,14 @@ module Decidim
       end
 
       def image_content
-        @image_section ||= content_for(image_section)
+        @image_content ||= content_for(image_section)
       end
 
       def plan_image
         return unless image_content
         return if image_content.body["attachment_ids"].blank?
 
-        @plan_image ||= Decidim::Attachments.find_by(
+        @plan_image ||= Decidim::Attachment.find_by(
           id: image_content.body["attachment_ids"].first
         )
       end
