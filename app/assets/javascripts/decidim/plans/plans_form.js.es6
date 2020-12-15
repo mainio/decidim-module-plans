@@ -8,6 +8,9 @@
 ((exports) => {
   const $ = exports.$; // eslint-disable-line id-length
 
+  // Defines whether the user can exit the view without a warning or not
+  let canExit = false;
+
   const bindAddressLookup = ($container) => {
     const $map = $(".plans-map");
     const $address = $(".address-input-address", $container);
@@ -124,7 +127,76 @@
     }
   };
 
+  /**
+   * In later Foundation versions, this is already handled by Foundation core.
+   *
+   * This validates the form on submit as it does not work with the Foundation
+   * version that currently ships with Decidin.
+   *
+   * @param {jQuery} $form The form for which to bind.
+   * @returns {undefined}
+   */
+  const bindFormValidation = ($form) => {
+    const $submits = $("[type='submit']", $form);
+    const $discardLink = $(".discard-draft-link", $form);
+
+    $submits.off("click.decidim-plans.form").on(
+      "click.decidim-plans.form",
+      (ev) => {
+        // Tell the backend which submit button was pressed (save or preview)
+        let $btn = $(ev.target);
+        if (!$btn.is("button")) {
+          $btn = $btn.closest("button");
+        }
+
+        $form.append(`<input type="hidden" name="save_type" value="${$btn.attr("name")}" />`);
+        $submits.attr("disabled", true);
+
+        if (!ev.key || (ev.key === " " || ev.key === "Enter")) {
+          ev.preventDefault();
+
+          canExit = true;
+          $form.submit();
+
+          const $firstField = $("input.is-invalid-input, textarea.is-invalid-input").first();
+          $firstField.focus();
+          $submits.removeAttr("disabled");
+        }
+      }
+    );
+
+    $discardLink.off("click.decidim-plans.form").on(
+      "click.decidim-plans.form",
+      () => {
+        canExit = true;
+      }
+    );
+  };
+
+  const bindAccidentalExitDisabling = () => {
+    $(document).on("click", "a, input, button", (ev) => {
+      const $target = $(ev.target);
+      if ($target.closest(".idea-form-container").length > 0) {
+        canExit = true;
+      } else if ($target.closest(".plan-form-container").length > 0) {
+        canExit = true;
+      } else if ($target.closest("#loginModal").length > 0) {
+        canExit = true;
+      }
+    });
+
+    window.onbeforeunload = () => {
+      if (canExit) {
+        return null;
+      }
+
+      return "";
+    }
+  };
+
   $(() => {
+    bindAccidentalExitDisabling();
+
     $("form.plans-form").each((_i, el) => {
       const $form = $(el);
 
@@ -142,6 +214,8 @@
       $(".address-input", $form).each((_j, addressEl) => {
         bindAddressLookup($(addressEl));
       });
+
+      bindFormValidation($form);
     });
   });
 })(window);
