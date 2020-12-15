@@ -510,30 +510,30 @@ sv:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} har beviljats rätt att redigera innehållet <a href="%{resource_url}">%{resource_title}</a> som deltagare.'
+          email_intro: '%{requester_name} har beviljats rätt att redigera förslaget <a href="%{resource_url}">%{resource_title}</a> som deltagare.'
           email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} har godkänts som redigerare för innehållet %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har <strong>godkänts som redigerare</strong> för innehållet <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} har godkänts som redigerare för förslaget %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har <strong>godkänts som redigerare</strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: 'Rättigheterna för användaren %{requester_name} att redigera innehållet <a href="%{resource_url}">%{resource_title} </a> har blockerats.'
-          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} ansökan om att få delta i planen %{resource_title} har avslagits."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera innehållet har avslagits</strong> för objektet <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Rättigheterna för användaren %{requester_name} att redigera förslaget <a href="%{resource_url}">%{resource_title} </a> har blockerats.'
+          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} ansökan om att få delta i förslaget %{resource_title} har avslagits."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera förslaget har avslagits</strong> för <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} begärde om att få bli deltagare. Du kan <strong>godkänna eller avslå begäran</strong> på <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: Du fick detta meddelande eftersom du är deltagare i planen <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} begärde om rätt att få delta i planen %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> begärde om att få redigera innehållet <a href="%{resource_url}">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
+          email_outro: Du fick detta meddelande eftersom du är deltagare i förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} begärde om rätt att få delta i förslaget %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> begärde om att få redigera förslaget <a href="%{resource_url}">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
         plan_access_requester_accepted:
-          email_intro: Du har godkänts som deltagare för innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: Du fick detta meddelande eftersom du har ansökt om rätt att redigera innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: Du har godkänts som deltagare för innehållet %{resource_title}.
-          notification_title: Du har <strong>godkänts som deltagare </strong> för innehållet <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Du har godkänts som deltagare för förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Du fick detta meddelande eftersom du har ansökt om rätt att redigera förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Du har godkänts som deltagare för förslaget %{resource_title}.
+          notification_title: Du har <strong>godkänts som deltagare </strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: Du har inte godkänts som deltagare för innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: Du fick detta meddelande eftersom du har ansökt om att få delta i innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: Du har inte godkänts som deltagare för innehållet %{resource_title}.
-          notification_title: Du <strong>har inte godkänts som deltagare</strong> för innehållet <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Du har inte godkänts som deltagare för förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Du fick detta meddelande eftersom du har ansökt om att få delta i förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Du har inte godkänts som deltagare för förslaget %{resource_title}.
+          notification_title: Du <strong>har inte godkänts som deltagare</strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" har godkänts. Du kan läsa svaret här:'
           email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.

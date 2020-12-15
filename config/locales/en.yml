@@ -518,30 +518,30 @@ en:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} has been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been accepted to access as a contributor of %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} has been accepted to edit proposal <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} has been accepted to contribute in %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: '%{requester_name} has been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been rejected to access as a contributor of %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} has been rejected editing proposal <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} has been rejected to contribute in %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
-          email_outro: You have received this notification because you are a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} requested contributor access. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
+          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
         plan_access_requester_accepted:
-          email_intro: You have been accepted to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been accepted as a contributor of %{resource_title}.
-          notification_title: You have been <strong>accepted to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: You have been accepted to contribute in <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: You have been accepted to contribute to %{resource_title}.
+          notification_title: You have been <strong>accepted to contribute</strong> to <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: You have been rejected to access as a contributor of <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested to become a collaborator of <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been rejected as a contributor of %{resource_title}.
-          notification_title: You have been <strong>rejected to access as a contributor</strong> of <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: You have been rejected from contributing to <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: You have been rejected from contributing to %{resource_title}.
+          notification_title: You have been <strong>rejected from contributing</strong> to <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" has been accepted. You can read the answer in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.

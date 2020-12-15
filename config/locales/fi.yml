@@ -510,30 +510,30 @@ fi:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} on annettu oikeus muokata sisältöä <a href="%{resource_url}">%{resource_title}</a> osallistujana.'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut sisällön <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
-          email_subject: "%{requester_name} on hyväksytty muokkaajaksi sisältöön %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> on <strong>hyväksytty muokkaajaksi</strong> sisältöön <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Käyttäjälle %{requester_name} on annettu oikeus muokata ehdotusta <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut ehdotuksen <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
+          email_subject: "%{requester_name} on hyväksytty muokkaajaksi ehdotukseen %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> on <strong>hyväksytty muokkaajaksi</strong> ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: 'Käyttäjän %{requester_name} muokkausoikeudet sisältöön <a href="%{resource_url}">%{resource_title} </a> on estetty.'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut sisällön <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
-          email_subject: "%{requester_name} hakemus osallistua kohteen %{resource_title} muokkaukseen on hylätty."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>pyyntö muokata sisältöä on hylätty</strong> kohteelle <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Käyttäjän %{requester_name} muokkausoikeudet ehdotukseen <a href="%{resource_url}">%{resource_title} </a> on estetty.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut ehdotuksen <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
+          email_subject: "Käyttäjän %{requester_name} pyyntö osallistua ehdotuksen %{resource_title} muokkaukseen on hylätty."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>pyyntö muokata ehdotusta on hylätty</strong> kohteelle <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} pyysi pääsyä osallistujaksi. Voit <strong>hyväksyä tai hylätä pyynnön</strong> sivulla <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistuja kohteessa <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} pyysi osallistumisoikeutta kohteeseen %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pyysi saada muokata sisältöä <a href="%{resource_url}">%{resource_title}</a>. <strong>Hyväksy tai hylkää pyyntö</strong>.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut ehdotuksen <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
+          email_subject: "%{requester_name} pyysi osallistumisoikeutta ehdotukseen %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pyysi muokkausoikeutta ehdotukseen <a href="%{resource_url}">%{resource_title}</a>. <strong>Hyväksy tai hylkää pyyntö</strong>.
         plan_access_requester_accepted:
-          email_intro: Sinut on hyväksytty osallistujaksi sisältöön <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet hakenut muokkausoikeuksia sisältöön <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: Sinut on hyväksytty osallistujaksi sisältöön %{resource_title}.
-          notification_title: Sinut on <strong>hyväksytty osallistujaksi </strong> sisältöön <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Sinulle on myönnetty muokkausoikeudet ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet pyytänyt muokkausoikeuksia ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Sinut on hyväksytty osallistujaksi ehdotukseen %{resource_title}.
+          notification_title: Sinut on <strong>hyväksytty osallistujaksi</strong> ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: Sinua ei ole hyväksytty osallistujaksi sisältöön <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet pyytänyt pääsyä osallistujaksi sisältöön <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: Sinua ei ole hyväksytty osallistujaksi sisältöön %{resource_title}.
-          notification_title: Sinua <strong>ei ole hyväksytty osallistujaksi</strong> sisältöön <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Sinua ei hyväksytty osallistujaksi ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet pyytänyt muokkausoikeutta ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Sinua ei hyväksytty osallistujaksi ehdotukseen %{resource_title}.
+          notification_title: Sinua <strong>ei hyväksytty osallistujaksi</strong> ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" on hyväksytty. Voit lukea vastauksen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
