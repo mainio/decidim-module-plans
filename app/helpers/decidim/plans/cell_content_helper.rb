@@ -19,6 +19,16 @@ module Decidim
         @category ||= Decidim::Category.find_by(id: category_content.body["category_id"])
       end
 
+      def address_section
+        @address_section ||= first_section_with_type("field_map_point")
+      end
+
+      def address_content
+        return unless address_section
+
+        @address_content ||= content_for(address_section)
+      end
+
       def area_scope_section
         @area_scope_section ||= first_section_with_type("field_area_scope")
       end

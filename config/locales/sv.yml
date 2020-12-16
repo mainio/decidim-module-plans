@@ -277,7 +277,9 @@ sv:
         buttons:
           create: Skapa
           discard: Radera utkastet
+          discard_confirmation: Är du säker på att du vill radera utkastet?
           save: Spara
+          save_draft: Spara som utkast
           you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
         characters_min: "(minst %count% tecken krävs)"
         characters_used: "%count%/%total% tecken används"
@@ -317,6 +319,7 @@ sv:
       plan_view:
         back: Tillbaka
         close_window: Stäng fönstret
+        flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         plan_accepted_reason: 'Planen har godkänts eftersom:'
         plan_in_evaluation_reason: Planen bedöms
@@ -324,6 +327,8 @@ sv:
         plan_waiting_for_evaluation: Planen beräknas, redigering är inte tillåten.
         share: Dela
         share_link: Länk som ska delas
+        show_comments: Visa kommentarer
+        show_on_map: Visa på kartan
       plans:
         count:
           plans_count:
@@ -337,7 +342,6 @@ sv:
           success: Innehållet har raderats.
         edit:
           back: Tillbacka
-          discard_confirmation: Är du säker på att du vill radera utkastet?
           material_title: Information för att stödja ditt förslag
           title: Redigera förslaget
           update: Uppdatera

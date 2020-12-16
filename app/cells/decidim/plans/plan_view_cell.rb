@@ -36,8 +36,37 @@ module Decidim
         options[:trigger_feedback]
       end
 
+      def preview_mode?
+        options[:preview]
+      end
+
+      def show_actions?
+        !preview_mode?
+      end
+
       def show_controls?
-        allowed_to?(:edit, :plan, plan: plan)
+        !preview_mode? && allowed_to?(:edit, :plan, plan: plan)
+      end
+
+      def has_map_position?
+        return false unless address_content
+
+        address_content.body["latitude"] && address_content.body["longitude"]
+      end
+
+      def plan_map_link(options = {})
+        return "#" unless address_content
+
+        @map_utility_static ||= Decidim::Map.static(
+          organization: current_component.participatory_space.organization
+        )
+        return "#" unless @map_utility_static
+
+        @map_utility_static.link(
+          latitude: address_content.body["latitude"],
+          longitude: address_content.body["longitude"],
+          options: options
+        )
       end
 
       def access_request_pending?

@@ -35,6 +35,12 @@ module Decidim
         context[:plan]
       end
 
+      def plan_path(plan, options = {})
+        return "#" unless plan
+
+        Decidim::ResourceLocatorPresenter.new(plan).path(options)
+      end
+
       def object
         form.object
       end

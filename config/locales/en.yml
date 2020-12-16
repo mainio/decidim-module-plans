@@ -282,7 +282,9 @@ en:
         buttons:
           create: Create
           discard: Discard this draft
+          discard_confirmation: Are you sure you want to discard this draft?
           save: Save
+          save_draft: Save as draft
           you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
@@ -322,6 +324,7 @@ en:
       plan_view:
         back: Back
         close_window: Close window
+        flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         plan_accepted_reason: 'This plan has been accepted because:'
         plan_in_evaluation_reason: This plan is being evaluated
@@ -329,6 +332,8 @@ en:
         plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
         share: Share
         share_link: Share link
+        show_comments: Show comments
+        show_on_map: Show on map
       plans:
         count:
           plans_count:
@@ -342,7 +347,6 @@ en:
           success: Deleted successfully.
         edit:
           back: Back
-          discard_confirmation: Are you sure you want to discard this draft?
           material_title: Information to support your proposal
           title: Edit proposal
           update: Update

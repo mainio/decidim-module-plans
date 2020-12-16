@@ -277,7 +277,9 @@ fi:
         buttons:
           create: Luo
           discard: Tuhoa tämä luonnos
+          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
           save: Tallenna
+          save_draft: Tallenna luonnoksena
           you_can_invite_others: Mikäli haluatte jättää ehdotuksen porukalla, voit kutsua muita ehdotuksen tekijöiksi sen jättämisen jälkeen.
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
@@ -317,6 +319,7 @@ fi:
       plan_view:
         back: Takaisin
         close_window: Sulje ikkuna
+        flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
         plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana
@@ -324,6 +327,8 @@ fi:
         plan_waiting_for_evaluation: Suunnitelma on arvioinnissa, muokkaaminen estetty.
         share: Jaa
         share_link: Jaettava linkki
+        show_comments: Näytä kommentit
+        show_on_map: Näytä kartalla
       plans:
         count:
           plans_count:
@@ -337,7 +342,6 @@ fi:
           success: Poisto onnistui.
         edit:
           back: Takaisin
-          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
           material_title: Tietoa ehdotuksen tueksi
           title: Muokkaa ehdotusta
           update: Päivitä

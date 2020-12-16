@@ -1,114 +1,3 @@
-<div class="resource-intro">
-  <div class="row" data-equalizer>
-    <div class="columns mediumlarge-7">
-      <div class="resource-image" data-equalizer-watch>
-        <%= image_tag "decidim/ideas/idea-default.jpg", class:"idea-image", alt: strip_tags(present(plan).title(html_escape: true)) %>
-      </div>
-    </div>
-    <div class="columns mediumlarge-4">
-      <div class="actionbox" data-equalizer-watch>
-        <%= render :actions %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<% if show_controls? %>
-  <div class="row">
-    <div class="columns">
-      <%= render :controls %>
-    </div>
-  </div>
-<% end %>
-
-<div class="resource-details">
-  <div class="row">
-    <div class="columns mediumlarge-7">
-      <div class="resource-details-row">
-        <div class="resource-detail">#<%= plan.id %></div>
-        <div class="resource-detail">
-          <% if has_visible_area_scope? %>
-            <%= translated_attribute(area_scope.name) %>
-          <% end %>
-        </div>
-      </div>
-      <% if address.present? %>
-        <div class="resource-details-row">
-          <div class="resource-detail"><%= address %></div>
-        </div>
-      <% end %>
-    </div>
-    <div class="columns mediumlarge-4 text-right">
-      <% if plan.published? %>
-        <div class="resource-details-row">
-          <div class="resource-detail"><%= l(plan.published_at.to_date, format: :decidim_short) %></div>
-        </div>
-      <% end %>
-      <% if category.present? %>
-        <div class="resource-details-row">
-          <div class="resource-detail">
-            <% if category.parent %>
-              <%= translated_attribute(category.parent.name) %> -
-            <% end %>
-            <%= translated_attribute(category.name) %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div class="resource-title">
-  <div class="row">
-    <div class="columns mediumlarge-7">
-      <h3 class="heading3"><%= present(plan).title(links: true, html_escape: true) %></h3>
-    </div>
-  </div>
-</div>
-
-<div class="resource-body">
-  <div class="row">
-    <div class="columns">
-      <div class="section static__content">
-        <%== cell("decidim/plans/plan_m", plan, full_badge: true).badge %>
-        <%= render :contents %>
-      </div>
-
-      <%= attachments_for plan %>
-      <%= cell("decidim/announcement", plan_reason_callout_args) if plan.answered? %>
-
-      <%= linked_resources_for plan, :ideas, "included_ideas" %>
-      <%= linked_resources_for plan, :results, "included_plans" %>
-      <%= linked_resources_for plan, :projects, "included_plans" %>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-============================
-
-
-
-
-
-
-
-
-
-
-
 <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
   <div class="row">
     <div class="columns">
@@ -129,10 +18,23 @@
     <%= present(plan).title %>
   </h2>
 
+  <div class="resource-details-row">
+    <div class="resource-detail">#<%= plan.id %></div>
+    <% if plan.published? %>
+      <div class="resource-detail">
+        <%= l(plan.published_at.to_date, format: :decidim_short) %>
+      </div>
+    <% end %>
+  </div>
+
   <%= cell("decidim/plans/coauthorships", plan, has_actions: true, size: 3, context: { current_user: current_user }) %>
 </div>
 <div class="row">
   <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+    <div class="actionbox" data-equalizer-watch>
+      <%= render :actions %>
+    </div>
+
     <div class="card text-center">
       <div class="card__content">
         <div>
@@ -186,19 +88,11 @@
               <% end %>
             <% end %>
           </li>
-          <li class="card-data__item">
-            <%= link_to "#comments" do %>
-              <%= with_tooltip t("decidim.plans.models.plan.fields.comments") do %>
-                <%= icon("comment-square", class: "icon--small") + " " + "#{plan.comments.count}" %>
-              <% end %>
-            <% end %>
-          </li>
         </ul>
       </div>
     </div>
 
     <%= collaborator_requests %>
-    <%= render partial: "decidim/shared/share_modal.html" %>
   </div>
   <div class="columns mediumlarge-8 mediumlarge-pull-4">
     <div class="section">

@@ -1,0 +1,82 @@
+$primary: #cb3c29 !default;
+$white: #fff !default;
+$global-weight-normal: normal !default;
+
+.actionbox{
+  background: $primary;
+  padding: 2rem;
+
+  &,
+  a,
+  .link{
+    color: $white;
+    font-weight: $global-weight-normal;
+  }
+
+  .actionbox-links{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .action-link{
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    font-size: 1.3rem;
+
+    &:hover,
+    &:focus{
+      text-decoration: none;
+
+      .link-text{
+        text-decoration: underline;
+      }
+    }
+
+    &.favorite-button{
+      .icon-wrap{
+        .heart-icon{
+          color: $white;
+
+          svg{
+            width: 30px;
+            height: 27px;
+          }
+        }
+
+        .heart-icon,
+        .indicator-wrap{
+          margin: 0;
+        }
+      }
+
+      .indicator-wrap{
+        width: 17px;
+        height: 17px;
+        font-size: 1rem;
+        line-height: 13px;
+        bottom: 3px;
+        right: -5px;
+        border-width: 2px;
+        background: $primary;
+        border-color: $white;
+        color: $white;
+      }
+    }
+
+    &.favorite-button .icon-wrap,
+    .icon{
+      margin-right: 1rem;
+    }
+
+    .icon{
+      width: 30px;
+      height: 30px;
+    }
+
+    .link-text{
+      text-align: left;
+    }
+  }
+}
