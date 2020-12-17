@@ -15,6 +15,8 @@ module Decidim
             post :publish
             post :close
             put :withdraw
+            post :add_authors
+            patch :add_authors, action: :add_authors_confirm
             post :request_access, controller: "plan_collaborator_requests"
             post :request_accept, controller: "plan_collaborator_requests"
             post :request_reject, controller: "plan_collaborator_requests"
@@ -40,6 +42,7 @@ module Decidim
                                            decidim/plans/social_share.js
                                            decidim/plans/map.js
                                            decidim/plans/plans_list.js
+                                           decidim/plans/add_author_dialog.js
                                            decidim/plans/proposal_picker.scss
                                            decidim/plans/social_share.css.scss
                                            decidim/plans/plans_form.scss)

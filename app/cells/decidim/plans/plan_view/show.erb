@@ -28,6 +28,14 @@
   </div>
 
   <%= cell("decidim/plans/coauthorships", plan, has_actions: true, size: 3, context: { current_user: current_user }) %>
+
+  <% if allowed_to?(:edit, :plan, plan: plan) %>
+    <button class="title-action__action button small primary hollow" data-open="plan-author-add-modal">
+      <%= t(".controls.add_author") %>
+    </button>
+
+    <%= render :add_authors_modal %>
+  <% end %>
 </div>
 <div class="row">
   <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">

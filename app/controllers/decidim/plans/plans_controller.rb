@@ -19,10 +19,10 @@ module Decidim
 
       helper_method :attached_proposals_picker_field, :available_tags, :trigger_feedback?
 
-      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy]
+      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm]
       before_action :check_draft, only: [:new]
-      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy]
-      before_action :ensure_published!, only: [:show, :withdraw]
+      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm]
+      before_action :ensure_published!, only: [:show, :withdraw, :add_authors, :add_authors_confirm]
 
       def index
         base_query = search.results.published.not_hidden
@@ -146,12 +146,12 @@ module Decidim
           on(:ok) do |plan|
             flash[:notice] = I18n.t("publish.success", scope: "decidim.plans.plans.plan")
             session["decidim-plans.published"] = true
-            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
+            redirect_to plan_path(plan)
           end
 
           on(:invalid) do
             flash.now[:alert] = t("publish.error", scope: "decidim.plans.plans.plan")
-            redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
+            redirect_to plan_path(@plan)
           end
         end
       end
@@ -162,12 +162,41 @@ module Decidim
         ClosePlan.call(@plan, current_user) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("close.success", scope: "decidim.plans.plans.plan")
-            redirect_to Decidim::ResourceLocatorPresenter.new(plan).path
+            redirect_to plan_path(plan)
           end
 
           on(:invalid) do
             flash.now[:alert] = t("close.error", scope: "decidim.plans.plans.plan")
-            redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
+            redirect_to plan_path(@plan)
+          end
+        end
+      end
+
+      def add_authors
+        enforce_permission_to :edit, :plan, plan: @plan
+
+        @form = form(AddAuthorToPlanForm).from_params(params, component: current_component)
+
+        unless @form.authors.any?
+          flash[:alert] = t("add_authors.no_authors", scope: "decidim.plans.plans")
+          return redirect_to plan_path(@plan)
+        end
+      end
+
+      def add_authors_confirm
+        enforce_permission_to :edit, :plan, plan: @plan
+
+        @form = form(AddAuthorToPlanForm).from_params(params, component: current_component)
+
+        AddAuthorsToPlan.call(@form, @plan, current_user) do
+          on(:ok) do |plan|
+            flash[:success] = t("add_authors.success", scope: "decidim.plans.plans")
+            redirect_to plan_path(plan)
+          end
+
+          on(:invalid) do
+            flash[:alert] = t("add_authors.error", scope: "decidim.plans.plans")
+            redirect_to plan_path(@plan)
           end
         end
       end
@@ -180,7 +209,7 @@ module Decidim
 
       def layout
         case action_name
-        when "new", "create", "edit", "update", "preview"
+        when "new", "create", "edit", "update", "preview", "add_authors"
           "decidim/plans/participatory_space_plain"
         else
           super

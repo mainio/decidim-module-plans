@@ -317,8 +317,16 @@ sv:
       plan_m:
         view_plan: Visa förslag
       plan_view:
+        add_author:
+          add_users_placeholder: Skriv författarens namn eller smeknamn
+          label: Sök efter författare
+          modal_title: Lägg till författare för förslag
+          next: Nästa
+          no_results: Inga författare hittades som matchade din sökning.
         back: Tillbaka
         close_window: Stäng fönstret
+        controls:
+          add_author: Lägg till författare för förslag
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         plan_accepted_reason: 'Planen har godkänts eftersom:'
@@ -330,6 +338,15 @@ sv:
         show_comments: Visa kommentarer
         show_on_map: Visa på kartan
       plans:
+        add_authors:
+          buttons:
+            add_authors: Lägg till författare
+            cancel: Annullera
+          description: Kontrollera att du har valt rätt faktorer och tryck på "%{button_name}" -knappen längst ner på skärmen.
+          error: Det gick inte att lägga till författare för förslaget.
+          no_authors: Definiera minst en ny författare för förslaget.
+          success: Författarna har lagt till författare.
+          title: Lägg till författare för förslag %{plan}
         count:
           plans_count:
             one: "%{count} plan"
@@ -518,6 +535,11 @@ sv:
           email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} har godkänts som redigerare för förslaget %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har <strong>godkänts som redigerare</strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
+        plan_access_granted:
+          email_intro: 'Du har fått åtkomst till att redigera förslag <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Du fick detta meddelande eftersom du har lagts till som medarbetare i <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "Du har lagts till som medarbetare i %{resource_title}."
+          notification_title: Du har <strong>lagts till som medarbetare</strong> i <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
           email_intro: 'Rättigheterna för användaren %{requester_name} att redigera förslaget <a href="%{resource_url}">%{resource_title} </a> har blockerats.'
           email_outro: Du fick detta meddelande eftersom du har varit med och redigerat förslaget <a href="%{resource_url}">%{resource_title}</a>.

@@ -322,8 +322,16 @@ en:
       plan_m:
         view_plan: View proposal
       plan_view:
+        add_author:
+          add_users_placeholder: Write the author's name or nickname
+          label: Search for authors
+          modal_title: Add authors for proposal
+          next: Next
+          no_results: No authors found matching your search.
         back: Back
         close_window: Close window
+        controls:
+          add_author: Add authors for proposal
         flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         plan_accepted_reason: 'This plan has been accepted because:'
@@ -335,6 +343,15 @@ en:
         show_comments: Show comments
         show_on_map: Show on map
       plans:
+        add_authors:
+          buttons:
+            add_authors: Add authors
+            cancel: Cancel
+          description: Check that you have selected the correct factors and press the "%{button_name}" button at the bottom of the screen.
+          error: There was an error adding authors for the proposal.
+          no_authors: Define at least one new author for the proposal.
+          success: Successfully added authors for the proposal.
+          title: Add authors for proposal %{plan}
         count:
           plans_count:
             one: "%{count} plan"
@@ -526,6 +543,11 @@ en:
           email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} has been accepted to contribute in %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
+        plan_access_granted:
+          email_intro: 'You have been given access to edit proposal <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: You have received this notification because you have been added as a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "You have been added as a collaborator in %{resource_title}."
+          notification_title: You have been <strong>added as a collaborator</strong> in <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
           email_intro: '%{requester_name} has been rejected editing proposal <a href="%{resource_url}">%{resource_title}</a>.'
           email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.

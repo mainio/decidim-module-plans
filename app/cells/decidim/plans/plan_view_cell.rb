@@ -83,6 +83,10 @@ module Decidim
         model.published?
       end
 
+      def add_author_form
+        @report_form ||= form(AddAuthorToPlanForm).from_params({})
+      end
+
       def report_form
         @report_form ||= form(Decidim::ReportForm).from_params(reason: "spam")
       end

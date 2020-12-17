@@ -317,8 +317,16 @@ fi:
       plan_m:
         view_plan: Näytä ehdotus
       plan_view:
+        add_author:
+          add_users_placeholder: Kirjoita tekijän nimi tai nimimerkki
+          label: Etsi tekijöitä
+          modal_title: Lisää ehdotukselle tekijöitä
+          next: Seuraava
+          no_results: Ei yhtään hakua vastaavia käyttäjiä.
         back: Takaisin
         close_window: Sulje ikkuna
+        controls:
+          add_author: Lisää ehdotukselle tekijöitä
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
@@ -330,6 +338,15 @@ fi:
         show_comments: Näytä kommentit
         show_on_map: Näytä kartalla
       plans:
+        add_authors:
+          buttons:
+            add_authors: Lisää tekijät
+            cancel: Peruuta
+          description: Tarkasta, että olet valinnut oikeat tekijät ja paina ruudun alalaidasta "%{button_name}" -painiketta.
+          error: Tekijöiden lisäys ehdotukselle epäonnistui.
+          no_authors: Määritä vähintään yksi uusi tekijä ehdotukselle.
+          success: Tekijöiden lisäys ehdotukselle onnistui.
+          title: Lisää tekijöitä ehdotukselle %{plan}
         count:
           plans_count:
             one: "%{count} suunnitelma"
@@ -518,6 +535,11 @@ fi:
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut ehdotuksen <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
           email_subject: "%{requester_name} on hyväksytty muokkaajaksi ehdotukseen %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> on <strong>hyväksytty muokkaajaksi</strong> ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
+        plan_access_granted:
+          email_intro: 'Sinulle on annettu oikeus muokata ehdotusta <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska sinut on lisätty tekijäksi ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "Sinut on lisätty tekijäksi ehdotukseen %{resource_title}."
+          notification_title: Sinut on <strong>lisätty tekijäksi</strong> ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
           email_intro: 'Käyttäjän %{requester_name} muokkausoikeudet ehdotukseen <a href="%{resource_url}">%{resource_title} </a> on estetty.'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut ehdotuksen <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.

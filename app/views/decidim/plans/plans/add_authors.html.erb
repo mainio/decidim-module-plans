@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="columns large-12">
+    <%= link_to plan_path(@plan) do %>
+      <%= icon "chevron-left", class: "icon--small", role: "img" %>
+      <%= t("decidim.plans.plans.edit.back") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="idea-form-container">
+  <div class="row">
+    <div class="columns large-8">
+      <h2 class="section-heading"><%= t(".title", plan: present(@plan).title) %></h2>
+      <p><%= t(".description", button_name: t(".buttons.add_authors")) %></p>
+    </div>
+  </div>
+
+  <%= decidim_form_for(@form, url: add_authors_plan_path(@plan), html: { class: "form new_author" }) do |form| %>
+    <div class="row">
+      <div class="columns large-12">
+        <% @form.authors.each do |author| %>
+          <%= form.hidden_field "recipient_id][", id: nil, value: author.id %>
+
+          <div class="author-data author-data--big mb-2">
+            <div class="author-data__main">
+              <div class="author author--flex">
+                <span class="author__avatar">
+                  <%= image_tag author.avatar_url, alt: t("decidim.author.avatar") %>
+                </span>
+                <div>
+                  <div class="author__name--container">
+                    <span class="author__name">
+                      <%= author.name %>
+                    </span>
+                  </div>
+                  <div class="author__nickname">
+                    <%= author.nickname.present? ? "@#{author.nickname}" : "&nbsp;" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="actions text-center mt-3">
+          <%= link_to t(".buttons.cancel"), plan_path(@plan), class: "mr-2 cancel-authors-link" %>
+          <%= form.submit t(".buttons.add_authors"), class: "button large primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
