@@ -64,6 +64,10 @@ module Decidim
         index_on_update: ->(proposal) { proposal.visible? }
       )
 
+      def contents
+        super.where(section: sections)
+      end
+
       def sections
         Section.where(component: component).order(:position)
       end
