@@ -2,12 +2,12 @@
 en:
   activerecord:
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan: Proposal
   activemodel:
     attributes:
       budgets_export:
         default_budget_amount: Default budget amount
-        export_all_closed_plans: Export all closed plans
+        export_all_closed_plans: Export all closed proposals
         target_component_id: Component
         scope_id: Scope
       budgets_export_target:
@@ -37,7 +37,7 @@ en:
   decidim:
     assemblies:
       statistics:
-        plans_count: Plans
+        plans_count: Proposals
     components:
       plans:
         actions:
@@ -76,16 +76,16 @@ en:
             plan_answering_enabled: Answering enabled
     filters:
       linked_classes:
-        plan: Plans
+        plan: Proposals
     pages:
       home:
         statistics:
-          plans_accepted: Accepted plans
-          plans_count: Plans
+          plans_accepted: Accepted proposals
+          plans_count: Proposals
     participatory_processes:
       statistics:
-        plans_accepted: Accepted plans
-        plans_count: Plans
+        plans_accepted: Accepted proposals
+        plans_count: Proposals
     plans:
       actions:
         answer: Answer
@@ -97,7 +97,7 @@ en:
         edit_plan: Edit
         export_budgets: Convert to projects
         manage_tags: Manage tags
-        new: Submit new plan
+        new: Submit new proposal
         new_tag: New tag
         plan_taggings: Tags
         reopen_plan: Open for editing
@@ -116,7 +116,7 @@ en:
             select_budget: Please select a budget
             select_component: Please select a component
         exports:
-          plans: Plans
+          plans: Proposals
         plan_answers:
           edit:
             accepted: Accepted
@@ -138,10 +138,10 @@ en:
             draft_plans: Drafts
             published_plans: Published
             selected: Selected
-            title: Plans
+            title: Proposals
           new:
             create: Create
-            title: Submit new plan
+            title: Submit new proposal
           taggings:
             no_results: "Create new tag: %{name}"
             search: Search
@@ -183,7 +183,7 @@ en:
           info_plan:
             body: Body
             created_at: Creation date
-            plans: Plans
+            plans: Proposals
         tags:
           create:
             error: Failed to create.
@@ -232,7 +232,7 @@ en:
         filter_type_values:
           all: All
           amendments: Amendments
-          plans: Plans
+          plans: Proposals
       attachment_input_types:
         single: Single attachment
         multi: Multiple attachments
@@ -255,7 +255,7 @@ en:
         show:
           back: Back to previous page
       last_activity:
-        new_plan_at_html: "<span>New plan at %{link}</span>"
+        new_plan_at_html: "<span>New proposal at %{link}</span>"
       layouts:
         default: Default layout
       models:
@@ -267,7 +267,7 @@ en:
             contributions: Contributions
             id: ID
             notes: Notes
-            official_plan: Official plan
+            official_plan: Official proposal
             published_at: Published at
             scope: Scope
             state: State
@@ -313,7 +313,7 @@ en:
           tag: Tags
           tag_prompt: Select tags
           unfold: Unfold
-        leave_your_plan: Submit your own proposal!
+        leave_your_plan: Create your own proposal!
         new_plan: New proposal
         see_all_withdrawn: See all withdrawn
         subtitle: Find and explore proposals!
@@ -334,10 +334,10 @@ en:
           add_author: Add authors for proposal
         flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-        plan_accepted_reason: 'This plan has been accepted because:'
-        plan_in_evaluation_reason: This plan is being evaluated
-        plan_rejected_reason: 'This plan has been rejected because:'
-        plan_waiting_for_evaluation: The plan is being evaluated, editing not allowed.
+        plan_accepted_reason: 'This proposal has been accepted because:'
+        plan_in_evaluation_reason: This proposal is being evaluated
+        plan_rejected_reason: 'This proposal has been rejected because:'
+        plan_waiting_for_evaluation: The proposal is being evaluated, editing not allowed.
         share: Share
         share_link: Share link
         show_comments: Show comments
@@ -354,8 +354,8 @@ en:
           title: Add authors for proposal %{plan}
         count:
           plans_count:
-            one: "%{count} plan"
-            other: "%{count} plans"
+            one: "%{count} proposal"
+            other: "%{count} proposals"
         create:
           error: Failed to create new content.
           success: Created successfully.
@@ -370,10 +370,10 @@ en:
         evaluation_modal:
           button_text: OK
           close: Close modal
-          description: The plan is being evaluated and it cannot be edited
+          description: The proposal is being evaluated and it cannot be edited
             during this time. You will get notified once the evaluation is
             completed.
-          title: The plan is being evaluated
+          title: The proposal is being evaluated
         preview:
           not_published: Your proposal has not yet been published
           not_published_description: Your proposal has been saved as a draft. It needs to be published for it to appear on the site.
@@ -390,7 +390,7 @@ en:
         new_plan_button:
           new_plan: New proposal
         orders:
-          label: 'Order plans by:'
+          label: 'Order proposals by:'
           random: Random
           recent: Recent
         plan:
@@ -403,13 +403,13 @@ en:
           reopen:
             error: Error opening item for editing.
             success: Item opened for editing successfully.
-          view_plan: View plan
+          view_plan: View proposal
           withdraw:
             error: Error withdrawing.
             success: Withdrawn successfully.
         plans:
-          empty: There are no ideas yet
-          empty_filters: There isn't any idea with this criteria
+          empty: There are no proposals yet
+          empty_filters: There are no proposals with this criteria
         show:
           back: Back to proposals list
           close: Mark as done
@@ -422,7 +422,7 @@ en:
           of_versions: "(of %{number})"
           publish: Publish
           publish_info: Publish this version of the draft or
-          published_proposal: published plan
+          published_proposal: published proposal
           reopen: Open for editing
           reopen_confirm: Are you sure you want to open this item for editing?
           report: Report
@@ -431,7 +431,7 @@ en:
           see_other_versions: see other versions
           version: Version %{number}
           version_history: see version history
-          withdraw: withdraw the plan
+          withdraw: withdraw the proposal
           withdraw_btn: Withdraw
           withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
           withdraw_confirmation: Are you sure to withdraw this item?
@@ -533,7 +533,7 @@ en:
     resource_links:
       included_proposals:
         plan_proposal: Related proposals
-        proposal_plan: Related plans
+        proposal_plan: Related proposals
     scopes:
       global: Global
     events:

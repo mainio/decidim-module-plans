@@ -1,12 +1,12 @@
 fi:
   activerecord:
     models:
-      decidim/plans/plan: Suunnitelma
+      decidim/plans/plan: Ehdotus
   activemodel:
     attributes:
       budgets_export:
         default_budget_amount: Oletusbudjettisumma
-        export_all_closed_plans: Vie kaikki suljetut suunnitelmat
+        export_all_closed_plans: Vie kaikki suljetut ehdotukset
         target_component_id: Komponentti
         scope_id: Teema
       budgets_export_target:
@@ -36,7 +36,7 @@ fi:
   decidim:
     assemblies:
       statistics:
-        plans_count: Suunnitelmaa
+        plans_count: Ehdotusta
     components:
       plans:
         actions:
@@ -59,7 +59,7 @@ fi:
             layout: Ulkoasu
             materials_text: Materiaalien teksti
             multilingual_answers: Monikieliset vastaukset
-            new_plan_help_text: Uuden suunnitelman teksti
+            new_plan_help_text: Uuden ehdotuksen teksti
             plan_answering_enabled: Vastaaminen sallittu
             plan_listing_intro: Suunnitelmien listassivun teksti
             plan_title_length: Otsikon pituus
@@ -75,16 +75,16 @@ fi:
             plan_answering_enabled: Vastaaminen sallittu
     filters:
       linked_classes:
-        plan: Suunnitelmat
+        plan: Ehdotukset
     pages:
       home:
         statistics:
-          plans_accepted: Hyväksyttyjä suunnitelmia
-          plans_count: Suunnitelmia
+          plans_accepted: Hyväksyttyjä ehdotuksia
+          plans_count: Ehdotuksia
     participatory_processes:
       statistics:
-        plans_accepted: Hyväksyttyjä suunnitelmia
-        plans_count: Suunnitelmaa
+        plans_accepted: Hyväksyttyjä ehdotuksia
+        plans_count: Ehdotusta
     plans:
       actions:
         answer: Vastaa
@@ -96,7 +96,7 @@ fi:
         edit_plan: Muokkaa
         export_budgets: Muunna projekteiksi
         manage_tags: Hallinnoi merkintöjä
-        new: Tee uusi suunnitelma
+        new: Tee uusi ehdotus
         new_tag: Uusi merkintä
         plan_taggings: Merkinnät
         reopen_plan: Avaa muokattavaksi
@@ -115,7 +115,7 @@ fi:
             select_budget: Valitse budjetti
             select_component: Valitse komponentti
         exports:
-          plans: Suunnitelmat
+          plans: Ehdotukset
         plan_answers:
           edit:
             accepted: Hyväksytty
@@ -137,10 +137,10 @@ fi:
             draft_plans: Luonnoksia
             published_plans: Julkaistuja
             selected: Valittu
-            title: Suunnitelmat
+            title: Ehdotukset
           new:
             create: Luo
-            title: Tee uusi suunnitelma
+            title: Tee uusi ehdotus
           taggings:
             no_results: "Luo uusi merkintä: %{name}"
             search: Hae
@@ -182,7 +182,7 @@ fi:
           info_plan:
             body: Runkoteksti
             created_at: Luontipäivä
-            plans: Suunnitelmat
+            plans: Ehdotukset
         tags:
           create:
             error: Luonti epäonnistui.
@@ -227,7 +227,7 @@ fi:
         filter_type_values:
           all: Kaikki
           amendments: Muutokset
-          plans: Suunnitelmat
+          plans: Ehdotukset
       attachment_input_types:
         single: Yksi liite
         multi: Useita liitteitä
@@ -250,7 +250,7 @@ fi:
         invalid: Virhe luotaessa sisältöä.
         success: Luonti onnistui.
       last_activity:
-        new_plan_at_html: "<span>Uusi suunnitelma osoitteessa %{link}</span>"
+        new_plan_at_html: "<span>Uusi ehdotus osoitteessa %{link}</span>"
       layouts:
         default: Oletusulkoasu
       models:
@@ -262,7 +262,7 @@ fi:
             contributions: Muokkaukset
             id: ID
             notes: Muistiinpanot
-            official_plan: Virallinen suunnitelma
+            official_plan: Virallinen ehdotus
             published_at: Julkaisuajankohta
             scope: Teema
             state: Tila
@@ -308,7 +308,7 @@ fi:
           tag: Merkinnät
           tag_prompt: Valitse merkinnät
           unfold: Avaa
-        leave_your_plan: Käy jättämässä oma ehdotuksesi!
+        leave_your_plan: Tee oma ehdotuksesi!
         new_plan: Uusi ehdotus
         see_all_withdrawn: Näytä kaikki peruutetut
         subtitle: Etsi ja tutki ehdotuksia!
@@ -329,10 +329,10 @@ fi:
           add_author: Lisää ehdotukselle tekijöitä
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
-        plan_accepted_reason: 'Tämä suunnitelma on hyväksytty, koska:'
-        plan_in_evaluation_reason: Tämä suunnitelma on arvioitavana
-        plan_rejected_reason: 'Tämä suunnitelma on hylätty, koska:'
-        plan_waiting_for_evaluation: Suunnitelma on arvioinnissa, muokkaaminen estetty.
+        plan_accepted_reason: 'Tämä ehdotus on hyväksytty, koska:'
+        plan_in_evaluation_reason: Tämä ehdotus on arvioitavana
+        plan_rejected_reason: 'Tämä ehdotus on hylätty, koska:'
+        plan_waiting_for_evaluation: Ehdotus on arvioinnissa, muokkaaminen estetty.
         share: Jaa
         share_link: Jaettava linkki
         show_comments: Näytä kommentit
@@ -349,8 +349,8 @@ fi:
           title: Lisää tekijöitä ehdotukselle %{plan}
         count:
           plans_count:
-            one: "%{count} suunnitelma"
-            other: "%{count} suunnitelmaa"
+            one: "%{count} ehdotus"
+            other: "%{count} ehdotusta"
         create:
           error: Uuden sisällön luominen epäonnistui.
           success: Luonti onnistui.
@@ -365,8 +365,8 @@ fi:
         evaluation_modal:
           button_text: OK
           close: Sulje ikkuna
-          description: Suunnitelmaa arvioidaan ja sitä ei voi muokata tällä hetkellä. Saat ilmoituksen, kun arviointi valmistuu.
-          title: Suunnitelmaa arvioidaan
+          description: Ehdotusta arvioidaan ja sitä ei voi muokata tällä hetkellä. Saat ilmoituksen, kun arviointi valmistuu.
+          title: Ehdotusta arvioidaan
         preview:
           not_published: Ehdotustasi ei ole vielä julkaistu
           not_published_description: Ehdotus on tallennettu keskeneräisenä luonnoksena. Se pitää julkaista, jotta se tulee näkyviin sivustolle.
@@ -383,7 +383,7 @@ fi:
         new_plan_button:
           new_plan: Uusi ehdotus
         orders:
-          label: 'Järjestä suunnitelmat:'
+          label: 'Järjestä ehdotukset:'
           random: Satunnainen
           recent: Uusimmat
         plan:
@@ -396,7 +396,7 @@ fi:
           reopen:
             error: Muokattavaksi avaaminen epäonnistui.
             success: Muokattavaksi avaaminen onnistui.
-          view_plan: Näytä suunnitelma
+          view_plan: Näytä ehdotus
           withdraw:
             error: Peruuttaminen epäonnistui.
             success: Peruuttaminen onnistui.
@@ -414,7 +414,7 @@ fi:
           of_versions: "(versioista %{number})"
           publish: Julkaise
           publish_info: Julkaise tämä luonnosversio tai
-          published_proposal: julkaistu suunnitelma
+          published_proposal: julkaistu ehdotus
           reopen: Avaa muokattavaksi
           reopen_confirm: Haluatko varmasti avata tämän kohteen muokattavaksi?
           report: Ilmoita
@@ -423,7 +423,7 @@ fi:
           see_other_versions: näytä muut versiot
           version: Versio %{number}
           version_history: näytä versiohistoria
-          withdraw: peru suunnitelma
+          withdraw: peru ehdotus
           withdraw_btn: Peru
           withdraw_btn_hint: Jos muutat mieltäsi, voit perua tämän kohteen, mikäli se ei ole vielä kerännyt tukea. Kohdetta ei poisteta, se jää näkyviin peruttujen kohteiden listaan.
           withdraw_confirmation: Haluatko varmasti perua?
@@ -525,7 +525,7 @@ fi:
     resource_links:
       included_proposals:
         plan_proposal: Liitetyt ehdotukset
-        proposal_plan: Liitetyt suunnitelmat
+        proposal_plan: Liitetyt ehdotukset
     scopes:
       global: Yleinen
     events:

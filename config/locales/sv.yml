@@ -1,12 +1,12 @@
 sv:
   activerecord:
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan: Förslag
   activemodel:
     attributes:
       budgets_export:
         default_budget_amount: Standardbudgetbelopp
-        export_all_closed_plans: Exportera alla stängda planer
+        export_all_closed_plans: Exportera alla stängda förslag
         target_component_id: Komponent
         scope_id: Omfång
       budgets_export_target:
@@ -36,7 +36,7 @@ sv:
   decidim:
     assemblies:
       statistics:
-        plans_count: Planer
+        plans_count: Förslag
     components:
       plans:
         actions:
@@ -75,16 +75,16 @@ sv:
             plan_answering_enabled: Svar tillåtna
     filters:
       linked_classes:
-        plan: Planer
+        plan: Förslag
     pages:
       home:
         statistics:
-          plans_accepted: Accepterade planer
-          plans_count: Planer
+          plans_accepted: Accepterade förslag
+          plans_count: Förslag
     participatory_processes:
       statistics:
-        plans_accepted: Accepterade planer
-        plans_count: Planer
+        plans_accepted: Accepterade förslag
+        plans_count: Förslag
     plans:
       actions:
         answer: Svara
@@ -96,7 +96,7 @@ sv:
         edit_plan: Redigera
         export_budgets: Konvertera till projekt
         manage_tags: Hantera taggar
-        new: Gör ny plan
+        new: Gör nytt förslag
         new_tag: Ny tagg
         plan_taggings: Taggar
         reopen_plan: Öppna för redigering
@@ -115,7 +115,7 @@ sv:
             select_budget: Var god välj en budget
             select_component: Var god välj en komponent
         exports:
-          plans: Planer
+          plans: Förslag
         plan_answers:
           edit:
             accepted: Godkänd
@@ -137,10 +137,10 @@ sv:
             draft_plans: Utkast
             published_plans: Publicerad
             selected: Vald
-            title: Planer
+            title: Förslag
           new:
             create: Skapa
-            title: Gör ny plan
+            title: Gör nytt förslag
           taggings:
             no_results: "Skapa ny tagg: %{name}"
             search: Sök
@@ -182,7 +182,7 @@ sv:
           info_plan:
             body: Brödtext
             created_at: Skapats
-            plans: Planer
+            plans: Förslag
         tags:
           create:
             error: Det gick inte att skapa.
@@ -227,7 +227,7 @@ sv:
         filter_type_values:
           all: Alla
           amendments: Ändringar
-          plans: Planer
+          plans: Förslag
       attachment_input_types:
         single: En bilaga
         multi: Flera bilagor
@@ -244,13 +244,13 @@ sv:
         current_selection: Sök förslag på namn
         select: Välj
       create:
-        invalid: Det inträffade ett fel vid skapande av planen.
-        success: Planen har skapats.
+        invalid: Det inträffade ett fel vid skapande av förslaget.
+        success: Förslaget har skapats.
       info:
         show:
           back: Tillbaka till föregående sida
       last_activity:
-        new_plan_at_html: "<span>En ny plan på %{link}</span>"
+        new_plan_at_html: "<span>Ett nytt förslag på %{link}</span>"
       layouts:
         default: Standardlayout
       models:
@@ -262,7 +262,7 @@ sv:
             contributions: Redigeringar
             id: ID
             notes: Anteckningar
-            official_plan: Officiell plan
+            official_plan: Officiell förslag
             published_at: Publikationsdatum
             scope: Tema
             state: Status
@@ -308,7 +308,7 @@ sv:
           tag: Taggar
           tag_prompt: Välj taggar
           unfold: Öppna
-        leave_your_plan: Skicka in ditt eget förslag!
+        leave_your_plan: Gör ditt eget förslag!
         new_plan: Nytt förslag
         see_all_withdrawn: Visa alla annullerade
         subtitle: Hitta och utforska förslag!
@@ -329,10 +329,10 @@ sv:
           add_author: Lägg till författare för förslag
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
-        plan_accepted_reason: 'Planen har godkänts eftersom:'
-        plan_in_evaluation_reason: Planen bedöms
-        plan_rejected_reason: 'Planen har avslagits eftersom:'
-        plan_waiting_for_evaluation: Planen beräknas, redigering är inte tillåten.
+        plan_accepted_reason: 'Förslaget har godkänts eftersom:'
+        plan_in_evaluation_reason: Förslaget bedöms
+        plan_rejected_reason: 'Förslaget har avslagits eftersom:'
+        plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
         share: Dela
         share_link: Länk som ska delas
         show_comments: Visa kommentarer
@@ -349,8 +349,8 @@ sv:
           title: Lägg till författare för förslag %{plan}
         count:
           plans_count:
-            one: "%{count} plan"
-            other: "%{count} planer"
+            one: "%{count} förslag"
+            other: "%{count} förslag"
         create:
           error: Det gick inte att skapa nytt innehåll.
           success: Innehållet har skapats.
@@ -365,8 +365,8 @@ sv:
         evaluation_modal:
           button_text: OK
           close: Stäng fönstret
-          description: Planen utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
-          title: Planen beräknas
+          description: Förslaget utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
+          title: Förslaget beräknas
         preview:
           not_published: Din förslag har ännu inte publicerats
           not_published_description: Din förslag har sparats som ett utkast. Idén måste publiceras för att den ska visas på webbplatsen.
@@ -381,9 +381,9 @@ sv:
           create: Skapa
           title: Skapa förslag
         new_plan_button:
-          new_plan: Ny förslag
+          new_plan: Nytt förslag
         orders:
-          label: 'Ordna planer:'
+          label: 'Ordna förslag:'
           random: Slumpmässig
           recent: Nyaste
         plan:
@@ -396,7 +396,7 @@ sv:
           reopen:
             error: Det gick inte att öppna objektet för redigering.
             success: Artikeln öppnades för redigering med framgång.
-          view_plan: Visa planen
+          view_plan: Visa förslag
           withdraw:
             error: Det gick inte att annullera.
             success: Annulleringen lyckades.
@@ -414,7 +414,7 @@ sv:
           of_versions: "(av versioner %{number})"
           publish: Publicera
           publish_info: Publicera detta utkast eller
-          published_proposal: publicerad plan
+          published_proposal: publicerad förslag
           reopen: Öppna för redigering
           reopen_confirm: Är du säker på att du vill öppna det här objektet för redigering?
           report: Meddela
@@ -423,7 +423,7 @@ sv:
           see_other_versions: visa övriga versioner
           version: Version %{number}
           version_history: visa versionshistorik
-          withdraw: annullera plan
+          withdraw: annullera förslag
           withdraw_btn: Annullera
           withdraw_btn_hint: Om du ändrar dig kan du annullera detta objekt, om det ännu inte har understötts. Objektet raderas inte utan det finns kvar i listan över annullerade objekt.
           withdraw_confirmation: Är du säker på att du vill annullera?
@@ -524,8 +524,8 @@ sv:
           version_index: Version %{index}
     resource_links:
       included_proposals:
-        plan_proposal: Bifogade förslag
-        proposal_plan: Relaterade planer
+        plan_proposal: Relaterade förslag
+        proposal_plan: Relaterade förslag
     scopes:
       global: Allmän
     events:
