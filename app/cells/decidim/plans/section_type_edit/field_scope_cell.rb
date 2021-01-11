@@ -22,7 +22,7 @@ module Decidim
         #
         # Returns nothing.
         def scopes_picker_field(form, name, options: {}, html_options: {})
-          options[:label] ||= translated_attribute(section.body)
+          options[:label] ||= translated_attribute(section.body) if options[:label].nil?
           form.select(name, scopes_options(scopes_root), options, html_options)
         end
 

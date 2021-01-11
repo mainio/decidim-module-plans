@@ -328,7 +328,7 @@ en:
           modal_title: Add authors for proposal
           next: Next
           no_results: No authors found matching your search.
-        back: Back
+        back: Back to proposals list
         close_window: Close window
         controls:
           add_author: Add authors for proposal
@@ -363,7 +363,7 @@ en:
           error: Error deleting the item.
           success: Deleted successfully.
         edit:
-          back: Back
+          back: Back to proposals list
           material_title: Information to support your proposal
           title: Edit proposal
           update: Update
@@ -411,7 +411,7 @@ en:
           empty: There are no ideas yet
           empty_filters: There isn't any idea with this criteria
         show:
-          back: Back
+          back: Back to proposals list
           close: Mark as done
           close_confirm: Are you sure you want to mark this item done? After
             marking done, the item can no longer be edited.

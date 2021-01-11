@@ -50,8 +50,8 @@ module Decidim
       end
 
       def show_info_link?
-        strip_tags(translated_attribute(section.information)).length > 0 &&
-          information_label.length > 0
+        strip_tags(translated_attribute(section.information)).length.positive? &&
+          information_label.length.positive?
       end
     end
   end

@@ -1,3 +1,19 @@
-<div class="field">
-  <%= scopes_picker_field form, :scope_id %>
+<%= plain_label form, :scope_id %>
+
+<div class="row">
+  <div class="columns large-6">
+    <div class="field">
+      <%= scopes_picker_field form, :scope_id, options: { label: false } %>
+    </div>
+  </div>
+  <div class="columns large-6">
+    <% if show_info_link? %>
+      <div class="field-info field-info-with-icon">
+        <%= link_to info_path(section.id), class: "info-modal-link" do %>
+          <%= icon "information", aria_hidden: true %>
+          <%= information_label %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

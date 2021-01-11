@@ -323,7 +323,7 @@ fi:
           modal_title: Lisää ehdotukselle tekijöitä
           next: Seuraava
           no_results: Ei yhtään hakua vastaavia käyttäjiä.
-        back: Takaisin
+        back: Palaa takaisin ehdotuslistaukseen
         close_window: Sulje ikkuna
         controls:
           add_author: Lisää ehdotukselle tekijöitä
@@ -358,7 +358,7 @@ fi:
           error: Virhe poistettaessa sisältöä.
           success: Poisto onnistui.
         edit:
-          back: Takaisin
+          back: Palaa takaisin ehdotuslistaukseen
           material_title: Tietoa ehdotuksen tueksi
           title: Muokkaa ehdotusta
           update: Päivitä
@@ -404,7 +404,7 @@ fi:
           empty: Ei vielä ehdotuksia
           empty_filters: Ehdotuksia ei löytynyt valituilla hakuehdoilla
         show:
-          back: Takaisin
+          back: Palaa takaisin ehdotuslistaukseen
           close: Merkitse valmiiksi
           close_confirm: Haluatko varmasti merkitä tämän kohteen valmiiksi? Kun kohde on merkitty valmiiksi, sitä ei voi enää muokata.
           edit: Muokkaa
@@ -546,14 +546,14 @@ fi:
           email_subject: "Käyttäjän %{requester_name} pyyntö osallistua ehdotuksen %{resource_title} muokkaukseen on hylätty."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>pyyntö muokata ehdotusta on hylätty</strong> kohteelle <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} pyysi pääsyä osallistujaksi. Voit <strong>hyväksyä tai hylätä pyynnön</strong> sivulla <a href="%{resource_url}">%{resource_title}</a>.'
+          email_intro: '%{requester_name} pyysi muokkausoikeutta hallitsemaasi ehdotukseen. Voit <strong>hyväksyä tai hylätä pyynnön</strong> sivulla <a href="%{resource_url}">%{resource_title}</a>.'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet osallistunut ehdotuksen <a href="%{resource_url}">%{resource_title}</a> muokkaukseen.
-          email_subject: "%{requester_name} pyysi osallistumisoikeutta ehdotukseen %{resource_title}."
+          email_subject: "%{requester_name} pyysi muokkausoikeutta ehdotukseen %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pyysi muokkausoikeutta ehdotukseen <a href="%{resource_url}">%{resource_title}</a>. <strong>Hyväksy tai hylkää pyyntö</strong>.
         plan_access_requester_accepted:
           email_intro: Sinulle on myönnetty muokkausoikeudet ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet pyytänyt muokkausoikeuksia ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: Sinut on hyväksytty osallistujaksi ehdotukseen %{resource_title}.
+          email_subject: Sinut on hyväksytty muokkaajaksi ehdotukseen %{resource_title}.
           notification_title: Sinut on <strong>hyväksytty osallistujaksi</strong> ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
           email_intro: Sinua ei hyväksytty osallistujaksi ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.

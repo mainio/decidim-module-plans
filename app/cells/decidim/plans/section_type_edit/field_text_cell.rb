@@ -7,11 +7,10 @@ module Decidim
         private
 
         def field_options
-          base = super
+          base = super.merge(label: false)
           return base if model.section.settings["answer_length"].to_i < 1
 
           base.merge(
-            label: false,
             maxlength: model.section.settings["answer_length"],
             # Disable the core character counter with a hidden dummy element
             "data-remaining-characters": "#plans-dummy-counter-#{section.id}"

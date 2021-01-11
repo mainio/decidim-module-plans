@@ -323,7 +323,7 @@ sv:
           modal_title: Lägg till författare för förslag
           next: Nästa
           no_results: Inga författare hittades som matchade din sökning.
-        back: Tillbaka
+        back: Tillbaka till listan av förslag
         close_window: Stäng fönstret
         controls:
           add_author: Lägg till författare för förslag
@@ -358,7 +358,7 @@ sv:
           error: Det inträffade ett fel vid radering av innehållet.
           success: Innehållet har raderats.
         edit:
-          back: Tillbacka
+          back: Tillbaka till listan av förslag
           material_title: Information för att stödja ditt förslag
           title: Redigera förslaget
           update: Uppdatera
@@ -404,7 +404,7 @@ sv:
           empty: Det finns inga förslag ännu
           empty_filters: Det finns ingen förslag med dessa kriterier
         show:
-          back: Tillbaka
+          back: Tillbaka till listan av förslag
           close: Markera som gjort
           close_confirm: Är du säker på att du vill markera det här objektet gjort? Efter att markeringen är klar kan objektet inte längre redigeras.
           edit: Redigera
@@ -474,7 +474,7 @@ sv:
           address_lookup_button: Slå upp
           reset_field: Återställ fältet
         field_image_attachments:
-          add_attachment: Lägg till bild
+          add_attachment: Lägg till bilden
           attachment_legend: Bild
           down: Ner
           remove: Radera
