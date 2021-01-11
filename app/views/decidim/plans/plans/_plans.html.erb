@@ -17,15 +17,4 @@
   <% end %>
 </div>
 
-<% if plans.empty? %>
-  <div class="row columns">
-    <div class="callout secondary">
-      <% if params[:filter].present? %>
-        <p><%= t(".empty_filters") %></p>
-      <% else %>
-        <p><%= t(".empty") %></p>
-      <% end %>
-    </div>
-  </div>
-<% end %>
 <%= decidim_paginate plans %>
