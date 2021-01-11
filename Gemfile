@@ -10,13 +10,13 @@ base_path = ""
 base_path = "../" if File.basename(__dir__) == "development_app"
 require_relative "#{base_path}lib/decidim/plans/version"
 
-#DECIDIM_VERSION = Decidim::Plans::DECIDIM_VERSION
-DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.23-stable" }
+# DECIDIM_VERSION = Decidim::Plans::DECIDIM_VERSION
+DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.23-stable" }.freeze
 
 gem "decidim", DECIDIM_VERSION
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "master"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "master"
 gem "decidim-plans", path: "."
-gem "decidim-favorites", { github: "mainio/decidim-module-favorites", branch: "master" }
-gem "decidim-feedback", { github: "mainio/decidim-module-feedback", branch: "master" }
 
 gem "bootsnap", "~> 1.4"
 gem "puma", "~> 4.3.3"
