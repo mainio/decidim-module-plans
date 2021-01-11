@@ -117,8 +117,16 @@ module Decidim
         "background-color:#{cat.color};";
       end
 
+      def resource_utm_params
+        return {} unless context[:utm_params]
+
+        context[:utm_params].map do |key, value|
+          ["utm_#{key}", value]
+        end.to_h
+      end
+
       def resource_path
-        resource_locator(model).path + request_params_query
+        resource_locator(model).path + request_params_query(resource_utm_params)
       end
 
       def title
