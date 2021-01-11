@@ -583,6 +583,11 @@ en:
           email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
           email_subject: A user you're following has published a resource
           notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+        plan_published_author:
+          email_intro: '"%{resource_title}" has been published. You can see it here:'
+          email_outro: You have received this notification because you created "%{resource_title}".
+          email_subject: Your proposal has been published
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
         plan_published_for_proposals:
           email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
           email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.

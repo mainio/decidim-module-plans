@@ -575,6 +575,11 @@ fi:
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohteen "%{resource_title}" laatijaa. Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi käyttäjä on julkaissut uutta sisältöä
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
+        plan_published_author:
+          email_intro: '"%{resource_title}" on julkaistu. Näet sen täältä:'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet laatinut ehdotuksen "%{resource_title}".
+          email_subject: Ehdotuksesi on julkaistu
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_published_for_proposals:
           email_intro: 'Laatimasi ehdotus on linkitetty kohteeseen "%{resource_title}". Näet sen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}" laatimisesi ehdotusten kautta. Voit lopettaa seuraamisen edellä esitetyn linkin kautta.

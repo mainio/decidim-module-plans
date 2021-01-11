@@ -575,6 +575,11 @@ sv:
           email_outro: Du har fått den här meddelandet eftersom du följer författaren till "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: En användare du följer har publicerat en resurs
           notification_title: <a href="%{resource_url}">%{resource_title}</a> har publicerats.
+        plan_published_author:
+          email_intro: '"%{resource_title}" har publicerats. Du kan se den här:'
+          email_outro: Du har fått den här meddelandet eftersom du har skapat förslaget "%{resource_title}".
+          email_subject: Ditt förslag har publicerats
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> har publicerats.
         plan_published_for_proposals:
           email_intro: 'Ett förslag som du har skapat har kopplats till "%{resource_title}". Du kan se den här:'
           email_outro: Du fick detta meddelande eftersom du följer "%{resource_title}" genom de föreslagna förslagen. Du kan avfölja det från föregående länk.

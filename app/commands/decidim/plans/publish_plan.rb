@@ -75,6 +75,13 @@ module Decidim
         return if @plan.coauthorships.empty?
 
         Decidim::EventsManager.publish(
+          event: "decidim.events.plans.plan_published_author",
+          event_class: Decidim::Plans::PublishPlanEvent,
+          resource: @plan,
+          followers: @plan.authors
+        )
+
+        Decidim::EventsManager.publish(
           event: "decidim.events.plans.plan_published",
           event_class: Decidim::Plans::PublishPlanEvent,
           resource: @plan,
