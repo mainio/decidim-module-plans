@@ -16,8 +16,14 @@
             <%= form.button t(".address_lookup_button"), type: :button, class: "button primary hollow address-input-lookup" %>
           </div>
         </div>
-        <%= form.hidden_field :latitude, field_options.merge(class: "address-input-latitude") %>
-        <%= form.hidden_field :longitude, field_options.merge(class: "address-input-longitude") %>
+        <%= form.hidden_field :latitude, field_options.merge(
+          id: "plan_section_answer_#{model.section.id}_latitude",
+          class: "address-input-latitude"
+        ) %>
+        <%= form.hidden_field :longitude, field_options.merge(
+          id: "plan_section_answer_#{model.section.id}_longitude",
+          class: "address-input-longitude")
+        %>
       </div>
     </div>
     <div class="columns large-4">
