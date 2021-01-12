@@ -35,12 +35,12 @@ module Decidim
           selected = selected.first if selected.is_a?(Array) && selected.length > 1
           categories = categories_for_select(collection)
 
-          form.select(name, options_for_select(categories), options, html_options)
+          form.select(name, options_for_select(categories, selected), options, html_options)
         end
 
         # We only want to display the top-level categories.
         def categories_for_select(scope)
-          sorted_main_categories = scope.includes(:subcategories).sort_by do |category|
+          sorted_main_categories = scope.sort_by do |category|
             [category.weight, translated_attribute(category.name, category.participatory_space.organization)]
           end
 

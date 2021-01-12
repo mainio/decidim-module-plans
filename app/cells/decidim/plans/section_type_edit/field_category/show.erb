@@ -44,8 +44,11 @@
                 form,
                 :sub_category_id,
                 category.subcategories,
-                label: false,
-                prompt: t(".select_a_sub_category")
+                {
+                  label: false,
+                  include_blank: t(".select_a_sub_category")
+                },
+                id: "#{field_id}_sub_category_id_for_#{category.id}"
               ) %>
             </div>
           </div>

@@ -208,7 +208,11 @@
         const $targets = $($field.data("field-toggle"));
         $field.on("change.decidim-plans, init.decidim-plans", () => {
           $targets.addClass("hide");
-          $targets.filter(`[data-field-toggle-value="${$field.val()}"]`).removeClass("hide");
+          $("input, textarea, select", $targets).prop("disabled", true);
+
+          const $current = $targets.filter(`[data-field-toggle-value="${$field.val()}"]`);
+          $current.removeClass("hide");
+          $("input, textarea, select", $current).prop("disabled", false);
         }).trigger("init.decidim-plans");
       });
       $(".address-input", $form).each((_j, addressEl) => {

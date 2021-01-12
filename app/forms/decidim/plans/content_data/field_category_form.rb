@@ -24,13 +24,13 @@ module Decidim
           model_category = plan.component.categories.find_by(
             id: model.body["category_id"]
           )
-          if model_category
-            if model_category.parent_id
-              self.category_id = model_category.parent_id
-              self.sub_category_id = model_category.id
-            else
-              self.category_id = model_category.id
-            end
+          return unless model_category
+
+          if model_category.parent_id
+            self.category_id = model_category.parent_id
+            self.sub_category_id = model_category.id
+          else
+            self.category_id = model_category.id
           end
         end
 
