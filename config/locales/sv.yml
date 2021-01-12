@@ -308,11 +308,11 @@ sv:
           tag: Taggar
           tag_prompt: Välj taggar
           unfold: Öppna
-        leave_your_plan: Gör ditt eget förslag!
+        leave_your_plan: Ge ditt eget förslag!
         new_plan: Nytt förslag
         see_all_withdrawn: Visa alla annullerade
-        subtitle: Hitta och utforska förslag!
-        title: Bläddra bland förslag
+        subtitle: Sök och utforska förslag!
+        title: Bekanta dig med förslag
         view_plan: Visa förslag
       plan_m:
         view_plan: Visa förslag
