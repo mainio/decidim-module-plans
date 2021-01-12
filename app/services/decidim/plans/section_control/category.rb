@@ -15,7 +15,7 @@ module Decidim
           ).where("#{ref}.body->>'category_id' =?", params["category_id"])
         end
 
-        def search_params_for(section)
+        def search_params_for(_section)
           {
             category_id: ""
           }

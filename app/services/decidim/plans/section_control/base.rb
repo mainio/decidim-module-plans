@@ -13,20 +13,18 @@ module Decidim
           @form = form
         end
 
-        def search_params_for(section)
+        def search_params_for(_section)
           {}
         end
 
-        def search(query, section, params)
+        def search(query, _section, _params)
           query
         end
 
         def content_for(plan)
           return nil unless plan
 
-          @content ||= begin
-            plan.contents.find_by(id: form.id) || plan.contents.build
-          end
+          plan.contents.find_by(id: form.id) || plan.contents.build
         end
 
         # Prepare is called when the base plan is saved and saving the contents

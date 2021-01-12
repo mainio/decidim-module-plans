@@ -5,6 +5,8 @@ module Decidim
     module SectionControl
       # A section control object for link_proposals field type.
       class LinkProposals < Base
+        cattr_accessor :plan_resources_linked
+
         def prepare!(plan)
           self.class.prepare_all(plan)
         end
@@ -13,12 +15,8 @@ module Decidim
           self.class.finalize_all(plan)
         end
 
-        private
-
-        cattr_accessor :plan_resources_linked
-
-        def self.prepare_all(plan)
-          plan_resources_linked = false
+        def self.prepare_all(_plan)
+          self.plan_resources_linked = false
 
           true
         end
@@ -38,7 +36,7 @@ module Decidim
 
           # Mark already linked so that we won't link again during the following
           # sections if there are multiple sections of the same type.
-          plan_resources_linked = true
+          self.plan_resources_linked = true
 
           true
         end

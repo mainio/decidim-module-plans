@@ -21,7 +21,7 @@ module Decidim
             store_attachment!(
               plan,
               attachment,
-              attachment_params(plan, attachment),
+              attachment_params(plan, attachment)
             )
           end
 
@@ -34,13 +34,13 @@ module Decidim
           super
         end
 
-        def finalize!(plan)
+        def finalize!(_plan)
           self.class.clear_total_weight
 
           true
         end
 
-        def fail!(plan)
+        def fail!(_plan)
           return unless attachments_present?
 
           # Mark attachments for re-attachment
@@ -48,12 +48,6 @@ module Decidim
             at.errors.add(:file, :needs_to_be_reattached) if at.file.present? && at.id.blank?
           end
         end
-
-        private
-
-        cattr_accessor :total_weight
-
-        attr_reader :attachments
 
         def self.clear_total_weight
           self.total_weight = 0
@@ -63,8 +57,14 @@ module Decidim
           self.total_weight += amount
         end
 
+        private
+
+        cattr_accessor :total_weight
+
+        attr_reader :attachments
+
         def body_attribute
-          { attachment_ids: attachments.compact.map { |f| f.id } }
+          { attachment_ids: attachments.compact.map(&:id) }
         end
 
         def attachments_present?
