@@ -70,10 +70,12 @@ module Decidim
         registry.register(:field_text) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_text"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldTextForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Text"
         end
         registry.register(:field_text_multiline) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_text_multiline"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldTextForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Text"
         end
         registry.register(:field_number) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_number"
