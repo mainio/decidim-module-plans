@@ -1,6 +1,7 @@
 // = require decidim/plans/character_counter
 // = require decidim/plans/tab_focus
 // = require decidim/plans/multifield
+// = require decidim/plans/plans_form_attachments
 // = require decidim/plans/reset_inputs
 // = require decidim/plans/info_modals
 // = require_self
@@ -202,6 +203,7 @@
 
       $("[data-remaining-characters]", $form).remainingCharacters();
       $(".multifield-fields", $form).multifield();
+      $(".attachments-section", $form).attachmentfield();
 
       $("[data-field-toggle]", $form).each((_j, toggleEl) => {
         const $field = $(toggleEl);

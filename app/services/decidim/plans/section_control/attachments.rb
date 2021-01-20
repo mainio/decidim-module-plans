@@ -93,8 +93,17 @@ module Decidim
           @attachments_valid ||= begin
             form.attachments.each do |atform|
               next if atform.deleted?
+              next unless atform.valid?
 
-              attachment = Attachment.new(attachment_params(plan, atform))
+              attachment = begin
+                if atform.id.present?
+                  Attachment.find(atform.id)
+                else
+                  Attachment.new
+                end
+              end
+              attachment.assign_attributes(attachment_params(plan, atform))
+
               next if attachment.valid? || !attachment.errors.has_key?(:file)
 
               atform.errors.add :file, attachment.errors[:file]

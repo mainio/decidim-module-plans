@@ -5,20 +5,66 @@ module Decidim
     module SectionTypeEdit
       class FieldAttachmentsCell < Decidim::Plans::SectionEditCell
         include Cell::ViewModel::Partial
+        include ERB::Util
         include Decidim::Plans::AttachmentsHelper
 
         private
+
+        def field_id
+          @field_id ||= "attachments_#{SecureRandom.uuid}"
+        end
+
+        def help_i18n_scope
+          case section.section_type
+          when "field_image_attachments"
+            "decidim.forms.file_help.image"
+          else
+            "decidim.forms.file_help.file"
+          end
+        end
 
         def legend_text
           translated_attribute(section.body)
         end
 
         def blank_attachment
-          @blank_attachment ||= Plans::AttachmentForm.new
+          @blank_attachment ||= begin
+            case section.section_type
+            when "field_image_attachments"
+              Plans::ImageAttachmentForm.new
+            else
+              Plans::AttachmentForm.new
+            end
+          end
         end
 
         def existing_attachments
           form.object.attachments
+        end
+
+        def file_is_present?(form)
+          file = form.file
+          return false unless file
+          return false unless file.respond_to?(:url)
+
+          file.present?
+        end
+
+        def attachment_title_for(attachment)
+          title = attachment.title
+          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file.present?
+
+          title
+        end
+
+        def file_name_for(file)
+          case file
+          when ActionDispatch::Http::UploadedFile
+            file.original_filename
+          else
+            # Carrierwave SanitizedFile
+            file.file.filename
+          end
         end
 
         def multi_attachment?

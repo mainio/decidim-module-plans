@@ -1,5 +1,11 @@
 sv:
   activerecord:
+    errors:
+      models:
+        decidim/plans/attachment:
+          attributes:
+            file:
+              allowed_file_content_types: Ogiltig filtyp
     models:
       decidim/plans/plan: Förslag
   activemodel:
@@ -462,9 +468,17 @@ sv:
       section_type_edit:
         field_attachments:
           add_attachment: Lägg till bilaga
+          attachment_file_required: Filen måste bifogas
           attachment_legend: Bilaga
+          attachment_title_required: Titel måste definieras för bilagan
+          cancel: Avbryt
+          close_modal: Stäng fönstret
           down: Ner
-          remove: Radera
+          edit: Redigera
+          modal_mobile_notice: Tilläggsknappen finns längst ner i det här fönstret. Om du inte ser det på en mobilskärm, bläddra nedåt på skärmen.
+          remove: Ta bort
+          remove_attachment: Ta bort bilagan
+          remove_attachment_confirm: Är du säker på att du vill ta bort den här bilagan?
           up: Upp
         field_category:
           select_a_category: Välj ett primärt tema
@@ -475,9 +489,17 @@ sv:
           reset_field: Återställ fältet
         field_image_attachments:
           add_attachment: Lägg till bilden
+          attachment_file_required: Bilden måste bifogas
           attachment_legend: Bild
+          attachment_title_required: Titel måste definieras för bilden
+          cancel: Avbryt
+          close_modal: Stäng fönstret
           down: Ner
+          edit: Redigera
+          modal_mobile_notice: Tilläggsknappen finns längst ner i det här fönstret. Om du inte ser det på en mobilskärm, bläddra nedåt på skärmen.
           remove: Radera
+          remove_attachment: Ta bort bilden
+          remove_attachment_confirm: Är du säker på att du vill ta bort den här bilden?
           up: Upp
       sections:
         actions:

@@ -10,7 +10,7 @@
 
     const autoLabelByPosition = new AutoLabelByPositionComponent({
       listSelector: `${wrapperSelector} .multifield-field:not(.hidden)`,
-      labelSelector: ".card-title span:first",
+      labelSelector: ".multifield-title .multifield-title-text",
       onPositionComputed: (el, idx) => {
         $(el).find("input.position-input").val(idx);
       }
@@ -59,9 +59,14 @@
           $(".add-field", $wrapper).addClass("hide");
         }
       },
-      onRemoveField: () => {
+      onRemoveField: ($removedField) => {
         autoLabelByPosition.run();
         autoButtonsByPosition.run();
+
+        // Move the field to be the first one in the list because otherwise
+        // it may mess up the ordering buttons, causing them sometimes not to
+        // move the element if the removed field is in-between.
+        $removedField.parent().prepend($removedField);
 
         if (isSingle) {
           $(".add-field", $wrapper).removeClass("hide");

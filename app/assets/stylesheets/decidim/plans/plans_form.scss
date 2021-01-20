@@ -32,3 +32,29 @@
     top: 51px;
   }
 }
+
+.attachments-section{
+  .attachment-fields{
+    display: none;
+  }
+
+  .attached-file{
+    margin-bottom: 1rem;
+
+    .attachment-move-buttons{
+      display: inline-block;
+      min-width: 35px;
+    }
+
+    .attachment-buttons{
+      .edit-attachment{
+        margin-right: 1rem;
+      }
+    }
+
+    .form-error{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

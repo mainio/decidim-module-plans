@@ -1,0 +1,35 @@
+<div class="attached-file multifield-field" id="<%= id %>">
+  <span class="multifield-title">
+    <span class="attachment-move-buttons">
+      <button class="link hollow move-down-field" aria-label="<%= t(".down") %>">
+        <%== icon("arrow-bottom") %>
+      </button>
+
+      <button class="link hollow move-up-field" aria-label="<%= t(".up") %>">
+        <%== icon("arrow-top") %>
+      </button>
+    </span>
+
+    <span class="multifield-title-text">
+      <%== t(".attachment_legend") %>
+    </span>
+    <span class="attachment-title-separator"> - </span>
+    <%= content_tag :span, h(attachment_title_for(attachment)),
+      class: "attachment-title", data: {
+      original_filename: attachment.file.present? ? h(file_name_for(attachment.file)) : nil
+    } %>
+
+    <span class="attachment-buttons">
+      <button class="link hollow edit-attachment" aria-label="<%= t(".edit") %>">
+        <%== icon("pencil") %>
+      </button>
+
+      <button class="link hollow remove-field" data-confirm-message="<%= t(".remove_attachment_confirm") %>">
+        <%== t(".remove_attachment") %>
+      </button>
+    </span>
+  </span>
+
+
+  <%= render partial: "decidim/plans/section_type_edit/field_attachments/attachment_fields", object: attachment, locals: { form: form } %>
+</div>

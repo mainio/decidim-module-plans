@@ -1,6 +1,12 @@
 ---
 en:
   activerecord:
+    errors:
+      models:
+        decidim/plans/attachment:
+          attributes:
+            file:
+              allowed_file_content_types: Invalid file type
     models:
       decidim/plans/plan: Proposal
   activemodel:
@@ -470,9 +476,17 @@ en:
       section_type_edit:
         field_attachments:
           add_attachment: Add attachment
+          attachment_file_required: File needs to be attached
           attachment_legend: Attachment
+          attachment_title_required: Title has to be defined for the file
+          cancel: Cancel
+          close_modal: Close window
           down: Down
+          edit: Edit
+          modal_mobile_notice: The adding button is at the bottom of this window. If you don't see it on a mobile screen, scroll the screen down.
           remove: Remove
+          remove_attachment: Remove attachment
+          remove_attachment_confirm: Are you sure you want to remove this attachment?
           up: Up
         field_category:
           select_a_category: Choose a primary theme
@@ -483,9 +497,17 @@ en:
           reset_field: Reset field
         field_image_attachments:
           add_attachment: Add image
+          attachment_file_required: Image needs to be attached
           attachment_legend: Image
+          attachment_title_required: Title has to be defined for the image
+          cancel: Cancel
+          close_modal: Close window
           down: Down
+          edit: Edit
+          modal_mobile_notice: The adding button is at the bottom of this window. If you don't see it on a mobile screen, scroll the screen down.
           remove: Remove
+          remove_attachment: Remove image
+          remove_attachment_confirm: Are you sure you want to remove this image?
           up: Up
       sections:
         actions:

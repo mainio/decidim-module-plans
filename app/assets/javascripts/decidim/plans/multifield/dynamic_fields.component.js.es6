@@ -28,6 +28,10 @@
       if (this.onAddField) {
         this.onAddField($newField);
       }
+
+      // START OVERRIDE
+      $(this.wrapperSelector).trigger("add-multifield.decidim-plans", [$newField]);
+      // END OVERRIDE
     }
   }
 

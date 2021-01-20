@@ -1,5 +1,11 @@
 fi:
   activerecord:
+    errors:
+      models:
+        decidim/plans/attachment:
+          attributes:
+            file:
+              allowed_file_content_types: Virheellinen tiedostotyyppi
     models:
       decidim/plans/plan: Ehdotus
   activemodel:
@@ -462,9 +468,17 @@ fi:
       section_type_edit:
         field_attachments:
           add_attachment: Lisää liite
+          attachment_file_required: Tiedosto on liitettävä
           attachment_legend: Liite
+          attachment_title_required: Tiedostolle on annettava otsikko
+          cancel: Peruuta
+          close_modal: Sulje ikkuna
           down: Alas
+          edit: Muokkaa
+          modal_mobile_notice: Lisäyspainike löytyy ikkunan alalaidasta. Jos et näe sitä mobiilinäytöllä, vieritä ruutua alaspäin.
           remove: Poista
+          remove_attachment: Poista liite
+          remove_attachment_confirm: Haluatko varmasti poistaa tämän liitteen?
           up: Ylös
         field_category:
           select_a_category: Valitse ensisijainen teema
@@ -475,9 +489,17 @@ fi:
           reset_field: Tyhjennä kenttä
         field_image_attachments:
           add_attachment: Lisää kuva
+          attachment_file_required: Kuva on liitettävä
           attachment_legend: Kuva
+          attachment_title_required: Kuvalle on annettava otsikko
+          cancel: Peruuta
+          close_modal: Sulje ikkuna
           down: Alas
+          edit: Muokkaa
+          modal_mobile_notice: Lisäyspainike löytyy ikkunan alalaidasta. Jos et näe sitä mobiilinäytöllä, vieritä ruutua alaspäin.
           remove: Poista
+          remove_attachment: Poista kuva
+          remove_attachment_confirm: Haluatko varmasti poistaa tämän kuvan?
           up: Ylös
       sections:
         actions:

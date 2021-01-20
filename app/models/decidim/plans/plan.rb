@@ -22,6 +22,14 @@ module Decidim
 
       component_manifest_name "plans"
 
+      # Redefine the attachments association so that we can take control of the
+      # uploaders related to the attachments.
+      has_many :attachments,
+               class_name: "Decidim::Plans::Attachment",
+               dependent: :destroy,
+               inverse_of: :attached_to,
+               as: :attached_to
+
       has_many :collaborator_requests,
                class_name: "Decidim::Plans::PlanCollaboratorRequest",
                foreign_key: :decidim_plan_id,
