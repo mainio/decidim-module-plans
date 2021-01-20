@@ -19,14 +19,29 @@ module Decidim
 
       # Handle the search_text filter
       def search_search_text
-        query.where(localized_search_text_in(:title), text: "%#{search_text}%")
+        final = query
+        subq = localized_search_text_in(:title)
+
+        # Manually search from the content sections in order to make the OR
+        # query with the title.
+        searchable_content_sections.each do |section|
+          ref = Arel.sql("plan_content_text_#{section.id}")
+          final = final.joins(
+            "LEFT JOIN decidim_plans_plan_contents AS #{ref} ON #{ref}.decidim_plan_id = #{Arel.sql(query.table_name)}.id"
+          )
+          options[:organization].available_locales.each do |l|
+            subq += " OR #{ref}.body ->> '#{l}' ILIKE :text"
+          end
+        end
+
+        final.where(subq, text: "%#{search_text}%")
       end
 
       def search_section
         final = query
-        @section_controls ||= Decidim::Plans::Section.where(component: @component).each do |s|
+        @section_controls ||= searchable_sections.each do |s|
           manifest = s.section_type_manifest
-          control = s.section_type_manifest.content_control_class.new
+          control = manifest.content_control_class.new
           final = control.search(final, s, section[s.id.to_s])
         end
         final
@@ -129,6 +144,17 @@ module Decidim
         options[:organization].available_locales.map do |l|
           "#{field} ->> '#{l}' ILIKE :text"
         end.join(" OR ")
+      end
+
+      # Finds the sections that can be searched from.
+      def searchable_sections
+        @searchable_sections ||= Decidim::Plans::Section.where(component: @component)
+      end
+
+      def searchable_content_sections
+        @searchable_content_sections ||= searchable_sections.where(
+          section_type: [:field_text, :field_text_multiline]
+        )
       end
     end
   end
