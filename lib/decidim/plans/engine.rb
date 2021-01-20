@@ -117,7 +117,7 @@ module Decidim
         registry.register(:field_image_attachments) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_image_attachments"
           type.display_cell = "decidim/plans/section_type_display/field_image_attachments"
-          type.content_form_class_name = "Decidim::Plans::ContentData::FieldAttachmentsForm"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldImageAttachmentsForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::Attachments"
         end
         registry.register(:content) do |type|
