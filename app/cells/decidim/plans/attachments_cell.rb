@@ -7,6 +7,7 @@ module Decidim
       include ActiveSupport::NumberHelper
       include ActionView::Helpers::SanitizeHelper
       include Cell::ViewModel::Partial
+      include ERB::Util
       include Decidim::LayoutHelper # For the icon helper
       include Decidim::TranslatableAttributes
 

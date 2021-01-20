@@ -3,10 +3,10 @@
     <div>
       <a href="<%= document.url %>" class="card__link">
         <h4 class="card--list__heading heading6">
-          <%= attachment_title(document) %> <small><%= document.file_type %> <%= number_to_human_size(document.file_size) %></small>
+          <%= h attachment_title(document) %> <small><%= document.file_type %> <%= number_to_human_size(document.file_size) %></small>
         </h4>
         <% if document.description.present? %>
-            <span class="text-small"><%= translated_attribute(document.description) %></span>
+            <span class="text-small"><%= h translated_attribute(document.description) %></span>
         <% end %>
       </a>
     </div>
