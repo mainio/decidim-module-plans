@@ -22,6 +22,12 @@ module Decidim
       #
       # Returns nothing.
       def call
+        # This is to pass a plan record to the content type preparation methods.
+        @plan = Plan.new(
+          component: form.component,
+          state: "open"
+        )
+
         prepare_plan_contents
         if form.invalid?
           fail_plan_contents

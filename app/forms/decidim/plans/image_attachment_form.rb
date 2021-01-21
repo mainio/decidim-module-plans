@@ -5,7 +5,12 @@ module Decidim
     class ImageAttachmentForm < Decidim::Plans::BaseAttachmentForm
       validates :file, passthru: {
         to: Decidim::Plans::Attachment,
-        with: { upload_type: :image }
+        with: {
+          attached_to: lambda do |form|
+            form.current_organization
+          end,
+          upload_type: :image
+        }
       }, if: ->(form) { form.file.present? }
     end
   end

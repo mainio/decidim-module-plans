@@ -99,7 +99,7 @@ module Decidim
                 if atform.id.present?
                   Attachment.find(atform.id)
                 else
-                  Attachment.new
+                  Attachment.new(attached_to: plan)
                 end
               end
               attachment.assign_attributes(attachment_params(plan, atform))
