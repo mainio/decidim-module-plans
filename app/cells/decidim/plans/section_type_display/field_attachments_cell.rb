@@ -6,6 +6,7 @@ module Decidim
       class FieldAttachmentsCell < Decidim::Plans::SectionDisplayCell
         include ActionView::Helpers::NumberHelper
         include Cell::ViewModel::Partial
+        include ERB::Util
         include Decidim::AttachmentsHelper
         include Decidim::LayoutHelper # For the icon helper
 
