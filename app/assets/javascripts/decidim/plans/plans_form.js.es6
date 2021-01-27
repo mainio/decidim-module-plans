@@ -201,7 +201,6 @@
     $("form.plans-form").each((_i, el) => {
       const $form = $(el);
 
-      $("[data-remaining-characters]", $form).remainingCharacters();
       $(".multifield-fields", $form).multifield();
       $(".attachments-section", $form).attachmentfield();
 
