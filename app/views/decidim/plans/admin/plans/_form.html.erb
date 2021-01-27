@@ -12,6 +12,16 @@ form.multipart = true
 
   <div class="card-section">
     <div class="row column">
-      <%= render_plan_form(form) %>
+      <div class="plan-form-container">
+        <%= cell(
+          "decidim/plans/plan_form",
+          form,
+          disable_user_group_field: true,
+          context: { plan: @plan }
+        ) %>
+      </div>
   </div>
 </div>
+
+<%= javascript_include_tag "decidim/plans/plans_form" %>
+<%= stylesheet_link_tag "decidim/plans/plans_form" %>

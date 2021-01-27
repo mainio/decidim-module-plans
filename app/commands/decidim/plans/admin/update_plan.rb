@@ -33,6 +33,7 @@ module Decidim
             transaction do
               update_plan
               save_plan_contents
+              plan.save! if plan.changed?
             end
           end
 

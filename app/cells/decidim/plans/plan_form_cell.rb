@@ -16,6 +16,7 @@ module Decidim
       )
 
       def user_group_field
+        return if options[:disable_user_group_field]
         return unless manageable_user_groups.any?
 
         render :user_group_field

@@ -113,7 +113,31 @@ module Decidim
           end
         end
 
+        # Possibly needed by the views
+        def info_path(section_id)
+          main_component_path("info/#{section_id}")
+        end
+
+        # Possibly needed by the views
+        def geocoding_path(*_args)
+          main_component_path("geocoding")
+        end
+
+        # Possibly needed by the views
+        def reverse_geocoding_path(*_args)
+          main_component_path("geocoding/reverse")
+        end
+
         private
+
+        def main_component_path(sub_path)
+          path, url_params = EngineRouter.main_proxy(current_component).root_path(
+            locale: params[:locale]
+          ).split("?")
+          suffix = url_params.blank? ? "" : "?#{url_params}"
+
+          "#{path.gsub(%r{/$}, "")}/plans/#{sub_path}#{suffix}"
+        end
 
         def query
           @query ||= Plan.published.where(component: current_component).ransack(params[:q])

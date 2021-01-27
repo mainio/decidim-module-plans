@@ -58,3 +58,16 @@
     }
   }
 }
+
+.plan_form_admin{
+  .plans-map{
+    width: 100%;
+    height: 200px;
+    margin-bottom: 2rem;
+
+    // Breakpoint for 'mediumlarge' but we don't have access to the mixins.
+    @media screen and (min-width: 800px){
+      height: 450px;
+    }
+  }
+}
