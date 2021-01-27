@@ -9,7 +9,7 @@ module Decidim
       end
 
       def query
-        q = Decidim::Plans::Tag.joins(
+        Decidim::Plans::Tag.joins(
           "LEFT JOIN decidim_plans_plan_taggings ON decidim_plans_plan_taggings.decidim_plans_tag_id = decidim_plans_tags.id"
         ).joins(
           "LEFT JOIN decidim_plans_plans ON decidim_plans_plans.id = decidim_plans_plan_taggings.decidim_plan_id"
@@ -20,9 +20,13 @@ module Decidim
           decidim_plans_plans: {
             decidim_component_id: @component.id
           }
-        ).having("COUNT(decidim_plans_plan_taggings.id) > 0")
-        .group("decidim_plans_tags.id")
-        .order(Arel.sql("name ->> '#{current_locale}' ASC"))
+        ).having(
+          "COUNT(decidim_plans_plan_taggings.id) > 0"
+        ).group(
+          "decidim_plans_tags.id"
+        ).order(
+          Arel.sql("name ->> '#{current_locale}' ASC")
+        )
       end
 
       private
