@@ -1,8 +1,15 @@
 <div class="row">
   <div class="columns large-12">
-    <%= link_to @plan.draft? ? plans_path : plan_path(@plan) do %>
-      <%= icon "chevron-left", class: "icon--small", role: "img" %>
-      <%= t("decidim.plans.plans.edit.back") %>
+    <% if @plan.draft? %>
+      <%= link_to plans_path do %>
+        <%= icon "chevron-left", class: "icon--small", role: "img" %>
+        <%= t("decidim.plans.plans.new.back") %>
+      <% end %>
+    <% else %>
+      <%= link_to plan_path(@plan) do %>
+        <%= icon "chevron-left", class: "icon--small", role: "img" %>
+        <%= t("decidim.plans.plans.edit.back") %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -364,7 +364,7 @@ fi:
           error: Virhe poistettaessa sisältöä.
           success: Poisto onnistui.
         edit:
-          back: Palaa takaisin ehdotuslistaukseen
+          back: Palaa takaisin ehdotukseen
           material_title: Tietoa ehdotuksen tueksi
           title: Muokkaa ehdotusta
           update: Päivitä
@@ -384,6 +384,7 @@ fi:
         linked_plans:
           plan_authors: Laatijoiden määrä
         new:
+          back: Palaa takaisin ehdotuslistaukseen
           create: Luo
           title: Luo ehdotus
         new_plan_button:

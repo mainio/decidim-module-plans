@@ -369,7 +369,7 @@ en:
           error: Error deleting the item.
           success: Deleted successfully.
         edit:
-          back: Back to proposals list
+          back: Back to proposal
           material_title: Information to support your proposal
           title: Edit proposal
           update: Update
@@ -391,6 +391,7 @@ en:
         linked_plans:
           plan_authors: Number of authors
         new:
+          back: Back to proposals list
           create: Create
           title: Create proposal
         new_plan_button:

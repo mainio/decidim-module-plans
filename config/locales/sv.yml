@@ -364,7 +364,7 @@ sv:
           error: Det inträffade ett fel vid radering av innehållet.
           success: Innehållet har raderats.
         edit:
-          back: Tillbaka till listan av förslag
+          back: Tillbaka till förslaget
           material_title: Information för att stödja ditt förslag
           title: Redigera förslaget
           update: Uppdatera
@@ -384,6 +384,7 @@ sv:
         linked_plans:
           plan_authors: Antal författare
         new:
+          back: Tillbaka till listan av förslag
           create: Skapa
           title: Skapa förslag
         new_plan_button:
