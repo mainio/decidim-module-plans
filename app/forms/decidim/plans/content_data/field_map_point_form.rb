@@ -23,7 +23,7 @@ module Decidim
         def needs_geocoding?
           return false if latitude.present? && longitude.present?
           return false if address.blank?
-          return false unless Decidim.geocoder.present?
+          return false if Decidim.geocoder.blank?
 
           true
         end
@@ -42,6 +42,14 @@ module Decidim
             latitude: latitude,
             longitude: longitude
           }
+        end
+
+        def body=(data)
+          return unless data.is_a?(Hash)
+
+          self.address = data["address"] || data[:address]
+          self.latitude = data["latitude"] || data[:latitude]
+          self.longitude = data["longitude"] || data[:longitude]
         end
       end
     end

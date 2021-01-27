@@ -24,6 +24,12 @@ module Decidim
           { scope_id: scope_id }
         end
 
+        def body=(data)
+          return unless data.is_a?(Hash)
+
+          self.scope_id = data["scope_id"] || data[:scope_id]
+        end
+
         private
 
         # Finds the Scope from the given decidim_scope_id, uses participatory space scope if missing.

@@ -24,6 +24,12 @@ module Decidim
           { proposal_ids: proposal_ids }
         end
 
+        def body=(data)
+          return unless data.is_a?(Hash)
+
+          self.proposal_ids = data["proposal_ids"] || data[:proposal_ids]
+        end
+
         def proposals
           Decidim::Proposals::Proposal.where(id: proposal_ids)
         end

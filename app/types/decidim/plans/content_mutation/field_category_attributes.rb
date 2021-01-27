@@ -12,7 +12,7 @@ module Decidim
         def to_h
           category = Decidim::Category.find(id)
 
-          { "category_id" => category.id }
+          { "category_id" => category&.id }
         end
       end
     end

@@ -48,6 +48,12 @@ module Decidim
         def body
           { category_id: category&.id }
         end
+
+        def body=(data)
+          return unless data.is_a?(Hash)
+
+          self.category_id = data["category_id"] || data[:category_id]
+        end
       end
     end
   end

@@ -26,6 +26,12 @@ module Decidim
           { attachment_ids: attachments.map(&:id) }
         end
 
+        def body=(data)
+          return unless data.is_a?(Hash)
+
+          self.attachment_ids = data["attachment_ids"] || data[:attachment_ids]
+        end
+
         def valid?(_options = {})
           # Calling .valid? on the attachment form would clear the errors that
           # were possibly added by the section control.

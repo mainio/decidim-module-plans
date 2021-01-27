@@ -20,6 +20,12 @@ module Decidim
         def body
           { value: value }
         end
+
+        def body=(data)
+          return unless data.is_a?(Hash)
+
+          self.value = data["value"] || data[:value]
+        end
       end
     end
   end

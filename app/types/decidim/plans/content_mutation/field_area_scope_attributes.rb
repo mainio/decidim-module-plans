@@ -12,7 +12,7 @@ module Decidim
         def to_h
           scope = Decidim::Scope.find(id)
 
-          { "scope_id" => scope.id }
+          { "scope_id" => scope&.id }
         end
       end
     end

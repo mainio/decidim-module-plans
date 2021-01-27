@@ -26,13 +26,17 @@ module Decidim
       def update(title:, contents:, version_comment: nil)
         enforce_permission_to :edit, :plan, plan: object
 
+        title_section = object.sections.find_by(section_type: :field_title)
         params = {
           "plan" => {
-            "title" => title || object.title,
             "version_comment" => version_comment,
             "contents" => contents.map do |content|
               next unless content
               next unless content.decidim_plan_id == object.id
+
+              # No need to add the title separately if it is included in the
+              # content parameters.
+              title_section = nil if content.section.section_type == "field_title"
 
               {
                 "id" => content.id,
@@ -42,6 +46,17 @@ module Decidim
             end.compact
           }
         }
+
+        # We cannot update the title directly through the parameters, so we
+        # need to add the title section to the params hash. This is kept here
+        # for legacy reasons
+        if title_section
+          params["plan"]["contents"] << {
+            "section_id" => title_section.id,
+            "body" => title
+          }
+        end
+
         form = Decidim::Plans::Admin::PlanForm.from_params(
           params
         ).with_context(
@@ -57,7 +72,7 @@ module Decidim
           end
           on(:invalid) do
             return GraphQL::ExecutionError.new(
-              form.errors.full_messages.join(', ')
+              form.errors.full_messages.join(", ")
             )
           end
         end
