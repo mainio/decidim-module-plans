@@ -284,6 +284,7 @@ fi:
           create: Luo
           discard: Tuhoa tämä luonnos
           discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
+          loading_message: Tallennetaan... Kuvien ja liitetiedostojen käsittelyssä kestää hetki, odota rauhassa.
           save: Tallenna
           save_draft: Tallenna luonnoksena
           you_can_invite_others: Mikäli haluatte jättää ehdotuksen porukalla, voit kutsua muita ehdotuksen tekijöiksi sen jättämisen jälkeen.

@@ -140,6 +140,7 @@
   const bindFormValidation = ($form) => {
     const $submits = $("[type='submit']", $form);
     const $discardLink = $(".discard-draft-link", $form);
+    const $submitMessage = $(".form-submit-message", $form);
 
     $submits.off("click.decidim-plans.form").on(
       "click.decidim-plans.form",
@@ -159,9 +160,14 @@
           canExit = true;
           $form.submit();
 
-          const $firstField = $("input.is-invalid-input, textarea.is-invalid-input").first();
-          $firstField.focus();
-          $submits.removeAttr("disabled");
+          const $firstField = $("input.is-invalid-input, textarea.is-invalid-input, select.is-invalid-input").first();
+          if ($firstField.length > 0) {
+            $firstField.focus();
+            $submits.removeAttr("disabled");
+          } else {
+            // Show the submit message.
+            $submitMessage.removeClass("hide");
+          }
         }
       }
     );
