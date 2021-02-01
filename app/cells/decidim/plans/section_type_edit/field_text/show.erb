@@ -1,5 +1,21 @@
 <div class="field with-character-counter">
-  <%= plain_label form, "body_#{current_locale}".to_sym %>
+  <div class="row field-label-with-info">
+    <div class="columns large-6">
+      <div class="field-info">
+        <%= plain_label form, "body_#{current_locale}".to_sym %>
+      </div>
+    </div>
+    <% if show_info_link? %>
+      <div class="columns large-6">
+        <div class="field-info field-info-with-icon float-right">
+          <%= link_to info_path(section.id), class: "info-modal-link" do %>
+            <%= icon "information", aria_hidden: true %>
+            <%= information_label %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
   <div class="row">
     <div class="columns large-8">
