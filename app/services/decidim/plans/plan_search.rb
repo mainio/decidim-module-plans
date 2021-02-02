@@ -13,7 +13,9 @@ module Decidim
         @component = options[:component]
         @current_user = options[:current_user]
 
-        base = options[:state]&.member?("withdrawn") ? Plan.withdrawn : Plan.except_withdrawn
+        state = Array(options[:state])
+        base = state&.member?("withdrawn") ? Plan.withdrawn : Plan.except_withdrawn
+
         super(base, options)
       end
 
