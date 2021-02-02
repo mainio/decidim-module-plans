@@ -25,7 +25,7 @@ module Decidim
       before_action :ensure_published!, only: [:show, :withdraw, :add_authors, :add_authors_confirm]
 
       def index
-        base_query = search.results.published.not_hidden
+        base_query = search.results.published.not_hidden.group(:id)
         @plans = base_query
         @geocoded_plans = base_query.geocoded_data_for(current_component)
 
