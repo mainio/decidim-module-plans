@@ -6,6 +6,7 @@ module Decidim
   module Plans
     # This class seeds new plans to the database using faker.
     class PlanSeeder
+      # rubocop:disable Metrics/ParameterLists
       def initialize(
         component:,
         ideas_component: nil,
@@ -27,6 +28,7 @@ module Decidim
         @images = images
         @attachments = attachments
       end
+      # rubocop:enable Metrics/ParameterLists
 
       def seed!(amount: 5)
         raise "Please define a component" unless component
@@ -39,90 +41,10 @@ module Decidim
           I18n.reload!
         end
 
-        if authors.blank? || authors.is_a?(Integer)
-          authors_amount = begin
-            if authors.is_a?(Integer)
-              authors
-            else
-              10
-            end
-          end
-          authors_amount = amount if authors_amount > amount
-
-          # Create a dummy authors if they are not provided
-          @authors = Array.new(authors_amount) do |i|
-            author = Decidim::User.find_or_initialize_by(
-              email: ::Faker::Internet.email
-            )
-            author.update!(
-              password: "password1234",
-              password_confirmation: "password1234",
-              name: ::Faker::Name.name,
-              nickname: ::Faker::Twitter.unique.screen_name,
-              organization: component.organization,
-              tos_agreement: "1",
-              confirmed_at: Time.current
-            )
-            author
-          end
-        end
+        ensure_authors!
 
         amount.times do
-          coordinates = dummy_coordinates
-
-          title = ::Faker::Lorem.sentence(2)
-          plan = Plan.new(
-            component: component,
-            title: Decidim::Faker::Localized.localized { title },
-            published_at: Time.current
-          )
-          @authors.sample(rand(1..3)).each do |author|
-            plan.add_coauthor(author)
-          end
-          plan.save!
-
-          attachments_weight = 0
-
-          plan.sections.each do |section|
-            next if section.section_type == "content"
-
-            body = begin
-              case section.section_type
-              when "field_image_attachments"
-                attachment_ids = create_attachments_from(images.sample(1), plan, attachments_weight)
-                attachments_weight += attachment_ids.length
-                { "attachment_ids" => attachment_ids }
-              when "field_attachments"
-                attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, attachments_weight)
-                attachments_weight += attachment_ids.length
-                { "attachment_ids" => attachment_ids }
-              else
-                dummy_section_body(section)
-              end
-            end
-
-            plan.contents.create!(
-              body: body,
-              section: section
-            )
-
-            ideas = ideas_sample
-            plan.link_resources(ideas, "included_ideas") if ideas.length > 0
-          end
-
-          if ::Faker::Boolean.boolean
-            # Add versions to the plan
-            rand(1..3).times do
-              title = ::Faker::Lorem.sentence(2)
-              plan.update!(title: Decidim::Faker::Localized.localized { title })
-
-              plan.contents.each do |content|
-                next if %w(content field_attachments field_image_attachments).include?(content.section.section_type)
-
-                content.update!(body: dummy_section_body(content.section))
-              end
-            end
-          end
+          plan = generate_plan
 
           yield plan if block_given?
         end
@@ -136,7 +58,7 @@ module Decidim
 
         Plan.where(component: component).each do |plan|
           # No need to seed when the plan already has attachments
-          next if plan.attachments.count > 0
+          next if plan.attachments.count.positive?
 
           seed_plan_images_and_attachments!(plan)
         end
@@ -145,6 +67,99 @@ module Decidim
       private
 
       attr_reader :component, :authors, :locale, :bbox, :images, :attachments
+
+      def ensure_authors!
+        return if authors.present? && !authors.is_a?(Integer)
+
+        authors_amount = begin
+          if authors.is_a?(Integer)
+            authors
+          else
+            10
+          end
+        end
+        authors_amount = amount if authors_amount > amount
+
+        # Create a dummy authors if they are not provided
+        @authors = generate_authors(authors_amount)
+      end
+
+      def generate_authors(authors_amount)
+        Array.new(authors_amount) do |_i|
+          author = Decidim::User.find_or_initialize_by(
+            email: ::Faker::Internet.email
+          )
+          author.update!(
+            password: "password1234",
+            password_confirmation: "password1234",
+            name: ::Faker::Name.name,
+            nickname: ::Faker::Twitter.unique.screen_name,
+            organization: component.organization,
+            tos_agreement: "1",
+            confirmed_at: Time.current
+          )
+          author
+        end
+      end
+
+      def generate_plan
+        title = ::Faker::Lorem.sentence(2)
+        plan = Plan.new(
+          component: component,
+          title: Decidim::Faker::Localized.localized { title },
+          published_at: Time.current
+        )
+        @authors.sample(rand(1..3)).each do |author|
+          plan.add_coauthor(author)
+        end
+        plan.save!
+
+        attachments_weight = 0
+
+        plan.sections.each do |section|
+          next if section.section_type == "content"
+
+          body = begin
+            case section.section_type
+            when "field_image_attachments"
+              attachment_ids = create_attachments_from(images.sample(1), plan, attachments_weight)
+              attachments_weight += attachment_ids.length
+              { "attachment_ids" => attachment_ids }
+            when "field_attachments"
+              attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, attachments_weight)
+              attachments_weight += attachment_ids.length
+              { "attachment_ids" => attachment_ids }
+            else
+              dummy_section_body(section)
+            end
+          end
+
+          plan.contents.create!(
+            body: body,
+            section: section
+          )
+
+          ideas = ideas_sample
+          plan.link_resources(ideas, "included_ideas") if ideas.length.positive?
+        end
+
+        # Decide randomly whether we want to create plan versions
+        return plan if ::Faker::Boolean.boolean
+
+        # Add versions to the plan
+        rand(1..3).times do
+          title = ::Faker::Lorem.sentence(2)
+          plan.update!(title: Decidim::Faker::Localized.localized { title })
+
+          plan.contents.each do |content|
+            next if %w(content field_attachments field_image_attachments).include?(content.section.section_type)
+
+            content.update!(body: dummy_section_body(content.section))
+          end
+        end
+
+        plan
+      end
 
       def seed_plan_images_and_attachments!(plan)
         # Decide whether to add image and/or attachments
@@ -158,19 +173,16 @@ module Decidim
           next unless %w(field_attachments field_image_attachments).include?(section.section_type)
 
           content = plan.contents.find_by(section: section)
-          unless content
-            content = plan.contents.create!(
-              body: { "attachment_ids" => [] },
-              section: section
-            )
-          end
+          content ||= plan.contents.create!(
+            body: { "attachment_ids" => [] },
+            section: section
+          )
 
           if add_image && section.section_type == "field_image_attachments"
             attachment_ids = create_attachments_from(images.sample(1), plan, weight)
             content.update!(body: { "attachment_ids" => attachment_ids })
             weight += attachment_ids.length
-          end
-          if add_attachments && section.section_type == "field_attachments"
+          elsif add_attachments && section.section_type == "field_attachments"
             attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, weight)
             content.update!(body: { "attachment_ids" => attachment_ids })
             weight += attachment_ids.length
