@@ -101,16 +101,28 @@ sv:
         edit: Redigera
         edit_plan: Redigera
         export_budgets: Konvertera till projekt
+        manage_authors: Hantera författare
         manage_tags: Hantera taggar
         new: Gör nytt förslag
         new_tag: Ny tagg
         plan_taggings: Taggar
+        remove_author: Ta bort författaren
         reopen_plan: Öppna för redigering
         sections: Avsnitt
         title: Funktioner
       admin:
         actions:
           preview: Förhandsgranska
+        authors:
+          create:
+            buttons:
+              add_authors: Lägg till författare
+              cancel: Annullera
+            description: Kontrollera att du har valt rätt faktorer och tryck på "%{button_name}" -knappen längst ner på skärmen.
+            title: Lägg till författare för förslag
+          index:
+            add_author: Lägg till författare
+            title: Hantera författare för förslag
         budgets_exports:
           create:
             invalid: Det har varit ett problem att exportera objekten till budgetprojekt
@@ -262,6 +274,8 @@ sv:
       models:
         plan:
           fields:
+            author_name: Författarens namn
+            author_nickname: Författarens smeknamn
             authors: Författare
             category: Kategori
             comments: Kommentarer
@@ -279,6 +293,13 @@ sv:
             id: ID
             name: Namn
             taggings_count: Antal användningsområden
+      plan_add_authors:
+        add_users_placeholder: Skriv författarens namn eller smeknamn
+        close_window: Stäng fönstret
+        label: Sök efter författare
+        modal_title: Lägg till författare för förslag
+        next: Nästa
+        no_results: Inga författare hittades som matchade din sökning.
       plan_form:
         buttons:
           create: Skapa
@@ -324,14 +345,7 @@ sv:
       plan_m:
         view_plan: Visa förslag
       plan_view:
-        add_author:
-          add_users_placeholder: Skriv författarens namn eller smeknamn
-          label: Sök efter författare
-          modal_title: Lägg till författare för förslag
-          next: Nästa
-          no_results: Inga författare hittades som matchade din sökning.
         back: Tillbaka till listan av förslag
-        close_window: Stäng fönstret
         controls:
           add_author: Lägg till författare för förslag
         flag: Rapportera
@@ -374,11 +388,6 @@ sv:
           close: Stäng fönstret
           description: Förslaget utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
           title: Förslaget beräknas
-        preview:
-          not_published: Din förslag har ännu inte publicerats
-          not_published_description: Din förslag har sparats som ett utkast. Idén måste publiceras för att den ska visas på webbplatsen.
-          modify: Redigera
-          publish: Publicera
         form:
           attachment_legend: Lägg till bilaga
           select_a_category: Välj kategori
@@ -411,6 +420,14 @@ sv:
         plans:
           empty: Det finns inga förslag ännu
           empty_filters: Det finns ingen förslag med dessa kriterier
+        preview:
+          not_published: Din förslag har ännu inte publicerats
+          not_published_description: Din förslag har sparats som ett utkast. Idén måste publiceras för att den ska visas på webbplatsen.
+          modify: Redigera
+          publish: Publicera
+        remove_author:
+          error: Det gick inte att ta bort författaren från förslaget.
+          success: Författaren har tagits bort från förslaget.
         show:
           back: Tillbaka till listan av förslag
           close: Markera som gjort

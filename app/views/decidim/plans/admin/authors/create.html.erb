@@ -1,0 +1,22 @@
+<%= decidim_form_for(@form, url: confirm_plan_authors_path(@plan), method: :patch, html: { class: "form new_author" }) do |form| %>
+  <div class="card">
+    <div class="card-divider">
+      <h2 class="card-title"><%= t(".title") %> - <%= present(plan).title %></h2>
+    </div>
+
+    <div class="card-section">
+      <p><%= t(".description", button_name: t(".buttons.add_authors")) %></p>
+      <ul>
+        <% @form.authors.each do |author| %>
+          <%= form.hidden_field "recipient_id][", id: nil, value: author.id %>
+          <li><%= author.name %> (@<%= author.nickname %>)</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="button--double form-general-submit">
+    <%= link_to t(".buttons.cancel"), plan_authors_path(plan), class: "button hollow" %>
+    <%= form.submit t(".buttons.add_authors"), class: "button" %>
+  </div>
+<% end %>

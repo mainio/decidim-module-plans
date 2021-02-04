@@ -102,16 +102,28 @@ en:
         edit: Edit
         edit_plan: Edit
         export_budgets: Convert to projects
+        manage_authors: Manage authors
         manage_tags: Manage tags
         new: Submit new proposal
         new_tag: New tag
         plan_taggings: Tags
+        remove_author: Remove author
         reopen_plan: Open for editing
         sections: Sections
         title: Actions
       admin:
         actions:
           preview: Preview
+        authors:
+          create:
+            buttons:
+              add_authors: Add authors
+              cancel: Cancel
+            description: Check that you have selected the correct factors and press the "%{button_name}" button at the bottom of the screen.
+            title: Add authors for proposal
+          index:
+            add_author: Add author
+            title: Manage authors for proposal
         budgets_exports:
           create:
             invalid: There's been a problem exporting the items into budgeting projects
@@ -267,6 +279,8 @@ en:
       models:
         plan:
           fields:
+            author_name: Author's name
+            author_nickname: Author's nickname
             authors: Authors
             category: Category
             comments: Comments
@@ -284,6 +298,13 @@ en:
             id: ID
             name: Name
             taggings_count: Number of uses
+      plan_add_authors:
+        add_users_placeholder: Write the author's name or nickname
+        close_window: Close window
+        label: Search for authors
+        modal_title: Add authors for proposal
+        next: Next
+        no_results: No authors found matching your search.
       plan_form:
         buttons:
           create: Create
@@ -329,14 +350,7 @@ en:
       plan_m:
         view_plan: View proposal
       plan_view:
-        add_author:
-          add_users_placeholder: Write the author's name or nickname
-          label: Search for authors
-          modal_title: Add authors for proposal
-          next: Next
-          no_results: No authors found matching your search.
         back: Back to proposals list
-        close_window: Close window
         controls:
           add_author: Add authors for proposal
         flag: Flag
@@ -381,11 +395,6 @@ en:
             during this time. You will get notified once the evaluation is
             completed.
           title: The proposal is being evaluated
-        preview:
-          not_published: Your proposal has not yet been published
-          not_published_description: Your proposal has been saved as a draft. It needs to be published for it to appear on the site.
-          modify: Modify
-          publish: Publish
         form:
           attachment_legend: Add an attachment
           select_a_category: Select a category
@@ -418,6 +427,14 @@ en:
         plans:
           empty: There are no proposals yet
           empty_filters: There are no proposals with this criteria
+        preview:
+          not_published: Your proposal has not yet been published
+          not_published_description: Your proposal has been saved as a draft. It needs to be published for it to appear on the site.
+          modify: Modify
+          publish: Publish
+        remove_author:
+          error: There was an error removing the author from the proposal.
+          success: Successfully removed the author from the proposal.
         show:
           back: Back to proposals list
           close: Mark as done

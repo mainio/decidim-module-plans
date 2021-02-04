@@ -101,16 +101,28 @@ fi:
         edit: Muokkaa
         edit_plan: Muokkaa
         export_budgets: Muunna projekteiksi
+        manage_authors: Hallinnoi tekijöitä
         manage_tags: Hallinnoi merkintöjä
         new: Tee uusi ehdotus
         new_tag: Uusi merkintä
         plan_taggings: Merkinnät
+        remove_author: Poista tekijä
         reopen_plan: Avaa muokattavaksi
         sections: Osiot
         title: Toiminnot
       admin:
         actions:
           preview: Esikatsele
+        authors:
+          create:
+            buttons:
+              add_authors: Lisää tekijät
+              cancel: Peruuta
+            description: Tarkasta, että olet valinnut oikeat tekijät ja paina ruudun alalaidasta "%{button_name}" -painiketta.
+            title: Lisää tekijöitä ehdotukselle
+          index:
+            add_author: Lisää tekijä
+            title: Hallitse ehdotuksen tekijöitä
         budgets_exports:
           create:
             invalid: Kohteiden vienti budjetointiprojekteiksi epäonnistui
@@ -262,7 +274,9 @@ fi:
       models:
         plan:
           fields:
-            authors: Laatijat
+            author_name: Tekijän nimi
+            author_nickname: Tekijän nimimerkki
+            authors: Tekijät
             category: Kategoria
             comments: Kommentit
             contributions: Muokkaukset
@@ -279,6 +293,13 @@ fi:
             id: ID
             name: Nimi
             taggings_count: Käyttömäärä
+      plan_add_authors:
+        add_users_placeholder: Kirjoita tekijän nimi tai nimimerkki
+        close_window: Sulje ikkuna
+        label: Etsi tekijöitä
+        modal_title: Lisää ehdotukselle tekijöitä
+        next: Seuraava
+        no_results: Ei yhtään hakua vastaavia käyttäjiä.
       plan_form:
         buttons:
           create: Luo
@@ -324,14 +345,7 @@ fi:
       plan_m:
         view_plan: Näytä ehdotus
       plan_view:
-        add_author:
-          add_users_placeholder: Kirjoita tekijän nimi tai nimimerkki
-          label: Etsi tekijöitä
-          modal_title: Lisää ehdotukselle tekijöitä
-          next: Seuraava
-          no_results: Ei yhtään hakua vastaavia käyttäjiä.
         back: Palaa takaisin ehdotuslistaukseen
-        close_window: Sulje ikkuna
         controls:
           add_author: Lisää ehdotukselle tekijöitä
         flag: Ilmoita
@@ -374,11 +388,6 @@ fi:
           close: Sulje ikkuna
           description: Ehdotusta arvioidaan ja sitä ei voi muokata tällä hetkellä. Saat ilmoituksen, kun arviointi valmistuu.
           title: Ehdotusta arvioidaan
-        preview:
-          not_published: Ehdotustasi ei ole vielä julkaistu
-          not_published_description: Ehdotus on tallennettu keskeneräisenä luonnoksena. Se pitää julkaista, jotta se tulee näkyviin sivustolle.
-          modify: Muokkaa
-          publish: Julkaise
         form:
           attachment_legend: Lisää liite
           select_a_category: Valitse kategoria
@@ -411,6 +420,14 @@ fi:
         plans:
           empty: Ei vielä ehdotuksia
           empty_filters: Ehdotuksia ei löytynyt valituilla hakuehdoilla
+        preview:
+          not_published: Ehdotustasi ei ole vielä julkaistu
+          not_published_description: Ehdotus on tallennettu keskeneräisenä luonnoksena. Se pitää julkaista, jotta se tulee näkyviin sivustolle.
+          modify: Muokkaa
+          publish: Julkaise
+        remove_author:
+          error: Tekijän poisto ehdotuksesta epäonnistui.
+          success: Tekijän poisto ehdotuksesta onnistui.
         show:
           back: Palaa takaisin ehdotuslistaukseen
           close: Merkitse valmiiksi

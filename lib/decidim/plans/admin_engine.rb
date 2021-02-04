@@ -14,6 +14,11 @@ module Decidim
           get :search_proposals
           resources :plan_answers, only: [:edit, :update]
           resources :tags, except: [:show]
+          resources :authors, only: [:index, :create, :destroy] do
+            collection do
+              patch :confirm
+            end
+          end
           member do
             get :taggings
             patch :update_taggings

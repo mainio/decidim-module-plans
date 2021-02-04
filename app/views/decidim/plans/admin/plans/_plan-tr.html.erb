@@ -45,6 +45,7 @@
   <td class="table-list__actions">
     <% if allowed_to? :edit, :plan, plan: plan %>
       <%= icon_link_to "pencil", edit_plan_path(plan), t("actions.edit_plan", scope: "decidim.plans"), class: "action-icon--edit-plan" %>
+      <%= icon_link_to "people", plan_authors_path(plan), t("actions.manage_authors", scope: "decidim.plans"), class: "action-icon--manage-authors" %>
     <% end %>
 
     <% if !plan.answered? && allowed_to?(:close, :plan, plan: plan) %>
