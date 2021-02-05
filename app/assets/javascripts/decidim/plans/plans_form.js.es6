@@ -192,13 +192,13 @@
       }
     });
 
-    $(window).on("beforeunload", () => {
+    window.onbeforeunload = () => {
       if (canExit) {
         return null;
       }
 
       return "";
-    });
+    }
   };
 
   $(() => {
