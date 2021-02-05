@@ -350,6 +350,7 @@ fi:
           add_author: Lisää ehdotukselle tekijöitä
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
         plan_accepted_reason: 'Tämä ehdotus on hyväksytty, koska:'
         plan_in_evaluation_reason: Tämä ehdotus on arvioitavana
         plan_rejected_reason: 'Tämä ehdotus on hylätty, koska:'
