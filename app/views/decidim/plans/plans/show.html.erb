@@ -1,6 +1,6 @@
 <% add_decidim_meta_tags({
-    title: present(@plan).title,
-    url: plan_url(@plan.id)
+  title: present(@plan).title,
+  url: plan_url(@plan.id)
 }) %>
 
 <%= render_plan_view(@plan, trigger_feedback: trigger_feedback?) %>
