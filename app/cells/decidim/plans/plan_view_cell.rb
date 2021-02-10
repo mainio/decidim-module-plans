@@ -133,6 +133,43 @@ module Decidim
         end
       end
 
+      def image_section
+        @image_section ||= first_section_with_type("field_image_attachments")
+      end
+
+      def image_content
+        @image_content ||= content_for(image_section)
+      end
+
+      def plan_image
+        return unless image_content
+        return if image_content.body["attachment_ids"].blank?
+
+        @plan_image ||= Decidim::Attachment.find_by(
+          id: image_content.body["attachment_ids"].first
+        )
+      end
+
+      def share_description
+        present(plan).body
+      end
+
+      def share_image_url
+        plan_image&.url || organization_share_image
+      end
+
+      def organization_share_image_url
+        Decidim::ContentBlock.published.find_by(
+          organization: current_organization,
+          scope_name: :homepage,
+          manifest_name: :hero
+        ).try(:images_container).try(:background_image).try(:url)
+      end
+
+      def twitter_handle
+        current_component.participatory_space.organization.twitter_handler
+      end
+
       def current_locale
         I18n.locale.to_s
       end

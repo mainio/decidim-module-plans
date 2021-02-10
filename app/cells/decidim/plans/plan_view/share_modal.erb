@@ -6,11 +6,13 @@
     </button>
   </div>
   <div class="button-group text-center">
-  <%= social_share_button_tag(decidim_page_title,
-        url: decidim_meta_url,
-        image: decidim_meta_image_url,
-        desc: h(decidim_meta_description),
-        via: decidim_meta_twitter_handler) %>
+    <%= social_share_button_tag(
+      present(plan).title,
+      url: plan_url(plan.id),
+      image: share_image_url,
+      desc: h(strip_tags(share_description)),
+      via: twitter_handle
+    ) %>
     <a href="#" class="button" data-open="urlShare">
       <%= icon "link-intact", role: "img", "aria-hidden": true %>
       <%= t("decidim.shared.share_modal.share_link") %>
@@ -24,7 +26,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <input type="text" title="<%= t("decidim.shared.share_modal.share_link") %>" value="<%= "#{decidim_meta_url}" %>" readonly>
+  <input type="text" title="<%= t("decidim.shared.share_modal.share_link") %>" value="<%= "#{plan_url(plan.id)}" %>" readonly>
 </div>
 
 <%= javascript_include_tag "decidim/social_share" %>
