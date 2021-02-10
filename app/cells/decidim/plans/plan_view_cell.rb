@@ -155,7 +155,7 @@ module Decidim
       end
 
       def share_image_url
-        plan_image&.url || organization_share_image
+        plan_image&.url || organization_share_image_url
       end
 
       def organization_share_image_url
