@@ -11,8 +11,8 @@ module Decidim
 
         def to_h
           existing_ids = ids.map do |id|
-            attachment = Decidim::Proposals::Proposal.find_by(id: id)
-            attachment&.id
+            proposal = Decidim::Proposals::Proposal.find_by(id: id)
+            proposal&.id
           end
 
           { "proposal_ids" => existing_ids.compact }
