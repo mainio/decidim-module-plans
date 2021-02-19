@@ -5,6 +5,22 @@ require "decidim/faker/localized"
 module Decidim
   module Plans
     # This class seeds new plans to the database using faker.
+    #
+    # Usage:
+    #   require "decidim/plans/plan_seeder"
+    #   c = Decidim::Component.find(y) # fetch the plans component
+    #   ic = Decidim::Component.find(x) # fetch the ideas component (if needed)
+    #   as = Decidim::Scope.find(z) # fetch the area scope parent (if needed)
+    #   s = Decidim::Scope.find(a) # fetch the scope parent (if needed)
+    #   seeder = Decidim::Plans::PlanSeeder.new(
+    #              component: c,
+    #              ideas_component: ic,
+    #              scope: s,
+    #              area_scope: as,
+    #              locale: "fi",
+    #              bbox: [[60.150050, 24.842148], [60.216626, 25.160408]]
+    #            )
+    #   seeder.seed!(amount: 10)
     class PlanSeeder
       # rubocop:disable Metrics/ParameterLists
       def initialize(
@@ -41,7 +57,7 @@ module Decidim
           I18n.reload!
         end
 
-        ensure_authors!
+        ensure_authors!(max_amount: amount)
 
         amount.times do
           plan = generate_plan
@@ -68,7 +84,7 @@ module Decidim
 
       attr_reader :component, :authors, :locale, :bbox, :images, :attachments
 
-      def ensure_authors!
+      def ensure_authors!(max_amount: 5)
         return if authors.present? && !authors.is_a?(Integer)
 
         authors_amount = begin
@@ -78,7 +94,7 @@ module Decidim
             10
           end
         end
-        authors_amount = amount if authors_amount > amount
+        authors_amount = max_amount if authors_amount > max_amount
 
         # Create a dummy authors if they are not provided
         @authors = generate_authors(authors_amount)
@@ -109,7 +125,7 @@ module Decidim
           title: Decidim::Faker::Localized.localized { title },
           published_at: Time.current
         )
-        @authors.sample(rand(1..3)).each do |author|
+        authors.sample(rand(1..3)).each do |author|
           plan.add_coauthor(author)
         end
         plan.save!
@@ -122,13 +138,21 @@ module Decidim
           body = begin
             case section.section_type
             when "field_image_attachments"
-              attachment_ids = create_attachments_from(images.sample(1), plan, attachments_weight)
-              attachments_weight += attachment_ids.length
-              { "attachment_ids" => attachment_ids }
+              if should_add_images?
+                attachment_ids = create_attachments_from(images.sample(1), plan, attachments_weight)
+                attachments_weight += attachment_ids.length
+                { "attachment_ids" => attachment_ids }
+              else
+                { "attachment_ids" => [] }
+              end
             when "field_attachments"
-              attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, attachments_weight)
-              attachments_weight += attachment_ids.length
-              { "attachment_ids" => attachment_ids }
+              if should_add_attachments?
+                attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, attachments_weight)
+                attachments_weight += attachment_ids.length
+                { "attachment_ids" => attachment_ids }
+              else
+                { "attachment_ids" => [] }
+              end
             else
               dummy_section_body(section)
             end
@@ -163,8 +187,8 @@ module Decidim
 
       def seed_plan_images_and_attachments!(plan)
         # Decide whether to add image and/or attachments
-        add_image = ::Faker::Boolean.boolean
-        add_attachments = ::Faker::Boolean.boolean
+        add_image = should_add_images?
+        add_attachments = should_add_attachments?
         return if !add_image && !add_attachments
 
         weight = 0
@@ -190,19 +214,27 @@ module Decidim
         end
       end
 
+      def should_add_images?
+        images.present? && ::Faker::Boolean.boolean
+      end
+
+      def should_add_attachments?
+        attachments.present? && ::Faker::Boolean.boolean
+      end
+
       def dummy_section_body(section)
         case section.section_type
         when "field_area_scope"
           {
-            scope_id: @area_scope.children.sample.id
+            scope_id: area_scope_sample_id
           }
         when "field_scope"
           {
-            scope_id: @scope.children.sample.id
+            scope_id: scope_sample_id
           }
         when "field_category"
           {
-            category_id: component.participatory_space.categories.sample.id
+            category_id: category_sample_id
           }
         when "field_checkbox"
           {
@@ -223,6 +255,22 @@ module Decidim
           value = ::Faker::Lorem.paragraph(3)
           Decidim::Faker::Localized.localized { value }
         end
+      end
+
+      def area_scope_sample_id
+        return if @area_scope.blank?
+
+        @area_scope.children.sample.id
+      end
+
+      def scope_sample_id
+        return if @scope.blank?
+
+        @scope.children.sample.id
+      end
+
+      def category_sample_id
+        component.participatory_space.categories.sample.id
       end
 
       def create_attachments_from(files, plan, start_weight = 0)
