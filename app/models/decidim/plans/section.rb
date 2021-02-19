@@ -22,7 +22,7 @@ module Decidim
         @attachment_input_types ||= %w(single multi)
       end
 
-      validates :section_type, inclusion: { in: self.types }
+      validates :section_type, inclusion: { in: types }
 
       def section_type_manifest
         Decidim::Plans.section_types.find(section_type)
