@@ -45,8 +45,6 @@ module Decidim
           end
         when "field_text", "field_text_multiline"
           object.body
-        else
-          nil
         end
       end
 
