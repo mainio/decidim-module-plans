@@ -80,49 +80,58 @@ module Decidim
           type.edit_cell = "decidim/plans/section_type_edit/field_number"
           type.display_cell = "decidim/plans/section_type_display/field_number"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldNumberForm"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldNumberType"
         end
         registry.register(:field_checkbox) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_checkbox"
           type.display_cell = "decidim/plans/section_type_display/field_checkbox"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldCheckboxForm"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldCheckboxType"
         end
         registry.register(:field_scope) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_scope"
           type.display_cell = "decidim/plans/section_type_display/field_scope"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldScopeForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::Scope"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldScopeType"
         end
         registry.register(:field_area_scope) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_area_scope"
           type.display_cell = "decidim/plans/section_type_display/field_scope"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldScopeForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::Scope"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldAreaScopeType"
         end
         registry.register(:field_category) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_category"
           type.display_cell = "decidim/plans/section_type_display/field_category"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldCategoryForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::Category"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldCategoryType"
         end
         registry.register(:field_map_point) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_map_point"
           type.display_cell = "decidim/plans/section_type_display/field_map_point"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldMapPointForm"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldMapPointType"
         end
         registry.register(:field_attachments) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_attachments"
           type.display_cell = "decidim/plans/section_type_display/field_attachments"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldAttachmentsForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::Attachments"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldAttachmentsType"
         end
         registry.register(:field_image_attachments) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_image_attachments"
           type.display_cell = "decidim/plans/section_type_display/field_image_attachments"
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldImageAttachmentsForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::Attachments"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldImageAttachmentsType"
         end
         registry.register(:content) do |type|
           type.content_control_class_name = "Decidim::Plans::SectionControl::Content"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::ContentType"
         end
       end
 
@@ -156,6 +165,9 @@ module Decidim
         Decidim::Plans::ContentMutationAttributes.class_eval do
           argument(:proposals, ::Decidim::Plans::ContentMutation::FieldProposalsAttributes, required: false)
         end
+        Decidim::Plans::ContentSubject.class_eval do
+          possible_types(Decidim::Plans::SectionContent::LinkProposalsType)
+        end
         Decidim::Plans::ResourceLinkSubject.class_eval do
           possible_types(Decidim::Proposals::ProposalType)
         end
@@ -163,6 +175,7 @@ module Decidim
           type.edit_cell = "decidim/plans/section_type_edit/link_proposals"
           type.content_form_class_name = "Decidim::Plans::ContentData::LinkProposalsForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::LinkProposals"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::LinkProposalsType"
         end
       end
     end
