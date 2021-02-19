@@ -8,7 +8,10 @@ module Decidim
 
       implements Decidim::Core::ComponentInterface
 
-      field :plans, PlanType.connection_type, null: true
+      field :plans, PlanType.connection_type, description: "List all plans", null: true do
+        argument :order, Decidim::Plans::PlanInputSort, "Provides several methods to order the results", required: false
+        argument :filter, Decidim::Plans::PlanInputFilter, "Provides several methods to filter the results", required: false
+      end
 
       field :sections, SectionType.connection_type, null: true
 
@@ -16,32 +19,40 @@ module Decidim
         argument :id, ID, required: true
       end
 
-      def plans
-        PlansTypeHelper.base_scope(object).includes(:component)
+      def plans(filter: {}, order: {})
+        Decidim::Plans::PlanListHelper.new(model_class: Plan).call(object, { filter: filter, order: order }, context)
       end
 
       def sections
-        SectionsTypeHelper.base_scope(object).includes(:component)
+        Decidim::Plans::SectionListHelper.new(model_class: Section).call(object, {}, context)
       end
 
       def plan(id:)
-        PlansTypeHelper.base_scope(object).find_by(id: id)
+        Decidim::Plans::PlanFinderHelper.new(model_class: Plan).call(object, { id: id }, context)
       end
     end
 
-    module PlansTypeHelper
-      def self.base_scope(component)
-        Plan
-          .where(component: component)
-          .published
+    class PlanListHelper < Decidim::Core::ComponentListBase
+      def query_scope
+        super.published.not_hidden
+      end
+
+      def call(_component, _args, _ctx)
+        # Default order to avoid PostgreSQL random ordering.
+        super.order(:id)
       end
     end
 
-    module SectionsTypeHelper
-      def self.base_scope(component)
-        Section
-          .where(component: component)
-          .order(:position)
+    class PlanFinderHelper < Decidim::Core::ComponentFinderBase
+      def query_scope
+        super.published.not_hidden
+      end
+    end
+
+    class SectionListHelper < Decidim::Core::ComponentListBase
+      def call(_component, _args, _ctx)
+        # Default order to avoid PostgreSQL random ordering.
+        super.order(:position)
       end
     end
   end
