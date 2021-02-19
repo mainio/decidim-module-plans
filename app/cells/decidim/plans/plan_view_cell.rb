@@ -50,12 +50,14 @@ module Decidim
 
       def has_map_position?
         return false unless address_content
+        return false unless address_content.body
 
         address_content.body["latitude"] && address_content.body["longitude"]
       end
 
       def plan_map_link(options = {})
         return "#" unless address_content
+        return "#" unless address_content.body
 
         @map_utility_static ||= Decidim::Map.static(
           organization: current_component.participatory_space.organization
@@ -143,6 +145,7 @@ module Decidim
 
       def plan_image
         return unless image_content
+        return unless image_content.body
         return if image_content.body["attachment_ids"].blank?
 
         @plan_image ||= Decidim::Attachment.find_by(
