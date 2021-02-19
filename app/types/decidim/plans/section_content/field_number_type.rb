@@ -12,6 +12,8 @@ module Decidim
         field :value, Integer, description: "The answer response.", null: true
 
         def value
+          return nil unless object.body
+
           object.body["value"]
         end
       end
