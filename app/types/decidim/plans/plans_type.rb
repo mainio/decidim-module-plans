@@ -37,9 +37,25 @@ module Decidim
         super.published.not_hidden
       end
 
-      def call(_component, _args, _ctx)
+      def call(_component, args, _ctx)
+        results = super
+
+        results = add_default_states(results, args.fetch(:filter, {}))
+
         # Default order to avoid PostgreSQL random ordering.
-        super.order(:id)
+        results.order(:id)
+      end
+
+      private
+
+      # If no states are defined, show only non-withdrawn plans.
+      def add_default_states(results, filter)
+        if filter[:state].is_a?(Hash)
+          states_filter = filter[:state]
+          return results if states_filter[:state].is_a?(Array) && states_filter[:state].any?
+        end
+
+        results.except_withdrawn
       end
     end
 
