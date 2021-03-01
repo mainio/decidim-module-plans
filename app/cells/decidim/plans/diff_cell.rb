@@ -47,12 +47,6 @@ module Decidim
         end.compact
       end
 
-      def associated_diff_renderers
-        @associated_diff_renderers ||= options[:associated_versions].map do |version|
-          renderer_for(version)
-        end.compact
-      end
-
       def content_diff_renderers
         @content_diff_renderers ||= options[:content_versions].map do |version|
           renderer_for(version)
@@ -60,7 +54,7 @@ module Decidim
       end
 
       def diff_renderers
-        item_diff_renderers + associated_diff_renderers + content_diff_renderers
+        item_diff_renderers + content_diff_renderers
       end
 
       def renderer_for(version)

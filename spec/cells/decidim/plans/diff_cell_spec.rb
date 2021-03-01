@@ -13,7 +13,6 @@ describe Decidim::Plans::DiffCell, type: :cell do
         "decidim/plans/diff",
         model,
         item_versions: item_versions,
-        associated_versions: associated_versions,
         content_versions: content_versions
       )
     end
@@ -24,13 +23,6 @@ describe Decidim::Plans::DiffCell, type: :cell do
         transaction_id: current_version.transaction_id,
         item_type: "Decidim::Plans::Plan"
       ).order(:created_at)
-    end
-    let(:associated_versions) do
-      Decidim::Plans::PaperTrail::Version.where(
-        transaction_id: current_version.transaction_id
-      ).where.not(
-        item_type: ["Decidim::Plans::Plan", "Decidim::Plans::Content"]
-      )
     end
     let(:content_versions) do
       model.sections.map do |section|
@@ -122,8 +114,6 @@ describe Decidim::Plans::DiffCell, type: :cell do
     end
 
     describe "#associated_diff_renderers" do
-      let(:associated_versions) { versions }
-
       before do
         set_expected_renderers
       end
