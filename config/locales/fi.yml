@@ -122,6 +122,7 @@ fi:
             title: Lisää tekijöitä ehdotukselle
           index:
             add_author: Lisää tekijä
+            organization_author: Tekijänä organisaatio
             title: Hallitse ehdotuksen tekijöitä
         budgets_exports:
           create:

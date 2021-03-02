@@ -123,6 +123,7 @@ en:
             title: Add authors for proposal
           index:
             add_author: Add author
+            organization_author: Organization as author
             title: Manage authors for proposal
         budgets_exports:
           create:

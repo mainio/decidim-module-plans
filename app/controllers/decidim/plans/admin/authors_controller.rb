@@ -47,7 +47,13 @@ module Decidim
           enforce_permission_to :edit, :plan, plan: plan
 
           plan = @plan
-          author = Decidim::UserBaseEntity.find_by(id: params[:id])
+          author = begin
+            if author_type == "organization"
+              Decidim::Organization.find_by(id: params[:id])
+            else
+              Decidim::UserBaseEntity.find_by(id: params[:id])
+            end
+          end
           RemoveAuthorFromPlan.call(plan, author) do
             on(:ok) do
               flash[:success] = t("remove_author.success", scope: "decidim.plans.plans")
@@ -61,7 +67,15 @@ module Decidim
           end
         end
 
+        def destroy_organization
+          @author_type = "organization"
+
+          destroy
+        end
+
         private
+
+        attr_reader :author_type
 
         def plan
           @plan ||= Plan.where(component: current_component).find(params[:plan_id])

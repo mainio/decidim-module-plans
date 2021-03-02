@@ -19,6 +19,11 @@ module Decidim
               patch :confirm
             end
           end
+          resources :organization_authors, controller: :authors, path: "authors/organization", only: [] do
+            member do
+              delete "/", action: :destroy_organization
+            end
+          end
           member do
             get :taggings
             patch :update_taggings

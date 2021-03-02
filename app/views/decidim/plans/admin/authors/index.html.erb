@@ -21,12 +21,18 @@
           <% plan.authors.each do |author| %>
             <tr data-id="<%= author.id %>">
               <td><%= author.name %></td>
-              <td><%= author.nickname %></td>
+              <td>
+                <% if author.is_a?(Decidim::Organization) %>
+                  (<%= t(".organization_author") %>)
+                <% else %>
+                  <%= author.nickname %>
+                <% end %>
+              </td>
               <td class="table-list__actions">
                 <% if allowed_to? :edit, :plan, plan: plan %>
                   <%= icon_link_to(
                     "circle-x",
-                    plan_author_path(plan, author),
+                    destroy_author_path_for(plan, author),
                     t("actions.remove_author", scope: "decidim.plans"),
                     method: :delete,
                     class: "action-icon--remove",

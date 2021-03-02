@@ -122,6 +122,7 @@ sv:
             title: Lägg till författare för förslag
           index:
             add_author: Lägg till författare
+            organization_author: Organisation som författare
             title: Hantera författare för förslag
         budgets_exports:
           create:
