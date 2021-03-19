@@ -12,7 +12,7 @@ require_relative "#{base_path}lib/decidim/plans/version"
 
 DECIDIM_VERSION = Decidim::Plans::DECIDIM_VERSION
 
-gem "decidim", DECIDIM_VERSION
+gem "decidim", ">= 0.22.0", DECIDIM_VERSION
 gem "decidim-plans", path: "."
 gem "decidim-favorites", { github: "mainio/decidim-module-favorites", ref: "294672f" }
 
@@ -23,7 +23,7 @@ gem "uglifier", "~> 4.1"
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
-  gem "decidim-dev", DECIDIM_VERSION
+  gem "decidim-dev", ">= 0.22.0", DECIDIM_VERSION
 end
 
 group :development do
