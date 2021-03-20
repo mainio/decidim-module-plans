@@ -69,7 +69,7 @@ module Decidim
       end
 
       def has_badge?
-        published_state? || withdrawn?
+        closed? || answered? || withdrawn?
       end
 
       def has_link_to_resource?
@@ -105,7 +105,7 @@ module Decidim
         cat = icon_category
         return unless cat
 
-        content_tag(:span, class: "card__category__icon" , "aria-hidden": true) do
+        content_tag(:span, class: "card__category__icon", "aria-hidden": true) do
           image_tag(cat.category_icon.url, alt: full_category)
         end
       end
@@ -114,7 +114,7 @@ module Decidim
         cat = color_category
         return unless cat
 
-        "background-color:#{cat.color};";
+        "background-color:#{cat.color};"
       end
 
       def resource_utm_params
@@ -129,26 +129,6 @@ module Decidim
         resource_locator(model).path + request_params_query(resource_utm_params)
       end
 
-      def title
-        present(model).title
-      end
-
-      def body
-        present(model).body
-      end
-
-      def has_state?
-        model.published?
-      end
-
-      def has_badge?
-        closed? || answered? || withdrawn?
-      end
-
-      def has_link_to_resource?
-        model.published?
-      end
-
       def description
         model_body = strip_tags(body)
 
@@ -157,12 +137,6 @@ module Decidim
         else
           truncate(model_body, length: 100)
         end
-      end
-
-      def badge_classes
-        return super unless options[:full_badge]
-
-        state_classes.concat(["label", "plan-status"]).join(" ")
       end
 
       def has_image?
@@ -193,8 +167,8 @@ module Decidim
 
         path = category_image_path(category)
         return path if path
-
         return unless has_category?
+
         category_image_path(category.parent) if category.parent.present?
       end
 
