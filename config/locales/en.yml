@@ -357,9 +357,9 @@ en:
         flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
-        plan_accepted_reason: 'This proposal has been accepted because:'
+        plan_accepted_reason: proposal has been accepted
         plan_in_evaluation_reason: This proposal is being evaluated
-        plan_rejected_reason: 'This proposal has been rejected because:'
+        plan_rejected_reason: This proposal has been rejected
         plan_waiting_for_evaluation: The proposal is being evaluated, editing not allowed.
         share: Share
         share_link: Share link

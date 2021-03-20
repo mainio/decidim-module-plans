@@ -352,9 +352,9 @@ sv:
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
-        plan_accepted_reason: 'Förslaget har godkänts eftersom:'
+        plan_accepted_reason: Förslaget har godkänts
         plan_in_evaluation_reason: Förslaget bedöms
-        plan_rejected_reason: 'Förslaget har avslagits eftersom:'
+        plan_rejected_reason: Förslaget har avslagits
         plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
         share: Dela
         share_link: Länk som ska delas

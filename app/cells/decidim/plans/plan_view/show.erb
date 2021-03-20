@@ -1,3 +1,27 @@
+<% if plan.answered? && translated_attribute(plan.answer).present? %>
+  <div class="row">
+    <div class="columns small-centered large-8">
+      <% if plan.accepted? %>
+        <div class="callout announcement text-center success">
+          <p class="h2"><%= t(".plan_accepted_reason") %></p>
+          <%= decidim_sanitize translated_attribute plan.answer %>
+        </div>
+      <% elsif plan.rejected? %>
+        <div class="callout announcement text-center warning">
+          <p class="h2"><%= t(".plan_rejected_reason") %></p>
+          <%= decidim_sanitize translated_attribute plan.answer %>
+        </div>
+      <% else %>
+        <div class="callout announcement text-center secondary">
+          <p class="h2"><%= t(".plan_in_evaluation_reason") %></p>
+          <%= decidim_sanitize translated_attribute plan.answer %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
 <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
   <div class="row">
     <div class="columns">
@@ -114,29 +138,5 @@
       <%= render :contents %>
       <%= cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }) %>
     </div>
-    <% if plan.answered? && translated_attribute(plan.answer).present? %>
-      <% if plan.accepted? %>
-        <div class="section">
-          <div class="callout success">
-            <h5><%= t(".plan_accepted_reason") %></h5>
-            <p><%= decidim_sanitize translated_attribute plan.answer %></p>
-          </div>
-        </div>
-      <% elsif plan.rejected? %>
-        <div class="section">
-          <div class="callout warning">
-            <h5><%= t(".plan_rejected_reason") %></h5>
-            <p><%= decidim_sanitize translated_attribute plan.answer %></p>
-          </div>
-        </div>
-      <% else %>
-        <div class="section">
-          <div class="callout secondary">
-            <h5><%= t(".plan_in_evaluation_reason") %></h5>
-            <p><%= decidim_sanitize translated_attribute plan.answer %></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
   </div>
 </div>
