@@ -125,7 +125,13 @@ Decidim.register_component(:plans) do |component|
     end
 
     proposal_component = participatory_space.components.find_by(manifest_name: "proposals")
-    proposals = Decidim::Proposals::Proposal.where(component: proposal_component).to_a
+    proposals = begin
+      if proposal_component
+        Decidim::Proposals::Proposal.where(component: proposal_component).to_a
+      else
+        []
+      end
+    end
 
     5.times do |n|
       state, answer = if n > 3
