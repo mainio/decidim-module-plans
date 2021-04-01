@@ -15,7 +15,7 @@ module Decidim
         attr_writer :section
         attr_writer :plan
 
-        delegate :mandatory, to: :section
+        delegate :mandatory, :section_type_manifest, to: :section
 
         def initialize(attributes = nil)
           # The section definition is already needed when setting the other
@@ -27,10 +27,6 @@ module Decidim
 
         def section
           @section ||= Decidim::Plans::Section.find(section_id)
-        end
-
-        def section_type_manifest
-          section.section_type_manifest
         end
 
         def control
