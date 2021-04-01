@@ -9,7 +9,16 @@ module Decidim
 
         implements Decidim::Plans::Api::ContentInterface
 
-        field :value, [Decidim::Proposals::ProposalType], description: "The linked proposals.", null: true
+        # Only define the proposals field value if the module is available.
+        # This would be autoloaded in production/staging environments.
+        if Decidim.const_defined?("Proposals")
+          field(
+            :value,
+            [Decidim::Proposals::ProposalType],
+            description: "The linked proposals.",
+            null: true
+          )
+        end
 
         def value
           return nil unless object.body
