@@ -12,6 +12,8 @@ module Decidim
 
         if permission_action.subject == :plan
           apply_plan_permissions(permission_action)
+        elsif permission_action.subject == :plans
+          apply_plans_permissions(permission_action)
         else
           permission_action
         end
@@ -27,6 +29,8 @@ module Decidim
 
       def apply_plan_permissions(permission_action)
         case permission_action.action
+        when :read
+          can_read_plan?
         when :create
           can_create_plan?
         when :edit
@@ -40,6 +44,21 @@ module Decidim
         when :request_access
           can_request_access_plan?
         end
+      end
+
+      def apply_plans_permissions(permission_action)
+        case permission_action.action
+        when :read
+          can_read_plans?
+        end
+      end
+
+      def can_read_plan?
+        toggle_allow(true)
+      end
+
+      def can_read_plans?
+        toggle_allow(true)
       end
 
       def can_create_plan?

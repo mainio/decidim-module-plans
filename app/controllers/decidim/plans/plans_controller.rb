@@ -25,6 +25,8 @@ module Decidim
       before_action :ensure_published!, only: [:show, :withdraw, :add_authors, :add_authors_confirm]
 
       def index
+        enforce_permission_to :read, :plans
+
         base_query = search.results.published.not_hidden.group(:id)
         @plans = base_query
         @geocoded_plans = base_query.geocoded_data_for(current_component)
@@ -34,6 +36,8 @@ module Decidim
       end
 
       def show
+        enforce_permission_to :read, :plan, plan: @plan
+
         @report_form = form(Decidim::ReportForm).from_params(reason: "spam")
         @request_access_form = form(RequestAccessToPlanForm).from_params({})
         @accept_request_form = form(AcceptAccessToPlanForm).from_params({})
