@@ -25,7 +25,7 @@ module Decidim
       def field_options
         {
           id: "plan_section_answer_#{model.section.id}",
-          label: model.label,
+          label: false,
           help_text: model.help
         }
       end
