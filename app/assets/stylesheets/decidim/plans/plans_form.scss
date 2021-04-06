@@ -71,3 +71,20 @@
     }
   }
 }
+
+.field-info{
+  position: relative;
+
+  .form-help-tooltip{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.form-help-tooltip{
+  .icon--information{
+    width: 20px;
+    height: 20px;
+  }
+}

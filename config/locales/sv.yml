@@ -313,7 +313,7 @@ sv:
         characters_min: "(minst %count% tecken krävs)"
         characters_used: "%count%/%total% tecken används"
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
-        required_fields_text: Obligatoriska fält är markerade med *-tecknet.
+        required_fields_text: Obligatoriska fält är markerade med stjärna * tecken.
       plan_index:
         draft_plan_title: Du har ett oavslutat förslag!
         draft_plan_continue: Fortsätt ditt förslag
@@ -487,6 +487,8 @@ sv:
         field_image_attachments:
           related_photos: Relaterade bilder
       section_type_edit:
+        common:
+          show_help: Visa mer information
         field_attachments:
           add_attachment: Lägg till bilaga
           attachment_file_required: Filen måste bifogas

@@ -1,5 +1,14 @@
 <div class="field field-category" id="<%= field_id %>">
-  <%= plain_label form, :category_id %>
+  <div class="row">
+    <div class="columns large-6">
+      <div class="field">
+        <div class="field-info">
+          <%= plain_label form, :category_id %>
+          <%= render :tooltip %>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
     <div class="columns large-6">

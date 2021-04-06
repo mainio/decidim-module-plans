@@ -313,7 +313,7 @@ fi:
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
-        required_fields_text: Pakolliset kentät on merkitty *-merkillä.
+        required_fields_text: Tähdellä * merkityt kentät ovat pakollisia.
       plan_index:
         draft_plan_title: Sinulla on keskeneräinen ehdotus!
         draft_plan_continue: Jatka ehdotustasi
@@ -487,6 +487,8 @@ fi:
         field_image_attachments:
           related_photos: Liittyvät kuvat
       section_type_edit:
+        common:
+          show_help: Näytä lisätietoa
         field_attachments:
           add_attachment: Lisää liite
           attachment_file_required: Tiedosto on liitettävä

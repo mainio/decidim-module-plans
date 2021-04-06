@@ -26,7 +26,7 @@ module Decidim
         {
           id: "plan_section_answer_#{model.section.id}",
           label: false,
-          help_text: model.help
+          help_text: tooltip_help? ? nil : model.help
         }
       end
 
@@ -47,6 +47,14 @@ module Decidim
 
       def information_label
         @information_label ||= translated_attribute(section.information_label).strip
+      end
+
+      def help_text
+        @help_text ||= translated_attribute(section.help).strip
+      end
+
+      def tooltip_help?
+        Decidim::Plans.section_edit_tooltips
       end
 
       def show_info_link?

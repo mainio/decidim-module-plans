@@ -23,6 +23,14 @@ module Decidim
     autoload :LayoutManifest, "decidim/plans/layout_manifest"
     autoload :LayoutRegistry, "decidim/plans/layout_registry"
 
+    include ActiveSupport::Configurable
+
+    # Defines whether the help sections are shown as help texts below the fields
+    # (false) or as tooltips (true).
+    config_accessor :section_edit_tooltips do
+      false
+    end
+
     # Public: Stores an instance of Loggability
     def self.loggability
       @loggability ||= Loggability.new
