@@ -1,6 +1,9 @@
 <% if show_input? %>
   <div class="field field-checkbox field-terms">
-    <%= form.check_box(:value, field_options.merge(label_options: { for: nil })) %>
+    <label>
+      <%= form.check_box(:value, field_options.merge(label_options: { for: nil })) %>
+      <%= translated_attribute(section.body) %>
+    </label>
 
     <div class="field-info field-info-with-icon">
       <% if show_info_link? %>
