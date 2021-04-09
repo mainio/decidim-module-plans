@@ -308,7 +308,7 @@ en:
         no_results: No authors found matching your search.
       plan_form:
         buttons:
-          create: Create
+          create: Preview
           discard: Discard this draft
           discard_confirmation: Are you sure you want to discard this draft?
           loading_message: Saving... Processing of images and attachments takes a while, please wait.
@@ -361,6 +361,7 @@ en:
         plan_in_evaluation_reason: This proposal is being evaluated
         plan_rejected_reason: This proposal has been rejected
         plan_waiting_for_evaluation: The proposal is being evaluated, editing not allowed.
+        request_access: Request editing permissions
         share: Share
         share_link: Share link
         show_comments: Show comments

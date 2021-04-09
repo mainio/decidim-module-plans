@@ -303,7 +303,7 @@ sv:
         no_results: Inga författare hittades som matchade din sökning.
       plan_form:
         buttons:
-          create: Skapa
+          create: Förhandsgranska
           discard: Radera utkastet
           discard_confirmation: Är du säker på att du vill radera utkastet?
           loading_message: Sparar... Bearbetning av bilder och bilagor tar ett tag, var god vänta ett ögonblick.
@@ -356,6 +356,7 @@ sv:
         plan_in_evaluation_reason: Förslaget bedöms
         plan_rejected_reason: Förslaget har avslagits
         plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
+        request_access: Begär redigeringsrättigheter
         share: Dela
         share_link: Länk som ska delas
         show_comments: Visa kommentarer
