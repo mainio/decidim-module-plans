@@ -28,6 +28,14 @@ module Decidim
 
       private
 
+      def display_save_as_draft?
+        plan.blank? || plan.draft?
+      end
+
+      def display_discard?
+        plan && plan.persisted? && plan.draft?
+      end
+
       def form
         model
       end
