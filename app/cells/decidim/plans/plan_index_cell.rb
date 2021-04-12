@@ -42,6 +42,10 @@ module Decidim
         context[:plans]
       end
 
+      def card_cell
+        context[:card_cell]
+      end
+
       def geocoded_plans
         context[:geocoded_plans]
       end

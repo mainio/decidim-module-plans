@@ -3,7 +3,7 @@ var $map = $('#map');
 var $plansCount = $('#plans-count');
 var $orderFilterInput = $('.order_filter');
 
-$plans.html('<%= j(render partial: "plans", locals: { plans: @plans }).strip.html_safe %>');
+$plans.html('<%= j(render partial: "plans", locals: { plans: @plans, card_cell: plan_card_layout }).strip.html_safe %>');
 $plansCount.html('<%= j(render partial: "count", locals: { plans: @plans }).strip.html_safe %>');
 $orderFilterInput.val('<%= order %>');
 

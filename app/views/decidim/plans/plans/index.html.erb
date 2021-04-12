@@ -1,7 +1,7 @@
 <%= render_plan_index(
   available_orders: available_orders,
   order: order,
-  context: { plans: @plans, geocoded_plans: @geocoded_plans, filter: filter }
+  context: { plans: @plans, geocoded_plans: @geocoded_plans, filter: filter, card_cell: plan_card_layout }
 ) %>
 
 <%= javascript_include_tag "decidim/filters" %>

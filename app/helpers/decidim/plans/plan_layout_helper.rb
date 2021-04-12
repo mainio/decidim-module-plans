@@ -9,6 +9,10 @@ module Decidim
         @layout_manifest ||= Decidim::Plans.layouts.find(current_component.settings.layout)
       end
 
+      def plan_card_layout
+        layout_manifest.card_layout
+      end
+
       def render_plan_index(data = {})
         cell(
           layout_manifest.index_layout,

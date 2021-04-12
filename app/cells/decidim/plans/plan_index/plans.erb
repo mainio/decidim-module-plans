@@ -1,1 +1,4 @@
-<%= render partial: "decidim/plans/plans/plans.html", locals: { plans: plans } %>
+<%= render(
+  partial: "decidim/plans/plans/plans.html",
+  locals: { plans: plans, card_cell: card_cell }
+) %>

@@ -19,6 +19,7 @@ module Decidim
       attribute :form_layout, String, default: "decidim/plans/plan_form"
       attribute :view_layout, String, default: "decidim/plans/plan_view"
       attribute :index_layout, String, default: "decidim/plans/plan_index"
+      attribute :card_layout, String, default: "decidim/plans/plan_m"
 
       validates :name, :public_name_key, :form_layout, :view_layout, presence: true
     end
