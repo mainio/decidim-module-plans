@@ -53,8 +53,19 @@ module Decidim
         @help_text ||= translated_attribute(section.help).strip
       end
 
+      def field_info_classes
+        classes = %w(field-info)
+        classes << "with-tooltip" if show_tooltip?
+
+        classes.join(" ")
+      end
+
       def tooltip_help?
         Decidim::Plans.section_edit_tooltips
+      end
+
+      def show_tooltip?
+        tooltip_help? && help_text.present?
       end
 
       def show_info_link?

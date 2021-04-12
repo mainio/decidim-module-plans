@@ -75,16 +75,31 @@
 .field-info{
   position: relative;
 
+  &.with-tooltip{
+    display: flex;
+    justify-content: space-between;
+  }
+
   .form-help-tooltip{
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: relative;
+    display: block;
+    margin-left: 1rem;
+    text-align: right;
+    line-height: 1.8;
+
+    .form-help-tooltip__label{
+      margin-right: 0;
+    }
   }
 }
 
 .form-help-tooltip{
   .icon--information{
-    width: 20px;
-    height: 20px;
+    position: relative;
+    vertical-align: top;
+    top: 2px;
+    width: 22px;
+    height: 22px;
+    margin-right: 3px;
   }
 }

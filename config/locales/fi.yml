@@ -489,7 +489,7 @@ fi:
           related_photos: Liittyvät kuvat
       section_type_edit:
         common:
-          show_help: Näytä lisätietoa
+          show_help: Katso tarkentavat kysymykset
         field_attachments:
           add_attachment: Lisää liite
           attachment_file_required: Tiedosto on liitettävä

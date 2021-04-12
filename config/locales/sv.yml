@@ -489,7 +489,7 @@ sv:
           related_photos: Relaterade bilder
       section_type_edit:
         common:
-          show_help: Visa mer information
+          show_help: Visa detaljerade frågor
         field_attachments:
           add_attachment: Lägg till bilaga
           attachment_file_required: Filen måste bifogas

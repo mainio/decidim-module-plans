@@ -2,10 +2,10 @@
   <div class="row">
     <div class="columns large-6">
       <div class="field">
-        <div class="field-info">
-          <%= plain_label form, :category_id %>
+        <%= content_tag :div, class: field_info_classes do %>
+          <%= plain_label form, "body_#{current_locale}".to_sym %>
           <%= render :tooltip %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

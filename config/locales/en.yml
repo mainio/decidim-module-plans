@@ -497,7 +497,7 @@ en:
           related_photos: Related photos
       section_type_edit:
         common:
-          show_help: Show more information
+          show_help: Show detailed questions
         field_attachments:
           add_attachment: Add attachment
           attachment_file_required: File needs to be attached
