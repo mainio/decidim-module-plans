@@ -162,14 +162,21 @@ module Decidim
         )
       end
 
+      def default_plan_image
+        Decidim::Plans.default_card_image
+      end
+
       def resource_image_path
         return plan_image.thumbnail_url if has_image?
 
-        path = category_image_path(category)
-        return path if path
-        return unless has_category?
+        if has_category?
+          path = category_image_path(category)
+          path = category_image_path(category.parent) if !path && category.parent.present?
 
-        category_image_path(category.parent) if category.parent.present?
+          return path if path
+        end
+
+        default_plan_image
       end
 
       def category_image_path(cat)

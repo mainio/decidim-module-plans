@@ -39,6 +39,9 @@ module Decidim
       }
     end
 
+    # Defines a default card image for the plan cards
+    config_accessor :default_card_image
+
     # Public: Stores an instance of Loggability
     def self.loggability
       @loggability ||= Loggability.new
