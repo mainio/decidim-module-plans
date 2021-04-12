@@ -17,16 +17,10 @@ module Decidim
       process :orientate, if: :image?
       process :strip
 
-      version :thumbnail, if: :image? do
-        process resize_to_fill: [860, 340]
-      end
-
-      version :big, if: :image? do
-        process resize_to_limit: [nil, 1000]
-      end
-
-      version :main, if: :image? do
-        process resize_to_fill: [1480, 740]
+      Decidim::Plans.attachment_image_versions.each do |key, process_options|
+        version key, if: :image? do
+          process process_options
+        end
       end
 
       # This needs to be overridden due to legacy reasons. This extended
