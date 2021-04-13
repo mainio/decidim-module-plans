@@ -13,7 +13,10 @@ module Decidim
         end
 
         def show_input?
-          model.id.blank?
+          # TODO: It should be configurable whether the checkbox is shown for
+          #       published plans or not
+          # model.id.blank?
+          true
         end
       end
     end
