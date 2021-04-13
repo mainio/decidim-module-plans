@@ -102,10 +102,6 @@ module Decidim
       end
 
       def self.geocoded_data_for(component)
-        locale = Arel::Nodes.build_quoted(I18n.locale.to_s).to_sql
-
-        # left_outer_joins(:moderation).where.not(Decidim::Moderation.arel_table[:hidden_at].eq nil
-
         types = %w(
           field_map_point
           field_area_scope
