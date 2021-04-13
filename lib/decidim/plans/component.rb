@@ -44,6 +44,7 @@ Decidim.register_component(:plans) do |component|
     resource.model_class_name = "Decidim::Plans::Plan"
     resource.template = "decidim/plans/plans/linked_plans"
     resource.card = "decidim/plans/plan"
+    resource.searchable = true
   end
 
   component.register_stat :plans_count, primary: true, priority: Decidim::StatsRegistry::HIGH_PRIORITY do |components, start_at, end_at|

@@ -66,11 +66,24 @@ module Decidim
           scope_id: :decidim_scope_id,
           participatory_space: { component: :participatory_space },
           A: :search_title,
+          B: :search_content,
           datetime: :published_at
         },
         index_on_create: ->(proposal) { proposal.visible? },
         index_on_update: ->(proposal) { proposal.visible? }
       )
+
+      def search_title
+        title
+      end
+
+      def search_content
+        contents.each.map do |content|
+          next unless content.section.searchable
+
+          content.body
+        end.compact
+      end
 
       def contents
         super.where(section: sections)
