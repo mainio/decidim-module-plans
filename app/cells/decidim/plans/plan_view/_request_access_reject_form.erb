@@ -3,8 +3,9 @@
     <%= form.hidden_field :id, value: plan.id %>
     <%= form.hidden_field :state, value: plan.state %>
     <%= form.hidden_field :requester_user_id, value: requester.id %>
-    <%= button_tag type: "submit", data: { disable: true }, title: t("decidim.plans.requests.reject_request") do %>
+    <%= button_tag type: "submit", data: { disable: true } do %>
       <%= icon "x", class: "icon--small muted ml-xs" %>
+      <%= t("decidim.plans.requests.reject_request") %>
     <% end %>
   <% end %>
 <% end %>

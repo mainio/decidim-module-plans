@@ -4,7 +4,7 @@
       <%= t("decidim.plans.requests.title") %>
     </span>
   </div>
-  <% @plan.requesters.each do |requester| %>
+  <% plan.requesters.each do |requester| %>
     <div class="definition-data__item expanded" id="request_<%= requester.id %>">
       <%= cell "decidim/author", present(requester), options: { extra_classes: ["author-data--small"] }, has_actions: false %>
 
