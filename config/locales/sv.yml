@@ -346,7 +346,7 @@ sv:
       plan_m:
         view_plan: Visa förslag
       plan_view:
-        back: Tillbaka till listan av förslag
+        back: Gå till listan av förslag
         controls:
           add_author: Lägg till författare för förslag
         flag: Rapportera

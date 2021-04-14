@@ -346,7 +346,7 @@ fi:
       plan_m:
         view_plan: Näytä ehdotus
       plan_view:
-        back: Palaa takaisin ehdotuslistaukseen
+        back: Siirry ehdotuslistaukseen
         controls:
           add_author: Lisää ehdotukselle tekijöitä
         flag: Ilmoita

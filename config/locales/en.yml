@@ -351,7 +351,7 @@ en:
       plan_m:
         view_plan: View proposal
       plan_view:
-        back: Back to proposals list
+        back: Go to proposals list
         controls:
           add_author: Add authors for proposal
         flag: Flag
