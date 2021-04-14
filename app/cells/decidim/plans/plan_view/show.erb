@@ -59,7 +59,7 @@
 
   <%= cell("decidim/plans/coauthorships", plan, has_actions: true, size: 3, context: { current_user: current_user }) %>
 
-  <% if allowed_to?(:edit, :plan, plan: plan) %>
+  <% if plan.published? && allowed_to?(:edit, :plan, plan: plan) %>
     <button class="title-action__action button small primary hollow" data-open="plan-author-add-modal-for-<%= plan.id %>">
       <%= t(".controls.add_author") %>
     </button>
