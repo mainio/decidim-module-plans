@@ -31,8 +31,6 @@ sv:
       section:
         area_scope_parent: Områdetema förälder
         scope_parent: Tema förälder
-      tag:
-        name: Namn
     errors:
       models:
         attachment:
@@ -102,10 +100,8 @@ sv:
         edit_plan: Redigera
         export_budgets: Konvertera till projekt
         manage_authors: Hantera författare
-        manage_tags: Hantera taggar
         new: Gör nytt förslag
-        new_tag: Ny tagg
-        plan_taggings: Taggar
+        taggings: Taggar
         remove_author: Ta bort författaren
         reopen_plan: Öppna för redigering
         sections: Avsnitt
@@ -160,14 +156,6 @@ sv:
           new:
             create: Skapa
             title: Gör nytt förslag
-          taggings:
-            no_results: "Skapa ny tagg: %{name}"
-            search: Sök
-            title: Taggar
-            update: Uppdatera
-          update_taggings:
-            invalid: Fel vid uppdatering av taggarna.
-            success: Taggar uppdaterats.
         sections:
           form:
             add_section: Lägg till avsnitt
@@ -202,27 +190,6 @@ sv:
             body: Brödtext
             created_at: Skapats
             plans: Förslag
-        tags:
-          create:
-            error: Det gick inte att skapa.
-            success: Skapats.
-          destroy:
-            error: Fel vid borttagning.
-            success: Innehållet har raderats.
-          edit:
-            title: Redigera tagg
-            update: Uppdatera
-          form:
-            tags: Taggar
-          index:
-            tags: Taggar
-            title: Hantera taggar
-          new:
-            create: Skapa
-            title: Ny tagg
-          update:
-            invalid: Fel uppdatering.
-            success: Uppdaterats.
       admin_log:
         plan:
           answer: "%{user_name} svarade på innehållet %{resource_name} i delaktighetslokalen %{space_name}."
@@ -289,11 +256,6 @@ sv:
             state: Status
             tags: Taggar
             title: Rubrik
-        plan_tags:
-          fields:
-            id: ID
-            name: Namn
-            taggings_count: Antal användningsområden
       plan_add_authors:
         add_users_placeholder: Skriv författarens namn eller smeknamn
         close_window: Stäng fönstret
@@ -538,6 +500,7 @@ sv:
         field_map_point: Fält - Map point
         field_number: Fält - Nummer
         field_scope: Fält - Scope
+        field_tags: Fält - Taggar
         field_text_multiline: Fält - Med flera rader
         field_text: Fält - Med en rad
         field_title: Fält - Titel

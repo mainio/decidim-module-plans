@@ -31,8 +31,6 @@ fi:
       section:
         area_scope_parent: Alueteeman isäntä
         scope_parent: Teeman isäntä
-      tag:
-        name: Nimi
     errors:
       models:
         attachment:
@@ -104,8 +102,7 @@ fi:
         manage_authors: Hallinnoi tekijöitä
         manage_tags: Hallinnoi merkintöjä
         new: Tee uusi ehdotus
-        new_tag: Uusi merkintä
-        plan_taggings: Merkinnät
+        taggings: Merkinnät
         remove_author: Poista tekijä
         reopen_plan: Avaa muokattavaksi
         sections: Osiot
@@ -160,14 +157,6 @@ fi:
           new:
             create: Luo
             title: Tee uusi ehdotus
-          taggings:
-            no_results: "Luo uusi merkintä: %{name}"
-            search: Hae
-            title: Merkinnät
-            update: Päivitä
-          update_taggings:
-            invalid: Virhe päivitettäessä merkintöjä.
-            success: Merkintöjen päivitys onnistui.
         sections:
           form:
             add_section: Lisää osio
@@ -202,27 +191,6 @@ fi:
             body: Runkoteksti
             created_at: Luontipäivä
             plans: Ehdotukset
-        tags:
-          create:
-            error: Luonti epäonnistui.
-            success: Luonti onnistui.
-          destroy:
-            error: Virhe poistettaessa.
-            success: Poisto onnistui.
-          edit:
-            title: Muokkaa merkintää
-            update: Päivitä
-          form:
-            tags: Merkinnät
-          index:
-            tags: Merkinnät
-            title: Hallinnoi merkintöjä
-          new:
-            create: Luo
-            title: Uusi merkintä
-          update:
-            invalid: Virhe päivitettäessä.
-            success: Päivitys onnistui.
       admin_log:
         plan:
           answer: "%{user_name} vastasi sisältöön %{resource_name} osallisuustilassa %{space_name}."
@@ -289,11 +257,6 @@ fi:
             state: Tila
             tags: Merkinnät
             title: Otsikko
-        plan_tags:
-          fields:
-            id: ID
-            name: Nimi
-            taggings_count: Käyttömäärä
       plan_add_authors:
         add_users_placeholder: Kirjoita tekijän nimi tai nimimerkki
         close_window: Sulje ikkuna
@@ -538,6 +501,7 @@ fi:
         field_map_point: Kenttä - Karttapiste
         field_number: Kenttä - Numero
         field_scope: Kenttä - Teema
+        field_tags: Kenttä - Merkinnät
         field_text_multiline: Kenttä - Monirivinen
         field_text: Kenttä - Yksirivinen
         field_title: Kenttä - Otsikko

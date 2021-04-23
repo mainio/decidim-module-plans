@@ -18,6 +18,7 @@ module Decidim
       include Decidim::Searchable
       include Decidim::Plans::Traceable
       include Decidim::Loggable
+      include Decidim::Tags::Taggable
       include Decidim::Favorites::Favoritable
 
       component_manifest_name "plans"
@@ -42,12 +43,6 @@ module Decidim
                foreign_key: :decidim_user_id
 
       has_many :contents, foreign_key: :decidim_plan_id, dependent: :destroy
-
-      has_many :taggings,
-               class_name: "Decidim::Plans::PlanTagging",
-               foreign_key: :decidim_plan_id,
-               dependent: :destroy
-      has_many :tags, through: :taggings
 
       scope :open, -> { where(state: "open") }
       scope :accepted, -> { where(state: "accepted") }

@@ -14,6 +14,7 @@ module Decidim
       implements Decidim::Core::TraceableInterface
       implements Decidim::Core::TimestampsInterface
       implements Decidim::Favorites::Api::FavoritesInterface
+      implements Decidim::Tags::TagsInterface
 
       field :id, ID, null: false
       field :title, Decidim::Core::TranslatedFieldType, description: "This plan's title", null: false

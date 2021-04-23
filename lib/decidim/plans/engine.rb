@@ -38,7 +38,6 @@ module Decidim
         app.config.assets.precompile += %w(decidim_plans_manifest.js
                                            decidim_plans_manifest.css
                                            decidim/plans/identity_selector_dialog.js
-                                           decidim/plans/decidim_plans_manifest.js
                                            decidim/plans/social_share.js
                                            decidim/plans/map.js
                                            decidim/plans/plans_list.js
@@ -109,6 +108,13 @@ module Decidim
           type.content_control_class_name = "Decidim::Plans::SectionControl::Category"
           type.api_type_class_name = "Decidim::Plans::SectionContent::FieldCategoryType"
         end
+        registry.register(:field_tags) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_tags"
+          type.display_cell = "decidim/plans/section_type_display/field_tags"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldTagsForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Tags"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldTagsType"
+        end
         registry.register(:field_map_point) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_map_point"
           type.display_cell = "decidim/plans/section_type_display/field_map_point"
@@ -156,6 +162,7 @@ module Decidim
           argument(:area_scope, ::Decidim::Plans::ContentMutation::FieldAreaScopeAttributes, required: false)
           argument(:attachments, ::Decidim::Plans::ContentMutation::FieldAttachmentsAttributes, required: false)
           argument(:images, ::Decidim::Plans::ContentMutation::FieldImageAttachmentsAttributes, required: false)
+          argument(:tags, ::Decidim::Plans::ContentMutation::FieldTagsAttributes, required: false)
         end
       end
 

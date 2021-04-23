@@ -57,7 +57,7 @@
     <% end %>
 
     <% if allowed_to? :edit_taggings, :plan, plan: plan %>
-      <%= icon_link_to "tag", taggings_plan_path(plan), t("actions.plan_taggings", scope: "decidim.plans"), class: "action-icon--plan-taggings" %>
+      <%= icon_link_to "tag", plan_taggings_path(plan), t("actions.taggings", scope: "decidim.plans"), class: "action-icon--plan-taggings" %>
     <% end %>
 
     <% if allowed_to? :create, :plan_answer %>

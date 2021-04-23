@@ -90,29 +90,6 @@ module Decidim
           end
         end
 
-        def taggings
-          enforce_permission_to :edit_taggings, :plan, plan: plan
-
-          @form = form(Admin::TaggingsForm).from_model(plan)
-        end
-
-        def update_taggings
-          enforce_permission_to :edit_taggings, :plan, plan: plan
-
-          @form = form(Admin::TaggingsForm).from_params(params)
-          Admin::UpdatePlanTaggings.call(@form, plan) do
-            on(:ok) do
-              flash[:notice] = I18n.t("plans.update_taggings.success", scope: "decidim.plans.admin")
-              redirect_to plans_path
-            end
-
-            on(:invalid) do
-              flash.now[:alert] = I18n.t("plans.update_taggings.invalid", scope: "decidim.plans.admin")
-              render :taggings
-            end
-          end
-        end
-
         # Possibly needed by the views
         def info_path(section_id)
           main_component_path("info/#{section_id}")

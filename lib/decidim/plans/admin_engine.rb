@@ -13,7 +13,6 @@ module Decidim
         resources :plans, only: [:index, :new, :create, :edit, :update] do
           get :search_proposals
           resources :plan_answers, only: [:edit, :update]
-          resources :tags, except: [:show]
           resources :authors, only: [:index, :create, :destroy] do
             collection do
               patch :confirm
@@ -24,9 +23,8 @@ module Decidim
               delete "/", action: :destroy_organization
             end
           end
+          resource :taggings, only: [:show, :update]
           member do
-            get :taggings
-            patch :update_taggings
             post :close
             post :reopen
           end
@@ -42,7 +40,6 @@ module Decidim
 
       initializer "decidim_plans.admin_assets" do |app|
         app.config.assets.precompile += %w(admin/decidim_plans_manifest.js
-                                           decidim/plans/decidim_plans_manifest.js
                                            decidim/plans/proposal_picker.scss)
       end
 

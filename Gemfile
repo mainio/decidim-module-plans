@@ -14,8 +14,10 @@ require_relative "#{base_path}lib/decidim/plans/version"
 DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.23-stable" }.freeze
 
 gem "decidim", DECIDIM_VERSION
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "master"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "master"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.23-stable"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.23-stable"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
+
 gem "decidim-plans", path: "."
 
 gem "bootsnap", "~> 1.4"
