@@ -26,7 +26,7 @@ module Decidim
 
           # Go through all plan sections of this type and take note about all
           # the proposals in each section.
-          proposal_ids = pl.contents.with_section_type(:link_proposals).map do |sect|
+          proposal_ids = plan.contents.with_section_type(:link_proposals).map do |sect|
             sect.body["proposal_ids"]
           end.flatten.uniq
 
