@@ -58,7 +58,11 @@ module Decidim
       end
 
       def linked_resources
-        resources = object.resource_links_from.map(&:to)
+        resources = object.resource_links_from.map(&:to).reject do |resource|
+          (resource.respond_to?(:published?) && !resource.published?) ||
+            (resource.respond_to?(:hidden?) && resource.hidden?) ||
+            (resource.respond_to?(:withdrawn?) && resource.withdrawn?)
+        end
         return nil unless resources.any?
 
         resources
