@@ -121,7 +121,7 @@ Decidim.register_component(:plans) do |component|
         help: Decidim::Faker::Localized.paragraph,
         mandatory: false,
         position: n,
-        section_type: Decidim::Plans::Section.types.first
+        section_type: "field_text_multiline"
       )
     end
 
