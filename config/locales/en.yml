@@ -422,9 +422,9 @@ en:
           version: Version %{number}
           version_history: see version history
           withdraw: withdraw the proposal
-          withdraw_btn: Withdraw
+          withdraw_btn: Withdraw proposal
           withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
-          withdraw_confirmation: Are you sure to withdraw this item?
+          withdraw_confirmation: Are you sure you want to withdraw this proposal? The proposal won't be deleted but it will be hidden in the proposals listing.
         update:
           error: Error updating content.
           success: Updated successfully.

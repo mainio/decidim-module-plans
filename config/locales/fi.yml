@@ -415,9 +415,9 @@ fi:
           version: Versio %{number}
           version_history: näytä versiohistoria
           withdraw: peru ehdotus
-          withdraw_btn: Peru
+          withdraw_btn: Peru ehdotus
           withdraw_btn_hint: Jos muutat mieltäsi, voit perua tämän kohteen, mikäli se ei ole vielä kerännyt tukea. Kohdetta ei poisteta, se jää näkyviin peruttujen kohteiden listaan.
-          withdraw_confirmation: Haluatko varmasti perua?
+          withdraw_confirmation: Haluatko varmasti perua tämän ehdotuksen? Ehdotusta ei poisteta, mutta se piilotetaan ehdotuslistauksesta.
         update:
           error: Sisälllön päivitys epäonnistui.
           success: Sisälllön päivitys onnistui.

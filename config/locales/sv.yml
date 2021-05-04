@@ -414,9 +414,9 @@ sv:
           version: Version %{number}
           version_history: visa versionshistorik
           withdraw: annullera förslag
-          withdraw_btn: Annullera
+          withdraw_btn: Annullera förslag
           withdraw_btn_hint: Om du ändrar dig kan du annullera detta objekt, om det ännu inte har understötts. Objektet raderas inte utan det finns kvar i listan över annullerade objekt.
-          withdraw_confirmation: Är du säker på att du vill annullera?
+          withdraw_confirmation: Är du säker på att du vill annullera detta förslag? Förslaget raderas inte men det döljs i listan över förslag.
         update:
           error: Det gick inte att uppdatera innehållet.
           success: Innehållet har uppdaterats.
