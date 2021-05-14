@@ -41,7 +41,9 @@ module Decidim
       # which can be different depending on the section type.
       field :values, [Decidim::Plans::ContentSubject], method: :contents, description: "The content values in this plan.", null: false
 
-      if Decidim::Plans::ResourceLinkSubject.possible_types.any?
+      def self.add_linked_resources_field
+        return unless Decidim::Plans::ResourceLinkSubject.possible_types.any?
+
         # These are the resources that are linked from the plan to the related
         # object.
         field(

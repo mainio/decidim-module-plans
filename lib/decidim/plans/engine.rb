@@ -185,6 +185,10 @@ module Decidim
           type.api_type_class_name = "Decidim::Plans::SectionContent::LinkProposalsType"
         end
       end
+
+      initializer "decidim_plans.api_linked_resources", before: :finisher_hook do
+        Decidim::Plans::PlanType.add_linked_resources_field
+      end
     end
   end
 end
