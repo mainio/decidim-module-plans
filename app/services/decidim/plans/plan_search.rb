@@ -30,7 +30,7 @@ module Decidim
           ref = Arel.sql("plan_content_text_#{section.id}")
           final = final.joins(
             "LEFT JOIN decidim_plans_plan_contents AS #{ref} ON #{ref}.decidim_plan_id = #{Arel.sql(query.table_name)}.id
-            AND #{ref}.decidim_section_id = #{Arel.sql(section.id)}"
+            AND #{ref}.decidim_section_id = #{Arel.sql(section.id.to_s)}"
           )
           options[:organization].available_locales.each do |l|
             subq += " OR #{ref}.body ->> '#{l}' ILIKE :text"

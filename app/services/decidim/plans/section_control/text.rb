@@ -13,7 +13,7 @@ module Decidim
           locale = Arel.sql(I18n.locale.to_s)
           query.joins(
             "LEFT JOIN decidim_plans_plan_contents AS #{ref} ON #{ref}.decidim_plan_id = #{Arel.sql(query.table_name)}.id
-            AND #{ref}.decidim_section_id = #{Arel.sql(section.id)}"
+            AND #{ref}.decidim_section_id = #{Arel.sql(section.id.to_s)}"
           ).where("#{ref}.body->>'#{locale}' ILIKE ?", "%#{params["text"]}%")
         end
       end

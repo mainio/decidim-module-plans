@@ -12,7 +12,7 @@ module Decidim
           ref = Arel.sql("plan_content_#{section.id}")
           query.joins(
             "LEFT JOIN decidim_plans_plan_contents AS #{ref} ON #{ref}.decidim_plan_id = #{Arel.sql(query.table_name)}.id
-            AND #{ref}.decidim_section_id = #{section.id}"
+            AND #{ref}.decidim_section_id = #{Arel.sql(section.id.to_s)}"
           ).where("#{ref}.body->>'scope_id' =?", params["scope_id"])
         end
 
