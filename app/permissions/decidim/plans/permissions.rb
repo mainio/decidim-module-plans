@@ -4,8 +4,6 @@ module Decidim
   module Plans
     class Permissions < Decidim::DefaultPermissions
       def permissions
-        return permission_action unless user
-
         # Delegate the admin permission checks to the admin permissions class
         return Decidim::Plans::Admin::Permissions.new(user, permission_action, context).permissions if permission_action.scope == :admin
         return permission_action if permission_action.scope != :public
@@ -66,24 +64,25 @@ module Decidim
       end
 
       def can_edit_plan?
-        toggle_allow(plan.open? && plan.editable_by?(user))
+        toggle_allow(user && plan && plan.open? && plan.editable_by?(user))
       end
 
       def can_withdraw_plan?
-        toggle_allow(plan && plan.withdrawable_by?(user))
+        toggle_allow(user && plan && plan.withdrawable_by?(user))
       end
 
       def can_publish_plan?
-        toggle_allow(plan.open? && plan.editable_by?(user))
+        toggle_allow(user && plan && plan.open? && plan.editable_by?(user))
       end
 
       def can_close_plan?
         return toggle_allow(false) unless component_settings.closing_allowed?
 
-        toggle_allow(plan && plan.created_by?(user))
+        toggle_allow(plan && plan && plan.created_by?(user))
       end
 
       def can_request_access_plan?
+        return toggle_allow(false) unless user
         return toggle_allow(false) unless plan.open?
         return toggle_allow(false) if plan.editable_by?(user)
         return toggle_allow(false) if plan.requesters.include? user
