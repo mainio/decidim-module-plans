@@ -219,8 +219,8 @@ GIT
 
 GIT
   remote: https://github.com/mainio/decidim-module-tags.git
-  revision: 5c2041db3042039284b323b2ec556851a8d8193b
-  branch: main
+  revision: 2329aeaf9200b814085e6d3ab334d70556584ba8
+  branch: release/0.23-stable
   specs:
     decidim-tags (0.23.0)
       decidim-core (~> 0.23.0)
