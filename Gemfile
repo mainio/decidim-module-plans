@@ -16,7 +16,7 @@ DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.23-stable" }.f
 gem "decidim", DECIDIM_VERSION
 gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.23-stable"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.23-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.23-stable"
 
 gem "decidim-plans", path: "."
 
