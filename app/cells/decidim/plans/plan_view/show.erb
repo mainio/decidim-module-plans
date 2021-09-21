@@ -69,9 +69,11 @@
 </div>
 <div class="row">
   <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
-    <div class="actionbox" data-equalizer-watch>
-      <%= render :actions %>
-    </div>
+    <% if show_actions? %>
+      <div class="actionbox" data-equalizer-watch>
+        <%= render :actions %>
+      </div>
+    <% end %>
 
     <div class="card text-center">
       <div class="card__content">
