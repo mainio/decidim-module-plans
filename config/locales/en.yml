@@ -504,6 +504,7 @@ en:
         field_attachments: Field - Attachments
         field_category: Field - Category
         field_checkbox: Field - Checkbox
+        field_currency: Field - Currency
         field_image_attachments: Field - Image attachments
         field_map_point: Field - Map point
         field_number: Field - Number

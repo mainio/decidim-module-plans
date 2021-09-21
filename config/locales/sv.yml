@@ -496,6 +496,7 @@ sv:
         field_attachments: Field - Attachments
         field_category: Fält - Category
         field_checkbox: Fält - Checkbox
+        field_currency: Fält - Valuta
         field_image_attachments: Fält - Image attachments
         field_map_point: Fält - Map point
         field_number: Fält - Nummer

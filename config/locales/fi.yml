@@ -497,6 +497,7 @@ fi:
         field_attachments: Kenttä - Liitteet
         field_category: Kenttä - Kategoria
         field_checkbox: Kenttä - Valintalaatikko
+        field_currency: Kenttä - Valuutta
         field_image_attachments: Kenttä - Kuvaliitteet
         field_map_point: Kenttä - Karttapiste
         field_number: Kenttä - Numero

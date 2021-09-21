@@ -18,7 +18,8 @@ module Decidim
         Decidim::Plans::SectionContent::FieldMapPointType,
         Decidim::Plans::SectionContent::FieldScopeType,
         Decidim::Plans::SectionContent::FieldTextType,
-        Decidim::Plans::SectionContent::FieldNumberType
+        Decidim::Plans::SectionContent::FieldNumberType,
+        Decidim::Plans::SectionContent::FieldCurrencyType
       )
 
       def self.resolve_type(object, _context)

@@ -15,7 +15,18 @@ module Decidim
         private
 
         def number
-          model.body["value"]
+          @number ||= begin
+            value = model.body["value"]
+            (value % 1).zero? ? value.to_i : value
+          end
+        end
+
+        def currency_precision
+          (number % 1).zero? ? 0 : 2
+        end
+
+        def currency_type?
+          section.section_type == "field_currency"
         end
       end
     end

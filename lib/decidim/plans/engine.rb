@@ -81,6 +81,12 @@ module Decidim
           type.content_form_class_name = "Decidim::Plans::ContentData::FieldNumberForm"
           type.api_type_class_name = "Decidim::Plans::SectionContent::FieldNumberType"
         end
+        registry.register(:field_currency) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_number"
+          type.display_cell = "decidim/plans/section_type_display/field_number"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldNumberForm"
+          type.api_type_class_name = "Decidim::Plans::SectionContent::FieldCurrencyType"
+        end
         registry.register(:field_checkbox) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_checkbox"
           type.display_cell = "decidim/plans/section_type_display/field_checkbox"
@@ -155,6 +161,7 @@ module Decidim
         Decidim::Plans::ContentMutationAttributes.class_eval do
           argument(:text, ::Decidim::Plans::ContentMutation::FieldTextAttributes, required: false)
           argument(:number, ::Decidim::Plans::ContentMutation::FieldNumberAttributes, required: false)
+          argument(:currency, ::Decidim::Plans::ContentMutation::FieldCurrencyAttributes, required: false)
           argument(:map_point, ::Decidim::Plans::ContentMutation::FieldMapPointAttributes, required: false)
           argument(:checkbox, ::Decidim::Plans::ContentMutation::FieldCheckboxAttributes, required: false)
           argument(:category, ::Decidim::Plans::ContentMutation::FieldCategoryAttributes, required: false)
