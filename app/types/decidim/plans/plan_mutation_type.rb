@@ -11,7 +11,7 @@ module Decidim
       field :update, Decidim::Plans::PlanType, null: true do
         description "The content mutations to be updated."
 
-        argument :title, GraphQL::Types::JSON, description: "The plan title localized hash, e.g. {\"en\": \"English title\"}", required: true
+        argument :title, GraphQL::Types::JSON, description: "The plan title localized hash, e.g. {\"en\": \"English title\"}", required: false
         argument :contents, [Decidim::Plans::ContentMutationAttributes], required: true
         argument :version_comment, GraphQL::Types::JSON, description: "The plan version comment localized hash, e.g. {\"en\": \"Fixed a typo\"}", required: false
       end
@@ -23,7 +23,7 @@ module Decidim
         argument :answer_content, GraphQL::Types::JSON, description: "The answer feedback for the status for this plan", required: false
       end
 
-      def update(title:, contents:, version_comment: nil)
+      def update(contents:, title: nil, version_comment: nil)
         enforce_permission_to :edit, :plan, plan: object
 
         title_section = object.sections.find_by(section_type: :field_title)
@@ -32,7 +32,15 @@ module Decidim
             "version_comment" => version_comment,
             "contents" => contents.map do |content|
               next unless content
-              next unless content.decidim_plan_id == object.id
+
+              unless content.id
+                body = content.body
+                content = resolve_plan_content(content)
+                next unless content
+
+                content.body = body
+              end
+              next if content.decidim_plan_id != object.id
 
               # No need to add the title separately if it is included in the
               # content parameters.
@@ -50,7 +58,7 @@ module Decidim
         # We cannot update the title directly through the parameters, so we
         # need to add the title section to the params hash. This is kept here
         # for legacy reasons
-        if title_section
+        if title_section && title
           params["plan"]["contents"] << {
             "section_id" => title_section.id,
             "body" => title
@@ -103,7 +111,7 @@ module Decidim
           end
           on(:invalid) do
             return GraphQL::ExecutionError.new(
-              form.errors.full_messages.join(', ')
+              form.errors.full_messages.join(", ")
             )
           end
         end
@@ -117,6 +125,15 @@ module Decidim
 
       def current_user
         context[:current_user]
+      end
+
+      def resolve_plan_content(content)
+        return unless content.section
+
+        object.contents.find_by(section: content.section) || Decidim::Plans::Content.new(
+          section: content.section,
+          plan: object
+        )
       end
 
       def enforce_permission_to(action, subject, extra_context = {})
