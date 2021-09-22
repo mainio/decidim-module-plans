@@ -17,6 +17,11 @@ module Decidim
         def number
           @number ||= begin
             value = model.body["value"]
+            unless value.is_a?(Numeric)
+              return if value.empty?
+
+              value = value.to_f
+            end
             (value % 1).zero? ? value.to_i : value
           end
         end
