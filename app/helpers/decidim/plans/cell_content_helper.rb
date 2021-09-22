@@ -42,7 +42,7 @@ module Decidim
       def area_scope
         return unless area_scope_content
 
-        @area_scope ||= Decidim::Category.find_by(id: area_scope_content.body["scope_id"])
+        @area_scope ||= Decidim::Scope.find_by(id: area_scope_content.body["scope_id"])
       end
 
       def area_scopes_parent
