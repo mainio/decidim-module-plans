@@ -33,7 +33,27 @@ module Decidim
       end
 
       def body
-        fields = plan.sections.where(visible_view: true).map do |section|
+        fields = each_section do |section_title, section_body|
+          "<dt>#{section_title}</dt> <dd>#{section_body}</dd>"
+        end
+        "<dl>#{fields.join("\n")}</dl>".html_safe
+      end
+
+      def body_contents
+        fields = each_section do |_section_title, section_body|
+          "<div>#{section_body}</div>"
+        end
+        "<div>#{fields.join("\n")}</div>".html_safe
+      end
+
+      def display_mention
+        link_to title, plan_path
+      end
+
+      private
+
+      def each_section
+        plan.sections.where(visible_view: true).map do |section|
           content = plan.contents.find_by(section: section)
           next if content.nil?
 
@@ -45,14 +65,8 @@ module Decidim
               "" # TODO: Other types
             end
           end
-          "<dt>#{section_title}</dt> <dd>#{section_body}</dd>"
+          yield section_title, section_body
         end
-
-        "<dl>#{fields.join("\n")}</dl>".html_safe
-      end
-
-      def display_mention
-        link_to title, plan_path
       end
     end
   end

@@ -39,7 +39,7 @@ module Decidim
       end
 
       def body
-        decidim_sanitize(present(model).body)
+        decidim_sanitize(present(model).body_contents)
       end
 
       def category_name
