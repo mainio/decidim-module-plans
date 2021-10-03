@@ -4,6 +4,8 @@ module Decidim
   module Plans
     module Admin
       class BudgetsExportsController < Admin::ApplicationController
+        helper_method :sections
+
         def new
           enforce_permission_to :export_budgets, :plans
 
@@ -27,6 +29,12 @@ module Decidim
               render action: "new"
             end
           end
+        end
+
+        private
+
+        def sections
+          @sections ||= Decidim::Plans::Section.where(component: current_component).order(:position)
         end
       end
     end

@@ -12,10 +12,16 @@ en:
   activemodel:
     attributes:
       budgets_export:
+        area_scope_id: Area scope
+        budget_section: Budget section
+        content_sections: Content sections
         default_budget_amount: Default budget amount
         export_all_closed_plans: Export all closed proposals
-        target_component_id: Component
+        image_section: Image section
+        location_section: Location section
         scope_id: Scope
+        summary_section: Summary section
+        target_component_id: Component
       budgets_export_target:
         budget_id: Budget
       plan:

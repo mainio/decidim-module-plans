@@ -11,10 +11,16 @@ fi:
   activemodel:
     attributes:
       budgets_export:
+        area_scope_id: Alueteema
+        budget_section: Budjetin osio
+        content_sections: Sisällön osiot
         default_budget_amount: Oletusbudjettisumma
         export_all_closed_plans: Vie kaikki suljetut ehdotukset
-        target_component_id: Komponentti
+        image_section: Kuvan osio
+        location_section: Paikan osio
         scope_id: Teema
+        summary_section: Tiivistelmän osio
+        target_component_id: Komponentti
       budgets_export_target:
         budget_id: Budjetti
       plan:

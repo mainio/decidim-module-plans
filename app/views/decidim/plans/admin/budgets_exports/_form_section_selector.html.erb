@@ -1,0 +1,5 @@
+<% if sections.any? %>
+  <div class="row column">
+    <%= form.select(target, section_select_options(sections), include_blank: true) %>
+  </div>
+<% end %>

@@ -12,8 +12,6 @@ module Decidim
         attribute :component_id, Integer
         attribute :budget_id, Integer
 
-        validates :component_id, :budget_id, presence: true
-
         def map_model(component)
           self.component_id = component.id
         end

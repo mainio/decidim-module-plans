@@ -6,12 +6,6 @@
       </div>
 
       <div class="card-section">
-        <% if current_component.has_subscopes? %>
-          <div class="row column">
-            <%= scopes_picker_field f, :scope_id %>
-          </div>
-        <% end %>
-
         <div class="row column">
           <%= f.select :target_component_id, @form.target_components_collection, prompt: t(".select_component") %>
         </div>
@@ -23,6 +17,29 @@
               <%= component_form.select :budget_id, details.target_budgets_collection, prompt: t(".select_budget") %>
             <% end %>
           </div>
+        <% end %>
+
+        <% if current_component.has_subscopes? %>
+          <div class="row column">
+            <%= scopes_picker_field f, :scope_id %>
+          </div>
+
+          <% if has_area_scope? %>
+            <div class="row column">
+              <%= scopes_picker_field f, :area_scope_id %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <% if defined?(Decidim::BudgetingPipeline) %>
+          <%= render partial: "form_content_sections", locals: { form: f, sections: content_sections } %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :summary_section, sections: content_sections }  %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :budget_section, sections: budget_sections }  %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :image_section, sections: image_sections }  %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :location_section, sections: location_sections }  %>
+        <% else %>
+          <%= render partial: "form_content_sections", locals: { form: f, sections: content_sections } %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :budget_section, sections: budget_sections }  %>
         <% end %>
 
         <div class="row column">

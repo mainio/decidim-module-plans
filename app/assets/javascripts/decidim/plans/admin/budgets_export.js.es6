@@ -8,8 +8,15 @@
     $componentSelect.on("change.decidim-plans init.decidim-plans", () => {
       const selectedComponent = $componentSelect.val();
 
-      $(".target-details-fields").addClass("hide");
-      $(`.target-details-fields[data-component-id="${selectedComponent}"]`).removeClass("hide");
+      $(".target-details-fields").each((_i, details) => {
+        const $details = $(details);
+        $details.addClass("hide");
+        $("select", $details).removeAttr("required");
+      });
+
+      const $targetDetails = $(`.target-details-fields[data-component-id="${selectedComponent}"]`);
+      $("select", $targetDetails).attr("required", "required");
+      $targetDetails.removeClass("hide");
     }).trigger("init.decidim-plans");
   });
 })(window);

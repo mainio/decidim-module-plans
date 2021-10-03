@@ -9,14 +9,26 @@ module Decidim
         mimic :budgets_export
 
         attribute :scope_id, Integer
+        attribute :area_scope_id, Integer
         attribute :target_component_id, Integer
         attribute :target_details, Array[PlanExportBudgetsTargetDetailsForm]
         attribute :default_budget_amount, Integer
         attribute :export_all_closed_plans, Boolean
 
-        validates :target_component_id, :target_component, :current_component, presence: true
+        attribute :content_sections, Array[Integer]
+        attribute :budget_section, Integer
+        attribute :summary_section, Integer
+        attribute :image_section, Integer
+        attribute :location_section, Integer
+
+        validates :target_component_id, :target_component, :target_budget, :current_component, presence: true
+        validates :actual_content_sections, empty: false
         validates :export_all_closed_plans, allow_nil: false, acceptance: true
-        validates :default_budget_amount, presence: true, numericality: { greater_than: 0 }
+        validates :default_budget_amount, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+        def actual_content_sections
+          content_sections.reject(&:zero?)
+        end
 
         def map_model(model)
           self.target_details = components_for(model.participatory_space).map do |component|
@@ -24,8 +36,21 @@ module Decidim
           end
         end
 
+        def target_budget
+          @target_budget ||= begin
+            detail = target_details.find { |d| d.component_id == target_component_id }
+            return unless detail
+
+            detail.target_budget
+          end
+        end
+
         def scope
-          Decidim::Scope.find_by(id: scope_id)
+          @scope ||= Decidim::Scope.find_by(id: scope_id)
+        end
+
+        def area_scope
+          @area_scope ||= Decidim::Scope.find_by(id: area_scope_id)
         end
 
         def target_component
