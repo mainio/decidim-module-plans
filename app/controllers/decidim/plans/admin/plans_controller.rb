@@ -7,6 +7,7 @@ module Decidim
       class PlansController < Admin::ApplicationController
         include Decidim::ApplicationHelper
         include Plans::AttachedProposalsHelper
+        include Decidim::Plans::AttachedPlansHelper
 
         helper Plans::ApplicationHelper
         helper Plans::AttachmentsHelper

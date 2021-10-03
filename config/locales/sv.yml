@@ -423,6 +423,14 @@ sv:
         withdraw:
           error: Det inträffade ett fel vid annullering av objektet.
           success: Objektet har annullerats.
+      plans_picker:
+        choose_plans: Välj förslag
+        close: Stäng
+        more_plans: Det finns ytterligare %{number} förslag. Förfina dina sökkriterier för att hitta dem.
+        no_plans: Inga förslag matchar dina sökkriterier eller det finns inga förslag.
+      plans_picker_field:
+        attach_plan: Välj förslag
+        plans: Förslag
       requests:
         accept_request: Godkänn
         accepted_request:

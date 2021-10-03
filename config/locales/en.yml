@@ -431,6 +431,14 @@ en:
         withdraw:
           error: Error withdrawing the item.
           success: Item withdrawn successfully.
+      plans_picker:
+        choose_plans: Choose proposals
+        close: Close
+        more_plans: There are %{number} more proposals. Refine your search to locate them.
+        no_plans: No proposals match your search criteria or there isn't any proposals.
+      plans_picker_field:
+        attach_plan: Choose proposals
+        plans: Proposals
       requests:
         accept_request: Accept
         accepted_request:

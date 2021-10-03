@@ -11,7 +11,10 @@ module Decidim
 
       routes do
         resources :plans, only: [:index, :new, :create, :edit, :update] do
-          get :search_proposals
+          collection do
+            get :search_proposals
+            get :search_plans
+          end
           resources :plan_answers, only: [:edit, :update]
           resources :authors, only: [:index, :create, :destroy] do
             collection do
@@ -40,7 +43,8 @@ module Decidim
 
       initializer "decidim_plans.admin_assets" do |app|
         app.config.assets.precompile += %w(admin/decidim_plans_manifest.js
-                                           decidim/plans/proposal_picker.scss)
+                                           decidim/plans/admin/plan_picker.js
+                                           decidim/plans/data_picker.scss)
       end
 
       initializer "decidim_plans.mutation_extensions", after: "decidim-api.graphiql" do

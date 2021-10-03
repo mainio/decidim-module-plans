@@ -1,0 +1,12 @@
+<ul id="plans_list">
+  <% decorated_plans do |plan| %>
+    <li>
+      <label><input type="checkbox" data-picker-text="<%= plan.id_and_title %>" data-picker-url="<%= picker_path %>" value="<%= plan.id %>" data-picker-choose><%= plan.id_and_title %></label>
+    </li>
+  <% end %>
+  <% if more_plans? %>
+    <li><div class="callout warning"><%= t("plans_picker.more_plans", scope: "decidim.plans", number: more_plans_count) %></div>
+    </li>
+  <% end %>
+</ul>
+<div id="no_plans" class="callout warning"><%= t("plans_picker.no_plans", scope: "decidim.plans") %></div>

@@ -424,6 +424,14 @@ fi:
         withdraw:
           error: Virhe kohteen peruutuksessa.
           success: Kohde peruutettu onnistuneesti.
+      plans_picker:
+        choose_plans: Valitse ehdotukset
+        close: Sulje
+        more_plans: Ehdotuksia on vielä %{number} kpl lisää. Muuta hakuehtoja löytääksesi ne.
+        no_plans: Hakuehtosi eivät vastaa yhtään ehdotusta tai yhtään ehdotusta ei vielä ole olemassa.
+      plans_picker_field:
+        attach_plan: Valitse ehdotukset
+        plans: Ehdotukset
       requests:
         accept_request: Hyväksy
         accepted_request:

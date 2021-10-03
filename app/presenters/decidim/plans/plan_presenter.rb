@@ -32,6 +32,10 @@ module Decidim
         plain_content(translated_attribute(plan.title))
       end
 
+      def id_and_title
+        "##{plan.id} - #{title}"
+      end
+
       def body
         fields = each_section do |section_title, section_body|
           "<dt>#{section_title}</dt> <dd>#{section_body}</dd>"

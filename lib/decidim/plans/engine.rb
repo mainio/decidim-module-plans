@@ -41,7 +41,7 @@ module Decidim
                                            decidim/plans/social_share.js
                                            decidim/plans/map.js
                                            decidim/plans/plans_list.js
-                                           decidim/plans/proposal_picker.scss
+                                           decidim/plans/data_picker.scss
                                            decidim/plans/social_share.css.scss
                                            decidim/plans/plans_form.scss)
       end
