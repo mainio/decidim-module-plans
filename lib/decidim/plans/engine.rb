@@ -7,7 +7,6 @@ module Decidim
 
       routes do
         resources :plans do
-          get :search_proposals
           resource :plan_widget, only: :show, path: "embed"
           resources :versions, only: [:show, :index]
           member do
@@ -22,6 +21,7 @@ module Decidim
             post :request_reject, controller: "plan_collaborator_requests"
           end
           collection do
+            get :search_proposals
             resources :info, only: [:show], param: :section
             resource :geocoding, only: [:create] do
               collection do

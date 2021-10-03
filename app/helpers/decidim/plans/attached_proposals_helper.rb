@@ -14,7 +14,7 @@ module Decidim
           multiple: true,
           autosort: true
         }
-        url = plan_search_proposals_path(current_component, format: :html)
+        url = search_plans_plans_path(current_component, format: :html)
 
         prompt_params = {
           url: url,
