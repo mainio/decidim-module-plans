@@ -234,7 +234,7 @@ module Decidim
         end
 
         def project_summary_form(original_plan)
-          return unless form.summary_section
+          return {} unless form.summary_section
 
           content = original_plan.contents.find_by(section: form.summary_section)
           return {} unless content
