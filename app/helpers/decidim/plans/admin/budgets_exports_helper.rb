@@ -4,6 +4,10 @@ module Decidim
   module Plans
     module Admin
       module BudgetsExportsHelper
+        def has_scope?
+          sections.where(section_type: "field_scope").any?
+        end
+
         def has_area_scope?
           sections.where(section_type: "field_area_scope").any?
         end

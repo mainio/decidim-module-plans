@@ -19,16 +19,16 @@
           </div>
         <% end %>
 
-        <% if current_component.has_subscopes? %>
+        <% if has_scope? %>
           <div class="row column">
             <%= scopes_picker_field f, :scope_id %>
           </div>
+        <% end %>
 
-          <% if has_area_scope? %>
-            <div class="row column">
-              <%= scopes_picker_field f, :area_scope_id %>
-            </div>
-          <% end %>
+        <% if has_area_scope? %>
+          <div class="row column">
+            <%= scopes_picker_field f, :area_scope_id %>
+          </div>
         <% end %>
 
         <% if defined?(Decidim::BudgetingPipeline) %>
