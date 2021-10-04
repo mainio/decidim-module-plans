@@ -41,7 +41,7 @@ module Decidim
               )
 
               # Create the attachments
-              original_plan.attachments.each do |at|
+              project_attachments_from(original_plan).each do |at|
                 Decidim::Attachment.create!(
                   attached_to: project,
                   title: at.title,
@@ -174,6 +174,13 @@ module Decidim
           )
         end
 
+        def attachments_section
+          @attachments_section ||= Decidim::Plans::Section.find_by(
+            component: origin_component,
+            section_type: "field_attachments"
+          )
+        end
+
         def project_budget_amount_from(original_plan)
           if form.budget_section
             content = original_plan.contents.find_by(section: form.budget_section)
@@ -181,6 +188,16 @@ module Decidim
           end
 
           form.default_budget_amount
+        end
+
+        def project_attachments_from(original_plan)
+          return [] unless attachments_section
+
+          content = original_plan.contents.find_by(section: form.budget_section)
+          return [] unless content
+          return [] unless content.body
+
+          Decidim::Attachment.where(id: content.body["attachment_ids"])
         end
 
         def project_image_from(original_plan)
