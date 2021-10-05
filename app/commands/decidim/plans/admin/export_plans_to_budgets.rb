@@ -148,8 +148,14 @@ module Decidim
         end
 
         def plan_already_linked?(original_plan, target_component)
-          original_plan.linked_resources(:projects, "included_plans").any? do |plan|
-            plan.component == target_component
+          # Search through the resource links manually because the
+          # `linked_resources` method won't return any resources if the target
+          # component is not published yet.
+          original_plan.resource_links_to.where(
+            name: "included_plans",
+            from_type: "Decidim::Budgets::Project"
+          ).any? do |link|
+            link.from.component == target_component
           end
         end
 
