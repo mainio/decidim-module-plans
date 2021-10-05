@@ -47,12 +47,12 @@ module Decidim
           return false unless file
           return false unless file.respond_to?(:url)
 
-          file.present?
+          file.url.present?
         end
 
         def attachment_title_for(attachment)
           title = attachment.title
-          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file.present?
+          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file && attachment.file.url.present?
 
           title
         end
