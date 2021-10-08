@@ -12,9 +12,12 @@ module Decidim
       include Plans::RichPresenter
 
       def author
-        coauthorship = coauthorships.first
+        # The authors can also be organizations in specific situations.
+        coauthorship = coauthorships.order(:created_at).first
         @author ||= if coauthorship.user_group
                       Decidim::UserGroupPresenter.new(coauthorship.user_group)
+                    elsif coauthorship.author.is_a?(Decidim::Organization)
+                      Decidim::Plans::OrganizationAuthorPresenter.new(coauthorship.author)
                     else
                       Decidim::UserPresenter.new(coauthorship.author)
                     end
