@@ -193,6 +193,22 @@ module Decidim
         end
       end
 
+      initializer "decidim_plans.budgets_integration" do
+        next unless Decidim.const_defined?("Budgets")
+
+        Decidim::Plans::ResourceLinkSubject.class_eval do
+          possible_types(Decidim::Budgets::ProjectType)
+        end
+      end
+
+      initializer "decidim_plans.accountability_integration" do
+        next unless Decidim.const_defined?("Accountability")
+
+        Decidim::Plans::ResourceLinkSubject.class_eval do
+          possible_types(Decidim::Accountability::ResultType)
+        end
+      end
+
       initializer "decidim_plans.api_linked_resources", before: :finisher_hook do
         Decidim::Plans::PlanType.add_linked_resources_field
       end
