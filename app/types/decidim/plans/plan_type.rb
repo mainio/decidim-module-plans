@@ -53,6 +53,16 @@ module Decidim
           description: "The linked resources for this plan.",
           null: true
         )
+
+        # These are the resources that are linked from other related objects to
+        # the plan.
+        field(
+          :linkingResources,
+          [Decidim::Plans::ResourceLinkSubject],
+          method: :linking_resources,
+          description: "The linking resources for this plan.",
+          null: true
+        )
       end
 
       def sections
@@ -60,9 +70,19 @@ module Decidim
       end
 
       def linked_resources
-        resources = object.resource_links_from.map(&:to).reject do |resource|
+        visible_resource_links(object.resource_links_from.map(&:to))
+      end
+
+      def linking_resources
+        visible_resource_links(object.resource_links_to.map(&:from))
+      end
+
+      private
+
+      def visible_resource_links(resources)
+        resources = resources.reject do |resource|
           resource.nil? ||
-          (resource.respond_to?(:published?) && !resource.published?) ||
+            (resource.respond_to?(:published?) && !resource.published?) ||
             (resource.respond_to?(:hidden?) && resource.hidden?) ||
             (resource.respond_to?(:withdrawn?) && resource.withdrawn?)
         end
