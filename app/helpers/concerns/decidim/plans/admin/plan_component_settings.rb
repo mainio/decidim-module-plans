@@ -9,7 +9,7 @@ module Decidim
         extend ActiveSupport::Concern
 
         included do
-          unless respond_to?(:settings_attribute_input_orig_plans)
+          unless method_defined?(:settings_attribute_input_orig_plans)
             alias_method :settings_attribute_input_orig_plans, :settings_attribute_input
 
             def settings_attribute_input(form, attribute, name, i18n_scope, options = {})
