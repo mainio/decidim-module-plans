@@ -1,5 +1,5 @@
 <div class="section">
-  <h3><%= presenter.title %></h3>
+  <%= render :section_title %>
   <div class="section-content">
     <% if currency_type? %>
       <%== number_to_currency(number, unit: Decidim.currency_unit, precision: currency_precision, locale: current_locale).gsub(/\s/, "&nbsp;") %>

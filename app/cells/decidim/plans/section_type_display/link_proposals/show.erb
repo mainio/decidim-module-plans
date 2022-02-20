@@ -1,7 +1,5 @@
 <div class="attached-proposals">
-  <h3>
-    <%= translated_attribute(model.title) %>
-  </h3>
+  <%= render :section_title %>
   <div class="collapsible-list row small-up-1 medium-up-2 card-grid">
     <% proposals.each do |proposal| %>
       <%= card_for proposal, from: proposal %>
