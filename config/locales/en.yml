@@ -547,7 +547,7 @@ en:
         index:
           title: Versions
         stats:
-          back_to_plan: Go back
+          back_to_plan: Back to proposal
           number_of_versions: Versions
           show_all_versions: Show all versions
           version_author: Version author

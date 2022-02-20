@@ -540,7 +540,7 @@ fi:
         index:
           title: Versiot
         stats:
-          back_to_plan: Takaisin
+          back_to_plan: Takaisin ehdotukseen
           number_of_versions: Versiot
           show_all_versions: Näytä kaikki versiot
           version_author: Version laatija

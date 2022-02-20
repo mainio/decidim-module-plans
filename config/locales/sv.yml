@@ -539,7 +539,7 @@ sv:
         index:
           title: Versioner
         stats:
-          back_to_plan: Tillbaka
+          back_to_plan: Tillbaka till förslaget
           number_of_versions: Versioner
           show_all_versions: Visa alla versioner
           version_author: Versionen utarbetad av
