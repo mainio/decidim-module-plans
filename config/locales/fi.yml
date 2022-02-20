@@ -252,9 +252,11 @@ fi:
             author_name: Tekijän nimi
             author_nickname: Tekijän nimimerkki
             authors: Tekijät
+            authors_label: 'Tekijöiden määrä: %{count}'
             category: Kategoria
             comments: Kommentit
             contributions: Muokkaukset
+            contributions_label: 'Muokkausten määrä: %{count}'
             id: ID
             notes: Muistiinpanot
             official_plan: Virallinen ehdotus

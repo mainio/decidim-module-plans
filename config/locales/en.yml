@@ -256,9 +256,11 @@ en:
             author_name: Author's name
             author_nickname: Author's nickname
             authors: Authors
+            authors_label: 'Amount of authors: %{count}'
             category: Category
             comments: Comments
             contributions: Contributions
+            contributions_label: 'Amount of contributions: %{count}'
             id: ID
             notes: Notes
             official_plan: Official proposal

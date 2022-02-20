@@ -116,16 +116,26 @@
       <div class="card__status">
         <ul class="card-data">
           <li class="card-data__item authors_status">
-            <%= with_tooltip t("decidim.plans.models.plan.fields.authors") do %>
-              <%= icon("people", class: "icon--small") + " " + "#{plan.versions.group_by(&:whodunnit).size}" %>
-            <% end %>
+            <span aria-hidden="true">
+              <%= with_tooltip t("decidim.plans.models.plan.fields.authors") do %>
+                <%= icon("people", class: "icon--small") + " " + "#{plan.versions.group_by(&:whodunnit).size}" %>
+              <% end %>
+            </span>
+            <span class="show-for-sr">
+              <%= t("decidim.plans.models.plan.fields.authors_label", count: plan.versions.group_by(&:whodunnit).size) %>
+            </span>
           </li>
 
           <li class="card-data__item versions_status">
             <%= link_to plan_versions_path(plan) do %>
-              <%= with_tooltip t("decidim.plans.models.plan.fields.contributions") do %>
-                <%= icon("pencil", class: "icon--small") + " " + "#{plan.versions.count}" %>
-              <% end %>
+              <span aria-hidden="true">
+                <%= with_tooltip t("decidim.plans.models.plan.fields.contributions") do %>
+                  <%= icon("pencil", class: "icon--small", "aria-hidden": true) + " " + "#{plan.versions.count}" %>
+                <% end %>
+              </span>
+              <span class="show-for-sr">
+                <%= t("decidim.plans.models.plan.fields.contributions_label", count: plan.versions.count) %>
+              </span>
             <% end %>
           </li>
         </ul>

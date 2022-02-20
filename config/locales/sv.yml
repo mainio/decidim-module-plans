@@ -251,9 +251,11 @@ sv:
             author_name: Författarens namn
             author_nickname: Författarens smeknamn
             authors: Författare
+            authors_label: 'Antal författare: %{count}'
             category: Kategori
             comments: Kommentarer
             contributions: Redigeringar
+            contributions_label: 'Antal redigeringar: %{count}'
             id: ID
             notes: Anteckningar
             official_plan: Officiell förslag
