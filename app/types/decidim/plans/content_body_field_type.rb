@@ -13,8 +13,8 @@ module Decidim
       field :translations, [Decidim::Core::LocalizedStringType], description: "All the localized strings for this content.", null: false do
         argument :locales, [String], description: "A list of locales to scope the translations to.", required: false
       end
-      field :translation, Decidim::Core::LocalizedStringType, description: "Returns a single translation given a locale.", null: false do
-        argument :locale, String, description: "A locale to search for", required: true
+      field :translation, GraphQL::Types::String, description: "Returns a single translation given a locale.", null: true do
+        argument :locale, GraphQL::Types::String, description: "A locale to search for", required: true
       end
 
       def locales
@@ -29,7 +29,7 @@ module Decidim
       end
 
       def translation(locale:)
-        translations = obj.stringify_keys
+        translations = object.stringify_keys
         translations[locale]
       end
 
