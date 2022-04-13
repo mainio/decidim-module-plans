@@ -69,6 +69,10 @@ module Decidim
         object.sections.visible_in_api
       end
 
+      def contents
+        object.contents.joins(:section).where(section: sections).order("decidim_plans_sections.position")
+      end
+
       def linked_resources
         visible_resource_links(object.resource_links_from.map(&:to))
       end
