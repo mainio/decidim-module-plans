@@ -24,6 +24,23 @@ module Decidim
             category_id: ""
           }
         end
+
+        def save!(plan)
+          # Fetch the category for the categorization to be created correctly.
+          # It is not enough to set decidim_category_id here because of the
+          # categorization association.
+          plan.category = Decidim::Category.find_by(id: category_id) if category_id
+
+          super
+        end
+
+        private
+
+        def category_id
+          return unless body_attribute
+
+          body_attribute[:category_id]
+        end
       end
     end
   end

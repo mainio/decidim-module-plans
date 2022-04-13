@@ -21,6 +21,20 @@ module Decidim
             scope_id: ""
           }
         end
+
+        def save!(plan)
+          plan.scope = Decidim::Scope.find_by(id: scope_id) if scope_id
+
+          super
+        end
+
+        private
+
+        def scope_id
+          return unless body_attribute
+
+          body_attribute[:scope_id]
+        end
       end
     end
   end
