@@ -26,6 +26,8 @@ module Decidim
         end
 
         def body
+          return { tag_ids: [] } unless taggings
+
           { tag_ids: taggings.tags }
         end
 
@@ -34,11 +36,13 @@ module Decidim
 
           tags = begin
             if data["tag_ids"].is_a?(Array) || data[:tag_ids].is_a?(Array)
-              model.body["tag_ids"] || model.body[:tag_ids]
+              data["tag_ids"] || data[:tag_ids]
             else
               []
             end
           end
+
+          self.taggings = Decidim::Tags::TaggingsForm.from_params(tags: tags)
         end
       end
     end
