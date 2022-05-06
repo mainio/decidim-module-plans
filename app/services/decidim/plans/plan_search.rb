@@ -130,7 +130,7 @@ module Decidim
         # that query. Therefore, in this context it is safer to just fetch these
         # in a completely separate query.
         plan_ids = Plan.joins(:tags).where(
-          decidim_plans_tags: { id: tag_id }
+          decidim_tags_tags: { id: tag_id }
         ).distinct.pluck(:id)
 
         query.where(id: plan_ids)
