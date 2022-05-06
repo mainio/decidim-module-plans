@@ -34,9 +34,6 @@ module Decidim
       end
 
       def link_to_tag(tag)
-      end
-
-      def link_to_tag(tag)
         link_to tag_name(tag), tag_path(tag)
       end
 
