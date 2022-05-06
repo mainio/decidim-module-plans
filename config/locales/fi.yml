@@ -352,6 +352,9 @@ fi:
         destroy:
           error: Virhe poistettaessa sisältöä.
           success: Poisto onnistui.
+        disjoin:
+          success: Ehdotuksen tekijöistä poistuminen epäonnistui.
+          error: Tekijöistä poistuminen onnistui.
         edit:
           back: Palaa takaisin ehdotukseen
           material_title: Tietoa ehdotuksen tueksi
@@ -406,6 +409,8 @@ fi:
           back: Palaa takaisin ehdotuslistaukseen
           close: Merkitse valmiiksi
           close_confirm: Haluatko varmasti merkitä tämän kohteen valmiiksi? Kun kohde on merkitty valmiiksi, sitä ei voi enää muokata.
+          disjoin: Poistu ehdotuksen tekijöistä
+          disjoin_confirm: Haluatko varmasti poistua ehdotuksen tekijöistä? Tämän jälkeen et voi enää muokata tätä ehdotusta.
           edit: Muokkaa
           hidden_authors_count:
             one: ja %{count} muu henkilö

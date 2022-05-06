@@ -19,9 +19,9 @@ module Decidim
 
       helper_method :attached_proposals_picker_field, :available_tags, :trigger_feedback?
 
-      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm]
+      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :check_draft, only: [:new]
-      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm]
+      before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :ensure_published!, only: [:show, :withdraw, :add_authors, :add_authors_confirm]
 
       def index
@@ -200,6 +200,22 @@ module Decidim
 
           on(:invalid) do
             flash[:alert] = t("add_authors.error", scope: "decidim.plans.plans")
+            redirect_to plan_path(@plan)
+          end
+        end
+      end
+
+      def disjoin
+        enforce_permission_to :disjoin, :plan, plan: @plan
+
+        DisjoinPlan.call(@plan, current_user) do
+          on(:ok) do |plan|
+            flash[:success] = t("disjoin.success", scope: "decidim.plans.plans")
+            redirect_to plan_path(plan)
+          end
+
+          on(:invalid) do
+            flash[:alert] = t("disjoin.error", scope: "decidim.plans.plans")
             redirect_to plan_path(@plan)
           end
         end

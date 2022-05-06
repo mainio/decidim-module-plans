@@ -356,6 +356,9 @@ en:
         destroy:
           error: Error deleting the item.
           success: Deleted successfully.
+        disjoin:
+          success: There was an error leaving the proposal.
+          error: You have been successfully removed as an author from this proposal.
         edit:
           back: Back to proposal
           material_title: Information to support your proposal
@@ -413,6 +416,8 @@ en:
           close: Mark as done
           close_confirm: Are you sure you want to mark this item done? After
             marking done, the item can no longer be edited.
+          disjoin: Leave the proposal as an author
+          disjoin_confirm: Are you sure you want to leave this proposal? After leaving the proposal, you can no longer edit it.
           edit: Edit
           hidden_authors_count:
             one: and %{count} more person

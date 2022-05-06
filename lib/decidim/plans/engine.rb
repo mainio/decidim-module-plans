@@ -19,6 +19,7 @@ module Decidim
             post :request_access, controller: "plan_collaborator_requests"
             post :request_accept, controller: "plan_collaborator_requests"
             post :request_reject, controller: "plan_collaborator_requests"
+            delete :disjoin
           end
           collection do
             get :search_proposals

@@ -351,6 +351,9 @@ sv:
         destroy:
           error: Det inträffade ett fel vid radering av innehållet.
           success: Innehållet har raderats.
+        disjoin:
+          success: Det gick inte att lämna förslaget.
+          error: Du har tagits bort som författare från detta förslag.
         edit:
           back: Tillbaka till förslaget
           material_title: Information för att stödja ditt förslag
@@ -405,6 +408,8 @@ sv:
           back: Tillbaka till listan av förslag
           close: Markera som gjort
           close_confirm: Är du säker på att du vill markera det här objektet gjort? Efter att markeringen är klar kan objektet inte längre redigeras.
+          disjoin: Lämna förslaget som författare
+          disjoin_confirm: Är du säker på att du vill lämna det här förslaget? När du har lämnat förslaget kan du inte längre redigera det.
           edit: Redigera
           hidden_authors_count:
             one: och %{count} annan person

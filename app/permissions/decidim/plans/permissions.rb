@@ -41,6 +41,8 @@ module Decidim
           can_close_plan?
         when :request_access
           can_request_access_plan?
+        when :disjoin
+          can_disjoin_plan?
         end
       end
 
@@ -78,7 +80,7 @@ module Decidim
       def can_close_plan?
         return toggle_allow(false) unless component_settings.closing_allowed?
 
-        toggle_allow(plan && plan && plan.created_by?(user))
+        toggle_allow(user && plan && plan.created_by?(user))
       end
 
       def can_request_access_plan?
@@ -88,6 +90,10 @@ module Decidim
         return toggle_allow(false) if plan.requesters.include? user
 
         toggle_allow(plan && !plan.editable_by?(user))
+      end
+
+      def can_disjoin_plan?
+        toggle_allow(user && plan.editable_by?(user) && !plan.created_by?(user))
       end
     end
   end
