@@ -52,7 +52,7 @@ module Decidim
 
         def attachment_title_for(attachment)
           title = attachment.title
-          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file && attachment.file.url.present?
+          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file && attachment.file.try(:url).present?
 
           title
         end
