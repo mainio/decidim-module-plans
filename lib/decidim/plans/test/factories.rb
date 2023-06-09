@@ -9,7 +9,7 @@ FactoryBot.define do
     body { generate_localized_title }
     position { 0 }
     mandatory { false }
-    answer_length { 0 }
+    settings { { answer_length: 0 } }
     component
   end
 
@@ -101,9 +101,11 @@ FactoryBot.define do
           plan.coauthorships.build(author: user, user_group: user_group)
         end
 
-        proposal_component = create(:proposal_component, participatory_space: plan.component.participatory_space)
-        proposals = evaluator.plan_proposals || [create(:proposal, component: proposal_component)]
-        plan.link_resources(proposals, "included_proposals")
+        if FactoryBot.factories.registered?(:proposal_component)
+          proposal_component = create(:proposal_component, participatory_space: plan.component.participatory_space)
+          proposals = evaluator.plan_proposals || [create(:proposal, component: proposal_component)]
+          plan.link_resources(proposals, "included_proposals")
+        end
       end
       plan.update!(tags: evaluator.tags) if evaluator.tags && evaluator.tags.count.positive?
     end
