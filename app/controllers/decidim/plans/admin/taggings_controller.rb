@@ -14,8 +14,10 @@ module Decidim
         private
 
         def taggable
-          @plan ||= Plan.where(component: current_component).find(params[:plan_id])
+          @taggable ||= Plan.where(component: current_component).find(params[:plan_id])
         end
+
+        alias plan taggable
       end
     end
   end

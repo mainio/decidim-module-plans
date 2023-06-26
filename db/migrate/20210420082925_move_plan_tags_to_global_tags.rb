@@ -62,11 +62,11 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
       manager = Arel::InsertManager.new
       manager.into(table)
       manager.insert([
-        [table[:name], tag.name.to_json],
-        [table[:created_at], tag.created_at],
-        [table[:updated_at], tag.updated_at],
-        [table[:decidim_organization_id], tag.decidim_organization_id]
-      ])
+                       [table[:name], tag.name.to_json],
+                       [table[:created_at], tag.created_at],
+                       [table[:updated_at], tag.updated_at],
+                       [table[:decidim_organization_id], tag.decidim_organization_id]
+                     ])
 
       map[tag.id] = ActiveRecord::Base.connection.insert(
         manager.to_sql
@@ -81,10 +81,10 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
       manager = Arel::InsertManager.new
       manager.into(table)
       manager.insert([
-        [table[:created_at], tagging.created_at],
-        [table[:decidim_plans_tag_id], map[tagging.decidim_tags_tag_id]],
-        [table[:decidim_plan_id], tagging.decidim_taggable_id]
-      ])
+                       [table[:created_at], tagging.created_at],
+                       [table[:decidim_plans_tag_id], map[tagging.decidim_tags_tag_id]],
+                       [table[:decidim_plan_id], tagging.decidim_taggable_id]
+                     ])
 
       ActiveRecord::Base.connection.insert(manager.to_sql)
 

@@ -22,7 +22,7 @@ module Decidim
         else
           render json: {
             success: false,
-            result: { }
+            result: {}
           }
         end
       end
@@ -42,7 +42,7 @@ module Decidim
         else
           render json: {
             success: false,
-            result: { }
+            result: {}
           }
         end
       end
@@ -55,7 +55,7 @@ module Decidim
         # This prevents the action being processed.
         render json: {
           success: false,
-          result: { }
+          result: {}
         }
       end
 

@@ -25,6 +25,7 @@ module Decidim
         def generate_i18n_label(_attribute, locale)
           label = translated_attribute(version.item.section.body, locale)
           return label if display_locale
+
           "#{label} (#{locale_name(locale)})"
         end
       end

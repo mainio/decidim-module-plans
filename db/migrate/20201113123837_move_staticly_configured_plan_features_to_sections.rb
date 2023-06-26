@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2]
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Lint/UselessAssignment
   def up
     Decidim::Component.where(manifest_name: "plans").find_each do |component|
       space = component.participatory_space
@@ -133,6 +134,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       end
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Lint/UselessAssignment
 
   def down
     Decidim::Component.where(manifest_name: "plans").find_each do |component|
@@ -202,6 +204,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
     end
   end
 
+  # rubocop:disable Metrics/ParameterLists
   def section_attributes(
     component:,
     type:,
@@ -258,4 +261,5 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       }
     }
   end
+  # rubocop:enable Metrics/ParameterLists
 end

@@ -45,10 +45,12 @@ describe Decidim::Plans::LocaleAware do
       expect(subject.fetch_available_locales).to be(available_locales)
     end
 
+    # rubocop:disable RSpec/SubjectStub
     it "with current organization available" do
       expect(subject).to receive(:available_locales).and_return(available_locales)
       expect(Decidim).not_to receive(:available_locales)
       expect(subject.fetch_available_locales).to be(available_locales)
     end
+    # rubocop:enable RSpec/SubjectStub
   end
 end

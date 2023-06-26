@@ -7,6 +7,7 @@ module Decidim
         class PlanStatePresenter < Decidim::Log::ValueTypes::DefaultPresenter
           def present
             return unless value
+
             h.t(value, scope: "decidim.plans.admin.plan_answers.edit", default: value)
           end
         end

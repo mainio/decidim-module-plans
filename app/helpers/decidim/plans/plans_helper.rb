@@ -14,7 +14,7 @@ module Decidim
       # geocoded_plans_data - A flat array of the plan data received from `Plan.geocoded_data_for`
       def plans_data_for_map(geocoded_plans_data)
         geocoded_plans_data.map do |data|
-          tmp = {
+          {
             id: data[:id],
             title: translated_attribute(data[:title]),
             body: truncate(translated_attribute(data[:body]), length: 100),
