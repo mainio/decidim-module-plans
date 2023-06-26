@@ -358,6 +358,8 @@ fi:
         edit:
           back: Palaa takaisin ehdotukseen
           material_title: Tietoa ehdotuksen tueksi
+          sign_in: Kirjaudu sisään
+          sign_in_before_submitting: Ennen ehdotuksen jättämistä sinun tulee kirjautua sisään
           title: Muokkaa ehdotusta
           update: Päivitä
         evaluation_modal:

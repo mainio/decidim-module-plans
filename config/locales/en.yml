@@ -362,6 +362,8 @@ en:
         edit:
           back: Back to proposal
           material_title: Information to support your proposal
+          sign_in: Sign in
+          sign_in_before_submitting: You need to sign in before submitting a proposal
           title: Edit proposal
           update: Update
         evaluation_modal:

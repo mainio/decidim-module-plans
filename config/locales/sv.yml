@@ -357,6 +357,8 @@ sv:
         edit:
           back: Tillbaka till förslaget
           material_title: Information för att stödja ditt förslag
+          sign_in: Logga in
+          sign_in_before_submitting: Du måste logga in innan du skickar in ett förslag
           title: Redigera förslaget
           update: Uppdatera
         evaluation_modal:
