@@ -45,7 +45,7 @@ module Decidim
         end
 
         def scope_children(scope)
-          scope.children.order("code, name->>'#{current_locale}'")
+          scope.children.order(Arel.sql("code, name->>'#{current_locale}'"))
         end
       end
     end
