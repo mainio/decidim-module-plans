@@ -10,16 +10,16 @@ module Decidim
       # type - A GraphQL::BaseType to extend.
       #
       # Returns nothing.
-      def self.define(type)
+      def self.included(type)
         type.field :plan, Decidim::Plans::PlanMutationType do
           description "A plan"
 
-          argument :id, !types.ID, description: "The plan's id"
-
-          resolve lambda { |_obj, args, _ctx|
-            Plan.find(args[:id])
-          }
+          argument :id, GraphQL::Types::ID, description: "The plan's id", required: true
         end
+      end
+
+      def plan(id:)
+        Plan.find(id)
       end
     end
   end

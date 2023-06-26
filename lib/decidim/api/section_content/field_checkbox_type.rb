@@ -9,7 +9,7 @@ module Decidim
 
         implements Decidim::Plans::Api::ContentInterface
 
-        field :value, Boolean, description: "The answer response.", null: false
+        field :value, GraphQL::Types::Boolean, description: "The answer response.", null: false
 
         def value
           return false unless object.body

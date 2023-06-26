@@ -6,8 +6,8 @@ module Decidim
       graphql_name "PlanContentMutationAttributes"
       description "A plan content attributes"
 
-      argument :id, ID, required: false
-      argument :section_id, ID, required: false
+      argument :id, GraphQL::Types::ID, required: false
+      argument :section_id, GraphQL::Types::ID, required: false
 
       def prepare
         raise GraphQL::ExecutionError, "Must specify exactly one of id or sectionId" if (id && section_id) || (!id && !section_id)

@@ -8,14 +8,14 @@ module Decidim
 
       implements Decidim::Core::ComponentInterface
 
-      field :plans, PlanType.connection_type, description: "List all plans", null: true do
+      field :plans, Decidim::Plans::PlanType.connection_type, description: "List all plans", null: true do
         argument :order, Decidim::Plans::PlanInputSort, "Provides several methods to order the results", required: false
         argument :filter, Decidim::Plans::PlanInputFilter, "Provides several methods to filter the results", required: false
       end
 
       field :sections, SectionType.connection_type, null: true
 
-      field(:plan, PlanType, null: true) do
+      field(:plan, Decidim::Plans::PlanType, null: true) do
         argument :id, ID, required: true
       end
 

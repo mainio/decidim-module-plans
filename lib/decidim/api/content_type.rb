@@ -10,7 +10,7 @@ module Decidim
 
       implements Decidim::Core::TimestampsInterface
 
-      field :id, ID, null: false
+      field :id, GraphQL::Types::ID, null: false
       field :title, Decidim::Core::TranslatedFieldType, description: "What is the title text for this section (i.e. the section body).", null: false
       field :body, Decidim::Plans::ContentBodyFieldType, description: "The text answer response option.", null: true
 

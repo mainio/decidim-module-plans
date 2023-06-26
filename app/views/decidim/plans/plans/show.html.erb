@@ -10,13 +10,8 @@
 <%= javascript_include_tag "decidim/plans/social_share" %>
 <%= stylesheet_link_tag "decidim/plans/social_share" %>
 
-<%=
-  render partial: "decidim/shared/flag_modal", locals: {
-    reportable: @plan,
-    form: @report_form,
-    url: decidim.report_path(sgid: @plan.to_sgid.to_s)
-  }
-%>
+<%= cell("decidim/flag_modal", @plan) %>
+
 <% if @plan.editable_by?(current_user) && @plan.waiting_for_evaluation? %>
   <%= render partial: "evaluation_modal" %>
 <% end %>

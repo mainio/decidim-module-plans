@@ -10,7 +10,7 @@ module Decidim
 
         let(:organization) { create(:organization) }
         let(:state) { "accepted" }
-        let(:answer) { Decidim::Faker::Localized.sentence(3) }
+        let(:answer) { Decidim::Faker::Localized.sentence(word_count: 3) }
         let(:params) do
           {
             state: state, answer: answer

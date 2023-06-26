@@ -6,7 +6,7 @@ module Decidim
       graphql_name "PlanMutation"
       description "A plan which includes its available mutations"
 
-      field :id, ID, null: false
+      field :id, GraphQL::Types::ID, null: false
 
       field :update, Decidim::Plans::PlanType, null: true do
         description "The content mutations to be updated."
@@ -19,7 +19,7 @@ module Decidim
       field :answer, Decidim::Plans::PlanType, null: true do
         description "Answer a plan"
 
-        argument :state, String, description: "The answer status in which plan is in. Can be one of 'accepted', 'rejected' or 'evaluating'", required: true
+        argument :state, GraphQL::Types::String, description: "The answer status in which plan is in. Can be one of 'accepted', 'rejected' or 'evaluating'", required: true
         argument :answer_content, GraphQL::Types::JSON, description: "The answer feedback for the status for this plan", required: false
       end
 

@@ -7,7 +7,7 @@ module Decidim
         graphql_name "PlanCheckboxFieldAttributes"
         description "A plan attributes for checkbox field"
 
-        argument :value, Boolean, required: true
+        argument :value, GraphQL::Types::Boolean, required: true
 
         def to_h
           { "checked" => value }

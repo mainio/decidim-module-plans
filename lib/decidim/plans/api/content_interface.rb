@@ -5,7 +5,7 @@ module Decidim
     module Api
       module ContentInterface
         include GraphQL::Schema::Interface
-        include Decidim::Plans::Api::TimestampsInterface
+        include Decidim::Core::TimestampsInterface
 
         graphql_name "PlanContentInterface"
         description "This interface is implemented by the content types of a plan."

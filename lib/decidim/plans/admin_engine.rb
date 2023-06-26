@@ -48,9 +48,7 @@ module Decidim
       end
 
       initializer "decidim_plans.mutation_extensions", after: "decidim-api.graphiql" do
-        Decidim::Api::MutationType.define do
-          MutationExtensions.define(self)
-        end
+        Decidim::Api::MutationType.include(Decidim::Plans::MutationExtensions)
       end
 
       config.to_prepare do

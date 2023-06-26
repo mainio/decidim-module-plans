@@ -143,6 +143,8 @@ module Decidim
 
         def sanitize_localized(hash)
           hash.each do |locale, value|
+            next if value.is_a?(Hash)
+
             hash[locale] = plain_content(value)
           end
         end

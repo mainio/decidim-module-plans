@@ -7,7 +7,7 @@ module Decidim
         graphql_name "PlanCategoryFieldAttributes"
         description "A plan attributes for category field"
 
-        argument :id, ID, required: true
+        argument :id, GraphQL::Types::ID, required: true
 
         def to_h
           category = Decidim::Category.find_by(id: id)

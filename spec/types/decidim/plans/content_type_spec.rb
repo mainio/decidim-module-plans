@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "decidim/plans/test/type_context"
+require "decidim/api/test/type_context"
 
 module Decidim
   module Plans
     describe ContentType, type: :graphql do
-      include_context "with a graphql type"
+      include_context "with a graphql class type"
       let(:component) { create(:plan_component) }
       let(:model) { create(:content) }
 

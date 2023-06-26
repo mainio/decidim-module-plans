@@ -7,10 +7,10 @@ module Decidim
         graphql_name "PlanMapPointFieldAttributes"
         description "A plan attributes for area scope field"
 
-        argument :geocode, Boolean, required: false, default_value: false
-        argument :address, String, required: true
-        argument :latitude, Float, required: false
-        argument :longitude, Float, required: false
+        argument :geocode, GraphQL::Types::Boolean, required: false, default_value: false
+        argument :address, GraphQL::Types::String, required: true
+        argument :latitude, GraphQL::Types::Float, required: false
+        argument :longitude, GraphQL::Types::Float, required: false
 
         def to_h
           if geocode && geocoder

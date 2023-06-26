@@ -9,9 +9,9 @@ module Decidim
       graphql_name "ContentBodyField"
       description "A content body field"
 
-      field :locales, [String], description: "Lists all the locales in which this content is available in.", null: true
+      field :locales, [GraphQL::Types::String], description: "Lists all the locales in which this content is available in.", null: true
       field :translations, [Decidim::Core::LocalizedStringType], description: "All the localized strings for this content.", null: false do
-        argument :locales, [String], description: "A list of locales to scope the translations to.", required: false
+        argument :locales, [GraphQL::Types::String], description: "A list of locales to scope the translations to.", required: false
       end
       field :translation, GraphQL::Types::String, description: "Returns a single translation given a locale.", null: true do
         argument :locale, GraphQL::Types::String, description: "A locale to search for", required: true

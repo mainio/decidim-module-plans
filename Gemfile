@@ -10,19 +10,20 @@ base_path = ""
 base_path = "../" if File.basename(__dir__) == "development_app"
 require_relative "#{base_path}lib/decidim/plans/version"
 
-# DECIDIM_VERSION = Decidim::Plans::DECIDIM_VERSION
-DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.23-stable" }.freeze
+DECIDIM_VERSION = Decidim::Plans::DECIDIM_VERSION
 
 gem "decidim", DECIDIM_VERSION
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.23-stable"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.23-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.23-stable"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.24-stable"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.24-stable"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.24-stable"
 
 gem "decidim-plans", path: "."
 
-gem "bootsnap", "~> 1.4"
-gem "puma", "~> 4.3.3"
+gem "bootsnap", "~> 1.4.9"
+gem "puma", ">= 5.3.1"
 gem "uglifier", "~> 4.1"
+
+gem "faker", "~> 2.14"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
@@ -31,9 +32,9 @@ group :development, :test do
 end
 
 group :development do
-  gem "faker", "~> 1.9"
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
+  gem "rubocop-faker"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"

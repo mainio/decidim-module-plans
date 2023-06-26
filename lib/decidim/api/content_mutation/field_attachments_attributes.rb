@@ -3,11 +3,11 @@
 module Decidim
   module Plans
     module ContentMutation
-      class FieldImageAttachmentsAttributes < GraphQL::Schema::InputObject
-        graphql_name "PlanImageAttachmentsFieldAttributes"
-        description "A plan attributes for image attachments field"
+      class FieldAttachmentsAttributes < GraphQL::Schema::InputObject
+        graphql_name "PlanAttachmentsFieldAttributes"
+        description "A plan attributes for attachments field"
 
-        argument :ids, [ID], required: true
+        argument :ids, [GraphQL::Types::ID], required: true
 
         def to_h
           existing_ids = ids.map do |id|

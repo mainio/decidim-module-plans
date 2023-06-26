@@ -7,7 +7,7 @@ module Decidim
         graphql_name "PlanCurrencyFieldAttributes"
         description "A plan attributes for currency field"
 
-        argument :value, Integer, description: "The answer response", required: true
+        argument :value, GraphQL::Types::Int, description: "The answer response", required: true
 
         def to_h
           { "value" => value }

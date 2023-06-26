@@ -7,7 +7,7 @@ module Decidim
         graphql_name "PlanScopeFieldAttributes"
         description "A plan attributes for scope field"
 
-        argument :id, ID, required: true
+        argument :id, GraphQL::Types::ID, required: true
 
         def to_h
           scope = Decidim::Scope.find_by(id: id)

@@ -119,7 +119,7 @@ module Decidim
       end
 
       def generate_plan
-        title = ::Faker::Lorem.sentence(2)
+        title = ::Faker::Lorem.sentence(word_count: 2)
         plan = Plan.new(
           component: component,
           title: Decidim::Faker::Localized.localized { title },
@@ -172,7 +172,7 @@ module Decidim
 
         # Add versions to the plan
         rand(1..3).times do
-          title = ::Faker::Lorem.sentence(2)
+          title = ::Faker::Lorem.sentence(word_count: 2)
           plan.update!(title: Decidim::Faker::Localized.localized { title })
 
           plan.contents.each do |content|
@@ -249,10 +249,10 @@ module Decidim
           }
         when "field_number"
           {
-            value: ::Faker::Number.number(rand(5..8).to_i)
+            value: ::Faker::Number.number(digits: rand(5..8).to_i)
           }
         when "field_text", "field_text_multiline"
-          value = ::Faker::Lorem.paragraph(3)
+          value = ::Faker::Lorem.paragraph(word_count: 3)
           Decidim::Faker::Localized.localized { value }
         end
       end
@@ -278,7 +278,7 @@ module Decidim
         files.map do |file|
           attachment = plan.attachments.create!(
             weight: weight,
-            title: ::Faker::Lorem.sentence(rand(3..6)),
+            title: ::Faker::Lorem.sentence(word_count: rand(3..6)),
             file: file
           )
           weight += 1

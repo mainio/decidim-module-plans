@@ -32,7 +32,7 @@ describe Decidim::Plans::Admin::Permissions do
   let(:component_settings_plan_answering_enabled?) { true }
   let(:component_settings_participatory_texts_enabled?) { true }
   let(:current_settings_plan_answering_enabled?) { true }
-  let(:permission_action) { Decidim::PermissionAction.new(action) }
+  let(:permission_action) { Decidim::PermissionAction.new(**action) }
 
   context "with plans" do
     # describe "plan note creation" do

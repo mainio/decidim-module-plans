@@ -136,9 +136,9 @@ Decidim.register_component(:plans) do |component|
 
     5.times do |n|
       state, answer = if n > 3
-                        ["accepted", Decidim::Faker::Localized.sentence(10)]
+                        ["accepted", Decidim::Faker::Localized.sentence(word_count: 10)]
                       elsif n > 2
-                        ["rejected", Decidim::Faker::Localized.sentence(10)]
+                        ["rejected", Decidim::Faker::Localized.sentence(word_count: 10)]
                       elsif n > 1
                         ["evaluating", nil]
                       else
@@ -155,8 +155,8 @@ Decidim.register_component(:plans) do |component|
       params = {
         component: component,
         category: participatory_space.categories.sample,
-        scope: Faker::Boolean.boolean(0.5) ? global : scopes.sample,
-        title: Decidim::Faker::Localized.sentence(2),
+        scope: Faker::Boolean.boolean(true_ratio: 0.5) ? global : scopes.sample,
+        title: Decidim::Faker::Localized.sentence(word_count: 2),
         state: state,
         answer: answer,
         closed_at: is_closed ? Time.current : nil,

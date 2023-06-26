@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "decidim/plans/test/type_context"
+require "decidim/api/test/type_context"
 
 module Decidim
   module Plans
     describe PlanMutationType do
-      include_context "with a graphql type"
+      include_context "with a graphql class type"
 
       let(:participatory_process) { create(:participatory_process, organization: current_organization) }
       let(:component) { create(:plan_component, participatory_space: participatory_process) }

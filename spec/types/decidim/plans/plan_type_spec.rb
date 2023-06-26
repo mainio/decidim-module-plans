@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "decidim/plans/test/type_context"
+require "decidim/api/test/type_context"
 require "decidim/core/test/shared_examples/categorizable_interface_examples"
 require "decidim/core/test/shared_examples/scopable_interface_examples"
 require "decidim/core/test/shared_examples/attachable_interface_examples"
@@ -10,7 +10,7 @@ require "decidim/core/test/shared_examples/coauthorable_interface_examples"
 module Decidim
   module Plans
     describe PlanType, type: :graphql do
-      include_context "with a graphql type"
+      include_context "with a graphql class type"
       let(:component) { create(:plan_component) }
       let(:model) { create(:plan, :published, component: component) }
 
