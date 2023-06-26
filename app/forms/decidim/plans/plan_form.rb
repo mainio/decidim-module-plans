@@ -27,7 +27,7 @@ module Decidim
             Content
               .where(plan: model, section: section)
               .first_or_initialize(plan: model, section: section, body: {})
-          )
+          ).with_context(current_component: model.component)
         end
 
         self.user_group_id = model.user_groups.first&.id

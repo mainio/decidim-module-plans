@@ -5,6 +5,8 @@ module Decidim
     class FlagModalCell < Decidim::ViewModel
       include ActionView::Helpers::FormOptionsHelper
 
+      delegate :current_organization, to: :controller
+
       private
 
       def modal_id
