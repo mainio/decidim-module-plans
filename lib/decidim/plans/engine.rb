@@ -188,6 +188,7 @@ module Decidim
         end
         Decidim::Plans.section_types.register(:link_proposals) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/link_proposals"
+          type.display_cell = "decidim/plans/section_type_display/link_proposals"
           type.content_form_class_name = "Decidim::Plans::ContentData::LinkProposalsForm"
           type.content_control_class_name = "Decidim::Plans::SectionControl::LinkProposals"
           type.api_type_class_name = "Decidim::Plans::SectionContent::LinkProposalsType"
