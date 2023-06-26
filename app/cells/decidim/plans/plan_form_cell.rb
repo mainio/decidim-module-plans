@@ -15,6 +15,8 @@ module Decidim
         to: :controller
       )
 
+      delegate :new_plan_path, to: :routes_proxy
+
       def user_group_field
         return if options[:disable_user_group_field]
         return unless manageable_user_groups.any?
@@ -75,6 +77,10 @@ module Decidim
 
       def current_locale
         I18n.locale.to_s
+      end
+
+      def routes_proxy
+        @routes_proxy ||= EngineRouter.main_proxy(current_component)
       end
     end
   end

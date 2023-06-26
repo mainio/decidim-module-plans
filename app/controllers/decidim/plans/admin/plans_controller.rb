@@ -27,7 +27,7 @@ module Decidim
           Admin::CreatePlan.call(@form) do
             on(:ok) do
               flash[:notice] = I18n.t("plans.create.success", scope: "decidim")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
@@ -49,7 +49,7 @@ module Decidim
           Admin::UpdatePlan.call(@form, @plan) do
             on(:ok) do
               flash[:notice] = I18n.t("plans.update.success", scope: "decidim")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
@@ -65,12 +65,12 @@ module Decidim
           ClosePlan.call(plan, current_user) do
             on(:ok) do
               flash[:notice] = I18n.t("close.success", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
               flash.now[:alert] = t("close.error", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
           end
         end
@@ -81,12 +81,12 @@ module Decidim
           ReopenPlan.call(plan, current_user) do
             on(:ok) do
               flash[:notice] = I18n.t("reopen.success", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
               flash.now[:alert] = t("reopen.error", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
           end
         end
@@ -138,6 +138,10 @@ module Decidim
 
         def form_presenter
           @form_presenter ||= present(@form, presenter_class: Decidim::Plans::PlanPresenter)
+        end
+
+        def routes_proxy
+          @routes_proxy ||= EngineRouter.admin_proxy(current_component)
         end
       end
     end

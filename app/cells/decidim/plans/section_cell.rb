@@ -20,6 +20,10 @@ module Decidim
       def current_locale
         I18n.locale.to_s
       end
+
+      def routes_proxy
+        @routes_proxy ||= EngineRouter.main_proxy(current_component)
+      end
     end
   end
 end

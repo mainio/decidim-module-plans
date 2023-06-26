@@ -17,7 +17,7 @@ module Decidim
       include Plans::Orderable
       include Paginable
 
-      helper_method :attached_proposals_picker_field, :available_tags, :trigger_feedback?
+      helper_method :attached_proposals_picker_field, :trigger_feedback?
 
       before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :check_draft, only: [:new]
@@ -60,9 +60,9 @@ module Decidim
           on(:ok) do |plan|
             flash[:notice] = I18n.t("plans.plans.create.success", scope: "decidim")
             if show_preview
-              redirect_to preview_plan_path(plan)
+              redirect_to routes_proxy.preview_plan_path(plan)
             else
-              redirect_to edit_plan_path(plan)
+              redirect_to routes_proxy.edit_plan_path(plan)
             end
           end
 
@@ -92,9 +92,9 @@ module Decidim
             return redirect_to Decidim::ResourceLocatorPresenter.new(plan).path if plan.published?
 
             if show_preview
-              redirect_to preview_plan_path(plan)
+              redirect_to routes_proxy.preview_plan_path(plan)
             else
-              redirect_to edit_plan_path(plan)
+              redirect_to routes_proxy.edit_plan_path(plan)
             end
           end
 
@@ -114,7 +114,7 @@ module Decidim
         DestroyPlan.call(@plan, current_user) do
           on(:ok) do
             flash[:notice] = I18n.t("plans.plans.destroy.success", scope: "decidim")
-            redirect_to new_plan_path
+            redirect_to routes_proxy.new_plan_path
           end
 
           on(:invalid) do
@@ -150,12 +150,12 @@ module Decidim
           on(:ok) do |plan|
             flash[:notice] = I18n.t("publish.success", scope: "decidim.plans.plans.plan")
             session["decidim-plans.published"] = true
-            redirect_to plan_path(plan)
+            redirect_to routes_proxy.plan_path(plan)
           end
 
           on(:invalid) do
             flash.now[:alert] = t("publish.error", scope: "decidim.plans.plans.plan")
-            redirect_to plan_path(@plan)
+            redirect_to routes_proxy.plan_path(@plan)
           end
         end
       end
@@ -166,12 +166,12 @@ module Decidim
         ClosePlan.call(@plan, current_user) do
           on(:ok) do |plan|
             flash[:notice] = I18n.t("close.success", scope: "decidim.plans.plans.plan")
-            redirect_to plan_path(plan)
+            redirect_to routes_proxy.plan_path(plan)
           end
 
           on(:invalid) do
             flash.now[:alert] = t("close.error", scope: "decidim.plans.plans.plan")
-            redirect_to plan_path(@plan)
+            redirect_to routes_proxy.plan_path(@plan)
           end
         end
       end
@@ -183,7 +183,7 @@ module Decidim
 
         unless @form.authors.any?
           flash[:alert] = t("add_authors.no_authors", scope: "decidim.plans.plans")
-          return redirect_to plan_path(@plan)
+          return redirect_to routes_proxy.plan_path(@plan)
         end
       end
 
@@ -195,12 +195,12 @@ module Decidim
         AddAuthorsToPlan.call(@form, @plan, current_user) do
           on(:ok) do |plan|
             flash[:success] = t("add_authors.success", scope: "decidim.plans.plans")
-            redirect_to plan_path(plan)
+            redirect_to routes_proxy.plan_path(plan)
           end
 
           on(:invalid) do
             flash[:alert] = t("add_authors.error", scope: "decidim.plans.plans")
-            redirect_to plan_path(@plan)
+            redirect_to routes_proxy.plan_path(@plan)
           end
         end
       end
@@ -211,12 +211,12 @@ module Decidim
         DisjoinPlan.call(@plan, current_user) do
           on(:ok) do |plan|
             flash[:success] = t("disjoin.success", scope: "decidim.plans.plans")
-            redirect_to plan_path(plan)
+            redirect_to routes_proxy.plan_path(plan)
           end
 
           on(:invalid) do
             flash[:alert] = t("disjoin.error", scope: "decidim.plans.plans")
-            redirect_to plan_path(@plan)
+            redirect_to routes_proxy.plan_path(@plan)
           end
         end
       end
@@ -237,7 +237,7 @@ module Decidim
       end
 
       def check_draft
-        redirect_to edit_plan_path(plan_draft) if plan_draft.present?
+        redirect_to routes_proxy.edit_plan_path(plan_draft) if plan_draft.present?
       end
 
       def plan_draft
@@ -256,7 +256,7 @@ module Decidim
 
         raise ActionController::RoutingError, "Not Found" unless @plan.editable_by?(current_user)
 
-        redirect_to preview_plan_path(@plan)
+        redirect_to routes_proxy.preview_plan_path(@plan)
       end
 
       def search_klass
@@ -279,7 +279,7 @@ module Decidim
 
       def default_section_filter_params
         Decidim::Plans::Section.where(component: current_component).map do |section|
-          manifest = section.section_type_manifest
+          # manifest = section.section_type_manifest
           control = section.section_type_manifest.content_control_class.new
 
           [section.id, control.search_params_for(section)]
@@ -290,6 +290,10 @@ module Decidim
         filter_origin_params = %w(citizens)
         filter_origin_params << "user_group" if current_organization.user_groups_enabled?
         filter_origin_params
+      end
+
+      def routes_proxy
+        @routes_proxy ||= EngineRouter.main_proxy(current_component)
       end
     end
   end

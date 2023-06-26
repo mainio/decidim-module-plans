@@ -6,7 +6,8 @@ module Decidim
       class FieldMapPointCell < Decidim::Plans::SectionEditCell
         include Decidim::MapHelper
 
-        delegate :geocoding_path, :reverse_geocoding_path, :snippets, to: :controller
+        delegate :snippets, to: :controller
+        delegate :geocoding_path, :reverse_geocoding_path, to: :routes_proxy
 
         private
 

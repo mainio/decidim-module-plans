@@ -18,6 +18,7 @@ module Decidim
       include Decidim::Plans::Engine.routes.url_helpers
 
       delegate :allowed_to?, :current_component, :current_user, to: :controller
+      delegate :plans_path, :plan_url, :plan_path, :plan_versions_path, to: :routes_proxy
 
       def collaborator_requests
         return unless allowed_to?(:edit, :plan, plan: plan)
@@ -175,6 +176,10 @@ module Decidim
 
       def current_locale
         I18n.locale.to_s
+      end
+
+      def routes_proxy
+        @routes_proxy ||= EngineRouter.main_proxy(current_component)
       end
     end
   end
