@@ -9,7 +9,7 @@ module Decidim
         # Since the test suite has test coverage for this, we want to declare
         # the association when the test suite is running. This makes it pass
         # when DB is not initialized prior to test runs such as when we run on
-        # Travis CI Ex. (there won't be a db in `spec/dummy_app/db/`).
+        # GitHub Actions Ex. (there won't be a db in `spec/dummy_app/db/`).
         has_many :version_associations,
                  class_name: "Decidim::Plans::PaperTrail::VersionAssociation",
                  dependent: :destroy
