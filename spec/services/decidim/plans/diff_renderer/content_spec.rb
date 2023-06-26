@@ -50,7 +50,7 @@ module Decidim
 
         describe "#generate_i18n_label" do
           it "returns expected label" do
-            expect(subject).to receive(:display_locale).and_return(nil)
+            allow(subject).to receive(:display_locale).and_return(nil)
             expect(subject.send(:generate_i18n_label, :any, "en")).to eq(
               "#{content.section.body["en"]} (English)"
             )

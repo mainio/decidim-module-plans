@@ -8,9 +8,10 @@ module Decidim
         return Decidim::Plans::Admin::Permissions.new(user, permission_action, context).permissions if permission_action.scope == :admin
         return permission_action if permission_action.scope != :public
 
-        if permission_action.subject == :plan
+        case permission_action.subject
+        when :plan
           apply_plan_permissions(permission_action)
-        elsif permission_action.subject == :plans
+        when :plans
           apply_plans_permissions(permission_action)
         else
           permission_action

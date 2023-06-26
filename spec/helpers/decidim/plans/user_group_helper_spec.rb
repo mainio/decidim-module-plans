@@ -19,7 +19,7 @@ describe Decidim::Plans::UserGroupHelper do
 
     context "when no existing group id is available" do
       before do
-        expect(form).to receive(:user_group_id).and_return(nil)
+        allow(form).to receive(:user_group_id).and_return(nil)
       end
 
       it "calls form.select with correct arguments" do
@@ -39,7 +39,7 @@ describe Decidim::Plans::UserGroupHelper do
 
     context "when existing group id is available" do
       before do
-        expect(form).to receive(:user_group_id).and_return(group1.id)
+        allow(form).to receive(:user_group_id).and_return(group1.id)
       end
 
       it "calls form.select with correct arguments" do

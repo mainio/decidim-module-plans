@@ -100,8 +100,8 @@ module Decidim
         let(:plan_path) { double }
 
         it "returns body link to the plan" do
-          expect(subject).to receive(:title).and_return(title)
-          expect(subject).to receive(:plan_path).and_return(plan_path)
+          allow(subject).to receive(:title).and_return(title)
+          allow(subject).to receive(:plan_path).and_return(plan_path)
           expect(subject).to receive(:link_to).with(title, plan_path)
 
           subject.display_mention

@@ -40,7 +40,7 @@ module Decidim
 
         describe "when the form is not valid" do
           before do
-            expect(form).to receive(:invalid?).and_return(true)
+            allow(form).to receive(:invalid?).and_return(true)
           end
 
           it "broadcasts invalid" do
@@ -56,7 +56,7 @@ module Decidim
 
         describe "when the plan is not editable by the user" do
           before do
-            expect(plan).to receive(:editable_by?).and_return(false)
+            allow(plan).to receive(:editable_by?).and_return(false)
           end
 
           it "broadcasts invalid" do

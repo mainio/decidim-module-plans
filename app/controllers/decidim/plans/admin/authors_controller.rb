@@ -20,7 +20,7 @@ module Decidim
 
           unless @form.authors.any?
             flash[:alert] = t("add_authors.no_authors", scope: "decidim.plans.plans")
-            return redirect_to plan_authors_path(plan)
+            redirect_to plan_authors_path(plan)
           end
         end
 

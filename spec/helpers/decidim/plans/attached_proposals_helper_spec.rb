@@ -42,7 +42,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
       it "returns the proposals" do
         expect(format).to receive(:html).and_yield
         expect(format).to receive(:json).and_yield
-        expect(helper).to receive(:respond_to).and_yield(format)
+        allow(helper).to receive(:respond_to).and_yield(format)
 
         # html
         expect(helper).to receive(:render).with(
@@ -90,7 +90,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
       it "returns the proposals" do
         expect(format).to receive(:html).and_yield
         expect(format).to receive(:json).and_yield
-        expect(helper).to receive(:respond_to).and_yield(format)
+        allow(helper).to receive(:respond_to).and_yield(format)
 
         # html
         expect(helper).to receive(:render).with(
@@ -143,7 +143,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
       it "returns the proposals" do
         expect(format).to receive(:html).and_yield
         expect(format).to receive(:json).and_yield
-        expect(helper).to receive(:respond_to).and_yield(format)
+        allow(helper).to receive(:respond_to).and_yield(format)
 
         # html
         expect(helper).to receive(:render).with(
@@ -186,7 +186,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         it "returns the proposals" do
           expect(format).to receive(:html).and_yield
           expect(format).to receive(:json).and_yield
-          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:respond_to).and_yield(format)
           allow(helper).to receive(:params).and_return(
             term: "this"
           )
@@ -212,7 +212,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         it "returns the proposals" do
           expect(format).to receive(:html).and_yield
           expect(format).to receive(:json).and_yield
-          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:respond_to).and_yield(format)
           allow(helper).to receive(:params).and_return(
             term: "blablabla"
           )
@@ -248,7 +248,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         it "returns the proposals" do
           expect(format).to receive(:html).and_yield
           expect(format).to receive(:json).and_yield
-          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:respond_to).and_yield(format)
           allow(helper).to receive(:params).and_return(
             term: "##{proposal.id}"
           )
@@ -274,7 +274,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         it "returns the proposals" do
           expect(format).to receive(:html).and_yield
           expect(format).to receive(:json).and_yield
-          expect(helper).to receive(:respond_to).and_yield(format)
+          allow(helper).to receive(:respond_to).and_yield(format)
           allow(helper).to receive(:params).and_return(
             term: "#9#{proposal.id}9"
           )

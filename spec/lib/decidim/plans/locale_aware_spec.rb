@@ -27,27 +27,27 @@ describe Decidim::Plans::LocaleAware do
 
   describe ".current_locale" do
     it "calls I18n.locale" do
-      expect(I18n).to receive(:locale).and_return(locale)
+      allow(I18n).to receive(:locale).and_return(locale)
       expect(klass.current_locale).to be(locale)
     end
   end
 
   describe "#current_locale" do
     it "calls I18n.locale" do
-      expect(I18n).to receive(:locale).and_return(locale)
+      allow(I18n).to receive(:locale).and_return(locale)
       expect(subject.fetch_current_locale).to be(locale)
     end
   end
 
   describe "#available_locales" do
     it "fetches available locales from Decidim" do
-      expect(Decidim).to receive(:available_locales).and_return(available_locales)
+      allow(Decidim).to receive(:available_locales).and_return(available_locales)
       expect(subject.fetch_available_locales).to be(available_locales)
     end
 
     # rubocop:disable RSpec/SubjectStub
     it "with current organization available" do
-      expect(subject).to receive(:available_locales).and_return(available_locales)
+      allow(subject).to receive(:available_locales).and_return(available_locales)
       expect(Decidim).not_to receive(:available_locales)
       expect(subject.fetch_available_locales).to be(available_locales)
     end

@@ -13,7 +13,8 @@ module Decidim
             alias_method :settings_attribute_input_orig_plans, :settings_attribute_input
 
             def settings_attribute_input(form, attribute, name, i18n_scope, options = {})
-              if attribute.type == :plan_layout
+              case attribute.type
+              when :plan_layout
                 layouts = Decidim::Plans.layouts.all.map do |manifest|
                   [t(manifest.public_name_key), manifest.name]
                 end
@@ -25,7 +26,7 @@ module Decidim
                 )
 
                 state_select + plans_settings_js
-              elsif attribute.type == :plan_state
+              when :plan_state
                 state_select = form.select(
                   name,
                   [

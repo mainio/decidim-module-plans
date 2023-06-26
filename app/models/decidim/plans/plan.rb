@@ -110,6 +110,7 @@ module Decidim
           .where("decidim_coauthorships.decidim_author_id = ? AND decidim_coauthorships.decidim_author_type = ? ", author.id, author.class.base_class.name)
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       def self.geocoded_data_for(component)
         types = %w(
           field_map_point
@@ -146,14 +147,15 @@ module Decidim
           plan[:title] = plan_title
           plan[:points] ||= []
 
-          if type == "field_map_point"
+          case type
+          when "field_map_point"
             plan[:points] << body.symbolize_keys
-          elsif type == "field_area_scope"
+          when "field_area_scope"
             # TODO: We should resolve the area scope coordinates, otherwise
             # it is hard to put them to the map.
             # plan[:latitude] ||= scope_point_latitude
             # plan[:longitude] ||= scope_point_latitude
-          elsif type == "field_text_multiline"
+          when "field_text_multiline"
             body = plan[:body] || {}
             plan[:body] = body.map do |locale, value|
               value = "#{body[locale]} #{value}".strip
@@ -181,6 +183,7 @@ module Decidim
           end.compact
         end.compact.flatten
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
       # Public: Checks if the plan is open for edits.
       #

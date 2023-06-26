@@ -56,12 +56,11 @@ module Decidim
 
       # Options to filter Plans by activity.
       def activity_filter_values
-        base = [
+        [
           ["all", t(".filters.activity.all")],
           ["my_plans", t(".filters.activity.my_plans")],
           ["my_favorites", t(".filters.activity.my_favorites")]
         ]
-        base
       end
 
       def available_tags

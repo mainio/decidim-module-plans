@@ -118,6 +118,7 @@ module Decidim
         end
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       def generate_plan
         title = ::Faker::Lorem.sentence(word_count: 2)
         plan = Plan.new(
@@ -184,7 +185,9 @@ module Decidim
 
         plan
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       def seed_plan_images_and_attachments!(plan)
         # Decide whether to add image and/or attachments
         add_image = should_add_images?
@@ -213,6 +216,7 @@ module Decidim
           end
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
       def should_add_images?
         images.present? && ::Faker::Boolean.boolean

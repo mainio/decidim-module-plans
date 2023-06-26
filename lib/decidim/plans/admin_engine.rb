@@ -52,10 +52,7 @@ module Decidim
       end
 
       config.to_prepare do
-        Decidim::Admin::SettingsHelper.send(
-          :include,
-          Decidim::Plans::Admin::PlanComponentSettings
-        )
+        Decidim::Admin::SettingsHelper.include Decidim::Plans::Admin::PlanComponentSettings
       end
     end
   end

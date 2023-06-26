@@ -28,8 +28,8 @@ describe Decidim::Plans::CollapsibleAuthorsCell, type: :cell do
     let(:author_cell) { double }
 
     it "renders the actions" do
-      expect(my_cell).to receive(:actionable?).and_return(true)
-      expect(my_cell).to receive(:cell)
+      allow(my_cell).to receive(:actionable?).and_return(true)
+      allow(my_cell).to receive(:cell)
         .with("decidim/plans/author", any_args)
         .and_return(author_cell)
       expect(author_cell).to receive(:call).with(:date)

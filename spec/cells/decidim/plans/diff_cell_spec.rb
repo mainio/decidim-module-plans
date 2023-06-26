@@ -130,8 +130,8 @@ describe Decidim::Plans::DiffCell, type: :cell do
       let(:content_diff) { [double, double, double] }
 
       before do
-        expect(my_cell).to receive(:item_diff_renderers).and_return(item_diff)
-        expect(my_cell).to receive(:content_diff_renderers).and_return(content_diff)
+        allow(my_cell).to receive(:item_diff_renderers).and_return(item_diff)
+        allow(my_cell).to receive(:content_diff_renderers).and_return(content_diff)
       end
 
       it "returns the correct renderers" do

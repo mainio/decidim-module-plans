@@ -14,6 +14,7 @@ module Decidim
       field :title, Decidim::Core::TranslatedFieldType, description: "What is the title text for this section (i.e. the section body).", null: false
       field :body, Decidim::Plans::ContentBodyFieldType, description: "The text answer response option.", null: true
 
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       def body
         # TODO: Move these to field specific presenter classes.
         case object.section.section_type
@@ -47,6 +48,7 @@ module Decidim
           object.body
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
       private
 

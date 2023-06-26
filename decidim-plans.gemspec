@@ -10,6 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Antti Hukkanen"]
   spec.email = ["antti.hukkanen@mainiotech.fi"]
 
+  spec.required_ruby_version = ">= 2.7"
+
   spec.summary = "Provides a plans component for Decidim."
   spec.description = "Plans component allows people to author plans based on the proposals that can be converted into budgeting projects."
   spec.homepage = "https://github.com/mainio/decidim-module-plans"

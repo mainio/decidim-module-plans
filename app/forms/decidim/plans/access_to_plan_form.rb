@@ -26,9 +26,9 @@ module Decidim
       private
 
       def existence_of_requester_in_requesters
-        if plan
-          errors.add(:requester_user_id, :invalid) unless plan.requesters.exists? requester_user_id
-        end
+        return unless plan
+
+        errors.add(:requester_user_id, :invalid) unless plan.requesters.exists? requester_user_id
       end
     end
   end

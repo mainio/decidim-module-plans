@@ -42,7 +42,7 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
 
     describe "when the form is not valid" do
       before do
-        expect(form).to receive(:valid?).and_return(false)
+        allow(form).to receive(:valid?).and_return(false)
       end
 
       it "broadcasts invalid" do

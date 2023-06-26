@@ -8,7 +8,7 @@ module Decidim
       private
 
       def withdraw_path
-        from_context_path + "/withdraw"
+        "#{from_context_path}/withdraw"
       end
     end
   end

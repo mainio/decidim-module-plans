@@ -13,7 +13,7 @@ describe Decidim::Plans::AttachmentsHelper do
     it "returns the correct id" do
       param = "param"
       attachment = double
-      expect(attachment).to receive(:to_param).and_return(param)
+      allow(attachment).to receive(:to_param).and_return(param)
 
       expect(helper.tabs_id_for_attachment(attachment)).to eq("attachment_#{param}")
     end
@@ -58,8 +58,8 @@ describe Decidim::Plans::AttachmentsHelper do
       it "links to image file" do
         allow(form_object).to receive(attribute).and_return(file)
         allow(file).to receive(:url).and_return(url)
-        expect(form).to receive(:file_is_image?).with(file).and_return(true)
-        expect(file).to receive(:present?).and_return(true)
+        allow(form).to receive(:file_is_image?).with(file).and_return(true)
+        allow(file).to receive(:present?).and_return(true)
 
         output = ctx.upload_field(form, attribute)
         expect(output).to have_css("img[src='#{url}']")
@@ -76,8 +76,8 @@ describe Decidim::Plans::AttachmentsHelper do
         allow(file).to receive(:url).and_return(url)
         allow(file).to receive(:file).and_return(fileobj)
         allow(fileobj).to receive(:filename).and_return("file.pdf")
-        expect(form).to receive(:file_is_image?).with(file).and_return(false)
-        expect(form).to receive(:file_is_present?).with(file).and_return(true)
+        allow(form).to receive(:file_is_image?).with(file).and_return(false)
+        allow(form).to receive(:file_is_present?).with(file).and_return(true)
 
         output = ctx.upload_field(form, attribute)
         expect(output).to have_css("a[href='#{url}']")

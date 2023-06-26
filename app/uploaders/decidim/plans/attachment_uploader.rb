@@ -50,7 +50,7 @@ module Decidim
       def content_type_whitelist
         case model.upload_type
         when :image
-          [%r{image\/}]
+          [%r{image/}]
         else
           Decidim.organization_settings(model).upload_allowed_content_types
         end

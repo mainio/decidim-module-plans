@@ -19,11 +19,11 @@ module Decidim
       end
 
       def participatory_space_event?
-        extra.dig(:participatory_space)
+        extra[:participatory_space]
       end
 
       def proposal_author_event?
-        extra.dig(:proposal_author)
+        extra[:proposal_author]
       end
     end
   end

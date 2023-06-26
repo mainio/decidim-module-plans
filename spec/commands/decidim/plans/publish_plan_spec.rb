@@ -59,11 +59,12 @@ describe Decidim::Plans::PublishPlan do
           subject.call
           plan = Decidim::Plans::Plan.last
 
-          if options[:state] == "accepted"
+          case options[:state]
+          when "accepted"
             expect(plan.accepted?).to be(true)
-          elsif options[:state] == "rejected"
+          when "rejected"
             expect(plan.rejected?).to be(true)
-          elsif options[:state] == "evaluating"
+          when "evaluating"
             expect(plan.evaluating?).to be(true)
           end
           expect(plan.answer).to be_nil
@@ -85,11 +86,12 @@ describe Decidim::Plans::PublishPlan do
             subject.call
             plan = Decidim::Plans::Plan.last
 
-            if options[:state] == "accepted"
+            case options[:state]
+            when "accepted"
               expect(plan.accepted?).to be(true)
-            elsif options[:state] == "rejected"
+            when "rejected"
               expect(plan.rejected?).to be(true)
-            elsif options[:state] == "evaluating"
+            when "evaluating"
               expect(plan.evaluating?).to be(true)
             end
             expect(plan.answer).to include(

@@ -85,8 +85,8 @@ describe Decidim::Plans::ApplicationHelper do
         plan.save!
       end
 
-      expect(helper).to receive(:current_component).and_return(current_component)
-      expect(helper).to receive(:current_user).and_return(current_user)
+      allow(helper).to receive(:current_component).and_return(current_component)
+      allow(helper).to receive(:current_user).and_return(current_user)
     end
 
     it "returns the correct plans" do

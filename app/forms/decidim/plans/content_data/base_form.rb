@@ -12,8 +12,7 @@ module Decidim
         attribute :section_id, Integer
         attribute :plan_id, Integer
 
-        attr_writer :section
-        attr_writer :plan
+        attr_writer :section, :plan
 
         delegate :mandatory, :section_type_manifest, to: :section
 

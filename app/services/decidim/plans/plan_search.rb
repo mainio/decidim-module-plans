@@ -53,9 +53,10 @@ module Decidim
       # Handle the origin filter
       # The 'official' plans doesn't have an author id
       def search_origin
-        if origin == "official"
+        case origin
+        when "official"
           query.where.not(coauthorships_count: 0).joins(:coauthorships).where(decidim_coauthorships: { decidim_author_type: "Decidim::Organization" })
-        elsif origin == "citizens"
+        when "citizens"
           query.where.not(coauthorships_count: 0).joins(:coauthorships).where.not(decidim_coauthorships: { decidim_author_type: "Decidim::Organization" })
         else # Assume 'all'
           query
