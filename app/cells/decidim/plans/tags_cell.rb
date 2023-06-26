@@ -26,7 +26,7 @@ module Decidim
       end
 
       def scope?
-        has_visible_scopes?(model)
+        model.scope.present?
       end
 
       def taggings?
