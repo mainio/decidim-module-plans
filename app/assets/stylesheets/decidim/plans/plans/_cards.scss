@@ -1,0 +1,103 @@
+$black: #000 !default;
+$light-gray: #eee !default;
+$card-padding-small: 1rem !default;
+$card-padding: 1.5rem; // This would get the wrong default value with !default
+
+.card{
+  // Fixes an issue in the notifications view that the notification items are
+  // layed out incorrectly.
+  &.card--widget{
+    .card-data{
+      .card-data__item{
+        .notification-details{
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &.secondary,
+  &.primary,
+  &.success,
+  &.warning,
+  &.alert,
+  &.muted{
+    border-top-width: 1px;
+  }
+
+  .card__category{
+    position: relative;
+
+    .card__category__icon{
+      position: absolute;
+      top: 6px;
+      display: block;
+
+      img{
+        width: 26px;
+      }
+    }
+
+    .card__category__name{
+      display: block;
+      margin-left: 35px;
+
+      &:only-child{
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.card__category,
+.card__info{
+  padding: .5rem;
+  font-weight: bold;
+}
+
+.card__category{
+  background: $light-gray;
+}
+
+.card__category,
+.card__info{
+  padding-left: $card-padding-small;
+  padding-right: $card-padding-small;
+
+  @include breakpoint(medium){
+    padding-left: $card-padding;
+    padding-right: $card-padding;
+  }
+}
+
+.card__button{
+  font-size: .7rem;
+}
+
+.card__info{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.card__info__item{
+  flex: 1 1 0;
+}
+
+.card__state{
+  color: $white;
+
+  &.success{
+    background-color: var(--success);
+  }
+
+  &.warning{
+    background-color: var(--warning);
+    color: $black;
+  }
+
+  &.alert{
+    background-color: var(--alert);
+  }
+}

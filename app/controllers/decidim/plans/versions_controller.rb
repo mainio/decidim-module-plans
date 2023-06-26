@@ -6,13 +6,16 @@ module Decidim
     # has been updated through time.
     class VersionsController < Decidim::Plans::ApplicationController
       helper Decidim::TraceabilityHelper
-      helper_method :current_version, :item_versions, :associated_versions,
-                    :content_versions, :item
+      helper_method :current_version, :item_versions, :content_versions, :item
+
+      def show
+        raise ActionController::RoutingError, "Not Found" if item.blank? || current_version.blank?
+      end
 
       private
 
       def item
-        @item ||= Plan.where(component: current_component).find(params[:plan_id])
+        @item ||= Plan.where(component: current_component).find_by(id: params[:plan_id])
       end
 
       def current_version
@@ -29,16 +32,6 @@ module Decidim
           transaction_id: current_version.transaction_id,
           item_type: "Decidim::Plans::Plan"
         ).order(:created_at)
-      end
-
-      def associated_versions
-        return [] if current_version.transaction_id.nil?
-
-        @associated_versions ||= Decidim::Plans::PaperTrail::Version.where(
-          transaction_id: current_version.transaction_id
-        ).where.not(
-          item_type: ["Decidim::Plans::Plan", "Decidim::Plans::Content"]
-        )
       end
 
       def content_versions

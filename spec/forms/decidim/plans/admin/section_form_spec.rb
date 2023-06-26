@@ -14,10 +14,12 @@ module Decidim
 
         let(:current_organization) { create(:organization) }
         let!(:position) { 0 }
+        let(:handle) { "section_0" }
 
         let(:deleted) { "false" }
         let(:attributes) do
           {
+            handle: handle,
             body_en: "Body en",
             body_ca: "Body ca",
             body_es: "Body es",
@@ -28,6 +30,12 @@ module Decidim
 
         context "when everything is OK" do
           it { is_expected.to be_valid }
+        end
+
+        context "when the handle is not present" do
+          let!(:handle) { nil }
+
+          it { is_expected.not_to be_valid }
         end
 
         context "when the position is not present" do

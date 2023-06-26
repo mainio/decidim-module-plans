@@ -1,7 +1,0 @@
-<%= decidim_form_for(@form, url: plan_tags_path(plan, @form), html: { class: "form plans-form new_plan plan_form_admin" }) do |f| %>
-  <%= render partial: "form", object: f, locals: { title: t(".title") } %>
-
-  <div class="button--double form-general-submit">
-    <%= f.submit t(".create") %>
-  </div>
-<% end %>

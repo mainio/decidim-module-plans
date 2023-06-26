@@ -2,21 +2,15 @@
 
 module Decidim
   module Plans
-    class AttachmentForm < Decidim::Form
-      attribute :title, String
-      attribute :file
-      attribute :weight, Integer
-      attribute :deleted, Boolean, default: false
-
-      mimic :attachment
-
-      validates :title, presence: true, if: ->(form) { form.file.present? || form.id.present? }
-
-      def to_param
-        return id if id.present?
-
-        "attachment-id"
-      end
+    class AttachmentForm < Decidim::Plans::BaseAttachmentForm
+      validates :file, passthru: {
+        to: Decidim::Plans::Attachment,
+        with: {
+          attached_to: lambda do |form|
+            form.current_organization
+          end
+        }
+      }, if: ->(form) { form.file.present? }
     end
   end
 end

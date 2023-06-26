@@ -1,6 +1,6 @@
 # Decidim::Plans
 
-[![Build Status](https://travis-ci.com/mainio/decidim-module-plans.svg?branch=master)](https://travis-ci.com/mainio/decidim-module-plans)
+[![Build Status](https://github.com/mainio/decidim-module-plans/actions/workflows/ci_plans.yml/badge.svg)](https://github.com/mainio/decidim-module-plans/actions)
 [![codecov](https://codecov.io/gh/mainio/decidim-module-plans/branch/master/graph/badge.svg)](https://codecov.io/gh/mainio/decidim-module-plans)
 
 The gem has been developed by [Mainio Tech](https://www.mainiotech.fi/).
@@ -47,6 +47,8 @@ And then execute:
 ```bash
 $ bundle
 $ bundle exec rails decidim_favorites:install:migrations
+$ bundle exec rails decidim_feedback:install:migrations
+$ bundle exec rails decidim_tags:install:migrations
 $ bundle exec rails decidim_plans:install:migrations
 $ bundle exec rails db:migrate
 ```

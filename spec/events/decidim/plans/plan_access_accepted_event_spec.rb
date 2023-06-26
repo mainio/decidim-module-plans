@@ -28,28 +28,28 @@ describe Decidim::Plans::PlanAccessAcceptedEvent do
 
     describe "email_subject" do
       it "is generated correctly" do
-        expect(subject.email_subject).to eq("#{requester_name} has been accepted to access as a contributor of #{resource_title}.")
+        expect(subject.email_subject).to eq("#{requester_name} has been accepted to contribute in #{resource_title}.")
       end
     end
 
     describe "email_intro" do
       it "is generated correctly" do
         expect(subject.email_intro)
-          .to eq(%(#{requester_name} has been accepted to access as a contributor of <a href="#{resource_url}">#{resource_title}</a>.))
+          .to eq(%(#{requester_name} has been accepted to edit proposal <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
 
     describe "email_outro" do
       it "is generated correctly" do
         expect(subject.email_outro)
-          .to eq(%(You have received this notification because you are a collaborator of <a href="#{resource_url}">#{resource_title}</a>.))
+          .to eq(%(You have received this notification because you are a collaborator in <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
 
     describe "notification_title" do
       it "is generated correctly" do
         expect(subject.notification_title)
-          .to include(%(<a href="#{requester_path}">#{requester_name} #{requester_nickname}</a> has been <strong>accepted to access as a contributor</strong> of <a href="#{resource_url}">#{resource_title}</a>.))
+          .to include(%(<a href="#{requester_path}">#{requester_name} #{requester_nickname}</a> has been <strong>accepted to contribute</strong> in <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
   end
@@ -61,28 +61,28 @@ describe Decidim::Plans::PlanAccessAcceptedEvent do
 
     describe "email_subject" do
       it "is generated correctly" do
-        expect(subject.email_subject).to eq("You have been accepted as a contributor of #{resource_title}.")
+        expect(subject.email_subject).to eq("You have been accepted to contribute to #{resource_title}.")
       end
     end
 
     describe "email_intro" do
       it "is generated correctly" do
         expect(subject.email_intro)
-          .to eq(%(You have been accepted to access as a contributor of <a href="#{resource_url}">#{resource_title}</a>.))
+          .to eq(%(You have been accepted to contribute in <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
 
     describe "email_outro" do
       it "is generated correctly" do
         expect(subject.email_outro)
-          .to eq(%(You have received this notification because you requested to become a collaborator of <a href="#{resource_url}">#{resource_title}</a>.))
+          .to eq(%(You have received this notification because you requested editing access to <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
 
     describe "notification_title" do
       it "is generated correctly" do
         expect(subject.notification_title)
-          .to eq(%(You have been <strong>accepted to access as a contributor</strong> of <a href="#{resource_url}">#{resource_title}</a>.))
+          .to eq(%(You have been <strong>accepted to contribute</strong> to <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
   end

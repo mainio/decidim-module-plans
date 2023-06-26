@@ -7,10 +7,12 @@ module Decidim
       class PlansController < Admin::ApplicationController
         include Decidim::ApplicationHelper
         include Plans::AttachedProposalsHelper
+        include Decidim::Plans::AttachedPlansHelper
 
         helper Plans::ApplicationHelper
         helper Plans::AttachmentsHelper
         helper Plans::RemainingCharactersHelper
+        helper Plans::PlanLayoutHelper
         helper_method :plans, :plan, :query, :counts, :form_presenter, :attached_proposals_picker_field
 
         def new
@@ -25,7 +27,7 @@ module Decidim
           Admin::CreatePlan.call(@form) do
             on(:ok) do
               flash[:notice] = I18n.t("plans.create.success", scope: "decidim")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
@@ -47,7 +49,7 @@ module Decidim
           Admin::UpdatePlan.call(@form, @plan) do
             on(:ok) do
               flash[:notice] = I18n.t("plans.update.success", scope: "decidim")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
@@ -63,12 +65,12 @@ module Decidim
           ClosePlan.call(plan, current_user) do
             on(:ok) do
               flash[:notice] = I18n.t("close.success", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
               flash.now[:alert] = t("close.error", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
           end
         end
@@ -79,40 +81,41 @@ module Decidim
           ReopenPlan.call(plan, current_user) do
             on(:ok) do
               flash[:notice] = I18n.t("reopen.success", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
 
             on(:invalid) do
               flash.now[:alert] = t("reopen.error", scope: "decidim.plans.plans.plan")
-              redirect_to plans_path
+              redirect_to routes_proxy.plans_path
             end
           end
         end
 
-        def taggings
-          enforce_permission_to :edit_taggings, :plan, plan: plan
-
-          @form = form(Admin::TaggingsForm).from_model(plan)
+        # Possibly needed by the views
+        def info_path(section_id)
+          main_component_path("info/#{section_id}")
         end
 
-        def update_taggings
-          enforce_permission_to :edit_taggings, :plan, plan: plan
+        # Possibly needed by the views
+        def geocoding_path(*_args)
+          main_component_path("geocoding")
+        end
 
-          @form = form(Admin::TaggingsForm).from_params(params)
-          Admin::UpdatePlanTaggings.call(@form, plan) do
-            on(:ok) do
-              flash[:notice] = I18n.t("plans.update_taggings.success", scope: "decidim.plans.admin")
-              redirect_to plans_path
-            end
-
-            on(:invalid) do
-              flash.now[:alert] = I18n.t("plans.update_taggings.invalid", scope: "decidim.plans.admin")
-              render :taggings
-            end
-          end
+        # Possibly needed by the views
+        def reverse_geocoding_path(*_args)
+          main_component_path("geocoding/reverse")
         end
 
         private
+
+        def main_component_path(sub_path)
+          path, url_params = EngineRouter.main_proxy(current_component).root_path(
+            locale: params[:locale]
+          ).split("?")
+          suffix = url_params.blank? ? "" : "?#{url_params}"
+
+          "#{path.gsub(%r{/$}, "")}/plans/#{sub_path}#{suffix}"
+        end
 
         def query
           @query ||= Plan.published.where(component: current_component).ransack(params[:q])
@@ -135,6 +138,10 @@ module Decidim
 
         def form_presenter
           @form_presenter ||= present(@form, presenter_class: Decidim::Plans::PlanPresenter)
+        end
+
+        def routes_proxy
+          @routes_proxy ||= EngineRouter.admin_proxy(current_component)
         end
       end
     end

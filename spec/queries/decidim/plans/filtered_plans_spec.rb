@@ -68,7 +68,7 @@ describe Decidim::Plans::FilteredPlans do
   end
 
   context "with start and end time" do
-    let(:start_time) { Time.current.midday - 2.day }
+    let(:start_time) { Time.current.midday - 2.days }
     let(:end_time) { start_time + 1.day }
 
     let(:component) { create(:plan_component, organization: organization) }

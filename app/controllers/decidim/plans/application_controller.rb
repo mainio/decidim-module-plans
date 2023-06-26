@@ -13,6 +13,7 @@ module Decidim
 
       def plan_limit
         return nil if component_settings.plan_limit.zero?
+
         component_settings.plan_limit
       end
 

@@ -1,6 +1,7 @@
-<% unless content.nil? || present(content).body.empty? %>
-  <div class="section">
-    <h3 class="section-heading"><%= present(content).title %></h3>
-    <div class="section-content"><%= present(content).body %></div>
-  </div>
+<% if content %>
+  <%= cell(
+    content.section_type_manifest.display_cell,
+    content,
+    context: { current_component: current_component }
+  ) %>
 <% end %>

@@ -15,7 +15,7 @@ module Decidim
         from_context.withdrawable_by?(current_user)
       end
 
-      def flagable?
+      def flaggable?
         return unless from_context
         return unless plans_controller?
         return if index_action?

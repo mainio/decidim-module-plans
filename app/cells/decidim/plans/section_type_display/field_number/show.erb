@@ -1,0 +1,10 @@
+<div class="section">
+  <%= render :section_title %>
+  <div class="section-content">
+    <% if currency_type? %>
+      <%== number_to_currency(number, unit: Decidim.currency_unit, precision: currency_precision, locale: current_locale).gsub(/\s/, "&nbsp;") %>
+    <% else %>
+      <%== number_with_delimiter(number, locale: current_locale).gsub(/\s/, "&nbsp;") %>
+    <% end %>
+  </div>
+</div>

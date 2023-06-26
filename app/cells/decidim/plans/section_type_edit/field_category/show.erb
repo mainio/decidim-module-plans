@@ -1,0 +1,68 @@
+<div class="field field-category" id="<%= field_id %>">
+  <div class="row">
+    <div class="columns large-6">
+      <div class="field">
+        <%= content_tag :div, class: field_info_classes do %>
+          <%= plain_label form, "body_#{current_locale}".to_sym %>
+          <%= render :tooltip %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns large-6">
+      <div class="field">
+        <%= categories_select(
+          form,
+          :category_id,
+          top_categories,
+          {
+            label: false,
+            prompt: t(".select_a_category")
+          },
+          data: {
+            field_toggle: "##{field_id} .field-subcategory .subcategories"
+          }
+        ) %>
+      </div>
+    </div>
+    <% if show_info_link? %>
+      <div class="columns large-6">
+        <div class="field-info field-info-with-icon">
+          <%= link_to info_path(section.id), class: "info-modal-link" do %>
+            <%= icon "information", aria_hidden: true %>
+            <%= information_label %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field-subcategory">
+    <% top_categories.each do |category| %>
+      <% next if category.subcategories.blank? %>
+
+      <div class="subcategories hide" data-field-toggle-value="<%= category.id %>">
+        <%= plain_label form, :sub_category_id, text: t(".sub_category_label") %>
+
+        <div class="row">
+          <div class="columns large-6">
+            <div class="field">
+              <%= categories_select(
+                form,
+                :sub_category_id,
+                category.subcategories,
+                {
+                  label: false,
+                  include_blank: t(".select_a_sub_category")
+                },
+                id: "#{field_id}_sub_category_id_for_#{category.id}"
+              ) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

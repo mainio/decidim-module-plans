@@ -66,7 +66,7 @@ module Decidim
       def attachment_params(form)
         params = {
           weight: form.weight,
-          title: form.title,
+          title: { I18n.locale => form.title },
           attached_to: @attached_to
         }
         params[:file] = form.file if form.file.present?

@@ -1,9 +1,9 @@
-<% help_text = translated_attribute(component_settings.attachment_help).strip %>
+<% help_text ||= "" %>
 
 <div class="card multifield-field" id="<%= id %>-field">
   <div class="card-divider multifield-field-divider">
-    <h3 class="heading6 card-title">
-      <span class="card-title-text">
+    <h3 class="heading6 card-title multifield-title">
+      <span class="card-title-text multifield-title-text">
         <%== t(".attachment_legend") %>
       </span>
 

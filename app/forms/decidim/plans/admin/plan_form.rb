@@ -9,21 +9,14 @@ module Decidim
         include Decidim::ApplicationHelper
         mimic :plan
 
-        optionally_translatable_attribute :title, String
-
         attribute :category_id, Integer
         attribute :scope_id, Integer
-        attribute :attachments, Array[Plans::AttachmentForm]
-        attribute :contents, Array[Decidim::Plans::ContentForm]
-        attribute :proposal_ids, Array[Integer]
+        attribute :contents, Array
 
         # When a plan is updated, the user can optionally pass a version comment
         # in the version_comment attribute.
         translatable_attribute :version_comment, String
 
-        optionally_translatable_validate_presence :title
-
-        validates :proposals, presence: true, if: ->(form) { form.current_component.settings.proposal_linking_enabled? }
         validates :category, presence: true, if: ->(form) { form.category_id.present? }
         validates :scope, presence: true, if: ->(form) { form.scope_id.present? }
 
@@ -31,16 +24,24 @@ module Decidim
 
         delegate :categories, to: :current_component
 
+        def self.from_params(params, additional_params = {})
+          form = super
+          form.contents = form.contents.map do |section_params|
+            ContentForm.from_params(section_params, additional_params)
+          end
+
+          form
+        end
+
         def map_model(model)
           self.contents = model.sections.map do |section|
             ContentForm.from_model(
               Content
                 .where(plan: model, section: section)
-                .first_or_initialize(plan: model, section: section)
+                .first_or_initialize(plan: model, section: section, body: {})
             )
           end
 
-          self.proposal_ids = model.linked_resources(:proposals, "included_proposals").pluck(:id)
           self.scope_id = model.decidim_scope_id if model.scope
           self.category_id = model.categorization.decidim_category_id if model.categorization
         end
@@ -70,14 +71,6 @@ module Decidim
 
         def author
           current_organization
-        end
-
-        def proposals
-          @proposals ||= Decidim
-                         .find_resource_manifest(:proposals)
-                         .try(:resource_scope, current_component)
-                         &.where(id: proposal_ids)
-                         &.order(title: :asc)
         end
 
         private

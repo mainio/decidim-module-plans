@@ -13,7 +13,6 @@ describe Decidim::Plans::DiffCell, type: :cell do
         "decidim/plans/diff",
         model,
         item_versions: item_versions,
-        associated_versions: associated_versions,
         content_versions: content_versions
       )
     end
@@ -24,13 +23,6 @@ describe Decidim::Plans::DiffCell, type: :cell do
         transaction_id: current_version.transaction_id,
         item_type: "Decidim::Plans::Plan"
       ).order(:created_at)
-    end
-    let(:associated_versions) do
-      Decidim::Plans::PaperTrail::Version.where(
-        transaction_id: current_version.transaction_id
-      ).where.not(
-        item_type: ["Decidim::Plans::Plan", "Decidim::Plans::Content"]
-      )
     end
     let(:content_versions) do
       model.sections.map do |section|
@@ -121,18 +113,6 @@ describe Decidim::Plans::DiffCell, type: :cell do
       end
     end
 
-    describe "#associated_diff_renderers" do
-      let(:associated_versions) { versions }
-
-      before do
-        set_expected_renderers
-      end
-
-      it "returns the correct renderers" do
-        expect(my_cell.associated_diff_renderers).to match_array(renderers)
-      end
-    end
-
     describe "#content_diff_renderers" do
       let(:content_versions) { versions }
 
@@ -147,18 +127,16 @@ describe Decidim::Plans::DiffCell, type: :cell do
 
     describe "#diff_renderers" do
       let(:item_diff) { [double, double, double] }
-      let(:associated_diff) { [double, double, double] }
       let(:content_diff) { [double, double, double] }
 
       before do
         expect(my_cell).to receive(:item_diff_renderers).and_return(item_diff)
-        expect(my_cell).to receive(:associated_diff_renderers).and_return(associated_diff)
         expect(my_cell).to receive(:content_diff_renderers).and_return(content_diff)
       end
 
       it "returns the correct renderers" do
         expect(my_cell.diff_renderers).to match_array(
-          item_diff + associated_diff + content_diff
+          item_diff + content_diff
         )
       end
     end

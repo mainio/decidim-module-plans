@@ -20,10 +20,12 @@ module Decidim
           {
             "sections" => [
               {
+                handle: "section_0",
                 body: { "en" => body_english },
                 position: 0
               },
               {
+                handle: "section_1",
                 body: { "en" => "Second section" },
                 position: 1
               }

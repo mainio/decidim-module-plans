@@ -1,16 +1,20 @@
 <div class="row">
-  <div class="columns large-8 large-push-2">
-    <div class="card">
-      <div class="p-l">
-        <%= render partial: "plan_preview", locals: { plan: @plan } %>
-        <br>
-        <div class="actions">
-          <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button expanded button--nomargin" %>
+  <div class="columns small-centered large-8">
+    <div class="callout announcement main-announcement warning cell-announcement text-center">
+      <h3><%= t(".not_published") %></h3>
+      <p><%= t(".not_published_description") %></p>
+    </div>
+  </div>
+</div>
 
-          <div class="text-center">
-            <%= link_to t(".modify"), edit_plan_path(@plan) %>
-          </div>
-        </div>
+<%= render partial: "plan_preview", locals: { plan: @plan } %>
+
+<div class="row">
+  <div class="columns large-12">
+    <div class="p-l">
+      <div class="row column flex-center actions">
+        <%= link_to t(".modify"), edit_plan_path(@plan), class: "mr-2" %>
+        <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button large button--nomargin" %>
       </div>
     </div>
   </div>

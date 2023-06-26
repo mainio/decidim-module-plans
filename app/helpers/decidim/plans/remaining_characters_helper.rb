@@ -28,8 +28,8 @@ module Decidim
           class: "form-extra help-text",
           data: {
             remaining_characters_messages: {
-              one: t('decidim.components.add_comment_form.remaining_characters_1', count: '%count%'),
-              many: t('decidim.components.add_comment_form.remaining_characters', count: '%count%'),
+              one: t("decidim.components.add_comment_form.remaining_characters_1", count: "%count%"),
+              many: t("decidim.components.add_comment_form.remaining_characters", count: "%count%")
             }
           }
         )

@@ -10,12 +10,44 @@ module Decidim
       # page        - The page number to paginate the results.
       # per_page    - The number of plans to return per page.
       def initialize(options = {})
-        super(Plan.all, options)
+        @component = options[:component]
+        @current_user = options[:current_user]
+
+        state = Array(options[:state])
+        base = state&.member?("withdrawn") ? Plan.withdrawn : Plan.except_withdrawn
+
+        super(base, options)
       end
 
       # Handle the search_text filter
       def search_search_text
-        query.where(localized_search_text_in(:title), text: "%#{search_text}%")
+        final = query
+        subq = localized_search_text_in(:title)
+
+        # Manually search from the content sections in order to make the OR
+        # query with the title.
+        searchable_content_sections.each do |section|
+          ref = Arel.sql("plan_content_text_#{section.id}")
+          final = final.joins(
+            "LEFT JOIN decidim_plans_plan_contents AS #{ref} ON #{ref}.decidim_plan_id = #{Arel.sql(query.table_name)}.id
+            AND #{ref}.decidim_section_id = #{Arel.sql(section.id.to_s)}"
+          )
+          options[:organization].available_locales.each do |l|
+            subq += " OR #{ref}.body ->> '#{l}' ILIKE :text"
+          end
+        end
+
+        final.where(subq, text: "%#{search_text}%")
+      end
+
+      def search_section
+        final = query
+        @section_controls ||= searchable_sections.each do |s|
+          manifest = s.section_type_manifest
+          control = manifest.content_control_class.new
+          final = control.search(final, s, section[s.id.to_s])
+        end
+        final
       end
 
       # Handle the origin filter
@@ -32,7 +64,18 @@ module Decidim
 
       # Handle the activity filter
       def search_activity
-        query
+        case activity
+        when "my_plans"
+          query
+            .where.not(coauthorships_count: 0)
+            .joins(:coauthorships)
+            .where(decidim_coauthorships: { decidim_author_type: "Decidim::UserBaseEntity" })
+            .where(decidim_coauthorships: { decidim_author_id: @current_user })
+        when "my_favorites"
+          query.user_favorites(@current_user)
+        else # Assume 'all'
+          query
+        end
       end
 
       # Handle the state filter
@@ -48,6 +91,8 @@ module Decidim
           query.withdrawn
         when "except_rejected"
           query.except_rejected.except_withdrawn
+        when "not_answered"
+          query.where(answered_at: nil)
         else # Assume 'not_withdrawn'
           query.except_withdrawn
         end
@@ -85,7 +130,7 @@ module Decidim
         # that query. Therefore, in this context it is safer to just fetch these
         # in a completely separate query.
         plan_ids = Plan.joins(:tags).where(
-          decidim_plans_tags: { id: tag_id }
+          decidim_tags_tags: { id: tag_id }
         ).distinct.pluck(:id)
 
         query.where(id: plan_ids)
@@ -104,6 +149,17 @@ module Decidim
         options[:organization].available_locales.map do |l|
           "#{field} ->> '#{l}' ILIKE :text"
         end.join(" OR ")
+      end
+
+      # Finds the sections that can be searched from.
+      def searchable_sections
+        @searchable_sections ||= Decidim::Plans::Section.where(component: @component, searchable: true)
+      end
+
+      def searchable_content_sections
+        @searchable_content_sections ||= searchable_sections.where(
+          section_type: [:field_text, :field_text_multiline]
+        )
       end
     end
   end

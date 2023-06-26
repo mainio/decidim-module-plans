@@ -4,10 +4,14 @@ module Decidim
   module Plans
     module Admin
       class BudgetsExportsController < Admin::ApplicationController
+        helper_method :sections
+
         def new
           enforce_permission_to :export_budgets, :plans
 
-          @form = form(Admin::PlanExportBudgetsForm).instance
+          @form = form(Admin::PlanExportBudgetsForm).from_model(
+            current_component
+          )
         end
 
         def create
@@ -25,6 +29,12 @@ module Decidim
               render action: "new"
             end
           end
+        end
+
+        private
+
+        def sections
+          @sections ||= Decidim::Plans::Section.where(component: current_component).order(:position)
         end
       end
     end

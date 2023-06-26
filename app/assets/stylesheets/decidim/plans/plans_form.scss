@@ -24,3 +24,86 @@
     }
   }
 }
+
+.address-input{
+  position: relative;
+
+  .tribute-container{
+    top: 51px;
+  }
+}
+
+.attachments-section{
+  .attachment-fields{
+    display: none;
+  }
+
+  .attached-file{
+    margin-bottom: 1rem;
+
+    .attachment-move-buttons{
+      display: inline-block;
+      min-width: 35px;
+    }
+
+    .attachment-buttons{
+      .edit-attachment{
+        margin-right: 1rem;
+      }
+    }
+
+    .form-error{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.plan_form_admin{
+  .plans-map{
+    width: 100%;
+    height: 200px;
+    margin-bottom: 2rem;
+
+    // Breakpoint for 'mediumlarge' but we don't have access to the mixins.
+    @media screen and (min-width: 800px){
+      height: 450px;
+    }
+  }
+}
+
+.field-info{
+  position: relative;
+
+  &.with-tooltip{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .form-help-tooltip{
+    position: relative;
+    display: block;
+    margin-left: 1rem;
+    text-align: right;
+    line-height: 1.8;
+
+    .form-help-tooltip__label{
+      margin-right: 0;
+    }
+  }
+}
+
+.form-help-tooltip{
+  .icon--information{
+    position: relative;
+    vertical-align: top;
+    top: 2px;
+    width: 22px;
+    height: 22px;
+    margin-right: 3px;
+  }
+}
+
+.actions{
+  margin-top: 2rem;
+}

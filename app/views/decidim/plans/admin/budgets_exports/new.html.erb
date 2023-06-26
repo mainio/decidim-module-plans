@@ -1,4 +1,4 @@
-<%= decidim_form_for(@form, url: budgets_export_path, html: { class: "form import_proposals" }) do |f| %>
+<%= decidim_form_for(@form, url: budgets_export_path, method: :post, html: { class: "form export_plans_to_budgets" }) do |f| %>
   <% if @form.target_components.any? %>
     <div class="card">
       <div class="card-divider">
@@ -9,8 +9,41 @@
         <div class="row column">
           <%= f.select :target_component_id, @form.target_components_collection, prompt: t(".select_component") %>
         </div>
+
+        <% @form.target_details.each_with_index do |details, idx| %>
+          <div class="target-details-fields hide" data-component-id="<%= details.component_id %>">
+            <%= fields_for "budgets_export[target_details][]", details, namespace: "component_#{details.component_id}" do |component_form| %>
+              <%= component_form.hidden_field :component_id %>
+              <%= component_form.select :budget_id, details.target_budgets_collection, prompt: t(".select_budget") %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if has_scope? %>
+          <div class="row column">
+            <%= scopes_picker_field f, :scope_id %>
+          </div>
+        <% end %>
+
+        <% if has_area_scope? %>
+          <div class="row column">
+            <%= scopes_picker_field f, :area_scope_id %>
+          </div>
+        <% end %>
+
+        <% if defined?(Decidim::BudgetingPipeline) %>
+          <%= render partial: "form_content_sections", locals: { form: f, sections: content_sections } %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :summary_section, sections: content_sections }  %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :budget_section, sections: budget_sections }  %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :image_section, sections: image_sections }  %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :location_section, sections: location_sections }  %>
+        <% else %>
+          <%= render partial: "form_content_sections", locals: { form: f, sections: content_sections } %>
+          <%= render partial: "form_section_selector", locals: { form: f, target: :budget_section, sections: budget_sections }  %>
+        <% end %>
+
         <div class="row column">
-          <%= f.number_field :default_budget %>
+          <%= f.number_field :default_budget_amount %>
         </div>
         <div class="row column">
           <%= f.check_box :export_all_closed_plans %>
@@ -25,3 +58,5 @@
       <p><%= t(".no_components") %></p>
   <% end %>
 <% end %>
+
+<%= javascript_include_tag "decidim/plans/admin/budgets_export" %>

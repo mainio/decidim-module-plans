@@ -1,9 +1,28 @@
 sv:
   activerecord:
+    errors:
+      models:
+        decidim/plans/attachment:
+          attributes:
+            file:
+              allowed_file_content_types: Ogiltig filtyp
     models:
-      decidim/plans/plan: Plan
+      decidim/plans/plan: Förslag
   activemodel:
     attributes:
+      budgets_export:
+        area_scope_id: Area scope
+        budget_section: Budgetavsnitt
+        content_sections: Innehållssektioner
+        default_budget_amount: Standardbudgetbelopp
+        export_all_closed_plans: Exportera alla stängda förslag
+        image_section: Bildavsnitt
+        location_section: Platsavsnitt
+        scope_id: Omfång
+        summary_section: Sammanfattningsavsnitt
+        target_component_id: Komponent
+      budgets_export_target:
+        budget_id: Budget
       plan:
         proposals: Förslag
         category_id: Kategori
@@ -18,8 +37,6 @@ sv:
       section:
         area_scope_parent: Områdetema förälder
         scope_parent: Tema förälder
-      tag:
-        name: Namn
     errors:
       models:
         attachment:
@@ -29,7 +46,7 @@ sv:
   decidim:
     assemblies:
       statistics:
-        plans_count: Planer
+        plans_count: Förslag
     components:
       plans:
         actions:
@@ -49,11 +66,16 @@ sv:
             default_answer: Standardplansvar
             default_answer_none: (Ingen)
             default_state: Standardplanstillstånd
+            layout: Layout
+            materials_text: Materialtext
             multilingual_answers: Flerspråkiga svar
+            new_plan_help_text: Hjälptext för ny planen
             plan_answering_enabled: Svar tillåtna
+            plan_listing_intro: Planera introduktionstextsida
             plan_title_length: Rubrikens längd
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
+            scope_id: Omfattningar ID
             title_help: Titel hjälptext
             title_text: Titel text
           step:
@@ -63,16 +85,16 @@ sv:
             plan_answering_enabled: Svar tillåtna
     filters:
       linked_classes:
-        plan: Planer
+        plan: Förslag
     pages:
       home:
         statistics:
-          plans_accepted: Accepterade planer
-          plans_count: Planer
+          plans_accepted: Accepterade förslag
+          plans_count: Förslag
     participatory_processes:
       statistics:
-        plans_accepted: Accepterade planer
-        plans_count: Planer
+        plans_accepted: Accepterade förslag
+        plans_count: Förslag
     plans:
       actions:
         answer: Svara
@@ -83,16 +105,27 @@ sv:
         edit: Redigera
         edit_plan: Redigera
         export_budgets: Konvertera till projekt
-        manage_tags: Hantera taggar
-        new: Gör ny plan
-        new_tag: Ny tagg
-        plan_taggings: Taggar
+        manage_authors: Hantera författare
+        new: Gör nytt förslag
+        taggings: Taggar
+        remove_author: Ta bort författaren
         reopen_plan: Öppna för redigering
         sections: Avsnitt
         title: Funktioner
       admin:
         actions:
           preview: Förhandsgranska
+        authors:
+          create:
+            buttons:
+              add_authors: Lägg till författare
+              cancel: Annullera
+            description: Kontrollera att du har valt rätt faktorer och tryck på "%{button_name}" -knappen längst ner på skärmen.
+            title: Lägg till författare för förslag
+          index:
+            add_author: Lägg till författare
+            organization_author: Organisation som författare
+            title: Hantera författare för förslag
         budgets_exports:
           create:
             invalid: Det har varit ett problem att exportera objekten till budgetprojekt
@@ -100,9 +133,10 @@ sv:
           new:
             create: Exportera till projekt
             no_components: Det finns inga andra budgetkomponenter i detta deltagande utrymme för att exportera objekten till projekt.
+            select_budget: Var god välj en budget
             select_component: Var god välj en komponent
         exports:
-          plans: Planer
+          plans: Förslag
         plan_answers:
           edit:
             accepted: Godkänd
@@ -124,18 +158,10 @@ sv:
             draft_plans: Utkast
             published_plans: Publicerad
             selected: Vald
-            title: Planer
+            title: Förslag
           new:
             create: Skapa
-            title: Gör ny plan
-          taggings:
-            no_results: "Skapa ny tagg: %{name}"
-            search: Sök
-            title: Taggar
-            update: Uppdatera
-          update_taggings:
-            invalid: Fel vid uppdatering av taggarna.
-            success: Taggar uppdaterats.
+            title: Gör nytt förslag
         sections:
           form:
             add_section: Lägg till avsnitt
@@ -147,15 +173,21 @@ sv:
             answer_length: Svarets längd
             body: Brödtext
             down: Ner
+            handle: Identifierare
             help: Hjälp
             information: Information
             information_label: Informationsetikett
+            searchable: Sökbar
             mandatory: Obligatorisk
             map_center_latitude: Kartcentrums latitud
             map_center_longitude: Kartcentrums longitud
             remove: Radera
             section: Avsnitt
             up: Upp
+            visible_api: Visa i API
+            visible_form: Visa i formuläret
+            visible_view: Visa i vyn
+            visibility: Synlighet
           update:
             invalid: Det inträffade ett fel vid uppdatering av avsnitten.
             success: Avsnitten har uppdaterats.
@@ -163,28 +195,7 @@ sv:
           info_plan:
             body: Brödtext
             created_at: Skapats
-            plans: Planer
-        tags:
-          create:
-            error: Det gick inte att skapa.
-            success: Skapats.
-          destroy:
-            error: Fel vid borttagning.
-            success: Innehållet har raderats.
-          edit:
-            title: Redigera tagg
-            update: Uppdatera
-          form:
-            tags: Taggar
-          index:
-            tags: Taggar
-            title: Hantera taggar
-          new:
-            create: Skapa
-            title: Ny tagg
-          update:
-            invalid: Fel uppdatering.
-            success: Uppdaterats.
+            plans: Förslag
       admin_log:
         plan:
           answer: "%{user_name} svarade på innehållet %{resource_name} i delaktighetslokalen %{space_name}."
@@ -208,101 +219,166 @@ sv:
         filter_type_values:
           all: Alla
           amendments: Ändringar
-          plans: Planer
+          plans: Förslag
       attachment_input_types:
         single: En bilaga
         multi: Flera bilagor
+      attachments:
+        documents:
+          one: Dokument
+          other: Dokument
+        download: Hämta fil
+        related_documents: Relaterade dokument
+        related_photos: Relaterade bilder
       attached_proposals_helper:
         attach_proposal: Bifoga förslag
         close: Stäng
         current_selection: Sök förslag på namn
         select: Välj
       create:
-        invalid: Det inträffade ett fel vid skapande av planen.
-        success: Planen har skapats.
+        invalid: Det inträffade ett fel vid skapande av förslaget.
+        success: Förslaget har skapats.
+      info:
+        show:
+          back: Tillbaka till föregående sida
       last_activity:
-        new_plan_at_html: "<span>En ny plan på %{link}</span>"
+        new_plan_at_html: "<span>Ett nytt förslag på %{link}</span>"
+      layouts:
+        default: Standardlayout
       models:
         plan:
           fields:
+            author_name: Författarens namn
+            author_nickname: Författarens smeknamn
             authors: Författare
+            authors_label: 'Antal författare: %{count}'
             category: Kategori
             comments: Kommentarer
             contributions: Redigeringar
+            contributions_label: 'Antal redigeringar: %{count}'
             id: ID
             notes: Anteckningar
-            official_plan: Officiell plan
+            official_plan: Officiell förslag
             published_at: Publikationsdatum
             scope: Tema
             state: Status
             tags: Taggar
             title: Rubrik
-        plan_tags:
-          fields:
-            id: ID
-            name: Namn
-            taggings_count: Antal användningsområden
+      plan_add_authors:
+        add_users_placeholder: Skriv författarens namn eller smeknamn
+        close_window: Stäng fönstret
+        label: Sök efter författare
+        modal_title: Lägg till författare för förslag
+        next: Nästa
+        no_results: Inga författare hittades som matchade din sökning.
+      plan_form:
+        buttons:
+          create: Förhandsgranska
+          discard: Radera utkastet
+          discard_confirmation: Är du säker på att du vill radera utkastet?
+          loading_message: Sparar... Bearbetning av bilder och bilagor tar ett tag, var god vänta ett ögonblick.
+          save: Spara
+          save_draft: Spara som utkast
+          you_can_invite_others: Om du skickar in ett förslag som grupp kan du bjuda in andra att samarbeta på förslaget.
+        characters_min: "(minst %count% tecken krävs)"
+        characters_used: "%count%/%total% tecken används"
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        required_fields_text: Obligatoriska fält är markerade med stjärna * tecken.
+      plan_index:
+        draft_plan_title: Du har ett oavslutat förslag!
+        draft_plan_continue: Fortsätt ditt förslag
+        draft_plan_description: Du har tidigare sparat ett pågående förslag. Du kan nu fortsätta skriva den.
+        filters:
+          activity:
+            all: Alla
+            my_favorites: Mina favoriter
+            my_plans: Mina förslag
+          close_modal: Stäng fönstret
+          filter: Filtrera
+          filter_by: Filtrera
+          related_to: Anknyter till
+          search: Sök
+          state:
+            legend: Status
+            evaluating: Bedöms
+            rejected: Avslagen
+            accepted: Godkänd
+            all: Alla
+          tag: Taggar
+          tag_prompt: Välj taggar
+          unfold: Öppna
+        leave_your_plan: Ge ditt eget förslag!
+        new_plan: Nytt förslag
+        see_all_withdrawn: Visa alla annullerade
+        subtitle: Sök och utforska förslag!
+        title: Bekanta dig med förslag
+        view_plan: Visa förslag
+      plan_m:
+        view_plan: Visa förslag
+      plan_view:
+        back: Gå till listan av förslag
+        controls:
+          add_author: Lägg till författare för förslag
+        flag: Rapportera
+        info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
+        plan_accepted_reason: Förslaget har godkänts
+        plan_in_evaluation_reason: Förslaget bedöms
+        plan_rejected_reason: Förslaget har avslagits
+        plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
+        request_access: Begär redigeringsrättigheter
+        share: Dela
+        share_link: Länk som ska delas
+        show_comments: Visa kommentarer
+        show_on_map: Visa på kartan
       plans:
+        add_authors:
+          buttons:
+            add_authors: Lägg till författare
+            cancel: Annullera
+          description: Kontrollera att du har valt rätt faktorer och tryck på "%{button_name}" -knappen längst ner på skärmen.
+          error: Det gick inte att lägga till författare för förslaget.
+          no_authors: Definiera minst en ny författare för förslaget.
+          success: Författarna har lagt till författare.
+          title: Lägg till författare för förslag %{plan}
         count:
           plans_count:
-            one: "%{count} plan"
-            other: "%{count} planer"
+            one: "%{count} förslag"
+            other: "%{count} förslag"
         create:
           error: Det gick inte att skapa nytt innehåll.
           success: Innehållet har skapats.
         destroy:
           error: Det inträffade ett fel vid radering av innehållet.
           success: Innehållet har raderats.
+        disjoin:
+          success: Det gick inte att lämna förslaget.
+          error: Du har tagits bort som författare från detta förslag.
         edit:
-          discard: Radera utkastet
-          discard_confirmation: Är du säker på att du vill radera utkastet?
+          back: Tillbaka till förslaget
+          material_title: Information för att stödja ditt förslag
+          sign_in: Logga in
+          sign_in_before_submitting: Du måste logga in innan du skickar in ett förslag
+          title: Redigera förslaget
           update: Uppdatera
         evaluation_modal:
           button_text: OK
           close: Stäng fönstret
-          description: Planen utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
-          title: Planen beräknas
-        preview:
-          modify: Redigera
-          publish: Publicera
-        filters:
-          accepted: Godkänd
-          activity: Aktivitet
-          all: Alla
-          category: Kategori
-          category_prompt: Välj kategori
-          citizens: Medborgare
-          evaluating: Bedöms
-          except_rejected: Alla utom avslagna
-          official: Officiell
-          origin: Ursprung
-          rejected: Avslagen
-          related_to: Anknyter till
-          search: Sök
-          state: Status
-          tag: Taggar
-          tag_prompt: Välj taggar
-          voted: Understödd
-        filters_small_view:
-          close_modal: Stäng fönstret
-          filter: Filtrera
-          filter_by: Filtrera
-          unfold: Öppna
+          description: Förslaget utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
+          title: Förslaget beräknas
         form:
           attachment_legend: Lägg till bilaga
           select_a_category: Välj kategori
-        index:
-          new_plan: Ny plan
-          see_all_withdrawn: Visa alla annullerade
         linked_plans:
           plan_authors: Antal författare
         new:
+          back: Tillbaka till listan av förslag
           create: Skapa
-          title: Skapa plan
+          title: Skapa förslag
         new_plan_button:
-          new_plan: Ny plan
+          new_plan: Nytt förslag
         orders:
-          label: 'Ordna planer:'
+          label: 'Ordna förslag:'
           random: Slumpmässig
           recent: Nyaste
         plan:
@@ -315,27 +391,35 @@ sv:
           reopen:
             error: Det gick inte att öppna objektet för redigering.
             success: Artikeln öppnades för redigering med framgång.
-          view_plan: Visa planen
+          view_plan: Visa förslag
           withdraw:
             error: Det gick inte att annullera.
             success: Annulleringen lyckades.
+        plans:
+          empty: Det finns inga förslag ännu
+          empty_filters: Det finns ingen förslag med dessa kriterier
+        preview:
+          not_published: Din förslag har ännu inte publicerats
+          not_published_description: Din förslag har sparats som ett utkast. Idén måste publiceras för att den ska visas på webbplatsen.
+          modify: Redigera
+          publish: Publicera
+        remove_author:
+          error: Det gick inte att ta bort författaren från förslaget.
+          success: Författaren har tagits bort från förslaget.
         show:
-          back: Tillbaka
+          back: Tillbaka till listan av förslag
           close: Markera som gjort
           close_confirm: Är du säker på att du vill markera det här objektet gjort? Efter att markeringen är klar kan objektet inte längre redigeras.
+          disjoin: Lämna förslaget som författare
+          disjoin_confirm: Är du säker på att du vill lämna det här förslaget? När du har lämnat förslaget kan du inte längre redigera det.
           edit: Redigera
           hidden_authors_count:
             one: och %{count} annan person
             other: och %{count} andra personer
-          info-message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
           of_versions: "(av versioner %{number})"
-          plan_accepted_reason: 'Planen har godkänts eftersom:'
-          plan_in_evaluation_reason: Planen bedöms
-          plan_rejected_reason: 'Planen har avslagits eftersom:'
-          plan_waiting_for_evaluation: Planen beräknas, redigering är inte tillåten.
           publish: Publicera
           publish_info: Publicera detta utkast eller
-          published_proposal: publicerad plan
+          published_proposal: publicerad förslag
           reopen: Öppna för redigering
           reopen_confirm: Är du säker på att du vill öppna det här objektet för redigering?
           report: Meddela
@@ -344,16 +428,24 @@ sv:
           see_other_versions: visa övriga versioner
           version: Version %{number}
           version_history: visa versionshistorik
-          withdraw: annullera plan
-          withdraw_btn: Annullera
+          withdraw: annullera förslag
+          withdraw_btn: Annullera förslag
           withdraw_btn_hint: Om du ändrar dig kan du annullera detta objekt, om det ännu inte har understötts. Objektet raderas inte utan det finns kvar i listan över annullerade objekt.
-          withdraw_confirmation: Är du säker på att du vill annullera?
+          withdraw_confirmation: Är du säker på att du vill annullera detta förslag? Förslaget raderas inte men det döljs i listan över förslag.
         update:
           error: Det gick inte att uppdatera innehållet.
           success: Innehållet har uppdaterats.
         withdraw:
           error: Det inträffade ett fel vid annullering av objektet.
           success: Objektet har annullerats.
+      plans_picker:
+        choose_plans: Välj förslag
+        close: Stäng
+        more_plans: Det finns ytterligare %{number} förslag. Förfina dina sökkriterier för att hitta dem.
+        no_plans: Inga förslag matchar dina sökkriterier eller det finns inga förslag.
+      plans_picker_field:
+        attach_plan: Välj förslag
+        plans: Förslag
       requests:
         accept_request: Godkänn
         accepted_request:
@@ -367,6 +459,57 @@ sv:
           error: Deltagaren kunde inte avslås, försök igen senare.
           success: "Redigeringsbegäran från användaren @%{user} har avslagits."
         title: Redigeringsbegäran
+      section_type_display:
+        field_attachments:
+          documents:
+            one: Dokument
+            other: Dokument
+          download: Ladda ner
+          related_documents: Relaterade dokument
+          related_photos: Relaterade bilder
+        field_checkbox:
+          'no': 'Nej'
+          'yes': 'Ja'
+        field_image_attachments:
+          related_photos: Relaterade bilder
+      section_type_edit:
+        common:
+          show_help: Visa detaljerade frågor
+        field_attachments:
+          add_attachment: Lägg till bilaga
+          attachment_file_required: Filen måste bifogas
+          attachment_legend: Bilaga
+          attachment_title_required: Titel måste definieras för bilagan
+          cancel: Avbryt
+          close_modal: Stäng fönstret
+          down: Ner
+          edit: Redigera
+          modal_mobile_notice: Tilläggsknappen finns längst ner i det här fönstret. Om du inte ser det på en mobilskärm, bläddra nedåt på skärmen.
+          remove: Ta bort
+          remove_attachment: Ta bort bilagan
+          remove_attachment_confirm: Är du säker på att du vill ta bort den här bilagan?
+          up: Upp
+        field_category:
+          select_a_category: Välj ett primärt tema
+          select_a_sub_category: Välj ett undertema
+          sub_category_label: Välj ett undertema
+        field_map_point:
+          address_lookup_button: Slå upp
+          reset_field: Återställ fältet
+        field_image_attachments:
+          add_attachment: Lägg till bilden
+          attachment_file_required: Bilden måste bifogas
+          attachment_legend: Bild
+          attachment_title_required: Titel måste definieras för bilden
+          cancel: Avbryt
+          close_modal: Stäng fönstret
+          down: Ner
+          edit: Redigera
+          modal_mobile_notice: Tilläggsknappen finns längst ner i det här fönstret. Om du inte ser det på en mobilskärm, bläddra nedåt på skärmen.
+          remove: Radera
+          remove_attachment: Ta bort bilden
+          remove_attachment_confirm: Är du säker på att du vill ta bort den här bilden?
+          up: Upp
       sections:
         actions:
           new: Nytt avsnitt
@@ -376,14 +519,16 @@ sv:
         field_attachments: Field - Attachments
         field_category: Fält - Category
         field_checkbox: Fält - Checkbox
+        field_currency: Fält - Valuta
         field_image_attachments: Fält - Image attachments
         field_map_point: Fält - Map point
         field_number: Fält - Nummer
         field_scope: Fält - Scope
+        field_tags: Fält - Taggar
         field_text_multiline: Fält - Med flera rader
         field_text: Fält - Med en rad
+        field_title: Fält - Titel
         link_proposals: Länk proposals
-        link_ideas: Länk ideas
       shared:
         attachment_fields:
           attachment_legend: Bilaga
@@ -401,7 +546,7 @@ sv:
         index:
           title: Versioner
         stats:
-          back_to_plan: Tillbaka
+          back_to_plan: Tillbaka till förslaget
           number_of_versions: Versioner
           show_all_versions: Visa alla versioner
           version_author: Versionen utarbetad av
@@ -412,37 +557,42 @@ sv:
           version_index: Version %{index}
     resource_links:
       included_proposals:
-        plan_proposal: Bifogade förslag
-        proposal_plan: Relaterade planer
+        plan_proposal: Relaterade förslag
+        proposal_plan: Relaterade förslag
     scopes:
       global: Allmän
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} har beviljats rätt att redigera innehållet <a href="%{resource_url}">%{resource_title}</a> som deltagare.'
+          email_intro: '%{requester_name} har beviljats rätt att redigera förslaget <a href="%{resource_url}">%{resource_title}</a> som deltagare.'
           email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} har godkänts som redigerare för innehållet %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har <strong>godkänts som redigerare</strong> för innehållet <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} har godkänts som redigerare för förslaget %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har <strong>godkänts som redigerare</strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
+        plan_access_granted:
+          email_intro: 'Du har fått åtkomst till att redigera förslag <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Du fick detta meddelande eftersom du har lagts till som medarbetare i <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "Du har lagts till som medarbetare i %{resource_title}."
+          notification_title: Du har <strong>lagts till som medarbetare</strong> i <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: 'Rättigheterna för användaren %{requester_name} att redigera innehållet <a href="%{resource_url}">%{resource_title} </a> har blockerats.'
-          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} ansökan om att få delta i planen %{resource_title} har avslagits."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera innehållet har avslagits</strong> för objektet <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Rättigheterna för användaren %{requester_name} att redigera förslaget <a href="%{resource_url}">%{resource_title} </a> har blockerats.'
+          email_outro: Du fick detta meddelande eftersom du har varit med och redigerat förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} ansökan om att få delta i förslaget %{resource_title} har avslagits."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>begäran om att få redigera förslaget har avslagits</strong> för <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} begärde om att få bli deltagare. Du kan <strong>godkänna eller avslå begäran</strong> på <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: Du fick detta meddelande eftersom du är deltagare i planen <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} begärde om rätt att få delta i planen %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> begärde om att få redigera innehållet <a href="%{resource_url}">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
+          email_outro: Du fick detta meddelande eftersom du är deltagare i förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} begärde om rätt att få delta i förslaget %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> begärde om att få redigera förslaget <a href="%{resource_url}">%{resource_title}</a>. <strong>Godkänn eller avslå begäran</strong>.
         plan_access_requester_accepted:
-          email_intro: Du har godkänts som deltagare för innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: Du fick detta meddelande eftersom du har ansökt om rätt att redigera innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: Du har godkänts som deltagare för innehållet %{resource_title}.
-          notification_title: Du har <strong>godkänts som deltagare </strong> för innehållet <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Du har godkänts som deltagare för förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Du fick detta meddelande eftersom du har ansökt om rätt att redigera förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Du har godkänts som deltagare för förslaget %{resource_title}.
+          notification_title: Du har <strong>godkänts som deltagare </strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: Du har inte godkänts som deltagare för innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: Du fick detta meddelande eftersom du har ansökt om att få delta i innehållet <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: Du har inte godkänts som deltagare för innehållet %{resource_title}.
-          notification_title: Du <strong>har inte godkänts som deltagare</strong> för innehållet <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Du har inte godkänts som deltagare för förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Du fick detta meddelande eftersom du har ansökt om att få delta i förslaget <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Du har inte godkänts som deltagare för förslaget %{resource_title}.
+          notification_title: Du <strong>har inte godkänts som deltagare</strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" har godkänts. Du kan läsa svaret här:'
           email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
@@ -457,6 +607,11 @@ sv:
           email_intro: '"%{resource_title}" har publicerats. Du kan se den här:'
           email_outro: Du har fått den här meddelandet eftersom du följer författaren till "%{resource_title}". Klicka på länken ovan för att sluta följa det.
           email_subject: En användare du följer har publicerat en resurs
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> har publicerats.
+        plan_published_author:
+          email_intro: '"%{resource_title}" har publicerats. Du kan se den här:'
+          email_outro: Du har fått den här meddelandet eftersom du har skapat förslaget "%{resource_title}".
+          email_subject: Ditt förslag har publicerats
           notification_title: <a href="%{resource_url}">%{resource_title}</a> har publicerats.
         plan_published_for_proposals:
           email_intro: 'Ett förslag som du har skapat har kopplats till "%{resource_title}". Du kan se den här:'

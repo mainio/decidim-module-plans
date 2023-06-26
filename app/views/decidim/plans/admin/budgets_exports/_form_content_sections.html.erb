@@ -1,0 +1,11 @@
+<div class="row column">
+  <fieldset class="fieldset">
+    <label><%= form.label_for(:content_sections) %></label>
+    <% sections.each do |section| %>
+      <label>
+        <%= form.check_box :content_sections, { multiple: true, label: false }, section.id %>
+        <%= translated_attribute(section.body) %>
+      </label>
+    <% end %>
+  </fieldset>
+</div>

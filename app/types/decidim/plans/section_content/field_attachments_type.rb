@@ -12,6 +12,7 @@ module Decidim
         field :value, [Decidim::Core::AttachmentType], description: "The selected attachments.", null: true
 
         def value
+          return nil unless object.body
           return nil unless object.body["attachment_ids"].is_a?(Array)
 
           object.body["attachment_ids"].map do |id|

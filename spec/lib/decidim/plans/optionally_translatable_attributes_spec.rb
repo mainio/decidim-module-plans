@@ -2,6 +2,7 @@
 
 require "spec_helper"
 
+# rubocop:disable RSpec/SubjectStub
 describe Decidim::Plans::OptionallyTranslatableAttributes do
   let(:locale) { "en" }
   let(:available_locales) { %w(en fi sv) }
@@ -68,3 +69,4 @@ describe Decidim::Plans::OptionallyTranslatableAttributes do
     end
   end
 end
+# rubocop:enable RSpec/SubjectStub

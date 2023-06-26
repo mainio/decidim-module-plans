@@ -1,0 +1,16 @@
+<div class="section documents">
+  <h3 class="section-heading"><%= t(".related_documents") %></h3>
+  <% if documents_without_collection.any? %>
+    <div class="card card--list">
+      <% documents_without_collection.each do |document| %>
+        <%= render partial: "decidim/plans/attachments/document", locals: { document: document } %>
+      <% end %>
+    </div>
+  <% end %>
+  <% document_collections.each do |collection, documents| %>
+    <%= render(
+      partial: "decidim/plans/attachments/collection",
+      locals: { attachment_collection: collection, collection_documents: documents }
+    ) %>
+  <% end %>
+</div>

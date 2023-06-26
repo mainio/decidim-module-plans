@@ -36,7 +36,7 @@ module Decidim
 
         describe "GET show" do
           it "sorts plans by search defaults" do
-            get :show, params: { id: plan.versions.last.id, plan_id: plan.id }
+            get :show, params: { id: 1, plan_id: plan.id }
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:show)
           end

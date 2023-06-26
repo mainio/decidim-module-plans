@@ -20,21 +20,17 @@ Decidim.register_component(:plans) do |component|
   component.permissions_class_name = "Decidim::Plans::Permissions"
 
   component.settings(:global) do |settings|
-    settings.attribute :plan_title_length, type: :integer, default: 100
     settings.attribute :plan_answering_enabled, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
-    settings.attribute :title_text, type: :string, translated: true
-    settings.attribute :title_help, type: :text, translated: true
-    settings.attribute :attachment_help, type: :text, translated: true
-    settings.attribute :scopes_enabled, type: :boolean, default: true
-    settings.attribute :categories_enabled, type: :boolean, default: true
-    settings.attribute :proposal_linking_enabled, type: :boolean, default: true
-    settings.attribute :attachments_allowed, type: :boolean, default: false
     settings.attribute :closing_allowed, type: :boolean, default: false
     settings.attribute :multilingual_answers, type: :boolean
+    settings.attribute :layout, type: :plan_layout
     settings.attribute :default_state, type: :plan_state
     settings.attribute :default_answer, type: :text, translated: true, editor: true
+    settings.attribute :plan_listing_intro, type: :text, translated: true, editor: true
+    settings.attribute :new_plan_help_text, type: :text, translated: true, editor: true
+    settings.attribute :materials_text, type: :text, translated: true, editor: true
   end
 
   component.settings(:step) do |settings|
@@ -48,6 +44,7 @@ Decidim.register_component(:plans) do |component|
     resource.model_class_name = "Decidim::Plans::Plan"
     resource.template = "decidim/plans/plans/linked_plans"
     resource.card = "decidim/plans/plan"
+    resource.searchable = true
   end
 
   component.register_stat :plans_count, primary: true, priority: Decidim::StatsRegistry::HIGH_PRIORITY do |components, start_at, end_at|
@@ -94,7 +91,8 @@ Decidim.register_component(:plans) do |component|
       published_at: Time.current,
       participatory_space: participatory_space,
       settings: {
-        multilingual_answers: false
+        multilingual_answers: false,
+        scope_id: participatory_space.scope&.id
       },
       step_settings: step_settings
     }
@@ -123,12 +121,18 @@ Decidim.register_component(:plans) do |component|
         help: Decidim::Faker::Localized.paragraph,
         mandatory: false,
         position: n,
-        section_type: Decidim::Plans::Section.types.first
+        section_type: "field_text_multiline"
       )
     end
 
     proposal_component = participatory_space.components.find_by(manifest_name: "proposals")
-    proposals = Decidim::Proposals::Proposal.where(component: proposal_component).to_a
+    proposals = begin
+      if proposal_component
+        Decidim::Proposals::Proposal.where(component: proposal_component).to_a
+      else
+        []
+      end
+    end
 
     5.times do |n|
       state, answer = if n > 3

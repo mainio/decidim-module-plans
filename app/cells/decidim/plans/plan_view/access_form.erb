@@ -1,0 +1,7 @@
+<% if allowed_to?(:request_access, :plan, plan: plan) %>
+  <%= decidim_form_for(request_access_form, url: request_access_plan_path(plan)) do |form| %>
+    <%= form.hidden_field :id, value: plan.id %>
+    <%= form.hidden_field :state, value: plan.state %>
+    <%= form.submit t(:request_access, scope: "decidim.plans.plans.show"), class: "button expanded button--sc mt-s", data: { disable: true } %>
+  <% end %>
+<% end %>

@@ -1,0 +1,6 @@
+<% if show_tooltip? %>
+  <span class="form-help-tooltip" data-tooltip data-click-open="true" data-disable-hover="true" tabindex="2" title="<%= help_text %>">
+    <%= icon("information") %>
+    <span class="form-help-tooltip__label"><%= t("decidim.plans.section_type_edit.common.show_help") %></span>
+  </span>
+<% end %>

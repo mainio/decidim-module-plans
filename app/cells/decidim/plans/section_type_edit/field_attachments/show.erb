@@ -1,0 +1,39 @@
+<%= content_tag :div, class: "field attachments-section multifield-fields", data: {
+  placeholder_id: blank_attachment.to_param,
+  multifield_type: multi_attachment? ? "multi" : "single",
+  modal_id: "attachment-modal-#{field_id}"
+} do %>
+  <script type="text/template" class="decidim-template">
+    <%= fields_for "#{form.object_name}[attachments][#{blank_attachment.to_param}]", blank_attachment do |attachment_form| %>
+      <%= render partial: "decidim/plans/section_type_edit/field_attachments/attachment", locals: { attachment: blank_attachment, form: attachment_form, id: tabs_id_for_attachment(blank_attachment) } %>
+    <% end %>
+  </script>
+
+  <div class="multifield-fields-list attachments-list">
+    <% existing_attachments.each_with_index do |attachment, index| %>
+      <%= fields_for "#{form.object_name}[attachments][#{index}]", attachment do |attachment_form| %>
+        <%= render partial: "decidim/plans/section_type_edit/field_attachments/attachment", locals: { attachment: attachment, form: attachment_form, id: tabs_id_for_attachment(blank_attachment) } %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <button class="button small hollow add-field add-attachment"><%= t(".add_attachment") %></button>
+</div>
+
+<div class="reveal attachment-modal" id="attachment-modal-<%= field_id %>" data-reveal>
+  <div class="reveal__header">
+    <h3 class="reveal__title"><%= t(".add_attachment") %></h3>
+    <button class="close-button" data-close aria-label="<%= t(".close_modal") %>"
+      type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="row columns reveal__content">
+    <div class="attachment-fields-wrapper"></div>
+    <div class="text-center">
+      <button class="link mr-2 cancel-attachment" data-close><%= t(".cancel") %></button>
+      <button class="button primary add-attachment mb-0"><%= t(".add_attachment") %></button>
+    </div>
+  </div>
+<% end %>

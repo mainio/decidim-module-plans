@@ -1,0 +1,47 @@
+<div class="reveal collapse plan-author-add-modal" id="plan-author-add-modal-for-<%= plan.id %>" data-reveal>
+  <div class="wrapper--inner">
+    <button class="close-button" aria-label="<%= t(".close_window") %>" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <%= decidim_form_for(add_author_form, url: form_url, html: { class: "form new_author" }) do |f| %>
+    <div class="container wrapper--inner">
+      <div class="row">
+        <div class="columns large-12">
+          <div class="expanded">
+            <div class="wrapper wrapper--inner">
+              <div class="row">
+                <div class="large-12">
+                  <p class="h2"> <%= t(".modal_title") %></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row columns mentions__container">
+                  <label for="add_plan_authors"><%= t(".label") %></label>
+                  <input id="add_plan_authors" type="text"
+                      class="js-multiple-mentions mentions__container"
+                      placeholder="<%= t(".add_users_placeholder") %>"
+                      data-noresults="<%= t(".no_results") %>"
+                      data-tribute="yes"
+                      contenteditable="true">
+                </div>
+                <div class="columns large-12">
+                  <div class="js-multiple-mentions-recipients"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper wrapper--inner">
+        <div class="row">
+          <div class="large-12">
+            <div class="button--double form-general-submit float-right">
+              <%= f.submit t(".next") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

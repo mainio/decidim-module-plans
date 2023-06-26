@@ -21,13 +21,13 @@ module Decidim
         # Available orders based on enabled settings
         def available_orders
           @available_orders ||= begin
-            available_orders = %w(random recent)
+            available_orders = %w(recent random)
             available_orders
           end
         end
 
         def default_order
-          "random"
+          "recent"
         end
 
         # Returns: A random float number between -1 and 1 to be used as a random seed at the database.

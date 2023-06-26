@@ -12,7 +12,9 @@ module Decidim
         field :value, Boolean, description: "The answer response.", null: false
 
         def value
-          object.body["checked"]
+          return false unless object.body
+
+          object.body["checked"] ? true : false
         end
       end
     end

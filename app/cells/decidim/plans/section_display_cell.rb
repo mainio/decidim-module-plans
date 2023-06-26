@@ -2,37 +2,25 @@
 
 module Decidim
   module Plans
-    class SectionDisplayCell < Decidim::ViewModel
-      include Decidim::Plans::RemainingCharactersHelper
+    class SectionDisplayCell < Decidim::Plans::SectionCell
+      include Decidim::ApplicationHelper
+      include Decidim::TranslatableAttributes
+
+      def show
+        return if model.blank?
+        return if presenter.body.empty?
+
+        render
+      end
 
       private
 
-      def form
-        context[:form]
+      def presenter
+        @presenter ||= present(model)
       end
 
-      def parent_form
-        context[:parent_form]
-      end
-
-      def current_component
-        context[:current_component]
-      end
-
-      def current_locale
-        I18n.locale.to_s
-      end
-
-      def multilingual_answers?
-        options[:multilingual_answers]
-      end
-
-      def field_options
-        {
-          id: "plan_section_answer_#{model.section.id}",
-          label: model.label,
-          help_text: model.help
-        }
+      def section
+        model.section
       end
     end
   end

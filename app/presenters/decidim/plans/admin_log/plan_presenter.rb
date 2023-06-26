@@ -41,7 +41,7 @@ module Decidim
         end
 
         def has_diff?
-          action == "answer" || super
+          %w(answer update create).include?(action.to_s) && action_log.version.present?
         end
       end
     end

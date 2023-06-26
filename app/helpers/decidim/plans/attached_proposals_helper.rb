@@ -4,25 +4,25 @@ module Decidim
   module Plans
     module AttachedProposalsHelper
       include Decidim::ApplicationHelper
+      include ActionView::Helpers::FormTagHelper
 
-      def attached_proposals_picker_field(form, name)
+      def attached_proposals_picker_field(form, field)
         picker_options = {
-          id: "attached_proposals",
-          "class": "picker-multiple",
-          name: "proposal_ids",
-          multiple: true
+          id: sanitize_to_id(field),
+          class: "picker-multiple",
+          name: "#{form.object_name}[#{field.to_s.sub(/s$/, "_ids")}]",
+          multiple: true,
+          autosort: true
         }
+        url = search_plans_plans_path(current_component, format: :html)
 
         prompt_params = {
-          url: plan_search_proposals_path(current_component, format: :html),
-          text: t("decidim.plans.attached_proposals_helper.attach_proposal")
+          url: url,
+          text: t("proposals_picker.choose_proposals", scope: "decidim.proposals")
         }
 
-        form.data_picker(name, picker_options, prompt_params) do |item|
-          {
-            url: plan_search_proposals_path(current_component, format: :json),
-            text: item.title
-          }
+        form.data_picker(field, picker_options, prompt_params) do |item|
+          { url: url, text: item.title }
         end
       end
 
@@ -44,11 +44,11 @@ module Decidim
             query = if params[:term] =~ /^#[0-9]+$/
                       idterm = params[:term].sub(/#/, "")
                       query&.where(
-                        "id::text like ?",
+                        "decidim_proposals_proposals.id::text like ?",
                         "%#{idterm}%"
                       )
                     else
-                      query&.where("title ilike ?", "%#{params[:term]}%")
+                      query&.where("title->>'#{current_locale}' ilike ?", "%#{params[:term]}%")
                     end
 
             proposals_list = query.all.collect do |p|

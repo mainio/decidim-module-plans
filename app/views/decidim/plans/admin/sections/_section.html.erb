@@ -28,7 +28,27 @@
         options_for_select(section_types, section.section_type)
       ) %>
     </div>
+    <div class="row column">
+      <%= form.text_field(:handle, label: t(".handle")) %>
+    </div>
     <div class="section-type-controls">
+      <div class="row column">
+        <fieldset>
+          <legend><%= t(".visibility") %><legend>
+          <div class="grid-x grid-margin-x">
+            <div class="cell shrink">
+              <%= form.check_box(:visible_form, label: t(".visible_form")) %>
+            </div>
+            <div class="cell shrink">
+              <%= form.check_box(:visible_view, label: t(".visible_view")) %>
+            </div>
+            <div class="cell shrink">
+              <%= form.check_box(:visible_api, label: t(".visible_api")) %>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
       <div class="row column" data-section-type-inverse="content">
         <%= form.translated(
           :text_field,
@@ -44,6 +64,20 @@
             :body_rich,
             tabs_id: id,
             label: t(".body")
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.check_box(
+          :mandatory,
+          label: t(".mandatory")
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.check_box(
+          :searchable,
+          label: t(".searchable")
         ) %>
       </div>
 
@@ -75,14 +109,7 @@
         ) %>
       </div>
 
-      <div class="row column" data-section-type-inverse="content">
-        <%= form.check_box(
-          :mandatory,
-          label: t(".mandatory")
-        ) %>
-      </div>
-
-      <div class="row column hide" data-section-type="field_text field_text_multiline">
+      <div class="row column hide" data-section-type="field_title field_text field_text_multiline">
         <%= form.number_field(
           :answer_length,
           min: 0,

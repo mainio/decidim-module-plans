@@ -18,14 +18,12 @@ module Decidim
         Decidim::Plans::SectionContent::FieldMapPointType,
         Decidim::Plans::SectionContent::FieldScopeType,
         Decidim::Plans::SectionContent::FieldTextType,
-        Decidim::Plans::SectionContent::FieldNumberType
+        Decidim::Plans::SectionContent::FieldNumberType,
+        Decidim::Plans::SectionContent::FieldCurrencyType
       )
 
       def self.resolve_type(object, _context)
-        type_class = "#{object.section.section_type.camelize}Type"
-        type_class = "FieldTextType" unless Decidim::Plans::SectionContent.const_defined?(type_class)
-
-        Decidim::Plans::SectionContent.const_get(type_class)
+        object.section.section_type_manifest.api_type_class || Decidim::Plans::SectionContent::FieldTextType
       end
     end
   end

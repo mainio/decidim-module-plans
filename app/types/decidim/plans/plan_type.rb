@@ -14,6 +14,7 @@ module Decidim
       implements Decidim::Core::TraceableInterface
       implements Decidim::Core::TimestampsInterface
       implements Decidim::Favorites::Api::FavoritesInterface
+      implements Decidim::Tags::TagsInterface
 
       field :id, ID, null: false
       field :title, Decidim::Core::TranslatedFieldType, description: "This plan's title", null: false
@@ -39,12 +40,56 @@ module Decidim
       # The values field contains the actual values for each content section
       # which can be different depending on the section type.
       field :values, [Decidim::Plans::ContentSubject], method: :contents, description: "The content values in this plan.", null: false
-      # These are the resources that are linked from the plan to the related
-      # object.
-      field :linkedResources, [Decidim::Plans::ResourceLinkSubject], method: :linked_resources, description: "The linked resources for this plan.", null: true
+
+      def self.add_linked_resources_field
+        return unless Decidim::Plans::ResourceLinkSubject.possible_types.any?
+
+        # These are the resources that are linked from the plan to the related
+        # object.
+        field(
+          :linkedResources,
+          [Decidim::Plans::ResourceLinkSubject],
+          method: :linked_resources,
+          description: "The linked resources for this plan.",
+          null: true
+        )
+
+        # These are the resources that are linked from other related objects to
+        # the plan.
+        field(
+          :linkingResources,
+          [Decidim::Plans::ResourceLinkSubject],
+          method: :linking_resources,
+          description: "The linking resources for this plan.",
+          null: true
+        )
+      end
+
+      def sections
+        object.sections.visible_in_api
+      end
+
+      def contents
+        object.contents.joins(:section).where(section: sections).order("decidim_plans_sections.position")
+      end
 
       def linked_resources
-        resources = object.resource_links_from.map { |link| link.to }
+        visible_resource_links(object.resource_links_from.map(&:to))
+      end
+
+      def linking_resources
+        visible_resource_links(object.resource_links_to.map(&:from))
+      end
+
+      private
+
+      def visible_resource_links(resources)
+        resources = resources.reject do |resource|
+          resource.nil? ||
+            (resource.respond_to?(:published?) && !resource.published?) ||
+            (resource.respond_to?(:hidden?) && resource.hidden?) ||
+            (resource.respond_to?(:withdrawn?) && resource.withdrawn?)
+        end
         return nil unless resources.any?
 
         resources

@@ -6,7 +6,6 @@ describe Decidim::Plans::Admin::UpdatePlan do
   let(:form_klass) { Decidim::Plans::Admin::PlanForm }
 
   let(:component) { create(:plan_component) }
-  let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
   let(:organization) { component.organization }
   let(:user) { create :user, :admin, :confirmed, organization: organization }
   let(:form) do
@@ -23,13 +22,8 @@ describe Decidim::Plans::Admin::UpdatePlan do
   let!(:plan) { create :plan, component: component }
 
   describe "call" do
-    let(:proposals) { plan.linked_resources(:proposals, "included_proposals") }
-
     let(:form_params) do
-      {
-        title: { en: "A reasonable plan title" },
-        proposal_ids: proposals.map(&:id)
-      }
+      {}
     end
 
     let(:command) do
@@ -46,20 +40,9 @@ describe Decidim::Plans::Admin::UpdatePlan do
       end
 
       it "doesn't update the plan" do
-        expect do
-          command.call
-        end.not_to change(plan, :title)
-      end
+        expect(Decidim::Plans.loggability).not_to receive(:update!)
 
-      context "with updated proposals" do
-        let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
-        let!(:original_proposals) { plan.linked_resources(:proposals, "included_proposals") }
-
-        it "does not update the linked proposals" do
-          command.call
-          linked_proposals = plan.linked_resources(:proposals, "included_proposals")
-          expect(linked_proposals).to match_array(original_proposals)
-        end
+        command.call
       end
     end
 
@@ -69,9 +52,9 @@ describe Decidim::Plans::Admin::UpdatePlan do
       end
 
       it "updates the plan" do
-        expect do
-          command.call
-        end.to change(plan, :title)
+        expect(Decidim::Plans.loggability).to receive(:update!)
+
+        command.call
       end
 
       it "traces the update", versioning: true do
@@ -91,16 +74,6 @@ describe Decidim::Plans::Admin::UpdatePlan do
         expect do
           command.call
         end.not_to change(plan, :authors)
-      end
-
-      context "with updated proposals" do
-        let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
-
-        it "updates the linked proposals" do
-          command.call
-          linked_proposals = plan.linked_resources(:proposals, "included_proposals")
-          expect(linked_proposals).to match_array(proposals)
-        end
       end
     end
   end

@@ -126,7 +126,7 @@ describe Decidim::Plans::ApplicationHelper do
       expect(helper.filter_type_values).to match_array(
         [
           %w(all All),
-          %w(plans Plans),
+          %w(plans Proposals),
           %w(amendments Amendments)
         ]
       )

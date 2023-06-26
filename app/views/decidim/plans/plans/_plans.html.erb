@@ -4,11 +4,17 @@
   </div>
 
   <div class="column">
-    <%= render partial: "decidim/shared/results_per_page" %>
+    <%= render partial: "decidim/shared/results_per_page.html" %>
   </div>
 </div>
 
-<div class="row small-up-1 medium-up-2 card-grid">
-  <%= render @plans %>
+<div class="row small-up-1 medium-up-3 card-grid">
+  <% plans.each do |plan| %>
+    <%= render partial: "decidim/plans/plans/plan.html", locals: {
+      plan: plan,
+      card_cell: defined?(card_cell) ? card_cell : nil
+    } %>
+  <% end %>
 </div>
-<%= decidim_paginate @plans, random_seed: random_seed %>
+
+<%= decidim_paginate plans %>

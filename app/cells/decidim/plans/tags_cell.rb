@@ -26,14 +26,11 @@ module Decidim
       end
 
       def scope?
-        has_visible_scopes?(model)
+        model.scope.present?
       end
 
       def taggings?
         model.tags.any?
-      end
-
-      def link_to_tag(tag)
       end
 
       def link_to_tag(tag)

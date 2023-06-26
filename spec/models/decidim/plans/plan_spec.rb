@@ -50,13 +50,9 @@ module Decidim
         it "removes the taggings when the plan is destroyed" do
           plan.save!
 
-          expect(Decidim::Plans::Tag.count).to eq(tags.count)
-          expect(Decidim::Plans::PlanTagging.count).to eq(tags.count)
-
-          plan.destroy!
-
-          expect(Decidim::Plans::Tag.count).to eq(tags.count)
-          expect(Decidim::Plans::PlanTagging.count).to eq(0)
+          expect { plan.destroy! }.to change(Decidim::Tags::Tagging, :count)
+            .by(-tags.count)
+            .and change(Decidim::Tags::Tag, :count).by(0)
         end
       end
 

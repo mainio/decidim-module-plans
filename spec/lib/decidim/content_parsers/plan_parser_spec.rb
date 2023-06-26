@@ -8,7 +8,7 @@ module Decidim
       let(:organization) { create(:organization) }
       let(:component) { create(:plan_component, organization: organization) }
       let(:context) { { current_organization: organization } }
-      let!(:parser) { Decidim::ContentParsers::PlanParser.new(content, context) }
+      let!(:parser) { described_class.new(content, context) }
 
       describe "ContentParser#parse is invoked" do
         let(:content) { "" }
@@ -30,6 +30,7 @@ module Decidim
           let(:content) { nil }
 
           it { is_expected.to eq("") }
+
           it "has empty metadata" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -41,6 +42,7 @@ module Decidim
           let(:content) { "" }
 
           it { is_expected.to eq("") }
+
           it "has empty metadata" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -52,6 +54,7 @@ module Decidim
           let(:content) { "whatever content with @mentions and #hashes but no links." }
 
           it { is_expected.to eq(content) }
+
           it "has empty metadata" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -81,6 +84,7 @@ module Decidim
           end
 
           it { is_expected.to eq("This content references plan #{plan.to_global_id}.") }
+
           it "has metadata with the plan" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -95,6 +99,7 @@ module Decidim
           end
 
           it { is_expected.to eq(content) }
+
           it "has metadata with the plan" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -114,6 +119,7 @@ module Decidim
           end
 
           it { is_expected.to eq("This content references the following plans: #{plan1.to_global_id}, #{plan2.to_global_id} and #{plan3.to_global_id}. Great?I like them!") }
+
           it "has metadata with all linked plans" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -129,6 +135,7 @@ module Decidim
           end
 
           it { is_expected.to eq(content) }
+
           it "has metadata with no reference to the plan" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -145,6 +152,7 @@ module Decidim
           end
 
           it { is_expected.to eq(content) }
+
           it "has empty metadata" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
@@ -161,6 +169,7 @@ module Decidim
           end
 
           it { is_expected.to eq("This content references plan #{url}.") }
+
           it "has empty metadata" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)

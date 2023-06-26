@@ -5,8 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic when a user updates a plan.
       class UpdatePlan < Rectify::Command
-        include ::Decidim::Plans::AttachmentMethods
-        include NestedUpdater
+        include Decidim::Plans::PlanContentMethods
 
         # Public: Initializes the command.
         #
@@ -15,7 +14,6 @@ module Decidim
         def initialize(form, plan)
           @form = form
           @plan = plan
-          @attached_to = plan
         end
 
         # Executes the command. Broadcasts these events:
@@ -25,33 +23,28 @@ module Decidim
         #
         # Returns nothing.
         def call
-          return broadcast(:invalid) if form.invalid?
-
-          if process_attachments?
-            prepare_attachments
-            return broadcast(:invalid) if attachments_invalid?
-          end
-
+          prepare_plan_contents
           if form.invalid?
-            mark_attachment_reattachment
+            fail_plan_contents
             return broadcast(:invalid)
           end
 
           Decidim::Plans.tracer.trace!(form.current_user) do
             transaction do
               update_plan
-              update_plan_contents
-              link_proposals
-              update_attachments if process_attachments?
+              save_plan_contents
+              plan.save! if plan.changed?
             end
           end
+
+          finalize_plan_contents
 
           broadcast(:ok, plan)
         end
 
         private
 
-        attr_reader :form, :plan, :attachment
+        attr_reader :form, :plan
 
         def update_plan
           Decidim::Plans.loggability.update!(
@@ -61,27 +54,8 @@ module Decidim
           )
         end
 
-        def update_plan_contents
-          @form.contents.each do |content|
-            update_nested_model(
-              content,
-              { body: content.body,
-                section: content.section,
-                user: @form.current_user },
-              @plan.contents
-            )
-          end
-        end
-
-        def link_proposals
-          plan.link_resources(proposals, "included_proposals")
-        end
-
         def attributes
           {
-            title: form.title,
-            category: form.category,
-            scope: form.scope,
             # The update token ensures a new version is always created even if
             # the other attributes have not changed. This is needed to force a
             # new version to show the changes to associated models.
@@ -89,12 +63,6 @@ module Decidim
             # Optional version comments to be stored against the version
             version_comment: form.version_comment
           }
-        end
-
-        def proposals
-          @proposals ||= plan.sibling_scope(:proposals).where(
-            id: form.proposal_ids
-          )
         end
       end
     end

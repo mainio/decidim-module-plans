@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title"><%= t(".title") %> - <%= present(plan).title %></h2>
+  </div>
+
+  <div class="card-section">
+    <div class="table-scroll">
+      <table class="table-list">
+        <thead>
+          <tr>
+            <th>
+              <%= t("models.plan.fields.author_name", scope: "decidim.plans") %>
+            </th>
+            <th>
+              <%= t("models.plan.fields.author_nickname", scope: "decidim.plans") %>
+            </th>
+            <th class="actions"><%= t("actions.title", scope: "decidim.plans") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% plan.authors.each do |author| %>
+            <tr data-id="<%= author.id %>">
+              <td><%= author.name %></td>
+              <td>
+                <% if author.is_a?(Decidim::Organization) %>
+                  (<%= t(".organization_author") %>)
+                <% else %>
+                  <%= author.nickname %>
+                <% end %>
+              </td>
+              <td class="table-list__actions">
+                <% if allowed_to? :edit, :plan, plan: plan %>
+                  <%= icon_link_to(
+                    "circle-x",
+                    destroy_author_path_for(plan, author),
+                    t("actions.remove_author", scope: "decidim.plans"),
+                    method: :delete,
+                    class: "action-icon--remove",
+                    data: { confirm: t("actions.confirm_destroy", scope: "decidim.plans") }
+                  ) %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="button--double form-general-submit">
+  <button class="button" data-open="plan-author-add-modal-for-<%= plan.id %>">
+    <%= t(".add_author") %>
+  </button>
+</div>
+
+<%= cell("decidim/plans/plan_add_authors", plan, mode: :admin) %>
+
+<%= javascript_include_tag "decidim/plans/admin/authors" %>

@@ -1,0 +1,19 @@
+<div class="row columns">
+  <div class="lead">
+    <p><%= t(".required_fields_text") %></p>
+  </div>
+</div>
+
+<% if false && (current_user.nil? || allowed_to?(:request_access, :plan, plan: plan)) %>
+  <div class="row">
+    <div class="columns">
+      <div class="callout secondary"><%= t(".info_message").html_safe %></div>
+    </div>
+  </div>
+<% end %>
+
+<%= user_group_field %>
+
+<%= contents_edit %>
+
+<%= render :buttons %>

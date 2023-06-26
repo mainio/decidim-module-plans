@@ -68,6 +68,7 @@ module Decidim
 
       def handle_multilingual_fields
         return if multilingual?
+        return unless self.class.translatable_attributes
 
         self.class.translatable_attributes.each do |name|
           attr_src_name = "#{name}_#{current_locale}"

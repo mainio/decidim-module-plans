@@ -58,7 +58,7 @@ describe Decidim::Plans::CellsHelper do
     end
   end
 
-  describe "#flagable?" do
+  describe "#flaggable?" do
     let(:ctx) { double }
     let(:current_user) { double }
 
@@ -66,28 +66,28 @@ describe Decidim::Plans::CellsHelper do
       expect(helper).to receive(:from_context).and_return(ctx).twice
       expect(helper).to receive(:plans_controller?).and_return(true)
       expect(helper).to receive(:index_action?).and_return(false)
-      expect(helper.flagable?).to be(true)
+      expect(helper.flaggable?).to be(true)
     end
 
     it "returns nil if no from_context" do
       expect(helper).to receive(:from_context).and_return(nil)
       expect(helper).not_to receive(:plans_controller?)
       expect(helper).not_to receive(:index_action?)
-      expect(helper.flagable?).to be(nil)
+      expect(helper.flaggable?).to be(nil)
     end
 
     it "returns nil if not plans controller" do
       expect(helper).to receive(:from_context).and_return(ctx)
       expect(helper).to receive(:plans_controller?).and_return(false)
       expect(helper).not_to receive(:index_action?)
-      expect(helper.flagable?).to be(nil)
+      expect(helper.flaggable?).to be(nil)
     end
 
     it "returns nil if index action" do
       expect(helper).to receive(:from_context).and_return(ctx)
       expect(helper).to receive(:plans_controller?).and_return(true)
       expect(helper).to receive(:index_action?).and_return(true)
-      expect(helper.flagable?).to be(nil)
+      expect(helper.flaggable?).to be(nil)
     end
 
     it "returns nil if official context" do
@@ -95,7 +95,7 @@ describe Decidim::Plans::CellsHelper do
       expect(helper).to receive(:plans_controller?).and_return(true)
       expect(helper).to receive(:index_action?).and_return(false)
       expect(ctx).to receive(:official?).and_return(true)
-      expect(helper.flagable?).to be(nil)
+      expect(helper.flaggable?).to be(nil)
     end
   end
 end

@@ -90,7 +90,7 @@ module Decidim::Plans
       let(:tags) { create_list(:tag, 5, organization: organization) }
       let(:plan) { create(:plan, :published, component: component, scope: scope, category: category, tags: tags) }
 
-      it "renders the scope and category of the model" do
+      it "renders the scope, category and taggings of the model" do
         html = cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }).call
 
         expect(html).to have_css(".tags.tags--plan")

@@ -12,6 +12,8 @@ module Decidim
         field :value, Decidim::Core::ScopeApiType, description: "The selected scope.", null: true
 
         def value
+          return nil unless object.body
+
           Decidim::Scope.find_by(id: object.body["scope_id"])
         end
       end

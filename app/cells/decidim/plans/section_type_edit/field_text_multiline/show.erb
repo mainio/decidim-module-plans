@@ -1,0 +1,42 @@
+<div class="field with-character-counter">
+  <div class="row field-label-with-info">
+    <div class="columns large-8">
+      <%= content_tag :div, class: field_info_classes do %>
+        <%= plain_label form, "body_#{current_locale}".to_sym %>
+        <%= render :tooltip %>
+      <% end %>
+    </div>
+    <% if show_info_link? %>
+      <div class="columns large-4">
+        <div class="field-info field-info-with-icon">
+          <%= link_to info_path(section.id), class: "info-modal-link" do %>
+            <%= icon "information", aria_hidden: true %>
+            <%= information_label %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="columns large-8">
+      <% if multilingual_answers? %>
+        <%= form.translated(
+          :text_area,
+          :body,
+          {
+            tabs_id: "field-#{section.id}"
+          }.merge(field_options).merge(rc_opts)
+        ) %>
+      <% else %>
+        <%= form.text_area(
+          "body_#{current_locale}".to_sym,
+          field_options.merge(rows: 10)
+        ) %>
+      <% end %>
+      <div class="field-character-counter-info field-info field-info-after text-right"></div>
+    </div>
+  </div>
+</div>
+
+<div id="plans-dummy-counter-<%= section.id %>" class="hide" aria-hidden="true"></div>

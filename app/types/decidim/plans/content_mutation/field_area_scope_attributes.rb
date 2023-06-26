@@ -10,9 +10,9 @@ module Decidim
         argument :id, ID, required: true
 
         def to_h
-          scope = Decidim::Scope.find(id)
+          scope = Decidim::Scope.find_by(id: id)
 
-          { "scope_id" => scope.id }
+          { "scope_id" => scope&.id }
         end
       end
     end

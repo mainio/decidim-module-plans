@@ -10,14 +10,14 @@ module Decidim
     # @see BaseRenderer Examples of how to use a content renderer
     class PlanRenderer < BaseRenderer
       # Matches a global id representing a Decidim::User
-      GLOBAL_ID_REGEX = %r{gid:\/\/([\w-]*\/Decidim::Plans::Plan\/(\d+))}i
+      GLOBAL_ID_REGEX = %r{gid:\/\/([\w-]*\/Decidim::Plans::Plan\/(\d+))}i.freeze
 
       # Replaces found Global IDs matching an existing plan with
       # a link to its show page. The Global IDs representing an
       # invalid Decidim::Plans::Plan are replaced with '???' string.
       #
       # @return [String] the content ready to display (contains HTML)
-      def render
+      def render(_options = nil)
         content.gsub(GLOBAL_ID_REGEX) do |plan_gid|
           begin
             plan = GlobalID::Locator.locate(plan_gid)

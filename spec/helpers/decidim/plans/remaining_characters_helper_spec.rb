@@ -15,7 +15,13 @@ describe Decidim::Plans::RemainingCharactersHelper do
 
     context "when block is given" do
       let(:field) { "<input type='text' name='test'>" }
-      let(:remaining_characters) { "<span></span>" }
+      let(:messages) do
+        {
+          one: "%count% character left",
+          many: "%count% characters left"
+        }
+      end
+      let(:remaining_characters) { %(<p id="test_remaining_characters" class="form-extra help-text" data-remaining-characters-messages="#{CGI.escapeHTML(messages.to_json)}"></p>) }
 
       context "with positive number of characters" do
         it "yields with correct args" do
@@ -23,10 +29,6 @@ describe Decidim::Plans::RemainingCharactersHelper do
             block.call
             field
           end
-          expect(helper).to receive(:render).with(
-            "decidim/plans/shared/remaining_characters_container",
-            remaining_characters_id: "test_remaining_characters"
-          ).and_return(remaining_characters)
 
           expect do |block|
             expect(
@@ -41,16 +43,13 @@ describe Decidim::Plans::RemainingCharactersHelper do
 
       context "with zero characters" do
         let(:characters) { 0 }
+        let(:remaining_characters) { %(<p class="form-extra help-text" data-remaining-characters-messages="#{CGI.escapeHTML(messages.to_json)}"></p>) }
 
         it "yields with correct args" do
           expect(helper).to receive(:capture) do |&block|
             block.call
             field
           end
-          expect(helper).to receive(:render).with(
-            "decidim/plans/shared/remaining_characters_container",
-            remaining_characters_id: nil
-          ).and_return(remaining_characters)
 
           expect do |block|
             expect(
