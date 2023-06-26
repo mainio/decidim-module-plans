@@ -12,8 +12,10 @@ module Decidim
     autoload :PlanMutationType, "decidim/api/plan_mutation_type"
     autoload :PlanType, "decidim/api/plan_type"
     autoload :PlansType, "decidim/api/plans_type"
-    autoload :ResourceLinkSubject, "decidim/api/resource_link_subject"
     autoload :SectionType, "decidim/api/section_type"
+
+    # separated context
+    autoload :ResourceLinkSubject, "decidim/plans/api/resource_link_subject"
 
     module ContentMutation
       autoload :ContentAttributes, "decidim/api/content_mutation/content_attributes"
