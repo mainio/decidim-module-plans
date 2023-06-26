@@ -254,6 +254,11 @@ module Decidim
         ResourceLocatorPresenter.new(self).url
       end
 
+      # Public: Overrides the `reported_attributes` Reportable concern method.
+      def reported_attributes
+        [:title]
+      end
+
       # Checks whether the user can edit the given plan.
       #
       # user - the user to check for authorship
