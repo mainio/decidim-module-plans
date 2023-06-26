@@ -36,7 +36,7 @@ module Decidim
       end
 
       def all
-        @section_types ||= Set.new
+        @all ||= Set.new
       end
 
       private

@@ -58,7 +58,7 @@ module Decidim
       def document_collections
         @document_collections ||= documents.select(
           &:attachment_collection_id?
-        ).group_by(&:attachment_collection).sort_by { |c, d| c.weight }
+        ).group_by(&:attachment_collection).sort_by { |c, _d| c.weight }
       end
 
       def photos
