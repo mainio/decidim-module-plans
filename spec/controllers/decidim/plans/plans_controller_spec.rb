@@ -40,11 +40,8 @@ module Decidim
           get :index
           expect(response).to have_http_status(:ok)
           expect(subject).to render_template(:index)
-          expect(assigns(:plans).order_values).to eq(["RANDOM()"])
-          expect(assigns(:plans).count).to eq(plans.count)
-          expect(
-            assigns(:available_tags).collect { |t| t.id }
-          ).to match_array(available_tags.collect { |t| t.id })
+          expect(assigns(:plans).order_values.map(&:to_sql)).to eq([%("decidim_plans_plans"."created_at" DESC)])
+          expect(assigns(:plans).to_a.count).to eq(plans.count)
         end
       end
 
@@ -90,7 +87,7 @@ module Decidim
           it "redirects to the draft edit view" do
             get :new, params: params
             expect(response).to have_http_status(:found)
-            expect(subject).to redirect_to(edit_plan_path(draft))
+            expect(subject).to redirect_to("/processes/#{component.participatory_space.slug}/f/#{component.id}/plans/#{draft.id}/edit")
           end
         end
       end

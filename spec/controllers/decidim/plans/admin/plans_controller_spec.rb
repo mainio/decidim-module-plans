@@ -57,35 +57,23 @@ module Decidim
       end
 
       describe "POST create" do
+        let(:component) { create(:plan_component) }
+        let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
+
         before do
           set_default_url_options
         end
 
-        context "when creation is not enabled" do
-          let(:component) { create(:plan_component) }
+        it "creates a plan" do
+          post :create, params: params.merge(
+            title: {
+              en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            },
+            proposal_ids: [create(:proposal, component: proposal_component).id]
+          )
 
-          it "raises an error" do
-            post :create, params: params
-
-            expect(flash[:alert]).not_to be_empty
-          end
-        end
-
-        context "when creation is enabled" do
-          let(:component) { create(:plan_component, :with_creation_enabled) }
-          let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
-
-          it "creates a plan" do
-            post :create, params: params.merge(
-              title: {
-                en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-              },
-              proposal_ids: [create(:proposal, component: proposal_component).id]
-            )
-
-            expect(flash[:notice]).not_to be_empty
-            expect(response).to have_http_status(:found)
-          end
+          expect(flash[:notice]).not_to be_empty
+          expect(response).to have_http_status(:found)
         end
       end
 
@@ -116,36 +104,6 @@ module Decidim
           post :reopen, params: { id: plan.id }
           expect(response).to have_http_status(:found)
           expect(Decidim::Plans::Plan.find(plan.id).closed?).to be(false)
-        end
-      end
-
-      describe "GET taggings" do
-        let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, component: component, users: [user]) }
-
-        it "renders the taggings list" do
-          get :taggings, params: params.merge(id: plan.id)
-          expect(response).to have_http_status(:ok)
-          expect(subject).to render_template(:taggings)
-        end
-      end
-
-      describe "PATCH update_taggings" do
-        let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, component: component, users: [user]) }
-        let(:tags) { create_list(:tag, 5, organization: component.organization) }
-
-        before do
-          set_default_url_options
-        end
-
-        it "updates the taggings" do
-          patch :update_taggings, params: params.merge(
-            id: plan.id,
-            tags: tags.collect { |t| t.id }
-          )
-          expect(response).to have_http_status(:found)
-          expect(Decidim::Plans::Plan.find(plan.id).tags).to eq(tags)
         end
       end
 

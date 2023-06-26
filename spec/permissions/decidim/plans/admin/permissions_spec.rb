@@ -34,7 +34,7 @@ describe Decidim::Plans::Admin::Permissions do
   let(:current_settings_plan_answering_enabled?) { true }
   let(:permission_action) { Decidim::PermissionAction.new(action) }
 
-  context "plans" do
+  context "with plans" do
     # describe "plan note creation" do
     #   let(:action) do
     #     { scope: :admin, action: :create, subject: :plan_note }
@@ -95,68 +95,10 @@ describe Decidim::Plans::Admin::Permissions do
       it { is_expected.to eq true }
     end
 
-    describe "plan tag editing" do
-      let(:action) do
-        { scope: :admin, action: :edit_taggings, subject: :plan }
-      end
-
-      let(:plan) { create :plan, component: current_component }
-
-      it { is_expected.to eq true }
-    end
-
     describe "plan budget exporting" do
       let(:action) do
         { scope: :admin, action: :export_budgets, subject: :plans }
       end
-
-      it { is_expected.to eq true }
-    end
-  end
-
-  context "plan tags" do
-    let(:tag) { nil }
-    let(:context) do
-      {
-        tag: tag,
-        current_component: current_component,
-        current_settings: current_settings,
-        component_settings: component_settings
-      }
-    end
-
-    describe "plan tag reading" do
-      let(:action) do
-        { scope: :admin, action: :read, subject: :plan_tag }
-      end
-
-      it { is_expected.to eq true }
-    end
-
-    describe "plan tag creation" do
-      let(:action) do
-        { scope: :admin, action: :create, subject: :plan_tags }
-      end
-
-      it { is_expected.to eq true }
-    end
-
-    describe "plan tag edition" do
-      let(:action) do
-        { scope: :admin, action: :edit, subject: :plan_tags }
-      end
-
-      let(:tag) { create :tag, organization: current_component.organization }
-
-      it { is_expected.to eq true }
-    end
-
-    describe "plan tag destroing" do
-      let(:action) do
-        { scope: :admin, action: :destroy, subject: :plan_tags }
-      end
-
-      let(:tag) { create :tag, organization: current_component.organization }
 
       it { is_expected.to eq true }
     end

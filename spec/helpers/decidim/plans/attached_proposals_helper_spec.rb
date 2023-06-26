@@ -3,15 +3,16 @@
 require "spec_helper"
 
 describe Decidim::Plans::AttachedProposalsHelper do
-  let(:form) { double }
+  let(:form) { double(object_name: "plan") }
   let(:participatory_space) { create(:participatory_process, :with_steps) }
   let(:current_component) { create(:plan_component, participatory_space: participatory_space) }
   let(:proposal_component) { create(:proposal_component, participatory_space: participatory_space) }
-  let(:search_proposals_path) { "/search_proposals" }
+  let(:search_plans_path) { "/search_plans" }
 
   before do
     allow(helper).to receive(:current_component).and_return(current_component)
-    allow(helper).to receive(:plan_search_proposals_path).and_return(search_proposals_path)
+    allow(helper).to receive(:current_locale).and_return(I18n.locale)
+    allow(helper).to receive(:search_plans_plans_path).and_return(search_plans_path)
   end
 
   describe "#attached_proposals_picker_field" do
@@ -21,13 +22,14 @@ describe Decidim::Plans::AttachedProposalsHelper do
       expect(form).to receive(:data_picker).with(
         name,
         {
-          id: "attached_proposals",
-          "class": "picker-multiple",
-          name: "proposal_ids",
+          autosort: true,
+          class: "picker-multiple",
+          id: "pick_proposals",
+          name: "plan[pick_proposal_ids]",
           multiple: true
         },
-        url: search_proposals_path,
-        text: "Attach proposal"
+        url: search_plans_path,
+        text: "Choose proposals"
       )
       helper.attached_proposals_picker_field(form, name)
     end
@@ -101,7 +103,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
           component: proposal_component
         ).where.not(
           published_at: nil
-        ).order(title: :asc).all.collect { |p| ["#{p.title} (##{p.id})", p.id] }
+        ).order(title: :asc).all.collect { |p| ["#{translated(p.title)} (##{p.id})", p.id] }
         expect(helper).to receive(:render).with(
           hash_including(
             json: proposals
@@ -157,7 +159,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         ).where(
           "state IS NULL OR state != ?",
           "rejected"
-        ).order(title: :asc).all.collect { |p| ["#{p.title} (##{p.id})", p.id] }
+        ).order(title: :asc).all.collect { |p| ["#{translated(p.title)} (##{p.id})", p.id] }
         expect(helper).to receive(:render).with(
           hash_including(
             json: proposals
@@ -198,7 +200,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
           # json
           expect(helper).to receive(:render).with(
             hash_including(
-              json: [["#{proposal.title} (##{proposal.id})", proposal.id]]
+              json: [["#{translated(proposal.title)} (##{proposal.id})", proposal.id]]
             )
           )
 
@@ -260,7 +262,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
           # json
           expect(helper).to receive(:render).with(
             hash_including(
-              json: [["#{proposal.title} (##{proposal.id})", proposal.id]]
+              json: [["#{translated(proposal.title)} (##{proposal.id})", proposal.id]]
             )
           )
 

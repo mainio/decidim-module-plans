@@ -11,13 +11,19 @@ module Decidim
         let(:component) { create(:plan_component) }
         let(:participatory_space) { component.participatory_space }
 
-        let(:target_component) { create(:budget_component, participatory_space: participatory_space) }
-        let(:default_budget) { 50_000 }
+        let(:target_component) { create(:budgets_component, participatory_space: participatory_space) }
+        let(:budget) { create(:budget, component: target_component) }
+        let(:section) { create(:section, component: component) }
+        let(:content_sections) { [section.id] }
+        let(:target_details) { [{ component_id: target_component.try(:id), budget_id: budget.try(:id) }] }
+        let(:default_budget_amount) { 50_000 }
         let(:acceptance) { true }
         let(:params) do
           {
             target_component_id: target_component.try(:id),
-            default_budget: default_budget,
+            content_sections: content_sections,
+            default_budget_amount: default_budget_amount,
+            target_details: target_details,
             export_all_closed_plans: acceptance
           }
         end
@@ -35,12 +41,13 @@ module Decidim
 
         context "when no target component is defined" do
           let(:target_component) { nil }
+          let(:budget) { nil }
 
           it { is_expected.to be_invalid }
         end
 
-        context "when default budget is zero" do
-          let(:default_budget) { 0 }
+        context "when default budget amount is negative" do
+          let(:default_budget_amount) { -1 }
 
           it { is_expected.to be_invalid }
         end

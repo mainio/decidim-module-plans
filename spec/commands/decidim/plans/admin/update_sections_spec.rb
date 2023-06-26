@@ -14,23 +14,27 @@ module Decidim
           {
             "sections" => {
               "0" => {
+                "handle" => "section_0",
                 "body" => { "en" => "First section" },
-                "section_type" => Decidim::Plans::Section::TYPES.first,
+                "section_type" => Decidim::Plans::Section.types.first,
                 "position" => "0"
               },
               "1" => {
+                "handle" => "section_1",
                 "body" => { "en" => "Second section" },
-                "section_type" => Decidim::Plans::Section::TYPES.second,
+                "section_type" => Decidim::Plans::Section.types.second,
                 "position" => "1"
               },
               "2" => {
+                "handle" => "section_2",
                 "body" => { "en" => "Third section" },
-                "section_type" => Decidim::Plans::Section::TYPES.first,
+                "section_type" => Decidim::Plans::Section.types.third,
                 "position" => "2"
               },
               "3" => {
+                "handle" => "section_3",
                 "body" => { "en" => "Fourth section" },
-                "section_type" => Decidim::Plans::Section::TYPES.second,
+                "section_type" => Decidim::Plans::Section.types.fourth,
                 "position" => "3"
               }
             }

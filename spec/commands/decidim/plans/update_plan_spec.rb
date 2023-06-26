@@ -8,7 +8,6 @@ module Decidim
       let(:form_klass) { PlanForm }
 
       let(:component) { create(:plan_component) }
-      let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
       let(:organization) { component.organization }
       let(:form) do
         form_klass.from_params(
@@ -28,13 +27,10 @@ module Decidim
       end
 
       describe "call" do
-        let(:proposals) { plan.linked_resources(:proposals, "included_proposals") }
-
         let(:form_params) do
           {
             title: { en: "This is the plan title" },
-            user_group_id: user_group.try(:id),
-            proposal_ids: proposals.map(&:id)
+            user_group_id: user_group.try(:id)
           }
         end
 
@@ -44,7 +40,7 @@ module Decidim
 
         describe "when the form is not valid" do
           before do
-            expect(form).to receive(:invalid?).twice.and_return(true)
+            expect(form).to receive(:invalid?).and_return(true)
           end
 
           it "broadcasts invalid" do
@@ -52,20 +48,9 @@ module Decidim
           end
 
           it "doesn't update the plan" do
-            expect do
-              command.call
-            end.not_to change(plan, :title)
-          end
+            expect(Decidim::Plans.loggability).not_to receive(:update!)
 
-          context "with updated proposals" do
-            let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
-            let!(:original_proposals) { plan.linked_resources(:proposals, "included_proposals") }
-
-            it "does not update the linked proposals" do
-              command.call
-              linked_proposals = plan.linked_resources(:proposals, "included_proposals")
-              expect(linked_proposals).to match_array(original_proposals)
-            end
+            command.call
           end
         end
 
@@ -79,9 +64,9 @@ module Decidim
           end
 
           it "doesn't update the plan" do
-            expect do
-              command.call
-            end.not_to change(plan, :title)
+            expect(Decidim::Plans.loggability).not_to receive(:update!)
+
+            command.call
           end
         end
 
@@ -91,9 +76,9 @@ module Decidim
           end
 
           it "updates the plan" do
-            expect do
-              command.call
-            end.to change(plan, :title)
+            expect(Decidim::Plans.loggability).to receive(:update!)
+
+            command.call
           end
 
           it "creates a new version for the plan", versioning: true do
@@ -113,16 +98,6 @@ module Decidim
               expect(plan.coauthorships.count).to eq(1)
               expect(plan.authors.count).to eq(1)
               expect(plan.authors.first).to eq(author)
-            end
-          end
-
-          context "with updated proposals" do
-            let(:proposals) { create_list(:proposal, 3, component: proposal_component) }
-
-            it "updates the linked proposals" do
-              command.call
-              linked_proposals = plan.linked_resources(:proposals, "included_proposals")
-              expect(linked_proposals).to match_array(proposals)
             end
           end
         end

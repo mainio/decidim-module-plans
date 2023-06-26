@@ -5,19 +5,194 @@ require "decidim/participatory_processes/test/factories"
 
 FactoryBot.define do
   factory :section, class: "Decidim::Plans::Section" do
-    section_type { Decidim::Plans::Section.types.first }
+    section_type { "field_text" }
     body { generate_localized_title }
     position { 0 }
     mandatory { false }
     settings { { answer_length: 0 } }
     component
+
+    trait :field_title do
+      section_type { "field_title" }
+    end
+
+    trait :field_text do
+      section_type { "field_text" }
+    end
+
+    trait :field_text_multiline do
+      section_type { "field_text_multiline" }
+    end
+
+    trait :field_number do
+      section_type { "field_number" }
+    end
+
+    trait :field_currency do
+      section_type { "field_currency" }
+    end
+
+    trait :field_checkbox do
+      section_type { "field_checkbox" }
+    end
+
+    trait :field_scope do
+      transient do
+        scope_parent { create(:scope, organization: component.organization) }
+      end
+
+      section_type { "field_scope" }
+      settings { { scope_parent: scope_parent&.id } }
+    end
+
+    trait :field_area_scope do
+      transient do
+        area_scope_parent { create(:scope, organization: component.organization) }
+      end
+
+      section_type { "field_area_scope" }
+      settings { { area_scope_parent: area_scope_parent&.id } }
+    end
+
+    trait :field_category do
+      section_type { "field_category" }
+    end
+
+    trait :field_tags do
+      section_type { "field_tags" }
+    end
+
+    trait :field_map_point do
+      section_type { "field_map_point" }
+    end
+
+    trait :field_attachments do
+      section_type { "field_attachments" }
+    end
+
+    trait :field_image_attachments do
+      section_type { "field_image_attachments" }
+    end
+
+    trait :content do
+      section_type { "content" }
+    end
+
+    trait :link_proposals do
+      section_type { "link_proposals" }
+    end
   end
 
   factory :content, class: "Decidim::Plans::Content" do
     body { generate_localized_title }
     plan
-    section { create(:section) }
+    section { create(:section, :field_text, component: plan.component) }
     user { create(:user, organization: plan.organization) }
+
+    trait :field_title do
+      body { generate_localized_title }
+      section { create(:section, :field_title, component: plan.component) }
+    end
+
+    trait :field_text do
+      body { generate_localized_title }
+      section { create(:section, :field_text, component: plan.component) }
+    end
+
+    trait :field_text_multiline do
+      body { generate_localized_title }
+      section { create(:section, :field_text_multiline, component: plan.component) }
+    end
+
+    trait :field_number do
+      body { { value: Faker::Number.number } }
+      section { create(:section, :field_number, component: plan.component) }
+    end
+
+    trait :field_currency do
+      body { { value: Faker::Number.number } }
+      section { create(:section, :field_currency, component: plan.component) }
+    end
+
+    trait :field_checkbox do
+      body { { value: Faker::Boolean.boolean } }
+      section { create(:section, :field_checkbox, component: plan.component) }
+    end
+
+    trait :field_scope do
+      transient do
+        scope { create(:scope, organization: plan.organization) }
+      end
+
+      body { { scope_id: scope&.id } }
+      section { create(:section, :field_scope, component: plan.component) }
+    end
+
+    trait :field_area_scope do
+      transient do
+        scope { create(:scope, organization: plan.organization) }
+      end
+
+      body { { scope_id: scope&.id } }
+      section { create(:section, :field_area_scope, component: plan.component) }
+    end
+
+    trait :field_category do
+      transient do
+        category { create(:category, participatory_space: plan.participatory_space) }
+      end
+
+      body { { category_id: category&.id } }
+      section { create(:section, :field_category, component: plan.component) }
+    end
+
+    trait :field_tags do
+      transient do
+        tags { create_list(:tag, 2, organization: plan.organization) }
+      end
+
+      body { { tag_ids: tags.map(&:id) } }
+      section { create(:section, :field_tags, component: plan.component) }
+    end
+
+    trait :field_map_point do
+      transient do
+        address { "#{Faker::Address.street_name}, #{Faker::Address.city}" }
+        latitude { Faker::Address.latitude }
+        longitude { Faker::Address.longitude }
+      end
+
+      body { { address: address, latitude: latitude, longitude: longitude } }
+      section { create(:section, :field_map_point, component: plan.component) }
+    end
+
+    trait :field_attachments do
+      transient do
+        documents { create_list(:attachment, 3, :with_pdf, attached_to: plan) }
+        images { create_list(:attachment, 3, :with_image, attached_to: plan) }
+      end
+
+      body { { "attachment_ids" => (documents.map(&:id) + images.map(&:id)) } }
+      section { create(:section, :field_attachments, component: plan.component) }
+    end
+
+    trait :field_image_attachments do
+      transient do
+        images { create_list(:attachment, 3, :with_image, attached_to: plan) }
+      end
+
+      body { { "attachment_ids" => images.map(&:id) } }
+      section { create(:section, :field_image_attachments, component: plan.component) }
+    end
+
+    trait :link_proposals do
+      transient do
+        proposals { create_list(:proposal, 2, component: create(:proposal_component, participatory_space: plan.participatory_space)) }
+      end
+
+      body { { "proposal_ids" => proposals.map(&:id) } }
+      section { create(:section, :link_proposals, component: plan.component) }
+    end
   end
 
   factory :plan_component, parent: :component do
@@ -162,10 +337,5 @@ FactoryBot.define do
   factory :plan_collaborator_request, class: "Decidim::Plans::PlanCollaboratorRequest" do
     plan
     user
-  end
-
-  factory :tag, class: "Decidim::Plans::Tag" do
-    name { generate_localized_title }
-    organization { create(:organization) }
   end
 end

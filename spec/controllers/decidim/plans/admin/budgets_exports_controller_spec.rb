@@ -9,18 +9,25 @@ module Decidim
         routes { Decidim::Plans::AdminEngine.routes }
 
         let(:component) { create(:plan_component) }
-        let(:target_component) { create(:budget_component, participatory_space: component.participatory_space) }
+        let(:target_component) { create(:budgets_component, participatory_space: component.participatory_space) }
+        let(:target_budget) { create(:budget, component: target_component) }
         let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
 
-        let!(:plans) { create_list(:plan, 10, :published, closed_at: Time.current, component: component) }
+        let!(:plans) { create_list(:plan, 10, :published, :accepted, closed_at: Time.current, component: component) }
 
         let(:acceptance) { true }
 
         let(:params) do
           {
             target_component_id: target_component.try(:id),
-            default_budget: 50_000,
-            export_all_closed_plans: acceptance
+            default_budget_amount: 50_000,
+            export_all_closed_plans: acceptance,
+            target_details: [
+              {
+                component_id: target_component.try(:id),
+                budget_id: target_budget.try(:id)
+              }
+            ]
           }
         end
 

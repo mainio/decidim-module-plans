@@ -9,7 +9,8 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
   let(:organization) { component.organization }
   let(:participatory_space) { component.participatory_space }
 
-  let(:target_component) { create(:budget_component, participatory_space: participatory_space) }
+  let(:target_component) { create(:budgets_component, participatory_space: participatory_space) }
+  let(:budget) { create(:budget, component: target_component) }
 
   let(:user) { create :user, :admin, :confirmed, organization: organization }
   let(:form) do
@@ -21,13 +22,16 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
     )
   end
 
-  let!(:plans) { create_list :plan, 10, :published, closed_at: Time.current, component: component }
+  let!(:plans) { create_list :plan, 10, :published, :accepted, closed_at: Time.current, component: component }
 
   describe "call" do
     let(:form_params) do
       {
         target_component_id: target_component.try(:id),
-        default_budget: 50_000,
+        target_details: [
+          { component_id: target_component.try(:id), budget_id: budget.try(:id) }
+        ],
+        default_budget_amount: 50_000,
         export_all_closed_plans: true
       }
     end

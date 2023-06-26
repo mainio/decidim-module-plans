@@ -7,7 +7,7 @@ module Decidim
     describe OfficialAuthorPresenter do
       describe "#name" do
         it "returns correct string" do
-          expect(subject.name).to eq("Official plan")
+          expect(subject.name).to eq("Official proposal")
         end
       end
 

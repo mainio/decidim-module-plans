@@ -35,14 +35,14 @@ describe Decidim::Plans::PlanAccessRequestedEvent do
     describe "email_intro" do
       it "is generated correctly" do
         expect(subject.email_intro)
-          .to eq(%(#{requester_name} requested access as a contributor. You can <strong>accept or reject the request</strong> from the <a href="#{resource_url}">#{resource_title}</a> page.))
+          .to eq(%(#{requester_name} requested contributor access. You can <strong>accept or reject the request</strong> from the <a href="#{resource_url}">#{resource_title}</a> page.))
       end
     end
 
     describe "email_outro" do
       it "is generated correctly" do
         expect(subject.email_outro)
-          .to eq(%(You have received this notification because you are a collaborator of <a href="#{resource_url}">#{resource_title}</a>.))
+          .to eq(%(You have received this notification because you are a collaborator in <a href="#{resource_url}">#{resource_title}</a>.))
       end
     end
 

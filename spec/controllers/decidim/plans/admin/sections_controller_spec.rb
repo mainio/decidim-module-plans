@@ -47,7 +47,8 @@ module Decidim
               {
                 sections: [
                   {
-                    section_type: Decidim::Plans::Section::TYPES.first,
+                    section_type: Decidim::Plans::Section.types.first,
+                    handle: "testing",
                     position: 0,
                     body: { en: "" }
                   }
@@ -67,7 +68,8 @@ module Decidim
               {
                 sections: [
                   {
-                    section_type: Decidim::Plans::Section::TYPES.first,
+                    section_type: Decidim::Plans::Section.types.first,
+                    handle: "testing",
                     position: 0,
                     body: { en: "Lorem ipsum dolor" }
                   }
