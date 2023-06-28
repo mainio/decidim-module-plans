@@ -9,7 +9,7 @@ describe Decidim::Plans::AuthorCell, type: :cell do
   let(:model) { create(:user) }
   let(:current_user) { create(:user) }
 
-  let!(:organization) { create(:organization) }
+  let!(:organization) { create(:organization, tos_version: Time.current) }
   let(:user) { create(:user, :confirmed, organization: organization) }
   let(:user_group) { create(:user_group, :verified) }
   let(:plan) { create(:plan) }

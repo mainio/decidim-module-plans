@@ -18,7 +18,8 @@
   <%= decidim_form_for(@form, url: add_authors_plan_path(@plan), html: { class: "form new_author" }) do |form| %>
     <div class="row">
       <div class="columns large-12">
-        <% @form.authors.each do |author| %>
+        <% @form.authors.each do |author_entity| %>
+          <% author = present(author_entity) %>
           <%= form.hidden_field "recipient_id][", id: nil, value: author.id %>
 
           <div class="author-data author-data--big mb-2">
@@ -34,7 +35,7 @@
                     </span>
                   </div>
                   <div class="author__nickname">
-                    <%= author.nickname.present? ? "@#{author.nickname}" : "&nbsp;" %>
+                    <%= author.nickname.present? ? author.nickname : "&nbsp;" %>
                   </div>
                 </div>
               </div>

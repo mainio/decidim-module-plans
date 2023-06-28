@@ -35,16 +35,8 @@ module Decidim
         root to: "plans#index"
       end
 
-      initializer "decidim_plans.assets" do |app|
-        app.config.assets.precompile += %w(decidim_plans_manifest.js
-                                           decidim_plans_manifest.css
-                                           decidim/plans/identity_selector_dialog.js
-                                           decidim/plans/social_share.js
-                                           decidim/plans/map.js
-                                           decidim/plans/plans_list.js
-                                           decidim/plans/data_picker.scss
-                                           decidim/plans/social_share.css.scss
-                                           decidim/plans/plans_form.scss)
+      initializer "decidim_plans.webpacker.assets_path" do
+        Decidim.register_assets_path File.expand_path("app/packs", root)
       end
 
       initializer "decidim_plans.add_cells_view_paths" do

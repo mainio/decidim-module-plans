@@ -13,11 +13,11 @@ module Decidim
           unless snippets.any?(:plans_link_proposals)
             snippets.add(
               :plans_link_proposals,
-              stylesheet_link_tag("decidim/plans/data_picker")
+              stylesheet_pack_tag("decidim_plans_data_picker")
             )
             snippets.add(
               :plans_link_proposals,
-              javascript_include_tag("decidim/plans/proposal_picker")
+              javascript_pack_tag("decidim_plans_proposal_picker")
             )
 
             # This will display the snippets in the <head> part of the page.

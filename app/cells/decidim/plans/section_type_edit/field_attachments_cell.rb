@@ -45,14 +45,17 @@ module Decidim
         def file_is_present?(form)
           file = form.file
           return false unless file
-          return false unless file.respond_to?(:url)
 
-          file.url.present?
+          # This is the case if the file was just uploaded, i.e. it is not yet
+          # stored through ActiveStorage.
+          return true unless file.respond_to?(:attached?)
+
+          file.attached?
         end
 
         def attachment_title_for(attachment)
           title = attachment.title
-          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file && attachment.file.try(:url).present?
+          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file && attachment.file.try(:attached?)
 
           title
         end
@@ -62,8 +65,8 @@ module Decidim
           when ActionDispatch::Http::UploadedFile
             file.original_filename
           else
-            # Carrierwave SanitizedFile
-            file.file.filename
+            # ActiveStorage::Attached
+            file.filename.to_s
           end
         end
 

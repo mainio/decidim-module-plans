@@ -2,7 +2,12 @@
 
 module Decidim
   module Plans
-    VERSION = "0.24.0"
-    DECIDIM_VERSION = "~> 0.24.0"
+    def self.version
+      "0.25.0"
+    end
+
+    def self.decidim_version
+      "~> 0.25.0"
+    end
   end
 end

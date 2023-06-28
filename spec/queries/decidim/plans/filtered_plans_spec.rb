@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe Decidim::Plans::FilteredPlans do
-  let(:organization) { create(:organization) }
+  let(:organization) { create(:organization, tos_version: Time.current) }
 
   context "with single component" do
     let(:component) { create(:plan_component, organization: organization) }

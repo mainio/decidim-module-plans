@@ -10,13 +10,14 @@
             <h5 class="card--list__heading"><%== decidim_html_escape(present(plan).title) %></h5>
           <% end %>
           <% present(plan) do |plan| %>
+            <% author = present(plan.author) %>
             <div class="author">
               <span class="author__avatar">
-                <%= image_tag plan.author.avatar_url %>
+                <%= image_tag author.avatar_url %>
               </span>
               <span class="author__name">
-                <strong><%= plan.author.name %></strong>
-                <%= plan.author.nickname %>
+                <strong><%= author.name %></strong>
+                <%= author.nickname %>
               </span>
             </div>
           <% end %>

@@ -23,7 +23,7 @@ module Decidim
           map_options[:center_coordinates] = [latitude, longitude] if latitude && longitude
 
           dynamic_map_for(map_options, map_html_options) do
-            javascript_include_tag "decidim/plans/map"
+            javascript_pack_tag "decidim_plans_map"
           end
         end
       end

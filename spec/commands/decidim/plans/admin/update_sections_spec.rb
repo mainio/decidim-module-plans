@@ -6,7 +6,7 @@ module Decidim
   module Plans
     module Admin
       describe UpdateSections do
-        let(:current_organization) { create(:organization) }
+        let(:current_organization) { create(:organization, tos_version: Time.current) }
         let(:participatory_process) { create(:participatory_process, organization: current_organization) }
         let(:sections_component) { create(:dummy_component) }
         let(:sections) { Section.where(component: sections_component).order(:position) }

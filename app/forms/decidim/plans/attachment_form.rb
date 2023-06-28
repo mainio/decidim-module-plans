@@ -6,9 +6,7 @@ module Decidim
       validates :file, passthru: {
         to: Decidim::Plans::Attachment,
         with: {
-          attached_to: lambda do |form|
-            form.current_organization
-          end
+          attached_to: ->(form) { form.current_organization }
         }
       }, if: ->(form) { form.file.present? }
     end

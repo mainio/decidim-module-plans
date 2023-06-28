@@ -31,8 +31,8 @@ module Decidim
 
       describe "#avatar_url" do
         it "calls the ActionController helpers" do
-          expect(ActionController::Base.helpers).to receive(:asset_path).with(
-            "decidim/default-avatar.svg"
+          expect(ActionController::Base.helpers).to receive(:asset_pack_path).with(
+            "media/images/default-avatar.svg"
           )
           subject.avatar_url
         end

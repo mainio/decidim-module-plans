@@ -25,8 +25,8 @@ module Decidim
         attribute :position, Integer
         attribute :deleted, Boolean, default: false
 
-        validates :handle, presence: true
-        validates :position, numericality: { greater_than_or_equal_to: 0 }
+        validates :handle, presence: true, if: ->(form) { !form.deleted }
+        validates :position, numericality: { greater_than_or_equal_to: 0 }, if: ->(form) { !form.deleted }
         validates :body, translatable_presence: true, if: ->(form) { !form.deleted && !form.rich_text_body? }
         validates :body_rich, translatable_presence: true, if: ->(form) { !form.deleted && form.rich_text_body? }
 
@@ -50,21 +50,21 @@ module Decidim
           }
         end
 
-        with_options if: ->(form) { form.section_type == "field_scope" } do
+        with_options if: ->(form) { !form.deleted && form.section_type == "field_scope" } do
           validates :scope_parent, numericality: {
             greater_than: 0,
             only_integer: true
           }
         end
 
-        with_options if: ->(form) { form.section_type == "field_area_scope" } do
+        with_options if: ->(form) { !form.deleted && form.section_type == "field_area_scope" } do
           validates :area_scope_parent, numericality: {
             greater_than: 0,
             only_integer: true
           }
         end
 
-        with_options if: ->(form) { %w(field_attachments field_image_attachments).include?(form.section_type) } do
+        with_options if: ->(form) { !form.deleted && %w(field_attachments field_image_attachments).include?(form.section_type) } do
           validates :attachments_input_type, inclusion: { in: Section.attachment_input_types }
         end
 
@@ -121,6 +121,8 @@ module Decidim
         end
 
         def requires_answer_length?
+          return false if deleted
+
           %w(field_text field_text_multiline).include?(section_type)
         end
       end

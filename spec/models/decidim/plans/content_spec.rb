@@ -7,7 +7,7 @@ module Decidim
     describe Content do
       subject { content }
 
-      let(:organization) { create(:organization) }
+      let(:organization) { create(:organization, tos_version: Time.current) }
       let(:user) { create(:user, organization: organization) }
       let(:participatory_process) { create(:participatory_process, organization: organization) }
       let(:component) { build :plan_component }

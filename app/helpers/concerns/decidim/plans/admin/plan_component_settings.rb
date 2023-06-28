@@ -48,7 +48,7 @@ module Decidim
               return "" if @plan_settings_included
 
               @plan_settings_included = true
-              javascript_include_tag("decidim/plans/admin/component_settings")
+              javascript_pack_tag("decidim_plans_admin_component_settings")
             end
           end
         end

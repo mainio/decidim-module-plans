@@ -7,7 +7,7 @@ module Decidim
     describe ContentForm do
       subject { form }
 
-      let(:organization) { create(:organization) }
+      let(:organization) { create(:organization, tos_version: Time.current) }
       let(:body_en) { "English body" }
       let(:plan) { create :plan }
       let(:plan_id) { plan.id }

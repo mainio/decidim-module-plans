@@ -562,6 +562,9 @@ fi:
         proposal_plan: Liitetyt ehdotukset
     scopes:
       global: Yleinen
+    statistics:
+      plans_accepted: Hyväksyttyä ehdotusta
+      plans_count: Ehdotusta
     events:
       plans:
         plan_access_accepted:

@@ -12,7 +12,7 @@ module Decidim
           )
         end
 
-        let(:current_organization) { create(:organization) }
+        let(:current_organization) { create(:organization, tos_version: Time.current) }
 
         let(:body_english) { "First section" }
 

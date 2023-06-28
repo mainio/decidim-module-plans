@@ -7,9 +7,10 @@ describe Decidim::Plans::AttachmentForm do
     described_class.new(
       title: title,
       file: file
-    )
+    ).with_context(current_organization: organization)
   end
 
+  let(:organization) { create(:organization) }
   let(:title) { "My attachment" }
   let(:file) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
 

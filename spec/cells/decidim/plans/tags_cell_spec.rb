@@ -6,7 +6,7 @@ module Decidim::Plans
   describe TagsCell, type: :cell do
     controller Decidim::Plans::PlansController
 
-    let(:organization) { create(:organization) }
+    let(:organization) { create(:organization, tos_version: Time.current) }
     let(:participatory_space) { create(:participatory_process, organization: organization) }
     let(:component) { create(:plan_component, participatory_space: participatory_space) }
     let(:model) { plan }

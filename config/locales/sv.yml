@@ -561,6 +561,9 @@ sv:
         proposal_plan: Relaterade förslag
     scopes:
       global: Allmän
+    statistics:
+      plans_accepted: Godkända förslag
+      plans_count: Förslag
     events:
       plans:
         plan_access_accepted:

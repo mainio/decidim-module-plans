@@ -22,7 +22,7 @@ module Decidim
       #                field.
       def upload_field(form, attribute)
         file = form.object.send attribute
-        required = file.nil?
+        required = file.nil? || !file.attached?
 
         label_content = form.label_for(attribute)
         label_content += required_tag if required
@@ -30,16 +30,17 @@ module Decidim
         template += form.label(attribute, label_content)
         template += form.file_field attribute, label: false
 
+        file_path = form.object.attached_uploader(attribute).path
         if form.send(:file_is_image?, file)
           template += if file.present?
                         content_tag :label, I18n.t("current_image", scope: "decidim.forms")
                       else
                         content_tag :label, I18n.t("default_image", scope: "decidim.forms")
                       end
-          template += link_to image_tag(file.url), file.url, target: "_blank", rel: "noopener"
+          template += link_to image_tag(file_path), file_path, target: "_blank", rel: "noopener"
         elsif form.send(:file_is_present?, file)
           template += label_tag I18n.t("current_file", scope: "decidim.forms")
-          template += link_to file.file.filename, file.url, target: "_blank", rel: "noopener"
+          template += link_to file.filename.to_s, file_path, target: "_blank", rel: "noopener"
         end
 
         template.html_safe

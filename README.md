@@ -126,10 +126,6 @@ $ npm run stylelint
 To ease up following the style guide, you should install the plugins to your
 favorite editor, such as:
 
-- Atom
-  * [linter-rubocop](https://atom.io/packages/linter-rubocop)
-  * [linter-eslint](https://atom.io/packages/linter-eslint)
-  * [linter-stylelint](https://atom.io/packages/linter-stylelint)
 - Sublime Text
   * [Sublime RuboCop](https://github.com/pderichs/sublime_rubocop)
   * [SublimeLinter-eslint](https://github.com/SublimeLinter/SublimeLinter-eslint)

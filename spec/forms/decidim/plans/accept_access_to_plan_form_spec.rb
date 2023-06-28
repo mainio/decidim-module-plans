@@ -8,7 +8,7 @@ module Decidim
       describe AcceptAccessToPlanForm do
         subject { form }
 
-        let(:organization) { create(:organization) }
+        let(:organization) { create(:organization, tos_version: Time.current) }
         let(:plan) { create(:plan, :open) }
         let(:state) { plan.state }
         let(:id) { plan.id }

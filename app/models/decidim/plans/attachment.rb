@@ -7,7 +7,10 @@ module Decidim
     class Attachment < ::Decidim::Attachment
       self.table_name = :decidim_attachments
 
-      mount_uploader :file, Decidim::Plans::AttachmentUploader
+      has_one_attached :file
+      validates_upload :file, uploader: Decidim::Plans::AttachmentUploader
+
+      before_validation :copy_file_attributes
 
       attr_writer :upload_type
 
@@ -26,7 +29,16 @@ module Decidim
       def main_url
         return unless photo?
 
-        file.main.url
+        attached_uploader(:file).path(variant: :main)
+      end
+
+      private
+
+      def copy_file_attributes
+        return unless file
+
+        self.content_type = file.content_type if file.content_type && content_type.blank?
+        self.file_size = file.byte_size if file_size.blank?
       end
     end
   end

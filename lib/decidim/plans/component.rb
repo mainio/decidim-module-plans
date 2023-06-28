@@ -114,13 +114,24 @@ Decidim.register_component(:plans) do |component|
       global = nil
     end
 
+    Decidim::Plans::Section.create!(
+      component: component,
+      body: Decidim::Faker::Localized.paragraph,
+      help: Decidim::Faker::Localized.paragraph,
+      mandatory: true,
+      position: 0,
+      handle: "title",
+      section_type: "field_title"
+    )
+
     5.times do |n|
       Decidim::Plans::Section.create!(
         component: component,
         body: Decidim::Faker::Localized.paragraph,
         help: Decidim::Faker::Localized.paragraph,
         mandatory: false,
-        position: n,
+        position: n + 1,
+        handle: "section_#{n}",
         section_type: "field_text_multiline"
       )
     end

@@ -3,7 +3,7 @@
 shared_examples "a plan form" do |options|
   subject { form }
 
-  let(:organization) { create(:organization, available_locales: [:en]) }
+  let(:organization) { create(:organization, tos_version: Time.current, available_locales: [:en]) }
   let(:participatory_space) { create(:participatory_process, :with_steps, organization: organization) }
   let(:component) { create(:plan_component, participatory_space: participatory_space) }
   let(:author) { create(:user, organization: organization) }

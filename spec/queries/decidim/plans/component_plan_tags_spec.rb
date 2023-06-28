@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe Decidim::Plans::ComponentPlanTags do
-  let(:organization) { create(:organization) }
+  let(:organization) { create(:organization, tos_version: Time.current) }
 
   let(:component) { create(:plan_component, organization: organization) }
   let(:other_component) { create(:plan_component, organization: organization) }

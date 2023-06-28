@@ -12,7 +12,7 @@ module Decidim
           ).with_context(current_organization: current_organization)
         end
 
-        let(:current_organization) { create(:organization) }
+        let(:current_organization) { create(:organization, tos_version: Time.current) }
         let!(:position) { 0 }
         let(:handle) { "section_0" }
 

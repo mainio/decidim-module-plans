@@ -569,6 +569,9 @@ en:
         proposal_plan: Related proposals
     scopes:
       global: Global
+    statistics:
+      plans_accepted: Accepted proposals
+      plans_count: Proposals
     events:
       plans:
         plan_access_accepted:

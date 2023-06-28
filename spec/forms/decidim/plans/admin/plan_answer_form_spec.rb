@@ -8,7 +8,7 @@ module Decidim
       describe PlanAnswerForm do
         subject { form }
 
-        let(:organization) { create(:organization) }
+        let(:organization) { create(:organization, tos_version: Time.current) }
         let(:state) { "accepted" }
         let(:answer) { Decidim::Faker::Localized.sentence(word_count: 3) }
         let(:params) do

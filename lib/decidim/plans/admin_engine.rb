@@ -41,18 +41,14 @@ module Decidim
         root to: "plans#index"
       end
 
-      initializer "decidim_plans.admin_assets" do |app|
-        app.config.assets.precompile += %w(admin/decidim_plans_manifest.js
-                                           decidim/plans/admin/plan_picker.js
-                                           decidim/plans/data_picker.scss)
-      end
-
-      initializer "decidim_plans.mutation_extensions", after: "decidim-api.graphiql" do
+      initializer "decidim_plans_admin.mutation_extensions", after: "decidim-api.graphiql" do
         Decidim::Api::MutationType.include(Decidim::Plans::MutationExtensions)
       end
 
-      config.to_prepare do
-        Decidim::Admin::SettingsHelper.include Decidim::Plans::Admin::PlanComponentSettings
+      initializer "decidim_plans_admin.overrides", after: "decidim.action_controller" do |app|
+        app.config.to_prepare do
+          Decidim::Admin::SettingsHelper.include Decidim::Plans::Admin::PlanComponentSettings
+        end
       end
     end
   end
