@@ -163,11 +163,14 @@ module Decidim
       end
 
       def organization_share_image_url
-        Decidim::ContentBlock.published.find_by(
-          organization: current_organization,
-          scope_name: :homepage,
-          manifest_name: :hero
-        ).try(:images_container).try(:background_image).try(:url)
+        @organization_share_image_url ||= begin
+          container = Decidim::ContentBlock.published.find_by(
+            organization: current_organization,
+            scope_name: :homepage,
+            manifest_name: :hero
+          ).try(:images_container)
+          container.attached_uploader(:background_image).path if container && container.background_image && container.background_image.attached?
+        end
       end
 
       def twitter_handle
