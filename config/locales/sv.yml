@@ -86,11 +86,6 @@ sv:
     filters:
       linked_classes:
         plan: Förslag
-    pages:
-      home:
-        statistics:
-          plans_accepted: Accepterade förslag
-          plans_count: Förslag
     participatory_processes:
       statistics:
         plans_accepted: Accepterade förslag
@@ -562,7 +557,7 @@ sv:
     scopes:
       global: Allmän
     statistics:
-      plans_accepted: Godkända förslag
+      plans_accepted: Accepterade förslag
       plans_count: Förslag
     events:
       plans:

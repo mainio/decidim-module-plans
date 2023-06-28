@@ -86,14 +86,9 @@ fi:
     filters:
       linked_classes:
         plan: Ehdotukset
-    pages:
-      home:
-        statistics:
-          plans_accepted: Hyväksyttyjä ehdotuksia
-          plans_count: Ehdotuksia
     participatory_processes:
       statistics:
-        plans_accepted: Hyväksyttyjä ehdotuksia
+        plans_accepted: Hyväksyttyä ehdotusta
         plans_count: Ehdotusta
     plans:
       actions:

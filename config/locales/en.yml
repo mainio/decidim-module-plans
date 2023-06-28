@@ -87,11 +87,6 @@ en:
     filters:
       linked_classes:
         plan: Proposals
-    pages:
-      home:
-        statistics:
-          plans_accepted: Accepted proposals
-          plans_count: Proposals
     participatory_processes:
       statistics:
         plans_accepted: Accepted proposals
