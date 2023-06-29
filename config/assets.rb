@@ -4,7 +4,10 @@ base_path = File.expand_path("..", __dir__)
 
 # Register the additonal path for Webpacker in order to make the module's
 # stylesheets available for inclusion.
-Decidim::Webpacker.register_path("#{base_path}/app/packs")
+#
+# Prepend needed due to overriding core map assets, see:
+# https://github.com/decidim/decidim/pull/11105
+Decidim::Webpacker.register_path("#{base_path}/app/packs", prepend: true)
 
 # Register the entrypoints for your module. These entrypoints can be included
 # within your application using `javascript_pack_tag` and if you include any

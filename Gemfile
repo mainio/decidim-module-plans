@@ -25,6 +25,10 @@ gem "uglifier", "~> 4.1"
 
 gem "faker", "~> 2.14"
 
+# Lock Geocoder temporarily to 1.7 due to this issue:
+# https://github.com/decidim/decidim/pull/9470
+gem "geocoder", "~> 1.7.5"
+
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 

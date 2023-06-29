@@ -1,30 +1,25 @@
-((exports) => {
-  // const L = exports.L; // eslint-disable-line
+import MapMarkersController from "src/decidim/map/controller/markers";
 
-  exports.Decidim = exports.Decidim || {};
+export default class PlansMapController extends MapMarkersController {
+  start() {
+    this.markerClusters = null;
 
-  const MapMarkersController = exports.Decidim.MapMarkersController;
+    if (Array.isArray(this.config.markers) && this.config.markers.length > 0) {
+      this.addMarkers(this.config.markers);
 
-  class PlansMapController extends MapMarkersController {
-    start() {
-      this.markerClusters = null;
-
-      if (Array.isArray(this.config.markers) && this.config.markers.length > 0) {
-        this.addMarkers(this.config.markers);
-
-        if (this.config.markers.length < 10) {
-          this.map.setZoom(10);
-        }
-      } else if (this.config.centerCoordinates) {
-        this.map.panTo(this.config.centerCoordinates);
+      if (this.config.markers.length < 10) {
         this.map.setZoom(10);
+      }
+    } else {
+      this.map.fitWorld();
+
+      if (this.config.centerCoordinates) {
+        this.map.setZoom(10);
+        this.map.panTo(this.config.centerCoordinates);
       } else {
-        this.map.fitWorld();
+        this.map.setZoom(1);
         this.map.panTo([0, 0]);
-        this.map.setZoom(1)
       }
     }
   }
-
-  exports.Decidim.PlansMapController = PlansMapController;
-})(window);
+}
