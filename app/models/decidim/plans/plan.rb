@@ -106,7 +106,7 @@ module Decidim
         return unless author.is_a?(Decidim::User)
 
         joins(:coauthorships)
-          .where("decidim_coauthorships.coauthorable_type = ?", name)
+          .where(decidim_coauthorships: { coauthorable_type: name })
           .where("decidim_coauthorships.decidim_author_id = ? AND decidim_coauthorships.decidim_author_type = ? ", author.id, author.class.base_class.name)
       end
 
@@ -300,7 +300,7 @@ module Decidim
 
       # method for sort_link by number of comments
       ransacker :commentable_comments_count do
-        query = <<-SQL
+        query = <<-SQL.squish
         (SELECT COUNT(decidim_comments_comments.id)
          FROM decidim_comments_comments
          WHERE decidim_comments_comments.decidim_commentable_id = decidim_plans_plans.id

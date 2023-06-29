@@ -7,7 +7,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       space = component.participatory_space
       max_position = Decidim::Plans::Section.where(
         component: component
-      ).order(position: :desc).limit(1).pluck(:position).first || 0
+      ).order(position: :desc).limit(1).pick(:position) || 0
 
       settings = component.read_attribute(:settings)
       global_hash = settings.is_a?(Hash) ? settings["global"] : {}

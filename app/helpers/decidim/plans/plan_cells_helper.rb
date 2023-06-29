@@ -41,7 +41,7 @@ module Decidim
       end
 
       def from_context
-        @options[:from]
+        options[:from]
       end
 
       def badge_name

@@ -61,6 +61,7 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
     Decidim::Tags::Tag.all.each do |tag|
       manager = Arel::InsertManager.new
       manager.into(table)
+      # rubocop:disable Rails/SkipsModelValidations
       manager.insert([
                        [table[:name], tag.name.to_json],
                        [table[:created_at], tag.created_at],
@@ -71,6 +72,7 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
       map[tag.id] = ActiveRecord::Base.connection.insert(
         manager.to_sql
       )
+      # rubocop:enable Rails/SkipsModelValidations
     end
     return unless map.any?
 
@@ -80,6 +82,7 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
 
       manager = Arel::InsertManager.new
       manager.into(table)
+      # rubocop:disable Rails/SkipsModelValidations
       manager.insert([
                        [table[:created_at], tagging.created_at],
                        [table[:decidim_plans_tag_id], map[tagging.decidim_tags_tag_id]],
@@ -87,6 +90,7 @@ class MovePlanTagsToGlobalTags < ActiveRecord::Migration[5.2]
                      ])
 
       ActiveRecord::Base.connection.insert(manager.to_sql)
+      # rubocop:enable Rails/SkipsModelValidations
 
       tagging.destroy!
     end
