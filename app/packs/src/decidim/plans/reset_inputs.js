@@ -1,6 +1,6 @@
 ((exports) => {
   const bindResetInputs = () => {
-    exports.$(".reset-input").on("click.decidim-ideas-form", (ev) => {
+    exports.$(".reset-input").on("click.decidim-plans-form", (ev) => {
       ev.preventDefault();
 
       let $target = $($(ev.target).data("target"));
@@ -11,7 +11,15 @@
         return;
       }
 
-      $target.val("").trigger("change");
+      let $input = $target;
+      if (!$target.is("input, textarea, select")) {
+        $input = $("input, textarea, select", $target).first();
+      }
+      if ($input.length < 1) {
+        return;
+      }
+
+      $input.val("").trigger("change");
     });
   }
 
