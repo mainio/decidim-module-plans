@@ -18,7 +18,7 @@ module Decidim
         ""
       end
 
-      def avatar_url
+      def avatar_url(_variant = nil)
         Decidim::AvatarUploader.new.default_url
       end
 
