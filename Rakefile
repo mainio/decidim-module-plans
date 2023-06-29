@@ -39,5 +39,6 @@ task :development_app do
   end
 
   install_module("development_app")
+  Dir.chdir("development_app") { system("bundle exec rails assets:precompile") }
   seed_db("development_app")
 end
