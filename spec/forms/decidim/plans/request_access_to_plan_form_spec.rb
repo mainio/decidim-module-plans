@@ -11,7 +11,7 @@ module Decidim
       let(:plan) { create(:plan, :open) }
       let(:state) { plan.state }
       let(:id) { plan.id }
-      let(:current_user) { create(:user, organization: organization) }
+      let(:current_user) { create(:user, :confirmed, organization: organization) }
       let(:params) do
         {
           state: state,

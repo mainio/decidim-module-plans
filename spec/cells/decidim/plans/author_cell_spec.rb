@@ -6,12 +6,12 @@ describe Decidim::Plans::AuthorCell, type: :cell do
   subject { my_cell.call }
 
   let(:my_cell) { cell("decidim/plans/author", model) }
-  let(:model) { create(:user) }
-  let(:current_user) { create(:user) }
+  let(:model) { create(:user, :confirmed) }
+  let(:current_user) { create(:user, :confirmed) }
 
   let!(:organization) { create(:organization, tos_version: Time.current) }
   let(:user) { create(:user, :confirmed, organization: organization) }
-  let(:user_group) { create(:user_group, :verified) }
+  let(:user_group) { create(:user_group, :confirmed, :verified) }
   let(:plan) { create(:plan) }
 
   controller Decidim::Plans::PlansController

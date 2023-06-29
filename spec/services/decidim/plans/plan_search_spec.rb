@@ -11,7 +11,7 @@ module Decidim
       let(:scope2) { create :scope, organization: component.organization }
       let(:subscope1) { create :scope, organization: component.organization, parent: scope1 }
       let(:participatory_process) { component.participatory_space }
-      let(:user) { create(:user, organization: component.organization) }
+      let(:user) { create(:user, :confirmed, organization: component.organization) }
       let!(:plan) { create(:plan, component: component, scope: scope1) }
 
       describe "results" do
@@ -72,7 +72,7 @@ module Decidim
 
           context "when filtering citizen plans" do
             let(:origin) { "citizens" }
-            let(:another_user) { create(:user, organization: component.organization) }
+            let(:another_user) { create(:user, :confirmed, organization: component.organization) }
 
             it "returns only citizen plans" do
               create_list(:plan, 3, :official, component: component)

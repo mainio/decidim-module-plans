@@ -4,7 +4,7 @@ require "spec_helper"
 
 describe "Plans component" do # rubocop:disable RSpec/DescribeClass
   let!(:component) { create(:plan_component) }
-  let!(:current_user) { create(:user, organization: component.participatory_space.organization) }
+  let!(:current_user) { create(:user, :confirmed, organization: component.participatory_space.organization) }
 
   describe "on destroy" do
     context "when there are no plans for the component" do

@@ -20,10 +20,10 @@ module Decidim
         )
       end
 
-      let(:author) { create(:user, organization: organization) }
+      let(:author) { create(:user, :confirmed, organization: organization) }
 
       let(:user_group) do
-        create(:user_group, :verified, organization: organization, users: [author])
+        create(:user_group, :confirmed, :verified, organization: organization, users: [author])
       end
 
       describe "call" do

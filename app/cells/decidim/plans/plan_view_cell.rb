@@ -7,7 +7,6 @@ module Decidim
       include ERB::Util
       include Decidim::ApplicationHelper # For presenter
       include Decidim::LayoutHelper # For the icon helper
-      include Decidim::FilterParamsHelper
       include Decidim::FormFactory
       include Decidim::TooltipHelper
       include Decidim::MetaTagsHelper

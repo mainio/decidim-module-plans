@@ -12,8 +12,8 @@ module Decidim
         let(:plan) { create(:plan, :open) }
         let(:state) { plan.state }
         let(:id) { plan.id }
-        let(:current_user) { create(:user, organization: organization) }
-        let(:requester_user) { create(:user, organization: organization) }
+        let(:current_user) { create(:user, :confirmed, organization: organization) }
+        let(:requester_user) { create(:user, :confirmed, organization: organization) }
         let(:requester_user_id) { requester_user.id }
         let(:params) do
           {
@@ -60,7 +60,7 @@ module Decidim
         end
 
         context "when the requester user is not a requester" do
-          let(:not_requester_user) { create(:user, organization: organization) }
+          let(:not_requester_user) { create(:user, :confirmed, organization: organization) }
           let(:requester_user_id) { not_requester_user.id }
 
           it { is_expected.to be_invalid }

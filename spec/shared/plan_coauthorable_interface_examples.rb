@@ -15,7 +15,7 @@ shared_examples_for "plan coauthorable interface" do
     end
 
     describe "with a user group" do
-      let(:user_group) { create(:user_group, :verified, organization: model.participatory_space.organization, users: [author]) }
+      let(:user_group) { create(:user_group, :confirmed, :verified, organization: model.participatory_space.organization, users: [author]) }
       let(:query) { "{ author { name } }" }
 
       before do

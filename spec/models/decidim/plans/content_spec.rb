@@ -8,7 +8,7 @@ module Decidim
       subject { content }
 
       let(:organization) { create(:organization, tos_version: Time.current) }
-      let(:user) { create(:user, organization: organization) }
+      let(:user) { create(:user, :confirmed, organization: organization) }
       let(:participatory_process) { create(:participatory_process, organization: organization) }
       let(:component) { build :plan_component }
       let(:plan) { create(:plan, component: component) }

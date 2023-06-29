@@ -11,7 +11,7 @@ module Decidim
       #
       # Returns nothing.
       def self.included(type)
-        type.field :plan, Decidim::Plans::PlanMutationType do
+        type.field :plan, Decidim::Plans::PlanMutationType, null: false do
           description "A plan"
 
           argument :id, GraphQL::Types::ID, description: "The plan's id", required: true

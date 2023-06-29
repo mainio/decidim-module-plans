@@ -9,7 +9,7 @@ module Decidim
 
       let(:request) { build(:plan_collaborator_request, plan: plan, user: user) }
       let(:plan) { create(:plan) }
-      let(:user) { create(:user) }
+      let(:user) { create(:user, :confirmed) }
 
       it { is_expected.to be_valid }
 

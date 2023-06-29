@@ -6,8 +6,8 @@ shared_examples "a plan form" do |options|
   let(:organization) { create(:organization, tos_version: Time.current, available_locales: [:en]) }
   let(:participatory_space) { create(:participatory_process, :with_steps, organization: organization) }
   let(:component) { create(:plan_component, participatory_space: participatory_space) }
-  let(:author) { create(:user, organization: organization) }
-  let(:user_group) { create(:user_group, :verified, users: [author], organization: organization) }
+  let(:author) { create(:user, :confirmed, organization: organization) }
+  let(:user_group) { create(:user_group, :confirmed, :verified, users: [author], organization: organization) }
   let(:user_group_id) { user_group.id }
   let(:params) do
     {

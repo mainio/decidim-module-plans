@@ -106,8 +106,8 @@ module Decidim
             email: ::Faker::Internet.email
           )
           author.update!(
-            password: "password1234",
-            password_confirmation: "password1234",
+            password: "decidim123456789",
+            password_confirmation: "decidim123456789",
             name: ::Faker::Name.name,
             nickname: ::Faker::Twitter.unique.screen_name,
             organization: component.organization,

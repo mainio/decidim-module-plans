@@ -9,7 +9,7 @@ describe Decidim::Plans::PlanCell, type: :cell do
 
   let(:my_cell) { cell("decidim/plans/plan", model) }
   let!(:user_plan) { create(:plan) }
-  let!(:current_user) { create(:user, :confirmed, organization: model.participatory_space.organization) }
+  let!(:current_user) { create(:user, :confirmed, :confirmed, organization: model.participatory_space.organization) }
 
   before do
     allow(controller).to receive(:current_user).and_return(current_user)

@@ -66,7 +66,7 @@ module Decidim
       end
 
       describe "#editable_by?" do
-        let(:author) { create(:user, organization: organization) }
+        let(:author) { create(:user, :confirmed, organization: organization) }
 
         context "when user is author" do
           let(:plan) { create :plan, component: component, users: [author], updated_at: Time.current }
@@ -176,7 +176,7 @@ module Decidim
       end
 
       describe "#withdrawable_by" do
-        let(:author) { create(:user, organization: organization) }
+        let(:author) { create(:user, :confirmed, organization: organization) }
 
         context "when user is author" do
           let(:plan) { create :plan, component: component, users: [author], created_at: Time.current }
@@ -220,8 +220,8 @@ module Decidim
       end
 
       it "has an association of contents" do
-        create(:content, plan: subject, user: create(:user, organization: plan.component.organization))
-        create(:content, plan: subject, user: create(:user, organization: plan.component.organization))
+        create(:content, plan: subject, user: create(:user, :confirmed, organization: plan.component.organization))
+        create(:content, plan: subject, user: create(:user, :confirmed, organization: plan.component.organization))
         expect(subject.reload.contents.count).to eq(2)
       end
 

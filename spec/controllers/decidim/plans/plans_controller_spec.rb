@@ -221,7 +221,7 @@ module Decidim
         end
 
         describe "when current user is NOT the author of the plan" do
-          let(:current_user) { create(:user, organization: component.organization) }
+          let(:current_user) { create(:user, :confirmed, organization: component.organization) }
           let(:plan) { create(:plan, component: component, users: [current_user]) }
 
           context "and the plan has no supports" do

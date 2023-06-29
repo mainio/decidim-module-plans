@@ -3,10 +3,10 @@
 require "spec_helper"
 
 describe Decidim::Plans::UserGroupHelper do
-  let(:manager) { create(:user) }
-  let(:group1) { create(:user_group, :verified, users: [manager]) }
-  let(:group2) { create(:user_group, :verified, users: [manager]) }
-  let(:group3) { create(:user_group, :verified, users: [manager]) }
+  let(:manager) { create(:user, :confirmed) }
+  let(:group1) { create(:user_group, :confirmed, :verified, users: [manager]) }
+  let(:group2) { create(:user_group, :confirmed, :verified, users: [manager]) }
+  let(:group3) { create(:user_group, :confirmed, :verified, users: [manager]) }
 
   describe "#user_group_select_field" do
     let(:field_name) { :test }
