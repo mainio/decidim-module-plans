@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # A command with all the business logic when author leaves/disjoins a plan.
-    class DisjoinPlan < Rectify::Command
+    class DisjoinPlan < Decidim::Command
       # Public: Initializes the command.
       #
       # plan   - The plan from which to disjoin the author.

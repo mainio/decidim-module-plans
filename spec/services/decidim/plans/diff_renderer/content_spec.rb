@@ -11,11 +11,12 @@ module Decidim
       let(:author) { create(:user, :confirmed, organization: organization) }
 
       with_versioning do
+        subject { described_class.new(version, "en") }
+
         let(:plan) { create(:plan, component: component) }
         let(:content) { create(:content, plan: plan, body: { en: original_content }) }
         let(:original_content) { "Original content" }
         let(:version) { content.versions.last }
-        let(:subject) { described_class.new(version, "en") }
 
         describe "#diff" do
           let(:updated_content) { "Updated content" }

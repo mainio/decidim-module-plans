@@ -2,11 +2,11 @@
 
 require "spec_helper"
 
-# rubocop:disable RSpec/SubjectStub
 describe Decidim::Plans::OptionallyTranslatableAttributes do
-  let(:locale) { "en" }
-  let(:available_locales) { %w(en fi sv) }
-  let(:subject) { form_class.from_params(params) }
+  subject { form_class.from_params(params) }
+
+  let(:default_locale) { "en" }
+  let(:available_locales) { %w(en ca es) }
   let(:form_class) do
     Class.new(Decidim::Form) do
       include Decidim::Plans::OptionallyTranslatableAttributes
@@ -29,44 +29,53 @@ describe Decidim::Plans::OptionallyTranslatableAttributes do
   end
   let(:params) do
     {
+      ota: { en: "English value" },
       ota_en: "English value",
+      cond: { en: "English cond value" },
       cond_en: "English cond value",
+      condproc: { en: "English cond value" },
       condproc_en: "English condproc value"
     }
   end
 
   before do
-    allow(subject).to receive(:default_locale).and_return(locale)
+    allow(Decidim).to receive(:available_locales).and_return(available_locales)
+
+    # rubocop:disable RSpec/SubjectStub
+    allow(subject).to receive(:default_locale).and_return(default_locale)
     allow(subject).to receive(:component).and_return(component)
-    allow(subject).to receive(:available_locales).and_return(available_locales)
+    # rubocop:enable RSpec/SubjectStub
   end
 
   context "with multilingual answers" do
     let(:component) { create(:plan_component, :with_multilingual_answers) }
 
-    it "does not copy the answers" do
-      expect(subject).not_to receive(:ota_fi=)
-      expect(subject).not_to receive(:ota_sv=)
-      expect(subject).not_to receive(:cond_fi=)
-      expect(subject).not_to receive(:cond_sv=)
-      expect(subject).not_to receive(:condproc_fi=)
-      expect(subject).not_to receive(:condproc_sv=)
-      subject.valid?
+    it "is valid" do
+      expect(subject).to be_valid
+    end
+
+    context "when the default locale does not have values" do
+      let(:default_locale) { "ca" }
+
+      it "is invalid" do
+        expect(subject).not_to be_valid
+      end
     end
   end
 
   context "with single language answers" do
     let(:component) { create(:plan_component) }
 
-    it "copies the answers to other languages" do
-      expect(subject).to receive(:ota_fi=).with(params[:ota_en])
-      expect(subject).to receive(:ota_sv=).with(params[:ota_en])
-      expect(subject).to receive(:cond_fi=).with(params[:cond_en])
-      expect(subject).to receive(:cond_sv=).with(params[:cond_en])
-      expect(subject).to receive(:condproc_fi=).with(params[:condproc_en])
-      expect(subject).to receive(:condproc_sv=).with(params[:condproc_en])
-      subject.valid?
+    it "is valid" do
+      expect(subject).to be_valid
+    end
+
+    context "when the default locale does not have values" do
+      let(:default_locale) { "ca" }
+
+      it "is valid" do
+        expect(subject).to be_valid
+      end
     end
   end
 end
-# rubocop:enable RSpec/SubjectStub

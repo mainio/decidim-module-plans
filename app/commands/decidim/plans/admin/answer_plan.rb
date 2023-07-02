@@ -4,7 +4,7 @@ module Decidim
   module Plans
     module Admin
       # A command with all the business logic when an admin answers a plan.
-      class AnswerPlan < Rectify::Command
+      class AnswerPlan < Decidim::Command
         # Public: Initializes the command.
         #
         # form - A form object with the params.

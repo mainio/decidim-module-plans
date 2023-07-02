@@ -14,13 +14,12 @@ module Decidim
         def map_model(model)
           super
 
-          tags = begin
+          tags =
             if model.body["tag_ids"].is_a?(Array)
               model.body["tag_ids"]
             else
               []
             end
-          end
 
           self.taggings = Decidim::Tags::TaggingsForm.from_params(tags: tags)
         end
@@ -34,13 +33,12 @@ module Decidim
         def body=(data)
           return unless data.is_a?(Hash)
 
-          tags = begin
+          tags =
             if data["tag_ids"].is_a?(Array) || data[:tag_ids].is_a?(Array)
               data["tag_ids"] || data[:tag_ids]
             else
               []
             end
-          end
 
           self.taggings = Decidim::Tags::TaggingsForm.from_params(tags: tags)
         end

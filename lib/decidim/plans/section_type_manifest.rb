@@ -16,7 +16,7 @@ module Decidim
     # content element.
     class SectionTypeManifest
       include ActiveModel::Model
-      include Virtus.model
+      include Decidim::AttributeObject::Model
 
       attribute :name, Symbol
       attribute :edit_cell, String, default: "decidim/plans/section_edit"

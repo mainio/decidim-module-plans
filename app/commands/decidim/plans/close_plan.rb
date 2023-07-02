@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # A command with all the business logic when a user closes a plan.
-    class ClosePlan < Rectify::Command
+    class ClosePlan < Decidim::Command
       # Public: Initializes the command.
       #
       # plan         - The plan to publish.

@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # This command is executed when the user modifies sections from
       # the admin panel.
-      class UpdateSections < Rectify::Command
+      class UpdateSections < Decidim::Command
         include NestedUpdater
 
         # Initializes a UpdateSections Command.

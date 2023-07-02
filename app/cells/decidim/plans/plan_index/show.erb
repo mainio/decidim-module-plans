@@ -88,6 +88,6 @@
 </div>
 <div class="row columns">
   <div class="text-right">
-    <%= link_to t(".see_all_withdrawn"), plans_path("filter[state]" => "withdrawn") %>
+    <%= link_to t(".see_all_withdrawn"), plans_path(filter: { with_availability: "withdrawn", with_any_state: [""] }) %>
   </div>
 </div>

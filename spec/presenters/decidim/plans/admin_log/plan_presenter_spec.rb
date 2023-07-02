@@ -6,8 +6,9 @@ module Decidim
   module Plans
     module AdminLog
       describe PlanPresenter do
+        subject { described_class.new(log, helpers) }
+
         let(:helpers) { ActionController::Base.helpers }
-        let(:subject) { described_class.new(log, helpers) }
         let(:plan) { create(:plan) }
         let(:component) { plan.component }
         let(:log) { create(:action_log, action: "publish", visibility: "all", resource: plan, organization: component.organization, participatory_space: component.participatory_space) }

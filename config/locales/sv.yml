@@ -472,18 +472,13 @@ sv:
           show_help: Visa detaljerade frågor
         field_attachments:
           add_attachment: Lägg till bilaga
-          attachment_file_required: Filen måste bifogas
+          add_attachment_multi: Lägg till bilagor
           attachment_legend: Bilaga
-          attachment_title_required: Titel måste definieras för bilagan
-          cancel: Avbryt
+          attachment_legend_multi: Bilagor
           close_modal: Stäng fönstret
-          down: Ner
-          edit: Redigera
-          modal_mobile_notice: Tilläggsknappen finns längst ner i det här fönstret. Om du inte ser det på en mobilskärm, bläddra nedåt på skärmen.
+          edit_attachment: Ändra bilaga
+          edit_attachment_multi: Ändra bilagor
           remove: Ta bort
-          remove_attachment: Ta bort bilagan
-          remove_attachment_confirm: Är du säker på att du vill ta bort den här bilagan?
-          up: Upp
         field_category:
           select_a_category: Välj ett primärt tema
           select_a_sub_category: Välj ett undertema
@@ -493,18 +488,12 @@ sv:
           reset_field: Återställ fältet
         field_image_attachments:
           add_attachment: Lägg till bilden
-          attachment_file_required: Bilden måste bifogas
+          add_attachment_multi: Lägg till bilder
           attachment_legend: Bild
-          attachment_title_required: Titel måste definieras för bilden
-          cancel: Avbryt
-          close_modal: Stäng fönstret
-          down: Ner
-          edit: Redigera
-          modal_mobile_notice: Tilläggsknappen finns längst ner i det här fönstret. Om du inte ser det på en mobilskärm, bläddra nedåt på skärmen.
+          attachment_legend_multi: Bilder
+          edit_attachment: Ändra bild
+          edit_attachment_multi: Ändra bilder
           remove: Radera
-          remove_attachment: Ta bort bilden
-          remove_attachment_confirm: Är du säker på att du vill ta bort den här bilden?
-          up: Upp
       sections:
         actions:
           new: Nytt avsnitt

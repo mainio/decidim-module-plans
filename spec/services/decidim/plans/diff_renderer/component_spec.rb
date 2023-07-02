@@ -14,9 +14,10 @@ module Decidim
         let(:plan) { create(:plan, component: component) }
 
         describe "#diff" do
+          subject { described_class.new(version, "en") }
+
           let(:other_component) { create(:plan_component, organization: organization) }
           let(:version) { plan.versions.last }
-          let(:subject) { described_class.new(version, "en") }
 
           before do
             plan.update(component: other_component)

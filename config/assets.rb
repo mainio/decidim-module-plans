@@ -19,7 +19,6 @@ Decidim::Webpacker.register_entrypoints(
   decidim_plans_map: "#{base_path}/app/packs/entrypoints/decidim_plans_map.js",
   decidim_plans_plans_form: "#{base_path}/app/packs/entrypoints/decidim_plans_plans_form.js",
   decidim_plans_plans_list: "#{base_path}/app/packs/entrypoints/decidim_plans_plans_list.js",
-  decidim_plans_proposal_picker: "#{base_path}/app/packs/entrypoints/decidim_plans_proposal_picker.js",
   decidim_plans_admin_authors: "#{base_path}/app/packs/entrypoints/decidim_plans_admin_authors.js",
   decidim_plans_admin_budgets_export: "#{base_path}/app/packs/entrypoints/decidim_plans_admin_budgets_export.js",
   decidim_plans_admin_component_settings: "#{base_path}/app/packs/entrypoints/decidim_plans_admin_component_settings.js",
@@ -29,3 +28,5 @@ Decidim::Webpacker.register_entrypoints(
 
 # Register the main application's stylesheet include statement
 Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans")
+Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans_form")
+Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans_form", group: :admin)

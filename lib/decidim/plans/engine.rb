@@ -40,7 +40,7 @@ module Decidim
       end
 
       initializer "decidim_plans.add_cells_view_paths" do
-        Cell::ViewModel.view_paths << File.expand_path("#{Decidim::Plans::Engine.root}/app/cells")
+        Cell::ViewModel.view_paths.prepend File.expand_path("#{Decidim::Plans::Engine.root}/app/cells")
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::Plans::Engine.root}/app/views") # for partials
       end
 

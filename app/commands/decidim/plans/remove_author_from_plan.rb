@@ -4,7 +4,7 @@ module Decidim
   module Plans
     # A command with all the business logic when an existing author is removed
     # from a plan.
-    class RemoveAuthorFromPlan < Rectify::Command
+    class RemoveAuthorFromPlan < Decidim::Command
       # Public: Initializes the command.
       #
       # plan   - The plan from which to remove the author.

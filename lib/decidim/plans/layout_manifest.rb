@@ -12,7 +12,7 @@ module Decidim
     # components in the same instance which are laid out differently.
     class LayoutManifest
       include ActiveModel::Model
-      include Virtus.model
+      include Decidim::AttributeObject::Model
 
       attribute :name, Symbol
       attribute :public_name_key, String

@@ -15,26 +15,6 @@ describe Decidim::Plans::AttachedProposalsHelper do
     allow(helper).to receive(:search_plans_plans_path).and_return(search_plans_path)
   end
 
-  describe "#attached_proposals_picker_field" do
-    it "calls the form helper's data_picker method" do
-      name = "pick_proposals"
-
-      expect(form).to receive(:data_picker).with(
-        name,
-        {
-          autosort: true,
-          class: "picker-multiple",
-          id: "pick_proposals",
-          name: "plan[pick_proposal_ids]",
-          multiple: true
-        },
-        url: search_plans_path,
-        text: "Choose proposals"
-      )
-      helper.attached_proposals_picker_field(form, name)
-    end
-  end
-
   describe "#search_proposals" do
     let(:format) { double }
 

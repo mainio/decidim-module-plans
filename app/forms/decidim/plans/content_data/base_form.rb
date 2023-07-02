@@ -16,14 +16,6 @@ module Decidim
 
         delegate :mandatory, :section_type_manifest, to: :section
 
-        def initialize(attributes = nil)
-          # The section definition is already needed when setting the other
-          # attributes in order to fetch the section settings.
-          self.section_id = attributes[:section_id] if attributes && attributes[:section_id]
-
-          super
-        end
-
         def section
           @section ||= Decidim::Plans::Section.find(section_id)
         end

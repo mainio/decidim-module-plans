@@ -9,6 +9,8 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
   let(:organization) { component.organization }
   let(:participatory_space) { component.participatory_space }
 
+  let(:sections) { create_list(:section, 2, :field_text, component: component) }
+
   let(:target_component) { create(:budgets_component, participatory_space: participatory_space) }
   let(:budget) { create(:budget, component: target_component) }
 
@@ -25,9 +27,11 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
   let!(:plans) { create_list :plan, 10, :published, :accepted, closed_at: Time.current, component: component }
 
   describe "call" do
+    let(:sections_param) { sections.map(&:id) }
     let(:form_params) do
       {
         target_component_id: target_component.try(:id),
+        content_sections: sections_param,
         target_details: [
           { component_id: target_component.try(:id), budget_id: budget.try(:id) }
         ],

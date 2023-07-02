@@ -6,26 +6,6 @@ module Decidim
       include Decidim::ApplicationHelper
       include ActionView::Helpers::FormTagHelper
 
-      def attached_proposals_picker_field(form, field)
-        picker_options = {
-          id: sanitize_to_id(field),
-          class: "picker-multiple",
-          name: "#{form.object_name}[#{field.to_s.sub(/s$/, "_ids")}]",
-          multiple: true,
-          autosort: true
-        }
-        url = search_plans_plans_path(current_component, format: :html)
-
-        prompt_params = {
-          url: url,
-          text: t("proposals_picker.choose_proposals", scope: "decidim.proposals")
-        }
-
-        form.data_picker(field, picker_options, prompt_params) do |item|
-          { url: url, text: item.title }
-        end
-      end
-
       def search_proposals
         respond_to do |format|
           format.html do

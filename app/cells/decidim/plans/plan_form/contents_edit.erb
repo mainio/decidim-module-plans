@@ -28,7 +28,7 @@ js_options = {
 }
 %>
 <script>
-$(function() {
+document.addEventListener("DOMContentLoaded", () => {
   DecidimPlansCharacters.configure(<%== js_options.to_json %>);
   $(".field.with-character-counter").each(function(_i, el) {
     var $wrapper = $(el);
@@ -36,5 +36,5 @@ $(function() {
     var $info = $(".field-character-counter-info", $wrapper);
     DecidimPlansCharacters.bindCharacterCounter($input, $info);
   });
-});
+})
 </script>

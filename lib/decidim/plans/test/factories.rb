@@ -3,25 +3,7 @@
 require "decidim/core/test/factories"
 require "decidim/participatory_processes/test/factories"
 
-# Needed until 0.27 to fix the password too similar validation errors that
-# happen randomly.
-FactoryBot.modify do
-  factory :user, class: "Decidim::User" do
-    name { generate(:fixed_name) }
-    nickname { generate(:fixed_nickname) }
-    password { "decidim123456789" }
-  end
-end
-
 FactoryBot.define do
-  sequence(:fixed_name) do |_|
-    Faker::Name.name.delete("'")
-  end
-
-  sequence(:fixed_nickname) do |n|
-    "#{Faker::Lorem.characters(number: rand(1..10))}_#{n}".gsub("'", "_")
-  end
-
   factory :section, class: "Decidim::Plans::Section" do
     section_type { "field_text" }
     body { generate_localized_title }
@@ -29,6 +11,10 @@ FactoryBot.define do
     mandatory { false }
     settings { { answer_length: 0 } }
     component
+    searchable { true }
+    visible_form { true }
+    visible_view { true }
+    visible_api { true }
 
     trait :field_title do
       section_type { "field_title" }

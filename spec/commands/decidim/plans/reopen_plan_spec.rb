@@ -10,7 +10,7 @@ describe Decidim::Plans::ReopenPlan do
 
   describe "call" do
     context "when called with a user" do
-      let(:subject) do
+      subject do
         described_class.new(plan, user)
       end
 
@@ -40,7 +40,7 @@ describe Decidim::Plans::ReopenPlan do
     end
 
     context "when without a user" do
-      let(:subject) do
+      subject do
         described_class.new(plan, nil)
       end
 

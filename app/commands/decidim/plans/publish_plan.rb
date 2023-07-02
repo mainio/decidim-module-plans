@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # A command with all the business logic when a user creates a new plan.
-    class PublishPlan < Rectify::Command
+    class PublishPlan < Decidim::Command
       # Public: Initializes the command.
       #
       # plan         - The plan to publish.

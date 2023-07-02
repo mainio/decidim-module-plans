@@ -13,8 +13,9 @@ describe Decidim::Plans::DestroyPlan do
 
   describe "call" do
     describe "when called for draft plan" do
+      subject { described_class.new(plan_draft, author) }
+
       let(:state) { :unpublished }
-      let(:subject) { described_class.new(plan_draft, author) }
 
       it "broadcasts ok" do
         expect(plan_draft).to receive(:destroy!)
@@ -22,7 +23,7 @@ describe Decidim::Plans::DestroyPlan do
       end
 
       describe "with non-author current user" do
-        let(:subject) { described_class.new(plan_draft, non_author) }
+        subject { described_class.new(plan_draft, non_author) }
 
         it "broadcasts invalid" do
           expect { subject.call }.to broadcast(:invalid)
@@ -31,7 +32,7 @@ describe Decidim::Plans::DestroyPlan do
     end
 
     describe "when called for published plan" do
-      let(:subject) { described_class.new(plan_published, author) }
+      subject { described_class.new(plan_published, author) }
 
       it "broadcasts invalid" do
         expect { subject.call }.to broadcast(:invalid)

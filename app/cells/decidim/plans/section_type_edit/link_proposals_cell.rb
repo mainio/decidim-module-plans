@@ -15,10 +15,6 @@ module Decidim
               :plans_link_proposals,
               stylesheet_pack_tag("decidim_plans_data_picker")
             )
-            snippets.add(
-              :plans_link_proposals,
-              javascript_pack_tag("decidim_plans_proposal_picker")
-            )
 
             # This will display the snippets in the <head> part of the page.
             snippets.add(:head, snippets.for(:plans_link_proposals))
@@ -35,7 +31,8 @@ module Decidim
             class: "picker-multiple",
             name: "#{form.object_name}[#{field.to_s.sub(/s$/, "_ids")}]",
             multiple: true,
-            autosort: true
+            autosort: true,
+            label: false
           }
           url = search_proposals_plans_path(current_component, format: :html)
 

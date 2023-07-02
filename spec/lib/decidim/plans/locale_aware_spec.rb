@@ -3,9 +3,10 @@
 require "spec_helper"
 
 describe Decidim::Plans::LocaleAware do
+  subject { klass.new }
+
   let(:locale) { "en" }
   let(:available_locales) { %w(en fi sv) }
-  let(:subject) { klass.new }
   let(:klass) do
     Class.new do
       include Decidim::Plans::LocaleAware

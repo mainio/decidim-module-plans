@@ -5,7 +5,7 @@ require "spec_helper"
 module Decidim
   module Plans
     describe PlanPresenter do
-      let(:subject) { described_class.new(plan) }
+      subject { described_class.new(plan) }
       let(:plan) { create(:plan) }
 
       let(:component_id) { plan.component.id }

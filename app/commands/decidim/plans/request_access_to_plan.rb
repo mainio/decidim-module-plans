@@ -4,7 +4,7 @@ module Decidim
   module Plans
     # A command with all the business logic when a user requests
     # access to edit a plan.
-    class RequestAccessToPlan < Rectify::Command
+    class RequestAccessToPlan < Decidim::Command
       # Public: Initializes the command.
       #
       # form         - A form object with the params.

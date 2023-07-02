@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # Common functionality for {Accept,Reject}AccessToPlan.
-    class RespondToAccessRequest < Rectify::Command
+    class RespondToAccessRequest < Decidim::Command
       # Public: Initializes the command.
       #
       # form     - A form object with the params.

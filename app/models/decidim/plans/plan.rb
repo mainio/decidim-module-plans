@@ -18,6 +18,7 @@ module Decidim
       include Decidim::Searchable
       include Decidim::Plans::Traceable
       include Decidim::Loggable
+      include Decidim::FilterableResource
       include Decidim::Tags::Taggable
       include Decidim::Favorites::Favoritable
 
@@ -44,6 +45,9 @@ module Decidim
 
       has_many :contents, foreign_key: :decidim_plan_id, dependent: :destroy
 
+      scope :state_not_published, -> { where(state: nil) }
+      scope :state_published, -> { where.not(state: nil) }
+
       scope :open, -> { where(state: "open") }
       scope :accepted, -> { where(state: "accepted") }
       scope :rejected, -> { where(state: "rejected") }
@@ -54,6 +58,69 @@ module Decidim
       scope :drafts, -> { where(published_at: nil) }
       scope :published, -> { where.not(published_at: nil) }
       scope :closed, -> { where.not(closed_at: nil) }
+      scope :not_answered, -> { where(answered_at: nil) }
+
+      scope :with_availability, lambda { |availability_key|
+        case availability_key
+        when "withdrawn"
+          withdrawn
+        else
+          except_withdrawn
+        end
+      }
+
+      scope :related_to, lambda { |type|
+        from = joins(:resource_links_from)
+               .where(decidim_resource_links: { to_type: type.camelcase })
+
+        to = joins(:resource_links_to)
+             .where(decidim_resource_links: { from_type: type.camelcase })
+
+        where(id: from).or(where(id: to))
+      }
+
+      scope :containing_text, lambda { |text, sections = [], locales = []|
+        return self if text.empty?
+        return self if locales.empty?
+
+        join_statements = []
+        subq = locales.map { |l| "title ->> '#{l}' ILIKE :text" }.join(" OR ")
+
+        # Manually search from the content sections in order to make the OR
+        # query with the title.
+        sections.each do |section|
+          ref = "plan_content_text_#{section.id}"
+
+          join_statements <<
+            Arel.sql(
+              <<~SQL.squish
+                LEFT JOIN decidim_plans_plan_contents AS #{ref} ON #{ref}.decidim_plan_id = #{table_name}.id
+                AND #{ref}.decidim_section_id = #{section.id}
+              SQL
+            )
+
+          locales.each do |l|
+            subq += " OR #{ref}.body ->> '#{l}' ILIKE :text"
+          end
+        end
+
+        joins(join_statements).where(Arel.sql(subq), text: "%#{text}%")
+      }
+
+      scope :with_sections_matching, lambda { |sections, search|
+        return self if sections.empty?
+        return self if search.empty?
+
+        final = self
+        sections.each do |s|
+          manifest = s.section_type_manifest
+          control = manifest.content_control_class.new
+          final = control.search(final, s, search[s.id] || search[s.id.to_s])
+        end
+        final
+      }
+
+      scope_search_multi :with_any_state, [:accepted, :rejected, :except_rejected, :evaluating, :state_not_published, :not_answered, :withdrawn]
 
       acts_as_list scope: :decidim_component_id
 
@@ -101,7 +168,7 @@ module Decidim
       end
 
       # Returns a collection scoped by an author.
-      # Overrides this method in DataPortability to support Coauthorable.
+      # Overrides this method in DownloadYourData to support Coauthorable.
       def self.user_collection(author)
         return unless author.is_a?(Decidim::User)
 
@@ -157,10 +224,10 @@ module Decidim
             # plan[:longitude] ||= scope_point_latitude
           when "field_text_multiline"
             body = plan[:body] || {}
-            plan[:body] = body.map do |locale, value|
+            plan[:body] = body.to_h do |locale, value|
               value = "#{body[locale]} #{value}".strip
               [locale, value]
-            end.to_h
+            end
           end
 
           plans[plan_id] = plan
@@ -309,6 +376,22 @@ module Decidim
          )
         SQL
         Arel.sql(query)
+      end
+
+      def self.ransack(params = {}, options = {})
+        PlanSearch.new(self, params, options)
+      end
+
+      def self.ransackable_scopes(_auth_object = nil)
+        [
+          :with_availability,
+          :with_any_origin,
+          :with_any_category,
+          :with_any_scope,
+          :with_any_state,
+          :with_any_tag,
+          :related_to
+        ]
       end
 
       def self.export_serializer

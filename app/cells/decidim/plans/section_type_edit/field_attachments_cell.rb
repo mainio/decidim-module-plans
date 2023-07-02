@@ -27,51 +27,22 @@ module Decidim
           translated_attribute(section.body)
         end
 
-        def blank_attachment
-          @blank_attachment ||= begin
-            case section.section_type
-            when "field_image_attachments"
-              Plans::ImageAttachmentForm.new
-            else
-              Plans::AttachmentForm.new
-            end
-          end
-        end
-
         def existing_attachments
           form.object.attachments
         end
 
-        def file_is_present?(form)
-          file = form.file
-          return false unless file
-
-          # This is the case if the file was just uploaded, i.e. it is not yet
-          # stored through ActiveStorage.
-          return true unless file.respond_to?(:attached?)
-
-          file.attached?
-        end
-
-        def attachment_title_for(attachment)
-          title = attachment.title
-          title = "#{title} (#{file_name_for(attachment.file)})" if attachment.file && attachment.file.try(:attached?)
-
-          title
-        end
-
-        def file_name_for(file)
-          case file
-          when ActionDispatch::Http::UploadedFile
-            file.original_filename
-          else
-            # ActiveStorage::Attached
-            file.filename.to_s
-          end
-        end
-
         def multi_attachment?
           input_type == "multi"
+        end
+
+        def extension_allowlist
+          @extension_allowlist ||=
+            case section.section_type
+            when "field_image_attachments"
+              Decidim::OrganizationSettings.for(section.organization).upload_allowed_file_extensions_image
+            else
+              Decidim.organization_settings(section.organization).upload_allowed_file_extensions
+            end
         end
 
         def input_type

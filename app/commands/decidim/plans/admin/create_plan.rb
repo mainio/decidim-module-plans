@@ -4,7 +4,7 @@ module Decidim
   module Plans
     module Admin
       # A command with all the business logic when a user creates a new plan.
-      class CreatePlan < Rectify::Command
+      class CreatePlan < Decidim::Command
         include Decidim::Plans::PlanContentMethods
 
         # Public: Initializes the command.

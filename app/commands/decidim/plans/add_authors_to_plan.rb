@@ -4,7 +4,7 @@ module Decidim
   module Plans
     # A command with all the business logic when new authors are added to a
     # plan.
-    class AddAuthorsToPlan < Rectify::Command
+    class AddAuthorsToPlan < Decidim::Command
       # Public: Initializes the command.
       #
       # form         - A form object with the params.

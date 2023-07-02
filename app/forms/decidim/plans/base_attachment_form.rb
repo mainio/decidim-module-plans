@@ -7,8 +7,6 @@ module Decidim
 
       attribute :title, String
       attribute :file
-      attribute :weight, Integer
-      attribute :deleted, Boolean, default: false
 
       mimic :attachment
 

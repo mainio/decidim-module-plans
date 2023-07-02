@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # A class used to find plans filtered by components and a date range
-    class FilteredPlans < Rectify::Query
+    class FilteredPlans
       # Syntactic sugar to initialize the class and return the queried objects.
       #
       # components - An array of Decidim::Component

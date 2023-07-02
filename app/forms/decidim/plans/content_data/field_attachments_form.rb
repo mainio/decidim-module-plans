@@ -5,7 +5,7 @@ module Decidim
     module ContentData
       # A form object for the attachments field type.
       class FieldAttachmentsForm < Decidim::Plans::ContentData::BaseAttachmentsForm
-        attribute :attachments, Array[Plans::AttachmentForm]
+        attribute :add_attachments, Array[Plans::AttachmentForm]
       end
     end
   end

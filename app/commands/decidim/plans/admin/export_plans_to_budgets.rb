@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic when an admin exports plans to a
       # single budget component.
-      class ExportPlansToBudgets < Rectify::Command
+      class ExportPlansToBudgets < Decidim::Command
         include Decidim::Plans::RichPresenter
 
         # Public: Initializes the command.

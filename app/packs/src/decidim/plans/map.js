@@ -3,17 +3,6 @@ import "src/decidim/plans/map/factory";
 ((exports) => {
   const $ = exports.$; // eslint-disable-line
 
-  // // $(document).ready(() => {
-  // $(document).ready(() => {
-  //   // console.log($("[data-decidim-map]").length);
-  //   // $("[data-decidim-map]").each((_i, map) => {
-  //   //   console.log(map);
-  //   // });
-  //   $("[data-decidim-map]").on("ready.decidim", (ev, _map, mapConfig) => {
-  //     console.log("MAP READY");
-  //   });
-  // });
-
   $("[data-decidim-map]").on("ready.decidim", (ev, _map, mapConfig) => {
     const $map = $(ev.target);
     const ctrl = $map.data("map-controller");

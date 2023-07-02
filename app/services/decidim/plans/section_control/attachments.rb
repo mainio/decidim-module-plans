@@ -15,13 +15,11 @@ module Decidim
         def save!(plan)
           return unless attachments_present?
 
-          @attachments = form.attachments.map do |attachment|
-            next if attachment.deleted?
-
+          @attachments = form.add_attachments.each_with_index.map do |attachment, index|
             store_attachment!(
               plan,
               attachment,
-              attachment_params(plan, attachment)
+              attachment_params(plan, attachment, index)
             )
           end
 
@@ -44,7 +42,7 @@ module Decidim
           return unless attachments_present?
 
           # Mark attachments for re-attachment
-          form.attachments.each do |at|
+          form.add_attachments.each do |at|
             at.errors.add(:file, :needs_to_be_reattached) if at.file.present? && at.id.blank?
           end
         end
@@ -68,7 +66,7 @@ module Decidim
         end
 
         def attachments_present?
-          @attachments_present ||= form.attachments.any? do |at|
+          @attachments_present ||= form.add_attachments.any? do |at|
             at.title.present? || at.file.present? || at.id.present?
           end
         end
@@ -77,12 +75,8 @@ module Decidim
           record = plan.attachments.find_by(id: atform.id) || plan.attachments.build(attributes)
 
           if record.persisted?
-            if atform.deleted?
-              record.destroy!
-            else
-              record.update!(attributes)
-            end
-          elsif !atform.deleted?
+            record.update!(attributes)
+          else
             record.save!
           end
 
@@ -91,31 +85,25 @@ module Decidim
 
         def attachments_valid?(plan)
           @attachments_valid ||= begin
-            form.attachments.each do |atform|
-              next if atform.deleted?
+            form.add_attachments.each_with_index.each do |atform, index|
               next unless atform.valid?
 
-              attachment = begin
+              attachment =
                 if atform.id.present?
                   Attachment.find(atform.id)
                 else
                   Attachment.new(attached_to: plan)
                 end
-              end
-              attachment.assign_attributes(attachment_params(plan, atform))
-
-              next if attachment.valid? || !attachment.errors.has_key?(:file)
-
-              atform.errors.add :file, attachment.errors[:file]
+              attachment.assign_attributes(attachment_params(plan, atform, index))
             end
 
-            form.attachments.none? { |at| at.errors.any? }
+            form.add_attachments.none? { |at| at.errors.any? }
           end
         end
 
-        def attachment_params(plan, atform)
+        def attachment_params(plan, atform, index)
           params = {
-            weight: self.class.total_weight + atform.weight,
+            weight: self.class.total_weight + index,
             title: { I18n.locale => atform.title },
             attached_to: plan
           }

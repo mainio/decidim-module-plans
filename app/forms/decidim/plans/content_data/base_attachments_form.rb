@@ -7,7 +7,9 @@ module Decidim
       class BaseAttachmentsForm < Decidim::Plans::ContentData::BaseForm
         mimic :plan_attachments_field
 
-        validates :attachments, presence: true, if: ->(form) { form.mandatory }
+        attribute :attachments, Array
+
+        validate :attachments_presence
 
         def map_model(model)
           super
@@ -16,9 +18,7 @@ module Decidim
           return unless ids.is_a?(Array)
 
           self.attachments = ids.map do |id|
-            Plans::AttachmentForm.from_model(
-              Decidim::Attachment.find_by(id: id)
-            )
+            Decidim::Attachment.find_by(id: id)
           end
         end
 
@@ -35,7 +35,16 @@ module Decidim
         def valid?(_options = {})
           # Calling .valid? on the attachment form would clear the errors that
           # were possibly added by the section control.
-          attachments.none? { |at| at.errors.any? }
+          add_attachments.none? { |at| at.errors.any? }
+        end
+
+        private
+
+        def attachments_presence
+          return unless form.mandatory
+          return if attachments.present? || add_attachments.present?
+
+          errors.add(:attachments, :invalid)
         end
       end
     end

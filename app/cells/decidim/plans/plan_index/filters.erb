@@ -13,11 +13,11 @@
   </div>
 
   <% if component.settings.plan_answering_enabled && component.current_settings.plan_answering_enabled %>
-    <%= form.collection_radio_buttons :state, [["all", t(".filters.state.all")], ["accepted", t(".filters.state.accepted")], ["rejected", t(".filters.state.rejected")], ["evaluating", t(".filters.state.evaluating")]], :first, :last, legend_title: t(".filters.state.legend") %>
+    <%= form.collection_radio_buttons :with_any_state, [["all", t(".filters.state.all")], ["accepted", t(".filters.state.accepted")], ["rejected", t(".filters.state.rejected")], ["evaluating", t(".filters.state.evaluating")]], :first, :last, legend_title: t(".filters.state.legend") %>
   <% end %>
 
   <% if available_tags.any? %>
-    <%= form.collection_check_boxes :tag_id, available_tags, ->(p) { "#{p.id}" }, ->(p) { translated_attribute(p.name) }, legend_title: t(".filters.tag"), disable_parents: false, label: false, prompt: t(".filters.tag_prompt") %>
+    <%= form.collection_check_boxes :with_any_tag, available_tags, ->(p) { "#{p.id}" }, ->(p) { translated_attribute(p.name) }, legend_title: t(".filters.tag"), disable_parents: false, label: false, prompt: t(".filters.tag_prompt") %>
   <% end %>
 
   <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>

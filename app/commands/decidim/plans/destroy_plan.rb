@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # A command with all the business logic when a user destroys a draft plan.
-    class DestroyPlan < Rectify::Command
+    class DestroyPlan < Decidim::Command
       # Public: Initializes the command.
       #
       # plan         - The plan to destroy.

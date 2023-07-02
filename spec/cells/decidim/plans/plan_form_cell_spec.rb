@@ -7,7 +7,15 @@ describe Decidim::Plans::PlanFormCell, type: :cell do
 
   let(:my_cell) { cell("decidim/plans/plan_form", model, disable_user_group_field: true, context: { plan: plan }) }
   let(:model) { Decidim::FormBuilder.new(:plan, form, view, {}) }
-  let(:view) { Class.new(ActionView::Base).new(ActionView::LookupContext.new(ActionController::Base.view_paths), {}, controller) }
+
+  let(:template_class) do
+    Class.new(ActionView::Base) do
+      def compiled_method_container
+        self.class
+      end
+    end
+  end
+  let(:view) { template_class.new(ActionView::LookupContext.new(ActionController::Base.view_paths), {}, controller) }
   let(:form) { Decidim::Plans::PlanForm.from_model(plan) }
   let(:plan) { create(:plan) }
 
@@ -28,15 +36,19 @@ describe Decidim::Plans::PlanFormCell, type: :cell do
   context "when rendering" do
     it "renders the form" do
       sections.each do |section|
+        expect(subject).to have_content(translated(section.body))
+
         case section.section_type
         when "field_attachments"
-          expect(subject).to have_button("Add attachment")
+          within ".upload-container-for-attachments" do
+            expect(subject).to have_button("#contents_#{section.id}_attachments_button", text: "Change attachment")
+          end
         when "field_image_attachments"
-          expect(subject).to have_button("Add image")
+          within ".upload-container-for-attachments" do
+            expect(subject).to have_button("#contents_#{section.id}_attachments_button", text: "Change image")
+          end
         when "link_proposals"
-          expect(subject).to have_content("Proposals")
-        else
-          expect(subject).to have_content(translated(section.body))
+          expect(subject).to have_content("Choose proposals")
         end
       end
     end

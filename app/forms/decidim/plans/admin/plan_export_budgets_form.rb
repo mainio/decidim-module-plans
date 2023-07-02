@@ -22,7 +22,7 @@ module Decidim
         attribute :location_section, Integer
 
         validates :target_component_id, :target_component, :target_budget, :current_component, presence: true
-        validates :actual_content_sections, empty: false
+        validates :actual_content_sections, presence: true
         validates :export_all_closed_plans, allow_nil: false, acceptance: true
         validates :default_budget_amount, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
@@ -39,9 +39,7 @@ module Decidim
         def target_budget
           @target_budget ||= begin
             detail = target_details.find { |d| d.component_id == target_component_id }
-            return unless detail
-
-            detail.target_budget
+            detail.target_budget if detail
           end
         end
 

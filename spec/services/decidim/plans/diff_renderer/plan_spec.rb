@@ -27,9 +27,10 @@ module Decidim
         end
 
         describe "#diff" do
+          subject { described_class.new(version, "en") }
+
           let(:other_category) { create(:category, participatory_space: participatory_space) }
           let(:version) { plan.versions.last }
-          let(:subject) { described_class.new(version, "en") }
           let(:new_title) { "New title" }
           let(:new_state) { "accepted" }
           let(:new_scope) { create(:scope, organization: organization) }

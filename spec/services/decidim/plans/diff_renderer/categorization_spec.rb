@@ -16,9 +16,10 @@ module Decidim
         let(:plan) { create(:plan, component: component, category: category) }
 
         describe "#diff" do
+          subject { described_class.new(version, "en") }
+
           let(:other_category) { create(:category, participatory_space: participatory_space) }
           let(:version) { plan.categorization.versions.last }
-          let(:subject) { described_class.new(version, "en") }
 
           before do
             plan.update(category: other_category)

@@ -1,7 +1,5 @@
 import "src/decidim/plans/character_counter";
 import "src/decidim/plans/tab_focus";
-import "src/decidim/plans/multifield";
-import "src/decidim/plans/plans_form_attachments";
 import "src/decidim/plans/reset_inputs";
 import "src/decidim/plans/info_modals";
 
@@ -205,9 +203,6 @@ import "src/decidim/plans/info_modals";
 
     $("form.plans-form").each((_i, el) => {
       const $form = $(el);
-
-      $(".multifield-fields", $form).multifield();
-      $(".attachments-section", $form).attachmentfield();
 
       $("[data-field-toggle]", $form).each((_j, toggleEl) => {
         const $field = $(toggleEl);

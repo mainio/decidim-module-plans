@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     # A command with all the business logic when a user withdraws a plan.
-    class WithdrawPlan < Rectify::Command
+    class WithdrawPlan < Decidim::Command
       # Public: Initializes the command.
       #
       # plan         - The plan to withdraw.

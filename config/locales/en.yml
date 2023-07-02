@@ -480,18 +480,12 @@ en:
           show_help: Show detailed questions
         field_attachments:
           add_attachment: Add attachment
-          attachment_file_required: File needs to be attached
+          add_attachment_multi: Add attachments
           attachment_legend: Attachment
-          attachment_title_required: Title has to be defined for the file
-          cancel: Cancel
-          close_modal: Close window
-          down: Down
-          edit: Edit
-          modal_mobile_notice: The adding button is at the bottom of this window. If you don't see it on a mobile screen, scroll the screen down.
+          attachment_legend_multi: Attachments
+          edit_attachment: Change attachment
+          edit_attachment_multi: Change attachments
           remove: Remove
-          remove_attachment: Remove attachment
-          remove_attachment_confirm: Are you sure you want to remove this attachment?
-          up: Up
         field_category:
           select_a_category: Choose a primary theme
           select_a_sub_category: Choose a subtheme
@@ -501,18 +495,12 @@ en:
           reset_field: Reset field
         field_image_attachments:
           add_attachment: Add image
-          attachment_file_required: Image needs to be attached
+          add_attachment_multi: Add images
           attachment_legend: Image
-          attachment_title_required: Title has to be defined for the image
-          cancel: Cancel
-          close_modal: Close window
-          down: Down
-          edit: Edit
-          modal_mobile_notice: The adding button is at the bottom of this window. If you don't see it on a mobile screen, scroll the screen down.
+          attachment_legend_multi: Images
+          edit_attachment: Change image
+          edit_attachment_multi: Change images
           remove: Remove
-          remove_attachment: Remove image
-          remove_attachment_confirm: Are you sure you want to remove this image?
-          up: Up
       sections:
         actions:
           new: New section

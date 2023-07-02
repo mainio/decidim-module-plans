@@ -18,7 +18,14 @@
     <% end %>
   </div>
 
-  <div class="row">
+  <div class="row flex-row">
+    <%
+    text_options = field_options
+    text_options[:class] ||= ""
+    text_options[:class] += " margin-bottom-0"
+    help_text = text_options.delete(:help_text)
+    %>
+
     <div class="columns large-8">
       <% if multilingual_answers? %>
         <%= form.translated(
@@ -26,17 +33,26 @@
           :body,
           {
             tabs_id: "field-#{section.id}"
-          }.merge(field_options).merge(rc_opts)
+          }.merge(text_options).merge(rc_opts)
         ) %>
       <% else %>
         <%= form.text_area(
           "body_#{current_locale}".to_sym,
-          field_options.merge(rows: 10)
+          text_options.merge(rows: 10)
         ) %>
       <% end %>
-      <div class="field-character-counter-info field-info field-info-after text-right"></div>
+    </div>
+    <div class="columns large-4 align-end">
+      <div class="field-character-counter-info field-info"></div>
     </div>
   </div>
+  <% if help_text %>
+    <div class="row form-spacing-top">
+      <div class="columns large-8">
+        <span class="help-text"><%= help_text %></span>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <div id="plans-dummy-counter-<%= section.id %>" class="hide" aria-hidden="true"></div>

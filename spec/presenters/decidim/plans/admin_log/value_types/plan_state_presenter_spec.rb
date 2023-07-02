@@ -7,8 +7,8 @@ module Decidim
     module AdminLog
       module ValueTypes
         describe PlanStatePresenter do
+          subject { described_class.new(plan.state, helpers) }
           let(:helpers) { ActionController::Base.helpers }
-          let(:subject) { described_class.new(plan.state, helpers) }
 
           describe "#present" do
             context "when evaluating" do
