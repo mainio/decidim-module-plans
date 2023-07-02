@@ -13,8 +13,8 @@ require_relative "#{base_path}lib/decidim/plans/version"
 DECIDIM_VERSION = Decidim::Plans.decidim_version
 
 gem "decidim", DECIDIM_VERSION
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "master"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "master"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "main"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "main"
 gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
 
 gem "decidim-plans", path: "."
