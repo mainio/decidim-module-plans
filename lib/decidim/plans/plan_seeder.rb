@@ -87,13 +87,12 @@ module Decidim
       def ensure_authors!(max_amount: 5)
         return if authors.present? && !authors.is_a?(Integer)
 
-        authors_amount = begin
-          if authors.is_a?(Integer)
-            authors
-          else
-            10
-          end
-        end
+        authors_amount = if authors.is_a?(Integer)
+                           authors
+                         else
+                           10
+                         end
+
         authors_amount = max_amount if authors_amount > max_amount
 
         # Create a dummy authors if they are not provided
@@ -136,28 +135,26 @@ module Decidim
         plan.sections.each do |section|
           next if section.section_type == "content"
 
-          body = begin
-            case section.section_type
-            when "field_image_attachments"
-              if should_add_images?
-                attachment_ids = create_attachments_from(images.sample(1), plan, attachments_weight)
-                attachments_weight += attachment_ids.length
-                { "attachment_ids" => attachment_ids }
-              else
-                { "attachment_ids" => [] }
-              end
-            when "field_attachments"
-              if should_add_attachments?
-                attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, attachments_weight)
-                attachments_weight += attachment_ids.length
-                { "attachment_ids" => attachment_ids }
-              else
-                { "attachment_ids" => [] }
-              end
-            else
-              dummy_section_body(section)
-            end
-          end
+          body = case section.section_type
+                 when "field_image_attachments"
+                   if should_add_images?
+                     attachment_ids = create_attachments_from(images.sample(1), plan, attachments_weight)
+                     attachments_weight += attachment_ids.length
+                     { "attachment_ids" => attachment_ids }
+                   else
+                     { "attachment_ids" => [] }
+                   end
+                 when "field_attachments"
+                   if should_add_attachments?
+                     attachment_ids = create_attachments_from(attachments.sample(rand(1..3)), plan, attachments_weight)
+                     attachments_weight += attachment_ids.length
+                     { "attachment_ids" => attachment_ids }
+                   else
+                     { "attachment_ids" => [] }
+                   end
+                 else
+                   dummy_section_body(section)
+                 end
 
           plan.contents.create!(
             body: body,

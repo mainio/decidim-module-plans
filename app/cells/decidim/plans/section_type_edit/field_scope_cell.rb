@@ -27,10 +27,8 @@ module Decidim
         end
 
         def scopes_root
-          @scopes_root ||= begin
-            Decidim::Scope.find_by(id: settings["scope_parent"]) ||
-              current_participatory_space.scope
-          end
+          @scopes_root ||= Decidim::Scope.find_by(id: settings["scope_parent"]) ||
+                           current_participatory_space.scope
         end
 
         def scopes_options(parent, name_prefix = "")

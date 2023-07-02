@@ -19,7 +19,7 @@ module Decidim
           it "withdraws the plan" do
             expect do
               expect { command.call }.to broadcast(:ok)
-            end.to change { Decidim::Plans::Plan.count }.by(0)
+            end.not_to change(Decidim::Plans::Plan, :count)
             expect(plan.state).to eq("withdrawn")
           end
         end

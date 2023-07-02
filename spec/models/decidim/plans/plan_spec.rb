@@ -52,7 +52,7 @@ module Decidim
 
           expect { plan.destroy! }.to change(Decidim::Tags::Tagging, :count)
             .by(-tags.count)
-            .and change(Decidim::Tags::Tag, :count).by(0)
+            .and change(Decidim::Tags::Tag, :count).by(0) # rubocop:disable RSpec/ChangeByZero
         end
       end
 

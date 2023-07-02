@@ -66,7 +66,7 @@ shared_examples_for "plan coauthorable interface" do
         end
 
         it "do not return a main author" do
-          expect(response["author"]).to eq(nil)
+          expect(response["author"]).to be_nil
         end
       end
     end

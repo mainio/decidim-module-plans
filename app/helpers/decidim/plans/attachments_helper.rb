@@ -51,7 +51,7 @@ module Decidim
           :abbr,
           "*",
           title: I18n.t("required", scope: "forms"),
-          data: { tooltip: true, disable_hover: false }, 'aria-haspopup': true,
+          data: { tooltip: true, disable_hover: false }, "aria-haspopup": true,
           class: "label-required"
         ).html_safe
       end

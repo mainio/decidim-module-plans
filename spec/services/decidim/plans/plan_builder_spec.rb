@@ -25,7 +25,7 @@ module Decidim
               author: author,
               action_user: author
             )
-          end.to change { Decidim::Plans::Plan.count }.by(1)
+          end.to change(Decidim::Plans::Plan, :count).by(1)
         end
       end
 
@@ -43,7 +43,7 @@ module Decidim
               extra_attributes: { component: other_component },
               skip_link: true
             )
-          end.to change { Decidim::Plans::Plan.count }.by(1)
+          end.to change(Decidim::Plans::Plan, :count).by(1)
         end
       end
     end

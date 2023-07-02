@@ -62,13 +62,13 @@ describe Decidim::Plans::Permissions do
     context "when creation is disabled" do
       let(:extra_settings) { { creation_enabled?: false } }
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
 
     context "when user is authorized" do
       let(:extra_settings) { { creation_enabled?: true } }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 
@@ -85,13 +85,13 @@ describe Decidim::Plans::Permissions do
     context "when plan is editable" do
       let(:editable) { true }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context "when plan is not editable" do
       let(:editable) { false }
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
   end
 
@@ -101,13 +101,13 @@ describe Decidim::Plans::Permissions do
     end
 
     context "when plan author is the user trying to withdraw" do
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context "when trying by another user" do
       let(:user) { build :user }
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
   end
 
@@ -122,13 +122,13 @@ describe Decidim::Plans::Permissions do
       end
 
       context "when plan author is the user trying to close" do
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when trying by another user" do
         let(:user) { build :user }
 
-        it { is_expected.to eq false }
+        it { is_expected.to be false }
       end
     end
 
@@ -138,13 +138,13 @@ describe Decidim::Plans::Permissions do
       end
 
       context "when plan author is the user trying to close" do
-        it { is_expected.to eq false }
+        it { is_expected.to be false }
       end
 
       context "when trying by another user" do
         let(:user) { build :user }
 
-        it { is_expected.to eq false }
+        it { is_expected.to be false }
       end
     end
   end

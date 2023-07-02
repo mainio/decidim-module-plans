@@ -32,7 +32,7 @@ module Decidim
 
         # Returns: A random float number between -1 and 1 to be used as a random seed at the database.
         def random_seed
-          @random_seed ||= (params[:random_seed] ? params[:random_seed].to_f : (rand * 2 - 1))
+          @random_seed ||= (params[:random_seed] ? params[:random_seed].to_f : ((rand * 2) - 1))
         end
 
         def detect_order(candidate)

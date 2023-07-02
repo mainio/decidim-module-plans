@@ -244,11 +244,9 @@ module Decidim
         @plan_draft ||= Plan.drafts.from_all_author_identities(current_user).not_hidden.find_by(component: current_component)
       end
 
-      # rubocop:disable Naming/MemoizedInstanceVariableName
       def retrieve_plan
         @plan ||= Plan.where(component: current_component).find(params[:id])
       end
-      # rubocop:enable Naming/MemoizedInstanceVariableName
 
       def ensure_published!
         return unless @plan

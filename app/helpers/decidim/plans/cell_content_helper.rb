@@ -48,12 +48,10 @@ module Decidim
       def area_scopes_parent
         return unless area_scope_section
 
-        @area_scopes_parent ||= begin
-          parent_id = area_scope_section.settings["area_scope_parent"].to_i
-          return unless parent_id
+        parent_id = area_scope_section.settings["area_scope_parent"].to_i
+        return unless parent_id
 
-          Decidim::Scope.find_by(id: parent_id)
-        end
+        @area_scopes_parent ||= Decidim::Scope.find_by(id: parent_id)
       end
 
       # Checks if the resource should show its scope or not.

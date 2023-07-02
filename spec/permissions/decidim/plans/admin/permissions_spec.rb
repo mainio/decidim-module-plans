@@ -50,7 +50,7 @@ describe Decidim::Plans::Admin::Permissions do
         { scope: :admin, action: :create, subject: :plan }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     describe "plan edition" do
@@ -60,7 +60,7 @@ describe Decidim::Plans::Admin::Permissions do
 
       let(:plan) { create :plan, component: current_component }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     describe "plan answering" do
@@ -69,19 +69,19 @@ describe Decidim::Plans::Admin::Permissions do
       end
 
       context "when everything is OK" do
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when answering is disabled in the step level" do
         let(:current_settings_plan_answering_enabled?) { false }
 
-        it { is_expected.to eq false }
+        it { is_expected.to be false }
       end
 
       context "when answering is disabled in the component level" do
         let(:component_settings_plan_answering_enabled?) { false }
 
-        it { is_expected.to eq false }
+        it { is_expected.to be false }
       end
     end
 
@@ -92,7 +92,7 @@ describe Decidim::Plans::Admin::Permissions do
 
       let(:plan) { create :plan, component: current_component }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     describe "plan budget exporting" do
@@ -100,7 +100,7 @@ describe Decidim::Plans::Admin::Permissions do
         { scope: :admin, action: :export_budgets, subject: :plans }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 end

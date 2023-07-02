@@ -32,19 +32,17 @@ module Decidim
       private
 
       def attachments
-        @attachments ||= begin
-          if model.is_a?(Decidim::Plans::Content)
-            ids = model.body["attachment_ids"]
+        @attachments ||= if model.is_a?(Decidim::Plans::Content)
+                           ids = model.body["attachment_ids"]
 
-            if ids.is_a?(Array)
-              Decidim::Attachment.includes(:attachment_collection).where(id: ids)
-            else
-              []
-            end
-          else
-            model.attachments.includes(:attachment_collection)
-          end
-        end
+                           if ids.is_a?(Array)
+                             Decidim::Attachment.includes(:attachment_collection).where(id: ids)
+                           else
+                             []
+                           end
+                         else
+                           model.attachments.includes(:attachment_collection)
+                         end
       end
 
       def documents

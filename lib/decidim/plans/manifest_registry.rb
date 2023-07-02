@@ -60,7 +60,9 @@ module Decidim
       end
 
       class ManifestAlreadyRegistered < StandardError; end
+
       class ManifestClassNotDefined < StandardError; end
+
       class RegistryTypeNotDefined < StandardError; end
     end
   end

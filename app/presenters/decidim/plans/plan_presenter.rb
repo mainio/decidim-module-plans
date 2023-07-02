@@ -65,13 +65,12 @@ module Decidim
           next if content.nil?
 
           section_title = plain_content(translated_attribute(content.title))
-          section_body = begin
-            if %w(field_text field_text_multiline).include?(content.section.section_type)
-              plain_content(translated_attribute(content.body))
-            else
-              "" # TODO: Other types
-            end
-          end
+          section_body = if %w(field_text field_text_multiline).include?(content.section.section_type)
+                           plain_content(translated_attribute(content.body))
+                         else
+                           "" # TODO: Other types
+                         end
+
           yield section_title, section_body
         end
       end

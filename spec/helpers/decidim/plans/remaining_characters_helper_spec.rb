@@ -9,7 +9,7 @@ describe Decidim::Plans::RemainingCharactersHelper do
 
     context "when no block is given" do
       it "does not return anything" do
-        expect(helper.remaining_characters(attribute, characters)).to be(nil)
+        expect(helper.remaining_characters(attribute, characters)).to be_nil
       end
     end
 

@@ -162,7 +162,7 @@ module Decidim
           expect do
             delete :destroy, params: { id: plan_to_destroy.id }
             expect(response).to have_http_status(:found)
-          end.to change { Decidim::Plans::Plan.count }.by(-1)
+          end.to change(Decidim::Plans::Plan, :count).by(-1)
         end
       end
 

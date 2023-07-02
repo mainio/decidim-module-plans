@@ -137,13 +137,11 @@ Decidim.register_component(:plans) do |component|
     end
 
     proposal_component = participatory_space.components.find_by(manifest_name: "proposals")
-    proposals = begin
-      if proposal_component
-        Decidim::Proposals::Proposal.where(component: proposal_component).to_a
-      else
-        []
-      end
-    end
+    proposals = if proposal_component
+                  Decidim::Proposals::Proposal.where(component: proposal_component).to_a
+                else
+                  []
+                end
 
     5.times do |n|
       state, answer = if n > 3
@@ -186,13 +184,12 @@ Decidim.register_component(:plans) do |component|
         plan.save!
 
         unless proposals.empty?
-          linked_proposals = begin
-            if proposals.length > 2
-              proposals.slice!(0, 2)
-            else
-              proposals
-            end
-          end
+          linked_proposals = if proposals.length > 2
+                               proposals.slice!(0, 2)
+                             else
+                               proposals
+                             end
+
           plan.link_resources(linked_proposals, "included_proposals")
         end
 

@@ -11,7 +11,7 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
       it "destroys the component" do
         expect do
           Decidim::Admin::DestroyComponent.call(component, current_user)
-        end.to change { Decidim::Component.count }.by(-1)
+        end.to change(Decidim::Component, :count).by(-1)
 
         expect(component).to be_destroyed
       end
