@@ -62,17 +62,17 @@ cs:
             attachments_allowed: Attachments allowed
             attachment_help: Attachment help text
             categories_enabled: Categories enabled
-            closing_allowed: Allow plan authors to mark the plans as done
+            closing_allowed: Allow proposal authors to mark the proposals as done
             comments_enabled: Comments enabled
-            default_answer: Default plan answer
+            default_answer: Default proposal answer
             default_answer_none: (None)
-            default_state: Default plan state
+            default_state: Default proposal state
             layout: Layout
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Answering enabled
-            plan_listing_intro: Plan listing page intro text
+            plan_listing_intro: Proposals listing page intro text
             materials_text: Materials text
-            new_plan_help_text: New plan help text
+            new_plan_help_text: New proposal help text
             plan_title_length: Title length
             proposal_linking_enabled: Proposal linking enabled
             scopes_enabled: Scopes enabled
@@ -124,8 +124,8 @@ cs:
             title: Manage authors for proposal
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects
-            success: "%{number} items successfully exported into budgeting projects"
+            invalid: There's been a problem exporting the items into budgeting projects.
+            success: "%{number} items successfully exported into budgeting projects."
           new:
             create: Export to projects
             no_components: There are no other budgets components in this participatory space to export the items into projects.
@@ -320,7 +320,7 @@ cs:
         flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
-        plan_accepted_reason: proposal has been accepted
+        plan_accepted_reason: This proposal has been accepted
         plan_in_evaluation_reason: This proposal is being evaluated
         plan_rejected_reason: This proposal has been rejected
         plan_waiting_for_evaluation: The proposal is being evaluated, editing not allowed.
@@ -455,7 +455,7 @@ cs:
           success: "@%{user} has been successfully accepted as a collaborator."
         access_requested:
           error: Your request could not be completed, try again later.
-          success: Your request to collaborate has been sent successfully
+          success: Your request to collaborate has been sent successfully.
         reject_request: Reject
         rejected_request:
           error: Could not be rejected as a collaborator, try again later.
