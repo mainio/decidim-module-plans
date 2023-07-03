@@ -1,3 +1,4 @@
+---
 fi:
   activerecord:
     errors:
@@ -67,11 +68,11 @@ fi:
             default_answer_none: (Ei mitään)
             default_state: Suunnitelmien oletustila
             layout: Ulkoasu
-            materials_text: Materiaalien teksti
             multilingual_answers: Monikieliset vastaukset
-            new_plan_help_text: Uuden ehdotuksen teksti
             plan_answering_enabled: Vastaaminen sallittu
             plan_listing_intro: Suunnitelmien listassivun teksti
+            materials_text: Materiaalien teksti
+            new_plan_help_text: Uuden ehdotuksen teksti
             plan_title_length: Otsikon pituus
             proposal_linking_enabled: Ehdotusten linkkaaminen käytössä
             scopes_enabled: Teemat käytössä
@@ -101,7 +102,6 @@ fi:
         edit_plan: Muokkaa
         export_budgets: Muunna projekteiksi
         manage_authors: Hallinnoi tekijöitä
-        manage_tags: Hallinnoi merkintöjä
         new: Tee uusi ehdotus
         taggings: Merkinnät
         remove_author: Poista tekijä
@@ -231,12 +231,12 @@ fi:
         close: Sulje
         current_selection: Hae ehdotuksia nimellä
         select: Valitse
-      info:
-        show:
-          back: Takaisin edelliselle sivulle
       create:
         invalid: Virhe luotaessa sisältöä.
         success: Luonti onnistui.
+      info:
+        show:
+          back: Takaisin edelliselle sivulle
       last_activity:
         new_plan_at_html: "<span>Uusi ehdotus osoitteessa %{link}</span>"
       layouts:
@@ -464,8 +464,8 @@ fi:
           related_documents: Liittyvät asiakirjat
           related_photos: Liittyvät kuvat
         field_checkbox:
-          'no': Ei
-          'yes': Kyllä
+          'no': 'Ei'
+          'yes': 'Kyllä'
         field_image_attachments:
           related_photos: Liittyvät kuvat
       section_type_edit:
