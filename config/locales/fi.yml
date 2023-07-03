@@ -28,7 +28,7 @@ fi:
         proposals: Ehdotukset
         category_id: Kategoria
         created_at: Luontiaika
-        decidim_category_id: Kategoria
+        decidim_category_id: Aihepiiri
         decidim_component_id: Komponentti
         decidim_scope_id: Teema
         scope_id: Teema
@@ -61,7 +61,7 @@ fi:
             announcement: Ilmoitus
             attachments_allowed: Liitteet sallittu
             attachment_help: Liitteen ohjeteksti
-            categories_enabled: Kategoriat käytössä
+            categories_enabled: Aihepiirit käytössä
             closing_allowed: Salli suunnitelmien laatijoiden merkata suunnitelmia valmiiksi
             comments_enabled: Kommentointi sallittu
             default_answer: Suunnitelmien oletusvastaus
