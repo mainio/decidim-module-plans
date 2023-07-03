@@ -124,8 +124,8 @@ sv:
             title: Hantera författare för förslag
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects.
-            success: "%{number} items successfully exported into budgeting projects."
+            invalid: Det har varit ett problem att exportera objekten till budgetprojekt
+            success: "%{number} poster exporterades framgångsrikt till budgetprojekt"
           new:
             create: Exportera till projekt
             no_components: Det finns inga andra budgetkomponenter i detta deltagande utrymme för att exportera objekten till projekt.
@@ -318,7 +318,7 @@ sv:
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
-        plan_accepted_reason: This proposal has been accepted
+        plan_accepted_reason: Förslaget har godkänts
         plan_in_evaluation_reason: Förslaget bedöms
         plan_rejected_reason: Förslaget har avslagits
         plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
@@ -449,7 +449,7 @@ sv:
           success: "@%{user} har godkänts som deltagare."
         access_requested:
           error: Din begäran kunde inte behandlas, försök igen senare.
-          success: Your request to collaborate has been sent successfully.
+          success: Din begäran om att få delta har skickats
         reject_request: Avslå
         rejected_request:
           error: Deltagaren kunde inte avslås, försök igen senare.
