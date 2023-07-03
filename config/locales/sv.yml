@@ -12,7 +12,7 @@ sv:
   activemodel:
     attributes:
       budgets_export:
-        area_scope_id: Area scope
+        area_scope_id: Område omfång
         budget_section: Budgetavsnitt
         content_sections: Innehållssektioner
         default_budget_amount: Standardbudgetbelopp
@@ -62,17 +62,17 @@ sv:
             attachments_allowed: Bilagor tillåtna
             attachment_help: Bilag hjälptext
             categories_enabled: Kategorier aktiverade
-            closing_allowed: Tillåta plan författarna att markera planerna som gjort
+            closing_allowed: Tillåt förslagsförfattare att markera förslag som gjort
             comments_enabled: Kommentarer tillåtna
-            default_answer: Standardplansvar
+            default_answer: Standardsvar för förslag
             default_answer_none: (Ingen)
-            default_state: Standardplanstillstånd
+            default_state: Standardtillstånd för förslag
             layout: Layout
             multilingual_answers: Flerspråkiga svar
             plan_answering_enabled: Svar tillåtna
-            plan_listing_intro: Planera introduktionstextsida
+            plan_listing_intro: Förslag introduktionstextsida
             materials_text: Materialtext
-            new_plan_help_text: Hjälptext för ny planen
+            new_plan_help_text: Hjälptext för ny förslag
             plan_title_length: Rubrikens längd
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
@@ -124,8 +124,8 @@ sv:
             title: Hantera författare för förslag
         budgets_exports:
           create:
-            invalid: Det har varit ett problem att exportera objekten till budgetprojekt
-            success: "%{number} poster exporterades framgångsrikt till budgetprojekt"
+            invalid: There's been a problem exporting the items into budgeting projects.
+            success: "%{number} items successfully exported into budgeting projects."
           new:
             create: Exportera till projekt
             no_components: Det finns inga andra budgetkomponenter i detta deltagande utrymme för att exportera objekten till projekt.
@@ -318,7 +318,7 @@ sv:
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
-        plan_accepted_reason: Förslaget har godkänts
+        plan_accepted_reason: This proposal has been accepted
         plan_in_evaluation_reason: Förslaget bedöms
         plan_rejected_reason: Förslaget har avslagits
         plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
@@ -449,7 +449,7 @@ sv:
           success: "@%{user} har godkänts som deltagare."
         access_requested:
           error: Din begäran kunde inte behandlas, försök igen senare.
-          success: Din begäran om att få delta har skickats
+          success: Your request to collaborate has been sent successfully.
         reject_request: Avslå
         rejected_request:
           error: Deltagaren kunde inte avslås, försök igen senare.
@@ -498,9 +498,9 @@ sv:
         actions:
           new: Nytt avsnitt
       section_types:
-        content: Content
+        content: Innehåll
         field_area_scope: Fält - Area scope
-        field_attachments: Field - Attachments
+        field_attachments: Fält - Bilagor
         field_category: Fält - Category
         field_checkbox: Fält - Checkbox
         field_currency: Fält - Valuta
