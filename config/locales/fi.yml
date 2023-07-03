@@ -124,8 +124,8 @@ fi:
             title: Hallitse ehdotuksen tekijöitä
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects.
-            success: "%{number} items successfully exported into budgeting projects."
+            invalid: Kohteiden vienti budjetointihankkeiksi epäonnistui.
+            success: "%{number} kohdetta viety onnistuneesti budjetointihankkeiksi."
           new:
             create: Vie hankkeiksi
             no_components: Tässä osallistumistilassa ei ole yhtään budjetointikomponenttia, johon hankkeet voitaisiin luoda.
@@ -318,7 +318,7 @@ fi:
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
-        plan_accepted_reason: This proposal has been accepted
+        plan_accepted_reason: Tämä ehdotus on hyväksytty
         plan_in_evaluation_reason: Tämä ehdotus on arvioitavana
         plan_rejected_reason: Tämä ehdotus on hylätty
         plan_waiting_for_evaluation: Ehdotus on arvioitavana, muokkaaminen estetty.
@@ -449,7 +449,7 @@ fi:
           success: "@%{user} on hyväksytty osallistujaksi onnistuneesti."
         access_requested:
           error: Pyyntöäsi ei voitu käsitellä, yritä myöhemmin uudestaan.
-          success: Your request to collaborate has been sent successfully.
+          success: Osallistumispyyntösi lähetys onnistui.
         reject_request: Hylkää
         rejected_request:
           error: Ei voitu hylätä osallistujaa, yritä myöhemmin uudestaan.
