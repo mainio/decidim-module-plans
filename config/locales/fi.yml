@@ -62,15 +62,15 @@ fi:
             attachments_allowed: Liitteet sallittu
             attachment_help: Liitteen ohjeteksti
             categories_enabled: Aihepiirit käytössä
-            closing_allowed: Salli suunnitelmien laatijoiden merkata suunnitelmia valmiiksi
+            closing_allowed: Salli ehdotusten laatijoiden merkata ehdotuksia valmiiksi
             comments_enabled: Kommentointi sallittu
-            default_answer: Suunnitelmien oletusvastaus
+            default_answer: Ehdotusten oletusvastaus
             default_answer_none: (Ei mitään)
-            default_state: Suunnitelmien oletustila
+            default_state: Ehdotusten oletustila
             layout: Ulkoasu
             multilingual_answers: Monikieliset vastaukset
             plan_answering_enabled: Vastaaminen sallittu
-            plan_listing_intro: Suunnitelmien listassivun teksti
+            plan_listing_intro: Ehdotusten listassivun teksti
             materials_text: Materiaalien teksti
             new_plan_help_text: Uuden ehdotuksen teksti
             plan_title_length: Otsikon pituus
@@ -100,7 +100,7 @@ fi:
         destroy: Poista
         edit: Muokkaa
         edit_plan: Muokkaa
-        export_budgets: Muunna projekteiksi
+        export_budgets: Muunna hankkeiksi
         manage_authors: Hallinnoi tekijöitä
         new: Tee uusi ehdotus
         taggings: Merkinnät
@@ -124,11 +124,11 @@ fi:
             title: Hallitse ehdotuksen tekijöitä
         budgets_exports:
           create:
-            invalid: Kohteiden vienti budjetointiprojekteiksi epäonnistui
-            success: "%{number} kohdetta viety onnistuneesti budjetointiprojekteiksi"
+            invalid: There's been a problem exporting the items into budgeting projects.
+            success: "%{number} items successfully exported into budgeting projects."
           new:
-            create: Vie projekteiksi
-            no_components: Tässä osallisuustilassa ei ole yhtään budjetointikomponenttia, johon projektit voitaisiin luoda.
+            create: Vie hankkeiksi
+            no_components: Tässä osallistumistilassa ei ole yhtään budjetointikomponenttia, johon hankkeet voitaisiin luoda.
             select_budget: Valitse budjetti
             select_component: Valitse komponentti
         exports:
@@ -142,8 +142,8 @@ fi:
             title: Vastaa kohteeseen %{title}
         plans:
           answer:
-            invalid: Vastaamisessa tapahtui virhe.
-            success: Vastattu onnistuneesti.
+            invalid: Vastaaminen epäonnistui.
+            success: Vastaaminen onnistui.
           edit:
             title: Muokkaa
             update: Päivitä
@@ -194,11 +194,11 @@ fi:
             plans: Ehdotukset
       admin_log:
         plan:
-          answer: "%{user_name} vastasi sisältöön %{resource_name} osallisuustilassa %{space_name}."
-          create: "%{user_name} loi sisällön %{resource_name} osallisuustilassa %{space_name}."
-          update: "%{user_name} päivitti sisältöä %{resource_name} osallisuustilassa %{space_name}."
+          answer: "%{user_name} vastasi sisältöön %{resource_name} osallistumistilassa %{space_name}."
+          create: "%{user_name} loi sisällön %{resource_name} osallistumistilassa %{space_name}."
+          update: "%{user_name} päivitti sisältöä %{resource_name} osallistumistilassa %{space_name}."
         plan_note:
-          create: "%{user_name} lisäsi yksityisen viestin sisältöön %{resource_name} osallisuustilassa %{space_name}."
+          create: "%{user_name} lisäsi yksityisen viestin sisältöön %{resource_name} osallistumistilassa %{space_name}."
       answers:
         accepted: Hyväksytty
         evaluating: Arvioitavana
@@ -248,7 +248,7 @@ fi:
             author_nickname: Tekijän nimimerkki
             authors: Tekijät
             authors_label: 'Tekijöiden määrä: %{count}'
-            category: Kategoria
+            category: Aihepiiri
             comments: Kommentit
             contributions: Muokkaukset
             contributions_label: 'Muokkausten määrä: %{count}'
@@ -283,7 +283,7 @@ fi:
       plan_index:
         draft_plan_title: Sinulla on keskeneräinen ehdotus!
         draft_plan_continue: Jatka ehdotustasi
-        draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen kirjoittamista.
+        draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen laatimista.
         filters:
           activity:
             all: Kaikki
@@ -318,10 +318,10 @@ fi:
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
-        plan_accepted_reason: Tämä ehdotus on hyväksytty
+        plan_accepted_reason: This proposal has been accepted
         plan_in_evaluation_reason: Tämä ehdotus on arvioitavana
         plan_rejected_reason: Tämä ehdotus on hylätty
-        plan_waiting_for_evaluation: Ehdotus on arvioinnissa, muokkaaminen estetty.
+        plan_waiting_for_evaluation: Ehdotus on arvioitavana, muokkaaminen estetty.
         request_access: Pyydä muokkausoikeudet
         share: Jaa
         share_link: Jaettava linkki
@@ -448,8 +448,8 @@ fi:
           error: Ei voitu hyväksyä osallistujaa, yritä myöhemmin uudestaan.
           success: "@%{user} on hyväksytty osallistujaksi onnistuneesti."
         access_requested:
-          error: Pyyntöäsi ei voitu käsitellä, yritä myöhemmin uudestaan
-          success: Pyyntösi osallistua on lähetetty onnistuneesti
+          error: Pyyntöäsi ei voitu käsitellä, yritä myöhemmin uudestaan.
+          success: Your request to collaborate has been sent successfully.
         reject_request: Hylkää
         rejected_request:
           error: Ei voitu hylätä osallistujaa, yritä myöhemmin uudestaan.
