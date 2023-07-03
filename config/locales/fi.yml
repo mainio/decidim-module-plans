@@ -1,3 +1,4 @@
+---
 fi:
   activerecord:
     errors:
@@ -27,7 +28,7 @@ fi:
         proposals: Ehdotukset
         category_id: Kategoria
         created_at: Luontiaika
-        decidim_category_id: Kategoria
+        decidim_category_id: Aihepiiri
         decidim_component_id: Komponentti
         decidim_scope_id: Teema
         scope_id: Teema
@@ -60,18 +61,18 @@ fi:
             announcement: Ilmoitus
             attachments_allowed: Liitteet sallittu
             attachment_help: Liitteen ohjeteksti
-            categories_enabled: Kategoriat käytössä
+            categories_enabled: Aihepiirit käytössä
             closing_allowed: Salli ehdotusten laatijoiden merkata ehdotuksia valmiiksi
             comments_enabled: Kommentointi sallittu
             default_answer: Ehdotusten oletusvastaus
             default_answer_none: (Ei mitään)
             default_state: Ehdotusten oletustila
             layout: Ulkoasu
-            materials_text: Materiaalien teksti
             multilingual_answers: Monikieliset vastaukset
-            new_plan_help_text: Uuden ehdotuksen teksti
             plan_answering_enabled: Vastaaminen sallittu
             plan_listing_intro: Ehdotusten listassivun teksti
+            materials_text: Materiaalien teksti
+            new_plan_help_text: Uuden ehdotuksen teksti
             plan_title_length: Otsikon pituus
             proposal_linking_enabled: Ehdotusten linkkaaminen käytössä
             scopes_enabled: Teemat käytössä
@@ -99,9 +100,8 @@ fi:
         destroy: Poista
         edit: Muokkaa
         edit_plan: Muokkaa
-        export_budgets: Muunna projekteiksi
+        export_budgets: Muunna hankkeiksi
         manage_authors: Hallinnoi tekijöitä
-        manage_tags: Hallinnoi merkintöjä
         new: Tee uusi ehdotus
         taggings: Merkinnät
         remove_author: Poista tekijä
@@ -124,11 +124,11 @@ fi:
             title: Hallitse ehdotuksen tekijöitä
         budgets_exports:
           create:
-            invalid: Kohteiden vienti budjetointiprojekteiksi epäonnistui
-            success: "%{number} kohdetta viety onnistuneesti budjetointiprojekteiksi"
+            invalid: Kohteiden vienti budjetointihankkeiksi epäonnistui.
+            success: "%{number} kohdetta viety onnistuneesti budjetointihankkeiksi."
           new:
-            create: Vie projekteiksi
-            no_components: Tässä osallisuustilassa ei ole yhtään budjetointikomponenttia, johon projektit voitaisiin luoda.
+            create: Vie hankkeiksi
+            no_components: Tässä osallistumistilassa ei ole yhtään budjetointikomponenttia, johon hankkeet voitaisiin luoda.
             select_budget: Valitse budjetti
             select_component: Valitse komponentti
         exports:
@@ -142,8 +142,8 @@ fi:
             title: Vastaa kohteeseen %{title}
         plans:
           answer:
-            invalid: Vastaamisessa tapahtui virhe.
-            success: Vastattu onnistuneesti.
+            invalid: Vastaaminen epäonnistui.
+            success: Vastaaminen onnistui.
           edit:
             title: Muokkaa
             update: Päivitä
@@ -194,11 +194,11 @@ fi:
             plans: Ehdotukset
       admin_log:
         plan:
-          answer: "%{user_name} vastasi sisältöön %{resource_name} osallisuustilassa %{space_name}."
-          create: "%{user_name} loi sisällön %{resource_name} osallisuustilassa %{space_name}."
-          update: "%{user_name} päivitti sisältöä %{resource_name} osallisuustilassa %{space_name}."
+          answer: "%{user_name} vastasi sisältöön %{resource_name} osallistumistilassa %{space_name}."
+          create: "%{user_name} loi sisällön %{resource_name} osallistumistilassa %{space_name}."
+          update: "%{user_name} päivitti sisältöä %{resource_name} osallistumistilassa %{space_name}."
         plan_note:
-          create: "%{user_name} lisäsi yksityisen viestin sisältöön %{resource_name} osallisuustilassa %{space_name}."
+          create: "%{user_name} lisäsi yksityisen viestin sisältöön %{resource_name} osallistumistilassa %{space_name}."
       answers:
         accepted: Hyväksytty
         evaluating: Arvioitavana
@@ -231,12 +231,12 @@ fi:
         close: Sulje
         current_selection: Hae ehdotuksia nimellä
         select: Valitse
-      info:
-        show:
-          back: Takaisin edelliselle sivulle
       create:
         invalid: Virhe luotaessa sisältöä.
         success: Luonti onnistui.
+      info:
+        show:
+          back: Takaisin edelliselle sivulle
       last_activity:
         new_plan_at_html: "<span>Uusi ehdotus osoitteessa %{link}</span>"
       layouts:
@@ -248,7 +248,7 @@ fi:
             author_nickname: Tekijän nimimerkki
             authors: Tekijät
             authors_label: 'Tekijöiden määrä: %{count}'
-            category: Kategoria
+            category: Aihepiiri
             comments: Kommentit
             contributions: Muokkaukset
             contributions_label: 'Muokkausten määrä: %{count}'
@@ -283,7 +283,7 @@ fi:
       plan_index:
         draft_plan_title: Sinulla on keskeneräinen ehdotus!
         draft_plan_continue: Jatka ehdotustasi
-        draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen kirjoittamista.
+        draft_plan_description: Olet aikaisemmin tallentanut ehdotuksen keskeneräisenä. Voit nyt jatkaa sen laatimista.
         filters:
           activity:
             all: Kaikki
@@ -321,7 +321,7 @@ fi:
         plan_accepted_reason: Tämä ehdotus on hyväksytty
         plan_in_evaluation_reason: Tämä ehdotus on arvioitavana
         plan_rejected_reason: Tämä ehdotus on hylätty
-        plan_waiting_for_evaluation: Ehdotus on arvioinnissa, muokkaaminen estetty.
+        plan_waiting_for_evaluation: Ehdotus on arvioitavana, muokkaaminen estetty.
         request_access: Pyydä muokkausoikeudet
         share: Jaa
         share_link: Jaettava linkki
@@ -448,8 +448,8 @@ fi:
           error: Ei voitu hyväksyä osallistujaa, yritä myöhemmin uudestaan.
           success: "@%{user} on hyväksytty osallistujaksi onnistuneesti."
         access_requested:
-          error: Pyyntöäsi ei voitu käsitellä, yritä myöhemmin uudestaan
-          success: Pyyntösi osallistua on lähetetty onnistuneesti
+          error: Pyyntöäsi ei voitu käsitellä, yritä myöhemmin uudestaan.
+          success: Osallistumispyyntösi lähetys onnistui.
         reject_request: Hylkää
         rejected_request:
           error: Ei voitu hylätä osallistujaa, yritä myöhemmin uudestaan.
@@ -464,8 +464,8 @@ fi:
           related_documents: Liittyvät asiakirjat
           related_photos: Liittyvät kuvat
         field_checkbox:
-          'no': Ei
-          'yes': Kyllä
+          'no': 'Ei'
+          'yes': 'Kyllä'
         field_image_attachments:
           related_photos: Liittyvät kuvat
       section_type_edit:

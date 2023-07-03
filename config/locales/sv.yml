@@ -1,3 +1,4 @@
+---
 sv:
   activerecord:
     errors:
@@ -11,7 +12,7 @@ sv:
   activemodel:
     attributes:
       budgets_export:
-        area_scope_id: Area scope
+        area_scope_id: Område omfång
         budget_section: Budgetavsnitt
         content_sections: Innehållssektioner
         default_budget_amount: Standardbudgetbelopp
@@ -67,11 +68,11 @@ sv:
             default_answer_none: (Ingen)
             default_state: Standardtillstånd för förslag
             layout: Layout
-            materials_text: Materialtext
             multilingual_answers: Flerspråkiga svar
-            new_plan_help_text: Hjälptext för ny förslag
             plan_answering_enabled: Svar tillåtna
             plan_listing_intro: Förslag introduktionstextsida
+            materials_text: Materialtext
+            new_plan_help_text: Hjälptext för ny förslag
             plan_title_length: Rubrikens längd
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
@@ -164,19 +165,19 @@ sv:
             save: Spara
             title: Avsnitt
           section:
-            attachments_input_type: Inmatningsfält typ av bilaga
             answer_length: Svarets längd
+            attachments_input_type: Inmatningsfält typ av bilaga
             body: Brödtext
             down: Ner
             handle: Identifierare
             help: Hjälp
             information: Information
             information_label: Informationsetikett
-            searchable: Sökbar
             mandatory: Obligatorisk
             map_center_latitude: Kartcentrums latitud
             map_center_longitude: Kartcentrums longitud
             remove: Radera
+            searchable: Sökbar
             section: Avsnitt
             up: Upp
             visible_api: Visa i API
@@ -475,7 +476,6 @@ sv:
           add_attachment_multi: Lägg till bilagor
           attachment_legend: Bilaga
           attachment_legend_multi: Bilagor
-          close_modal: Stäng fönstret
           edit_attachment: Ändra bilaga
           edit_attachment_multi: Ändra bilagor
           remove: Ta bort
@@ -498,9 +498,9 @@ sv:
         actions:
           new: Nytt avsnitt
       section_types:
-        content: Content
+        content: Innehåll
         field_area_scope: Fält - Area scope
-        field_attachments: Field - Attachments
+        field_attachments: Fält - Bilagor
         field_category: Fält - Category
         field_checkbox: Fält - Checkbox
         field_currency: Fält - Valuta
