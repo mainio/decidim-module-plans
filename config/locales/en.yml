@@ -62,17 +62,17 @@ en:
             attachments_allowed: Attachments allowed
             attachment_help: Attachment help text
             categories_enabled: Categories enabled
-            closing_allowed: Allow plan authors to mark the plans as done
+            closing_allowed: Allow proposal authors to mark the proposals as done
             comments_enabled: Comments enabled
-            default_answer: Default plan answer
+            default_answer: Default proposal answer
             default_answer_none: (None)
-            default_state: Default plan state
+            default_state: Default proposal state
             layout: Layout
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Answering enabled
-            plan_listing_intro: Plan listing page intro text
+            plan_listing_intro: Proposals listing page intro text
             materials_text: Materials text
-            new_plan_help_text: New plan help text
+            new_plan_help_text: New proposal help text
             plan_title_length: Title length
             proposal_linking_enabled: Proposal linking enabled
             scopes_enabled: Scopes enabled

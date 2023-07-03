@@ -61,17 +61,17 @@ sv:
             attachments_allowed: Bilagor tillåtna
             attachment_help: Bilag hjälptext
             categories_enabled: Kategorier aktiverade
-            closing_allowed: Tillåta plan författarna att markera planerna som gjort
+            closing_allowed: Tillåt förslagsförfattare att markera förslag som gjort
             comments_enabled: Kommentarer tillåtna
-            default_answer: Standardplansvar
+            default_answer: Standardsvar för förslag
             default_answer_none: (Ingen)
-            default_state: Standardplanstillstånd
+            default_state: Standardtillstånd för förslag
             layout: Layout
             materials_text: Materialtext
             multilingual_answers: Flerspråkiga svar
-            new_plan_help_text: Hjälptext för ny planen
+            new_plan_help_text: Hjälptext för ny förslag
             plan_answering_enabled: Svar tillåtna
-            plan_listing_intro: Planera introduktionstextsida
+            plan_listing_intro: Förslag introduktionstextsida
             plan_title_length: Rubrikens längd
             proposal_linking_enabled: Förslagslänk aktiverat
             scopes_enabled: Omfattningar aktiverade
