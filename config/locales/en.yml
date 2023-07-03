@@ -124,8 +124,8 @@ en:
             title: Manage authors for proposal
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects
-            success: "%{number} items successfully exported into budgeting projects"
+            invalid: There's been a problem exporting the items into budgeting projects.
+            success: "%{number} items successfully exported into budgeting projects."
           new:
             create: Export to projects
             no_components: There are no other budgets components in this participatory space to export the items into projects.
@@ -456,7 +456,7 @@ en:
           success: "@%{user} has been successfully accepted as a collaborator."
         access_requested:
           error: Your request could not be completed, try again later.
-          success: Your request to collaborate has been sent successfully
+          success: Your request to collaborate has been sent successfully.
         reject_request: Reject
         rejected_request:
           error: Could not be rejected as a collaborator, try again later.
