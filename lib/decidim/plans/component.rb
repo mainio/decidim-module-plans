@@ -5,7 +5,7 @@ require "decidim/components/namer"
 Decidim.register_component(:plans) do |component|
   component.engine = Decidim::Plans::Engine
   component.admin_engine = Decidim::Plans::AdminEngine
-  component.icon = "decidim/plans/icon.svg"
+  component.icon = "media/images/decidim_plans.svg"
 
   component.on(:before_destroy) do |instance|
     raise "Can't destroy this component when there are plans" if Decidim::Plans::Plan.where(component: instance).any?
