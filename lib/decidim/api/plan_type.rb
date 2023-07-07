@@ -21,15 +21,15 @@ module Decidim
       field :state, GraphQL::Types::String, description: "The answer status in which plan is in", null: true
       field :answer, Decidim::Core::TranslatedFieldType, description: "The answer feedback for the status for this plan", null: true
 
-      field :closedAt, Decidim::Core::DateTimeType, method: :closed_at, null: true do
+      field :closed_at, Decidim::Core::DateTimeType, null: true do
         description "The date and time this plan was closed"
       end
 
-      field :answeredAt, Decidim::Core::DateTimeType, method: :answered_at, null: true do
+      field :answered_at, Decidim::Core::DateTimeType, null: true do
         description "The date and time this plan was answered"
       end
 
-      field :publishedAt, Decidim::Core::DateTimeType, method: :published_at, null: true do
+      field :published_at, Decidim::Core::DateTimeType, null: true do
         description "The date and time this plan was published"
       end
 
@@ -47,9 +47,8 @@ module Decidim
         # These are the resources that are linked from the plan to the related
         # object.
         field(
-          :linkedResources,
+          :linked_resources,
           [Decidim::Plans::ResourceLinkSubject],
-          method: :linked_resources,
           description: "The linked resources for this plan.",
           null: true
         )
@@ -57,9 +56,8 @@ module Decidim
         # These are the resources that are linked from other related objects to
         # the plan.
         field(
-          :linkingResources,
+          :linking_resources,
           [Decidim::Plans::ResourceLinkSubject],
-          method: :linking_resources,
           description: "The linking resources for this plan.",
           null: true
         )
