@@ -43,39 +43,39 @@ cs:
         attachment:
           attributes:
             file:
-              needs_to_be_reattached: Needs to be reattached
+              needs_to_be_reattached: Je potřeba znovu přiložit
   decidim:
     assemblies:
       statistics:
-        plans_count: Proposals
+        plans_count: Návrhy
     components:
       plans:
         actions:
-          close: Close
-          create: Create
-          reopen: Open for editing
-          withdraw: Withdraw
-        name: Plans
+          close: Zavřít
+          create: Vytvořit
+          reopen: Otevřít pro úpravy
+          withdraw: Odebrat
+        name: Plány
         settings:
           global:
-            announcement: Announcement
-            attachments_allowed: Attachments allowed
-            attachment_help: Attachment help text
-            categories_enabled: Categories enabled
-            closing_allowed: Allow proposal authors to mark the proposals as done
-            comments_enabled: Comments enabled
-            default_answer: Default proposal answer
-            default_answer_none: (None)
-            default_state: Default proposal state
-            layout: Layout
-            multilingual_answers: Multilingual answers
-            plan_answering_enabled: Answering enabled
-            plan_listing_intro: Proposals listing page intro text
-            materials_text: Materials text
-            new_plan_help_text: New proposal help text
-            plan_title_length: Title length
-            proposal_linking_enabled: Proposal linking enabled
-            scopes_enabled: Scopes enabled
+            announcement: Oznámení
+            attachments_allowed: Povolené přílohy
+            attachment_help: Text nápovědy k příloze
+            categories_enabled: Kategorie povoleny
+            closing_allowed: Povolit autorům plánu označit plány jako dokončené
+            comments_enabled: Komentáře povoleny
+            default_answer: Výchozí odpověď na návrh
+            default_answer_none: (Žádné)
+            default_state: Výchozí stav návrhu
+            layout: Rozvržení
+            multilingual_answers: Vícejazyčné odpovědi
+            plan_answering_enabled: Odpovídání povoleno
+            plan_listing_intro: Úvodní text pro výpis návrhů
+            materials_text: Text materiálu
+            new_plan_help_text: Text nápovědy k novému návrhu
+            plan_title_length: Délka názvu
+            proposal_linking_enabled: Odkazování Návrhu povoleno
+            scopes_enabled: Oblasti působnosti povoleny
             scope_id: Scope ID
             title_help: Title help text
             title_text: Title text
@@ -149,72 +149,72 @@ cs:
             update: Update
           form:
             attachment_legend: Add an attachment
-            select_a_category: Select a category
+            select_a_category: Vyberte kategorii
           index:
-            draft_plans: Drafts
-            published_plans: Published
-            selected: Selected
-            title: Proposals
+            draft_plans: Koncepty
+            published_plans: Publikováno
+            selected: Vybráno
+            title: Návrhy
           new:
-            create: Create
-            title: Submit new proposal
+            create: Vytvořit
+            title: Odeslat nový návrh
         sections:
           form:
-            add_section: Add section
+            add_section: Přidat sekci
           index:
-            save: Save
-            title: Sections
+            save: Uložit
+            title: Sekce
           section:
-            answer_length: Answer length
-            attachments_input_type: Attachments input type
-            body: Body
-            down: Down
+            answer_length: Délka odpovědi
+            attachments_input_type: Vstupní typ příloh
+            body: Tělo
+            down: Dolů
             handle: Handle
-            help: Help
-            information: Information
-            information_label: Information label
-            mandatory: Mandatory
-            map_center_latitude: Map center latitude
-            map_center_longitude: Map center longitude
-            remove: Remove
-            searchable: Searchable
-            section: Section
-            up: Up
-            visible_api: Show in the API
-            visible_form: Show in the form
-            visible_view: Show in the view
-            visibility: Visibility
+            help: Nápověda
+            information: Informace
+            information_label: Popisek informací
+            mandatory: Vyžadováno
+            map_center_latitude: Zeměpisná šířka středu mapy
+            map_center_longitude: Zeměpisná délka středu mapy
+            remove: Odstranit
+            searchable: Vyhledávatelné
+            section: Sekce
+            up: Nahoru
+            visible_api: Zobrazit v API
+            visible_form: Zobrazit ve formuláři
+            visible_view: Zobrazit v zobrazení
+            visibility: Viditelnost
           update:
-            invalid: Error updating sections.
-            success: Sections updated successfully.
+            invalid: Chyba při aktualizaci sekcí.
+            success: Sekce byly úspěšně aktualizovány.
         shared:
           info_plan:
-            body: Body
-            created_at: Creation date
-            plans: Proposals
+            body: Tělo
+            created_at: Datum vytvoření
+            plans: Návrhy
       admin_log:
         plan:
-          answer: "%{user_name} answered %{resource_name} on the %{space_name} space."
+          answer: "%{user_name} odpověděl %{resource_name} ve skupině %{space_name}."
           create: "%{user_name} created %{resource_name} on the %{space_name} space."
           update: "%{user_name} updated %{resource_name} on the %{space_name} space."
         plan_note:
           create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
       answers:
-        accepted: Accepted
-        evaluating: Evaluating
-        not_answered: Not answered
-        rejected: Rejected
-        withdrawn: Withdrawn
+        accepted: Přijato
+        evaluating: Hodnocení
+        not_answered: Nezodpovězeno
+        rejected: Odmítnuto
+        withdrawn: Odebráno
       application_helper:
         filter_state_values:
-          accepted: Accepted
-          all: All
-          evaluating: Evaluating
-          except_rejected: All except rejected
-          rejected: Rejected
+          accepted: Přijato
+          all: Vše
+          evaluating: Hodnocení
+          except_rejected: Vše s výjimkou odmítnuto
+          rejected: Odmítnuto
         filter_type_values:
-          all: All
-          amendments: Amendments
+          all: Vše
+          amendments: Pozměňovací návrhy
           plans: Proposals
       attachment_input_types:
         single: Single attachment
@@ -280,7 +280,7 @@ cs:
           you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
-        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
         required_fields_text: Required fields are marked with the star * character.
       plan_index:
         draft_plan_title: You have a proposal draft!
