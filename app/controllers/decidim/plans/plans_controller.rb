@@ -266,7 +266,7 @@ module Decidim
           search_text: "",
           with_any_origin: default_filter_origin_params,
           with_any_category: "",
-          with_any_state: %w(accepted rejected evaluating not_answered),
+          with_any_state: "",
           with_any_scope: nil,
           with_any_tag: [],
           related_to: "",
