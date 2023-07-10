@@ -6,38 +6,38 @@ cs:
         decidim/plans/attachment:
           attributes:
             file:
-              allowed_file_content_types: Invalid file type
+              allowed_file_content_types: Neplatný typ souboru
     models:
-      decidim/plans/plan: Proposal
+      decidim/plans/plan: Návrh
   activemodel:
     attributes:
       budgets_export:
-        area_scope_id: Area scope
-        budget_section: Budget section
-        content_sections: Content sections
-        default_budget_amount: Default budget amount
-        export_all_closed_plans: Export all closed proposals
-        image_section: Image section
-        location_section: Location section
-        scope_id: Scope
-        summary_section: Summary section
-        target_component_id: Component
+        area_scope_id: Oblast působnosti
+        budget_section: Oddíl rozpočtu
+        content_sections: Sekce obsahu
+        default_budget_amount: Standardní částka rozpočtu
+        export_all_closed_plans: Exportovat všechny uzavřené návrhy
+        image_section: Sekce obrázku
+        location_section: Sekce Umístění
+        scope_id: Oblast působnosti
+        summary_section: Sekce součtu
+        target_component_id: Komponenta
       budgets_export_target:
-        budget_id: Budget
+        budget_id: Rozpočet
       plan:
-        proposals: Proposals
-        category_id: Category
-        created_at: Created at
-        decidim_category_id: Category
-        decidim_component_id: Component
-        decidim_scope_id: Scope
-        scope_id: Scope
-        state: State
-        title: Title
-        user_group_id: Create as
+        proposals: Návrhy
+        category_id: Kategorie
+        created_at: Vytvořeno v
+        decidim_category_id: Kategorie
+        decidim_component_id: Komponenta
+        decidim_scope_id: Oblast působnosti
+        scope_id: Oblast působnosti
+        state: Stav
+        title: Název
+        user_group_id: Vytvořit jako
       section:
-        area_scope_parent: Area scope parent
-        scope_parent: Scope parent
+        area_scope_parent: Nadřazený rozsah působnosti
+        scope_parent: Nadrazená Oblasti působnosti
     errors:
       models:
         attachment:
