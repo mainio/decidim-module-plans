@@ -22,7 +22,11 @@ module Decidim
             Arel.sql(
               "LEFT JOIN decidim_categories AS #{ref_cats} ON #{ref_cats}.id = CAST(coalesce(#{ref}.body->>'category_id', '0') AS integer)"
             )
-          ).where(Arel.sql("#{ref_cats}.id =? OR #{ref_cats}.parent_id =?"), params["category_id"], params["category_id"])
+          ).where(
+            Arel.sql("#{ref_cats}.id").eq(params["category_id"]).or(
+              Arel.sql("#{ref_cats}.parent_id").eq(params["category_id"])
+            )
+          )
         end
 
         def search_params_for(_section)
