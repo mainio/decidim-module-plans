@@ -77,10 +77,10 @@ cs:
             proposal_linking_enabled: Odkazování Návrhu povoleno
             scopes_enabled: Oblasti působnosti povoleny
             scope_id: Scope ID
-            title_help: Title help text
-            title_text: Title text
+            title_help: Text nápovědy nadpisu
+            title_text: Text nadpisu
           step:
-            announcement: Announcement
+            announcement: Oznámení
             comments_blocked: Comments blocked
             creation_enabled: Creation enabled
             plan_answering_enabled: Answering enabled
