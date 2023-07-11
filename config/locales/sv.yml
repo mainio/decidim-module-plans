@@ -36,7 +36,7 @@ sv:
         title: Rubrik
         user_group_id: Skapa som användare
       section:
-        area_scope_parent: Områdetema förälder
+        area_scope_parent: Områdesomfång förälder
         scope_parent: Tema förälder
     errors:
       models:
@@ -124,8 +124,8 @@ sv:
             title: Hantera författare för förslag
         budgets_exports:
           create:
-            invalid: Det har varit ett problem att exportera objekten till budgetprojekt
-            success: "%{number} poster exporterades framgångsrikt till budgetprojekt"
+            invalid: Det har varit ett problem att exportera objekten till budgetprojekt.
+            success: "%{number} poster exporterades framgångsrikt till budgetprojekt."
           new:
             create: Exportera till projekt
             no_components: Det finns inga andra budgetkomponenter i detta deltagande utrymme för att exportera objekten till projekt.
@@ -449,7 +449,7 @@ sv:
           success: "@%{user} har godkänts som deltagare."
         access_requested:
           error: Din begäran kunde inte behandlas, försök igen senare.
-          success: Din begäran om att få delta har skickats
+          success: Din begäran om att få delta har skickats.
         reject_request: Avslå
         rejected_request:
           error: Deltagaren kunde inte avslås, försök igen senare.
@@ -499,20 +499,20 @@ sv:
           new: Nytt avsnitt
       section_types:
         content: Innehåll
-        field_area_scope: Fält - Area scope
+        field_area_scope: Fält - Områdesomfång
         field_attachments: Fält - Bilagor
-        field_category: Fält - Category
+        field_category: Fält - Kategori
         field_checkbox: Fält - Checkbox
         field_currency: Fält - Valuta
         field_image_attachments: Fält - Image attachments
-        field_map_point: Fält - Map point
+        field_map_point: Fält - Kartpunkt
         field_number: Fält - Nummer
-        field_scope: Fält - Scope
+        field_scope: Fält - Omfång
         field_tags: Fält - Taggar
         field_text_multiline: Fält - Med flera rader
         field_text: Fält - Med en rad
         field_title: Fält - Titel
-        link_proposals: Länk proposals
+        link_proposals: Länk förslag
       shared:
         attachment_fields:
           attachment_legend: Bilaga
