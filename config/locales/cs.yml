@@ -81,30 +81,30 @@ cs:
             title_text: Text nadpisu
           step:
             announcement: Oznámení
-            comments_blocked: Comments blocked
-            creation_enabled: Creation enabled
-            plan_answering_enabled: Answering enabled
+            comments_blocked: Komentáře blokovány
+            creation_enabled: Vytvoření povoleno
+            plan_answering_enabled: Odpověď povolena
     filters:
       linked_classes:
-        plan: Proposals
+        plan: Návrhy
     participatory_processes:
       statistics:
-        plans_accepted: Accepted proposals
-        plans_count: Proposals
+        plans_accepted: Přijaté návrhy
+        plans_count: Návrhy
     plans:
       actions:
-        answer: Answer
-        back: Back
-        confirm_destroy: Are you sure you want to delete this?
-        close_plan: Mark as done
-        destroy: Delete
-        edit: Edit
-        edit_plan: Edit
-        export_budgets: Convert to projects
-        manage_authors: Manage authors
-        new: Submit new proposal
-        taggings: Tags
-        remove_author: Remove author
+        answer: Odpověď
+        back: Zpět
+        confirm_destroy: Opravdu to chcete smazat?
+        close_plan: Označit jako hotové
+        destroy: Vymazat
+        edit: Upravit
+        edit_plan: Upravit
+        export_budgets: Převést na projekty
+        manage_authors: Spravovat autory
+        new: Odeslat nový návrh
+        taggings: Štítky
+        remove_author: Odstranit autora
         reopen_plan: Open for editing
         sections: Sections
         title: Actions
