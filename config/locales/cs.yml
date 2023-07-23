@@ -105,37 +105,37 @@ cs:
         new: Odeslat nový návrh
         taggings: Štítky
         remove_author: Odstranit autora
-        reopen_plan: Open for editing
-        sections: Sections
-        title: Actions
+        reopen_plan: Otevřít pro úpravy
+        sections: Sekce
+        title: Akce
       admin:
         actions:
-          preview: Preview
+          preview: Náhled
         authors:
           create:
             buttons:
-              add_authors: Add authors
-              cancel: Cancel
-            description: Check that you have selected the correct factors and press the "%{button_name}" button at the bottom of the screen.
-            title: Add authors for proposal
+              add_authors: Přidat autory
+              cancel: Zrušit
+            description: Zkontrolujte, zda jste vybrali správné faktory a v dolní části obrazovky stiskněte tlačítko "%{button_name}.
+            title: Přidat autory návrhu
           index:
-            add_author: Add author
-            organization_author: Organization as author
-            title: Manage authors for proposal
+            add_author: Přidat autora
+            organization_author: Organizace jako autor
+            title: Spravovat autory návrhu
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects.
-            success: "%{number} items successfully exported into budgeting projects."
+            invalid: Vyskytl se problém při exportu položek do rozpočtových projektů.
+            success: "%{number} položek bylo úspěšně exportováno do rozpočtových projektů."
           new:
-            create: Export to projects
-            no_components: There are no other budgets components in this participatory space to export the items into projects.
-            select_budget: Please select a budget
-            select_component: Please select a component
+            create: Exportovat do projektů
+            no_components: V tomto participačním prostoru nejsou žádné další složky rozpočtu na export položek do projektů.
+            select_budget: Vyberte rozpočet
+            select_component: Vyberte komponentu
         exports:
-          plans: Proposals
+          plans: Návrhy
         plan_answers:
           edit:
-            accepted: Accepted
+            accepted: Přijato
             answer_plan: Answer
             evaluating: Evaluating
             rejected: Rejected
