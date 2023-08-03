@@ -215,24 +215,24 @@ cs:
         filter_type_values:
           all: Vše
           amendments: Pozměňovací návrhy
-          plans: Proposals
+          plans: Návrhy
       attachment_input_types:
-        single: Single attachment
-        multi: Multiple attachments
+        single: Jednotlivá příloha
+        multi: Více příloh
       attachments:
         documents:
-          one: Document
+          one: Dokument
           few: Documents
           many: Documents
           other: Documents
-        download: Download file
-        related_documents: Related documents
-        related_photos: Related images
+        download: Stáhnout soubor
+        related_documents: Související dokumenty
+        related_photos: Související obrázky
       attached_proposals_helper:
-        attach_proposal: Attach proposal
-        close: Close
-        current_selection: Search proposals by name
-        select: Select
+        attach_proposal: Připojit návrh
+        close: Zavřít
+        current_selection: Hledat návrhy podle jména
+        select: Vybrat
       create:
         invalid: Failed to create new content.
         success: Created successfully.
