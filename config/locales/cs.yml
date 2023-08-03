@@ -136,19 +136,19 @@ cs:
         plan_answers:
           edit:
             accepted: Přijato
-            answer_plan: Answer
-            evaluating: Evaluating
-            rejected: Rejected
-            title: Answer for %{title}
+            answer_plan: Odpověď
+            evaluating: Hodnocení
+            rejected: Odmítnuto
+            title: Odpověď na %{title}
         plans:
           answer:
-            invalid: Error occured while answering.
-            success: Answered successfully.
+            invalid: Při odpovědi došlo k chybě.
+            success: Odpovězeno úspěšně.
           edit:
-            title: Edit
-            update: Update
+            title: Upravit
+            update: Aktualizovat
           form:
-            attachment_legend: Add an attachment
+            attachment_legend: Přidat přílohu
             select_a_category: Vyberte kategorii
           index:
             draft_plans: Koncepty
@@ -195,10 +195,10 @@ cs:
       admin_log:
         plan:
           answer: "%{user_name} odpověděl %{resource_name} ve skupině %{space_name}."
-          create: "%{user_name} created %{resource_name} on the %{space_name} space."
-          update: "%{user_name} updated %{resource_name} on the %{space_name} space."
+          create: "%{user_name} vytvořil %{resource_name} ve skupině %{space_name}."
+          update: "%{user_name} aktualizoval %{resource_name} ve skupině %{space_name}."
         plan_note:
-          create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
+          create: "%{user_name} zanechal soukromou poznámku %{resource_name} ve skupině %{space_name}."
       answers:
         accepted: Přijato
         evaluating: Hodnocení
