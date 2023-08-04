@@ -240,15 +240,15 @@ cs:
         show:
           back: Zpět na předchozí stránku
       last_activity:
-        new_plan_at_html: "<span>New proposal at %{link}</span>"
+        new_plan_at_html: "<span>Nový návrh v %{link}</span>"
       layouts:
-        default: Default layout
+        default: Výchozí rozvržení
       models:
         plan:
           fields:
-            author_name: Author's name
-            author_nickname: Author's nickname
-            authors: Authors
+            author_name: Jméno autora
+            author_nickname: Přezdívka autora
+            authors: Autoři
             authors_label: 'Amount of authors: %{count}'
             category: Category
             comments: Comments
