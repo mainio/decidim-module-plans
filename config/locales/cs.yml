@@ -251,12 +251,12 @@ cs:
             authors: Autoři
             authors_label: 'Počet autorů: %{count}'
             category: Kategorie
-            comments: Comments
-            contributions: Contributions
-            contributions_label: 'Amount of contributions: %{count}'
+            comments: Komentáře
+            contributions: Příspěvky
+            contributions_label: 'Množství příspěvků: %{count}'
             id: ID
-            notes: Notes
-            official_plan: Official proposal
+            notes: Poznámky
+            official_plan: Oficiální návrh
             published_at: Published at
             scope: Scope
             state: State
