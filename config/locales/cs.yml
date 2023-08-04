@@ -249,8 +249,8 @@ cs:
             author_name: Jméno autora
             author_nickname: Přezdívka autora
             authors: Autoři
-            authors_label: 'Amount of authors: %{count}'
-            category: Category
+            authors_label: 'Počet autorů: %{count}'
+            category: Kategorie
             comments: Comments
             contributions: Contributions
             contributions_label: 'Amount of contributions: %{count}'
