@@ -257,27 +257,27 @@ cs:
             id: ID
             notes: Poznámky
             official_plan: Oficiální návrh
-            published_at: Published at
-            scope: Scope
-            state: State
-            tags: Tags
-            title: Title
+            published_at: Publikováno v
+            scope: Oblast působnosti
+            state: Stav
+            tags: Štítky
+            title: Název
       plan_add_authors:
-        add_users_placeholder: Write the author's name or nickname
-        close_window: Close window
-        label: Search for authors
-        modal_title: Add authors for proposal
-        next: Next
-        no_results: No authors found matching your search.
+        add_users_placeholder: Napište jméno nebo přezdívku autora
+        close_window: Zavřít okno
+        label: Hledat autory
+        modal_title: Přidat autory návrhu
+        next: Další
+        no_results: Nebyli nalezeni žádní autoři odpovídající vašemu hledání.
       plan_form:
         buttons:
-          create: Preview
-          discard: Discard this draft
-          discard_confirmation: Are you sure you want to discard this draft?
-          loading_message: Saving... Processing of images and attachments takes a while, please wait.
-          save: Save
-          save_draft: Save as draft
-          you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
+          create: Náhled
+          discard: Zahodit koncept
+          discard_confirmation: Opravdu chcete zahodit tento koncept?
+          loading_message: Ukládání... Zpracování obrázků a příloh zabere chvilku, čekejte prosím.
+          save: Uložit
+          save_draft: Uložit jako koncept
+          you_can_invite_others: Pokud jako skupina předkládáte návrh, můžete vyzvat ostatní, aby na návrhu spolupracovali.
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
         info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
