@@ -234,11 +234,11 @@ cs:
         current_selection: Hledat návrhy podle jména
         select: Vybrat
       create:
-        invalid: Failed to create new content.
-        success: Created successfully.
+        invalid: Nepodařilo se vytvořit nový obsah.
+        success: Úspěšně vytvořeno.
       info:
         show:
-          back: Back to previous page
+          back: Zpět na předchozí stránku
       last_activity:
         new_plan_at_html: "<span>New proposal at %{link}</span>"
       layouts:
