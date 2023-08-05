@@ -428,35 +428,35 @@ cs:
           request_access: Žádost o oprávnění k úpravám
           requested_access: Oprávnění k úpravám vyžádáno
           see_other_versions: viz ostatní verze
-          version: Version %{number}
-          version_history: see version history
-          withdraw: withdraw the proposal
-          withdraw_btn: Withdraw proposal
-          withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
-          withdraw_confirmation: Are you sure you want to withdraw this proposal? The proposal won't be deleted but it will be hidden in the proposals listing.
+          version: Verze %{number}
+          version_history: viz historie verzí
+          withdraw: stáhnout návrh
+          withdraw_btn: Stáhnout návrh
+          withdraw_btn_hint: Tuto položku můžete stáhnout, pokud změníte názor, pokud jste neobdrželi žádnou podporu. Položka není smazána, zobrazí se v seznamu stažených položek.
+          withdraw_confirmation: Opravdu chcete stáhnout tento návrh? Návrh nebude odstraněn, ale bude skrytý v seznamu návrhů.
         update:
-          error: Error updating content.
-          success: Updated successfully.
+          error: Chyba při aktualizaci obsahu.
+          success: Aktualizováno úspěšně.
         withdraw:
-          error: Error withdrawing the item.
-          success: Item withdrawn successfully.
+          error: Chyba při stahování položky.
+          success: Položka byla úspěšně stažena.
       plans_picker:
-        choose_plans: Choose proposals
-        close: Close
-        more_plans: There are %{number} more proposals. Refine your search to locate them.
-        no_plans: No proposals match your search criteria or there isn't any proposals.
+        choose_plans: Vybrat návrhy
+        close: Zavřít
+        more_plans: K dispozici je více návrhů (%{number}). Upřesněte svoje vyhledávání, abyste je našli.
+        no_plans: Vašim kritériím vyhledávání neodpovídají žádné návrhy nebo žádné nejsou k dispozici.
       plans_picker_field:
-        attach_plan: Choose proposals
-        plans: Proposals
+        attach_plan: Vybrat návrhy
+        plans: Návrhy
       requests:
-        accept_request: Accept
+        accept_request: Přijmout
         accepted_request:
-          error: Could not be accepted as a collaborator, try again later.
-          success: "@%{user} has been successfully accepted as a collaborator."
+          error: Nelze přijmout jako spolupracovníka, zkuste to znovu později.
+          success: "@%{user} byl úspěšně přijat jako spolupracovník."
         access_requested:
-          error: Your request could not be completed, try again later.
-          success: Your request to collaborate has been sent successfully.
-        reject_request: Reject
+          error: Váš požadavek nelze dokončit, zkuste to znovu později.
+          success: Váš požadavek na spolupráci byl úspěšně odeslán.
+        reject_request: Odmítnout
         rejected_request:
           error: Could not be rejected as a collaborator, try again later.
           success: "@%{user} has been successfully rejected as a collaborator."
