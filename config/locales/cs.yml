@@ -346,33 +346,33 @@ cs:
             many: "%{count} proposals"
             other: "%{count} proposals"
         create:
-          error: Failed to create new content.
-          success: Created successfully.
+          error: Nepodařilo se vytvořit nový obsah.
+          success: Úspěšně vytvořeno.
         destroy:
-          error: Error deleting the item.
-          success: Deleted successfully.
+          error: Chyba při odstraňování položky.
+          success: Úspěšně odstraněno.
         disjoin:
-          success: There was an error leaving the proposal.
-          error: You have been successfully removed as an author from this proposal.
+          success: Při opuštění návrhu došlo k chybě.
+          error: Byl jste úspěšně odstraněn jako autor z tohoto návrhu.
         edit:
-          back: Back to proposal
-          material_title: Information to support your proposal
-          sign_in: Sign in
-          sign_in_before_submitting: You need to sign in before submitting a proposal
-          title: Edit proposal
-          update: Update
+          back: Zpět na návrh
+          material_title: Informace na podporu vašeho návrhu
+          sign_in: Přihlásit se
+          sign_in_before_submitting: Před odesláním návrhu se musíte přihlásit
+          title: Upravit návrh
+          update: Aktualizovat
         evaluation_modal:
           button_text: OK
-          close: Close modal
-          description: The proposal is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
-          title: The proposal is being evaluated
+          close: Zavřít modální okno
+          description: Návrh je hodnocen a nemůže být během této doby upraven. Po dokončení hodnocení budete informováni.
+          title: Návrh je hodnocen
         form:
-          attachment_legend: Add an attachment
-          select_a_category: Select a category
+          attachment_legend: Přidat přílohu
+          select_a_category: Vyberte kategorii
         linked_plans:
-          plan_authors: Number of authors
+          plan_authors: Počet autorů
         new:
-          back: Back to proposals list
+          back: Zpět na seznam návrhů
           create: Create
           title: Create proposal
         new_plan_button:
