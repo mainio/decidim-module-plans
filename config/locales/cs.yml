@@ -278,13 +278,13 @@ cs:
           save: Uložit
           save_draft: Uložit jako koncept
           you_can_invite_others: Pokud jako skupina předkládáte návrh, můžete vyzvat ostatní, aby na návrhu spolupracovali.
-        characters_min: "(at least %count% characters required)"
-        characters_used: "%count%/%total% characters used"
+        characters_min: "(je vyžadováno alespoň %count% znaků)"
+        characters_used: "použito %count%/%total% znaků"
         info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
-        required_fields_text: Required fields are marked with the star * character.
+        required_fields_text: Povinná pole jsou označena znakem hvězdičky *.
       plan_index:
-        draft_plan_title: You have a proposal draft!
-        draft_plan_continue: Continue your proposal
+        draft_plan_title: Máte koncept návrhu!
+        draft_plan_continue: Pokračujte v návrhu
         draft_plan_description: You have previously saved a proposal as a draft. You can now continue writing it.
         filters:
           activity:
