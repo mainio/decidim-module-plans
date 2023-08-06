@@ -498,32 +498,32 @@ cs:
           add_attachment: Přidat obrázek
           add_attachment_multi: Přidat obrázky
           attachment_legend: Obrázek
-          attachment_legend_multi: Images
-          edit_attachment: Change image
-          edit_attachment_multi: Change images
-          remove: Remove
+          attachment_legend_multi: Obrázky
+          edit_attachment: Změnit obrázek
+          edit_attachment_multi: Změnit obrázky
+          remove: Odebrat
       sections:
         actions:
-          new: New section
+          new: Nová sekce
       section_types:
-        content: Content
-        field_area_scope: Field - Area scope
-        field_attachments: Field - Attachments
-        field_category: Field - Category
-        field_checkbox: Field - Checkbox
-        field_currency: Field - Currency
-        field_image_attachments: Field - Image attachments
-        field_map_point: Field - Map point
-        field_number: Field - Number
-        field_scope: Field - Scope
-        field_tags: Field - Tags
-        field_text_multiline: Field - Multiple lines
-        field_text: Field - Single line
-        field_title: Field - Title
-        link_proposals: Link proposals
+        content: Obsah
+        field_area_scope: Pole - rozsah působnosti
+        field_attachments: Pole - Přílohy
+        field_category: Pole - Kategorie
+        field_checkbox: Pole - zaškrtávací políčko
+        field_currency: Pole - Měna
+        field_image_attachments: Pole - přílohy obrázku
+        field_map_point: Pole - bod na mapě
+        field_number: Pole - číslo
+        field_scope: Pole - Oblast působnosti
+        field_tags: Pole - štítky
+        field_text_multiline: Pole - více řádků
+        field_text: Pole - Jedna řádka
+        field_title: Pole - Název
+        link_proposals: Odkazy návrhů
       shared:
         attachment_fields:
-          attachment_legend: Attachment
+          attachment_legend: Příloha
           down: Down
           remove: Remove
           up: Up
