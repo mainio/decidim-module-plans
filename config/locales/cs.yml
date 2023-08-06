@@ -408,10 +408,10 @@ cs:
           success: Successfully removed the author from the proposal.
         show:
           back: Back to proposals list
-          close: Mark as done
-          close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
-          disjoin: Leave the proposal as an author
-          disjoin_confirm: Are you sure you want to leave this proposal? After leaving the proposal, you can no longer edit it.
+          close: Označit jako dokončené
+          close_confirm: Opravdu chcete označit tuto položku za hotovou? Po označení již nelze položku upravovat.
+          disjoin: Opustit návrh jako autor
+          disjoin_confirm: Opravdu chcete opustit tento návrh? Po opuštění návrhu jej již nemůžete upravovat.
           edit: Upravit
           hidden_authors_count:
             one: and %{count} more person
@@ -460,17 +460,17 @@ cs:
         rejected_request:
           error: Could not be rejected as a collaborator, try again later.
           success: "@%{user} has been successfully rejected as a collaborator."
-        title: Collaboration requests
+        title: Žádosti o spolupráci
       section_type_display:
         field_attachments:
           documents:
-            one: Document
-            few: Documents
-            many: Documents
-            other: Documents
-          download: Download
-          related_documents: Related documents
-          related_photos: Related photos
+            one: Dokument
+            few: Dokumenty
+            many: Dokumentů
+            other: Dokumentů
+          download: Stáhnout
+          related_documents: Související dokumenty
+          related_photos: Související fotky
         field_checkbox:
           'no': 'Ne'
           'yes': 'Ano'
@@ -492,12 +492,12 @@ cs:
           select_a_sub_category: Vyberte podmotiv
           sub_category_label: Vyberte podmotiv
         field_map_point:
-          address_lookup_button: Lookup
-          reset_field: Reset field
+          address_lookup_button: Vyhledat
+          reset_field: Obnovit pole
         field_image_attachments:
-          add_attachment: Add image
-          add_attachment_multi: Add images
-          attachment_legend: Image
+          add_attachment: Přidat obrázek
+          add_attachment_multi: Přidat obrázky
+          attachment_legend: Obrázek
           attachment_legend_multi: Images
           edit_attachment: Change image
           edit_attachment_multi: Change images
