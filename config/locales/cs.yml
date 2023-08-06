@@ -412,7 +412,7 @@ cs:
           close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
           disjoin: Leave the proposal as an author
           disjoin_confirm: Are you sure you want to leave this proposal? After leaving the proposal, you can no longer edit it.
-          edit: Edit
+          edit: Upravit
           hidden_authors_count:
             one: and %{count} more person
             few: and %{count} more people
@@ -472,25 +472,25 @@ cs:
           related_documents: Related documents
           related_photos: Related photos
         field_checkbox:
-          'no': 'No'
-          'yes': 'Yes'
+          'no': 'Ne'
+          'yes': 'Ano'
         field_image_attachments:
-          related_photos: Related photos
+          related_photos: Související fotky
       section_type_edit:
         common:
-          show_help: Show detailed questions
+          show_help: Zobrazit podrobné otázky
         field_attachments:
-          add_attachment: Add attachment
-          add_attachment_multi: Add attachments
-          attachment_legend: Attachment
-          attachment_legend_multi: Attachments
-          edit_attachment: Change attachment
-          edit_attachment_multi: Change attachments
-          remove: Remove
+          add_attachment: Přidat přílohu
+          add_attachment_multi: Přidat přílohy
+          attachment_legend: Příloha
+          attachment_legend_multi: Přílohy
+          edit_attachment: Změnit přílohu
+          edit_attachment_multi: Změnit přílohy
+          remove: Odebrat
         field_category:
-          select_a_category: Choose a primary theme
-          select_a_sub_category: Choose a subtheme
-          sub_category_label: Choose a subtheme
+          select_a_category: Vyberte hlavní motiv
+          select_a_sub_category: Vyberte podmotiv
+          sub_category_label: Vyberte podmotiv
         field_map_point:
           address_lookup_button: Lookup
           reset_field: Reset field
