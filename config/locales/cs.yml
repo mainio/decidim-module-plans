@@ -524,25 +524,25 @@ cs:
       shared:
         attachment_fields:
           attachment_legend: Příloha
-          down: Down
-          remove: Remove
-          up: Up
+          down: Dolů
+          remove: Odebrat
+          up: Nahoru
         attachments:
-          legend: Attachments
-          add_attachment: Add attachment
+          legend: Přílohy
+          add_attachment: Přidat přílohu
       update:
-        invalid: Error updating content.
-        success: Updated successfully.
+        invalid: Chyba při aktualizaci obsahu.
+        success: Úspěšně aktualizováno.
       versions:
         changes_at_title: Changes at "%{title}"
         index:
-          title: Versions
+          title: Verze
         stats:
-          back_to_plan: Back to proposal
-          number_of_versions: Versions
-          show_all_versions: Show all versions
-          version_author: Version author
-          version_created_at: Version created at
+          back_to_plan: Zpět na návrh
+          number_of_versions: Verze
+          show_all_versions: Zobrazit všechny verze
+          version_author: Autor verze
+          version_created_at: Verze vytvořena v
           version_number: Version number
           version_number_out_of_total: "%{current_version} out of %{total_count}"
         version:
