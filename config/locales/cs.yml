@@ -546,16 +546,16 @@ cs:
           version_number: Version number
           version_number_out_of_total: "%{current_version} out of %{total_count}"
         version:
-          version_index: Version %{index}
+          version_index: Verze %{index}
     resource_links:
       included_proposals:
-        plan_proposal: Related proposals
-        proposal_plan: Related proposals
+        plan_proposal: Související návrhy
+        proposal_plan: Související návrhy
     scopes:
-      global: Global
+      global: Globalní
     statistics:
-      plans_accepted: Accepted proposals
-      plans_count: Proposals
+      plans_accepted: Přijaté návrhy
+      plans_count: Návrhy
     events:
       plans:
         plan_access_accepted:
