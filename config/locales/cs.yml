@@ -543,8 +543,8 @@ cs:
           show_all_versions: Zobrazit všechny verze
           version_author: Autor verze
           version_created_at: Verze vytvořena v
-          version_number: Version number
-          version_number_out_of_total: "%{current_version} out of %{total_count}"
+          version_number: Číslo verze
+          version_number_out_of_total: "%{current_version} z %{total_count}"
         version:
           version_index: Verze %{index}
     resource_links:
