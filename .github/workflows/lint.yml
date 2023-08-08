@@ -16,16 +16,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Lint code
+  main:
+    name: Lint
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v3
+      - uses: mainio/gha-decidim-module/lint@main
         with:
-          fetch-depth: 1
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Run Rubocop
-        run: bundle exec rubocop -P
+          eslint: true
+          stylelint: true
