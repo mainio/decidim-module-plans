@@ -407,7 +407,7 @@ cs:
           error: Došlo k chybě při odstraňování autora z návrhu.
           success: Successfully removed the author from the proposal.
         show:
-          back: Back to proposals list
+          back: Zpět na seznam návrhů
           close: Označit jako dokončené
           close_confirm: Opravdu chcete označit tuto položku za hotovou? Po označení již nelze položku upravovat.
           disjoin: Opustit návrh jako autor
