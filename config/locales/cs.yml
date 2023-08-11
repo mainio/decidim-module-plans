@@ -458,8 +458,8 @@ cs:
           success: Váš požadavek na spolupráci byl úspěšně odeslán.
         reject_request: Odmítnout
         rejected_request:
-          error: Could not be rejected as a collaborator, try again later.
-          success: "@%{user} has been successfully rejected as a collaborator."
+          error: Nelze odmítnout jako spolupracovníka, zkuste to znovu později.
+          success: "@%{user} byl úspěšně odmítnut jako spolupracovník."
         title: Žádosti o spolupráci
       section_type_display:
         field_attachments:
@@ -534,7 +534,7 @@ cs:
         invalid: Chyba při aktualizaci obsahu.
         success: Úspěšně aktualizováno.
       versions:
-        changes_at_title: Changes at "%{title}"
+        changes_at_title: Změny v "%{title}"
         index:
           title: Verze
         stats:
