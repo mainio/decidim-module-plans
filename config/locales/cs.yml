@@ -341,10 +341,10 @@ cs:
           title: Přidat autory návrhu %{plan}
         count:
           plans_count:
-            one: "%{count} proposal"
-            few: "%{count} proposals"
-            many: "%{count} proposals"
-            other: "%{count} proposals"
+            one: "%{count} návrh"
+            few: "%{count} návrhy"
+            many: "%{count} návrhů"
+            other: "%{count} návrhů"
         create:
           error: Nepodařilo se vytvořit nový obsah.
           success: Úspěšně vytvořeno.
@@ -397,7 +397,7 @@ cs:
             success: Úspěšně staženo.
         plans:
           empty: Zatím nejsou žádné návrhy
-          empty_filters: There are no proposals with this criteria
+          empty_filters: S těmito kritérii nejsou žádné návrhy
         preview:
           not_published: Your proposal has not yet been published
           not_published_description: Your proposal has been saved as a draft. It needs to be published for it to appear on the site.
