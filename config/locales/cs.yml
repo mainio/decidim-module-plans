@@ -571,8 +571,8 @@ cs:
         plan_access_rejected:
           email_intro: '%{requester_name} has been rejected editing proposal <a href="%{resource_url}">%{resource_title}</a>.'
           email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been rejected to contribute in %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} byl odmítnut k přispění v %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> byl <strong>odmítnut přístup jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} requested contributor access. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
           email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
@@ -599,13 +599,13 @@ cs:
           email_subject: Zdroj který sledujete je hodnocen
           notification_title: <a href="%{resource_url}">%{resource_title}</a> se vyhodnocuje.
         plan_published:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A user you're following has published a resource
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete autora "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Uživatel, kterého sledujete, zveřejnil zdroj
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_published_author:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you created "%{resource_title}".
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože jste vytvořili "%{resource_title}".
           email_subject: Váš návrh byl zveřejněn
           notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_published_for_proposals:
@@ -616,10 +616,10 @@ cs:
         plan_published_for_space:
           email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
           email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
-          email_subject: A resource you're following has been published
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_subject: Zdroj, který sledujete, byl zveřejněn
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_rejected:
-          email_intro: '"%{resource_title}" has been rejected. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been rejected
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been rejected.
+          email_intro: '"%{resource_title}" bylo odmítnut. Odpověď si můžete přečíst na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj, který sledujete, byl odmítnut
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl odmítnut.
