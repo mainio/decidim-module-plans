@@ -575,9 +575,9 @@ cs:
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
           email_intro: '%{requester_name} requested contributor access. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
-          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
+          email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} požádal o přístup k příspění k %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> požádal o přístup k přispění do <a href="%{resource_url}">%{resource_title}</a>. Prosím, <strong>žádost přijměte nebo odmítněte</strong>.
         plan_access_requester_accepted:
           email_intro: You have been accepted to contribute in <a href="%{resource_url}">%{resource_title}</a>.
           email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
@@ -589,15 +589,15 @@ cs:
           email_subject: You have been rejected from contributing to %{resource_title}.
           notification_title: You have been <strong>rejected from contributing</strong> to <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
-          email_intro: '"%{resource_title}" has been accepted. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been accepted
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been accepted.
+          email_intro: '"%{resource_title}" byl přijat. Odpověď si můžete přečíst na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj kjterý sledujete byl přijat
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl přijat.
         plan_evaluating:
-          email_intro: '"%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following is being evaluated
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> is being evaluated.
+          email_intro: '"%{resource_title}" se právě hodnotí. Můžete zkontrolovat odpověď na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj který sledujete je hodnocen
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> se vyhodnocuje.
         plan_published:
           email_intro: '"%{resource_title}" has been published. You can see it here:'
           email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
@@ -606,16 +606,16 @@ cs:
         plan_published_author:
           email_intro: '"%{resource_title}" has been published. You can see it here:'
           email_outro: You have received this notification because you created "%{resource_title}".
-          email_subject: Your proposal has been published
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_subject: Váš návrh byl zveřejněn
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_published_for_proposals:
-          email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.
-          email_subject: A proposal you have authored has been linked to new content
-          notification_title: A proposal you have authored has been linked to <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Návrh, kterého jste autorem, byl propojen s "%{resource_title}". Můžete jej vidět zde:'
+          email_outro: Toto oznámení jste obdrželi, protože sledujete "%{resource_title}" prostřednictvím autorizovaných návrhů. Můžete skedování zrušit z předchozího odkazu.
+          email_subject: Návrh, který jste vytvořili, byl propojen s novým obsahem
+          notification_title: Návrh, kterého jste autorem, byl propojen s <a href="%{resource_url}">%{resource_title}</a>.
         plan_published_for_space:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
           email_subject: A resource you're following has been published
           notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
         plan_rejected:
