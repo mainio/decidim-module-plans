@@ -399,13 +399,13 @@ cs:
           empty: Zatím nejsou žádné návrhy
           empty_filters: S těmito kritérii nejsou žádné návrhy
         preview:
-          not_published: Your proposal has not yet been published
-          not_published_description: Your proposal has been saved as a draft. It needs to be published for it to appear on the site.
+          not_published: Váš návrh ještě nebyl zveřejněn
+          not_published_description: Váš návrh byl uložen jako koncept. Musí být zveřejněn, aby se mohl zobrazit na webu.
           modify: Změnit
           publish: Publikovat
         remove_author:
           error: Došlo k chybě při odstraňování autora z návrhu.
-          success: Successfully removed the author from the proposal.
+          success: Autor byl úspěšně odstraněn z návrhu.
         show:
           back: Zpět na seznam návrhů
           close: Označit jako dokončené
