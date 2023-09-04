@@ -9,6 +9,7 @@ module Decidim
       delegate(
         :current_user,
         :user_signed_in?,
+        :user_public?,
         :component_settings,
         :current_component,
         :snippets,
@@ -27,6 +28,14 @@ module Decidim
 
       def contents_edit
         render :contents_edit
+      end
+
+      def sign_in_box
+        render :sign_in_box
+      end
+
+      def sign_in_box
+        render :profile_publicity_box
       end
 
       private

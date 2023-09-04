@@ -16,8 +16,9 @@ module Decidim
       include Decidim::Orderable
       include Plans::Orderable
       include Paginable
+      include UserPublicityHelper
 
-      helper_method :trigger_feedback?
+      helper_method :trigger_feedback?, :user_public?
 
       before_action :authenticate_user!, only: [:create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :check_draft, only: [:new]
@@ -48,7 +49,7 @@ module Decidim
       end
 
       def new
-        if component_settings.form_preview_allowed? && !user_signed_in?
+        if component_settings.form_preview_allowed? && (!user_signed_in? || !user_public?)
           @preview = true
         else
           enforce_permission_to :create, :plan

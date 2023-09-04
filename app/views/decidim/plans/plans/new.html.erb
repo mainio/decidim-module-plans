@@ -33,8 +33,10 @@
     <div class="columns small-12 large-8">
       <div class="resource__main">
         <%= decidim_form_for(@form, html: { class: "plans-form" }) do |form| %>
-          <% unless user_signed_in? %>
+          <% if !user_signed_in? %>
             <%== render_plan_form(form, @plan).sign_in_box %>
+          <% elsif !user_public? %>
+            <%== render_plan_form(form, @plan).profile_publicity_box %>
           <% end %>
 
           <%= render partial: "form", object: form %>
@@ -44,4 +46,19 @@
   </div>
 </div>
 
-<%= javascript_pack_tag "decidim_plans_plans_form" if user_signed_in? %>
+<% if user_signed_in? %>
+  <% if user_public? %>
+    <%= javascript_pack_tag "decidim_plans_plans_form" %>
+  <% else %>
+    <% content_for :js_content do %>
+      <script>
+        $(() => {
+          const button = document.querySelector("[data-open='publishAccountModal']");
+          setTimeout(() => {
+            button.click();
+          }, 1000);
+        });
+      </script>
+    <% end %>
+  <% end %>
+<% end %>

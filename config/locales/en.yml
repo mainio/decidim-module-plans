@@ -366,7 +366,9 @@ en:
           error: You have been successfully removed as an author from this proposal.
         edit:
           back: Back to proposal
+          make_profile_public: Make your profile public
           material_title: Information to support your proposal
+          public_profile_required: Public activity on this platform requires you to make your profile public. Making a suggestion is a public activity.
           sign_in: Sign in
           sign_in_before_submitting: You need to sign in before submitting a proposal
           title: Edit proposal

@@ -3,6 +3,8 @@
 module Decidim
   module Plans
     class Permissions < Decidim::DefaultPermissions
+      include Decidim::Plans::UserPublicityHelper
+
       def permissions
         # Delegate the admin permission checks to the admin permissions class
         return Decidim::Plans::Admin::Permissions.new(user, permission_action, context).permissions if permission_action.scope == :admin
@@ -63,7 +65,7 @@ module Decidim
       end
 
       def can_create_plan?
-        toggle_allow(authorized?(:create) && current_settings&.creation_enabled?)
+        toggle_allow(authorized?(:create) && current_settings&.creation_enabled? && user_public?)
       end
 
       def can_edit_plan?

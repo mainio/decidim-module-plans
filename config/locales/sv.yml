@@ -362,7 +362,9 @@ sv:
           error: Du har tagits bort som författare från detta förslag.
         edit:
           back: Tillbaka till förslaget
+          make_profile_public: Gör din profil offentlig
           material_title: Information för att stödja ditt förslag
+          public_profile_required: Public activity on this platform requires you to make your profile public. Making a suggestion is a public activity.
           sign_in: Logga in
           sign_in_before_submitting: Du måste logga in innan du skickar in ett förslag
           title: Redigera förslaget
