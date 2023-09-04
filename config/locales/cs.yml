@@ -587,7 +587,7 @@ cs:
           email_intro: You have been rejected from contributing to <a href="%{resource_url}">%{resource_title}</a>.
           email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: You have been rejected from contributing to %{resource_title}.
-          notification_title: You have been <strong>rejected from contributing</strong> to <a href="%{resource_url}">%{resource_title}</a>.
+          notification_title: Byli jste <strong>odmítnuti z přispívání</strong> do <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" byl přijat. Odpověď si můžete přečíst na této stránce:'
           email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
