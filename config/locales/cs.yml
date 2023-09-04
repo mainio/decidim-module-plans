@@ -414,10 +414,10 @@ cs:
           disjoin_confirm: Opravdu chcete opustit tento návrh? Po opuštění návrhu jej již nemůžete upravovat.
           edit: Upravit
           hidden_authors_count:
-            one: and %{count} more person
-            few: and %{count} more people
-            many: and %{count} more people
-            other: and %{count} more people
+            one: a %{count} další osoba
+            few: a %{count} další osoby
+            many: a %{count} dalších osob
+            other: a %{count} dalších lidí
           of_versions: "(z %{number})"
           publish: Publikovat
           publish_info: Publikovat tuto verzi konceptu nebo
@@ -559,13 +559,13 @@ cs:
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} has been accepted to edit proposal <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been accepted to contribute in %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} byl přijat k úpravě návrhu <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} byl přijat k přispění v %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> bylo <strong>přijato pro příspěvek</strong> v <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_granted:
           email_intro: 'You have been given access to edit proposal <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you have been added as a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Obdrželi jste toto oznámení, protože jste byli přidáni jako spolupracovník v <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "You have been added as a collaborator in %{resource_title}."
           notification_title: You have been <strong>added as a collaborator</strong> in <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
