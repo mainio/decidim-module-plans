@@ -222,9 +222,9 @@ cs:
       attachments:
         documents:
           one: Dokument
-          few: Documents
-          many: Documents
-          other: Documents
+          few: Dokumenty
+          many: Dokumentů
+          other: Dokumentů
         download: Stáhnout soubor
         related_documents: Související dokumenty
         related_photos: Související obrázky
