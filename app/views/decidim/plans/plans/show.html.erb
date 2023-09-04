@@ -1,3 +1,9 @@
+<% if @plan.answered? %>
+  <% content_for :notification do %>
+    <%= render_plan_notification(@plan) %>
+  <% end %>
+<% end %>
+
 <% add_decidim_meta_tags({
   title: present(@plan).title,
   url: plan_url(@plan.id)
@@ -6,8 +12,6 @@
 <%= render_plan_view(@plan, trigger_feedback: trigger_feedback?) %>
 
 <%= comments_for @plan %>
-
-<%= cell("decidim/flag_modal", @plan) %>
 
 <% if @plan.editable_by?(current_user) && @plan.waiting_for_evaluation? %>
   <%= render partial: "evaluation_modal" %>

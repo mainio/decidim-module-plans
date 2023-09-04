@@ -1,1 +1,7 @@
-<%= cell "decidim/plans/plan_tags", model, context: { current_component: current_component } %>
+<% if answered? || model.tags.any? %>
+  <div class="card__tags">
+    <%= render :state if answered? %>
+
+    <%= cell("decidim/tags/tags", model) %>
+  </div>
+<% end %>

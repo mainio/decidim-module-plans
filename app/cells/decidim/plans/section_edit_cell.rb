@@ -26,8 +26,13 @@ module Decidim
         {
           id: "plan_section_answer_#{model.section.id}",
           label: false,
+          disabled: field_disabled?,
           help_text: tooltip_help? ? nil : model.help
         }
+      end
+
+      def field_disabled?
+        !user_signed_in?
       end
 
       # This is a wrapper method to print out correctly style "plain" labels

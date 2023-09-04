@@ -1,93 +1,101 @@
 <div class="row columns">
-  <div class="text-center">
-    <h2 class="heading1 page-title"><%= t ".title" %></h2>
+  <div class="page-title">
+    <h1 class="heading1"><%= t ".title" %></h1>
   </div>
 </div>
 
-<div class="row" data-equalizer>
+<div class="row medium-unstack content-intro">
   <div class="columns medium-6 mediumlarge-8">
-    <div class="card bg-primary fg-light" data-equalizer-watch>
-      <div class="card__content">
-        <h3 class="heading1"><%= t ".subtitle" %></h3>
-        <div class="lead">
-          <% if translated_attribute(component.settings.plan_listing_intro).present? %>
-            <%= decidim_sanitize translated_attribute(component.settings.plan_listing_intro) %>
-          <% end %>
-        </div>
-      </div>
+    <div class="text-large">
+      <% if translated_attribute(component.settings.plan_listing_intro).present? %>
+        <%= decidim_sanitize translated_attribute(component.settings.plan_listing_intro) %>
+      <% end %>
     </div>
   </div>
   <% if component.current_settings.creation_enabled && component.participatory_space.can_participate?(current_user) %>
     <div class="columns medium-6 mediumlarge-4">
-      <div class="card border-primary" data-equalizer-watch>
-        <div class="card__content text-center">
-          <% if draft_link %>
-            <p class="h3"><%= t ".draft_plan_title" %></p>
-            <p><%= t ".draft_plan_description" %></p>
-            <%= link_to t(".draft_plan_continue"), draft_link, class: "title-action__action button hollow large primary" %>
-          <% else %>
-            <p class="h3"><%= t(".leave_your_plan") %></p>
-            <%= link_to new_plan_path, class: "title-action__action button hollow large primary", data: { "redirect_url" => new_plan_path } do %>
-              <%= t(".new_plan") %>
-              <%= icon "plus", aria_label: t(".new_plan"), role: "img" %>
-            <% end %>
+      <div class="actions-panel bg-secondary">
+        <% if draft_link %>
+          <p><%= t ".draft_plan_title" %></p>
+          <%= link_to draft_link, class: "action-link" do %>
+            <span><%= t(".draft_plan_continue") %></span>
+            <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
           <% end %>
-        </div>
+        <% else %>
+          <%= link_to new_plan_path, class: "action-link", data: { "redirect_url" => new_plan_path } do %>
+            <span><%= t(".new_plan") %></span>
+            <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
 
-<% if has_geocoding? %>
-  <%= plans_map plans_data_for_map(geocoded_plans) do %>
-    <template id="marker-popup">
-      <div class="map-info__content">
-        <h3>${title}</h3>
-        <div id="bodyContent">
-          <p>{{html body}}</p>
-          <div class="map__date-adress">
-            <div class="address card__extra">
-              <div class="address__icon">{{html icon}}</div>
-              <div class="address__details">
-                <span>${address}</span><br>
-              </div>
-            </div>
-          </div>
-          <div class="map-info__button">
-            <a href="${link}" class="button button--sc">
-              <%= t(".view_plan") %>
-            </a>
-          </div>
-        </div>
-      </div>
-    </template>
-    <%= javascript_pack_tag "decidim_plans_map" %>
-  <% end %>
-<% end %>
-
-<div class="row columns">
-  <%= render :filters_small_view %>
-  <div class="card card--secondary show-for-mediumlarge">
+<div class="container bg-secondary filters-section">
+  <div class="row columns">
     <div class="plan-filters record-filters">
       <%= render :filters %>
     </div>
   </div>
 </div>
 
-<div class="row columns">
-  <div class="title-action">
-    <h2 id="plans-count" class="title-action__title section-heading">
-      <%= render :count %>
-    </h2>
-  </div>
-</div>
-<div class="row">
-  <div id="plans" class="columns">
-    <%= render :plans %>
-  </div>
-</div>
-<div class="row columns">
-  <div class="text-right">
-    <%= link_to t(".see_all_withdrawn"), plans_path(filter: { with_availability: "withdrawn", with_any_state: [""] }) %>
+<div class="container listing-section">
+  <div class="row columns">
+    <% if has_geocoding? %>
+      <ul class="tabs" data-tabs id="listing-tabs">
+        <li class="tabs-title is-active"><a data-tabs-target="plans-listing" href="#plans-listing" aria-selected="true"><%= t(".show_list") %></a></li>
+        <li class="tabs-title"><a data-tabs-target="plans-map" href="#plans-map"><%= t(".show_map") %></a></li>
+      </ul>
+    <% end %>
+
+    <div class="tabs-content" data-tabs-content="listing-tabs">
+      <div class="tabs-panel is-active" id="plans-listing">
+        <%= render :controls %>
+        <%= render :notification %>
+
+        <div id="plans-count">
+          <%= render :count %>
+        </div>
+        <div id="plans">
+          <div class="cards-list">
+            <%= render :plans %>
+          </div>
+        </div>
+        <div class="text-right">
+          <%= link_to t(".see_all_withdrawn"), plans_path(filter: { with_availability: "withdrawn", with_any_state: [""] }) %>
+        </div>
+      </div>
+
+      <% if has_geocoding? %>
+        <div class="tabs-panel" id="plans-map">
+          <%= render :notification %>
+
+          <%= plans_map plans_data_for_map(geocoded_plans) do %>
+            <template id="marker-popup">
+              <div class="map-info__content">
+                <h3>${title}</h3>
+                <div id="bodyContent">
+                  <p>{{html body}}</p>
+                  <div class="map__date-adress">
+                    <div class="address card__extra">
+                      <div class="address__icon">{{html icon}}</div>
+                      <div class="address__details">
+                        <span>${address}</span><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="map-info__button">
+                    <a href="${link}" class="button button--sc">
+                      <%= t(".view_plan") %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </template>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -67,6 +67,7 @@ sv:
             default_answer: Standardsvar för förslag
             default_answer_none: (Ingen)
             default_state: Standardtillstånd för förslag
+            form_preview_allowed: Tillåt formulärförhandsgranskning innan du loggar in
             layout: Layout
             multilingual_answers: Flerspråkiga svar
             plan_answering_enabled: Svar tillåtna
@@ -306,11 +307,23 @@ sv:
         leave_your_plan: Ge ditt eget förslag!
         new_plan: Nytt förslag
         see_all_withdrawn: Visa alla annullerade
-        subtitle: Sök och utforska förslag!
-        title: Bekanta dig med förslag
+        show_list: Visa resultat som lista
+        show_map: Visa resultat på kartan
+        title: Sök och utforska förslag
+        view_plan: Visa förslag
+      plan_l:
+        card_label: "Förslag: %{title}"
         view_plan: Visa förslag
       plan_m:
+        card_label: "Förslag: %{title}"
         view_plan: Visa förslag
+      plan_notification:
+        accepted:
+          title: Förslaget har godkänts
+        evaluating:
+          title: Förslaget bedöms
+        rejected:
+          title: Förslaget har avslagits
       plan_view:
         back: Gå till listan av förslag
         controls:
@@ -318,9 +331,6 @@ sv:
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
-        plan_accepted_reason: Förslaget har godkänts
-        plan_in_evaluation_reason: Förslaget bedöms
-        plan_rejected_reason: Förslaget har avslagits
         plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
         request_access: Begär redigeringsrättigheter
         share: Dela
@@ -376,7 +386,7 @@ sv:
         orders:
           label: 'Ordna förslag:'
           random: Slumpmässig
-          recent: Nyaste
+          recent: Senaste först
         plan:
           close:
             error: Fel markerade objektet som gjort.
@@ -476,6 +486,7 @@ sv:
           add_attachment_multi: Lägg till bilagor
           attachment_legend: Bilaga
           attachment_legend_multi: Bilagor
+          disabled: Inaktiverad
           edit_attachment: Ändra bilaga
           edit_attachment_multi: Ändra bilagor
           remove: Ta bort
@@ -491,6 +502,7 @@ sv:
           add_attachment_multi: Lägg till bilder
           attachment_legend: Bild
           attachment_legend_multi: Bilder
+          disabled: Inaktiverad
           edit_attachment: Ändra bild
           edit_attachment_multi: Ändra bilder
           remove: Radera

@@ -1,27 +1,3 @@
-<% if plan.answered? && translated_attribute(plan.answer).present? %>
-  <div class="row">
-    <div class="columns small-centered large-8">
-      <% if plan.accepted? %>
-        <div class="callout announcement text-center success">
-          <p class="h2"><%= t(".plan_accepted_reason") %></p>
-          <%= decidim_sanitize translated_attribute plan.answer %>
-        </div>
-      <% elsif plan.rejected? %>
-        <div class="callout announcement text-center warning">
-          <p class="h2"><%= t(".plan_rejected_reason") %></p>
-          <%= decidim_sanitize translated_attribute plan.answer %>
-        </div>
-      <% else %>
-        <div class="callout announcement text-center secondary">
-          <p class="h2"><%= t(".plan_in_evaluation_reason") %></p>
-          <%= decidim_sanitize translated_attribute plan.answer %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
-
 <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
   <div class="row">
     <div class="columns">
@@ -68,7 +44,14 @@
   <% end %>
 </div>
 <div class="row">
-  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+  <div class="columns medium-8">
+    <div class="section">
+      <%== cell("decidim/plans/plan_m", plan, full_badge: true).badge %>
+      <%= render :contents %>
+      <%= cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }) %>
+    </div>
+  </div>
+  <div class="columns medium-4">
     <% if show_actions? %>
       <div class="actionbox" data-equalizer-watch>
         <%= render :actions %>
@@ -143,12 +126,5 @@
     </div>
 
     <%= collaborator_requests %>
-  </div>
-  <div class="columns mediumlarge-8 mediumlarge-pull-4">
-    <div class="section">
-      <%== cell("decidim/plans/plan_m", plan, full_badge: true).badge %>
-      <%= render :contents %>
-      <%= cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }) %>
-    </div>
   </div>
 </div>

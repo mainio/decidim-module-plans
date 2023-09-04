@@ -19,7 +19,7 @@ module Decidim
 
       helper_method :trigger_feedback?
 
-      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
+      before_action :authenticate_user!, only: [:create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :check_draft, only: [:new]
       before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :ensure_published!, only: [:show, :withdraw, :add_authors, :add_authors_confirm]
@@ -31,6 +31,9 @@ module Decidim
         @plans = base_query
         @geocoded_plans = base_query.geocoded_data_for(current_component)
 
+        # The random ordering does not work with `.distinct` so we need to wrap
+        # it in a subquery that is ordered randomly.
+        @plans = Plan.where(id: @plans)
         @plans = paginate(@plans)
         @plans = reorder(@plans)
       end
@@ -45,7 +48,11 @@ module Decidim
       end
 
       def new
-        enforce_permission_to :create, :plan
+        if component_settings.form_preview_allowed? && !user_signed_in?
+          @preview = true
+        else
+          enforce_permission_to :create, :plan
+        end
 
         @form = form(PlanForm).from_model(Plan.new(component: current_component))
       end
@@ -241,6 +248,8 @@ module Decidim
       end
 
       def plan_draft
+        return unless user_signed_in?
+
         @plan_draft ||= Plan.drafts.from_all_author_identities(current_user).not_hidden.find_by(component: current_component)
       end
 

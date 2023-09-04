@@ -18,6 +18,7 @@ module Decidim
       delegate :new_plan_path, to: :routes_proxy
 
       def user_group_field
+        return if preview_mode?
         return if options[:disable_user_group_field]
         return unless manageable_user_groups.any?
 
@@ -29,6 +30,10 @@ module Decidim
       end
 
       private
+
+      def preview_mode?
+        !user_signed_in?
+      end
 
       def display_save_as_draft?
         plan.blank? || plan.draft?

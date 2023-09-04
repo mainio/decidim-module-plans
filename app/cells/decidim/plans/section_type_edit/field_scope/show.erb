@@ -1,12 +1,12 @@
 <%= plain_label form, :scope_id %>
 
-<div class="row">
-  <div class="columns large-6">
+<div class="row medium-unstack">
+  <div class="columns medium-7 large-8">
     <div class="field">
-      <%= scopes_picker_field form, :scope_id, options: { label: false, include_blank: true } %>
+      <%= scopes_picker_field form, :scope_id, options: { label: false, include_blank: true }, html_options: { disabled: field_disabled? } %>
     </div>
   </div>
-  <div class="columns large-6">
+  <div class="columns medium-5 large-4">
     <% if show_info_link? %>
       <div class="field-info field-info-with-icon">
         <%= link_to info_path(section.id), class: "info-modal-link" do %>

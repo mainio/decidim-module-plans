@@ -1,20 +1,8 @@
-<div class="collection-sort-controls row small-up-1 medium-up-3 card-grid">
-  <div class="column">
-    <%= order_selector available_orders, i18n_scope: "decidim.plans.plans.orders" %>
-  </div>
-
-  <div class="column">
-    <%= render partial: "decidim/shared/results_per_page.html" %>
-  </div>
-</div>
-
-<div class="row small-up-1 medium-up-3 card-grid">
-  <% plans.each do |plan| %>
-    <%= render partial: "decidim/plans/plans/plan.html", locals: {
-      plan: plan,
-      card_cell: defined?(card_cell) ? card_cell : nil
-    } %>
-  <% end %>
-</div>
+<% plans.each do |plan| %>
+  <%= render partial: "decidim/plans/plans/plan.html", locals: {
+    plan: plan,
+    card_cell: defined?(card_cell) ? card_cell : nil
+  } %>
+<% end %>
 
 <%= decidim_paginate plans %>

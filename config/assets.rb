@@ -27,6 +27,6 @@ Decidim::Webpacker.register_entrypoints(
 )
 
 # Register the main application's stylesheet include statement
-Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans")
-Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans_form")
+# Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans")
+# Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans_form")
 Decidim::Webpacker.register_stylesheet_import("stylesheets/decidim/plans/plans_form", group: :admin)

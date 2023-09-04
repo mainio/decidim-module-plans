@@ -1,19 +1,23 @@
 <% if show_input? %>
   <div class="field field-checkbox field-terms">
-    <label>
-      <%= form.check_box(:value, field_options.merge(label_options: { for: nil })) %>
-      <%= translated_attribute(section.body) %>
-    </label>
+    <div class="row medium-unstack">
+      <div class="columns medium-7 large-8">
+        <label>
+          <%= form.check_box(:value, field_options.merge(label_options: { for: nil })) %>
+          <%= translated_attribute(section.body) %>
+        </label>
 
-    <div class="field-info field-info-with-icon">
-      <% if show_info_link? %>
         <div class="field-info field-info-with-icon">
-          <%= link_to info_path(section.id), class: "info-modal-link" do %>
-            <%= icon "information", aria_hidden: true %>
-            <%= information_label %>
+          <% if show_info_link? %>
+            <div class="field-info field-info-with-icon">
+              <%= link_to info_path(section.id), class: "info-modal-link" do %>
+                <%= icon "information", aria_hidden: true %>
+                <%= information_label %>
+              <% end %>
+            </div>
           <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 <% else %>

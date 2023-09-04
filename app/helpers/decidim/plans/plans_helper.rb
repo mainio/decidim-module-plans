@@ -37,6 +37,15 @@ module Decidim
         end
 
         dynamic_map_for(map_options) do
+          # These snippets need to be added AFTER the other map scripts have
+          # been added which is why they cannot be within the block. Otherwise
+          # e.g. the markercluser would not be available when the plans map is
+          # loaded.
+          unless snippets.any?(:plans_map_scripts)
+            snippets.add(:plans_map_scripts, javascript_pack_tag("decidim_plans_map"))
+            snippets.add(:foot, snippets.for(:plans_map_scripts))
+          end
+
           yield
         end
       end

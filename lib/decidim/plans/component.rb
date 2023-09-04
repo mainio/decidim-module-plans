@@ -23,6 +23,7 @@ Decidim.register_component(:plans) do |component|
     settings.attribute :plan_answering_enabled, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
+    settings.attribute :form_preview_allowed, type: :boolean, default: false
     settings.attribute :closing_allowed, type: :boolean, default: false
     settings.attribute :multilingual_answers, type: :boolean
     settings.attribute :layout, type: :plan_layout

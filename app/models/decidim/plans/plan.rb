@@ -190,7 +190,8 @@ module Decidim
         ).joins(
           "LEFT OUTER JOIN decidim_moderations ON decidim_moderations.decidim_reportable_type = '#{cls}' AND decidim_moderations.decidim_reportable_id = decidim_plans_plans.id"
         ).where(
-          decidim_plans_sections: { decidim_component_id: component.id }
+          decidim_plans_sections: { decidim_component_id: component.id },
+          decidim_plans_plans: { id: pluck(:id) }
         ).where.not(
           decidim_plans_plans: { published_at: nil }
         ).where(
