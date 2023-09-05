@@ -6,620 +6,620 @@ cs:
         decidim/plans/attachment:
           attributes:
             file:
-              allowed_file_content_types: Invalid file type
+              allowed_file_content_types: Neplatný typ souboru
     models:
-      decidim/plans/plan: Proposal
+      decidim/plans/plan: Návrh
   activemodel:
     attributes:
       budgets_export:
-        area_scope_id: Area scope
-        budget_section: Budget section
-        content_sections: Content sections
-        default_budget_amount: Default budget amount
-        export_all_closed_plans: Export all closed proposals
-        image_section: Image section
-        location_section: Location section
-        scope_id: Scope
-        summary_section: Summary section
-        target_component_id: Component
+        area_scope_id: Oblast působnosti
+        budget_section: Oddíl rozpočtu
+        content_sections: Sekce obsahu
+        default_budget_amount: Standardní částka rozpočtu
+        export_all_closed_plans: Exportovat všechny uzavřené návrhy
+        image_section: Sekce obrázku
+        location_section: Sekce Umístění
+        scope_id: Oblast působnosti
+        summary_section: Sekce součtu
+        target_component_id: Komponenta
       budgets_export_target:
-        budget_id: Budget
+        budget_id: Rozpočet
       plan:
-        proposals: Proposals
-        category_id: Category
-        created_at: Created at
-        decidim_category_id: Category
-        decidim_component_id: Component
-        decidim_scope_id: Scope
-        scope_id: Scope
-        state: State
-        title: Title
-        user_group_id: Create as
+        proposals: Návrhy
+        category_id: Kategorie
+        created_at: Vytvořeno v
+        decidim_category_id: Kategorie
+        decidim_component_id: Komponenta
+        decidim_scope_id: Oblast působnosti
+        scope_id: Oblast působnosti
+        state: Stav
+        title: Název
+        user_group_id: Vytvořit jako
       section:
-        area_scope_parent: Area scope parent
-        scope_parent: Scope parent
+        area_scope_parent: Nadřazený rozsah působnosti
+        scope_parent: Nadrazená Oblasti působnosti
     errors:
       models:
         attachment:
           attributes:
             file:
-              needs_to_be_reattached: Needs to be reattached
+              needs_to_be_reattached: Je potřeba znovu přiložit
   decidim:
     assemblies:
       statistics:
-        plans_count: Proposals
+        plans_count: Návrhy
     components:
       plans:
         actions:
-          close: Close
-          create: Create
-          reopen: Open for editing
-          withdraw: Withdraw
-        name: Plans
+          close: Zavřít
+          create: Vytvořit
+          reopen: Otevřít pro úpravy
+          withdraw: Odebrat
+        name: Plány
         settings:
           global:
-            announcement: Announcement
-            attachments_allowed: Attachments allowed
-            attachment_help: Attachment help text
-            categories_enabled: Categories enabled
-            closing_allowed: Allow proposal authors to mark the proposals as done
-            comments_enabled: Comments enabled
-            default_answer: Default proposal answer
-            default_answer_none: (None)
-            default_state: Default proposal state
-            layout: Layout
-            multilingual_answers: Multilingual answers
-            plan_answering_enabled: Answering enabled
-            plan_listing_intro: Proposals listing page intro text
-            materials_text: Materials text
-            new_plan_help_text: New proposal help text
-            plan_title_length: Title length
-            proposal_linking_enabled: Proposal linking enabled
-            scopes_enabled: Scopes enabled
+            announcement: Oznámení
+            attachments_allowed: Povolené přílohy
+            attachment_help: Text nápovědy k příloze
+            categories_enabled: Kategorie povoleny
+            closing_allowed: Povolit autorům plánu označit plány jako dokončené
+            comments_enabled: Komentáře povoleny
+            default_answer: Výchozí odpověď na návrh
+            default_answer_none: (Žádné)
+            default_state: Výchozí stav návrhu
+            layout: Rozvržení
+            multilingual_answers: Vícejazyčné odpovědi
+            plan_answering_enabled: Odpovídání povoleno
+            plan_listing_intro: Úvodní text pro výpis návrhů
+            materials_text: Text materiálu
+            new_plan_help_text: Text nápovědy k novému návrhu
+            plan_title_length: Délka názvu
+            proposal_linking_enabled: Odkazování Návrhu povoleno
+            scopes_enabled: Oblasti působnosti povoleny
             scope_id: Scope ID
-            title_help: Title help text
-            title_text: Title text
+            title_help: Text nápovědy nadpisu
+            title_text: Text nadpisu
           step:
-            announcement: Announcement
-            comments_blocked: Comments blocked
-            creation_enabled: Creation enabled
-            plan_answering_enabled: Answering enabled
+            announcement: Oznámení
+            comments_blocked: Komentáře blokovány
+            creation_enabled: Vytvoření povoleno
+            plan_answering_enabled: Odpověď povolena
     filters:
       linked_classes:
-        plan: Proposals
+        plan: Návrhy
     participatory_processes:
       statistics:
-        plans_accepted: Accepted proposals
-        plans_count: Proposals
+        plans_accepted: Přijaté návrhy
+        plans_count: Návrhy
     plans:
       actions:
-        answer: Answer
-        back: Back
-        confirm_destroy: Are you sure you want to delete this?
-        close_plan: Mark as done
-        destroy: Delete
-        edit: Edit
-        edit_plan: Edit
-        export_budgets: Convert to projects
-        manage_authors: Manage authors
-        new: Submit new proposal
-        taggings: Tags
-        remove_author: Remove author
-        reopen_plan: Open for editing
-        sections: Sections
-        title: Actions
+        answer: Odpověď
+        back: Zpět
+        confirm_destroy: Opravdu to chcete smazat?
+        close_plan: Označit jako hotové
+        destroy: Vymazat
+        edit: Upravit
+        edit_plan: Upravit
+        export_budgets: Převést na projekty
+        manage_authors: Spravovat autory
+        new: Odeslat nový návrh
+        taggings: Štítky
+        remove_author: Odstranit autora
+        reopen_plan: Otevřít pro úpravy
+        sections: Sekce
+        title: Akce
       admin:
         actions:
-          preview: Preview
+          preview: Náhled
         authors:
           create:
             buttons:
-              add_authors: Add authors
-              cancel: Cancel
-            description: Check that you have selected the correct factors and press the "%{button_name}" button at the bottom of the screen.
-            title: Add authors for proposal
+              add_authors: Přidat autory
+              cancel: Zrušit
+            description: Zkontrolujte, zda jste vybrali správné faktory a v dolní části obrazovky stiskněte tlačítko "%{button_name}.
+            title: Přidat autory návrhu
           index:
-            add_author: Add author
-            organization_author: Organization as author
-            title: Manage authors for proposal
+            add_author: Přidat autora
+            organization_author: Organizace jako autor
+            title: Spravovat autory návrhu
         budgets_exports:
           create:
-            invalid: There's been a problem exporting the items into budgeting projects.
-            success: "%{number} items successfully exported into budgeting projects."
+            invalid: Vyskytl se problém při exportu položek do rozpočtových projektů.
+            success: "%{number} položek bylo úspěšně exportováno do rozpočtových projektů."
           new:
-            create: Export to projects
-            no_components: There are no other budgets components in this participatory space to export the items into projects.
-            select_budget: Please select a budget
-            select_component: Please select a component
+            create: Exportovat do projektů
+            no_components: V tomto participačním prostoru nejsou žádné další složky rozpočtu na export položek do projektů.
+            select_budget: Vyberte rozpočet
+            select_component: Vyberte komponentu
         exports:
-          plans: Proposals
+          plans: Návrhy
         plan_answers:
           edit:
-            accepted: Accepted
-            answer_plan: Answer
-            evaluating: Evaluating
-            rejected: Rejected
-            title: Answer for %{title}
+            accepted: Přijato
+            answer_plan: Odpověď
+            evaluating: Hodnocení
+            rejected: Odmítnuto
+            title: Odpověď na %{title}
         plans:
           answer:
-            invalid: Error occured while answering.
-            success: Answered successfully.
+            invalid: Při odpovědi došlo k chybě.
+            success: Odpovězeno úspěšně.
           edit:
-            title: Edit
-            update: Update
+            title: Upravit
+            update: Aktualizovat
           form:
-            attachment_legend: Add an attachment
-            select_a_category: Select a category
+            attachment_legend: Přidat přílohu
+            select_a_category: Vyberte kategorii
           index:
-            draft_plans: Drafts
-            published_plans: Published
-            selected: Selected
-            title: Proposals
+            draft_plans: Koncepty
+            published_plans: Publikováno
+            selected: Vybráno
+            title: Návrhy
           new:
-            create: Create
-            title: Submit new proposal
+            create: Vytvořit
+            title: Odeslat nový návrh
         sections:
           form:
-            add_section: Add section
+            add_section: Přidat sekci
           index:
-            save: Save
-            title: Sections
+            save: Uložit
+            title: Sekce
           section:
-            answer_length: Answer length
-            attachments_input_type: Attachments input type
-            body: Body
-            down: Down
+            answer_length: Délka odpovědi
+            attachments_input_type: Vstupní typ příloh
+            body: Tělo
+            down: Dolů
             handle: Handle
-            help: Help
-            information: Information
-            information_label: Information label
-            mandatory: Mandatory
-            map_center_latitude: Map center latitude
-            map_center_longitude: Map center longitude
-            remove: Remove
-            searchable: Searchable
-            section: Section
-            up: Up
-            visible_api: Show in the API
-            visible_form: Show in the form
-            visible_view: Show in the view
-            visibility: Visibility
+            help: Nápověda
+            information: Informace
+            information_label: Popisek informací
+            mandatory: Vyžadováno
+            map_center_latitude: Zeměpisná šířka středu mapy
+            map_center_longitude: Zeměpisná délka středu mapy
+            remove: Odstranit
+            searchable: Vyhledávatelné
+            section: Sekce
+            up: Nahoru
+            visible_api: Zobrazit v API
+            visible_form: Zobrazit ve formuláři
+            visible_view: Zobrazit v zobrazení
+            visibility: Viditelnost
           update:
-            invalid: Error updating sections.
-            success: Sections updated successfully.
+            invalid: Chyba při aktualizaci sekcí.
+            success: Sekce byly úspěšně aktualizovány.
         shared:
           info_plan:
-            body: Body
-            created_at: Creation date
-            plans: Proposals
+            body: Tělo
+            created_at: Datum vytvoření
+            plans: Návrhy
       admin_log:
         plan:
-          answer: "%{user_name} answered %{resource_name} on the %{space_name} space."
-          create: "%{user_name} created %{resource_name} on the %{space_name} space."
-          update: "%{user_name} updated %{resource_name} on the %{space_name} space."
+          answer: "%{user_name} odpověděl %{resource_name} ve skupině %{space_name}."
+          create: "%{user_name} vytvořil %{resource_name} ve skupině %{space_name}."
+          update: "%{user_name} aktualizoval %{resource_name} ve skupině %{space_name}."
         plan_note:
-          create: "%{user_name} left a private note on %{resource_name} on the %{space_name} space."
+          create: "%{user_name} zanechal soukromou poznámku %{resource_name} ve skupině %{space_name}."
       answers:
-        accepted: Accepted
-        evaluating: Evaluating
-        not_answered: Not answered
-        rejected: Rejected
-        withdrawn: Withdrawn
+        accepted: Přijato
+        evaluating: Hodnocení
+        not_answered: Nezodpovězeno
+        rejected: Odmítnuto
+        withdrawn: Odebráno
       application_helper:
         filter_state_values:
-          accepted: Accepted
-          all: All
-          evaluating: Evaluating
-          except_rejected: All except rejected
-          rejected: Rejected
+          accepted: Přijato
+          all: Vše
+          evaluating: Hodnocení
+          except_rejected: Vše s výjimkou odmítnuto
+          rejected: Odmítnuto
         filter_type_values:
-          all: All
-          amendments: Amendments
-          plans: Proposals
+          all: Vše
+          amendments: Pozměňovací návrhy
+          plans: Návrhy
       attachment_input_types:
-        single: Single attachment
-        multi: Multiple attachments
+        single: Jednotlivá příloha
+        multi: Více příloh
       attachments:
         documents:
-          one: Document
-          few: Documents
-          many: Documents
-          other: Documents
-        download: Download file
-        related_documents: Related documents
-        related_photos: Related images
+          one: Dokument
+          few: Dokumenty
+          many: Dokumentů
+          other: Dokumentů
+        download: Stáhnout soubor
+        related_documents: Související dokumenty
+        related_photos: Související obrázky
       attached_proposals_helper:
-        attach_proposal: Attach proposal
-        close: Close
-        current_selection: Search proposals by name
-        select: Select
+        attach_proposal: Připojit návrh
+        close: Zavřít
+        current_selection: Hledat návrhy podle jména
+        select: Vybrat
       create:
-        invalid: Failed to create new content.
-        success: Created successfully.
+        invalid: Nepodařilo se vytvořit nový obsah.
+        success: Úspěšně vytvořeno.
       info:
         show:
-          back: Back to previous page
+          back: Zpět na předchozí stránku
       last_activity:
-        new_plan_at_html: "<span>New proposal at %{link}</span>"
+        new_plan_at_html: "<span>Nový návrh v %{link}</span>"
       layouts:
-        default: Default layout
+        default: Výchozí rozvržení
       models:
         plan:
           fields:
-            author_name: Author's name
-            author_nickname: Author's nickname
-            authors: Authors
-            authors_label: 'Amount of authors: %{count}'
-            category: Category
-            comments: Comments
-            contributions: Contributions
-            contributions_label: 'Amount of contributions: %{count}'
+            author_name: Jméno autora
+            author_nickname: Přezdívka autora
+            authors: Autoři
+            authors_label: 'Počet autorů: %{count}'
+            category: Kategorie
+            comments: Komentáře
+            contributions: Příspěvky
+            contributions_label: 'Množství příspěvků: %{count}'
             id: ID
-            notes: Notes
-            official_plan: Official proposal
-            published_at: Published at
-            scope: Scope
-            state: State
-            tags: Tags
-            title: Title
+            notes: Poznámky
+            official_plan: Oficiální návrh
+            published_at: Publikováno v
+            scope: Oblast působnosti
+            state: Stav
+            tags: Štítky
+            title: Název
       plan_add_authors:
-        add_users_placeholder: Write the author's name or nickname
-        close_window: Close window
-        label: Search for authors
-        modal_title: Add authors for proposal
-        next: Next
-        no_results: No authors found matching your search.
+        add_users_placeholder: Napište jméno nebo přezdívku autora
+        close_window: Zavřít okno
+        label: Hledat autory
+        modal_title: Přidat autory návrhu
+        next: Další
+        no_results: Nebyli nalezeni žádní autoři odpovídající vašemu hledání.
       plan_form:
         buttons:
-          create: Preview
-          discard: Discard this draft
-          discard_confirmation: Are you sure you want to discard this draft?
-          loading_message: Saving... Processing of images and attachments takes a while, please wait.
-          save: Save
-          save_draft: Save as draft
-          you_can_invite_others: If you are submitting a proposal as a group, you can invite others to collaborate on the proposal.
-        characters_min: "(at least %count% characters required)"
-        characters_used: "%count%/%total% characters used"
-        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-        required_fields_text: Required fields are marked with the star * character.
+          create: Náhled
+          discard: Zahodit koncept
+          discard_confirmation: Opravdu chcete zahodit tento koncept?
+          loading_message: Ukládání... Zpracování obrázků a příloh zabere chvilku, čekejte prosím.
+          save: Uložit
+          save_draft: Uložit jako koncept
+          you_can_invite_others: Pokud jako skupina předkládáte návrh, můžete vyzvat ostatní, aby na návrhu spolupracovali.
+        characters_min: "(je vyžadováno alespoň %count% znaků)"
+        characters_used: "použito %count%/%total% znaků"
+        info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
+        required_fields_text: Povinná pole jsou označena znakem hvězdičky *.
       plan_index:
-        draft_plan_title: You have a proposal draft!
-        draft_plan_continue: Continue your proposal
-        draft_plan_description: You have previously saved a proposal as a draft. You can now continue writing it.
+        draft_plan_title: Máte koncept návrhu!
+        draft_plan_continue: Pokračujte v návrhu
+        draft_plan_description: Dříve jste uložili návrh jako koncept. Nyní můžete pokračovat v psaní.
         filters:
           activity:
-            all: All
-            my_favorites: My favorites
-            my_plans: My proposals
-          close_modal: Close modal
-          filter: Filter
-          filter_by: Filter by
-          related_to: Related to
-          search: Search
+            all: Vše
+            my_favorites: Moje oblíbené
+            my_plans: Moje návrhy
+          close_modal: Zavřít modální okno
+          filter: Filtr
+          filter_by: Filtrovat podle
+          related_to: Související s
+          search: Hledat
           state:
-            legend: State
-            evaluating: Evaluating
-            rejected: Rejected
-            accepted: Accepted
-            all: All
-          tag: Tags
-          tag_prompt: Select tags
-          unfold: Unfold
-        leave_your_plan: Create your own proposal!
-        new_plan: New proposal
-        see_all_withdrawn: See all withdrawn
-        subtitle: Find and explore proposals!
-        title: Browse proposals
-        view_plan: View proposal
+            legend: Stav
+            evaluating: Hodnocení
+            rejected: Odmítnuto
+            accepted: Přijato
+            all: Vše
+          tag: Štítky
+          tag_prompt: Vybrat štítky
+          unfold: Rozbalit
+        leave_your_plan: Vytvořte vlastní návrh!
+        new_plan: Nový návrh
+        see_all_withdrawn: Zobrazit všechny stažené
+        subtitle: Najděte a prozkoumejte návrhy!
+        title: Procházet návrhy
+        view_plan: Zobrazit návrh
       plan_m:
-        view_plan: View proposal
+        view_plan: Zobrazit návrh
       plan_view:
-        back: Go to proposals list
+        back: Přejít na seznam návrhů
         controls:
-          add_author: Add authors for proposal
-        flag: Flag
-        info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-        pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
-        plan_accepted_reason: This proposal has been accepted
-        plan_in_evaluation_reason: This proposal is being evaluated
-        plan_rejected_reason: This proposal has been rejected
-        plan_waiting_for_evaluation: The proposal is being evaluated, editing not allowed.
-        request_access: Request editing permissions
-        share: Share
-        share_link: Share link
-        show_comments: Show comments
-        show_on_map: Show on map
+          add_author: Přidat autory návrhu
+        flag: Označit
+        info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
+        pending_access_request_message_html: <p>Požádali jste o úpravu přístupu k tomuto návrhu. Počkejte prosím, až spolupracovníci odpoví na váš požadavek.</p><p>Jakmile bude váš požadavek zodpovězen, obdržíte e-mailové upozornění.</p>
+        plan_accepted_reason: Tento návrh byl přijat
+        plan_in_evaluation_reason: Tento návrh je hodnocen
+        plan_rejected_reason: Tento návrh byl zamítnut
+        plan_waiting_for_evaluation: Návrh se hodnotí, úprava není povolena.
+        request_access: Žádost o oprávnění k úpravám
+        share: Sdílet
+        share_link: Sdílet odkaz
+        show_comments: Zobrazit komentáře
+        show_on_map: Zobrazit na mapě
       plans:
         add_authors:
           buttons:
-            add_authors: Add authors
-            cancel: Cancel
-          description: Check that you have selected the correct factors and press the "%{button_name}" button at the bottom of the screen.
-          error: There was an error adding authors for the proposal.
-          no_authors: Define at least one new author for the proposal.
-          success: Successfully added authors for the proposal.
-          title: Add authors for proposal %{plan}
+            add_authors: Přidat autory
+            cancel: Zrušit
+          description: Zkontrolujte, zda jste vybrali správné autory v dolní části obrazovky stiskněte tlačítko "%{button_name}.
+          error: Při přidávání autorů návrhu došlo k chybě.
+          no_authors: Definujte alespoň jednoho nového autora návrhu.
+          success: Autoři návrhu byli úspěšně přidáni.
+          title: Přidat autory návrhu %{plan}
         count:
           plans_count:
-            one: "%{count} proposal"
-            few: "%{count} proposals"
-            many: "%{count} proposals"
-            other: "%{count} proposals"
+            one: "%{count} návrh"
+            few: "%{count} návrhy"
+            many: "%{count} návrhů"
+            other: "%{count} návrhů"
         create:
-          error: Failed to create new content.
-          success: Created successfully.
+          error: Nepodařilo se vytvořit nový obsah.
+          success: Úspěšně vytvořeno.
         destroy:
-          error: Error deleting the item.
-          success: Deleted successfully.
+          error: Chyba při odstraňování položky.
+          success: Úspěšně odstraněno.
         disjoin:
-          success: There was an error leaving the proposal.
-          error: You have been successfully removed as an author from this proposal.
+          success: Při opuštění návrhu došlo k chybě.
+          error: Byl jste úspěšně odstraněn jako autor z tohoto návrhu.
         edit:
-          back: Back to proposal
-          material_title: Information to support your proposal
-          sign_in: Sign in
-          sign_in_before_submitting: You need to sign in before submitting a proposal
-          title: Edit proposal
-          update: Update
+          back: Zpět na návrh
+          material_title: Informace na podporu vašeho návrhu
+          sign_in: Přihlásit se
+          sign_in_before_submitting: Před odesláním návrhu se musíte přihlásit
+          title: Upravit návrh
+          update: Aktualizovat
         evaluation_modal:
           button_text: OK
-          close: Close modal
-          description: The proposal is being evaluated and it cannot be edited during this time. You will get notified once the evaluation is completed.
-          title: The proposal is being evaluated
+          close: Zavřít modální okno
+          description: Návrh je hodnocen a nemůže být během této doby upraven. Po dokončení hodnocení budete informováni.
+          title: Návrh je hodnocen
         form:
-          attachment_legend: Add an attachment
-          select_a_category: Select a category
+          attachment_legend: Přidat přílohu
+          select_a_category: Vyberte kategorii
         linked_plans:
-          plan_authors: Number of authors
+          plan_authors: Počet autorů
         new:
-          back: Back to proposals list
-          create: Create
-          title: Create proposal
+          back: Zpět na seznam návrhů
+          create: Vytvořit
+          title: Vytvořit návrh
         new_plan_button:
-          new_plan: New proposal
+          new_plan: Nový návrh
         orders:
-          label: 'Order proposals by:'
-          random: Random
-          recent: Recent
+          label: 'Seřadit návrhy podle:'
+          random: Náhodně
+          recent: Nedávné
         plan:
           close:
-            error: Error marking the item as done.
-            success: Item marked done successfully.
+            error: Chyba při označování položky jako hotové.
+            success: Položka byla úspěšně označena jako hotová.
           publish:
-            error: Error publishing new content.
-            success: Published successfully.
+            error: Chyba při publikování nového obsahu.
+            success: Úspěšně zveřejněno.
           reopen:
-            error: Error opening item for editing.
-            success: Item opened for editing successfully.
-          view_plan: View proposal
+            error: Chyba při otevírání položky pro úpravu.
+            success: Položka byla úspěšně otevřena pro úpravy.
+          view_plan: Zobrazit návrh
           withdraw:
-            error: Error withdrawing.
-            success: Withdrawn successfully.
+            error: Chyba při stahování.
+            success: Úspěšně staženo.
         plans:
-          empty: There are no proposals yet
-          empty_filters: There are no proposals with this criteria
+          empty: Zatím nejsou žádné návrhy
+          empty_filters: S těmito kritérii nejsou žádné návrhy
         preview:
-          not_published: Your proposal has not yet been published
-          not_published_description: Your proposal has been saved as a draft. It needs to be published for it to appear on the site.
-          modify: Modify
-          publish: Publish
+          not_published: Váš návrh ještě nebyl zveřejněn
+          not_published_description: Váš návrh byl uložen jako koncept. Musí být zveřejněn, aby se mohl zobrazit na webu.
+          modify: Změnit
+          publish: Publikovat
         remove_author:
-          error: There was an error removing the author from the proposal.
-          success: Successfully removed the author from the proposal.
+          error: Došlo k chybě při odstraňování autora z návrhu.
+          success: Autor byl úspěšně odstraněn z návrhu.
         show:
-          back: Back to proposals list
-          close: Mark as done
-          close_confirm: Are you sure you want to mark this item done? After marking done, the item can no longer be edited.
-          disjoin: Leave the proposal as an author
-          disjoin_confirm: Are you sure you want to leave this proposal? After leaving the proposal, you can no longer edit it.
-          edit: Edit
+          back: Zpět na seznam návrhů
+          close: Označit jako dokončené
+          close_confirm: Opravdu chcete označit tuto položku za hotovou? Po označení již nelze položku upravovat.
+          disjoin: Opustit návrh jako autor
+          disjoin_confirm: Opravdu chcete opustit tento návrh? Po opuštění návrhu jej již nemůžete upravovat.
+          edit: Upravit
           hidden_authors_count:
-            one: and %{count} more person
-            few: and %{count} more people
-            many: and %{count} more people
-            other: and %{count} more people
-          of_versions: "(of %{number})"
-          publish: Publish
-          publish_info: Publish this version of the draft or
-          published_proposal: published proposal
-          reopen: Open for editing
-          reopen_confirm: Are you sure you want to open this item for editing?
-          report: Report
-          request_access: Request editing permissions
-          requested_access: Editing permissions requested
-          see_other_versions: see other versions
-          version: Version %{number}
-          version_history: see version history
-          withdraw: withdraw the proposal
-          withdraw_btn: Withdraw proposal
-          withdraw_btn_hint: You can withdraw this item if you change your mind, as long as you have not received any support. The item is not deleted, it will appear in the list of withdrawn items.
-          withdraw_confirmation: Are you sure you want to withdraw this proposal? The proposal won't be deleted but it will be hidden in the proposals listing.
+            one: a %{count} další osoba
+            few: a %{count} další osoby
+            many: a %{count} dalších osob
+            other: a %{count} dalších lidí
+          of_versions: "(z %{number})"
+          publish: Publikovat
+          publish_info: Publikovat tuto verzi konceptu nebo
+          published_proposal: zveřejněný návrh
+          reopen: Otevřít pro úpravy
+          reopen_confirm: Opravdu chcete otevřít tuto položku pro úpravy?
+          report: Hlášení
+          request_access: Žádost o oprávnění k úpravám
+          requested_access: Oprávnění k úpravám vyžádáno
+          see_other_versions: viz ostatní verze
+          version: Verze %{number}
+          version_history: viz historie verzí
+          withdraw: stáhnout návrh
+          withdraw_btn: Stáhnout návrh
+          withdraw_btn_hint: Tuto položku můžete stáhnout, pokud změníte názor, pokud jste neobdrželi žádnou podporu. Položka není smazána, zobrazí se v seznamu stažených položek.
+          withdraw_confirmation: Opravdu chcete stáhnout tento návrh? Návrh nebude odstraněn, ale bude skrytý v seznamu návrhů.
         update:
-          error: Error updating content.
-          success: Updated successfully.
+          error: Chyba při aktualizaci obsahu.
+          success: Aktualizováno úspěšně.
         withdraw:
-          error: Error withdrawing the item.
-          success: Item withdrawn successfully.
+          error: Chyba při stahování položky.
+          success: Položka byla úspěšně stažena.
       plans_picker:
-        choose_plans: Choose proposals
-        close: Close
-        more_plans: There are %{number} more proposals. Refine your search to locate them.
-        no_plans: No proposals match your search criteria or there isn't any proposals.
+        choose_plans: Vybrat návrhy
+        close: Zavřít
+        more_plans: K dispozici je více návrhů (%{number}). Upřesněte svoje vyhledávání, abyste je našli.
+        no_plans: Vašim kritériím vyhledávání neodpovídají žádné návrhy nebo žádné nejsou k dispozici.
       plans_picker_field:
-        attach_plan: Choose proposals
-        plans: Proposals
+        attach_plan: Vybrat návrhy
+        plans: Návrhy
       requests:
-        accept_request: Accept
+        accept_request: Přijmout
         accepted_request:
-          error: Could not be accepted as a collaborator, try again later.
-          success: "@%{user} has been successfully accepted as a collaborator."
+          error: Nelze přijmout jako spolupracovníka, zkuste to znovu později.
+          success: "@%{user} byl úspěšně přijat jako spolupracovník."
         access_requested:
-          error: Your request could not be completed, try again later.
-          success: Your request to collaborate has been sent successfully.
-        reject_request: Reject
+          error: Váš požadavek nelze dokončit, zkuste to znovu později.
+          success: Váš požadavek na spolupráci byl úspěšně odeslán.
+        reject_request: Odmítnout
         rejected_request:
-          error: Could not be rejected as a collaborator, try again later.
-          success: "@%{user} has been successfully rejected as a collaborator."
-        title: Collaboration requests
+          error: Nelze odmítnout jako spolupracovníka, zkuste to znovu později.
+          success: "@%{user} byl úspěšně odmítnut jako spolupracovník."
+        title: Žádosti o spolupráci
       section_type_display:
         field_attachments:
           documents:
-            one: Document
-            few: Documents
-            many: Documents
-            other: Documents
-          download: Download
-          related_documents: Related documents
-          related_photos: Related photos
+            one: Dokument
+            few: Dokumenty
+            many: Dokumentů
+            other: Dokumentů
+          download: Stáhnout
+          related_documents: Související dokumenty
+          related_photos: Související fotky
         field_checkbox:
-          'no': 'No'
-          'yes': 'Yes'
+          'no': 'Ne'
+          'yes': 'Ano'
         field_image_attachments:
-          related_photos: Related photos
+          related_photos: Související fotky
       section_type_edit:
         common:
-          show_help: Show detailed questions
+          show_help: Zobrazit podrobné otázky
         field_attachments:
-          add_attachment: Add attachment
-          add_attachment_multi: Add attachments
-          attachment_legend: Attachment
-          attachment_legend_multi: Attachments
-          edit_attachment: Change attachment
-          edit_attachment_multi: Change attachments
-          remove: Remove
+          add_attachment: Přidat přílohu
+          add_attachment_multi: Přidat přílohy
+          attachment_legend: Příloha
+          attachment_legend_multi: Přílohy
+          edit_attachment: Změnit přílohu
+          edit_attachment_multi: Změnit přílohy
+          remove: Odebrat
         field_category:
-          select_a_category: Choose a primary theme
-          select_a_sub_category: Choose a subtheme
-          sub_category_label: Choose a subtheme
+          select_a_category: Vyberte hlavní motiv
+          select_a_sub_category: Vyberte podmotiv
+          sub_category_label: Vyberte podmotiv
         field_map_point:
-          address_lookup_button: Lookup
-          reset_field: Reset field
+          address_lookup_button: Vyhledat
+          reset_field: Obnovit pole
         field_image_attachments:
-          add_attachment: Add image
-          add_attachment_multi: Add images
-          attachment_legend: Image
-          attachment_legend_multi: Images
-          edit_attachment: Change image
-          edit_attachment_multi: Change images
-          remove: Remove
+          add_attachment: Přidat obrázek
+          add_attachment_multi: Přidat obrázky
+          attachment_legend: Obrázek
+          attachment_legend_multi: Obrázky
+          edit_attachment: Změnit obrázek
+          edit_attachment_multi: Změnit obrázky
+          remove: Odebrat
       sections:
         actions:
-          new: New section
+          new: Nová sekce
       section_types:
-        content: Content
-        field_area_scope: Field - Area scope
-        field_attachments: Field - Attachments
-        field_category: Field - Category
-        field_checkbox: Field - Checkbox
-        field_currency: Field - Currency
-        field_image_attachments: Field - Image attachments
-        field_map_point: Field - Map point
-        field_number: Field - Number
-        field_scope: Field - Scope
-        field_tags: Field - Tags
-        field_text_multiline: Field - Multiple lines
-        field_text: Field - Single line
-        field_title: Field - Title
-        link_proposals: Link proposals
+        content: Obsah
+        field_area_scope: Pole - rozsah působnosti
+        field_attachments: Pole - Přílohy
+        field_category: Pole - Kategorie
+        field_checkbox: Pole - zaškrtávací políčko
+        field_currency: Pole - Měna
+        field_image_attachments: Pole - přílohy obrázku
+        field_map_point: Pole - bod na mapě
+        field_number: Pole - číslo
+        field_scope: Pole - Oblast působnosti
+        field_tags: Pole - štítky
+        field_text_multiline: Pole - více řádků
+        field_text: Pole - Jedna řádka
+        field_title: Pole - Název
+        link_proposals: Odkazy návrhů
       shared:
         attachment_fields:
-          attachment_legend: Attachment
-          down: Down
-          remove: Remove
-          up: Up
+          attachment_legend: Příloha
+          down: Dolů
+          remove: Odebrat
+          up: Nahoru
         attachments:
-          legend: Attachments
-          add_attachment: Add attachment
+          legend: Přílohy
+          add_attachment: Přidat přílohu
       update:
-        invalid: Error updating content.
-        success: Updated successfully.
+        invalid: Chyba při aktualizaci obsahu.
+        success: Úspěšně aktualizováno.
       versions:
-        changes_at_title: Changes at "%{title}"
+        changes_at_title: Změny v "%{title}"
         index:
-          title: Versions
+          title: Verze
         stats:
-          back_to_plan: Back to proposal
-          number_of_versions: Versions
-          show_all_versions: Show all versions
-          version_author: Version author
-          version_created_at: Version created at
-          version_number: Version number
-          version_number_out_of_total: "%{current_version} out of %{total_count}"
+          back_to_plan: Zpět na návrh
+          number_of_versions: Verze
+          show_all_versions: Zobrazit všechny verze
+          version_author: Autor verze
+          version_created_at: Verze vytvořena v
+          version_number: Číslo verze
+          version_number_out_of_total: "%{current_version} z %{total_count}"
         version:
-          version_index: Version %{index}
+          version_index: Verze %{index}
     resource_links:
       included_proposals:
-        plan_proposal: Related proposals
-        proposal_plan: Related proposals
+        plan_proposal: Související návrhy
+        proposal_plan: Související návrhy
     scopes:
-      global: Global
+      global: Globalní
     statistics:
-      plans_accepted: Accepted proposals
-      plans_count: Proposals
+      plans_accepted: Přijaté návrhy
+      plans_count: Návrhy
     events:
       plans:
         plan_access_accepted:
-          email_intro: '%{requester_name} has been accepted to edit proposal <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been accepted to contribute in %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>accepted to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} byl přijat k úpravě návrhu <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} byl přijat k přispění v %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> bylo <strong>přijato pro příspěvek</strong> v <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_granted:
-          email_intro: 'You have been given access to edit proposal <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you have been added as a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "You have been added as a collaborator in %{resource_title}."
-          notification_title: You have been <strong>added as a collaborator</strong> in <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Byl vám udělen přístup k úpravám návrhu <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Obdrželi jste toto oznámení, protože jste byli přidáni jako spolupracovník v <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "Byl jste přidán jako spolupracovník v %{resource_title}."
+          notification_title: Byl jste <strong>přidán jako spolupracovník</strong> v <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_rejected:
-          email_intro: '%{requester_name} has been rejected editing proposal <a href="%{resource_url}">%{resource_title}</a>.'
-          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} has been rejected to contribute in %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> has been <strong>rejected to contribute</strong> in <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: '%{requester_name} byla zamítnuta úprava návrhu <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Toto oznámení jste obdrželi, protože jste spolupracovník v <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} byl odmítnut k přispění v %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> byl <strong>odmítnut přístup jako přispěvatel</strong> z <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requested:
-          email_intro: '%{requester_name} requested contributor access. You can <strong>accept or reject the request</strong> from the <a href="%{resource_url}">%{resource_title}</a> page.'
-          email_outro: You have received this notification because you are a collaborator in <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: "%{requester_name} requested access to contribute to %{resource_title}."
-          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> requested access to contribute to <a href="%{resource_url}">%{resource_title}</a>. Please <strong>accept or reject the request</strong>.
+          email_intro: '%{requester_name} požádal o přístup jako přispěvatel. Můžete <strong>přijmout nebo odmítnout požadavek</strong> ze stránky <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Obdrželi jste toto oznámení, protože jste spolupracovníkem <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: "%{requester_name} požádal o přístup k příspění k %{resource_title}."
+          notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> požádal o přístup k přispění do <a href="%{resource_url}">%{resource_title}</a>. Prosím, <strong>žádost přijměte nebo odmítněte</strong>.
         plan_access_requester_accepted:
-          email_intro: You have been accepted to contribute in <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been accepted to contribute to %{resource_title}.
-          notification_title: You have been <strong>accepted to contribute</strong> to <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Byli jste přijati k přispění v <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Obdrželi jste toto oznámení, protože jste požádali o úpravu přístupu k <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Byli jste přijati k přispění do %{resource_title}.
+          notification_title: Byl jste <strong>přijat k přispění</strong> do <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: You have been rejected from contributing to <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been rejected from contributing to %{resource_title}.
-          notification_title: You have been <strong>rejected from contributing</strong> to <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: Byl jste odmítnut z přispívání do <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Obdrželi jste toto oznámení, protože jste požádali o přístup k úpravám k <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Byl jste odmítnut z příspívání do %{resource_title}.
+          notification_title: Byli jste <strong>odmítnuti z přispívání</strong> do <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
-          email_intro: '"%{resource_title}" has been accepted. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been accepted
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been accepted.
+          email_intro: '"%{resource_title}" byl přijat. Odpověď si můžete přečíst na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj kjterý sledujete byl přijat
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl přijat.
         plan_evaluating:
-          email_intro: '"%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following is being evaluated
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> is being evaluated.
+          email_intro: '"%{resource_title}" se právě hodnotí. Můžete zkontrolovat odpověď na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj který sledujete je hodnocen
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> se vyhodnocuje.
         plan_published:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A user you're following has published a resource
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete autora "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Uživatel, kterého sledujete, zveřejnil zdroj
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_published_author:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you created "%{resource_title}".
-          email_subject: Your proposal has been published
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože jste vytvořili "%{resource_title}".
+          email_subject: Váš návrh byl zveřejněn
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_published_for_proposals:
-          email_intro: 'A proposal you have authored has been linked to "%{resource_title}". You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}" through the authored proposals. You can unfollow it from the previous link.
-          email_subject: A proposal you have authored has been linked to new content
-          notification_title: A proposal you have authored has been linked to <a href="%{resource_url}">%{resource_title}</a>.
+          email_intro: 'Návrh, kterého jste autorem, byl propojen s "%{resource_title}". Můžete jej vidět zde:'
+          email_outro: Toto oznámení jste obdrželi, protože sledujete "%{resource_title}" prostřednictvím autorizovaných návrhů. Můžete skedování zrušit z předchozího odkazu.
+          email_subject: Návrh, který jste vytvořili, byl propojen s novým obsahem
+          notification_title: Návrh, kterého jste autorem, byl propojen s <a href="%{resource_url}">%{resource_title}</a>.
         plan_published_for_space:
-          email_intro: '"%{resource_title}" has been published. You can see it here:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been published
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
+          email_intro: '"%{resource_title}" byl zveřejněn. Můžete jej vidět zde:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj, který sledujete, byl zveřejněn
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl zveřejněn.
         plan_rejected:
-          email_intro: '"%{resource_title}" has been rejected. You can read the answer in this page:'
-          email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been rejected
-          notification_title: <a href="%{resource_url}">%{resource_title}</a> has been rejected.
+          email_intro: '"%{resource_title}" bylo odmítnut. Odpověď si můžete přečíst na této stránce:'
+          email_outro: Obdrželi jste toto oznámení, protože sledujete "%{resource_title}". Můžete sledování zrušit z předchozího odkazu.
+          email_subject: Zdroj, který sledujete, byl odmítnut
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> byl odmítnut.
