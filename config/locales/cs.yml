@@ -580,13 +580,13 @@ cs:
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> požádal o přístup k přispění do <a href="%{resource_url}">%{resource_title}</a>. Prosím, <strong>žádost přijměte nebo odmítněte</strong>.
         plan_access_requester_accepted:
           email_intro: Byli jste přijati k přispění v <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been accepted to contribute to %{resource_title}.
-          notification_title: You have been <strong>accepted to contribute</strong> to <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Obdrželi jste toto oznámení, protože jste požádali o úpravu přístupu k <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Byli jste přijati k přispění do %{resource_title}.
+          notification_title: Byl jste <strong>přijat k přispění</strong> do <a href="%{resource_url}">%{resource_title}</a>.
         plan_access_requester_rejected:
-          email_intro: You have been rejected from contributing to <a href="%{resource_url}">%{resource_title}</a>.
-          email_outro: You have received this notification because you requested editing access to <a href="%{resource_url}">%{resource_title}</a>.
-          email_subject: You have been rejected from contributing to %{resource_title}.
+          email_intro: Byl jste odmítnut z přispívání do <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Obdrželi jste toto oznámení, protože jste požádali o přístup k úpravám k <a href="%{resource_url}">%{resource_title}</a>.
+          email_subject: Byl jste odmítnut z příspívání do %{resource_title}.
           notification_title: Byli jste <strong>odmítnuti z přispívání</strong> do <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" byl přijat. Odpověď si můžete přečíst na této stránce:'
