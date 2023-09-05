@@ -34,7 +34,7 @@ module Decidim
         render :sign_in_box
       end
 
-      def sign_in_box
+      def profile_publicity_box
         render :profile_publicity_box
       end
 
