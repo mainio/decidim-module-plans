@@ -34,8 +34,9 @@ module Decidim
     config_accessor :attachment_image_versions do
       {
         big: { resize_to_limit: [nil, 1000] },
-        main: { resize_to_fill: [1480, 740] },
-        thumbnail: { resize_to_fill: [860, 340] }
+        main: { resize_to_fill: [1500, 920] },
+        thumbnail: { resize_to_fill: [860, 395] },
+        thumbnail_box: { resize_to_fill: [660, 450] }
       }
     end
 

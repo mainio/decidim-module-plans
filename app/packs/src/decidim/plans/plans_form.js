@@ -96,10 +96,13 @@ import "src/decidim/plans/info_modals";
       $longitude.val(coordinates.lng).attr("value", coordinates.lng);
     });
 
-    // Listen for the autocompletion event from Tribute
-    $address.on("tribute-replaced", (ev) => {
-      const selected = ev.detail.item.original;
-      if (selected.coordinates) {
+    // Listen for the autocompletion event from AutocompleteJS
+    const autocomplete = $address[0].ac;
+    $address[0].addEventListener("selection", (ev) => {
+      autocomplete.close();
+
+      const selected = ev.detail?.selection?.value;
+      if (selected && selected.coordinates) {
         $latitude.val(selected.coordinates[0]).attr("value", selected.coordinates[0]);
         $longitude.val(selected.coordinates[1]).attr("value", selected.coordinates[1]);
 
@@ -114,6 +117,7 @@ import "src/decidim/plans/info_modals";
 
     $lookup.on("click.decidim-plans", (ev) => {
       ev.preventDefault();
+      autocomplete.close();
       performCoordinatesLookup();
     });
 

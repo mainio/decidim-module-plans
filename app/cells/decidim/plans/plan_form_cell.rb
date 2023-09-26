@@ -9,6 +9,7 @@ module Decidim
       delegate(
         :current_user,
         :user_signed_in?,
+        :user_public?,
         :component_settings,
         :current_component,
         :snippets,
@@ -18,6 +19,7 @@ module Decidim
       delegate :new_plan_path, to: :routes_proxy
 
       def user_group_field
+        return if preview_mode?
         return if options[:disable_user_group_field]
         return unless manageable_user_groups.any?
 
@@ -28,7 +30,19 @@ module Decidim
         render :contents_edit
       end
 
+      def sign_in_box
+        render :sign_in_box
+      end
+
+      def profile_publicity_box
+        render :profile_publicity_box
+      end
+
       private
+
+      def preview_mode?
+        !user_signed_in?
+      end
 
       def display_save_as_draft?
         plan.blank? || plan.draft?

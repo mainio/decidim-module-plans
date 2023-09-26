@@ -67,6 +67,7 @@ en:
             default_answer: Default proposal answer
             default_answer_none: (None)
             default_state: Default proposal state
+            form_preview_allowed: Allow unauthenticated previewing the form
             layout: Layout
             multilingual_answers: Multilingual answers
             plan_answering_enabled: Answering enabled
@@ -310,11 +311,23 @@ en:
         leave_your_plan: Create your own proposal!
         new_plan: New proposal
         see_all_withdrawn: See all withdrawn
-        subtitle: Find and explore proposals!
-        title: Browse proposals
+        show_list: Show results as list
+        show_map: Show results on map
+        title: Find and explore proposals!
+        view_plan: View proposal
+      plan_l:
+        card_label: "Proposal: %{title}"
         view_plan: View proposal
       plan_m:
+        card_label: "Proposal: %{title}"
         view_plan: View proposal
+      plan_notification:
+        accepted:
+          title: This proposal has been accepted
+        evaluating:
+          title: This proposal is being evaluated
+        rejected:
+          title: This proposal has been rejected
       plan_view:
         back: Go to proposals list
         controls:
@@ -322,9 +335,6 @@ en:
         flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
         pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
-        plan_accepted_reason: This proposal has been accepted
-        plan_in_evaluation_reason: This proposal is being evaluated
-        plan_rejected_reason: This proposal has been rejected
         plan_waiting_for_evaluation: The proposal is being evaluated, editing not allowed.
         request_access: Request editing permissions
         share: Share
@@ -356,7 +366,9 @@ en:
           error: You have been successfully removed as an author from this proposal.
         edit:
           back: Back to proposal
+          make_profile_public: Make your profile public
           material_title: Information to support your proposal
+          public_profile_required: Public activity on this platform requires you to make your profile public. Making a suggestion is a public activity.
           sign_in: Sign in
           sign_in_before_submitting: You need to sign in before submitting a proposal
           title: Edit proposal
@@ -382,7 +394,7 @@ en:
         orders:
           label: 'Order proposals by:'
           random: Random
-          recent: Recent
+          recent: Most recent first
         plan:
           close:
             error: Error marking the item as done.
@@ -483,6 +495,7 @@ en:
           add_attachment_multi: Add attachments
           attachment_legend: Attachment
           attachment_legend_multi: Attachments
+          disabled: Disabled
           edit_attachment: Change attachment
           edit_attachment_multi: Change attachments
           remove: Remove
@@ -498,6 +511,7 @@ en:
           add_attachment_multi: Add images
           attachment_legend: Image
           attachment_legend_multi: Images
+          disabled: Disabled
           edit_attachment: Change image
           edit_attachment_multi: Change images
           remove: Remove

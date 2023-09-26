@@ -10,36 +10,28 @@
         <div class="columns large-12">
           <div class="expanded">
             <div class="wrapper wrapper--inner">
-              <div class="row">
-                <div class="large-12">
-                  <p class="h2"> <%= t(".modal_title") %></p>
-                </div>
+              <p class="h2"> <%= t(".modal_title") %></p>
+
+              <div class="multiple-mentions" data-name="recipient_id[]" data-multiple="true">
+                <label for="add_plan_authors"><%= t(".label") %></label>
+                <input id="add_plan_authors" type="text"
+                    spellcheck="false"
+                    autocomplete="off"
+                    placeholder="<%= t(".add_users_placeholder") %>"
+                    data-noresults="<%= t(".no_results") %>"
+                    contenteditable="true"
+                    data-selected="multiple-mentions-selected"
+                    aria-expanded="false">
               </div>
-              <div class="row">
-                <div class="row columns mentions__container">
-                  <label for="add_plan_authors"><%= t(".label") %></label>
-                  <input id="add_plan_authors" type="text"
-                      class="js-multiple-mentions mentions__container"
-                      placeholder="<%= t(".add_users_placeholder") %>"
-                      data-noresults="<%= t(".no_results") %>"
-                      data-tribute="yes"
-                      contenteditable="true">
-                </div>
-                <div class="columns large-12">
-                  <div class="js-multiple-mentions-recipients"></div>
-                </div>
-              </div>
+
+              <ul class="multiple-mentions-selected"></ul>
             </div>
           </div>
         </div>
       </div>
       <div class="wrapper wrapper--inner">
-        <div class="row">
-          <div class="large-12">
-            <div class="button--double form-general-submit float-right">
-              <%= f.submit t(".next") %>
-            </div>
-          </div>
+        <div class="button--double form-general-submit float-right">
+          <%= f.submit t(".next") %>
         </div>
       </div>
     </div>

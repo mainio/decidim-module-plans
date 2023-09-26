@@ -1,13 +1,13 @@
-<%= content_tag :div, class: "field attachments-section" do %>
-  <div class="row field-label-with-info">
-    <div class="columns large-8">
+<%= content_tag :div, class: "field attachments-section margin-bottom-2" do %>
+  <div class="row medium-unstack field-label-with-info">
+    <div class="columns medium-7 large-8">
       <%= content_tag :div, class: field_info_classes do %>
         <%= plain_label form, :attachments %>
         <%= render :tooltip %>
       <% end %>
     </div>
     <% if show_info_link? %>
-      <div class="columns large-4">
+      <div class="columns medium-5 large-4">
         <div class="field-info field-info-with-icon">
           <%= link_to info_path(section.id), class: "info-modal-link" do %>
             <%= icon "information", aria_hidden: true %>
@@ -18,18 +18,22 @@
     <% end %>
   </div>
 
-  <div class="row">
-    <div class="columns large-8">
-      <%= form.upload :attachments,
-        multiple: multi_attachment?,
-        titled: true,
-        required: section.mandatory,
-        resource_class: "Decidim::Plans::Attachment",
-        label: legend_text,
-        button_label: multi_attachment? ? t(".add_attachment_multi") : t(".add_attachment"),
-        button_edit_label: multi_attachment? ? t(".edit_attachment_multi") : t(".edit_attachment"),
-        help_i18n_scope: help_i18n_scope,
-        extension_allowlist: extension_allowlist %>
+  <div class="row medium-unstack">
+    <div class="columns columns medium-7 large-8">
+      <% if field_disabled? %>
+        <%= t(".disabled") %>
+      <% else %>
+        <%= form.upload :attachments,
+          multiple: multi_attachment?,
+          titled: true,
+          required: section.mandatory,
+          resource_class: "Decidim::Plans::Attachment",
+          label: legend_text,
+          button_label: multi_attachment? ? t(".add_attachment_multi") : t(".add_attachment"),
+          button_edit_label: multi_attachment? ? t(".edit_attachment_multi") : t(".edit_attachment"),
+          help_i18n_scope: help_i18n_scope,
+          extension_allowlist: extension_allowlist %>
+      <% end %>
 
       <% if help_text.present? %>
         <p class="help-text"><%= help_text %></p>

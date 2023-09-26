@@ -1,10 +1,9 @@
-<div class="card <%= card_classes %>">
+<%= card_wrapper do %>
   <%= render :top if render_top? %>
-  <%= render :state if answered? %>
   <%= render :image %>
-  <%= render :category %>
+
   <div class="card__content">
-    <%= render :header %>
+    <h3 class="h4"><%= title %></h3>
 
     <div class="card__text">
       <div class="card__text--paragraph">
@@ -13,7 +12,7 @@
     </div>
   </div>
 
+  <%= render :tags %>
   <%= render :data %>
   <%= render :status %>
-  <%= render :footer %>
-</div>
+<% end %>

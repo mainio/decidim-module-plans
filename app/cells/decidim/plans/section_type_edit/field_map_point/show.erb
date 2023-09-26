@@ -1,21 +1,14 @@
 <%= plain_label form, :address, show_required: false %>
 
 <div class="address-input">
-  <div class="row">
-    <div class="columns large-8">
+  <div class="row medium-unstack">
+    <div class="columns medium-7 large-8">
       <div class="field" id="<%= address_id %>">
-        <div class="input-group">
-          <span class="input-group-label">
-            <%= icon "map-marker", aria_hidden: true %>
-          </span>
-          <%= form.geocoding_field :address, object: model, label: false, class: "input-group-field address-input-address", data: {
-            "coordinates-url": geocoding_path,
-            "address-url": reverse_geocoding_path
-          } %>
-          <div class="input-group-button">
-            <%= form.button t(".address_lookup_button"), type: :button, class: "button primary hollow address-input-lookup" %>
-          </div>
-        </div>
+        <%= form.geocoding_field :address, object: model, label: false, class: "input-group-field address-input-address", data: {
+          "coordinates-url": geocoding_path,
+          "address-url": reverse_geocoding_path
+        }, disabled: field_disabled? %>
+        <%= link_to t(".reset_field"), "#", class: "reset-input", data: { target: "##{address_id}" } unless field_disabled? %>
         <%= form.hidden_field :latitude, field_options.merge(
           id: "plan_section_answer_#{model.section.id}_latitude",
           class: "address-input-latitude"
@@ -26,10 +19,8 @@
         %>
       </div>
     </div>
-    <div class="columns large-4">
-      <div class="field-info">
-        <%= link_to t(".reset_field"), "#", class: "reset-input", data: { target: "##{address_id}" } %>
-      </div>
+    <div class="columns medium-5 large-4">
+      <%= form.button t(".address_lookup_button"), type: :button, class: "button address-input-lookup", disabled: field_disabled? %>
     </div>
   </div>
 

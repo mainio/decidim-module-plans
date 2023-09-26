@@ -18,23 +18,3 @@
     <%= content_form.hidden_field :section_id %>
   <% end %>
 <% end %>
-
-<%
-js_options = {
-  messages: {
-    charactersMin: t(".characters_min"),
-    charactersUsed: t(".characters_used")
-  }
-}
-%>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  DecidimPlansCharacters.configure(<%== js_options.to_json %>);
-  $(".field.with-character-counter").each(function(_i, el) {
-    var $wrapper = $(el);
-    var $input = $("input, textarea", $wrapper);
-    var $info = $(".field-character-counter-info", $wrapper);
-    DecidimPlansCharacters.bindCharacterCounter($input, $info);
-  });
-})
-</script>

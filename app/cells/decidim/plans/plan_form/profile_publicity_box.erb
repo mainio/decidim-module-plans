@@ -1,0 +1,13 @@
+<div class="banner bg-secondary margin-bottom-3">
+  <div class="banner__icon">
+    <%= icon("globe", role: "img", "aria-hidden": true) %>
+  </div>
+  <div class="banner__content">
+    <h2 class="h3"><%= t("decidim.plans.plans.edit.make_profile_public") %></h2>
+    <p><%= t("decidim.plans.plans.edit.public_profile_required") %></p>
+    <button type="button" class="button button--icon" data-open="publishAccountModal" data-redirect-url="<%= new_plan_path %>">
+      <%= t("decidim.plans.plans.edit.make_profile_public") %>
+      <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+    </button>
+  </div>
+</div>

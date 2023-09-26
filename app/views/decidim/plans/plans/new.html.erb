@@ -1,17 +1,15 @@
-<div class="row">
-  <div class="columns large-12">
-    <%= link_to plans_path do %>
-      <%= icon "chevron-left", class: "icon--small", role: "img" %>
-      <%= t("decidim.plans.plans.new.back") %>
-    <% end %>
-  </div>
+<div class="row columns back-link">
+  <%= link_to plans_path, class: "action-link" do %>
+    <%= icon "arrow-left", class: "icon--small", role: "img" %>
+    <span><%= t("decidim.plans.plans.new.back") %></span>
+  <% end %>
 </div>
 
-<div class="idea-form-container">
+<div class="container form-container">
   <div class="row">
-    <div class="columns large-8">
-      <div class="idea-form-text">
-        <h2 class="section-heading"><%= t(".title") %></h2>
+    <div class="columns small-12 large-8">
+      <div class="resource__main">
+        <h1><%= t(".title") %></h1>
 
         <% if translated_attribute(component_settings.new_plan_help_text).present? %>
           <div class="static__content">
@@ -19,39 +17,48 @@
           </div>
         <% end %>
       </div>
-
-      <% unless user_signed_in? %>
-        <div class="card border-primary text-center">
-          <div class="card__content">
-            <p class="lead"><%= t("decidim.plans.plans.edit.sign_in_before_submitting") %></p>
-            <p>
-              <%= action_authorized_link_to :create, new_plan_path, class: "title-action__action button large primary", data: { "redirect_url" => new_plan_path } do %>
-                <%= t("decidim.plans.plans.edit.sign_in") %>
-              <% end %>
-            </p>
-          </div>
-        </div>
-      <% end %>
     </div>
     <div class="columns large-4">
-      <% if translated_attribute(component_settings.materials_text).present? %>
-        <div class="card border-primary">
-          <div class="card__content">
-            <h3><%= t("decidim.plans.plans.edit.material_title") %></h3>
-            <%= decidim_sanitize translated_attribute(component_settings.materials_text) %>
-          </div>
-        </div>
-      <% end %>
+      <div class="resource__aside resource__actions">
+        <% if translated_attribute(component_settings.materials_text).present? %>
+            <div class="actions-panel actions-panel--dynamic">
+              <%= decidim_sanitize translated_attribute(component_settings.materials_text) %>
+            </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <%= decidim_form_for(@form, html: { class: "plans-form" }) do |form| %>
-    <div class="row">
-      <div class="columns large-12">
-        <%= render partial: "form", object: form %>
+  <div class="row">
+    <div class="columns small-12 large-8">
+      <div class="resource__main">
+        <%= decidim_form_for(@form, html: { class: "plans-form" }) do |form| %>
+          <% if !user_signed_in? %>
+            <%== render_plan_form(form, @plan).sign_in_box %>
+          <% elsif !user_public? %>
+            <%== render_plan_form(form, @plan).profile_publicity_box %>
+          <% end %>
+
+          <%= render partial: "form", object: form %>
+        <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
 
-<%= javascript_pack_tag "decidim_plans_plans_form" %>
+<% if user_signed_in? %>
+  <% if user_public? %>
+    <%= javascript_pack_tag "decidim_plans_plans_form" %>
+  <% else %>
+    <% content_for :js_content do %>
+      <script>
+        $(() => {
+          const button = document.querySelector("[data-open='publishAccountModal']");
+          setTimeout(() => {
+            button.click();
+          }, 1000);
+        });
+      </script>
+    <% end %>
+  <% end %>
+<% end %>

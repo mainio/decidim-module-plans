@@ -1,25 +1,15 @@
 <div class="field with-character-counter">
-  <div class="row field-label-with-info">
-    <div class="columns large-8">
+  <div class="row medium-unstack field-label-with-info">
+    <div class="columns medium-7 large-8">
       <%= content_tag :div, class: field_info_classes do %>
         <%= plain_label form, "body_#{current_locale}".to_sym %>
         <%= render :tooltip %>
       <% end %>
     </div>
-    <% if show_info_link? %>
-      <div class="columns large-4">
-        <div class="field-info field-info-with-icon">
-          <%= link_to info_path(section.id), class: "info-modal-link" do %>
-            <%= icon "information", aria_hidden: true %>
-            <%= information_label %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
   </div>
 
-  <div class="row">
-    <div class="columns large-8">
+  <div class="row medium-unstack">
+    <div class="columns medium-7 large-8">
       <% if multilingual_answers? %>
         <%= form.translated(
           :text_field,
@@ -35,8 +25,21 @@
         ) %>
       <% end %>
     </div>
-    <div class="columns large-4">
-      <div class="field-character-counter-info field-info"></div>
+    <% if show_info_link? %>
+      <div class="columns medium-5 large-4">
+        <div class="field-info field-info-with-icon">
+          <%= link_to info_path(section.id), class: "info-modal-link" do %>
+            <%= icon "information", aria_hidden: true %>
+            <%= information_label %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row medium-unstack">
+    <div class="columns medium-7 large-8">
+      <div class="field-character-counter-info field-info help-text"></div>
     </div>
   </div>
 </div>
