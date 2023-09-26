@@ -67,6 +67,7 @@ cs:
             default_answer: Výchozí odpověď na návrh
             default_answer_none: (Žádné)
             default_state: Výchozí stav návrhu
+            form_preview_allowed: Allow unauthenticated previewing the form
             layout: Rozvržení
             multilingual_answers: Vícejazyčné odpovědi
             plan_answering_enabled: Odpovídání povoleno
@@ -308,11 +309,23 @@ cs:
         leave_your_plan: Vytvořte vlastní návrh!
         new_plan: Nový návrh
         see_all_withdrawn: Zobrazit všechny stažené
-        subtitle: Najděte a prozkoumejte návrhy!
-        title: Procházet návrhy
+        show_list: Show results as list
+        show_map: Show results on map
+        title: Browse proposals
         view_plan: Zobrazit návrh
+      plan_l:
+        card_label: "Proposal: %{title}"
+        view_plan: View proposal
       plan_m:
+        card_label: "Proposal: %{title}"
         view_plan: Zobrazit návrh
+      plan_notification:
+        accepted:
+          title: This proposal has been accepted
+        evaluating:
+          title: This proposal is being evaluated
+        rejected:
+          title: This proposal has been rejected
       plan_view:
         back: Přejít na seznam návrhů
         controls:
@@ -320,9 +333,6 @@ cs:
         flag: Označit
         info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
         pending_access_request_message_html: <p>Požádali jste o úpravu přístupu k tomuto návrhu. Počkejte prosím, až spolupracovníci odpoví na váš požadavek.</p><p>Jakmile bude váš požadavek zodpovězen, obdržíte e-mailové upozornění.</p>
-        plan_accepted_reason: Tento návrh byl přijat
-        plan_in_evaluation_reason: Tento návrh je hodnocen
-        plan_rejected_reason: Tento návrh byl zamítnut
         plan_waiting_for_evaluation: Návrh se hodnotí, úprava není povolena.
         request_access: Žádost o oprávnění k úpravám
         share: Sdílet
@@ -356,7 +366,9 @@ cs:
           error: Byl jste úspěšně odstraněn jako autor z tohoto návrhu.
         edit:
           back: Zpět na návrh
+          make_profile_public: Make your profile public
           material_title: Informace na podporu vašeho návrhu
+          public_profile_required: Public activity on this platform requires you to make your profile public. Making a suggestion is a public activity.
           sign_in: Přihlásit se
           sign_in_before_submitting: Před odesláním návrhu se musíte přihlásit
           title: Upravit návrh
@@ -380,7 +392,7 @@ cs:
         orders:
           label: 'Seřadit návrhy podle:'
           random: Náhodně
-          recent: Nedávné
+          recent: Recent
         plan:
           close:
             error: Chyba při označování položky jako hotové.
@@ -484,6 +496,7 @@ cs:
           add_attachment_multi: Přidat přílohy
           attachment_legend: Příloha
           attachment_legend_multi: Přílohy
+          disabled: Disabled
           edit_attachment: Změnit přílohu
           edit_attachment_multi: Změnit přílohy
           remove: Odebrat
@@ -499,6 +512,7 @@ cs:
           add_attachment_multi: Přidat obrázky
           attachment_legend: Obrázek
           attachment_legend_multi: Obrázky
+          disabled: Disabled
           edit_attachment: Změnit obrázek
           edit_attachment_multi: Změnit obrázky
           remove: Odebrat
