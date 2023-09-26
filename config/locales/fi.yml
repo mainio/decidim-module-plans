@@ -67,6 +67,7 @@ fi:
             default_answer: Ehdotusten oletusvastaus
             default_answer_none: (Ei mitään)
             default_state: Ehdotusten oletustila
+            form_preview_allowed: Salli lomakkeen esikatselu ennen kirjautumista
             layout: Ulkoasu
             multilingual_answers: Monikieliset vastaukset
             plan_answering_enabled: Vastaaminen sallittu
@@ -306,11 +307,23 @@ fi:
         leave_your_plan: Tee oma ehdotuksesi!
         new_plan: Uusi ehdotus
         see_all_withdrawn: Näytä kaikki peruutetut
-        subtitle: Etsi ja tutki ehdotuksia!
-        title: Tutustu ehdotuksiin
+        show_list: Näytä tulokset listana
+        show_map: Näytä tulokset kartalla
+        title: Etsi ja tutki ehdotuksia
+        view_plan: Näytä ehdotus
+      plan_l:
+        card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
       plan_m:
+        card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
+      plan_notification:
+        accepted:
+          title: Tämä ehdotus on hyväksytty
+        evaluating:
+          title: Tämä ehdotus on arvioitavana
+        rejected:
+          title: Tämä ehdotus on hylätty
       plan_view:
         back: Siirry ehdotuslistaukseen
         controls:
@@ -318,9 +331,6 @@ fi:
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
-        plan_accepted_reason: Tämä ehdotus on hyväksytty
-        plan_in_evaluation_reason: Tämä ehdotus on arvioitavana
-        plan_rejected_reason: Tämä ehdotus on hylätty
         plan_waiting_for_evaluation: Ehdotus on arvioitavana, muokkaaminen estetty.
         request_access: Pyydä muokkausoikeudet
         share: Jaa
@@ -352,7 +362,9 @@ fi:
           error: Tekijöistä poistuminen onnistui.
         edit:
           back: Palaa takaisin ehdotukseen
+          make_profile_public: Tee profiilistasi julkinen
           material_title: Tietoa ehdotuksen tueksi
+          public_profile_required: Julkinen toiminta tällä alustalla vaatii, että teet profiilistasi julkisen. Ehdotuksen tekeminen on julkista toimintaa.
           sign_in: Kirjaudu sisään
           sign_in_before_submitting: Ennen ehdotuksen jättämistä sinun tulee kirjautua sisään
           title: Muokkaa ehdotusta
@@ -376,7 +388,7 @@ fi:
         orders:
           label: 'Järjestä ehdotukset:'
           random: Satunnainen
-          recent: Uusimmat
+          recent: Viimeisimmät ensin
         plan:
           close:
             error: Valmiiksi merkitseminen epäonnistui.
@@ -476,6 +488,7 @@ fi:
           add_attachment_multi: Lisää liitteitä
           attachment_legend: Liite
           attachment_legend_multi: Liitteet
+          disabled: Poissa käytöstä
           edit_attachment: Vaihda liite
           edit_attachment_multi: Muuta liitteitä
           remove: Poista
@@ -491,6 +504,7 @@ fi:
           add_attachment_multi: Lisää kuvia
           attachment_legend: Kuva
           attachment_legend_multi: Kuvat
+          disabled: Poissa käytöstä
           edit_attachment: Vaihda kuva
           edit_attachment_multi: Muuta kuvia
           remove: Poista
