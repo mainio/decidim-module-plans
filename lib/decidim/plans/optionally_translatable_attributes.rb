@@ -16,7 +16,6 @@ module Decidim
 
         def optionally_translatable_validate_presence(attribute, options = {})
           if_conditional_proc = conditional_proc(options[:if])
-          unless_conditional_proc = conditional_proc(options[:unless])
           multilingual_proc = proc { |record|
             record.component.settings.multilingual_answers?
           }
@@ -27,16 +26,20 @@ module Decidim
           multilingual_options[:if] = proc { |record|
             multilingual_proc.call(record) && if_conditional_proc.call(record)
           }
-          localized_options[:unless] = proc { |record|
-            multilingual_proc.call(record) && unless_conditional_proc.call(record)
-          }
 
           multilingual_options[:translatable_presence] = true
           localized_options[:presence] = true
 
-          localized_attribute = "#{attribute}_#{current_locale}".to_sym
           validates attribute, multilingual_options
-          validates localized_attribute, localized_options
+
+          I18n.available_locales.each do |locale|
+            opts = localized_options.dup
+            opts[:if] = proc { |record|
+              current_locale.to_sym == locale.to_sym && !multilingual_proc.call(record) && if_conditional_proc.call(record)
+            }
+            localized_attribute = "#{attribute}_#{locale}".to_sym
+            validates localized_attribute, opts
+          end
         end
 
         def translatable_attributes
