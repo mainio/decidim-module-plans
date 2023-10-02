@@ -305,11 +305,11 @@ sv:
           tag_prompt: Välj taggar
           unfold: Öppna
         leave_your_plan: Ge ditt eget förslag!
-        new_plan: Nytt förslag
+        new_plan: Lämna in förslag
         see_all_withdrawn: Visa alla annullerade
         show_list: Visa resultat som lista
         show_map: Visa resultat på kartan
-        title: Sök och utforska förslag
+        title: Bekanta dig med förslag
         view_plan: Visa förslag
       plan_l:
         card_label: "Förslag: %{title}"
@@ -364,7 +364,7 @@ sv:
           back: Tillbaka till förslaget
           make_profile_public: Gör din profil offentlig
           material_title: Information för att stödja ditt förslag
-          public_profile_required: Public activity on this platform requires you to make your profile public. Making a suggestion is a public activity.
+          public_profile_required: Offentlig aktivitet på den här plattformen kräver att du gör din profil offentlig. Att lämna förslag är en offentlig verksamhet.
           sign_in: Logga in
           sign_in_before_submitting: Du måste logga in innan du skickar in ett förslag
           title: Redigera förslaget
@@ -382,7 +382,7 @@ sv:
         new:
           back: Tillbaka till listan av förslag
           create: Skapa
-          title: Skapa förslag
+          title: Lämna in ett förslag
         new_plan_button:
           new_plan: Nytt förslag
         orders:
@@ -497,7 +497,7 @@ sv:
           select_a_sub_category: Välj ett undertema
           sub_category_label: Välj ett undertema
         field_map_point:
-          address_lookup_button: Slå upp
+          address_lookup_button: Visa på kartan
           reset_field: Återställ fältet
         field_image_attachments:
           add_attachment: Lägg till bilden

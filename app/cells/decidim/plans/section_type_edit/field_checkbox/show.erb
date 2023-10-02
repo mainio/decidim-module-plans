@@ -1,7 +1,7 @@
 <% if show_input? %>
   <div class="field field-checkbox field-terms">
     <div class="row medium-unstack">
-      <div class="columns medium-7 large-8">
+      <div class="columns medium-7">
         <label>
           <%= form.check_box(:value, field_options.merge(label_options: { for: nil })) %>
           <%= translated_attribute(section.body) %>
@@ -11,8 +11,8 @@
           <% if show_info_link? %>
             <div class="field-info field-info-with-icon">
               <%= link_to info_path(section.id), class: "info-modal-link" do %>
-                <%= icon "information", aria_hidden: true %>
-                <%= information_label %>
+                <%= icon "info-line", aria_hidden: true %>
+                <span><%= information_label %></span>
               <% end %>
             </div>
           <% end %>

@@ -1,7 +1,7 @@
 <div class="field">
   <div class="row medium-unstack field-label-with-info">
     <div class="columns medium-7 large-8">
-      <%= content_tag :div, class: field_info_classes do %>
+      <%= content_tag :div, class: field_label_classes do %>
         <%= plain_label form, :value %>
         <%= render :tooltip %>
       <% end %>
@@ -9,7 +9,7 @@
   </div>
 
   <div class="row medium-unstack">
-    <div class="columns medium-7 large-8">
+    <div class="columns medium-7">
       <% if currency_type? %>
         <div class="input-group">
           <% if currency_unit_after? %>
@@ -28,11 +28,11 @@
       <% end %>
     </div>
     <% if show_info_link? %>
-      <div class="columns medium-5 large-4">
+      <div class="columns medium-5">
         <div class="field-info field-info-with-icon">
           <%= link_to info_path(section.id), class: "info-modal-link" do %>
-            <%= icon "information", aria_hidden: true %>
-            <%= information_label %>
+            <%= icon "info-line", aria_hidden: true %>
+            <span><%= information_label %></span>
           <% end %>
         </div>
       </div>

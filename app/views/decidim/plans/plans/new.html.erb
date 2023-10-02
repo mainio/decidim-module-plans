@@ -6,19 +6,17 @@
 </div>
 
 <div class="container form-container">
-  <div class="row">
-    <div class="columns small-12 large-8">
-      <div class="resource__main">
-        <h1><%= t(".title") %></h1>
+  <div class="row medium-unstack content-intro">
+    <div class="columns medium-6 mediumlarge-8">
+      <h1><%= t(".title") %></h1>
 
-        <% if translated_attribute(component_settings.new_plan_help_text).present? %>
-          <div class="static__content">
-            <%= decidim_sanitize translated_attribute(component_settings.new_plan_help_text) %>
-          </div>
-        <% end %>
-      </div>
+      <% if translated_attribute(component_settings.new_plan_help_text).present? %>
+        <div class="static__content">
+          <%= decidim_sanitize translated_attribute(component_settings.new_plan_help_text) %>
+        </div>
+      <% end %>
     </div>
-    <div class="columns large-4">
+    <div class="columns medium-6 mediumlarge-4">
       <div class="resource__aside resource__actions">
         <% if translated_attribute(component_settings.materials_text).present? %>
             <div class="actions-panel actions-panel--dynamic">
@@ -29,8 +27,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="columns small-12 large-8">
+  <div class="row medium-unstack">
+    <div class="columns mediumlarge-9">
       <div class="resource__main">
         <%= decidim_form_for(@form, html: { class: "plans-form" }) do |form| %>
           <% if !user_signed_in? %>

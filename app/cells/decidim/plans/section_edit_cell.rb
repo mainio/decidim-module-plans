@@ -58,9 +58,10 @@ module Decidim
         @help_text ||= translated_attribute(section.help).strip
       end
 
-      def field_info_classes
-        classes = %w(field-info)
+      def field_label_classes
+        classes = []
         classes << "with-tooltip" if show_tooltip?
+        return if classes.blank?
 
         classes.join(" ")
       end

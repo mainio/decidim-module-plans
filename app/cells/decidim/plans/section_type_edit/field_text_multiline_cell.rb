@@ -4,8 +4,8 @@ module Decidim
   module Plans
     module SectionTypeEdit
       class FieldTextMultilineCell < Decidim::Plans::SectionTypeEdit::FieldTextCell
-        def field_info_classes
-          classes = %w(field-info)
+        def field_label_classes
+          classes = []
           classes << "flex--sbc" if show_tooltip? || help_text.present?
           classes <<
             if show_tooltip?
@@ -13,6 +13,7 @@ module Decidim
             elsif help_text.present?
               "with-help"
             end
+          return if classes.blank?
 
           classes.join(" ")
         end

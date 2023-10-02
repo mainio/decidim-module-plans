@@ -309,11 +309,11 @@ en:
           tag_prompt: Select tags
           unfold: Unfold
         leave_your_plan: Create your own proposal!
-        new_plan: New proposal
+        new_plan: Submit a proposal
         see_all_withdrawn: See all withdrawn
         show_list: Show results as list
         show_map: Show results on map
-        title: Find and explore proposals!
+        title: Browse proposals
         view_plan: View proposal
       plan_l:
         card_label: "Proposal: %{title}"
@@ -368,7 +368,7 @@ en:
           back: Back to proposal
           make_profile_public: Make your profile public
           material_title: Information to support your proposal
-          public_profile_required: Public activity on this platform requires you to make your profile public. Making a suggestion is a public activity.
+          public_profile_required: Public activity on this platform requires you to make your profile public. Making a proposal is a public activity.
           sign_in: Sign in
           sign_in_before_submitting: You need to sign in before submitting a proposal
           title: Edit proposal
@@ -388,7 +388,7 @@ en:
         new:
           back: Back to proposals list
           create: Create
-          title: Create proposal
+          title: Submit a proposal
         new_plan_button:
           new_plan: New proposal
         orders:
@@ -504,7 +504,7 @@ en:
           select_a_sub_category: Choose a subtheme
           sub_category_label: Choose a subtheme
         field_map_point:
-          address_lookup_button: Lookup
+          address_lookup_button: Show on map
           reset_field: Reset field
         field_image_attachments:
           add_attachment: Add image

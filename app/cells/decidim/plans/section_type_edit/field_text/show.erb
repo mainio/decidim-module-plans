@@ -1,7 +1,7 @@
 <div class="field with-character-counter">
   <div class="row medium-unstack field-label-with-info">
     <div class="columns medium-7 large-8">
-      <%= content_tag :div, class: field_info_classes do %>
+      <%= content_tag :div, class: field_label_classes do %>
         <%= plain_label form, "body_#{current_locale}".to_sym %>
         <%= render :tooltip %>
       <% end %>
@@ -29,19 +29,21 @@
       <div class="columns medium-5 large-4">
         <div class="field-info field-info-with-icon">
           <%= link_to info_path(section.id), class: "info-modal-link" do %>
-            <%= icon "information", aria_hidden: true %>
-            <%= information_label %>
+            <%= icon "info-line", aria_hidden: true %>
+            <span><%= information_label %></span>
           <% end %>
         </div>
       </div>
     <% end %>
   </div>
 
-  <div class="row medium-unstack">
-    <div class="columns medium-7 large-8">
-      <div class="field-character-counter-info field-info help-text"></div>
+  <% if display_character_counter? %>
+    <div class="row medium-unstack">
+      <div class="columns medium-7 large-8">
+        <div class="field-character-counter-info help-text"></div>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <div id="plans-dummy-counter-<%= section.id %>" class="hide" aria-hidden="true"></div>

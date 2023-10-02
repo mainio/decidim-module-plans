@@ -4,48 +4,45 @@ form_field_options.delete(:help_text)
 %>
 
 <div class="field with-character-counter">
-  <div class="row columns">
-    <%= content_tag :div, class: field_info_classes do %>
-      <%= plain_label form, "body_#{current_locale}".to_sym %>
-      <% if show_tooltip? %>
-        <%= render :tooltip %>
-      <% elsif help_text.present? %>
-        <span class="form-help-tooltip help"><%= help_text %></span>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="row columns">
-    <% if multilingual_answers? %>
-      <%= form.translated(
-        :text_area,
-        :body,
-        {
-          tabs_id: "field-#{section.id}"
-        }.merge(form_field_options).merge(rc_opts)
-      ) %>
-    <% else %>
-      <%= form.text_area(
-        "body_#{current_locale}".to_sym,
-        form_field_options.merge(rows: 10)
-      ) %>
-    <% end %>
-  </div>
-
-  <% if show_info_link? %>
-    <div class="row columns">
-      <div class="field-info field-info-with-icon">
-        <%= link_to info_path(section.id), class: "info-modal-link" do %>
-          <%= icon "information", aria_hidden: true %>
-          <%= information_label %>
+  <div class="row medium-unstack field-label-with-info">
+    <div class="columns medium-11">
+      <%= content_tag :div, class: field_label_classes do %>
+        <%= plain_label form, "body_#{current_locale}".to_sym %>
+        <% if show_tooltip? %>
+          <%= render :tooltip %>
+        <% elsif help_text.present? %>
+          <span class="form-help-tooltip help"><%= help_text %></span>
         <% end %>
-      </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 
   <div class="row medium-unstack">
-    <div class="columns medium-7 large-8">
-      <div class="field-character-counter-info field-info help-text"></div>
+    <div class="columns medium-11">
+      <% if multilingual_answers? %>
+        <%= form.translated(
+          :text_area,
+          :body,
+          {
+            tabs_id: "field-#{section.id}"
+          }.merge(form_field_options).merge(rc_opts)
+        ) %>
+      <% else %>
+        <%= form.text_area(
+          "body_#{current_locale}".to_sym,
+          form_field_options.merge(rows: 10)
+        ) %>
+      <% end %>
+
+      <div class="help-text flex--sbc">
+        <div class="field-character-counter-info"></div>
+        <% if show_info_link? %>
+          <%= link_to info_path(section.id), class: "info-modal-link" do %>
+            <%= icon "info-line", aria_hidden: true %>
+            <span><%= information_label %></span>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

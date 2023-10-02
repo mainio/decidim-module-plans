@@ -2,15 +2,15 @@
 
 <div class="field">
   <div class="row medium-unstack">
-    <div class="columns medium-7 large-8">
+    <div class="columns medium-7">
       <%= scopes_picker_field form, :scope_id, options: { label: false, include_blank: true }, html_options: { disabled: field_disabled? } %>
     </div>
     <% if show_info_link? %>
-      <div class="columns medium-5 large-4">
+      <div class="columns medium-5">
         <div class="field-info field-info-with-icon">
           <%= link_to info_path(section.id), class: "info-modal-link" do %>
-            <%= icon "information", aria_hidden: true %>
-            <%= information_label %>
+            <%= icon "info-line", aria_hidden: true %>
+            <span><%= information_label %></span>
           <% end %>
         </div>
       </div>

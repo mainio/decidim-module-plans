@@ -2,7 +2,7 @@
 
 <div class="address-input">
   <div class="row medium-unstack">
-    <div class="columns medium-7 large-8">
+    <div class="columns medium-7">
       <div class="field" id="<%= address_id %>">
         <%= form.geocoding_field :address, object: model, label: false, class: "input-group-field address-input-address", data: {
           "coordinates-url": geocoding_path,
@@ -19,14 +19,21 @@
         %>
       </div>
     </div>
-    <div class="columns medium-5 large-4">
-      <%= form.button t(".address_lookup_button"), type: :button, class: "button address-input-lookup", disabled: field_disabled? %>
+    <div class="columns medium-5">
+      <%= form.button type: :button, class: "button button--icon address-input-lookup", disabled: field_disabled? do %>
+        <%= t(".address_lookup_button") %>
+        <%= icon "target", aria_hidden: true, role: "img" %>
+      <% end %>
     </div>
   </div>
 
-  <%= form_map(
-    id: "#{address_id}_map",
-    class: "plans-map google-map",
-    "data-connected-input" => user_signed_in? ? "##{address_id} .address-input-address" : nil
-  ) %>
+  <div class="row medium-unstack">
+    <div class="columns medium-11">
+      <%= form_map(
+        id: "#{address_id}_map",
+        class: "plans-map google-map",
+        "data-connected-input" => user_signed_in? ? "##{address_id} .address-input-address" : nil
+      ) %>
+    </div>
+  </div>
 </div>
