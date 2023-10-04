@@ -21,7 +21,7 @@
       <% else %>
         <%= form.text_field(
           "body_#{current_locale}".to_sym,
-          field_options
+          field_options("body_#{current_locale}".to_sym)
         ) %>
       <% end %>
     </div>

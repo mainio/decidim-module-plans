@@ -17,6 +17,12 @@ module Decidim
 
           classes.join(" ")
         end
+
+        private
+
+        def field_id(name)
+          "contents_#{model.section.id}_#{name}"
+        end
       end
     end
   end

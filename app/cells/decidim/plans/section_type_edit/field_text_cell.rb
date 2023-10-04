@@ -6,7 +6,7 @@ module Decidim
       class FieldTextCell < Decidim::Plans::SectionEditCell
         private
 
-        def field_options
+        def field_options(name = :body)
           base = super.merge(label: false)
           return base unless display_character_counter?
 

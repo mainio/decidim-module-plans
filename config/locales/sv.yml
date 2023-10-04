@@ -374,6 +374,13 @@ sv:
           close: Stäng fönstret
           description: Förslaget utvärderas och den kan inte redigeras under denna tid. Du kommer att få meddelande när utvärderingen är klar.
           title: Förslaget beräknas
+        exit_modal:
+          buttons:
+            cancel: Annullera
+            exit: Avsluta sidan
+          close_modal: Stäng fönstret
+          message: Du lämnar denna sida trots att du har gjort ändringar i formuläret. Är du säker på att du vill avsluta?
+          title: Formuläret har osparade ändringar
         form:
           attachment_legend: Lägg till bilaga
           select_a_category: Välj kategori

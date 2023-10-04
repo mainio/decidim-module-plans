@@ -275,8 +275,8 @@ en:
       plan_form:
         buttons:
           create: Preview
-          discard: Discard this draft
-          discard_confirmation: Are you sure you want to discard this draft?
+          discard: Delete draft
+          discard_confirmation: Are you sure you want to delete this draft?
           loading_message: Saving... Processing of images and attachments takes a while, please wait.
           save: Save
           save_draft: Save as draft
@@ -380,6 +380,13 @@ en:
             during this time. You will get notified once the evaluation is
             completed.
           title: The proposal is being evaluated
+        exit_modal:
+          buttons:
+            cancel: Cancel
+            exit: Exit page
+          close_modal: Close window
+          message: You are leaving this page even though you have made changes to the form. Are you sure you want to exit?
+          title: The form has unsaved changes
         form:
           attachment_legend: Add an attachment
           select_a_category: Select a category

@@ -1,12 +1,12 @@
 <div class="row columns back-link">
   <% if @plan.draft? %>
     <%= link_to plans_path, class: "action-link" do %>
-      <%= icon "arrow-left", class: "icon--small", role: "img" %>
+      <%= icon "arrow-left", class: "icon--small", role: "img", "aria-hidden": true %>
       <span><%= t("decidim.plans.plans.new.back") %></span>
     <% end %>
   <% else %>
     <%= link_to plan_path(@plan), class: "action-link" do %>
-      <%= icon "arrow-left", class: "icon--small", role: "img" %>
+      <%= icon "arrow-left", class: "icon--small", role: "img", "aria-hidden": true %>
       <span><%= t("decidim.plans.plans.edit.back") %></span>
     <% end %>
   <% end %>
@@ -62,5 +62,7 @@
     </div>
   </div>
 </div>
+
+<%= render partial: "exit_modal" %>
 
 <%= javascript_pack_tag "decidim_plans_plans_form" %>

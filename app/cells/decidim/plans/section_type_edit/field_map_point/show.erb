@@ -4,7 +4,7 @@
   <div class="row medium-unstack">
     <div class="columns medium-7">
       <div class="field" id="<%= address_id %>">
-        <%= form.geocoding_field :address, object: model, label: false, class: "input-group-field address-input-address", data: {
+        <%= form.geocoding_field :address, object: model, label: false, id: field_id(:address), class: "input-group-field address-input-address", data: {
           "coordinates-url": geocoding_path,
           "address-url": reverse_geocoding_path
         }, disabled: field_disabled? %>

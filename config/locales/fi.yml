@@ -271,8 +271,8 @@ fi:
       plan_form:
         buttons:
           create: Esikatsele
-          discard: Tuhoa tämä luonnos
-          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
+          discard: Poista luonnos
+          discard_confirmation: Haluatko varmasti poistaa tämän luonnoksen?
           loading_message: Tallennetaan... Kuvien ja liitetiedostojen käsittelyssä kestää hetki, odota rauhassa.
           save: Tallenna
           save_draft: Tallenna luonnoksena
@@ -374,6 +374,13 @@ fi:
           close: Sulje ikkuna
           description: Ehdotusta arvioidaan ja sitä ei voi muokata tällä hetkellä. Saat ilmoituksen, kun arviointi valmistuu.
           title: Ehdotusta arvioidaan
+        exit_modal:
+          buttons:
+            cancel: Peruuta
+            exit: Poistu sivulta
+          close_modal: Sulje ikkuna
+          message: Olet poistumassa tältä sivulta vaikka olet tehnyt lomakkeelle muutoksia. Haluatko varmasti poistua?
+          title: Lomakkeella on tallentamattomia muutoksia
         form:
           attachment_legend: Lisää liite
           select_a_category: Valitse kategoria

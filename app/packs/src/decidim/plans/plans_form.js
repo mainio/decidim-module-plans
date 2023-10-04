@@ -2,12 +2,10 @@ import "src/decidim/plans/character_counter";
 import "src/decidim/plans/tab_focus";
 import "src/decidim/plans/reset_inputs";
 import "src/decidim/plans/info_modals";
+import "src/decidim/plans/exit_handler";
 
 ((exports) => {
   const $ = exports.$; // eslint-disable-line id-length
-
-  // Defines whether the user can exit the view without a warning or not
-  let canExit = false;
 
   const bindAddressLookup = ($container) => {
     const $map = $(".plans-map");
@@ -140,7 +138,6 @@ import "src/decidim/plans/info_modals";
    */
   const bindFormValidation = ($form) => {
     const $submits = $("[type='submit']", $form);
-    const $discardLink = $(".discard-draft-link", $form);
     const $submitMessage = $(".form-submit-message", $form);
 
     $submits.off("click.decidim-plans.form").on(
@@ -158,7 +155,6 @@ import "src/decidim/plans/info_modals";
         if (!ev.key || (ev.key === " " || ev.key === "Enter")) {
           ev.preventDefault();
 
-          canExit = true;
           $form.submit();
 
           const $firstField = $("input.is-invalid-input, textarea.is-invalid-input, select.is-invalid-input").first();
@@ -172,39 +168,9 @@ import "src/decidim/plans/info_modals";
         }
       }
     );
-
-    $discardLink.off("click.decidim-plans.form").on(
-      "click.decidim-plans.form",
-      () => {
-        canExit = true;
-      }
-    );
-  };
-
-  const bindAccidentalExitDisabling = () => {
-    $(document).on("click", "a, input, button", (ev) => {
-      const $target = $(ev.target);
-      if ($target.closest(".idea-form-container").length > 0) {
-        canExit = true;
-      } else if ($target.closest(".plan-form-container").length > 0) {
-        canExit = true;
-      } else if ($target.closest("#loginModal").length > 0) {
-        canExit = true;
-      }
-    });
-
-    window.onbeforeunload = () => {
-      if (canExit) {
-        return null;
-      }
-
-      return "";
-    }
   };
 
   $(() => {
-    bindAccidentalExitDisabling();
-
     $("form.plans-form").each((_i, el) => {
       const $form = $(el);
 

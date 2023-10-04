@@ -22,13 +22,17 @@ module Decidim
         options[:multilingual_answers]
       end
 
-      def field_options
+      def field_options(name = :body)
         {
-          id: "plan_section_answer_#{model.section.id}",
+          id: field_id(name),
           label: false,
           disabled: field_disabled?,
           help_text: tooltip_help? ? nil : model.help
         }
+      end
+
+      def field_id(name)
+        "plans_section_#{model.section.id}_contents_#{model.section.id}_#{name}"
       end
 
       def field_disabled?
