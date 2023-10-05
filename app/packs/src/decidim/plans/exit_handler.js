@@ -8,7 +8,7 @@ const isSafeUrl = (exitUrl) => {
     return false
   }
 
-  const safeUrls = [];
+  const safeUrls = ["#"];
 
   let safe = false;
   safeUrls.forEach((url) => {
@@ -41,7 +41,6 @@ const allowExitFrom = ($el) => {
 $(() => {
   const $exitNotification = $("#exit-notification");
   const $exitLink = $("#exit-notification-link");
-  const defaultExitUrl = $exitLink.attr("href");
   const defaultExitLinkText = $exitLink.text();
   let exitLinkText = defaultExitLinkText;
   let formChanged = false;

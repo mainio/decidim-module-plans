@@ -8,7 +8,9 @@
           "coordinates-url": geocoding_path,
           "address-url": reverse_geocoding_path
         }, disabled: field_disabled? %>
-        <%= link_to t(".reset_field"), "#", class: "reset-input", data: { target: "##{address_id}" } unless field_disabled? %>
+        <% unless field_disabled? %>
+          <button type="button" class="link reset-input" data-target="#<%= address_id %>"><%= t(".reset_field") %></button>
+        <% end %>
         <%= form.hidden_field :latitude, field_options.merge(
           id: "plan_section_answer_#{model.section.id}_latitude",
           class: "address-input-latitude"
