@@ -6,7 +6,7 @@ module Decidim
       class FieldTextMultilineCell < Decidim::Plans::SectionTypeEdit::FieldTextCell
         def field_label_classes
           classes = []
-          classes << "flex--sbc" if show_tooltip? || help_text.present?
+          classes << "flex--sbc flex--column-reverse flex-medium--row" if show_tooltip? || help_text.present?
           classes <<
             if show_tooltip?
               "with-tooltip"

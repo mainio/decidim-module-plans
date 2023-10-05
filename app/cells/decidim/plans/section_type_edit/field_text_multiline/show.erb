@@ -11,7 +11,7 @@ form_field_options.delete(:help_text)
         <% if show_tooltip? %>
           <%= render :tooltip %>
         <% elsif help_text.present? %>
-          <span class="form-help-tooltip help"><%= help_text %></span>
+          <span class="form-help-tooltip help margin-bottom-1 medium-margin-bottom-0"><%= help_text %></span>
         <% end %>
       <% end %>
     </div>
@@ -34,10 +34,10 @@ form_field_options.delete(:help_text)
         ) %>
       <% end %>
 
-      <div class="help-text flex--sbc">
+      <div class="help-text flex--sbc flex--column flex-medium--row">
         <div class="field-character-counter-info"></div>
         <% if show_info_link? %>
-          <%= link_to info_path(section.id), class: "info-modal-link" do %>
+          <%= link_to info_path(section.id), class: "info-modal-link margin-top-1 medium-margin-top-0" do %>
             <%= icon "info-line", aria_hidden: true %>
             <span><%= information_label %></span>
           <% end %>
