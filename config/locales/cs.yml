@@ -67,7 +67,7 @@ cs:
             default_answer: Výchozí odpověď na návrh
             default_answer_none: (Žádné)
             default_state: Výchozí stav návrhu
-            form_preview_allowed: Allow unauthenticated previewing the form
+            form_preview_allowed: Povolit neověřený náhled formuláře
             layout: Rozvržení
             multilingual_answers: Vícejazyčné odpovědi
             plan_answering_enabled: Odpovídání povoleno
@@ -309,23 +309,23 @@ cs:
         leave_your_plan: Vytvořte vlastní návrh!
         new_plan: Nový návrh
         see_all_withdrawn: Zobrazit všechny stažené
-        show_list: Show results as list
-        show_map: Show results on map
+        show_list: Zobrazit výsledky jako seznam
+        show_map: Zobrazit výsledky na mapě
         title: Browse proposals
         view_plan: Zobrazit návrh
       plan_l:
-        card_label: "Proposal: %{title}"
-        view_plan: View proposal
+        card_label: "Návrh: %{title}"
+        view_plan: Zobrazit návrh
       plan_m:
-        card_label: "Proposal: %{title}"
+        card_label: "Návrh: %{title}"
         view_plan: Zobrazit návrh
       plan_notification:
         accepted:
-          title: This proposal has been accepted
+          title: Tento návrh byl přijat
         evaluating:
-          title: This proposal is being evaluated
+          title: Tento návrh je hodnocen
         rejected:
-          title: This proposal has been rejected
+          title: Tento návrh byl zamítnut
       plan_view:
         back: Přejít na seznam návrhů
         controls:
@@ -366,9 +366,9 @@ cs:
           error: Byl jste úspěšně odstraněn jako autor z tohoto návrhu.
         edit:
           back: Zpět na návrh
-          make_profile_public: Make your profile public
+          make_profile_public: Zveřejnit svůj profil
           material_title: Informace na podporu vašeho návrhu
-          public_profile_required: Public activity on this platform requires you to make your profile public. Making a suggestion is a public activity.
+          public_profile_required: Veřejná aktivita na této platformě vyžaduje zveřejnění vašeho profilu. Vytváření návrhu je veřejná aktivita.
           sign_in: Přihlásit se
           sign_in_before_submitting: Před odesláním návrhu se musíte přihlásit
           title: Upravit návrh
@@ -496,7 +496,7 @@ cs:
           add_attachment_multi: Přidat přílohy
           attachment_legend: Příloha
           attachment_legend_multi: Přílohy
-          disabled: Disabled
+          disabled: Vypnuto
           edit_attachment: Změnit přílohu
           edit_attachment_multi: Změnit přílohy
           remove: Odebrat
@@ -512,7 +512,7 @@ cs:
           add_attachment_multi: Přidat obrázky
           attachment_legend: Obrázek
           attachment_legend_multi: Obrázky
-          disabled: Disabled
+          disabled: Vypnuto
           edit_attachment: Změnit obrázek
           edit_attachment_multi: Změnit obrázky
           remove: Odebrat
