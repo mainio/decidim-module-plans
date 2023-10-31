@@ -271,8 +271,8 @@ fi:
       plan_form:
         buttons:
           create: Esikatsele
-          discard: Tuhoa tämä luonnos
-          discard_confirmation: Haluatko varmasti tuhota tämän luonnoksen?
+          discard: Poista luonnos
+          discard_confirmation: Haluatko varmasti poistaa tämän luonnoksen?
           loading_message: Tallennetaan... Kuvien ja liitetiedostojen käsittelyssä kestää hetki, odota rauhassa.
           save: Tallenna
           save_draft: Tallenna luonnoksena
@@ -305,11 +305,11 @@ fi:
           tag_prompt: Valitse merkinnät
           unfold: Avaa
         leave_your_plan: Tee oma ehdotuksesi!
-        new_plan: Uusi ehdotus
+        new_plan: Tee ehdotus
         see_all_withdrawn: Näytä kaikki peruutetut
         show_list: Näytä tulokset listana
         show_map: Näytä tulokset kartalla
-        title: Etsi ja tutki ehdotuksia
+        title: Tutustu ehdotuksiin
         view_plan: Näytä ehdotus
       plan_l:
         card_label: "Ehdotus: %{title}"
@@ -374,6 +374,13 @@ fi:
           close: Sulje ikkuna
           description: Ehdotusta arvioidaan ja sitä ei voi muokata tällä hetkellä. Saat ilmoituksen, kun arviointi valmistuu.
           title: Ehdotusta arvioidaan
+        exit_modal:
+          buttons:
+            cancel: Peruuta
+            exit: Poistu sivulta
+          close_modal: Sulje ikkuna
+          message: Olet poistumassa tältä sivulta vaikka olet tehnyt lomakkeelle muutoksia. Haluatko varmasti poistua?
+          title: Lomakkeella on tallentamattomia muutoksia
         form:
           attachment_legend: Lisää liite
           select_a_category: Valitse kategoria
@@ -382,7 +389,7 @@ fi:
         new:
           back: Palaa takaisin ehdotuslistaukseen
           create: Luo
-          title: Luo ehdotus
+          title: Tee ehdotus
         new_plan_button:
           new_plan: Uusi ehdotus
         orders:
@@ -497,7 +504,7 @@ fi:
           select_a_sub_category: Valitse alateema
           sub_category_label: Valitse alateema
         field_map_point:
-          address_lookup_button: Etsi
+          address_lookup_button: Näytä kartalla
           reset_field: Tyhjennä kenttä
         field_image_attachments:
           add_attachment: Lisää kuva
