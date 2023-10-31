@@ -273,8 +273,8 @@ cs:
       plan_form:
         buttons:
           create: Náhled
-          discard: Zahodit koncept
-          discard_confirmation: Opravdu chcete zahodit tento koncept?
+          discard: Delete draft
+          discard_confirmation: Are you sure you want to delete this draft?
           loading_message: Ukládání... Zpracování obrázků a příloh zabere chvilku, čekejte prosím.
           save: Uložit
           save_draft: Uložit jako koncept
@@ -307,7 +307,7 @@ cs:
           tag_prompt: Vybrat štítky
           unfold: Rozbalit
         leave_your_plan: Vytvořte vlastní návrh!
-        new_plan: Nový návrh
+        new_plan: Submit a proposal
         see_all_withdrawn: Zobrazit všechny stažené
         show_list: Zobrazit výsledky jako seznam
         show_map: Zobrazit výsledky na mapě
@@ -368,7 +368,7 @@ cs:
           back: Zpět na návrh
           make_profile_public: Zveřejnit svůj profil
           material_title: Informace na podporu vašeho návrhu
-          public_profile_required: Veřejná aktivita na této platformě vyžaduje zveřejnění vašeho profilu. Vytváření návrhu je veřejná aktivita.
+          public_profile_required: Public activity on this platform requires you to make your profile public. Making a proposal is a public activity.
           sign_in: Přihlásit se
           sign_in_before_submitting: Před odesláním návrhu se musíte přihlásit
           title: Upravit návrh
@@ -378,6 +378,13 @@ cs:
           close: Zavřít modální okno
           description: Návrh je hodnocen a nemůže být během této doby upraven. Po dokončení hodnocení budete informováni.
           title: Návrh je hodnocen
+        exit_modal:
+          buttons:
+            cancel: Cancel
+            exit: Exit page
+          close_modal: Close window
+          message: You are leaving this page even though you have made changes to the form. Are you sure you want to exit?
+          title: The form has unsaved changes
         form:
           attachment_legend: Přidat přílohu
           select_a_category: Vyberte kategorii
@@ -386,7 +393,7 @@ cs:
         new:
           back: Zpět na seznam návrhů
           create: Vytvořit
-          title: Vytvořit návrh
+          title: Submit a proposal
         new_plan_button:
           new_plan: Nový návrh
         orders:
@@ -505,7 +512,7 @@ cs:
           select_a_sub_category: Vyberte podmotiv
           sub_category_label: Vyberte podmotiv
         field_map_point:
-          address_lookup_button: Vyhledat
+          address_lookup_button: Show on map
           reset_field: Obnovit pole
         field_image_attachments:
           add_attachment: Přidat obrázek
