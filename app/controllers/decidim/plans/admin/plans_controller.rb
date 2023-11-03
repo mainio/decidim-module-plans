@@ -8,6 +8,7 @@ module Decidim
         include Decidim::ApplicationHelper
         include Plans::AttachedProposalsHelper
         include Decidim::Plans::AttachedPlansHelper
+        include Decidim::Plans::UserPublicityHelper
 
         helper Plans::ApplicationHelper
         helper Plans::AttachmentsHelper
