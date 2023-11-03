@@ -5,6 +5,7 @@ module Decidim
     class PlanFormCell < Decidim::ViewModel
       include Decidim::Plans::ApplicationHelper
       include ActionView::Helpers::FormOptionsHelper
+      include ::Decidim::LayoutHelper
 
       delegate(
         :current_user,
