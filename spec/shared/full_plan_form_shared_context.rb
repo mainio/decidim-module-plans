@@ -15,3 +15,17 @@ shared_context "with full plan form" do
     end.compact
   end
 end
+
+shared_context "with plan author params" do
+  let(:plan_id) { plan.id }
+  let(:slug) { component.participatory_space.slug }
+  let(:recipient_id) { [user.id] }
+  let(:params) do
+    {
+      plan_id: plan_id,
+      recipient_id: recipient_id,
+      component_id: component.id,
+      participatory_process_slug: slug
+    }
+  end
+end
