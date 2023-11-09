@@ -273,8 +273,8 @@ cs:
       plan_form:
         buttons:
           create: Náhled
-          discard: Delete draft
-          discard_confirmation: Are you sure you want to delete this draft?
+          discard: Odstranit koncept
+          discard_confirmation: Opravdu chcete odstranit tento koncept?
           loading_message: Ukládání... Zpracování obrázků a příloh zabere chvilku, čekejte prosím.
           save: Uložit
           save_draft: Uložit jako koncept
@@ -307,11 +307,11 @@ cs:
           tag_prompt: Vybrat štítky
           unfold: Rozbalit
         leave_your_plan: Vytvořte vlastní návrh!
-        new_plan: Submit a proposal
+        new_plan: Odeslat návrh
         see_all_withdrawn: Zobrazit všechny stažené
         show_list: Zobrazit výsledky jako seznam
         show_map: Zobrazit výsledky na mapě
-        title: Browse proposals
+        title: Procházet návrhy
         view_plan: Zobrazit návrh
       plan_l:
         card_label: "Návrh: %{title}"
@@ -368,7 +368,7 @@ cs:
           back: Zpět na návrh
           make_profile_public: Zveřejnit svůj profil
           material_title: Informace na podporu vašeho návrhu
-          public_profile_required: Public activity on this platform requires you to make your profile public. Making a proposal is a public activity.
+          public_profile_required: Veřejná aktivita na této platformě vyžaduje, abyste zveřejnili svůj profil. Vytvoření návrhu je veřejná aktivita.
           sign_in: Přihlásit se
           sign_in_before_submitting: Před odesláním návrhu se musíte přihlásit
           title: Upravit návrh
@@ -380,11 +380,11 @@ cs:
           title: Návrh je hodnocen
         exit_modal:
           buttons:
-            cancel: Cancel
-            exit: Exit page
-          close_modal: Close window
-          message: You are leaving this page even though you have made changes to the form. Are you sure you want to exit?
-          title: The form has unsaved changes
+            cancel: Zrušit
+            exit: Odejít ze stránky
+          close_modal: Zavřít okno
+          message: Opouštíte tuto stránku, i když jste provedli změny ve formuláři. Jste si jisti, že chcete skončit?
+          title: Formulář má neuložené změny
         form:
           attachment_legend: Přidat přílohu
           select_a_category: Vyberte kategorii
@@ -393,7 +393,7 @@ cs:
         new:
           back: Zpět na seznam návrhů
           create: Vytvořit
-          title: Submit a proposal
+          title: Odeslat návrh
         new_plan_button:
           new_plan: Nový návrh
         orders:
@@ -512,7 +512,7 @@ cs:
           select_a_sub_category: Vyberte podmotiv
           sub_category_label: Vyberte podmotiv
         field_map_point:
-          address_lookup_button: Show on map
+          address_lookup_button: Zobrazit na mapě
           reset_field: Obnovit pole
         field_image_attachments:
           add_attachment: Přidat obrázek
