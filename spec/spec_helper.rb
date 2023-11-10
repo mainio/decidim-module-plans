@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require "decidim/dev"
-
+require "simplecov"
+SimpleCov.start
 ENV["ENGINE_ROOT"] = File.dirname(__dir__)
 
 Decidim::Dev.dummy_app_path =

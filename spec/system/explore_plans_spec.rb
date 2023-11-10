@@ -240,6 +240,73 @@ describe "explore plans", type: :system do
       end
     end
 
+    describe "explore versions" do
+      let!(:plan) { create(:plan, :open, component: component, published_at: nil, users: [user]) }
+      let!(:content) { create(:content, plan: plan) }
+      let!(:user1) { create(:user, :confirmed, organization: organization) }
+
+      context "with different versions available" do
+        before do
+          sign_in user
+          switch_to_host(organization.host)
+          visit decidim_plan.edit_plan_path(plan.id)
+          fill_in "contents[#{plan.sections.first.id}][body_en]", with: "Update text"
+          click_button "Preview"
+        end
+
+        it "shows different versions" do
+          expect(page).to have_content("VERSION 2 (of 2)")
+          click_link "see other versions"
+          expect(page).to have_current_path(decidim_plan.plan_versions_path(plan.id))
+          expect(page).to have_content("Changes at")
+          within ".card--list__item", match: :first do
+            expect(page).to have_content("Version 1")
+          end
+          within all(".card--list__item").last do
+            expect(page).to have_content("Version 2")
+          end
+          expect(page).to have_css("div.card--list__text", count: 2)
+        end
+
+        it "compares different versions" do
+          visit decidim_plan.plan_versions_path(plan.id)
+          expect(page).to have_link("Version 1", href: decidim_plan.plan_version_path(plan_id: plan.id, id: 1))
+          expect(page).to have_link("Version 2", href: decidim_plan.plan_version_path(plan_id: plan.id, id: 2))
+          click_link "Version 1"
+          expect(page).to have_link("Show all versions", href: decidim_plan.plan_versions_path(plan.id))
+          expect(page).to have_link("Back to proposal", href: decidim_plan.plan_path(plan.id))
+          expect(page).to have_content("Changes at")
+          within "h2.heading2" do
+            expect(page).to have_content(translated(plan.title))
+          end
+          expect(page).to have_content("Open")
+          expect(page).to have_content("STATE")
+          within ".diff-for-title" do
+            expect(page).to have_content("TITLE")
+            expect(page).to have_content(translated(plan.title))
+          end
+          visit decidim_plan.plan_version_path(plan_id: plan.id, id: 2)
+          within "li.ins" do
+            expect(page).to have_content("Update text")
+          end
+          within "li.del" do
+            expect(page).to have_content(translated(content.body))
+          end
+        end
+
+        it "changes view mode" do
+          visit decidim_plan.plan_version_path(plan_id: plan.id, id: 2)
+          expect(page).to have_link("Unified", href: "#diffmode-chooser-menu")
+          click_link "Unified"
+          expect(page).to have_link("Side-by-side")
+          click_link("Side-by-side")
+
+          expect(page).to have_content(translated(plan.title))
+          expect(page).to have_content("Update text")
+        end
+      end
+    end
+
     private
 
     def decidim_plan
