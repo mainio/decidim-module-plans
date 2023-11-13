@@ -10,9 +10,11 @@ describe Decidim::Plans::PlansPickerCell, type: :cell do
   let(:my_cell) { cell("decidim/plans/plans_picker", component) }
   let(:organization) { create(:organization, tos_version: Time.current) }
   let(:participatory_space) { create(:participatory_process, :with_steps, organization: organization) }
-  let(:component) { create(:plan_component, participatory_space: participatory_space) }
-  let!(:plans) { create_list(:plan, 30, :accepted, component: component) }
-  let!(:withdrawn_plans) { create_list(:plan, 30, :withdrawn, component: component) }
+  let(:plan_component) { create(:plan_component, participatory_space: participatory_space) }
+  let!(:plans) { create_list(:plan, 30, :accepted, component: plan_component) }
+  let!(:withdrawn_plans) { create_list(:plan, 30, :withdrawn, component: plan_component) }
+  let!(:user) { create(:user, :admin, :confirmed, organization: organization) }
+  let!(:component) { create(:budgets_component, participatory_space: participatory_space) }
 
   let(:another_space) { create(:participatory_process, :with_steps, organization: organization) }
   let(:another_component) { create(:plan_component, participatory_space: another_space) }
@@ -32,5 +34,22 @@ describe Decidim::Plans::PlansPickerCell, type: :cell do
 
   it "does not render plans from other components" do
     expect(subject).not_to have_content(translated(external_plan.title))
+  end
+
+  context "when filters exist" do
+    let(:params) do
+      { q: { search_text: translated(plans.first.title) } }
+    end
+
+    before do
+      allow(controller).to receive(:current_user).and_return(user)
+      allow(controller).to receive(:current_organization).and_return(organization)
+      allow(controller).to receive(:params).and_return(params)
+    end
+
+    it "returns the filtered results" do
+      expect(subject).to have_content(translated(plans.first.title))
+      expect(subject).not_to have_content(translated(plans.last.title))
+    end
   end
 end
