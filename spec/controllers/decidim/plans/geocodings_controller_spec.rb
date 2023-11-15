@@ -63,7 +63,7 @@ describe Decidim::Plans::GeocodingsController, type: :controller do
         expect(response.content_type).to eq("application/json; charset=utf-8")
         json_response = JSON.parse(response.body)
         expect(json_response["success"]).to be_truthy
-        expect(json_response["result"]).to eq({ "lat"=>40.1234, "lng"=>2.1234 })
+        expect(json_response["result"]).to eq({ "lat" => 40.1234, "lng" => 2.1234 })
       end
     end
   end
