@@ -40,6 +40,8 @@ module Decidim
       end
 
       def show
+        raise ActionController::RoutingError, "Not Found" if @plan.blank? || !can_show_plan?
+
         enforce_permission_to :read, :plan, plan: @plan
 
         @report_form = form(Decidim::ReportForm).from_params(reason: "spam")
@@ -265,6 +267,12 @@ module Decidim
         raise ActionController::RoutingError, "Not Found" unless @plan.editable_by?(current_user)
 
         redirect_to routes_proxy.preview_plan_path(@plan)
+      end
+
+      def can_show_plan?
+        return true if current_user&.admin?
+
+        !@plan.hidden?
       end
 
       def search_collection

@@ -336,6 +336,12 @@ FactoryBot.define do
     trait :draft do
       published_at { nil }
     end
+
+    trait :hidden do
+      after :create do |plan|
+        create(:moderation, hidden_at: Time.current, reportable: plan)
+      end
+    end
   end
 
   factory :plan_collaborator_request, class: "Decidim::Plans::PlanCollaboratorRequest" do

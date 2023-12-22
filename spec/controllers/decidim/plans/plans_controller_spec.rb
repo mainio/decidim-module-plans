@@ -54,6 +54,14 @@ module Decidim
           expect(response).to have_http_status(:ok)
           expect(subject).to render_template(:show)
         end
+
+        context "when the plan is hidden" do
+          let(:plan) { create(:plan, :hidden, component: component) }
+
+          it "shows a single plan" do
+            expect { get :show, params: { id: plan.id } }.to raise_error(ActionController::RoutingError)
+          end
+        end
       end
 
       describe "GET new" do
