@@ -632,7 +632,7 @@ fi:
           email_subject: Seuraamasi kohde on julkaistu
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_rejected:
-          email_intro: '"%{resource_title}" on hylätty. Voit lukea vastauksen tällä sivulla:'
+          email_intro: '"%{resource_title}" on hylätty. Voit lukea vastauksen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi kohde on hylätty
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on hylätty.
