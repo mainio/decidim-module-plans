@@ -46,19 +46,6 @@ module Decidim
           data
         )
       end
-
-      def render_plan_notification(plan, data = {})
-        context = data[:context] || {}
-        data = data.merge(
-          context: context.merge(current_component: current_component)
-        )
-
-        cell(
-          layout_manifest.notification_layout,
-          plan,
-          data
-        )
-      end
     end
   end
 end

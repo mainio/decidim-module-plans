@@ -1,11 +1,13 @@
-<div class="callout callout--icon <%= status_class %>">
+<div class="callout callout--icon <%= status_class %> margin-bottom-2">
   <div class="callout__title">
     <div class="callout__icon">
       <%= icon(icon_key, role: "img", "aria-hidden": true) %>
     </div>
     <p class="h6"><%= title %></p>
   </div>
-  <div class="callout__content">
-    <%== decidim_sanitize description %>
-  </div>
+  <% if has_answer_text? %>
+    <div class="callout__content">
+      <%== decidim_sanitize description %>
+    </div>
+  <% end %>
 </div>

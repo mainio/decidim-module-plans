@@ -26,6 +26,19 @@ module Decidim
         render :collaborator_requests
       end
 
+      def plan_notification(data = {})
+        context = data[:context] || {}
+        data = data.merge(
+          context: context.merge(current_component: current_component)
+        )
+
+        cell(
+          layout_manifest.notification_layout,
+          plan,
+          data
+        )
+      end
+
       private
 
       def plan
@@ -178,6 +191,10 @@ module Decidim
 
       def current_locale
         I18n.locale.to_s
+      end
+
+      def layout_manifest
+        @layout_manifest ||= Decidim::Plans.layouts.find(current_component.settings.layout)
       end
 
       def routes_proxy

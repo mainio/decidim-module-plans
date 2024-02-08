@@ -1,9 +1,3 @@
-<% if @plan.answered? %>
-  <% content_for :notification do %>
-    <%= render_plan_notification(@plan) %>
-  <% end %>
-<% end %>
-
 <% add_decidim_meta_tags({
   title: present(@plan).title,
   url: plan_url(@plan.id)

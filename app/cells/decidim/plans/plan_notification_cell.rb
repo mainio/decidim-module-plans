@@ -16,7 +16,6 @@ module Decidim
 
       def show
         return unless model.answered?
-        return if answer_text.blank?
 
         render
       end
@@ -54,11 +53,15 @@ module Decidim
       end
 
       def description
-        translated_attribute model.answer
+        answer_text
       end
 
       def answer_text
         @answer_text ||= translated_attribute(model.answer)
+      end
+
+      def has_answer_text?
+        strip_tags(answer_text).strip.present?
       end
     end
   end
