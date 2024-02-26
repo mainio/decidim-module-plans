@@ -314,7 +314,6 @@ en:
         show_list: Show results as list
         show_map: Show results on map
         title: Browse proposals
-        view_plan: View proposal
       plan_l:
         card_label: "Proposal: %{title}"
         view_plan: View proposal
@@ -334,6 +333,7 @@ en:
           add_author: Add authors for proposal
         flag: Flag
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
+        map_title: Proposal on map
         pending_access_request_message_html: <p>You have requested editing access to this proposal. Please wait for the collaborators to respond to your request.</p><p>You will receive an email notification once your request is answered.</p>
         plan_waiting_for_evaluation: The proposal is being evaluated, editing not allowed.
         request_access: Request editing permissions
@@ -353,8 +353,8 @@ en:
           title: Add authors for proposal %{plan}
         count:
           plans_count:
-            one: "%{count} proposal"
-            other: "%{count} proposals"
+            one: "Found %{count} proposal"
+            other: "Found %{count} proposals"
         create:
           error: Failed to create new content.
           success: Created successfully.
@@ -460,6 +460,8 @@ en:
         withdraw:
           error: Error withdrawing the item.
           success: Item withdrawn successfully.
+      plans_map:
+        view_plan: View proposal
       plans_picker:
         choose_plans: Choose proposals
         close: Close

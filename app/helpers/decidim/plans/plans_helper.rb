@@ -26,7 +26,7 @@ module Decidim
         end
       end
 
-      def plans_map(geocoded_plans)
+      def plans_map(geocoded_plans, **options)
         map_options = { type: "plans", markers: geocoded_plans }
 
         if address_section
@@ -36,7 +36,7 @@ module Decidim
           map_options[:center_coordinates] = [lat, lng].map(&:to_f) if lat && lng
         end
 
-        dynamic_map_for(map_options) do
+        dynamic_map_for(map_options.merge(options)) do
           # These snippets need to be added AFTER the other map scripts have
           # been added which is why they cannot be within the block. Otherwise
           # e.g. the markercluser would not be available when the plans map is

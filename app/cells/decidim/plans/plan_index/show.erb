@@ -51,12 +51,19 @@
 
     <div class="tabs-content" data-tabs-content="listing-tabs">
       <div class="tabs-panel is-active" id="plans-listing">
-        <%= render :controls %>
+        <div class="collection-info row">
+          <div class="column">
+            <div id="plans-count" aria-live="polite">
+              <%= render :count %>
+            </div>
+          </div>
+          <div class="column">
+            <%= render :controls %>
+          </div>
+        </div>
+
         <%= render :notification %>
 
-        <div id="plans-count">
-          <%= render :count %>
-        </div>
         <div id="plans">
           <div class="cards-list">
             <%= render :plans %>
@@ -71,29 +78,7 @@
         <div class="tabs-panel" id="plans-map">
           <%= render :notification %>
 
-          <%= plans_map plans_data_for_map(geocoded_plans) do %>
-            <template id="marker-popup">
-              <div class="map-info__content">
-                <h3>${title}</h3>
-                <div id="bodyContent">
-                  <p>{{html body}}</p>
-                  <div class="map__date-adress">
-                    <div class="address card__extra">
-                      <div class="address__icon">{{html icon}}</div>
-                      <div class="address__details">
-                        <span>${address}</span><br>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="map-info__button">
-                    <a href="${link}" class="button button--sc">
-                      <%= t(".view_plan") %>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </template>
-          <% end %>
+          <%= cell("decidim/plans/plans_map", geocoded_plans) %>
         </div>
       <% end %>
     </div>

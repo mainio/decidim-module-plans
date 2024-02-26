@@ -16,8 +16,12 @@ module Decidim
       include SocialShareButton::Helper
       include Decidim::Plans::Engine.routes.url_helpers
 
-      delegate :allowed_to?, :current_component, :current_user, to: :controller
+      delegate :allowed_to?, :current_user, to: :controller
       delegate :plans_path, :plan_url, :plan_path, :plan_versions_path, to: :routes_proxy
+
+      def contents
+        render :contents
+      end
 
       def collaborator_requests
         return unless allowed_to?(:edit, :plan, plan: plan)
@@ -43,6 +47,10 @@ module Decidim
 
       def plan
         model
+      end
+
+      def current_component
+        context[:current_component] || controller.current_component
       end
 
       def trigger_feedback?

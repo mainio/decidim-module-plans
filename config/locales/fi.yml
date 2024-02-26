@@ -310,7 +310,6 @@ fi:
         show_list: Näytä tulokset listana
         show_map: Näytä tulokset kartalla
         title: Tutustu ehdotuksiin
-        view_plan: Näytä ehdotus
       plan_l:
         card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
@@ -330,6 +329,7 @@ fi:
           add_author: Lisää ehdotukselle tekijöitä
         flag: Ilmoita
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
+        map_title: Ehdotus kartalla
         pending_access_request_message_html: <p>Olet pyytänyt muokkausoikeuksia tähän ehdotukseen. Odota, että ehdotuksen tekijät vastaavat pyyntöösi.</p><p>Saat viestin sähköpostiisi, kun pyyntöösi vastataan.</p>
         plan_waiting_for_evaluation: Ehdotus on arvioitavana, muokkaaminen estetty.
         request_access: Pyydä muokkausoikeudet
@@ -349,8 +349,8 @@ fi:
           title: Lisää tekijöitä ehdotukselle %{plan}
         count:
           plans_count:
-            one: "%{count} ehdotus"
-            other: "%{count} ehdotusta"
+            one: "Löytyi %{count} ehdotus"
+            other: "Löytyi %{count} ehdotusta"
         create:
           error: Uuden sisällön luominen epäonnistui.
           success: Luonti onnistui.
@@ -453,6 +453,8 @@ fi:
         withdraw:
           error: Virhe kohteen peruutuksessa.
           success: Kohde peruutettu onnistuneesti.
+      plans_map:
+        view_plan: Näytä ehdotus
       plans_picker:
         choose_plans: Valitse ehdotukset
         close: Sulje

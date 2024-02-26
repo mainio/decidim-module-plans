@@ -310,7 +310,6 @@ sv:
         show_list: Visa resultat som lista
         show_map: Visa resultat på kartan
         title: Bekanta dig med förslag
-        view_plan: Visa förslag
       plan_l:
         card_label: "Förslag: %{title}"
         view_plan: Visa förslag
@@ -330,6 +329,7 @@ sv:
           add_author: Lägg till författare för förslag
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        map_title: Förslag på karta
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
         plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
         request_access: Begär redigeringsrättigheter
@@ -349,8 +349,8 @@ sv:
           title: Lägg till författare för förslag %{plan}
         count:
           plans_count:
-            one: "%{count} förslag"
-            other: "%{count} förslag"
+            one: "Hittade %{count} förslag"
+            other: "Hittade %{count} förslag"
         create:
           error: Det gick inte att skapa nytt innehåll.
           success: Innehållet har skapats.
@@ -453,6 +453,8 @@ sv:
         withdraw:
           error: Det inträffade ett fel vid annullering av objektet.
           success: Objektet har annullerats.
+      plans_map:
+        view_plan: Visa förslag
       plans_picker:
         choose_plans: Välj förslag
         close: Stäng

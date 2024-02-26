@@ -8,7 +8,7 @@ module Decidim
       include Decidim::ResourceHelper
       include Decidim::SanitizeHelper
       include Decidim::LayoutHelper # For the icon helper
-      include Decidim::MapHelper
+      # include Decidim::MapHelper
       include Decidim::FiltersHelper
       include Decidim::OrdersHelper
       include Decidim::CardHelper
