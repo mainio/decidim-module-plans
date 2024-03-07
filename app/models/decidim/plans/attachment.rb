@@ -29,7 +29,7 @@ module Decidim
       def main_url
         return unless photo?
 
-        attached_uploader(:file).path(variant: :main)
+        attached_uploader(:file).variant_url(:main)
       end
 
       private
