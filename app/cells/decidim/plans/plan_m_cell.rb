@@ -105,7 +105,7 @@ module Decidim
         return [] if preview?
         return [:comments_count] if model.draft?
 
-        [:comments_count, :favoriting_count]
+        [:comments_count, :favorites_count]
       end
 
       def comments_count_status
@@ -116,8 +116,8 @@ module Decidim
         l(model.published_at.to_date, format: :decidim_short)
       end
 
-      def favoriting_count_status
-        cell("decidim/favorites/favoriting_count", model)
+      def favorites_count_status
+        cell("decidim/favorites/favorites_count", model)
       end
 
       def category_icon
