@@ -563,9 +563,14 @@ fi:
         version:
           version_index: Versio %{index}
     resource_links:
+      included_ideas:
+        plan_idea: Liitetyt ideat
       included_proposals:
         plan_proposal: Liitetyt ehdotukset
         proposal_plan: Liitetyt ehdotukset
+      included_plans:
+        plan_project: Liitetyt äänestettävät ehdotukset
+        plan_result: Liitetyt hankkeet
     scopes:
       global: Yleinen
     statistics:

@@ -570,9 +570,14 @@ en:
         version:
           version_index: Version %{index}
     resource_links:
+      included_ideas:
+        plan_idea: Related ideas
       included_proposals:
         plan_proposal: Related proposals
         proposal_plan: Related proposals
+      included_plans:
+        plan_project: Related votable proposals
+        plan_result: Related projects
     scopes:
       global: Global
     statistics:

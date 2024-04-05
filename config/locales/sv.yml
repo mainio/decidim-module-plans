@@ -563,9 +563,14 @@ sv:
         version:
           version_index: Version %{index}
     resource_links:
+      included_ideas:
+        plan_idea: Relaterade idéer
       included_proposals:
         plan_proposal: Relaterade förslag
         proposal_plan: Relaterade förslag
+      included_plans:
+        plan_project: Relaterade röstningsbara förslag
+        plan_result: Relaterade projekt
     scopes:
       global: Allmän
     statistics:
