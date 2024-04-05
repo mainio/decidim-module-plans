@@ -22,12 +22,14 @@
         <span class="link-text"><%= t ".share" %></span>
       </button>
     </li>
-    <li>
-      <%= link_to "#comments", class: "action-link" do %>
-        <%= icon "comment-square", role: "img", "aria-hidden": true %>
-        <span class="link-text"><%= t ".show_comments" %></span>
-      <% end %>
-    </li>
+    <% if plan.commentable? %>
+      <li>
+        <%= link_to "#comments", class: "action-link" do %>
+          <%= icon "comment-square", role: "img", "aria-hidden": true %>
+          <span class="link-text"><%= t ".show_comments" %></span>
+        <% end %>
+      </li>
+    <% end %>
   <% end %>
   <% if has_map_position? %>
     <li>
