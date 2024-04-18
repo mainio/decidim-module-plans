@@ -24,6 +24,7 @@ module Decidim
       before_action :check_draft, only: [:new]
       before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :ensure_published!, only: [:show, :withdraw, :add_authors, :add_authors_confirm]
+      before_action :set_breadcrumbs, only: [:new, :show, :edit, :preview]
 
       def index
         enforce_permission_to :read, :plans
@@ -232,6 +233,21 @@ module Decidim
       end
 
       private
+
+      def set_breadcrumbs
+        return unless respond_to?(:add_breadcrumb, true)
+
+        add_breadcrumb(translated_attribute(current_component.name), plans_path)
+
+        case action_name
+        when "show"
+          add_breadcrumb(translated_attribute(@plan.title), plan_path(@plan))
+        when "new"
+          add_breadcrumb(t("decidim.plans.plans.new.title"), new_plan_path)
+        when "edit"
+          add_breadcrumb(t("decidim.plans.plans.edit.title"), edit_plan_path(@plan))
+        end
+      end
 
       def trigger_feedback?
         @trigger_feedback ||= session.delete("decidim-plans.published")
