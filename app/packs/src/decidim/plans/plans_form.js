@@ -56,6 +56,18 @@ import "src/decidim/plans/exit_handler";
       });
     }
 
+    const announceMarkerAdded = ($field) => {
+      // This is a method that is not available by default but it can be added.
+      // See:
+      // https://github.com/decidim/decidim/pull/12707
+      if (!window.Decidim.announceForScreenReader) {
+        return;
+      }
+
+      const message = $field.data("screen-reader-announcement");
+      window.Decidim.announceForScreenReader(message);
+    }
+
     // Prevent the form submit event on keydown event in the address field
     $address.on("keydown.decidim-plans", (ev) => {
       if (ev.keyCode === 13) {
@@ -111,12 +123,14 @@ import "src/decidim/plans/exit_handler";
       } else {
         performCoordinatesLookup();
       }
+      announceMarkerAdded($address);
     });
 
     $lookup.on("click.decidim-plans", (ev) => {
       ev.preventDefault();
       autocomplete.close();
       performCoordinatesLookup();
+      announceMarkerAdded($address);
     });
 
     if ($latitude.val().length > 0 && $longitude.val().length > 0) {

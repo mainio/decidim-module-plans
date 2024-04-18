@@ -507,6 +507,7 @@ fi:
           sub_category_label: Valitse alateema
         field_map_point:
           address_lookup_button: Näytä kartalla
+          marker_added: Karttamerkki lisätty.
           reset_field: Tyhjennä kenttä
         field_image_attachments:
           add_attachment: Lisää kuva

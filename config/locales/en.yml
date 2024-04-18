@@ -514,6 +514,7 @@ en:
           sub_category_label: Choose a subtheme
         field_map_point:
           address_lookup_button: Show on map
+          marker_added: Marker added to the map.
           reset_field: Reset field
         field_image_attachments:
           add_attachment: Add image

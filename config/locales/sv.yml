@@ -507,6 +507,7 @@ sv:
           sub_category_label: Välj ett undertema
         field_map_point:
           address_lookup_button: Visa på kartan
+          marker_added: Markör tillagd på kartan.
           reset_field: Återställ fältet
         field_image_attachments:
           add_attachment: Lägg till bilden
