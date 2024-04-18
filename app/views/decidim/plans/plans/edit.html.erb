@@ -1,3 +1,5 @@
+<% add_decidim_page_title(t(".title")) %>
+
 <div class="row columns back-link">
   <% if @plan.draft? %>
     <%= link_to plans_path, class: "action-link" do %>
