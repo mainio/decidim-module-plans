@@ -40,6 +40,7 @@ module Decidim
                 handle: form_section.handle,
                 body: form_section.body_text,
                 help: form_section.help,
+                error_text: form_section.error_text,
                 information_label: form_section.information_label,
                 information: form_section.information,
                 mandatory: form_section.mandatory,

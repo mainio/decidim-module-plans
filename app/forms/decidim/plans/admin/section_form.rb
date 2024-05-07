@@ -14,6 +14,7 @@ module Decidim
         translatable_attribute :body, String
         translatable_attribute :body_rich, String
         translatable_attribute :help, String
+        translatable_attribute :error_text, String
         translatable_attribute :information_label, String
         translatable_attribute :information, String
         attribute :visible_form, Boolean, default: true

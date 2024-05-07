@@ -170,6 +170,7 @@ en:
             attachments_input_type: Attachments input type
             body: Body
             down: Down
+            error_text: Text for invalid input
             handle: Handle
             help: Help
             information: Information

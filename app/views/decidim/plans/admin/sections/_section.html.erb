@@ -94,6 +94,15 @@
       <div class="row column" data-section-type-inverse="content">
         <%= form.translated(
             :text_field,
+            :error_text,
+            tabs_id: id,
+            label: t(".error_text")
+        ) %>
+      </div>
+
+      <div class="row column" data-section-type-inverse="content">
+        <%= form.translated(
+            :text_field,
             :information_label,
             tabs_id: id,
             label: t(".information_label")

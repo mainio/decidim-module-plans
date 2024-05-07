@@ -170,6 +170,7 @@ sv:
             attachments_input_type: Inmatningsfält typ av bilaga
             body: Brödtext
             down: Ner
+            error_text: Text för ogiltig inmatning
             handle: Identifierare
             help: Hjälp
             information: Information

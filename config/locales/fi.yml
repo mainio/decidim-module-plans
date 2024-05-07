@@ -170,6 +170,7 @@ fi:
             attachments_input_type: Liitteiden syöttökentän tyyppi
             body: Runkoteksti
             down: Alas
+            error_text: Virheellisen syötteen teksti
             handle: Tunniste
             help: Ohjeteksti
             information: Tietoa-osio
