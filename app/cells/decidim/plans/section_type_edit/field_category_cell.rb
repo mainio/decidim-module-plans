@@ -34,6 +34,7 @@ module Decidim
           selected = form.object.send(name)
           selected = selected.first if selected.is_a?(Array) && selected.length > 1
           categories = categories_for_select(collection)
+          options[:abide_error] ||= translated_attribute(section.error_text).presence
 
           form.select(name, options_for_select(categories, selected), options, html_options)
         end

@@ -23,6 +23,7 @@ module Decidim
         # Returns nothing.
         def scopes_picker_field(form, name, options: {}, html_options: {})
           options[:label] ||= translated_attribute(section.body) if options[:label].nil?
+          options[:abide_error] ||= translated_attribute(section.error_text).presence
           form.select(name, scopes_options(scopes_root), options, html_options)
         end
 

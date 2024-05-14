@@ -22,6 +22,7 @@ module Decidim
     autoload :SectionTypeRegistry, "decidim/plans/section_type_registry"
     autoload :LayoutManifest, "decidim/plans/layout_manifest"
     autoload :LayoutRegistry, "decidim/plans/layout_registry"
+    autoload :FormBuilder, "decidim/plans/form_builder"
 
     include ActiveSupport::Configurable
 

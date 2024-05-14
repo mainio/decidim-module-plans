@@ -27,7 +27,8 @@ module Decidim
           id: field_id(name),
           label: false,
           disabled: field_disabled?,
-          help_text: tooltip_help? ? nil : model.help
+          help_text: tooltip_help? ? nil : model.help,
+          abide_error: translated_attribute(model.section.error_text).presence
         }
       end
 
