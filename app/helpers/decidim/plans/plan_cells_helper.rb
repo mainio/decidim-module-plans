@@ -21,7 +21,7 @@ module Decidim
       end
 
       def plans_controller?
-        context[:controller].class.to_s == "Decidim::Plans::PlansController"
+        context[:controller].instance_of?(::Decidim::Plans::PlansController)
       end
 
       def index_action?

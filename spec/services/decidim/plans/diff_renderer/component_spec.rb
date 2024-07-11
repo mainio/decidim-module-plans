@@ -8,15 +8,15 @@ module Decidim
     describe DiffRenderer::Component do
       let(:component) { create(:plan_component) }
       let(:organization) { component.organization }
-      let(:author) { create(:user, :confirmed, organization: organization) }
+      let(:author) { create(:user, :confirmed, organization:) }
 
       with_versioning do
-        let(:plan) { create(:plan, component: component) }
+        let(:plan) { create(:plan, component:) }
 
         describe "#diff" do
           subject { described_class.new(version, "en") }
 
-          let(:other_component) { create(:plan_component, organization: organization) }
+          let(:other_component) { create(:plan_component, organization:) }
           let(:version) { plan.versions.last }
 
           before do

@@ -6,7 +6,7 @@ module Decidim
   module ContentParsers
     describe PlanParser do
       let(:organization) { create(:organization, tos_version: Time.current) }
-      let(:component) { create(:plan_component, organization: organization) }
+      let(:component) { create(:plan_component, organization:) }
       let(:context) { { current_organization: organization } }
       let!(:parser) { described_class.new(content, context) }
 
@@ -63,7 +63,7 @@ module Decidim
         end
 
         context "when content links to an organization different from current" do
-          let(:plan) { create(:plan, component: component) }
+          let(:plan) { create(:plan, component:) }
           let(:external_plan) { create(:plan, component: create(:plan_component, organization: create(:organization, tos_version: Time.current))) }
           let(:content) do
             url = plan_url(external_plan)
@@ -77,7 +77,7 @@ module Decidim
         end
 
         context "when content has one link" do
-          let(:plan) { create(:plan, component: component) }
+          let(:plan) { create(:plan, component:) }
           let(:content) do
             url = plan_url(plan)
             "This content references plan #{url}."
@@ -108,27 +108,27 @@ module Decidim
         end
 
         context "when content has many links" do
-          let(:plan1) { create(:plan, component: component) }
-          let(:plan2) { create(:plan, component: component) }
-          let(:plan3) { create(:plan, component: component) }
+          let(:first_plan) { create(:plan, component:) }
+          let(:second_plan) { create(:plan, component:) }
+          let(:third_plan) { create(:plan, component:) }
           let(:content) do
-            url1 = plan_url(plan1)
-            url2 = plan_url(plan2)
-            url3 = plan_url(plan3)
-            "This content references the following plans: #{url1}, #{url2} and #{url3}. Great?I like them!"
+            first_url = plan_url(first_plan)
+            second_url = plan_url(second_plan)
+            third_url = plan_url(third_plan)
+            "This content references the following plans: #{first_url}, #{second_url} and #{third_url}. Great?I like them!"
           end
 
-          it { is_expected.to eq("This content references the following plans: #{plan1.to_global_id}, #{plan2.to_global_id} and #{plan3.to_global_id}. Great?I like them!") }
+          it { is_expected.to eq("This content references the following plans: #{first_plan.to_global_id}, #{second_plan.to_global_id} and #{third_plan.to_global_id}. Great?I like them!") }
 
           it "has metadata with all linked plans" do
             subject
             expect(parser.metadata).to be_a(Decidim::ContentParsers::PlanParser::Metadata)
-            expect(parser.metadata.linked_plans).to eq([plan1.id, plan2.id, plan3.id])
+            expect(parser.metadata.linked_plans).to eq([first_plan.id, second_plan.id, third_plan.id])
           end
         end
 
         context "when content has a link that is not in a plans component" do
-          let(:plan) { create(:plan, component: component) }
+          let(:plan) { create(:plan, component:) }
           let(:content) do
             url = plan_url(plan).sub(%r{/plans/}, "/something-else/")
             "This content references a non-plan with same ID as a plan #{url}."
@@ -161,7 +161,7 @@ module Decidim
         end
 
         context "when plan in content does not exist" do
-          let(:plan) { create(:plan, component: component) }
+          let(:plan) { create(:plan, component:) }
           let(:url) { plan_url(plan) }
           let(:content) do
             plan.destroy

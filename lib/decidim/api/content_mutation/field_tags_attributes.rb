@@ -11,7 +11,7 @@ module Decidim
 
         def to_h
           existing_ids = ids.map do |id|
-            tag = Decidim::Tags::Tag.find_by(id: id)
+            tag = Decidim::Tags::Tag.find_by(id:)
             tag&.id
           end
 

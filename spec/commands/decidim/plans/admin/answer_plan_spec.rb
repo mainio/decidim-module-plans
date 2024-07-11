@@ -7,7 +7,7 @@ describe Decidim::Plans::Admin::AnswerPlan do
 
   let(:component) { create(:plan_component) }
   let(:organization) { component.organization }
-  let(:user) { create :user, :admin, :confirmed, organization: organization }
+  let(:user) { create(:user, :admin, :confirmed, organization:) }
   let(:form) do
     form_klass.from_params(
       form_params
@@ -19,7 +19,7 @@ describe Decidim::Plans::Admin::AnswerPlan do
     )
   end
 
-  let!(:plan) { create :plan, component: component }
+  let!(:plan) { create(:plan, component:) }
 
   describe "call" do
     let(:form_params) do

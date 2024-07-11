@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe Decidim::Plans::AttachmentsHelper do
-  let(:current_component) { create :plan_component }
+  let(:current_component) { create(:plan_component) }
 
   before do
     allow(helper).to receive(:current_component).and_return(current_component)
@@ -53,7 +53,7 @@ describe Decidim::Plans::AttachmentsHelper do
     it "returns the correct output" do
       output = ctx.upload_field(form, attribute)
       expect(output).to have_css("label[for='object_test']:contains(Test)")
-      expect(output).to have_css("input[type='file'][name='object[test]']")
+      expect(output).to have_field("[type='file'][name='object[test]']")
     end
 
     context "when image file is set" do

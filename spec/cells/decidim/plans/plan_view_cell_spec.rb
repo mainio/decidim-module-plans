@@ -28,7 +28,7 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       contents = subject.find(".plan-contents")
 
       sections.each do |section|
-        content = model.contents.find_by(section: section)
+        content = model.contents.find_by(section:)
         case section.section_type
         when "field_area_scope", "field_scope"
           expect_scope(section, content, contents)

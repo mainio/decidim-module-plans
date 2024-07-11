@@ -69,9 +69,9 @@ describe Decidim::Plans::ApplicationHelper do
 
   describe "#current_user_plans" do
     let(:organization) { current_component.organization }
-    let(:current_component) { create :plan_component }
-    let(:current_user) { create(:user, :confirmed, organization: organization) }
-    let(:another_user) { create(:user, :confirmed, organization: organization) }
+    let(:current_component) { create(:plan_component) }
+    let(:current_user) { create(:user, :confirmed, organization:) }
+    let(:another_user) { create(:user, :confirmed, organization:) }
 
     before do
       3.times do
@@ -96,9 +96,9 @@ describe Decidim::Plans::ApplicationHelper do
 
   describe "#authors_for" do
     let(:organization) { current_component.organization }
-    let(:current_component) { create :plan_component }
-    let(:authors) { create_list(:user, 4, :confirmed, organization: organization) }
-    let(:non_authors) { create_list(:user, 2, :confirmed, organization: organization) }
+    let(:current_component) { create(:plan_component) }
+    let(:authors) { create_list(:user, 4, :confirmed, organization:) }
+    let(:non_authors) { create_list(:user, 2, :confirmed, organization:) }
 
     it "returns the correct authors" do
       plan = create(:plan, component: current_component, users: authors)
@@ -110,26 +110,13 @@ describe Decidim::Plans::ApplicationHelper do
 
   describe "#filter_state_values" do
     it "returns the correct state values" do
-      expect(helper.filter_state_values).to match_array(
-        [
-          %w(all All),
-          %w(accepted Accepted),
-          %w(rejected Rejected),
-          %w(evaluating Evaluating)
-        ]
-      )
+      expect(helper.filter_state_values).to contain_exactly(%w(all All), %w(accepted Accepted), %w(rejected Rejected), %w(evaluating Evaluating))
     end
   end
 
   describe "#filter_type_values" do
     it "returns the correct state values" do
-      expect(helper.filter_type_values).to match_array(
-        [
-          %w(all All),
-          %w(plans Proposals),
-          %w(amendments Amendments)
-        ]
-      )
+      expect(helper.filter_type_values).to contain_exactly(%w(all All), %w(plans Proposals), %w(amendments Amendments))
     end
   end
 

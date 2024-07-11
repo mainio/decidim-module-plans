@@ -7,13 +7,13 @@ module Decidim
     describe PlanBuilder do
       let(:component) { create(:plan_component) }
       let(:organization) { component.organization }
-      let(:author) { create(:user, :confirmed, organization: organization) }
+      let(:author) { create(:user, :confirmed, organization:) }
 
       describe "#create" do
         let(:attributes) do
           {
             title: { en: "Lorem ipsum dolor" },
-            component: component,
+            component:,
             published_at: Time.current
           }
         end
@@ -21,8 +21,8 @@ module Decidim
         it "creates a new plan" do
           expect do
             subject.create(
-              attributes: attributes,
-              author: author,
+              attributes:,
+              author:,
               action_user: author
             )
           end.to change(Decidim::Plans::Plan, :count).by(1)
@@ -30,15 +30,15 @@ module Decidim
       end
 
       describe "#copy" do
-        let(:other_component) { create(:plan_component, organization: organization) }
-        let(:plan) { create(:plan, component: component) }
+        let(:other_component) { create(:plan_component, organization:) }
+        let(:plan) { create(:plan, component:) }
 
         it "creates a new plan" do
           original_plan = plan
           expect do
             subject.copy(
               original_plan,
-              author: author,
+              author:,
               action_user: author,
               extra_attributes: { component: other_component },
               skip_link: true

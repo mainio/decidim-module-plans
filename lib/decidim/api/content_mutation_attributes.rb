@@ -39,7 +39,7 @@ module Decidim
       private
 
       def find_content
-        cnt = Decidim::Plans::Content.find_by(id: id)
+        cnt = Decidim::Plans::Content.find_by(id:)
         raise GraphQL::ExecutionError, "Invalid id provided for content: #{id}" unless cnt
 
         cnt

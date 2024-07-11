@@ -68,7 +68,7 @@ module Decidim
       end
 
       def user_group
-        @user_group ||= Decidim::UserGroup.find_by(organization: organization, id: form.user_group_id)
+        @user_group ||= Decidim::UserGroup.find_by(organization:, id: form.user_group_id)
       end
 
       def organization

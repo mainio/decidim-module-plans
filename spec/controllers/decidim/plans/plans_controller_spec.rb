@@ -4,7 +4,7 @@ require "spec_helper"
 
 module Decidim
   module Plans
-    describe PlansController, type: :controller do
+    describe PlansController do
       routes { Decidim::Plans::Engine.routes }
 
       let(:user) { create(:user, :confirmed, organization: component.organization) }
@@ -28,7 +28,7 @@ module Decidim
         let(:available_tags) { create_list(:tag, 5, organization: component.organization) }
         let!(:other_tags) { create_list(:tag, 5, organization: component.organization) }
 
-        let!(:plans) { create_list(:plan, 10, component: component, tags: available_tags) }
+        let!(:plans) { create_list(:plan, 10, component:, tags: available_tags) }
 
         render_views
 
@@ -47,7 +47,7 @@ module Decidim
 
       describe "GET show" do
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, component: component) }
+        let(:plan) { create(:plan, component:) }
 
         it "shows a single plan" do
           get :show, params: { id: plan.id }
@@ -56,7 +56,7 @@ module Decidim
         end
 
         context "when the plan is hidden" do
-          let(:plan) { create(:plan, :hidden, component: component) }
+          let(:plan) { create(:plan, :hidden, component:) }
 
           it "shows a single plan" do
             expect { get :show, params: { id: plan.id } }.to raise_error(ActionController::RoutingError)
@@ -69,31 +69,31 @@ module Decidim
 
         context "when NO draft plan exist" do
           it "renders the empty form" do
-            get :new, params: params
+            get(:new, params:)
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:new)
           end
         end
 
         context "when draft plan exist from other users" do
-          let!(:others_draft) { create(:plan, :draft, component: component) }
+          let!(:others_draft) { create(:plan, :draft, component:) }
 
           it "renders the empty form" do
-            get :new, params: params
+            get(:new, params:)
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:new)
           end
         end
 
         context "when draft plan exist from signed in user" do
-          let!(:draft) { create(:plan, :draft, component: component, users: [user]) }
+          let!(:draft) { create(:plan, :draft, component:, users: [user]) }
 
           before do
             set_default_url_options
           end
 
           it "redirects to the draft edit view" do
-            get :new, params: params
+            get(:new, params:)
             expect(response).to have_http_status(:found)
             expect(subject).to redirect_to("/processes/#{component.participatory_space.slug}/f/#{component.id}/plans/#{draft.id}/edit")
           end
@@ -105,7 +105,7 @@ module Decidim
           let(:component) { create(:plan_component) }
 
           it "raises an error" do
-            post :create, params: params
+            post(:create, params:)
 
             expect(flash[:alert]).not_to be_empty
           end
@@ -131,7 +131,7 @@ module Decidim
 
       describe "GET edit" do
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, :open, component: component, users: [user]) }
+        let(:plan) { create(:plan, :open, component:, users: [user]) }
 
         it "renders the edit view" do
           get :edit, params: { id: plan.id }
@@ -143,7 +143,7 @@ module Decidim
       describe "PUT update" do
         let(:component) { create(:plan_component) }
         let(:proposal_component) { create(:proposal_component, participatory_space: component.participatory_space) }
-        let(:plan) { create(:plan, :open, component: component, users: [user]) }
+        let(:plan) { create(:plan, :open, component:, users: [user]) }
 
         it "updates the plan" do
           put :update, params: {
@@ -159,7 +159,7 @@ module Decidim
 
       describe "DELETE destroy" do
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, :draft, state: "open", component: component, users: [user]) }
+        let(:plan) { create(:plan, :draft, state: "open", component:, users: [user]) }
 
         before do
           set_default_url_options
@@ -176,7 +176,7 @@ module Decidim
 
       describe "POST publish" do
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, :draft, state: "open", component: component, users: [user]) }
+        let(:plan) { create(:plan, :draft, state: "open", component:, users: [user]) }
 
         before do
           set_default_url_options
@@ -191,7 +191,7 @@ module Decidim
 
       describe "POST close" do
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, component: component, users: [user]) }
+        let(:plan) { create(:plan, component:, users: [user]) }
 
         before do
           set_default_url_options
@@ -218,7 +218,7 @@ module Decidim
         let(:component) { create(:plan_component, :with_creation_enabled) }
 
         context "when an authorized user is withdrawing a plan" do
-          let(:plan) { create(:plan, component: component, users: [user]) }
+          let(:plan) { create(:plan, component:, users: [user]) }
 
           it "withdraws the plan" do
             put :withdraw, params: params.merge(id: plan.id)
@@ -230,7 +230,7 @@ module Decidim
 
         describe "when current user is NOT the author of the plan" do
           let(:current_user) { create(:user, :confirmed, organization: component.organization) }
-          let(:plan) { create(:plan, component: component, users: [current_user]) }
+          let(:plan) { create(:plan, component:, users: [current_user]) }
 
           context "and the plan has no supports" do
             it "is not able to withdraw the plan" do

@@ -7,7 +7,7 @@ module Decidim
     describe ContentPresenter do
       subject { described_class.new(content) }
       let(:plan) { create(:plan) }
-      let(:content) { create(:content, plan: plan) }
+      let(:content) { create(:content, plan:) }
 
       let(:malicious_content_array) do
         [
@@ -30,7 +30,7 @@ module Decidim
               body: Decidim::Faker::Localized.localized { malicious_content }
             )
           end
-          let(:content) { create(:content, section: section, plan: plan) }
+          let(:content) { create(:content, section:, plan:) }
 
           it "sanitizes the HTML" do
             malicious_content_array.each do |mc|
@@ -49,7 +49,7 @@ module Decidim
           let(:content) do
             create(
               :content,
-              plan: plan,
+              plan:,
               body: Decidim::Faker::Localized.localized { malicious_content }
             )
           end

@@ -5,14 +5,14 @@ require "paper_trail/frameworks/rspec"
 
 module Decidim
   module Plans
-    describe VersionsController, type: :controller do
+    describe VersionsController do
       routes { Decidim::Plans::Engine.routes }
 
       with_versioning do
         let(:user) { create(:user, :confirmed, organization: component.organization) }
 
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, component: component, users: [user]) }
+        let(:plan) { create(:plan, component:, users: [user]) }
 
         before do
           request.env["decidim.current_organization"] = component.organization

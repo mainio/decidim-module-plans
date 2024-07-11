@@ -4,11 +4,11 @@ require "spec_helper"
 
 module Decidim
   module Plans
-    describe PlanWidgetsController, type: :controller do
+    describe PlanWidgetsController do
       routes { Decidim::Plans::Engine.routes }
 
       let(:component) { create(:plan_component) }
-      let(:plan) { create(:plan, component: component) }
+      let(:plan) { create(:plan, component:) }
 
       before do
         request.env["decidim.current_organization"] = component.organization

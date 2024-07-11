@@ -44,7 +44,7 @@ module Decidim
           PlanSectionsForm.from_params(
             form_params
           ).with_context(
-            current_organization: current_organization
+            current_organization:
           )
         end
         let(:command) { described_class.new(form, sections) }

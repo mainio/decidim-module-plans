@@ -18,7 +18,7 @@ module Decidim
           return unless ids.is_a?(Array)
 
           self.attachments = ids.map do |id|
-            Decidim::Attachment.find_by(id: id)
+            Decidim::Attachment.find_by(id:)
           end
         end
 

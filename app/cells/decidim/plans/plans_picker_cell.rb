@@ -68,8 +68,8 @@ module Decidim
         options = {
           organization: model.organization,
           component: plan_components,
-          current_user: current_user,
-          search_text: search_text
+          current_user:,
+          search_text:
         }
         search = Decidim::Plans::PlanSearch.new(plans, params[:q], options)
         search.result

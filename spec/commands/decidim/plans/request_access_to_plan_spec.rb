@@ -8,18 +8,18 @@ module Decidim
       let(:component) { create(:plan_component) }
       let(:state) { :open }
 
-      let(:plan) { create(:plan, state, component: component, users: [author1, author2]) }
+      let(:plan) { create(:plan, state, component:, users: [first_author, second_author]) }
       let(:id) { plan.id }
-      let(:form) { RequestAccessToPlanForm.from_params(form_params).with_context(current_user: current_user) }
+      let(:form) { RequestAccessToPlanForm.from_params(form_params).with_context(current_user:) }
       let(:form_params) do
         {
-          state: state,
-          id: id
+          state:,
+          id:
         }
       end
       let(:current_user) { create(:user, :confirmed, organization: component.organization) }
-      let(:author1) { create(:user, :confirmed, organization: component.organization) }
-      let(:author2) { create(:user, :confirmed, organization: component.organization) }
+      let(:first_author) { create(:user, :confirmed, organization: component.organization) }
+      let(:second_author) { create(:user, :confirmed, organization: component.organization) }
 
       describe "User requests to collaborate" do
         let(:command) { described_class.new(form, current_user) }

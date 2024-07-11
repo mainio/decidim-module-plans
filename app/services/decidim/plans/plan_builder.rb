@@ -52,9 +52,9 @@ module Decidim
 
         plan = create(
           attributes: origin_attributes,
-          author: author,
-          user_group_author: user_group_author,
-          action_user: action_user
+          author:,
+          user_group_author:,
+          action_user:
         )
 
         plan.link_resources(original_plan, "copied_from_component") unless skip_link

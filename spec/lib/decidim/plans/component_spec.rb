@@ -19,7 +19,7 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
 
     context "when there are plans for the component" do
       before do
-        create(:plan, component: component)
+        create(:plan, component:)
       end
 
       it "raises an error" do
@@ -45,12 +45,12 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
       raw_stats.select { |stat| stat[0] == :plans }
     end
 
-    let!(:plan) { create :plan }
+    let!(:plan) { create(:plan) }
     let(:component) { plan.component }
-    let!(:hidden_plan) { create :plan, component: component }
-    let!(:draft_plan) { create :plan, :draft, component: component }
-    let!(:withdrawn_plan) { create :plan, :withdrawn, component: component }
-    let!(:moderation) { create :moderation, reportable: hidden_plan, hidden_at: 1.day.ago }
+    let!(:hidden_plan) { create(:plan, component:) }
+    let!(:draft_plan) { create(:plan, :draft, component:) }
+    let!(:withdrawn_plan) { create(:plan, :withdrawn, component:) }
+    let!(:moderation) { create(:moderation, reportable: hidden_plan, hidden_at: 1.day.ago) }
 
     let(:current_stat) { stats.find { |stat| stat[1] == stats_name } }
 
@@ -58,7 +58,7 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
       let(:stats_name) { :plans_count }
 
       it "only counts visible plans" do
-        expect(Decidim::Plans::Plan.where(component: component).count).to eq 4
+        expect(Decidim::Plans::Plan.where(component:).count).to eq 4
         expect(subject).to eq 3
       end
     end
@@ -67,8 +67,8 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
       let(:stats_name) { :comments_count }
 
       before do
-        create_list :comment, 2, commentable: plan
-        create_list :comment, 3, commentable: hidden_plan
+        create_list(:comment, 2, commentable: plan)
+        create_list(:comment, 3, commentable: hidden_plan)
       end
 
       it "counts the comments from visible plans" do
@@ -80,7 +80,7 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
 
   describe "exports" do
     before do
-      create_list(:plan, 10, :published, component: component)
+      create_list(:plan, 10, :published, component:)
     end
 
     it "includes plans export collection" do

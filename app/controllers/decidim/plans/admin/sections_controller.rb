@@ -16,6 +16,10 @@ module Decidim
           @form = form(Admin::PlanSectionsForm).from_model(sections)
         end
 
+        def edit
+          enforce_permission_to :edit, :section, section:
+        end
+
         def create
           enforce_permission_to :create, :section
           @form = form(Admin::PlanSectionsForm).from_params(params)
@@ -33,12 +37,8 @@ module Decidim
           end
         end
 
-        def edit
-          enforce_permission_to :edit, :section, section: section
-        end
-
         def update
-          enforce_permission_to :edit, :section, section: section
+          enforce_permission_to :edit, :section, section:
         end
 
         private

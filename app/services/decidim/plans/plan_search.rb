@@ -30,7 +30,7 @@ module Decidim
 
       # Finds the sections that can be searched from.
       def searchable_sections
-        @searchable_sections ||= Decidim::Plans::Section.where(component: component, searchable: true)
+        @searchable_sections ||= Decidim::Plans::Section.where(component:, searchable: true)
       end
 
       def searchable_content_sections

@@ -21,7 +21,7 @@ module Decidim
         end
 
         def body
-          { proposal_ids: proposal_ids }
+          { proposal_ids: }
         end
 
         def body=(data)

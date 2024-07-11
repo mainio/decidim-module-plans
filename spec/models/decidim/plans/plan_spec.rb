@@ -7,9 +7,9 @@ module Decidim
     describe Plan do
       subject { plan }
 
-      let(:component) { build :plan_component }
+      let(:component) { build(:plan_component) }
       let(:organization) { component.participatory_space.organization }
-      let(:plan) { create(:plan, component: component) }
+      let(:plan) { create(:plan, component:) }
       let(:coauthorable) { plan }
 
       include_examples "coauthorable"
@@ -36,8 +36,8 @@ module Decidim
       end
 
       context "when it has taggings" do
-        let(:tags) { create_list(:tag, 10, organization: organization) }
-        let(:plan) { build(:plan, component: component, tags: tags) }
+        let(:tags) { create_list(:tag, 10, organization:) }
+        let(:plan) { build(:plan, component:, tags:) }
 
         it "has the taggings" do
           expect(plan.taggings.count).to eq(tags.count)
@@ -61,22 +61,22 @@ module Decidim
         let(:followers) { follows.map(&:user) }
 
         it "returns the followers and the author" do
-          expect(subject.users_to_notify_on_comment_created).to match_array(followers.concat([plan.creator.author]))
+          expect(subject.users_to_notify_on_comment_created).to match_array(followers.push(plan.creator.author))
         end
       end
 
       describe "#editable_by?" do
-        let(:author) { create(:user, :confirmed, organization: organization) }
+        let(:author) { create(:user, :confirmed, organization:) }
 
         context "when user is author" do
-          let(:plan) { create :plan, component: component, users: [author], updated_at: Time.current }
+          let(:plan) { create(:plan, component:, users: [author], updated_at: Time.current) }
 
           it { is_expected.to be_editable_by(author) }
 
           context "when the plan has been linked to another one" do
-            let(:plan) { create :plan, component: component, users: [author], updated_at: Time.current }
+            let(:plan) { create(:plan, component:, users: [author], updated_at: Time.current) }
             let(:original_plan) do
-              original_component = create(:plan_component, organization: organization, participatory_space: component.participatory_space)
+              original_component = create(:plan_component, organization:, participatory_space: component.participatory_space)
               create(:plan, component: original_component)
             end
 
@@ -89,20 +89,20 @@ module Decidim
         end
 
         context "when plan is from user group and user is admin" do
-          let(:user_group) { create :user_group, :verified, users: [author], organization: author.organization }
-          let(:plan) { create :plan, component: component, updated_at: Time.current, users: [author], user_groups: [user_group] }
+          let(:user_group) { create(:user_group, :verified, users: [author], organization: author.organization) }
+          let(:plan) { create(:plan, component:, updated_at: Time.current, users: [author], user_groups: [user_group]) }
 
           it { is_expected.to be_editable_by(author) }
         end
 
         context "when user is not the author" do
-          let(:plan) { build :plan, component: component, updated_at: Time.current }
+          let(:plan) { build(:plan, component:, updated_at: Time.current) }
 
           it { is_expected.not_to be_editable_by(author) }
         end
 
         context "when plan is answered" do
-          let(:plan) { build :plan, :with_answer, component: component, updated_at: Time.current, users: [author] }
+          let(:plan) { build(:plan, :with_answer, component:, updated_at: Time.current, users: [author]) }
 
           it { is_expected.not_to be_editable_by(author) }
         end
@@ -110,13 +110,13 @@ module Decidim
 
       describe "#closed?" do
         context "when plan is closed" do
-          let(:plan) { build :plan, closed_at: Time.current }
+          let(:plan) { build(:plan, closed_at: Time.current) }
 
           it { expect(plan.closed?).to be(true) }
         end
 
         context "when plan is not closed" do
-          let(:plan) { build :plan }
+          let(:plan) { build(:plan) }
 
           it { expect(plan.closed?).to be(false) }
         end
@@ -124,7 +124,7 @@ module Decidim
 
       describe "#waiting_for_evaluation?" do
         context "when plan is closed and unanswered" do
-          let(:plan) { build :plan, closed_at: Time.current }
+          let(:plan) { build(:plan, closed_at: Time.current) }
 
           it { expect(plan.waiting_for_evaluation?).to be(true) }
         end
@@ -143,7 +143,7 @@ module Decidim
         end
 
         context "when plan is not closed and unanswered" do
-          let(:plan) { build :plan }
+          let(:plan) { build(:plan) }
 
           it { expect(plan.closed?).to be(false) }
         end
@@ -163,51 +163,51 @@ module Decidim
 
       describe "#withdrawn?" do
         context "when plan is withdrawn" do
-          let(:plan) { build :plan, :withdrawn }
+          let(:plan) { build(:plan, :withdrawn) }
 
           it { is_expected.to be_withdrawn }
         end
 
         context "when plan is not withdrawn" do
-          let(:plan) { build :plan }
+          let(:plan) { build(:plan) }
 
           it { is_expected.not_to be_withdrawn }
         end
       end
 
       describe "#withdrawable_by" do
-        let(:author) { create(:user, :confirmed, organization: organization) }
+        let(:author) { create(:user, :confirmed, organization:) }
 
         context "when user is author" do
-          let(:plan) { create :plan, component: component, users: [author], created_at: Time.current }
+          let(:plan) { create(:plan, component:, users: [author], created_at: Time.current) }
 
           it { is_expected.to be_withdrawable_by(author) }
         end
 
         context "when user is admin" do
-          let(:admin) { build(:user, :admin, organization: organization) }
-          let(:plan) { build :plan, component: component, users: [author], created_at: Time.current }
+          let(:admin) { build(:user, :admin, organization:) }
+          let(:plan) { build(:plan, component:, users: [author], created_at: Time.current) }
 
           it { is_expected.not_to be_withdrawable_by(admin) }
         end
 
         context "when user is not the author" do
-          let(:someone_else) { build(:user, organization: organization) }
-          let(:plan) { build :plan, component: component, users: [author], created_at: Time.current }
+          let(:someone_else) { build(:user, organization:) }
+          let(:plan) { build(:plan, component:, users: [author], created_at: Time.current) }
 
           it { is_expected.not_to be_withdrawable_by(someone_else) }
         end
 
         context "when plan is already withdrawn" do
-          let(:plan) { build :plan, :withdrawn, component: component, users: [author], created_at: Time.current }
+          let(:plan) { build(:plan, :withdrawn, component:, users: [author], created_at: Time.current) }
 
           it { is_expected.not_to be_withdrawable_by(author) }
         end
 
         context "when the plan has been linked to another one" do
-          let(:plan) { create :plan, component: component, users: [author], created_at: Time.current }
+          let(:plan) { create(:plan, component:, users: [author], created_at: Time.current) }
           let(:original_plan) do
-            original_component = create(:plan_component, organization: organization, participatory_space: component.participatory_space)
+            original_component = create(:plan_component, organization:, participatory_space: component.participatory_space)
             create(:plan, component: original_component)
           end
 

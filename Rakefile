@@ -21,7 +21,7 @@ end
 def fix_babel_config(path)
   Dir.chdir(path) do
     babel_config = "#{Dir.pwd}/babel.config.json"
-    File.delete(babel_config) if File.exist?(babel_config)
+    FileUtils.rm_f(babel_config)
     FileUtils.cp("#{__dir__}/babel.config.json", Dir.pwd)
   end
 end

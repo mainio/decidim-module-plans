@@ -16,7 +16,7 @@ module Decidim
           return nil unless object.body["attachment_ids"].is_a?(Array)
 
           object.body["attachment_ids"].map do |id|
-            Decidim::Attachment.find_by(id: id)
+            Decidim::Attachment.find_by(id:)
           end.compact
         end
       end

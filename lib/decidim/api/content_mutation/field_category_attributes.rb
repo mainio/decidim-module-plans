@@ -10,7 +10,7 @@ module Decidim
         argument :id, GraphQL::Types::ID, required: true
 
         def to_h
-          category = Decidim::Category.find_by(id: id)
+          category = Decidim::Category.find_by(id:)
 
           { "category_id" => category&.id }
         end

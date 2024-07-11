@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Decidim::Plans::GeocodingsController, type: :controller do
+describe Decidim::Plans::GeocodingsController do
   routes { Decidim::Plans::Engine.routes }
 
   let(:component) { create(:plan_component, :with_creation_enabled) }
@@ -25,12 +25,12 @@ describe Decidim::Plans::GeocodingsController, type: :controller do
       end
 
       it "renders error json" do
-        put :create, params: { address: address, latitude: latitude, longitude: longitude }
+        put :create, params: { address:, latitude:, longitude: }
 
         expect(response).to be_successful
         expect(response.content_type).to eq("application/json; charset=utf-8")
 
-        json_response = JSON.parse(response.body)
+        json_response = response.parsed_body
         expect(json_response["success"]).to be_falsy
         expect(json_response["result"]).to eq({})
       end
@@ -40,12 +40,12 @@ describe Decidim::Plans::GeocodingsController, type: :controller do
       let!(:address) { "" }
 
       it "renders the unsuccess" do
-        put :create, params: { address: address, latitude: latitude, longitude: longitude }
+        put :create, params: { address:, latitude:, longitude: }
 
         expect(response).to be_successful
         expect(response.content_type).to eq("application/json; charset=utf-8")
 
-        json_response = JSON.parse(response.body)
+        json_response = response.parsed_body
         expect(json_response["success"]).to be_falsy
         expect(json_response["result"]).to eq({})
       end
@@ -57,11 +57,11 @@ describe Decidim::Plans::GeocodingsController, type: :controller do
       end
 
       it "renders the successful" do
-        put :create, params: { address: address, latitude: latitude, longitude: longitude }
+        put :create, params: { address:, latitude:, longitude: }
 
         expect(response).to be_successful
         expect(response.content_type).to eq("application/json; charset=utf-8")
-        json_response = JSON.parse(response.body)
+        json_response = response.parsed_body
         expect(json_response["success"]).to be_truthy
         expect(json_response["result"]).to eq({ "lat" => 40.1234, "lng" => 2.1234 })
       end

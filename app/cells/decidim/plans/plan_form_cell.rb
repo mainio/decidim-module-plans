@@ -85,7 +85,7 @@ module Decidim
         form.select(
           name,
           manageable_user_groups.map { |g| [g.name, g.id] },
-          selected: selected,
+          selected:,
           include_blank: current_user.name
         )
       end

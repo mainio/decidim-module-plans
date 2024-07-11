@@ -9,7 +9,7 @@ module Decidim
         let(:form_klass) { PlanForm }
         let(:component) { create(:plan_component) }
         let(:organization) { component.organization }
-        let(:user) { create :user, :admin, :confirmed, organization: organization }
+        let(:user) { create(:user, :admin, :confirmed, organization:) }
         let(:form) do
           form_klass.from_params(
             form_params

@@ -37,12 +37,12 @@ module Decidim
           url = search_proposals_plans_path(current_component, format: :html)
 
           prompt_params = {
-            url: url,
+            url:,
             text: t("proposals_picker.choose_proposals", scope: "decidim.proposals")
           }
 
           form.data_picker(field, picker_options, prompt_params) do |item|
-            { url: url, text: item.title }
+            { url:, text: item.title }
           end
         end
       end

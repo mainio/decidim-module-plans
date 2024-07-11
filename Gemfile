@@ -15,28 +15,34 @@ DECIDIM_VERSION = Decidim::Plans.decidim_version
 gem "decidim", DECIDIM_VERSION
 gem "decidim-proposals", DECIDIM_VERSION
 
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "develop"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "main"
 gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "main"
 gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
 
 gem "decidim-plans", path: "."
 
-gem "bootsnap", "~> 1.4"
-gem "puma", ">= 5.6.2"
+gem "bootsnap", "~> 1.17"
+gem "puma", ">= 6.4.2"
 
-gem "faker", "~> 2.14"
+gem "faker", "~> 3.2.2"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
+
+  # rubocop & rubocop-rspec are set to the following versions because of a change where FactoryBot/CreateList
+  # must be a boolean instead of contextual. These version locks can be removed when this problem is handled
+  # through decidim-dev.
+  gem "rubocop", "~>1.28"
+  gem "rubocop-rspec", "2.20"
 
   gem "decidim-dev", DECIDIM_VERSION
 end
 
 group :development do
   gem "letter_opener_web", "~> 2.0"
-  gem "listen", "~> 3.1"
+  gem "listen", "~> 3.8"
   gem "rubocop-faker"
-  gem "spring", "~> 2.0"
-  gem "spring-watcher-listen", "~> 2.0"
+  gem "spring", "~> 4.1.3"
+  gem "spring-watcher-listen", "~> 2.1"
   gem "web-console", "~> 4.2"
 end

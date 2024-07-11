@@ -4,17 +4,17 @@ require "spec_helper"
 
 describe Decidim::Plans::RemoveAuthorFromPlan do
   let(:component) { create(:plan_component) }
-  let(:user1) { create(:user, :confirmed, organization: component.organization) }
-  let(:user2) { create(:user, :confirmed, organization: component.organization) }
-  let(:authors) { [user1, user2] }
-  let(:plan) { create(:plan, component: component, users: authors) }
+  let(:first_user) { create(:user, :confirmed, organization: component.organization) }
+  let(:second_user) { create(:user, :confirmed, organization: component.organization) }
+  let(:authors) { [first_user, second_user] }
+  let(:plan) { create(:plan, component:, users: authors) }
   let(:command) do
     described_class.new(plan, unwanted_user)
   end
 
   context "when authors are less than 2" do
-    let(:authors) { [user1] }
-    let(:unwanted_user) { user1 }
+    let(:authors) { [first_user] }
+    let(:unwanted_user) { first_user }
 
     it "broadcasts invalid" do
       expect(command.call).to broadcast(:invalid)
@@ -39,11 +39,11 @@ describe Decidim::Plans::RemoveAuthorFromPlan do
   end
 
   context "when everything is ok" do
-    let(:unwanted_user) { user2 }
+    let(:unwanted_user) { second_user }
 
     it "removes autor and returns ok" do
       expect(command.call).to broadcast(:ok, plan)
-      expect(plan.reload.authors).not_to include(user2)
+      expect(plan.reload.authors).not_to include(second_user)
     end
   end
 end

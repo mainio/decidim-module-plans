@@ -5,8 +5,8 @@ require "spec_helper"
 describe Decidim::Plans::AttachedProposalsHelper do
   let(:form) { double(object_name: "plan") }
   let(:participatory_space) { create(:participatory_process, :with_steps) }
-  let(:current_component) { create(:plan_component, participatory_space: participatory_space) }
-  let(:proposal_component) { create(:proposal_component, participatory_space: participatory_space) }
+  let(:current_component) { create(:plan_component, participatory_space:) }
+  let(:proposal_component) { create(:proposal_component, participatory_space:) }
   let(:search_plans_path) { "/search_plans" }
 
   before do
@@ -158,7 +158,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
           :proposal,
           :published,
           component: proposal_component,
-          title: title
+          title:
         )
       end
 

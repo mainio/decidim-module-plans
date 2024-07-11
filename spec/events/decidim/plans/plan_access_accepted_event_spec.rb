@@ -6,7 +6,7 @@ describe Decidim::Plans::PlanAccessAcceptedEvent do
   include_context "when a simple event"
 
   let(:event_name) { "decidim.events.plans.plan_access_accepted" }
-  let(:resource) { create :plan }
+  let(:resource) { create(:plan) }
   let(:resource_url) { Decidim::ResourceLocatorPresenter.new(resource).url }
   let(:resource_title) { resource.title["en"] }
   let(:author) { resource.authors.first }
@@ -15,13 +15,13 @@ describe Decidim::Plans::PlanAccessAcceptedEvent do
   let(:author_path) { author_presenter.profile_path }
   let(:author_name) { author_presenter.name }
   let(:author_nickname) { author_presenter.nickname }
-  let(:requester) { create :user, :confirmed, organization: resource.organization }
+  let(:requester) { create(:user, :confirmed, organization: resource.organization) }
   let(:requester_presenter) { Decidim::UserPresenter.new(requester) }
   let(:requester_id) { requester.id }
   let(:requester_name) { requester.name }
   let(:requester_nickname) { requester_presenter.nickname }
   let(:requester_path) { requester_presenter.profile_path }
-  let(:extra) { { requester_id: requester_id } }
+  let(:extra) { { requester_id: } }
 
   context "when the notification is for coauthor users" do
     it_behaves_like "a simple event"

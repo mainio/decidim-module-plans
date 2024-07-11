@@ -34,7 +34,7 @@ module Decidim
       attr_reader :plan, :author
 
       def coauthorship
-        @coauthorship ||= plan.coauthorships.find_by(author: author)
+        @coauthorship ||= plan.coauthorships.find_by(author:)
       end
     end
   end

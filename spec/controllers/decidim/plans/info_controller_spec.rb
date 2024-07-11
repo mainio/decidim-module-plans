@@ -2,12 +2,12 @@
 
 require "spec_helper"
 
-describe Decidim::Plans::InfoController, type: :controller do
+describe Decidim::Plans::InfoController do
   routes { Decidim::Plans::Engine.routes }
 
   let(:component) { create(:plan_component) }
   let(:participatory_space) { component.participatory_space }
-  let!(:plan) { create(:plan, component: component) }
+  let!(:plan) { create(:plan, component:) }
 
   before do
     request.env["decidim.current_organization"] = component.organization
@@ -21,7 +21,7 @@ describe Decidim::Plans::InfoController, type: :controller do
   end
 
   context "with an available section" do
-    let!(:section) { create(:section, :field_text, component: component) }
+    let!(:section) { create(:section, :field_text, component:) }
 
     it "shows section" do
       expect { get :show, params: { section: section.id, component_id: component.id } }

@@ -58,7 +58,7 @@ module Decidim
       describe "#body" do
         it "returns body in current locale" do
           fields = plan.sections.map do |section|
-            content = plan.contents.find_by(section: section)
+            content = plan.contents.find_by(section:)
             next if content.nil?
 
             title = translated_attribute(content.title)
@@ -81,8 +81,8 @@ module Decidim
           before do
             create(
               :content,
-              plan: plan,
-              section: section,
+              plan:,
+              section:,
               body: Decidim::Faker::Localized.localized { malicious_content }
             )
           end

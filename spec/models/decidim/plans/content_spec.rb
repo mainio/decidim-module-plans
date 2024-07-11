@@ -8,12 +8,12 @@ module Decidim
       subject { content }
 
       let(:organization) { create(:organization, tos_version: Time.current) }
-      let(:user) { create(:user, :confirmed, organization: organization) }
-      let(:participatory_process) { create(:participatory_process, organization: organization) }
-      let(:component) { build :plan_component }
-      let(:plan) { create(:plan, component: component) }
-      let(:section) { create(:section, component: component) }
-      let(:content) { create(:content, plan: plan, section: section, user: user) }
+      let(:user) { create(:user, :confirmed, organization:) }
+      let(:participatory_process) { create(:participatory_process, organization:) }
+      let(:component) { build(:plan_component) }
+      let(:plan) { create(:plan, component:) }
+      let(:section) { create(:section, component:) }
+      let(:content) { create(:content, plan:, section:, user:) }
 
       it { is_expected.to be_valid }
 

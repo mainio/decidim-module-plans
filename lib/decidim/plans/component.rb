@@ -90,12 +90,12 @@ Decidim.register_component(:plans) do |component|
       name: Decidim::Components::Namer.new(participatory_space.organization.available_locales, :plans).i18n_name,
       manifest_name: :plans,
       published_at: Time.current,
-      participatory_space: participatory_space,
+      participatory_space:,
       settings: {
         multilingual_answers: false,
         scope_id: participatory_space.scope&.id
       },
-      step_settings: step_settings
+      step_settings:
     }
 
     component = Decidim.traceability.perform_action!(
@@ -116,7 +116,7 @@ Decidim.register_component(:plans) do |component|
     end
 
     Decidim::Plans::Section.create!(
-      component: component,
+      component:,
       body: Decidim::Faker::Localized.paragraph,
       help: Decidim::Faker::Localized.paragraph,
       mandatory: true,
@@ -127,7 +127,7 @@ Decidim.register_component(:plans) do |component|
 
     5.times do |n|
       Decidim::Plans::Section.create!(
-        component: component,
+        component:,
         body: Decidim::Faker::Localized.paragraph,
         help: Decidim::Faker::Localized.paragraph,
         mandatory: false,
@@ -163,12 +163,12 @@ Decidim.register_component(:plans) do |component|
       state = "evaluating" if is_closed && !is_answered
 
       params = {
-        component: component,
+        component:,
         category: participatory_space.categories.sample,
         scope: Faker::Boolean.boolean(true_ratio: 0.5) ? global : scopes.sample,
         title: Decidim::Faker::Localized.sentence(word_count: 2),
-        state: state,
-        answer: answer,
+        state:,
+        answer:,
         closed_at: is_closed ? Time.current : nil,
         answered_at: is_answered ? Time.current : nil,
         published_at: Time.current
@@ -200,14 +200,14 @@ Decidim.register_component(:plans) do |component|
       if n.positive?
         Decidim::User.where(decidim_organization_id: participatory_space.decidim_organization_id).all.sample(n).each do |author|
           user_group = [true, false].sample ? Decidim::UserGroups::ManageableUserGroups.for(author).verified.sample : nil
-          plan.add_coauthor(author, user_group: user_group)
+          plan.add_coauthor(author, user_group:)
         end
       end
 
-      Decidim::Plans::Section.where(component: component).each do |section|
+      Decidim::Plans::Section.where(component:).each do |section|
         plan.contents.create!(
           body: Decidim::Faker::Localized.paragraph,
-          section: section,
+          section:,
           user: admin_user
         )
       end

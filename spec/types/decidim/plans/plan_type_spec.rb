@@ -12,7 +12,7 @@ module Decidim
     describe PlanType, type: :graphql do
       include_context "with a graphql class type"
       let(:component) { create(:plan_component) }
-      let(:model) { create(:plan, :published, component: component) }
+      let(:model) { create(:plan, :published, component:) }
 
       include_examples "categorizable interface"
       include_examples "scopable interface"

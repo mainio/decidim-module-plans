@@ -22,7 +22,7 @@ module Decidim
           )
         end
 
-        section_type = manifest_class.new(name: name)
+        section_type = manifest_class.new(name:)
 
         yield(section_type) if block_given?
 

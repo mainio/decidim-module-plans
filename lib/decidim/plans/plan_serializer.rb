@@ -37,7 +37,7 @@ module Decidim
           followers: plan.followers.count,
           published_at: plan.published_at,
           closed_at: plan.closed_at,
-          url: url,
+          url:,
           related_proposals: {
             ids: related_proposal_ids,
             urls: related_proposal_urls

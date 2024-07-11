@@ -4,7 +4,7 @@ require "spec_helper"
 
 module Decidim
   module Plans
-    describe Admin::PlansController, type: :controller do
+    describe Admin::PlansController do
       routes { Decidim::Plans::AdminEngine.routes }
 
       let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
@@ -30,8 +30,8 @@ module Decidim
 
         before do
           set_default_url_options
-          create_list(:plan, 10, :published, component: component)
-          create_list(:plan, 5, :unpublished, component: component)
+          create_list(:plan, 10, :published, component:)
+          create_list(:plan, 5, :unpublished, component:)
         end
 
         it "renders the index listing" do
@@ -50,7 +50,7 @@ module Decidim
         let(:component) { create(:plan_component, :with_creation_enabled) }
 
         it "renders the empty form" do
-          get :new, params: params
+          get(:new, params:)
           expect(response).to have_http_status(:ok)
           expect(subject).to render_template(:new)
         end
@@ -79,7 +79,7 @@ module Decidim
 
       describe "POST close" do
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, component: component, users: [user]) }
+        let(:plan) { create(:plan, component:, users: [user]) }
 
         before do
           set_default_url_options
@@ -94,7 +94,7 @@ module Decidim
 
       describe "POST reopen" do
         let(:component) { create(:plan_component) }
-        let(:plan) { create(:plan, closed_at: Time.current, component: component, users: [user]) }
+        let(:plan) { create(:plan, closed_at: Time.current, component:, users: [user]) }
 
         before do
           set_default_url_options

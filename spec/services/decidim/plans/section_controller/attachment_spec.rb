@@ -11,12 +11,12 @@ module Decidim
         let(:section) { create(:section, :field_image_attachments, component: plan.component) }
         let(:component) { create(:plan_component) }
         let(:organization) { component.organization }
-        let(:author) { create(:user, :confirmed, organization: organization) }
-        let(:plan) { create(:plan, component: component) }
-        let(:content) { create(:content, :field_attachments, plan: plan, images: images, user: user) }
+        let(:author) { create(:user, :confirmed, organization:) }
+        let(:plan) { create(:plan, component:) }
+        let(:content) { create(:content, :field_attachments, plan:, images:, user:) }
         let(:documents) { create_list(:attachment, 3, :with_pdf, attached_to: plan) }
         let(:images) { create_list(:attachment, 3, :with_image, attached_to: plan) }
-        let!(:user) { create(:user, :confirmed, organization: organization) }
+        let!(:user) { create(:user, :confirmed, organization:) }
 
         describe "prepare!" do
           it "returns true with total weight" do

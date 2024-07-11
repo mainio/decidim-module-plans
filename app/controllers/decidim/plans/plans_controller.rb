@@ -61,6 +61,12 @@ module Decidim
         @form = form(PlanForm).from_model(Plan.new(component: current_component))
       end
 
+      def edit
+        enforce_permission_to :edit, :plan, plan: @plan
+
+        @form = form(PlanForm).from_model(@plan)
+      end
+
       def create
         enforce_permission_to :create, :plan
 
@@ -82,12 +88,6 @@ module Decidim
             render :new
           end
         end
-      end
-
-      def edit
-        enforce_permission_to :edit, :plan, plan: @plan
-
-        @form = form(PlanForm).from_model(@plan)
       end
 
       def update

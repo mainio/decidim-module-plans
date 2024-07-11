@@ -8,7 +8,7 @@ describe Decidim::Plans::AttachmentsCell, type: :cell do
   let(:my_cell) { cell("decidim/plans/attachments", model) }
   let(:model) { create(:plan) }
 
-  let!(:content) { create(:content, :field_attachments, plan: model, documents: documents, images: images) }
+  let!(:content) { create(:content, :field_attachments, plan: model, documents:, images:) }
   let(:documents) { create_list(:attachment, 3, :with_pdf, attached_to: model) }
   let(:images) { create_list(:attachment, 3, :with_image, attached_to: model) }
 

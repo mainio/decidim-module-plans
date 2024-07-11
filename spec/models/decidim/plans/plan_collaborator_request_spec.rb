@@ -7,7 +7,7 @@ module Decidim
     describe PlanCollaboratorRequest do
       subject { request }
 
-      let(:request) { build(:plan_collaborator_request, plan: plan, user: user) }
+      let(:request) { build(:plan_collaborator_request, plan:, user:) }
       let(:plan) { create(:plan) }
       let(:user) { create(:user, :confirmed) }
 

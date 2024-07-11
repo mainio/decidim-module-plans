@@ -20,7 +20,7 @@ module Decidim
       end
 
       def plans(filter: {}, order: {})
-        Decidim::Plans::PlanListHelper.new(model_class: Plan).call(object, { filter: filter, order: order }, context)
+        Decidim::Plans::PlanListHelper.new(model_class: Plan).call(object, { filter:, order: }, context)
       end
 
       def sections
@@ -28,7 +28,7 @@ module Decidim
       end
 
       def plan(id:)
-        Decidim::Plans::PlanFinderHelper.new(model_class: Plan).call(object, { id: id }, context)
+        Decidim::Plans::PlanFinderHelper.new(model_class: Plan).call(object, { id: }, context)
       end
     end
 

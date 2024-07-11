@@ -11,7 +11,7 @@ module Decidim
 
         def to_h
           existing_ids = ids.map do |id|
-            proposal = Decidim::Proposals::Proposal.find_by(id: id)
+            proposal = Decidim::Proposals::Proposal.find_by(id:)
             proposal&.id
           end
 

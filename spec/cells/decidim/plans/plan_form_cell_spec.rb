@@ -5,7 +5,7 @@ require "spec_helper"
 describe Decidim::Plans::PlanFormCell, type: :cell do
   subject { my_cell.call }
 
-  let(:my_cell) { cell("decidim/plans/plan_form", model, disable_user_group_field: true, context: { plan: plan }) }
+  let(:my_cell) { cell("decidim/plans/plan_form", model, disable_user_group_field: true, context: { plan: }) }
   let(:model) { Decidim::FormBuilder.new(:plan, form, view, {}) }
 
   let(:template_class) do

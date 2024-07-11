@@ -19,11 +19,11 @@ module Decidim
         )
       end
 
-      let!(:plan) { create :plan, component: component, users: [author] }
-      let(:author) { create(:user, :confirmed, organization: organization) }
+      let!(:plan) { create(:plan, component:, users: [author]) }
+      let(:author) { create(:user, :confirmed, organization:) }
 
       let(:user_group) do
-        create(:user_group, :confirmed, :verified, organization: organization, users: [author])
+        create(:user_group, :confirmed, :verified, organization:, users: [author])
       end
 
       describe "call" do

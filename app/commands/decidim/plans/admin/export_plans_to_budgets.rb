@@ -237,7 +237,7 @@ module Decidim
           # Add content for all sections and languages
           sections = original_plan.sections.where(id: form.actual_content_sections)
           sections.each do |section|
-            content = original_plan.contents.find_by(section: section)
+            content = original_plan.contents.find_by(section:)
             next unless content
 
             content.body.each do |locale, body_text|

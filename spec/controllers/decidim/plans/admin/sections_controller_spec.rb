@@ -5,7 +5,7 @@ require "spec_helper"
 module Decidim
   module Plans
     module Admin
-      describe SectionsController, type: :controller do
+      describe SectionsController do
         routes { Decidim::Plans::AdminEngine.routes }
 
         let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
@@ -26,7 +26,7 @@ module Decidim
 
           before do
             set_default_url_options
-            create_list(:section, 10, component: component)
+            create_list(:section, 10, component:)
           end
 
           it "renders the index listing" do
@@ -57,7 +57,7 @@ module Decidim
             end
 
             it "raises an error" do
-              post :create, params: params
+              post(:create, params:)
 
               expect(flash[:alert]).not_to be_empty
             end
@@ -78,7 +78,7 @@ module Decidim
             end
 
             it "creates a plan" do
-              post :create, params: params
+              post(:create, params:)
 
               expect(flash[:notice]).not_to be_empty
               expect(response).to have_http_status(:found)

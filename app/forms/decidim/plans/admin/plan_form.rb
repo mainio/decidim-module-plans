@@ -37,8 +37,8 @@ module Decidim
           self.contents = model.sections.map do |section|
             ContentForm.from_model(
               Content
-                .where(plan: model, section: section)
-                .first_or_initialize(plan: model, section: section, body: {})
+                .where(plan: model, section:)
+                .first_or_initialize(plan: model, section:, body: {})
             ).with_context(current_component: model.component)
           end
 

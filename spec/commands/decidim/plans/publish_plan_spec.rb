@@ -6,9 +6,9 @@ describe Decidim::Plans::PublishPlan do
   let(:component) { create(:plan_component) }
   let(:organization) { component.organization }
   let(:state) { :unpublished }
-  let(:author) { create :user, :confirmed, organization: organization }
-  let(:non_author) { create :user, :confirmed, organization: organization }
-  let(:plan) { create(:plan, state, component: component, users: [author]) }
+  let(:author) { create(:user, :confirmed, organization:) }
+  let(:non_author) { create(:user, :confirmed, organization:) }
+  let(:plan) { create(:plan, state, component:, users: [author]) }
 
   describe "call" do
     context "when called by the author" do

@@ -42,7 +42,7 @@ module Decidim
           state = "evaluating" unless @plan.answered?
 
           @plan.update!(
-            state: state,
+            state:,
             closed_at: Time.current
           )
         end

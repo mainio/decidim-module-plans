@@ -21,6 +21,11 @@ module Decidim
           @form = form(Admin::PlanForm).from_model(Plan.new(component: current_component))
         end
 
+        def edit
+          enforce_permission_to(:edit, :plan, plan:)
+          @form = form(Admin::PlanForm).from_model(plan)
+        end
+
         def create
           enforce_permission_to :create, :plan
           @form = form(Admin::PlanForm).from_params(params)
@@ -38,13 +43,8 @@ module Decidim
           end
         end
 
-        def edit
-          enforce_permission_to :edit, :plan, plan: plan
-          @form = form(Admin::PlanForm).from_model(plan)
-        end
-
         def update
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           @form = form(Admin::PlanForm).from_params(params)
           Admin::UpdatePlan.call(@form, @plan) do
@@ -61,7 +61,7 @@ module Decidim
         end
 
         def close
-          enforce_permission_to :close, :plan, plan: plan
+          enforce_permission_to(:close, :plan, plan:)
 
           ClosePlan.call(plan, current_user) do
             on(:ok) do
@@ -77,7 +77,7 @@ module Decidim
         end
 
         def reopen
-          enforce_permission_to :close, :plan, plan: plan
+          enforce_permission_to(:close, :plan, plan:)
 
           ReopenPlan.call(plan, current_user) do
             on(:ok) do

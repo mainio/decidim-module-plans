@@ -7,10 +7,10 @@ module Decidim::Plans
     controller Decidim::Plans::PlansController
 
     let(:organization) { create(:organization, tos_version: Time.current) }
-    let(:participatory_space) { create(:participatory_process, organization: organization) }
-    let(:component) { create(:plan_component, participatory_space: participatory_space) }
+    let(:participatory_space) { create(:participatory_process, organization:) }
+    let(:component) { create(:plan_component, participatory_space:) }
     let(:model) { plan }
-    let(:user) { create :user, organization: organization }
+    let(:user) { create(:user, organization:) }
 
     before do
       allow(controller).to receive(:current_user).and_return(user)
@@ -21,13 +21,13 @@ module Decidim::Plans
 
       it "doesn't render the tags of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).not_to have_css(".tags.tags--plan")
+        expect(html).to have_no_css(".tags.tags--plan")
       end
     end
 
     context "when a resource has scope" do
-      let(:scope) { create(:scope, organization: organization) }
-      let(:plan) { create(:plan, :published, component: component, scope: scope) }
+      let(:scope) { create(:scope, organization:) }
+      let(:plan) { create(:plan, :published, component:, scope:) }
 
       it "renders the scope of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
@@ -37,9 +37,9 @@ module Decidim::Plans
     end
 
     context "when a resource has subscope" do
-      let(:scope) { create(:scope, organization: organization) }
-      let(:subscope) { create(:scope, organization: organization, parent: scope) }
-      let(:plan) { create(:plan, :published, component: component, scope: subscope) }
+      let(:scope) { create(:scope, organization:) }
+      let(:subscope) { create(:scope, organization:, parent: scope) }
+      let(:plan) { create(:plan, :published, component:, scope: subscope) }
 
       it "renders the subscope of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
@@ -49,8 +49,8 @@ module Decidim::Plans
     end
 
     context "when a resource has category" do
-      let(:category) { create(:category, participatory_space: participatory_space) }
-      let(:plan) { create(:plan, :published, component: component, category: category) }
+      let(:category) { create(:category, participatory_space:) }
+      let(:plan) { create(:plan, :published, component:, category:) }
 
       it "renders the category of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
@@ -60,9 +60,9 @@ module Decidim::Plans
     end
 
     context "when a resource has subcategory" do
-      let(:category) { create(:category, participatory_space: participatory_space) }
-      let(:subcategory) { create(:category, participatory_space: participatory_space, parent: category) }
-      let(:plan) { create(:plan, :published, component: component, category: subcategory) }
+      let(:category) { create(:category, participatory_space:) }
+      let(:subcategory) { create(:category, participatory_space:, parent: category) }
+      let(:plan) { create(:plan, :published, component:, category: subcategory) }
 
       it "renders the subcategory of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
@@ -72,8 +72,8 @@ module Decidim::Plans
     end
 
     context "when a resource has taggings" do
-      let(:tags) { create_list(:tag, 5, organization: organization) }
-      let(:plan) { create(:plan, :published, component: component, tags: tags) }
+      let(:tags) { create_list(:tag, 5, organization:) }
+      let(:plan) { create(:plan, :published, component:, tags:) }
 
       it "renders the taggings of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
@@ -85,10 +85,10 @@ module Decidim::Plans
     end
 
     context "when a resource has scope, category and taggings" do
-      let(:scope) { create(:scope, organization: organization) }
-      let(:category) { create(:category, participatory_space: participatory_space) }
-      let(:tags) { create_list(:tag, 5, organization: organization) }
-      let(:plan) { create(:plan, :published, component: component, scope: scope, category: category, tags: tags) }
+      let(:scope) { create(:scope, organization:) }
+      let(:category) { create(:category, participatory_space:) }
+      let(:tags) { create_list(:tag, 5, organization:) }
+      let(:plan) { create(:plan, :published, component:, scope:, category:, tags:) }
 
       it "renders the scope, category and taggings of the model" do
         html = cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }).call

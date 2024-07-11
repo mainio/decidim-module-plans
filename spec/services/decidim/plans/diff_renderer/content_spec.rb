@@ -8,13 +8,13 @@ module Decidim
     describe DiffRenderer::Content do
       let(:component) { create(:plan_component) }
       let(:organization) { component.organization }
-      let(:author) { create(:user, :confirmed, organization: organization) }
+      let(:author) { create(:user, :confirmed, organization:) }
 
       with_versioning do
         subject { described_class.new(version, "en") }
 
-        let(:plan) { create(:plan, component: component) }
-        let(:content) { create(:content, plan: plan, body: { en: original_content }) }
+        let(:plan) { create(:plan, component:) }
+        let(:content) { create(:content, plan:, body: { en: original_content }) }
         let(:original_content) { "Original content" }
         let(:version) { content.versions.last }
 

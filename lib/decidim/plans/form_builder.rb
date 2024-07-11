@@ -26,7 +26,7 @@ module Decidim
         content = content.html_safe
 
         html = wrap_prefix_and_postfix(content, prefix, postfix)
-        html + error_and_help_text(attribute, options.merge(help_text: help_text))
+        html + error_and_help_text(attribute, options.merge(help_text:))
       end
 
       def abide_error_element(attribute, abide_error = nil)

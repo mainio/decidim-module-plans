@@ -42,7 +42,7 @@ module Decidim
           state = "open" unless @plan.answered?
 
           @plan.update!(
-            state: state,
+            state:,
             closed_at: nil
           )
         end

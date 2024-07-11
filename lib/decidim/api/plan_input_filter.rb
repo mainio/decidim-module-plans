@@ -28,13 +28,12 @@ A typical query would look like:
       argument(
         :state,
         type: [GraphQL::Types::String],
-        description: (
-          <<~DESC
+        description:
+          <<~DESC,
             Filters the plans of the specified types. Allowed values are "open",
             "accepted", "evaluating", "rejected" and "withdrawn". By default,
             the withdrawn plans will not be included.
           DESC
-        ),
         required: false,
         prepare: lambda { |states, _ctx|
                    valid = %w(open accepted evaluating rejected withdrawn) & states

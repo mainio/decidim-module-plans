@@ -5,7 +5,7 @@ require "spec_helper"
 module Decidim
   module Plans
     module Admin
-      describe BudgetsExportsController, type: :controller do
+      describe BudgetsExportsController do
         routes { Decidim::Plans::AdminEngine.routes }
 
         let(:component) { create(:plan_component) }
@@ -13,8 +13,8 @@ module Decidim
         let(:target_budget) { create(:budget, component: target_component) }
         let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
 
-        let!(:plans) { create_list(:plan, 10, :published, :accepted, closed_at: Time.current, component: component) }
-        let(:sections) { create_list(:section, 2, :field_text, component: component) }
+        let!(:plans) { create_list(:plan, 10, :published, :accepted, closed_at: Time.current, component:) }
+        let(:sections) { create_list(:section, 2, :field_text, component:) }
 
         let(:acceptance) { true }
 
@@ -42,7 +42,7 @@ module Decidim
 
         describe "GET new" do
           it "renders the export form" do
-            get :new, params: params
+            get(:new, params:)
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:new)
           end
@@ -53,7 +53,7 @@ module Decidim
             let(:acceptance) { false }
 
             it "shows an error renders the new template" do
-              post :create, params: params
+              post(:create, params:)
 
               expect(flash[:alert]).not_to be_empty
               expect(response).to render_template(:new)
@@ -64,7 +64,7 @@ module Decidim
             let(:sections_param) { [0, 0, 0] }
 
             it "shows an error renders the new template" do
-              post :create, params: params
+              post(:create, params:)
 
               expect(flash[:alert]).not_to be_empty
               expect(response).to render_template(:new)
@@ -74,7 +74,7 @@ module Decidim
           context "when the command succeeds" do
             it "creates the plans" do
               expect do
-                post :create, params: params
+                post(:create, params:)
 
                 expect(flash[:notice]).not_to be_empty
                 expect(response).to have_http_status(:found)

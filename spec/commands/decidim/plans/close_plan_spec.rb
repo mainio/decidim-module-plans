@@ -5,8 +5,8 @@ require "spec_helper"
 describe Decidim::Plans::ClosePlan do
   let(:component) { create(:plan_component) }
   let(:organization) { component.organization }
-  let(:user) { create :user, :confirmed, organization: organization }
-  let(:plan) { create(:plan, component: component, users: [user]) }
+  let(:user) { create(:user, :confirmed, organization:) }
+  let(:plan) { create(:plan, component:, users: [user]) }
 
   describe "call" do
     context "when called with a user" do
@@ -26,7 +26,7 @@ describe Decidim::Plans::ClosePlan do
         let(:plan) do
           create(
             :plan,
-            component: component,
+            component:,
             users: [user],
             state: "accepted",
             answered_at: Time.current

@@ -7,20 +7,20 @@ module Decidim
     describe RejectAccessToPlan do
       let(:component) { create(:plan_component) }
       let(:state) { :open }
-      let(:plan) { create(:plan, state, component: component, users: [author1, author2]) }
+      let(:plan) { create(:plan, state, component:, users: [first_author, second_author]) }
       let(:id) { plan.id }
       let(:requester_user) { create(:user, :confirmed, organization: component.organization) }
       let(:requester_user_id) { requester_user.id }
-      let(:author1) { create(:user, :confirmed, organization: component.organization) }
-      let(:author2) { create(:user, :confirmed, organization: component.organization) }
-      let(:current_user) { author1 }
+      let(:first_author) { create(:user, :confirmed, organization: component.organization) }
+      let(:second_author) { create(:user, :confirmed, organization: component.organization) }
+      let(:current_user) { first_author }
       let(:current_organization) { component.organization }
-      let(:form) { RejectAccessToPlanForm.from_params(form_params).with_context(current_user: current_user, current_organization: current_organization) }
+      let(:form) { RejectAccessToPlanForm.from_params(form_params).with_context(current_user:, current_organization:) }
       let(:form_params) do
         {
-          state: state,
-          id: id,
-          requester_user_id: requester_user_id
+          state:,
+          id:,
+          requester_user_id:
         }
       end
 

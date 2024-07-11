@@ -2,16 +2,16 @@
 
 require "spec_helper"
 
-describe "explore plans", type: :system do
+describe "ExplorePlans" do
   with_versioning do
     let(:component) { create(:plan_component, :with_creation_enabled) }
     let(:organization) { component.organization }
-    let(:user) { create(:user, :confirmed, :admin, organization: organization) }
-    let!(:plans) { create_list(:plan, 10, component: component) }
-    let!(:evaluating) { create_list(:plan, 5, :evaluating, component: component) }
-    let!(:rejected) { create_list(:plan, 3, :rejected, component: component) }
-    let!(:withdrawn) { create_list(:plan, 2, :withdrawn, component: component) }
-    let!(:accepted) { create(:plan, :accepted, component: component) }
+    let(:user) { create(:user, :confirmed, :admin, organization:) }
+    let!(:plans) { create_list(:plan, 10, component:) }
+    let!(:evaluating) { create_list(:plan, 5, :evaluating, component:) }
+    let!(:rejected) { create_list(:plan, 3, :rejected, component:) }
+    let!(:withdrawn) { create_list(:plan, 2, :withdrawn, component:) }
+    let!(:accepted) { create(:plan, :accepted, component:) }
 
     describe "index" do
       before do
@@ -46,10 +46,10 @@ describe "explore plans", type: :system do
 
         choose_filter("Accepted")
         within "#plans" do
-          expect(page).to have_selector(".column#plan_#{accepted.id}")
+          expect(page).to have_css(".column#plan_#{accepted.id}")
         end
 
-        click_link "See all withdrawn" do
+        click_on "See all withdrawn" do
           within "#plans" do
             plans = find_all(".column")
             expect(plans.count).to eq(2)
@@ -68,13 +68,13 @@ describe "explore plans", type: :system do
         within "#plans" do
           plans = find_all(".column")
           expect(plans.count).to eq(1)
-          expect(page).to have_selector(".column#plan_#{accepted.id}")
+          expect(page).to have_css(".column#plan_#{accepted.id}")
         end
       end
 
       context "when a draft plan exist" do
-        let!(:plan) { create(:plan, :open, component: component, published_at: nil, users: [user]) }
-        let!(:content) { create(:content, plan: plan) }
+        let!(:plan) { create(:plan, :open, component:, published_at: nil, users: [user]) }
+        let!(:content) { create(:content, plan:) }
 
         before do
           sign_in user
@@ -88,18 +88,18 @@ describe "explore plans", type: :system do
 
         it "adds the version" do
           expect(page).to have_link("Continue your proposal", href: decidim_plan.edit_plan_path(plan.id))
-          click_link "Continue your proposal"
+          click_on "Continue your proposal"
           fill_in "contents[#{plan.sections.first.id}][body_en]", with: "Update text"
-          click_button "Preview"
+          click_on "Preview"
           expect(page).to have_content("VERSION 2 (of 2)")
-          click_link "Edit"
+          click_on "Edit"
           expect(page).to have_current_path(decidim_plan.edit_plan_path(plan.id))
         end
       end
     end
 
     describe "new plan" do
-      let!(:section) { create(:section, component: component, mandatory: true) }
+      let!(:section) { create(:section, component:, mandatory: true) }
 
       before do
         switch_to_host(organization.host)
@@ -109,7 +109,7 @@ describe "explore plans", type: :system do
       it "renders sign in" do
         expect(page).to have_content("Submit a proposal")
         expect(page).to have_content("You need to sign in before submitting a proposal")
-        click_link("Sign in", match: :first)
+        click_on "Sign in", match: :first
         expect(page).to have_content("Please sign in")
         expect(page).to have_field("Email")
         expect(page).to have_field("Password")
@@ -127,10 +127,10 @@ describe "explore plans", type: :system do
           expect(page).to have_button("Preview")
           expect(page).to have_field("contents[#{section.id}][body_en]")
           expect(page).to have_link("Back to proposals list")
-          click_button "Preview"
+          click_on "Preview"
           expect(page).to have_content("There's an error in this field")
           fill_in "contents[#{section.id}][body_en]", with: "Dummy text"
-          click_button "Save as draft"
+          click_on "Save as draft"
           expect(page).to have_content("Created successfully.")
           expect(page).to have_link("Delete draft")
           plan = Decidim::Plans::Plan.last
@@ -141,11 +141,11 @@ describe "explore plans", type: :system do
 
         it "deletes the draft" do
           fill_in "contents[#{section.id}][body_en]", with: "Dummy text"
-          click_button "Save as draft"
+          click_on "Save as draft"
           plans = Decidim::Plans::Plan.all
           expect(plans.count).to eq(22)
           expect(page).to have_link("Delete draft")
-          click_link "Delete draft"
+          click_on "Delete draft"
           expect(page).to have_content("Are you sure you want to delete this draft?")
           find(".button[aria-label='OK']").click
           expect(page).to have_content("Deleted successfully.")
@@ -155,7 +155,7 @@ describe "explore plans", type: :system do
 
         it "previews plan" do
           fill_in "contents[#{section.id}][body_en]", with: "Dummy text"
-          click_button "Preview"
+          click_on "Preview"
           created_plan = Decidim::Plans::Plan.last
           expect(page).to have_current_path(decidim_plan.preview_plan_path(created_plan.id))
           expect(page).to have_content("Your proposal has not yet been published")
@@ -172,9 +172,9 @@ describe "explore plans", type: :system do
     end
 
     describe "explore authors" do
-      let!(:plan) { create(:plan, :open, component: component, published_at: nil, users: [user]) }
-      let!(:content) { create(:content, plan: plan) }
-      let!(:user1) { create(:user, :confirmed, organization: organization) }
+      let!(:plan) { create(:plan, :open, component:, published_at: nil, users: [user]) }
+      let!(:content) { create(:content, plan:) }
+      let!(:user1) { create(:user, :confirmed, organization:) }
 
       before do
         sign_in user
@@ -184,7 +184,7 @@ describe "explore plans", type: :system do
 
       context "with unpublished plan" do
         it "does not show add authors button" do
-          expect(page).not_to have_button("Add authors for proposal")
+          expect(page).to have_no_button("Add authors for proposal")
         end
       end
 
@@ -200,14 +200,14 @@ describe "explore plans", type: :system do
             expect(page).to have_content("1")
           end
 
-          click_button "Add authors for proposal"
+          click_on "Add authors for proposal"
           expect(page).to have_content("Add authors for proposal")
           fill_in "Write the author's name or nickname", with: user1.name
 
           expect(page).to have_css("ul#autoComplete_list_1")
           first_option = page.find("#autoComplete_list_1 li:first-child")
           first_option.click
-          click_button "Next"
+          click_on "Next"
           expect(page).to have_current_path(decidim_plan.add_authors_plan_path(plan.id))
           expect(page).to have_content("ADD AUTHORS FOR PROPOSAL")
           expect(page).to have_link("Back to proposal", href: decidim_plan.plan_path(plan.id))
@@ -217,7 +217,7 @@ describe "explore plans", type: :system do
           expect(page).to have_button "Add authors"
           expect(page).to have_link("Cancel", href: decidim_plan.plan_path(plan.id))
 
-          click_button "Add authors"
+          click_on "Add authors"
           expect(page).to have_content("Successfully added authors for the proposal.")
           expect(plan.reload.authors).to include(user1)
           expect(plan.authors.count).to eq(2)
@@ -225,7 +225,7 @@ describe "explore plans", type: :system do
 
         it "withdraws the plan" do
           expect(page).to have_link("Withdraw proposal")
-          click_link "Withdraw proposal"
+          click_on "Withdraw proposal"
           expect(page).to have_content("Are you sure you want to withdraw this proposal?")
           find(".button[aria-label='OK']").click
           expect(page).to have_content("Item withdrawn successfully.")
@@ -233,17 +233,17 @@ describe "explore plans", type: :system do
           within "span.alert.label.idea-status" do
             expect(page).to have_content("Withdrawn")
           end
-          expect(page).not_to have_link("Withdraw proposal")
-          expect(page).not_to have_content("ADD AUTHORS FOR PROPOSAL")
+          expect(page).to have_no_link("Withdraw proposal")
+          expect(page).to have_no_content("ADD AUTHORS FOR PROPOSAL")
           expect(plan.reload.state).to eq("withdrawn")
         end
       end
     end
 
     describe "explore versions" do
-      let!(:plan) { create(:plan, :open, component: component, published_at: nil, users: [user]) }
-      let!(:content) { create(:content, plan: plan) }
-      let!(:user1) { create(:user, :confirmed, organization: organization) }
+      let!(:plan) { create(:plan, :open, component:, published_at: nil, users: [user]) }
+      let!(:content) { create(:content, plan:) }
+      let!(:user1) { create(:user, :confirmed, organization:) }
 
       context "with different versions available" do
         before do
@@ -251,12 +251,12 @@ describe "explore plans", type: :system do
           switch_to_host(organization.host)
           visit decidim_plan.edit_plan_path(plan.id)
           fill_in "contents[#{plan.sections.first.id}][body_en]", with: "Update text"
-          click_button "Preview"
+          click_on "Preview"
         end
 
         it "shows different versions" do
           expect(page).to have_content("VERSION 2 (of 2)")
-          click_link "see other versions"
+          click_on "see other versions"
           expect(page).to have_current_path(decidim_plan.plan_versions_path(plan.id))
           expect(page).to have_content("Changes at")
           within ".card--list__item", match: :first do
@@ -272,7 +272,7 @@ describe "explore plans", type: :system do
           visit decidim_plan.plan_versions_path(plan.id)
           expect(page).to have_link("Version 1", href: decidim_plan.plan_version_path(plan_id: plan.id, id: 1))
           expect(page).to have_link("Version 2", href: decidim_plan.plan_version_path(plan_id: plan.id, id: 2))
-          click_link "Version 1"
+          click_on "Version 1"
           expect(page).to have_link("Show all versions", href: decidim_plan.plan_versions_path(plan.id))
           expect(page).to have_link("Back to proposal", href: decidim_plan.plan_path(plan.id))
           expect(page).to have_content("Changes at")
@@ -297,9 +297,9 @@ describe "explore plans", type: :system do
         it "changes view mode" do
           visit decidim_plan.plan_version_path(plan_id: plan.id, id: 2)
           expect(page).to have_link("Unified", href: "#diffmode-chooser-menu")
-          click_link "Unified"
+          click_on "Unified"
           expect(page).to have_link("Side-by-side")
-          click_link("Side-by-side")
+          click_on "Side-by-side"
 
           expect(page).to have_content(translated(plan.title))
           expect(page).to have_content("Update text")

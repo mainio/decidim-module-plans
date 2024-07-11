@@ -11,7 +11,7 @@ shared_context "with full plan form" do
   end
   let!(:contents) do
     sections.map do |sect|
-      create(:content, sect.section_type.to_sym, section: sect, plan: plan) if sect.section_type.match(/^(field|link)_/)
+      create(:content, sect.section_type.to_sym, section: sect, plan:) if sect.section_type.match(/^(field|link)_/)
     end.compact
   end
 end
@@ -22,8 +22,8 @@ shared_context "with plan author params" do
   let(:recipient_id) { [user.id] }
   let(:params) do
     {
-      plan_id: plan_id,
-      recipient_id: recipient_id,
+      plan_id:,
+      recipient_id:,
       component_id: component.id,
       participatory_process_slug: slug
     }

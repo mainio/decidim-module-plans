@@ -38,9 +38,9 @@ module Decidim
 
         def body
           {
-            address: address,
-            latitude: latitude,
-            longitude: longitude
+            address:,
+            latitude:,
+            longitude:
           }
         end
 

@@ -10,11 +10,11 @@ module Decidim
         helper_method :plan
 
         def index
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to :edit, :plan, plan:
         end
 
         def create
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           @form = form(AddAuthorToPlanForm).from_params(params, component: current_component)
 
@@ -25,7 +25,7 @@ module Decidim
         end
 
         def confirm
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           @form = form(AddAuthorToPlanForm).from_params(params, component: current_component)
 
@@ -44,7 +44,7 @@ module Decidim
         end
 
         def destroy
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           plan = @plan
           author = if author_type == "organization"

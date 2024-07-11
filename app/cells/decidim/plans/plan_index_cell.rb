@@ -33,7 +33,7 @@ module Decidim
 
       def order_selector(orders, options = {})
         render partial: "decidim/shared/orders.html", locals: {
-          orders: orders,
+          orders:,
           i18n_scope: options[:i18n_scope]
         }
       end
@@ -79,7 +79,7 @@ module Decidim
         return nil unless user_signed_in?
 
         @plan_draft = Plan.from_all_author_identities(current_user).not_hidden.where(
-          component: component
+          component:
         ).find_by(published_at: nil)
       end
 

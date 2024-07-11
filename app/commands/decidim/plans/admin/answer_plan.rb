@@ -42,7 +42,7 @@ module Decidim
             closed_at = plan.closed_at || Time.current
 
             plan.update!(
-              closed_at: closed_at,
+              closed_at:,
               state: @form.state,
               answer: @form.answer,
               answered_at: Time.current
@@ -51,7 +51,7 @@ module Decidim
         end
 
         def notify_followers
-          return if (plan.previous_changes.keys & %w(state)).empty?
+          return unless plan.previous_changes.keys.intersect?(%w(state))
 
           if plan.accepted?
             publish_event(
@@ -73,8 +73,8 @@ module Decidim
 
         def publish_event(event, event_class)
           Decidim::EventsManager.publish(
-            event: event,
-            event_class: event_class,
+            event:,
+            event_class:,
             resource: plan,
             affected_users: plan.notifiable_identities,
             followers: plan.followers - plan.notifiable_identities

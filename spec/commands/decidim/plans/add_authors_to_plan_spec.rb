@@ -3,13 +3,13 @@
 require "spec_helper"
 
 describe Decidim::Plans::AddAuthorsToPlan do
-  let(:plan) { create(:plan, component: component, users: [current_user]) }
+  let(:plan) { create(:plan, component:, users: [current_user]) }
   let(:form_klass) { Decidim::Plans::AddAuthorToPlanForm }
   let(:component) { create(:plan_component) }
   let(:organization) { component.organization }
-  let(:current_user) { create :user, :confirmed, organization: organization }
-  let(:user) { create :user, :confirmed, organization: organization }
-  let(:author) { create(:user, :confirmed, organization: organization) }
+  let(:current_user) { create(:user, :confirmed, organization:) }
+  let(:user) { create(:user, :confirmed, organization:) }
+  let(:author) { create(:user, :confirmed, organization:) }
   let(:authors) { [user.id] }
   let(:form) do
     form_klass.from_params(

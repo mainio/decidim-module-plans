@@ -11,11 +11,11 @@ module Decidim
       let(:plan) { create(:plan, :open) }
       let(:state) { plan.state }
       let(:id) { plan.id }
-      let(:current_user) { create(:user, :confirmed, organization: organization) }
+      let(:current_user) { create(:user, :confirmed, organization:) }
       let(:params) do
         {
-          state: state,
-          id: id
+          state:,
+          id:
         }
       end
 

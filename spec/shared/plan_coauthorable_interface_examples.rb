@@ -20,7 +20,7 @@ shared_examples_for "plan coauthorable interface" do
 
       before do
         coauthorship = model.coauthorships.first
-        coauthorship.update!(user_group: user_group)
+        coauthorship.update!(user_group:)
       end
 
       it "includes returns the user group's name as the author name" do
@@ -54,7 +54,7 @@ shared_examples_for "plan coauthorable interface" do
       end
 
       context "when author is the organization" do
-        let(:model) { create(:plan, :official, component: component) }
+        let(:model) { create(:plan, :official, component:) }
 
         it "returns 2 total co-authors" do
           expect(response["authorsCount"]).to eq(2)

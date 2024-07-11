@@ -9,7 +9,7 @@ module Decidim
         subject do
           described_class.from_params(
             section: attributes
-          ).with_context(current_organization: current_organization)
+          ).with_context(current_organization:)
         end
 
         let(:current_organization) { create(:organization, tos_version: Time.current) }
@@ -19,12 +19,12 @@ module Decidim
         let(:deleted) { "false" }
         let(:attributes) do
           {
-            handle: handle,
+            handle:,
             body_en: "Body en",
             body_ca: "Body ca",
             body_es: "Body es",
-            position: position,
-            deleted: deleted
+            position:,
+            deleted:
           }
         end
 
@@ -63,7 +63,7 @@ module Decidim
         end
 
         describe "#to_param" do
-          subject { described_class.new(id: id) }
+          subject { described_class.new(id:) }
 
           context "with actual ID" do
             let(:id) { double }

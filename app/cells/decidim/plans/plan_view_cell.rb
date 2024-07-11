@@ -24,7 +24,7 @@ module Decidim
       end
 
       def collaborator_requests
-        return unless allowed_to?(:edit, :plan, plan: plan)
+        return unless allowed_to?(:edit, :plan, plan:)
         return unless plan.requesters.any?
 
         render :collaborator_requests
@@ -33,7 +33,7 @@ module Decidim
       def plan_notification(data = {})
         context = data[:context] || {}
         data = data.merge(
-          context: context.merge(current_component: current_component)
+          context: context.merge(current_component:)
         )
 
         cell(
@@ -66,7 +66,7 @@ module Decidim
       end
 
       def show_controls?
-        !preview_mode? && allowed_to?(:edit, :plan, plan: plan)
+        !preview_mode? && allowed_to?(:edit, :plan, plan:)
       end
 
       def has_map_position?
@@ -88,7 +88,7 @@ module Decidim
         @map_utility_static.link(
           latitude: address_content.body["latitude"],
           longitude: address_content.body["longitude"],
-          options: options
+          options:
         )
       end
 

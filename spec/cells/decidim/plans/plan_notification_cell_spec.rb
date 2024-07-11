@@ -9,10 +9,10 @@ describe Decidim::Plans::PlanNotificationCell, type: :cell do
 
   let(:my_cell) { cell("decidim/plans/plan_notification", plan) }
   let(:organization) { create(:organization, tos_version: Time.current) }
-  let(:participatory_space) { create(:participatory_process, :with_steps, organization: organization) }
-  let(:plan_component) { create(:plan_component, participatory_space: participatory_space) }
+  let(:participatory_space) { create(:participatory_process, :with_steps, organization:) }
+  let(:plan_component) { create(:plan_component, participatory_space:) }
   let(:plan) { create(:plan, :with_answer, component: plan_component) }
-  let!(:user) { create(:user, :admin, :confirmed, organization: organization) }
+  let!(:user) { create(:user, :admin, :confirmed, organization:) }
 
   before do
     allow(controller).to receive(:current_user).and_return(user)
@@ -24,7 +24,7 @@ describe Decidim::Plans::PlanNotificationCell, type: :cell do
       let(:plan) { create(:plan, :draft, component: plan_component) }
 
       it "does not render the show" do
-        expect(subject).not_to have_css(".callout__title")
+        expect(subject).to have_no_css(".callout__title")
       end
     end
 

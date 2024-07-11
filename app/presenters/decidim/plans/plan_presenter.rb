@@ -61,7 +61,7 @@ module Decidim
 
       def each_section
         plan.sections.where(visible_view: true).map do |section|
-          content = plan.contents.find_by(section: section)
+          content = plan.contents.find_by(section:)
           next if content.nil?
 
           section_title = plain_content(translated_attribute(content.title))

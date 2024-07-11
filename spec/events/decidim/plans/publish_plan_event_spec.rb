@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe Decidim::Plans::PublishPlanEvent do
-  let(:resource) { create :plan }
+  let(:resource) { create(:plan) }
   let(:resource_title) { resource.title["en"] }
   let(:event_name) { "decidim.events.plans.plan_published" }
 

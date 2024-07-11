@@ -5,12 +5,12 @@ require "spec_helper"
 module Decidim
   module Plans
     module Admin
-      describe AuthorsController, type: :controller do
+      describe AuthorsController do
         routes { Decidim::Plans::AdminEngine.routes }
 
         let(:component) { create(:plan_component) }
         let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
-        let(:plan) { create(:plan, component: component, users: [user]) }
+        let(:plan) { create(:plan, component:, users: [user]) }
 
         before do
           request.env["decidim.current_organization"] = component.organization
@@ -31,7 +31,7 @@ module Decidim
 
           context "when authors exist" do
             it "responds :ok" do
-              put :create, params: params
+              put(:create, params:)
               expect(subject).to be_an_instance_of(AuthorsController)
             end
           end
@@ -40,7 +40,7 @@ module Decidim
             let(:recipient_id) { [123_456] }
 
             it "gives error and redirects the user" do
-              put :create, params: params
+              put(:create, params:)
               expect(flash[:alert]).to be_present
               expect(subject).to redirect_to("/plans/#{plan_id}/authors")
             end
@@ -51,7 +51,7 @@ module Decidim
           include_context "with plan author params"
 
           it "adds author and redirects" do
-            patch :confirm, params: params
+            patch(:confirm, params:)
 
             expect(flash[:success]).to be_present
             expect(subject).to redirect_to("/plans/#{plan_id}/authors")
@@ -62,7 +62,7 @@ module Decidim
             let(:recipient_id) { [123_456] }
 
             it "gives error and redirects" do
-              patch :confirm, params: params
+              patch(:confirm, params:)
 
               expect(flash[:alert]).to be_present
               expect(subject).to redirect_to("/plans/#{plan_id}/authors")
@@ -73,7 +73,7 @@ module Decidim
         describe "destroy" do
           context "with user base entity" do
             let!(:user2) { create(:user, :confirmed, :admin, organization: component.organization) }
-            let(:plan) { create(:plan, component: component, users: [user, user2]) }
+            let(:plan) { create(:plan, component:, users: [user, user2]) }
             let(:slug) { component.participatory_space.slug }
             let(:user_id) { user2.id }
             let(:params) do
@@ -86,17 +86,17 @@ module Decidim
             end
 
             it "deletes the user and redirects" do
-              delete :destroy, params: params
+              delete(:destroy, params:)
               expect(flash[:success]).to be_present
               expect(subject).to redirect_to("/plans/#{plan.id}/authors")
               expect(plan.reload.authors).not_to include(user2)
             end
 
             context "when user not exist" do
-              let(:plan) { create(:plan, component: component, users: [user2]) }
+              let(:plan) { create(:plan, component:, users: [user2]) }
 
               it "renders error and redirects" do
-                delete :destroy, params: params
+                delete(:destroy, params:)
                 expect(flash[:alert]).to be_present
                 expect(subject).to redirect_to("/plans/#{plan.id}/authors")
                 expect(plan.reload.authors).to include(user2)

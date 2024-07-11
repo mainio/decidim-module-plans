@@ -153,7 +153,7 @@ module Decidim
       end
 
       def sections
-        Section.where(component: component).order(:position)
+        Section.where(component:).order(:position)
       end
 
       def self.order_randomly(seed)
@@ -241,7 +241,7 @@ module Decidim
             next if point[:latitude].blank? || point[:longitude].blank?
 
             {
-              id: id,
+              id:,
               title: plan[:title],
               body: plan[:body],
               address: point[:address],

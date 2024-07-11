@@ -21,7 +21,7 @@ module Decidim
         end
 
         def body
-          { scope_id: scope_id }
+          { scope_id: }
         end
 
         def body=(data)

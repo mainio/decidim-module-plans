@@ -31,8 +31,8 @@ module Decidim
           precision = (value % 1).zero? ? 0 : 2
           number_to_currency(
             value,
-            unit: unit,
-            precision: precision,
+            unit:,
+            precision:,
             locale: I18n.locale
           )
         end

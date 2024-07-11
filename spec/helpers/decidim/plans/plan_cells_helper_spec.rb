@@ -29,7 +29,7 @@ describe Decidim::Plans::PlanCellsHelper do
     it "returns true for index actions" do
       allow(controller).to receive(:action_name).and_return("index")
       allow(helper).to receive(:context).and_return(
-        controller: controller
+        controller:
       )
       expect(helper.index_action?).to be(true)
     end
@@ -37,7 +37,7 @@ describe Decidim::Plans::PlanCellsHelper do
     it "returns false for other actions" do
       allow(controller).to receive(:action_name).and_return("other")
       allow(helper).to receive(:context).and_return(
-        controller: controller
+        controller:
       )
       expect(helper.index_action?).to be(false)
     end
@@ -95,35 +95,35 @@ describe Decidim::Plans::PlanCellsHelper do
     context "when accepted" do
       it "returns correct classes" do
         allow(helper).to receive(:state).and_return("accepted")
-        expect(helper.state_classes).to match_array(["success"])
+        expect(helper.state_classes).to contain_exactly("success")
       end
     end
 
     context "when rejected" do
       it "returns correct classes" do
         allow(helper).to receive(:state).and_return("rejected")
-        expect(helper.state_classes).to match_array(["alert"])
+        expect(helper.state_classes).to contain_exactly("alert")
       end
     end
 
     context "when evaluating" do
       it "returns correct classes" do
         allow(helper).to receive(:state).and_return("evaluating")
-        expect(helper.state_classes).to match_array(["warning"])
+        expect(helper.state_classes).to contain_exactly("warning")
       end
     end
 
     context "when withdrawn" do
       it "returns correct classes" do
         allow(helper).to receive(:state).and_return("withdrawn")
-        expect(helper.state_classes).to match_array(["alert"])
+        expect(helper.state_classes).to contain_exactly("alert")
       end
     end
 
     context "when something else" do
       it "returns correct classes" do
         allow(helper).to receive(:state).and_return("something")
-        expect(helper.state_classes).to match_array(["muted"])
+        expect(helper.state_classes).to contain_exactly("muted")
       end
     end
   end

@@ -3,11 +3,11 @@
 module Decidim
   module Plans
     def self.version
-      "0.27.0"
+      "0.28.0"
     end
 
     def self.decidim_version
-      "~> 0.27.0"
+      "~> 0.28.0"
     end
   end
 end

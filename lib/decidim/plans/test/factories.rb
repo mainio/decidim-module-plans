@@ -166,7 +166,7 @@ FactoryBot.define do
         longitude { Faker::Address.longitude }
       end
 
-      body { { address: address, latitude: latitude, longitude: longitude } }
+      body { { address:, latitude:, longitude: } }
       section { create(:section, :field_map_point, component: plan.component) }
     end
 
@@ -202,7 +202,7 @@ FactoryBot.define do
   factory :plan_component, parent: :component do
     name { Decidim::Components::Namer.new(participatory_space.organization.available_locales, :plans).i18n_name }
     manifest_name { :plans }
-    participatory_space { create(:participatory_process, :with_steps, organization: organization) }
+    participatory_space { create(:participatory_process, :with_steps, organization:) }
 
     trait :with_creation_enabled do
       step_settings do
@@ -252,8 +252,8 @@ FactoryBot.define do
 
       settings do
         {
-          default_state: default_state,
-          default_answer: default_answer
+          default_state:,
+          default_answer:
         }
       end
     end
@@ -277,7 +277,7 @@ FactoryBot.define do
         users = evaluator.users || [create(:user, :confirmed, organization: plan.component.participatory_space.organization)]
         users.each_with_index do |user, idx|
           user_group = evaluator.user_groups[idx]
-          plan.coauthorships.build(author: user, user_group: user_group)
+          plan.coauthorships.build(author: user, user_group:)
         end
 
         if FactoryBot.factories.registered?(:proposal_component)
