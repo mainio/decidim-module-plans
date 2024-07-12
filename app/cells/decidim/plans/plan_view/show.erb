@@ -115,7 +115,7 @@
             <%= link_to plan_versions_path(plan) do %>
               <span aria-hidden="true">
                 <%= with_tooltip t("decidim.plans.models.plan.fields.contributions") do %>
-                  <%= icon("pencil", class: "icon--small", "aria-hidden": true) + " " + "#{plan.versions.count}" %>
+                  <%= icon("pencil-line", class: "icon--small", "aria-hidden": true) + " " + "#{plan.versions.count}" %>
                 <% end %>
               </span>
               <span class="show-for-sr">

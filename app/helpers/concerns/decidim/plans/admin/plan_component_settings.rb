@@ -49,7 +49,7 @@ module Decidim
               return "" if @plan_settings_included
 
               @plan_settings_included = true
-              javascript_pack_tag("decidim_plans_admin_component_settings")
+              append_javascript_pack_tag("decidim_plans_admin_component_settings")
             end
             # rubocop:enable Rails/HelperInstanceVariable
           end

@@ -51,7 +51,7 @@
               <p><%= t("decidim.plans.plans.edit.sign_in_before_submitting") %></p>
               <%= action_authorized_link_to :create, new_plan_path, class: "button button--icon", data: { "redirect_url" => new_plan_path } do %>
                 <%= t("decidim.plans.plans.edit.sign_in") %>
-                <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+                <%= icon("arrow-right-line", role: "img", "aria-hidden": true) %>
               <% end %>
             </div>
           </div>
@@ -67,4 +67,4 @@
 
 <%= render partial: "exit_modal" %>
 
-<%= javascript_pack_tag "decidim_plans_plans_form" %>
+<%= append_javascript_pack_tag "decidim_plans_plans_form" %>

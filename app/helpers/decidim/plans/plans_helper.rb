@@ -42,7 +42,7 @@ module Decidim
           # e.g. the markercluser would not be available when the plans map is
           # loaded.
           unless snippets.any?(:plans_map_scripts)
-            snippets.add(:plans_map_scripts, javascript_pack_tag("decidim_plans_map"))
+            snippets.add(:plans_map_scripts, append_javascript_pack_tag("decidim_plans_map"))
             snippets.add(:foot, snippets.for(:plans_map_scripts))
           end
 

@@ -44,30 +44,30 @@
 
   <td class="table-list__actions">
     <% if allowed_to? :edit, :plan, plan: plan %>
-      <%= icon_link_to "pencil", edit_plan_path(plan), t("actions.edit_plan", scope: "decidim.plans"), class: "action-icon--edit-plan" %>
-      <%= icon_link_to "people", plan_authors_path(plan), t("actions.manage_authors", scope: "decidim.plans"), class: "action-icon--manage-authors" %>
+      <%= icon_link_to "pencil-line", edit_plan_path(plan), t("actions.edit_plan", scope: "decidim.plans"), class: "action-icon--edit-plan" %>
+      <%= icon_link_to "group-line", plan_authors_path(plan), t("actions.manage_authors", scope: "decidim.plans"), class: "action-icon--manage-authors" %>
     <% end %>
 
     <% if !plan.answered? && allowed_to?(:close, :plan, plan: plan) %>
       <% if plan.closed? %>
-        <%= icon_link_to "action-undo", reopen_plan_path(plan), t("actions.reopen_plan", scope: "decidim.plans"), method: :post, class: "action-icon--reopen-plan" %>
+        <%= icon_link_to "arrow-go-back-line", reopen_plan_path(plan), t("actions.reopen_plan", scope: "decidim.plans"), method: :post, class: "action-icon--reopen-plan" %>
       <% else %>
-        <%= icon_link_to "check", close_plan_path(plan), t("actions.close_plan", scope: "decidim.plans"), method: :post, class: "action-icon--close-plan" %>
+        <%= icon_link_to "check-line", close_plan_path(plan), t("actions.close_plan", scope: "decidim.plans"), method: :post, class: "action-icon--close-plan" %>
       <% end %>
     <% end %>
 
     <% if allowed_to? :edit_taggings, :plan, plan: plan %>
-      <%= icon_link_to "tag", plan_taggings_path(plan), t("actions.taggings", scope: "decidim.plans"), class: "action-icon--plan-taggings" %>
+      <%= icon_link_to "price-tag-line", plan_taggings_path(plan), t("actions.taggings", scope: "decidim.plans"), class: "action-icon--plan-taggings" %>
     <% end %>
 
     <% if allowed_to? :create, :plan_answer %>
-      <%= icon_link_to "comment-square", edit_plan_plan_answer_path(plan_id: plan.id, id: plan.id), t("actions.answer", scope: "decidim.plans"), class: " icon--small" %>
+      <%= icon_link_to "chat-4-line", edit_plan_plan_answer_path(plan_id: plan.id, id: plan.id), t("actions.answer", scope: "decidim.plans"), class: " icon--small" %>
     <% else %>
-      <%= icon "comment-square", scope: "decidim.plans.admin", class: "action-icon action-icon--disabled" %>
+      <%= icon "chat-4-line", scope: "decidim.plans.admin", class: "action-icon action-icon--disabled" %>
     <% end %>
 
     <%= resource_permissions_link(plan) %>
 
-   <%= icon_link_to "eye", resource_locator(plan).path, t("actions.preview", scope: "decidim.plans.admin"), class: "action-icon--preview", target: :blank %>
+   <%= icon_link_to "eye-line", resource_locator(plan).path, t("actions.preview", scope: "decidim.plans.admin"), class: "action-icon--preview", target: :blank %>
   </td>
 </tr>

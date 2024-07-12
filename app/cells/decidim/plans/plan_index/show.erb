@@ -19,12 +19,12 @@
           <p><%= t ".draft_plan_title" %></p>
           <%= link_to draft_link, class: "action-link" do %>
             <span><%= t(".draft_plan_continue") %></span>
-            <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+            <%= icon("arrow-right-line", role: "img", "aria-hidden": true) %>
           <% end %>
         <% else %>
           <%= link_to new_plan_path, class: "action-link", data: { "redirect_url" => new_plan_path } do %>
             <span><%= t(".new_plan") %></span>
-            <%= icon("arrow-right", role: "img", "aria-hidden": true) %>
+            <%= icon("arrow-right-line", role: "img", "aria-hidden": true) %>
           <% end %>
         <% end %>
       </div>

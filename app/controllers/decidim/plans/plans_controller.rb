@@ -4,7 +4,6 @@ module Decidim
   module Plans
     # Exposes the plan resource so users can view and create them.
     class PlansController < Decidim::Plans::ApplicationController
-      helper Decidim::WidgetUrlsHelper
       helper UserGroupHelper
       helper TooltipHelper
       helper Plans::AttachmentsHelper

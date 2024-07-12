@@ -47,7 +47,7 @@
 </div>
 
 <%= render partial: "exit_modal" %>
-<%= javascript_pack_tag "decidim_plans_plans_form" %>
+<%= append_javascript_pack_tag "decidim_plans_plans_form" %>
 
 <% if user_signed_in? && !user_public? %>
   <% content_for :js_content do %>
