@@ -132,6 +132,7 @@ fi:
             no_components: Tässä osallistumistilassa ei ole yhtään budjetointikomponenttia, johon hankkeet voitaisiin luoda.
             select_budget: Valitse budjetti
             select_component: Valitse komponentti
+            title: Muunna hankkeiksi
         exports:
           plans: Ehdotukset
         plan_answers:

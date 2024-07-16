@@ -132,6 +132,7 @@ en:
             no_components: There are no other budgets components in this participatory space to export the items into projects.
             select_budget: Please select a budget
             select_component: Please select a component
+            title: Convert to projects
         exports:
           plans: Proposals
         plan_answers:
