@@ -5,7 +5,7 @@ require "cell/partial"
 module Decidim
   module Plans
     # This cell renders a plan with its M-size card.
-    class PlanMCell < Decidim::CardMCell
+    class PlanMCell < Decidim::ViewModel
       include PlanCellsHelper
       include Decidim::Plans::CellContentHelper
 
@@ -18,8 +18,7 @@ module Decidim
       private
 
       def card_wrapper
-        cls = card_classes.is_a?(Array) ? card_classes.join(" ") : card_classes
-        wrapper_options = { class: "card #{cls}", aria: { label: t(".card_label", title:) } }
+        wrapper_options = { class: "card", aria: { label: t(".card_label", title:) } }
         if has_link_to_resource?
           link_to resource_path, **wrapper_options do
             yield
