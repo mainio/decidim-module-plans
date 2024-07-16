@@ -5,17 +5,21 @@
       <p><%= t(".buttons.loading_message") %></p>
     </div>
 
-    <% if display_discard? %>
-      <%= link_to t(".buttons.discard"), plan_path(plan), method: :delete, class: "mr-2 discard-draft-link", data: { confirm: t(".buttons.discard_confirmation") } %>
-    <% end %>
-    <% if display_save_as_draft? %>
-      <%= form.submit t(".buttons.save_draft"), name: "save", class: "button hollow primary large mr-2", data: { disable: true } %>
-    <% end %>
-    <% if plan.blank? || plan.draft? %>
-      <%= form.submit t(".buttons.create"), class: "button large primary", data: { disable: true } %>
-    <% else %>
-      <%= form.submit t(".buttons.save"), class: "button large primary", data: { disable: true } %>
-    <% end %>
+    <div class="item__edit-sticky">
+      <div class="item__edit-sticky-container">
+        <% if display_discard? %>
+          <%= link_to t(".buttons.discard"), plan_path(plan), method: :delete, class: "mr-2 discard-draft-link", data: { confirm: t(".buttons.discard_confirmation") } %>
+        <% end %>
+        <% if display_save_as_draft? %>
+          <%= form.submit t(".buttons.save_draft"), name: "save", class: "button button__sm button__secondary", data: { disable: true } %>
+        <% end %>
+        <% if plan.blank? || plan.draft? %>
+          <%= form.submit t(".buttons.create"), class: "button button__sm button__secondary", data: { disable: true } %>
+        <% else %>
+          <%= form.submit t(".buttons.save"), class: "button button__sm button__secondary", data: { disable: true } %>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% elsif user_signed_in? %>
   <%= render :profile_publicity_box %>
