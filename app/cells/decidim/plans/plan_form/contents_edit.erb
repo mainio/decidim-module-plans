@@ -3,16 +3,18 @@
     <% content_form.instance_variable_set(:@template, form.instance_variable_get(:@template)) %>
     <% content = content_form.object %>
 
-    <%= cell(
-      content.section_type_manifest.edit_cell,
-      content,
-      multilingual_answers: component_settings.multilingual_answers?,
-      context: {
-        form: content_form,
-        parent_form: form,
-        current_component: current_component
-      }
-    ) %>
+    <div class="form form-defaults">
+      <%= cell(
+        content.section_type_manifest.edit_cell,
+        content,
+        multilingual_answers: component_settings.multilingual_answers?,
+        context: {
+          form: content_form,
+          parent_form: form,
+          current_component: current_component
+        }
+      ) %>
+    </div>
 
     <%= content_form.hidden_field :id %>
     <%= content_form.hidden_field :section_id %>

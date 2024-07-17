@@ -1,3 +1,9 @@
-<%= decidim_form_for(@form, html: { class: "form plans-form edit_plan plan_form_admin" })  do |f| %>
-  <%= render partial: "form", object: f, locals: { title: t(".title") } %>
-<% end %>
+<% add_decidim_page_title(t(".title")) %>
+
+<div class="item__edit item__edit-1col">
+  <div class="item__edit-form">
+    <%= decidim_form_for(@form, html: { class: "form plans-form edit_plan plan_form_admin" })  do |f| %>
+      <%= render partial: "form", object: f, locals: { title: t(".title") } %>
+    <% end %>
+  </div>
+</div>
