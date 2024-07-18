@@ -181,7 +181,7 @@ module Decidim
       end
 
       def default_plan_image
-        asset_pack_path(Decidim::Plans.default_card_image)
+        Decidim::Plans.config.default_card_image
       end
 
       def resource_image_path

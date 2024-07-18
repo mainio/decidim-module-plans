@@ -15,7 +15,6 @@ Decidim::Webpacker.register_path("#{base_path}/app/packs", prepend: true)
 # `stylesheet_pack_tag`.
 Decidim::Webpacker.register_entrypoints(
   decidim_plans: "#{base_path}/app/packs/entrypoints/decidim_plans.js",
-  decidim_plans_data_picker: "#{base_path}/app/packs/entrypoints/decidim_plans_data_picker.js",
   decidim_plans_map: "#{base_path}/app/packs/entrypoints/decidim_plans_map.js",
   decidim_plans_plans_form: "#{base_path}/app/packs/entrypoints/decidim_plans_plans_form.js",
   decidim_plans_plans_list: "#{base_path}/app/packs/entrypoints/decidim_plans_plans_list.js",

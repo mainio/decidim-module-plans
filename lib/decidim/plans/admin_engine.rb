@@ -51,7 +51,7 @@ module Decidim
         end
       end
 
-      initializer "decidim_core.register_icons", after: "decidim_core.add_social_share_services" do
+      initializer "decidim_plans_admin.register_icons", after: "decidim_core.add_social_share_services" do
         Decidim.icons.register(name: "price-tag-line", icon: "price-tag-line", category: "system", description: "", engine: :core)
         Decidim.icons.register(name: "arrow-go-back-line", icon: "arrow-go-back-line", category: "system", description: "", engine: :core)
         Decidim.icons.register(name: "chat-4-line", icon: "chat-4-line", category: "system", description: "", engine: :core)

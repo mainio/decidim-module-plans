@@ -5,16 +5,12 @@ module Decidim
     class CoauthorshipsCell < Decidim::CoauthorshipsCell
       def show
         if authorable?
-          cell "decidim/plans/author", presenter_for_author(model), extra_classes.merge(has_actions: has_actions?, from: model)
+          cell "decidim/plans/author", presenter_for_author(model), has_actions: has_actions?, from: model
         else
           cell(
             "decidim/plans/collapsible_authors",
             presenters_for_identities(model),
-            cell_name: "decidim/plans/author",
-            cell_options: extra_classes,
-            size:,
-            from: model,
-            has_actions: has_actions?
+            options.merge(from: model)
           )
         end
       end

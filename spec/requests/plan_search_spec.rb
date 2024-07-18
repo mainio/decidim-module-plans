@@ -288,7 +288,7 @@ RSpec.describe "PlanSearch" do
     end
 
     context "with multiple tags" do
-      let(:tags) { [tag1.id, tag2.id] }
+      let(:tags) { [first_tag.id, second_tag.id] }
       let(:first_tag) { create(:tag, organization:) }
       let(:second_tag) { create(:tag, organization:) }
       let(:loose_tag) { create(:tag, organization:) }
@@ -312,12 +312,12 @@ RSpec.describe "PlanSearch" do
     end
 
     context "with multiple tags and some plans matching all the tags" do
-      let(:tags) { [tag1.id, tag2.id] }
+      let(:tags) { [first_tag.id, second_tag.id] }
       let(:first_tag) { create(:tag, organization:) }
       let(:second_tag) { create(:tag, organization:) }
       let(:loose_tag) { create(:tag, organization:) }
 
-      let(:tagged_plans) { create_list(:plan, 10, component:, tags: [firsT_tag]) }
+      let(:tagged_plans) { create_list(:plan, 10, component:, tags: [first_tag]) }
       let(:other_tagged_plans) { create_list(:plan, 10, component:, tags: [second_tag]) }
       let(:both_tagged_plans) { create_list(:plan, 10, component:, tags: [first_tag, second_tag]) }
       let(:not_tagged_plans) { create_list(:plan, 10, component:) }

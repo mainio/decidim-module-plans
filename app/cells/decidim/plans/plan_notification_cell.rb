@@ -7,7 +7,7 @@ module Decidim
     # This cell renders the "notification" for the plan which is visible at the
     # top of the plan page displaying its answer and status (accepted, rejected,
     # evaluating).
-    class PlanNotificationCell < Decidim::CardMCell
+    class PlanNotificationCell < Decidim::ViewModel
       # include PlanCellsHelper
       # include Decidim::Plans::CellContentHelper
       include ActionView::Helpers::NumberHelper

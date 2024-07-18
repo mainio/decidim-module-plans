@@ -13,7 +13,6 @@ module Decidim
       include Decidim::Plans::LinksHelper
       include Decidim::Plans::CellContentHelper
       include Decidim::Feedback::FeedbackHelper
-      include SocialShareButton::Helper
       include Decidim::Plans::Engine.routes.url_helpers
 
       delegate :allowed_to?, :current_user, to: :controller

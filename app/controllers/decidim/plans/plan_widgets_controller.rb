@@ -2,7 +2,7 @@
 
 module Decidim
   module Plans
-    class PlanWidgetsController < Decidim::WidgetsController
+    class PlanWidgetsController < Decidim::ApplicationController
       helper Plans::ApplicationHelper
 
       private

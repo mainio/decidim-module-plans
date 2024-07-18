@@ -206,6 +206,10 @@ module Decidim
       initializer "decidim_plans.api_linked_resources", before: :finisher_hook do
         Decidim::Plans::PlanType.add_linked_resources_field
       end
+
+      initializer "decidim_plans.register_icons", after: "decidim_core.add_social_share_services" do
+        Decidim.icons.register(name: "focus-3-line", icon: "focus-3-line", category: "system", description: "", engine: :core)
+      end
     end
   end
 end

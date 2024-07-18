@@ -15,7 +15,7 @@
 <div class="row column view-header">
   <p class="h5">
     <%= link_to plans_path(request_params) do %>
-      <%= icon "chevron-left", class: "icon--small", role: "img", "aria-hidden": true %>
+      <%= icon "arrow-left-line", class: "icon--small", role: "img", "aria-hidden": true %>
       <%= t(".back") %>
     <% end %>
   </p>
@@ -36,7 +36,7 @@
   <%= cell("decidim/plans/coauthorships", plan, has_actions: true, size: 3, context: { current_user: current_user }) %>
 
   <% if plan.published? && allowed_to?(:edit, :plan, plan: plan) %>
-    <button class="title-action__action button small primary hollow" data-open="plan-author-add-modal-for-<%= plan.id %>">
+    <button class="title-action__action button small primary hollow" data-dialog-open="plan-author-add-modal-for-<%= plan.id %>">
       <%= t(".controls.add_author") %>
     </button>
 
@@ -103,7 +103,7 @@
           <li class="card-data__item authors_status">
             <span aria-hidden="true">
               <%= with_tooltip t("decidim.plans.models.plan.fields.authors") do %>
-                <%= icon("people", class: "icon--small") + " " + "#{plan.versions.group_by(&:whodunnit).size}" %>
+                <%= icon("group-line", class: "icon--small") + " " + "#{plan.versions.group_by(&:whodunnit).size}" %>
               <% end %>
             </span>
             <span class="show-for-sr">

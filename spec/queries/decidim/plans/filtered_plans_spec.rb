@@ -20,7 +20,7 @@ describe Decidim::Plans::FilteredPlans do
   end
 
   context "with multiple components" do
-    subject { described_class.new([component1, component2]).query }
+    subject { described_class.new([first_component, second_component]).query }
 
     let(:first_component) { create(:plan_component, organization:) }
     let(:second_component) { create(:plan_component, organization:) }

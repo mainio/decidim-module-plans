@@ -12,8 +12,7 @@ module Decidim
         def show
           unless snippets.any?(:plans_link_proposals)
             snippets.add(
-              :plans_link_proposals,
-              stylesheet_pack_tag("decidim_plans_data_picker")
+              :plans_link_proposals
             )
 
             # This will display the snippets in the <head> part of the page.

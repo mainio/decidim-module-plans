@@ -1,39 +1,38 @@
-<div class="reveal collapse plan-author-add-modal" id="plan-author-add-modal-for-<%= plan.id %>" data-reveal>
-  <div class="wrapper--inner">
-    <button class="close-button" aria-label="<%= t(".close_window") %>" type="button" data-close>
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <%= decidim_form_for(add_author_form, url: form_url, html: { class: "form new_author" }) do |f| %>
-    <div class="container wrapper--inner">
-      <div class="row">
-        <div class="columns large-12">
-          <div class="expanded">
-            <div class="wrapper wrapper--inner">
-              <p class="h2"> <%= t(".modal_title") %></p>
+<%= decidim_modal id: "plan-author-add-modal-for-#{plan.id}" do %>
+  <div class="item__edit item__edit-1col">
+    <div class="item__edit-form">
+      <%= decidim_form_for(add_author_form, url: form_url, html: { class: "form form-defaults new_author" }) do |f| %>
+        <div class="form__wrapper">
+          <div class="row">
+            <div class="columns large-12">
+              <div class="expanded">
+                <div class="wrapper wrapper--inner">
+                  <p class="h2"> <%= t(".modal_title") %></p>
 
-              <div class="multiple-mentions" data-name="recipient_id[]" data-multiple="true">
-                <label for="add_plan_authors"><%= t(".label") %></label>
-                <input id="add_plan_authors" type="text"
-                    spellcheck="false"
-                    autocomplete="off"
-                    placeholder="<%= t(".add_users_placeholder") %>"
-                    data-noresults="<%= t(".no_results") %>"
-                    contenteditable="true"
-                    data-selected="multiple-mentions-selected"
-                    aria-expanded="false">
+                  <div class="multiple-mentions" data-name="recipient_id[]" data-multiple="true">
+                    <label for="add_plan_authors"><%= t(".label") %></label>
+                    <input id="add_plan_authors" type="text"
+                        spellcheck="false"
+                        autocomplete="off"
+                        placeholder="<%= t(".add_users_placeholder") %>"
+                        data-noresults="<%= t(".no_results") %>"
+                        contenteditable="true"
+                        data-selected="multiple-mentions-selected"
+                        aria-expanded="false">
+                  </div>
+
+                  <ul class="multiple-mentions-selected"></ul>
+                </div>
               </div>
-
-              <ul class="multiple-mentions-selected"></ul>
+            </div>
+          </div>
+          <div class="wrapper wrapper--inner">
+            <div class="button--double form-general-submit float-right">
+              <%= f.submit t(".next") %>
             </div>
           </div>
         </div>
-      </div>
-      <div class="wrapper wrapper--inner">
-        <div class="button--double form-general-submit float-right">
-          <%= f.submit t(".next") %>
-        </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

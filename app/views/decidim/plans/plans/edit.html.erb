@@ -3,12 +3,12 @@
 <div class="row columns back-link">
   <% if @plan.draft? %>
     <%= link_to plans_path, class: "action-link" do %>
-      <%= icon "arrow-left", class: "icon--small", role: "img", "aria-hidden": true %>
+      <%= icon "arrow-left-line", class: "icon--small", role: "img", "aria-hidden": true %>
       <span><%= t("decidim.plans.plans.new.back") %></span>
     <% end %>
   <% else %>
     <%= link_to plan_path(@plan), class: "action-link" do %>
-      <%= icon "arrow-left", class: "icon--small", role: "img", "aria-hidden": true %>
+      <%= icon "arrow-left-line", class: "icon--small", role: "img", "aria-hidden": true %>
       <span><%= t("decidim.plans.plans.edit.back") %></span>
     <% end %>
   <% end %>
@@ -44,7 +44,7 @@
         <% unless user_signed_in? %>
           <div class="banner bg-secondary">
             <div class="banner__icon">
-              <%= icon("info-line", role: "img", "aria-hidden": true) %>
+              <%= icon("information-line", role: "img", "aria-hidden": true) %>
             </div>
             <div class="banner__content">
               <h2 class="h3"><%= t("decidim.plans.plans.edit.sign_in_before_submitting") %></h2>
