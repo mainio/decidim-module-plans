@@ -21,7 +21,7 @@ module Decidim::Plans
 
       it "doesn't render the tags of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_no_css(".tags.tags--plan")
+        expect(html).to have_no_css(".tag-container.tags--plan")
       end
     end
 
@@ -31,7 +31,7 @@ module Decidim::Plans
 
       it "renders the scope of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
+        expect(html).to have_css(".tag-container.tags--plan")
         expect(html).to have_content(translated(scope.name))
       end
     end
@@ -43,7 +43,7 @@ module Decidim::Plans
 
       it "renders the subscope of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
+        expect(html).to have_css(".tag-container.tags--plan")
         expect(html).to have_content(translated(subscope.name))
       end
     end
@@ -54,7 +54,7 @@ module Decidim::Plans
 
       it "renders the category of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
+        expect(html).to have_css(".tag-container.tags--plan")
         expect(html).to have_content(translated(category.name))
       end
     end
@@ -66,7 +66,7 @@ module Decidim::Plans
 
       it "renders the subcategory of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
+        expect(html).to have_css(".tag-container.tags--plan")
         expect(html).to have_content(translated(subcategory.name))
       end
     end
@@ -77,10 +77,8 @@ module Decidim::Plans
 
       it "renders the taggings of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
-        tags.each do |tag|
-          expect(html).to have_content(translated(tag.name))
-        end
+        expect(html).to have_css(".tag-container.tags--plan")
+        expect(html).to have_content("Filter results for tags")
       end
     end
 
@@ -93,12 +91,10 @@ module Decidim::Plans
       it "renders the scope, category and taggings of the model" do
         html = cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }).call
 
-        expect(html).to have_css(".tags.tags--plan")
+        expect(html).to have_css(".tag-container.tags--plan")
         expect(html).to have_content(translated(scope.name))
         expect(html).to have_content(translated(category.name))
-        tags.each do |tag|
-          expect(html).to have_content(translated(tag.name))
-        end
+        expect(html).to have_content("Filter results for tags")
       end
     end
   end

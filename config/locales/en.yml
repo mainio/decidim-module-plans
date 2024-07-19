@@ -555,6 +555,8 @@ en:
         attachments:
           legend: Attachments
           add_attachment: Add attachment
+      tags:
+        filter_results_for_tags: Filter results for tags
       update:
         invalid: Error updating content.
         success: Updated successfully.

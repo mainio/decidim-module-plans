@@ -33,10 +33,6 @@ module Decidim
         model.tags.any?
       end
 
-      def link_to_tag(tag)
-        link_to tag_name(tag), tag_path(tag)
-      end
-
       def tag_name(tag)
         translated_attribute(tag.name)
       end

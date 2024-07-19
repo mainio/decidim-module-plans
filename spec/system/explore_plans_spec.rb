@@ -60,7 +60,7 @@ describe "ExplorePlans" do
       end
 
       it "searches through the plans" do
-        within ".filters" do
+        within ".filters__section" do
           fill_in "Search", with: translated(accepted.title)
           click_on "Search"
           wait_a_bit
@@ -110,7 +110,7 @@ describe "ExplorePlans" do
         expect(page).to have_content("Submit a proposal")
         expect(page).to have_content("You need to sign in before submitting a proposal")
         click_on "Sign in", match: :first
-        expect(page).to have_content("Please sign in")
+        expect(page).to have_content("Please log in")
         expect(page).to have_field("Email")
         expect(page).to have_field("Password")
       end
@@ -163,7 +163,7 @@ describe "ExplorePlans" do
           expect(page).to have_button("Publish")
           expect(page).to have_link("Modify", href: decidim_plan.edit_plan_path(created_plan.id))
           expect(page).to have_link("Withdraw proposal", href: decidim_plan.withdraw_plan_path(created_plan.id))
-          expect(page).to have_content("VERSION 1 (of 1)")
+          expect(page).to have_content("Version 1 (of 1)")
           within ".card-data__item.authors_status" do
             expect(page).to have_content("1")
           end
@@ -209,7 +209,7 @@ describe "ExplorePlans" do
           first_option.click
           click_on "Next"
           expect(page).to have_current_path(decidim_plan.add_authors_plan_path(plan.id))
-          expect(page).to have_content("ADD AUTHORS FOR PROPOSAL")
+          expect(page).to have_content("Add authors for proposal")
           expect(page).to have_link("Back to proposal", href: decidim_plan.plan_path(plan.id))
           within ".author__name--container" do
             expect(page).to have_content(user1.name)
@@ -234,7 +234,7 @@ describe "ExplorePlans" do
             expect(page).to have_content("Withdrawn")
           end
           expect(page).to have_no_link("Withdraw proposal")
-          expect(page).to have_no_content("ADD AUTHORS FOR PROPOSAL")
+          expect(page).to have_no_content("Add authors for proposal")
           expect(plan.reload.state).to eq("withdrawn")
         end
       end
@@ -255,7 +255,7 @@ describe "ExplorePlans" do
         end
 
         it "shows different versions" do
-          expect(page).to have_content("VERSION 2 (of 2)")
+          expect(page).to have_content("Version 2 (of 2)")
           click_on "see other versions"
           expect(page).to have_current_path(decidim_plan.plan_versions_path(plan.id))
           expect(page).to have_content("Changes at")
@@ -280,9 +280,9 @@ describe "ExplorePlans" do
             expect(page).to have_content(translated(plan.title))
           end
           expect(page).to have_content("Open")
-          expect(page).to have_content("STATE")
-          within ".diff-for-title" do
-            expect(page).to have_content("TITLE")
+          expect(page).to have_content("State")
+          within "#diff-for-title" do
+            expect(page).to have_content("Title")
             expect(page).to have_content(translated(plan.title))
           end
           visit decidim_plan.plan_version_path(plan_id: plan.id, id: 2)
@@ -314,7 +314,7 @@ describe "ExplorePlans" do
     end
 
     def choose_filter(option)
-      within ".filters" do
+      within ".filters__section" do
         choose option
       end
     end
