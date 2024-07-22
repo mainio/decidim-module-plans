@@ -34,11 +34,11 @@ module Decidim
 
       def icon_key
         if model.accepted?
-          "circle-check"
+          "checkbox-circle-line"
         elsif model.rejected?
-          "warning"
+          "error-warning-line"
         else
-          "flag"
+          "flag-line"
         end
       end
 

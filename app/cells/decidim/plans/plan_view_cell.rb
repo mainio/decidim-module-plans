@@ -8,6 +8,7 @@ module Decidim
       include Decidim::ApplicationHelper # For presenter
       include Decidim::LayoutHelper # For the icon helper
       include Decidim::FormFactory
+      include Decidim::SocialShareButtonHelper
       include Decidim::TooltipHelper
       include Decidim::MetaTagsHelper
       include Decidim::Plans::LinksHelper
@@ -188,7 +189,7 @@ module Decidim
             scope_name: :homepage,
             manifest_name: :hero
           ).try(:images_container)
-          container.attached_uploader(:background_image).url if container && container.background_image && container.background_image.attached?
+          container.attached_uploader(:background_image).path if container && container.background_image && container.background_image.attached?
         end
       end
 

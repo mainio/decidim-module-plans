@@ -30,7 +30,7 @@ describe Decidim::Plans::PlanNotificationCell, type: :cell do
 
     it "renders the show" do
       expect(subject).to have_css(".callout__title")
-      expect(subject).to have_css("svg.icon--circle-check.icon[aria-label='circle-check']")
+      expect(subject).to have_css("svg[role=\"img\"][aria-hidden=\"true\"] use[href*=\"#ri-checkbox-circle-line\"]")
       expect(subject).to have_content("This proposal has been accepted")
       within ".callout__content" do
         expect(subject).to have_content(translated(plan.title))

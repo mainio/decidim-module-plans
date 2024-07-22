@@ -50,7 +50,7 @@
   <% if flaggable? %>
     <li>
     <button type="button" class="link action-link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="true">
-      <%= icon "flag", role: "img", "aria-hidden": true %>
+      <%= icon "flag-line", role: "img", "aria-hidden": true %>
       <span class="link-text"><%= t ".flag" %></span>
     </button>
     </li>

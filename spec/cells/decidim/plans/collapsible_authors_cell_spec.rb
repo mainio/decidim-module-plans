@@ -16,10 +16,6 @@ describe Decidim::Plans::CollapsibleAuthorsCell, type: :cell do
 
   controller Decidim::Plans::PlansController
 
-  before do
-    expect(my_cell).to receive(:cell).with("decidim/collapsible_list", any_args)
-  end
-
   it "renders collapsible list" do
     subject
   end

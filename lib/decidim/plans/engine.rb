@@ -209,6 +209,7 @@ module Decidim
 
       initializer "decidim_plans.register_icons", after: "decidim_core.add_social_share_services" do
         Decidim.icons.register(name: "focus-3-line", icon: "focus-3-line", category: "system", description: "", engine: :core)
+        Decidim.icons.register(name: "links-line", icon: "links-line", category: "system", description: "", engine: :core)
       end
     end
   end
