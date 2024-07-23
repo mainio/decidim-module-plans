@@ -1,38 +1,27 @@
 <%= decidim_modal id: "plan-author-add-modal-for-#{plan.id}" do %>
-  <div class="item__edit item__edit-1col">
-    <div class="item__edit-form">
-      <%= decidim_form_for(add_author_form, url: form_url, html: { class: "form form-defaults new_author" }) do |f| %>
-        <div class="form__wrapper">
-          <div class="row">
-            <div class="columns large-12">
-              <div class="expanded">
-                <div class="wrapper wrapper--inner">
-                  <p class="h2"> <%= t(".modal_title") %></p>
+  <%= decidim_form_for(add_author_form, url: form_url, html: { class: "form form-defaults new_author" }) do |f| %>
+    <div>
+      <h2 id="dialog-title-add-authors" tabindex="-1" data-dialog-title><%= t(".modal_title") %></h2>
+        <div class="form__wrapper gap-1 js-multiple-mentions" data-name="recipient_id[]" data-multiple="true">
+          <label for="add_plan_authors">
+            <%= t(".label") %>
+          </label>
 
-                  <div class="multiple-mentions" data-name="recipient_id[]" data-multiple="true">
-                    <label for="add_plan_authors"><%= t(".label") %></label>
-                    <input id="add_plan_authors" type="text"
-                        spellcheck="false"
-                        autocomplete="off"
-                        placeholder="<%= t(".add_users_placeholder") %>"
-                        data-noresults="<%= t(".no_results") %>"
-                        contenteditable="true"
-                        data-selected="multiple-mentions-selected"
-                        aria-expanded="false">
-                  </div>
+          <input id="add_plan_authors" type="text"
+              spellcheck="false"
+              autocomplete="off"
+              placeholder="<%= t(".add_users_placeholder") %>"
+              data-noresults="<%= t(".no_results") %>"
+              contenteditable="true"
+              data-selected="conversation__modal-results"
+              aria-expanded="false">
 
-                  <ul class="multiple-mentions-selected"></ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="button button__sm button__secondary">
-              <%= f.submit t(".next") %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <ul class="conversation__modal-results"></ul>
+      </div>
+
+      <div data-dialog-actions>
+        <%= f.submit t(".next"), class: "button button__sm button__secondary" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

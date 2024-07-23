@@ -49,7 +49,7 @@ describe "AdminManagesAuthors" do
       click_on "Manage authors"
       click_on "Add author"
       expect(page).to have_content("Add authors for proposal")
-      expect(page).to have_field("#add_plan_authors")
+      expect(page).to have_field("add_plan_authors")
       fill_in "add_plan_authors", with: user_group.name
       expect(page).to have_no_css("#autoComplete_list_1")
       fill_in "add_plan_authors", with: author.name
@@ -80,7 +80,7 @@ describe "AdminManagesAuthors" do
       click_on "Remove author"
     end
     expect(page).to have_content "Are you sure you want to delete this?"
-    find(".button[aria-label='OK']").click
+    click_on "OK"
   end
 
   def decidim_plan
