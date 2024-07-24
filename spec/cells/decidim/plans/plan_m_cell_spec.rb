@@ -12,21 +12,18 @@ module Decidim::Plans
     let(:cell_html) { my_cell.call }
     let(:created_at) { 1.month.ago }
     let(:published_at) { Time.current }
-    let!(:plan) { create(:plan, created_at:, published_at:) }
-    let(:model) { plan }
+    let!(:plan) { create(:plan, :rejected, created_at:, published_at:) }
     let(:user) { create(:user, organization: plan.participatory_space.organization) }
 
     before do
       allow(controller).to receive(:current_user).and_return(user)
     end
 
-    it_behaves_like "has space in m-cell"
-
     context "when rendering" do
       let(:show_space) { false }
 
       it "renders the card" do
-        expect(subject).to have_css(".card--plan")
+        expect(subject).to have_css(".card__info")
       end
 
       it "renders the published_at date" do
@@ -36,9 +33,9 @@ module Decidim::Plans
         expect(subject).to have_no_css(".creation_date_status", text: creation_date)
       end
 
-      context "and is a plan" do
-        it "renders the plan state (nil by default)" do
-          expect(subject).to have_css(".muted")
+      context "and is a plan and answered" do
+        it "renders the plan state" do
+          expect(subject).to have_css(".label.alert")
           expect(subject).to have_no_css(".card__text--status")
         end
       end

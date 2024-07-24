@@ -1,7 +1,9 @@
-<%= decidim_form_for(@form, url: confirm_plan_authors_path(@plan), method: :patch, html: { class: "form new_author" }) do |form| %>
+<%= decidim_form_for(@form, url: confirm_plan_authors_path(@plan), method: :patch, html: { class: "form form-defaults new_author" }) do |form| %>
   <div class="card">
-    <div class="card-divider">
-      <h2 class="card-title"><%= t(".title") %> - <%= present(plan).title %></h2>
+    <div class="item_show__header">
+      <h1 class="item_show__header-title">
+        <%= t(".title") %>
+      </h1>
     </div>
 
     <div class="card-section">
@@ -16,7 +18,7 @@
   </div>
 
   <div class="button--double form-general-submit">
-    <%= link_to t(".buttons.cancel"), plan_authors_path(plan), class: "button hollow" %>
-    <%= form.submit t(".buttons.add_authors"), class: "button" %>
+    <%= link_to t(".buttons.cancel"), plan_authors_path(plan), class: "button button__sm button__transparent-secondary" %>
+    <%= form.submit t(".buttons.add_authors"), class: "button button__sm button__secondary" %>
   </div>
 <% end %>
