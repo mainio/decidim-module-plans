@@ -73,7 +73,7 @@ module Decidim
         describe "#target_components_collection" do
           it "returns a collection of the budgets components for form select" do
             expect(subject.target_components_collection).to contain_exactly(
-              ["Budgets", target_component.id]
+              [target_component.name["en"], target_component.id]
             )
           end
         end

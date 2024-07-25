@@ -29,8 +29,7 @@ module Decidim
         template = ""
         template += form.label(attribute, label_content)
         template += form.file_field attribute, label: false
-
-        file_path = form.object.attached_uploader(attribute).url
+        file_path = form.object.attached_uploader(attribute).path
         if form.send(:file_is_image?, file)
           template += if file.present?
                         content_tag :label, I18n.t("current_image", scope: "decidim.forms")

@@ -6,7 +6,7 @@ describe "ExplorePlans" do
   with_versioning do
     let(:component) { create(:plan_component, :with_creation_enabled) }
     let(:organization) { component.organization }
-    let(:user) { create(:user, :confirmed, :admin, organization:) }
+    let!(:user) { create(:user, :confirmed, :admin, organization:) }
     let!(:plans) { create_list(:plan, 10, component:) }
     let!(:evaluating) { create_list(:plan, 5, :evaluating, component:) }
     let!(:rejected) { create_list(:plan, 3, :rejected, component:) }
@@ -91,7 +91,7 @@ describe "ExplorePlans" do
           click_on "Continue your proposal"
           fill_in "contents[#{plan.sections.first.id}][body_en]", with: "Update text"
           click_on "Preview"
-          expect(page).to have_content("VERSION 2 (of 2)")
+          expect(page).to have_content("Version 2 (of 2)")
           click_on "Edit"
           expect(page).to have_current_path(decidim_plan.edit_plan_path(plan.id))
         end
@@ -128,7 +128,7 @@ describe "ExplorePlans" do
           expect(page).to have_field("contents[#{section.id}][body_en]")
           expect(page).to have_link("Back to proposals list")
           click_on "Preview"
-          expect(page).to have_content("There's an error in this field")
+          expect(page).to have_content("There is an error in this field")
           fill_in "contents[#{section.id}][body_en]", with: "Dummy text"
           click_on "Save as draft"
           expect(page).to have_content("Created successfully.")
@@ -189,10 +189,7 @@ describe "ExplorePlans" do
       end
 
       context "with published plan" do
-        before do
-          plan.update!(published_at: Time.current)
-          visit current_path
-        end
+        let!(:plan) { create(:plan, :published, component:, users: [user]) }
 
         it "show/edits authors" do
           expect(page).to have_button("Add authors for proposal")
