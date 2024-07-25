@@ -25,7 +25,7 @@ describe Decidim::Plans::AuthorCell, type: :cell do
     let(:model) { Decidim::UserPresenter.new(user) }
 
     it "renders a User author card" do
-      expect(subject).to have_css(".author-data")
+      expect(subject).to have_css(".author__container")
     end
   end
 
@@ -33,7 +33,7 @@ describe Decidim::Plans::AuthorCell, type: :cell do
     let(:model) { Decidim::UserGroupPresenter.new(user_group) }
 
     it "renders a User_group author card" do
-      expect(subject).to have_css(".author-data")
+      expect(subject).to have_css(".author__container")
     end
   end
 
@@ -42,6 +42,7 @@ describe Decidim::Plans::AuthorCell, type: :cell do
     let(:my_cell) { cell("decidim/plans/author", model, from: plan) }
 
     it "renders the flag button with report modal target" do
+      puts subject
       expect(subject).to have_css("button[data-open='flagModal'][title='Report']")
     end
 

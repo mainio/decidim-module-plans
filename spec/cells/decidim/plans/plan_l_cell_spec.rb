@@ -14,6 +14,6 @@ describe Decidim::Plans::PlanLCell, type: :cell do
   let(:user) { create(:user, organization: plan.participatory_space.organization) }
 
   it "renders the class names" do
-    expect(my_cell.card_classes).to eq("card--plan muted card--full")
+    expect(my_cell.card_classes).to eq("card--full")
   end
 end

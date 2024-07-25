@@ -138,7 +138,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
           published_at: nil
         ).where(
           "state IS NULL OR state != ?",
-          "rejected"
+          -10
         ).order(title: :asc).all.collect { |p| ["#{translated(p.title)} (##{p.id})", p.id] }
         expect(helper).to receive(:render).with(
           hash_including(

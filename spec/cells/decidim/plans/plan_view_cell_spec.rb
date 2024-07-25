@@ -40,8 +40,6 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
           expect_checkbox(section, content, contents)
         when "field_currency"
           expect_currency(section, content, contents)
-        when "field_image_attachments"
-          expect_image_attachments(section, content, contents)
         when "field_map_point"
           expect_map_point(section, content, contents)
         when "field_number"
@@ -74,7 +72,7 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       category = Decidim::Category.find(content.body["category_id"])
 
       expect(node).to have_content(translated(section.body))
-      expect(node).to have_content(translated(category.name))
+      expect(node).to have_content(category.name["es"])
     end
 
     def expect_checkbox(section, content, node)
@@ -115,7 +113,7 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       content.body["attachment_ids"].each do |attachment_id|
         attachment = Decidim::Attachment.find(attachment_id)
         if attachment.photo?
-          expect(node).to have_css(%(img[alt="#{translated(attachment.title)}"]))
+          expect(node).to have_css("img[alt='#{translated(attachment.title)}']")
         else
           expect(node).to have_content(translated(attachment.title))
         end

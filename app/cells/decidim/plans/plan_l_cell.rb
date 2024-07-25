@@ -7,9 +7,7 @@ module Decidim
     # This cell renders a plan with its M-size card.
     class PlanLCell < Decidim::Plans::PlanMCell
       def card_classes
-        classes = super
-        classes = classes.split unless classes.is_a?(Array)
-        (classes + ["card--full"]).join(" ")
+        "card--full"
       end
 
       private

@@ -14,7 +14,7 @@ module Decidim
                     .try(:resource_scope, current_component)
                     &.published
                     &.order("title->>#{current_locale}")
-                    &.where("state IS NULL OR state NOT IN ?", %w(rejected withdrawn))
+                    &.where("state IS NULL OR state NOT IN ?", [-10, -20])
                     &.where&.not(published_at: nil)
 
             # In case the search term starts with a hash character and contains

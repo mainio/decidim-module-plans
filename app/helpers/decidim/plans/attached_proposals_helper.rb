@@ -16,7 +16,7 @@ module Decidim
                     .find_resource_manifest(:proposals)
                     .try(:resource_scope, current_component)
                     &.order(title: :asc)
-                    &.where("state IS NULL OR state != ?", "rejected")
+                    &.where("state IS NULL OR state != ?", -10)
                     &.where&.not(published_at: nil)
 
             # In case the search term starts with a hash character and contains
