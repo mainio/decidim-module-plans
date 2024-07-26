@@ -113,7 +113,7 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       content.body["attachment_ids"].each do |attachment_id|
         attachment = Decidim::Attachment.find(attachment_id)
         if attachment.photo?
-          expect(node).to have_css("img[alt='#{translated(attachment.title)}']")
+          expect(node).to have_css("img[alt='#{strip_tags translated(attachment.title)}']")
         else
           expect(node).to have_content(translated(attachment.title))
         end
