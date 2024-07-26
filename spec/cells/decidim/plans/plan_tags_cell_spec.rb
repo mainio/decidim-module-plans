@@ -19,7 +19,6 @@ describe Decidim::Plans::PlanTagsCell, type: :cell do
 
   context "when rendering" do
     it "renders the form" do
-      puts subject
       expect(subject).to have_link(translated(area_scope.name))
       expect(subject).to have_link(strip_tags translated(category.name))
     end
