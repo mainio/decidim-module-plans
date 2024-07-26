@@ -24,7 +24,7 @@ describe Decidim::Plans::AttachmentsCell, type: :cell do
         expect(subject).to have_content(translated(doc.title))
       end
       images.each do |img|
-        expect(subject).to have_css("img[alt='#{translated(img.title)}']")
+        expect(subject).to have_css("img[alt=\"#{translated(img.title)}\"]")
       end
     end
   end
