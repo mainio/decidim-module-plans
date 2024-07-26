@@ -31,22 +31,20 @@ describe "ExplorePlans" do
       end
 
       it "filters the plans" do
-        choose_filter("All")
-        within "#plans .cards-list" do
-          plans = find_all(".column")
-          expect(plans.count).to eq(19)
+        choose("All")
+        within "#plans-count" do
+          expect(page).to have_content("Found 19 proposals")
         end
 
-        choose_filter("Evaluating")
+        choose("Evaluating")
         wait_a_bit
-        within "#plans" do
-          plans = find_all(".column")
-          expect(plans.count).to eq(5)
+        within "#plans-count" do
+          expect(page).to have_content("Found 5 proposals")
         end
 
-        choose_filter("Accepted")
-        within "#plans" do
-          expect(page).to have_css(".column#plan_#{accepted.id}")
+        choose("Accepted")
+        within "#plans-count" do
+          expect(page).to have_content("Found 1 proposal")
         end
 
         click_on "See all withdrawn" do
@@ -62,7 +60,9 @@ describe "ExplorePlans" do
       it "searches through the plans" do
         within ".filters__section" do
           fill_in "Search", with: translated(accepted.title)
-          click_on "Search"
+          within ".input-group-button" do
+            find("button[type=\"submit\"]").click
+          end
           wait_a_bit
         end
         within "#plans" do
@@ -92,7 +92,9 @@ describe "ExplorePlans" do
           fill_in "contents[#{plan.sections.first.id}][body_en]", with: "Update text"
           click_on "Preview"
           expect(page).to have_content("Version 2 (of 2)")
-          click_on "Edit"
+          within ".card__content" do
+            click_on "Edit"
+          end
           expect(page).to have_current_path(decidim_plan.edit_plan_path(plan.id))
         end
       end
@@ -103,24 +105,24 @@ describe "ExplorePlans" do
 
       before do
         switch_to_host(organization.host)
+        sign_in user
         visit decidim_plan.new_plan_path
       end
 
-      it "renders sign in" do
-        expect(page).to have_content("Submit a proposal")
-        expect(page).to have_content("You need to sign in before submitting a proposal")
-        click_on "Sign in", match: :first
-        expect(page).to have_content("Please log in")
-        expect(page).to have_field("Email")
-        expect(page).to have_field("Password")
+      context "when not signed in" do
+        it "renders sign in" do
+          find_by_id("trigger-dropdown-account").click
+          click_on "Log out"
+          expect(page).to have_content("Submit a proposal")
+          expect(page).to have_content("You need to sign in before submitting a proposal")
+          click_on "Sign in", match: :first
+          expect(page).to have_content("Please log in")
+          expect(page).to have_field("Email")
+          expect(page).to have_field("Password")
+        end
       end
 
       context "when signed in" do
-        before do
-          sign_in user
-          visit current_path
-        end
-
         it "renders the page" do
           expect(page).to have_content("Submit a proposal")
           expect(page).to have_button("Save as draft")
@@ -147,13 +149,13 @@ describe "ExplorePlans" do
           expect(page).to have_link("Delete draft")
           click_on "Delete draft"
           expect(page).to have_content("Are you sure you want to delete this draft?")
-          find(".button[aria-label='OK']").click
+          click_on "OK"
           expect(page).to have_content("Deleted successfully.")
           expect(page).to have_current_path(decidim_plan.new_plan_path)
           expect(plans.reload.count).to eq(21)
         end
 
-        it "previews plan" do
+        it "previews the plan" do
           fill_in "contents[#{section.id}][body_en]", with: "Dummy text"
           click_on "Preview"
           created_plan = Decidim::Plans::Plan.last
