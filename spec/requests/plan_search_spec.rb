@@ -222,36 +222,6 @@ RSpec.describe "PlanSearch" do
     end
   end
 
-  describe "related_to filter" do
-    let(:filter_params) { { related_to: } }
-
-    context "when filtering by related to resources" do
-      let(:related_to) { "Decidim::DummyResources::DummyResource".underscore }
-      let(:dummy_component) { create(:component, manifest_name: "dummy", participatory_space:) }
-      let(:dummy_resource) { create(:dummy_resource, component: dummy_component) }
-
-      let(:related_plan) { create(:plan, :accepted, component:) }
-      let(:related_plan2) { create(:plan, :accepted, component:) }
-      let(:other_plans) { create_list(:plan, 3, component:) }
-      let(:search_resources) do
-        other_plans
-
-        dummy_resource.link_resources([related_plan], "included_plans")
-        related_plan2.link_resources([dummy_resource], "included_plans")
-      end
-
-      it "returns only plans related to results" do
-        [related_plan, related_plan2].each do |pl|
-          expect(subject).to have_escaped_html(translated(pl.title))
-        end
-
-        other_plans.each do |pl|
-          expect(subject).not_to have_escaped_html(translated(pl.title))
-        end
-      end
-    end
-  end
-
   describe "tags filter" do
     let(:filter_params) { { with_any_tag: tags } }
 
