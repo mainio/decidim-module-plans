@@ -191,7 +191,7 @@ describe "ExplorePlans" do
       end
 
       context "with published plan" do
-        let!(:plan) { create(:plan, :published, component:, users: [user]) }
+        let!(:plan) { create(:plan, :open, :published, component:, users: [user]) }
 
         it "show/edits authors" do
           expect(page).to have_button("Add authors for proposal")
