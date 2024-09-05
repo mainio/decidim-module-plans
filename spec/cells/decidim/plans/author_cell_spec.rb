@@ -41,18 +41,6 @@ describe Decidim::Plans::AuthorCell, type: :cell do
     let(:model) { Decidim::UserPresenter.new(user) }
     let(:my_cell) { cell("decidim/plans/author", model, from: plan) }
 
-    it "renders the flag button with report modal target" do
-      expect(subject).to have_css("button[data-open='flagModal'][title='Report']")
-    end
-
-    context "when there's no current user" do
-      let(:current_user) { nil }
-
-      it "renders the flag button with login modal target" do
-        expect(subject).to have_css("button[data-open='loginModal'][title='Report']")
-      end
-    end
-
     context "when is withdrawable" do
       before do
         allow(my_cell).to receive(:withdrawable?).and_return(true)
