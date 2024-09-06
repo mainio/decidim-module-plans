@@ -226,7 +226,7 @@ describe "ExplorePlans" do
           expect(page).to have_link("Withdraw proposal")
           click_on "Withdraw proposal"
           expect(page).to have_content("Are you sure you want to withdraw this proposal?")
-          find(".button[aria-label='OK']").click
+          click_on "OK"
           expect(page).to have_content("Item withdrawn successfully.")
           expect(page).to have_current_path(decidim_plan.plan_path(plan.id))
           within "span.alert.label.idea-status" do

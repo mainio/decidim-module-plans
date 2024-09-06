@@ -5,6 +5,12 @@
 
 <%= render_plan_view(@plan, trigger_feedback: trigger_feedback?) %>
 
+<% if @plan.withdrawable_by?(current_user) %>
+  <%= action_authorized_link_to :withdraw, withdraw_plan_path(@plan), method: :put, class: "button button__sm button__transparent-secondary w-full", title: t("withdraw_btn_hint", scope: "decidim.proposals.proposals.show" ), data: { confirm: t("withdraw_confirmation_html", scope: "decidim.proposals.proposals.show" ) } do %>
+    <span><%= t("withdraw_proposal", scope: "decidim.proposals.proposals.show") %></span>
+  <% end %>
+<% end %>
+
 <%= comments_for @plan %>
 
 <% if @plan.editable_by?(current_user) && @plan.waiting_for_evaluation? %>
