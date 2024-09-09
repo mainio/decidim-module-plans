@@ -112,6 +112,7 @@ module Decidim
       end
 
       def creation_date_status
+        raise model.inspect
         l(model.published_at.to_date, format: :decidim_short)
       end
 
