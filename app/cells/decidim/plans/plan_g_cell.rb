@@ -5,7 +5,7 @@ require "cell/partial"
 module Decidim
   module Plans
     # This cell renders a plan with its M-size card.
-    class PlanMCell < Decidim::CardLCell
+    class PlanGCell < Decidim::CardGCell
       include PlanCellsHelper
       include Decidim::Plans::CellContentHelper
 

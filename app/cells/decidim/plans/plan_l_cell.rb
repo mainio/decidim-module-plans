@@ -5,7 +5,7 @@ require "cell/partial"
 module Decidim
   module Plans
     # This cell renders a plan with its M-size card.
-    class PlanLCell < Decidim::Plans::PlanMCell
+    class PlanLCell < Decidim::Plans::PlanGCell
       def card_classes
         "card--full"
       end

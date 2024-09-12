@@ -319,7 +319,7 @@ en:
       plan_l:
         card_label: "Proposal: %{title}"
         view_plan: View proposal
-      plan_m:
+      plan_g:
         card_label: "Proposal: %{title}"
         view_plan: View proposal
       plan_notification:
