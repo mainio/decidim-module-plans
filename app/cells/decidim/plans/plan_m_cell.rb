@@ -5,7 +5,7 @@ require "cell/partial"
 module Decidim
   module Plans
     # This cell renders a plan with its M-size card.
-    class PlanMCell < Decidim::ViewModel
+    class PlanMCell < Decidim::CardLCell
       include PlanCellsHelper
       include Decidim::Plans::CellContentHelper
 
@@ -97,26 +97,26 @@ module Decidim
       def badge_classes
         return super unless options[:full_badge]
 
-        state_classes.push("label", "idea-status").join(" ")
+        state_classes.push(["label", "idea-status"]).join(" ")
       end
 
       def statuses
         return [] if preview?
         return [:comments_count] if model.draft?
 
-        [:comments_count, :favorites_count]
+        [:comments_count, :favoriting_count]
       end
 
       def comments_count_status
         render_comments_count
       end
 
-      def creation_date_status
-        l(model.published_at.to_date, format: :decidim_short)
-      end
+      # def creation_date_status
+      #   l(model.published_at.to_date, format: :decidim_short)
+      # end
 
-      def favorites_count_status
-        cell("decidim/favorites/favorites_count", model)
+      def favoriting_count_status
+        cell("decidim/favorites/favoriting_count", model)
       end
 
       def category_icon
@@ -124,7 +124,7 @@ module Decidim
         return unless cat
 
         content_tag(:span, class: "card__category__icon", "aria-hidden": true) do
-          image_tag(cat.attached_uploader(:category_icon).url, alt: full_category)
+          image_tag(cat.attached_uploader(:category_icon).path, alt: full_category)
         end
       end
 
@@ -181,11 +181,11 @@ module Decidim
       end
 
       def default_plan_image
-        Decidim::Plans.config.default_card_image
+        Decidim::Plans.default_card_image
       end
 
       def resource_image_path
-        return plan_image.attached_uploader(:file).variant_url(resource_image_variant) if has_image?
+        return plan_image.attached_uploader(:file).path(variant: resource_image_variant) if has_image?
 
         if has_category?
           path = category_image_path(category)
@@ -207,7 +207,7 @@ module Decidim
         return unless cat.category_image
         return unless cat.category_image.attached?
 
-        cat.attached_uploader(:category_image).variant_url(category_image_variant)
+        cat.attached_uploader(:category_image).path(variant: category_image_variant)
       end
 
       def category_image_variant
