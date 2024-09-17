@@ -12,7 +12,8 @@
               "decidim/plans/diff",
               current_version,
               item_versions: item_versions,
-              content_versions: content_versions
+              content_versions: content_versions,
+              path: proc { |extra_params| url_for(action: :show, id: params[:id], **extra_params) }
             )
           %>
         </div>

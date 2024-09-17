@@ -295,10 +295,11 @@ describe "ExplorePlans" do
 
         it "changes view mode" do
           visit decidim_plan.plan_version_path(plan_id: plan.id, id: 2)
-          expect(page).to have_link("Unified", href: "#diffmode-chooser-menu")
-          click_on "Unified"
-          expect(page).to have_link("Side-by-side")
-          click_on "Side-by-side"
+          expect(page).to have_select("diff-mode", with_options: ["Unified", "Side-by-side"])
+          select "Unified", from: "diff-mode"
+          click_on "Toggle view"
+          select "Side-by-side", from: "diff-mode"
+          click_on "Toggle view"
 
           expect(page).to have_content(translated(plan.title))
           expect(page).to have_content("Update text")
