@@ -170,6 +170,7 @@ cs:
             attachments_input_type: Vstupní typ příloh
             body: Tělo
             down: Dolů
+            error_text: Text for invalid input
             handle: Handle
             help: Nápověda
             information: Informace
@@ -312,7 +313,6 @@ cs:
         show_list: Zobrazit výsledky jako seznam
         show_map: Zobrazit výsledky na mapě
         title: Procházet návrhy
-        view_plan: Zobrazit návrh
       plan_l:
         card_label: "Návrh: %{title}"
         view_plan: Zobrazit návrh
@@ -332,6 +332,7 @@ cs:
           add_author: Přidat autory návrhu
         flag: Označit
         info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
+        map_title: Proposal on map
         pending_access_request_message_html: <p>Požádali jste o úpravu přístupu k tomuto návrhu. Počkejte prosím, až spolupracovníci odpoví na váš požadavek.</p><p>Jakmile bude váš požadavek zodpovězen, obdržíte e-mailové upozornění.</p>
         plan_waiting_for_evaluation: Návrh se hodnotí, úprava není povolena.
         request_access: Žádost o oprávnění k úpravám
@@ -351,10 +352,10 @@ cs:
           title: Přidat autory návrhu %{plan}
         count:
           plans_count:
-            one: "%{count} návrh"
-            few: "%{count} návrhy"
-            many: "%{count} návrhů"
-            other: "%{count} návrhů"
+            one: "Found %{count} proposal"
+            few: "Found %{count} proposals"
+            many: "Found %{count} proposals"
+            other: "Found %{count} proposals"
         create:
           error: Nepodařilo se vytvořit nový obsah.
           success: Úspěšně vytvořeno.
@@ -459,6 +460,8 @@ cs:
         withdraw:
           error: Chyba při stahování položky.
           success: Položka byla úspěšně stažena.
+      plans_map:
+        view_plan: View proposal
       plans_picker:
         choose_plans: Vybrat návrhy
         close: Zavřít
@@ -513,6 +516,7 @@ cs:
           sub_category_label: Vyberte podmotiv
         field_map_point:
           address_lookup_button: Zobrazit na mapě
+          marker_added: Marker added to the map.
           reset_field: Obnovit pole
         field_image_attachments:
           add_attachment: Přidat obrázek
@@ -569,9 +573,14 @@ cs:
         version:
           version_index: Verze %{index}
     resource_links:
+      included_ideas:
+        plan_idea: Related ideas
       included_proposals:
         plan_proposal: Související návrhy
         proposal_plan: Související návrhy
+      included_plans:
+        plan_project: Related votable proposals
+        plan_result: Related projects
     scopes:
       global: Globalní
     statistics:
