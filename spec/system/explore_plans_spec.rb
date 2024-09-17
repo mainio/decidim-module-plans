@@ -61,7 +61,7 @@ describe "ExplorePlans" do
         within ".filters__section" do
           fill_in "Search", with: translated(accepted.title)
           within ".input-group-button" do
-            find("button[type=\"submit\"]").click
+            find('svg[aria-label="Search"]').click
           end
           wait_a_bit
         end
