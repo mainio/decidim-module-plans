@@ -47,19 +47,6 @@ module Decidim
       def badge_name
         humanize_plan_state state
       end
-
-      def state_classes
-        case state
-        when "accepted"
-          ["success"]
-        when "rejected", "withdrawn"
-          ["alert"]
-        when "evaluating"
-          ["warning"]
-        else
-          ["muted"]
-        end
-      end
     end
   end
 end

@@ -11,7 +11,7 @@ module Decidim
 
       alias plan model
 
-      def badge
+      def state
         render if has_badge?
       end
 
@@ -86,18 +86,16 @@ module Decidim
         closed? || answered? || withdrawn?
       end
 
+      def badge_name
+        model.state.capitalize
+      end
+
       def has_link_to_resource?
         model.published?
       end
 
       def has_footer?
         true
-      end
-
-      def badge_classes
-        return super unless options[:full_badge]
-
-        state_classes.push(["label", "idea-status"]).join(" ")
       end
 
       def statuses
@@ -107,13 +105,19 @@ module Decidim
         [:comments_count, :favoriting_count]
       end
 
+      def state_class
+        return "success" if model.accepted?
+        return "warning" if model.evaluating?
+        return "alert" if model.answered? || model.rejected? || model.withdrawn?
+      end
+
       def comments_count_status
         render_comments_count
       end
 
-      # def creation_date_status
-      #   l(model.published_at.to_date, format: :decidim_short)
-      # end
+      def creation_date_status
+        l(model.published_at.to_date, format: :decidim_short)
+      end
 
       def favoriting_count_status
         cell("decidim/favorites/favoriting_count", model)

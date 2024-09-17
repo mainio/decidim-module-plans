@@ -47,7 +47,7 @@
 <div class="row">
   <div class="columns medium-8">
     <div class="section">
-      <%== cell("decidim/plans/plan_g", plan, full_badge: true) %>
+      <%== cell("decidim/plans/plan_g", plan, full_badge: true).state %>
       <%= contents %>
       <%= cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }) %>
     </div>

@@ -24,7 +24,7 @@ module Decidim
       end
 
       def card_size
-        "decidim/plans/plan_m"
+        "decidim/plans/plan_g"
       end
 
       def resource_path

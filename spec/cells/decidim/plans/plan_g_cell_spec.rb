@@ -3,12 +3,12 @@
 require "spec_helper"
 
 module Decidim::Plans
-  describe PlanMCell, type: :cell do
+  describe PlanGCell, type: :cell do
     controller Decidim::Plans::PlansController
 
     subject { cell_html }
 
-    let(:my_cell) { cell("decidim/plans/plan_m", plan, context: { show_space: }) }
+    let(:my_cell) { cell("decidim/plans/plan_g", plan, context: { show_space: }) }
     let(:cell_html) { my_cell.call }
     let(:created_at) { 1.month.ago }
     let(:published_at) { Time.current }

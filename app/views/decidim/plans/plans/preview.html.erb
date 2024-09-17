@@ -19,6 +19,9 @@
     <div class="resource__main">
       <div class="actions">
         <div class="flex--sbc">
+          <%= action_authorized_link_to :withdraw, withdraw_plan_path, method: :put, class: "title-action__action button small hollow", title: t("withdraw_btn_hint", scope: "decidim.plans.plans.show"), data: { confirm: t("withdraw_confirmation", scope: "decidim.plans.plans.show") }  do %>
+            <%= t("withdraw_btn", scope: "decidim.plans.plans.show") %>
+          <% end %>
           <%= link_to t(".modify"), edit_plan_path(@plan) %>
           <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button" %>
         </div>

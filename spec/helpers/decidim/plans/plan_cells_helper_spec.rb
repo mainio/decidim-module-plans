@@ -90,41 +90,4 @@ describe Decidim::Plans::PlanCellsHelper do
       expect(helper.badge_name).to be(name)
     end
   end
-
-  describe "#state_classes" do
-    context "when accepted" do
-      it "returns correct classes" do
-        allow(helper).to receive(:state).and_return("accepted")
-        expect(helper.state_classes).to contain_exactly("success")
-      end
-    end
-
-    context "when rejected" do
-      it "returns correct classes" do
-        allow(helper).to receive(:state).and_return("rejected")
-        expect(helper.state_classes).to contain_exactly("alert")
-      end
-    end
-
-    context "when evaluating" do
-      it "returns correct classes" do
-        allow(helper).to receive(:state).and_return("evaluating")
-        expect(helper.state_classes).to contain_exactly("warning")
-      end
-    end
-
-    context "when withdrawn" do
-      it "returns correct classes" do
-        allow(helper).to receive(:state).and_return("withdrawn")
-        expect(helper.state_classes).to contain_exactly("alert")
-      end
-    end
-
-    context "when something else" do
-      it "returns correct classes" do
-        allow(helper).to receive(:state).and_return("something")
-        expect(helper.state_classes).to contain_exactly("muted")
-      end
-    end
-  end
 end
