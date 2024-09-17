@@ -135,6 +135,7 @@ module Decidim
       end
 
       def withdraw
+        raise "wewe"
         raise ActionController::RoutingError, "Not Found" if @plan.withdrawn?
 
         enforce_permission_to :withdraw, :plan, plan: @plan
