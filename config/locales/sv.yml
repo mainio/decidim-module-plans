@@ -170,6 +170,7 @@ sv:
             attachments_input_type: Inmatningsfält typ av bilaga
             body: Brödtext
             down: Ner
+            error_text: Text för ogiltig inmatning
             handle: Identifierare
             help: Hjälp
             information: Information
@@ -310,7 +311,6 @@ sv:
         show_list: Visa resultat som lista
         show_map: Visa resultat på kartan
         title: Bekanta dig med förslag
-        view_plan: Visa förslag
       plan_l:
         card_label: "Förslag: %{title}"
         view_plan: Visa förslag
@@ -330,6 +330,7 @@ sv:
           add_author: Lägg till författare för förslag
         flag: Rapportera
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
+        map_title: Förslag på karta
         pending_access_request_message_html: <p>Du har begärt redigeringsåtkomst till detta förslag. Vänta tills medarbetarna svarar på din begäran.</p><p>Du kommer att få ett e-post när din begäran har besvarats.</p>
         plan_waiting_for_evaluation: Förslaget beräknas, redigering är inte tillåten.
         request_access: Begär redigeringsrättigheter
@@ -349,8 +350,8 @@ sv:
           title: Lägg till författare för förslag %{plan}
         count:
           plans_count:
-            one: "%{count} förslag"
-            other: "%{count} förslag"
+            one: "Hittade %{count} förslag"
+            other: "Hittade %{count} förslag"
         create:
           error: Det gick inte att skapa nytt innehåll.
           success: Innehållet har skapats.
@@ -376,11 +377,11 @@ sv:
           title: Förslaget beräknas
         exit_modal:
           buttons:
-            cancel: Cancel
-            exit: Exit page
-          close_modal: Close window
-          message: You are leaving this page even though you have made changes to the form. Are you sure you want to exit?
-          title: The form has unsaved changes
+            cancel: Annullera
+            exit: Avsluta sidan
+          close_modal: Stäng fönstret
+          message: Du lämnar denna sida trots att du har gjort ändringar i formuläret. Är du säker på att du vill avsluta?
+          title: Formuläret har osparade ändringar
         form:
           attachment_legend: Lägg till bilaga
           select_a_category: Välj kategori
@@ -453,6 +454,8 @@ sv:
         withdraw:
           error: Det inträffade ett fel vid annullering av objektet.
           success: Objektet har annullerats.
+      plans_map:
+        view_plan: Visa förslag
       plans_picker:
         choose_plans: Välj förslag
         close: Stäng
@@ -505,6 +508,7 @@ sv:
           sub_category_label: Välj ett undertema
         field_map_point:
           address_lookup_button: Visa på kartan
+          marker_added: Markör tillagd på kartan.
           reset_field: Återställ fältet
         field_image_attachments:
           add_attachment: Lägg till bilden
@@ -561,9 +565,14 @@ sv:
         version:
           version_index: Version %{index}
     resource_links:
+      included_ideas:
+        plan_idea: Relaterade idéer
       included_proposals:
         plan_proposal: Relaterade förslag
         proposal_plan: Relaterade förslag
+      included_plans:
+        plan_project: Relaterade röstningsbara förslag
+        plan_result: Relaterade projekt
     scopes:
       global: Allmän
     statistics:
