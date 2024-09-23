@@ -132,6 +132,7 @@ fi:
             no_components: Tässä osallistumistilassa ei ole yhtään budjetointikomponenttia, johon hankkeet voitaisiin luoda.
             select_budget: Valitse budjetti
             select_component: Valitse komponentti
+            title: Muunna hankkeiksi
         exports:
           plans: Ehdotukset
         plan_answers:
@@ -314,9 +315,9 @@ fi:
       plan_l:
         card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
-      plan_m:
-        card_label: "Ehdotus: %{title}"
-        view_plan: Näytä ehdotus
+      plan_g:
+        card_label: "Proposal: %{title}"
+        view_plan: View proposal
       plan_notification:
         accepted:
           title: Tämä ehdotus on hyväksytty
@@ -547,6 +548,8 @@ fi:
         attachments:
           legend: Liitteet
           add_attachment: Lisää liite
+      tags:
+        filter_results_for_tags: Filter results for tags
       update:
         invalid: Sisällön päivittäminen epäonnistui.
         success: Päivitys onnistui.
