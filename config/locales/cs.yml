@@ -132,6 +132,7 @@ cs:
             no_components: V tomto participačním prostoru nejsou žádné další složky rozpočtu na export položek do projektů.
             select_budget: Vyberte rozpočet
             select_component: Vyberte komponentu
+            title: Convert to projects
         exports:
           plans: Návrhy
         plan_answers:
@@ -316,9 +317,9 @@ cs:
       plan_l:
         card_label: "Návrh: %{title}"
         view_plan: Zobrazit návrh
-      plan_m:
-        card_label: "Návrh: %{title}"
-        view_plan: Zobrazit návrh
+      plan_g:
+        card_label: "Proposal: %{title}"
+        view_plan: View proposal
       plan_notification:
         accepted:
           title: Tento návrh byl přijat
@@ -555,6 +556,8 @@ cs:
         attachments:
           legend: Přílohy
           add_attachment: Přidat přílohu
+      tags:
+        filter_results_for_tags: Filter results for tags
       update:
         invalid: Chyba při aktualizaci obsahu.
         success: Úspěšně aktualizováno.
