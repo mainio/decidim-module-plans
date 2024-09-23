@@ -164,7 +164,7 @@ describe "ExplorePlans" do
           expect(page).to have_link("Go to proposals list", href: decidim_plan.plans_path)
           expect(page).to have_button("Publish")
           expect(page).to have_link("Modify", href: decidim_plan.edit_plan_path(created_plan.id))
-          expect(page).to have_link("Withdraw proposal", href: decidim_plan.withdraw_plan_path(created_plan.id))
+          expect(page).to have_css("span", text: "Withdraw proposal")
           expect(page).to have_content("Version 1 (of 1)")
           within ".card-data__item.authors_status" do
             expect(page).to have_content("1")

@@ -53,7 +53,7 @@ describe Decidim::Plans::AttachmentsHelper do
     it "returns the correct output" do
       output = ctx.upload_field(form, attribute)
       expect(output).to have_css("label[for='object_test']:contains(Test)")
-      expect(output).to have_field("input[type='file'][name='object[test]']")
+      expect(output).to have_field("object[test]", type: "file")
     end
 
     context "when image file is set" do
