@@ -132,6 +132,7 @@ sv:
             no_components: Det finns inga andra budgetkomponenter i detta deltagande utrymme för att exportera objekten till projekt.
             select_budget: Var god välj en budget
             select_component: Var god välj en komponent
+            title: Convert to projects
         exports:
           plans: Förslag
         plan_answers:
@@ -314,9 +315,9 @@ sv:
       plan_l:
         card_label: "Förslag: %{title}"
         view_plan: Visa förslag
-      plan_m:
-        card_label: "Förslag: %{title}"
-        view_plan: Visa förslag
+      plan_g:
+        card_label: "Proposal: %{title}"
+        view_plan: View proposal
       plan_notification:
         accepted:
           title: Förslaget har godkänts
@@ -547,6 +548,8 @@ sv:
         attachments:
           legend: Bilagor
           add_attachment: Lägg till bilaga
+      tags:
+        filter_results_for_tags: Filter results for tags
       update:
         invalid: Det gick inte att uppdatera innehållet.
         success: Innehållet har uppdaterats.
