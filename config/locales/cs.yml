@@ -132,7 +132,7 @@ cs:
             no_components: V tomto participačním prostoru nejsou žádné další složky rozpočtu na export položek do projektů.
             select_budget: Vyberte rozpočet
             select_component: Vyberte komponentu
-            title: Convert to projects
+            title: Převést na projekty
         exports:
           plans: Návrhy
         plan_answers:
@@ -171,7 +171,7 @@ cs:
             attachments_input_type: Vstupní typ příloh
             body: Tělo
             down: Dolů
-            error_text: Text for invalid input
+            error_text: Text pro neplatný vstup
             handle: Handle
             help: Nápověda
             information: Informace
@@ -318,8 +318,8 @@ cs:
         card_label: "Návrh: %{title}"
         view_plan: Zobrazit návrh
       plan_g:
-        card_label: "Proposal: %{title}"
-        view_plan: View proposal
+        card_label: "Návrh: %{title}"
+        view_plan: Zobrazit návrh
       plan_notification:
         accepted:
           title: Tento návrh byl přijat
@@ -333,7 +333,7 @@ cs:
           add_author: Přidat autory návrhu
         flag: Označit
         info_message: Můžete se zúčastnit buď odesláním komentáře nebo požádáním o oprávnění k přímé úpravě obsahu.
-        map_title: Proposal on map
+        map_title: Návrh na mapě
         pending_access_request_message_html: <p>Požádali jste o úpravu přístupu k tomuto návrhu. Počkejte prosím, až spolupracovníci odpoví na váš požadavek.</p><p>Jakmile bude váš požadavek zodpovězen, obdržíte e-mailové upozornění.</p>
         plan_waiting_for_evaluation: Návrh se hodnotí, úprava není povolena.
         request_access: Žádost o oprávnění k úpravám
@@ -353,10 +353,10 @@ cs:
           title: Přidat autory návrhu %{plan}
         count:
           plans_count:
-            one: "Found %{count} proposal"
-            few: "Found %{count} proposals"
-            many: "Found %{count} proposals"
-            other: "Found %{count} proposals"
+            one: "Nalezen %{count} návrh"
+            few: "Nalezeny %{count} návrhy"
+            many: "Nalezeno %{count} návrhů"
+            other: "Nalezeno %{count} návrhů"
         create:
           error: Nepodařilo se vytvořit nový obsah.
           success: Úspěšně vytvořeno.
@@ -462,7 +462,7 @@ cs:
           error: Chyba při stahování položky.
           success: Položka byla úspěšně stažena.
       plans_map:
-        view_plan: View proposal
+        view_plan: Zobrazit návrh
       plans_picker:
         choose_plans: Vybrat návrhy
         close: Zavřít
@@ -517,7 +517,7 @@ cs:
           sub_category_label: Vyberte podmotiv
         field_map_point:
           address_lookup_button: Zobrazit na mapě
-          marker_added: Marker added to the map.
+          marker_added: Značka přidána na mapu.
           reset_field: Obnovit pole
         field_image_attachments:
           add_attachment: Přidat obrázek
@@ -557,7 +557,7 @@ cs:
           legend: Přílohy
           add_attachment: Přidat přílohu
       tags:
-        filter_results_for_tags: Filter results for tags
+        filter_results_for_tags: Filtrovat výsledky pro štítky
       update:
         invalid: Chyba při aktualizaci obsahu.
         success: Úspěšně aktualizováno.
@@ -577,13 +577,13 @@ cs:
           version_index: Verze %{index}
     resource_links:
       included_ideas:
-        plan_idea: Related ideas
+        plan_idea: Související nápady
       included_proposals:
         plan_proposal: Související návrhy
         proposal_plan: Související návrhy
       included_plans:
-        plan_project: Related votable proposals
-        plan_result: Related projects
+        plan_project: Související hlasovací návrhy
+        plan_result: Související projekty
     scopes:
       global: Globalní
     statistics:
