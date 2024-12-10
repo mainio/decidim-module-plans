@@ -29,6 +29,8 @@ module Decidim
 
       describe "sections" do
         let(:query) { "{ sections { edges { node { id } } } }" }
+        let!(:generated_sections) { create_list(:section, 3, component: model) }
+
         let(:sections) do
           Section.where(component: model).order(:position)
         end
