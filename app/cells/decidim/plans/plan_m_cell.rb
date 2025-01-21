@@ -163,6 +163,8 @@ module Decidim
       end
 
       def default_plan_image
+        return if Decidim::Plans.default_card_image.blank?
+
         asset_pack_path(Decidim::Plans.default_card_image)
       end
 
