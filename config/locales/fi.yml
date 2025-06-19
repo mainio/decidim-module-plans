@@ -281,7 +281,7 @@ fi:
         characters_min: "(vähintään %count% merkkiä vaaditaan)"
         characters_used: "%count%/%total% merkkiä käytetty"
         info_message: Voit osalllistua joko jättämällä kommentin sivun alalaidassa tai pyytämällä itsellesi muokkausoikeudet sisältöön.
-        required_fields_text: Tähdellä * merkityt kentät ovat pakollisia.
+        required_fields_text: Tähdellä * merkityt kentät on pakko täyttää.
       plan_index:
         draft_plan_title: Sinulla on keskeneräinen ehdotus!
         draft_plan_continue: Jatka ehdotustasi
@@ -503,7 +503,8 @@ fi:
           edit_attachment_multi: Muuta liitteitä
           remove: Poista
         field_category:
-          select_a_category: Valitse ensisijainen teema
+          select_a_category: Valitse teema
+          select_a_primary_category: Valitse ensisijainen teema
           select_a_sub_category: Valitse alateema
           sub_category_label: Valitse alateema
         field_map_point:

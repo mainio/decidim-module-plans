@@ -11,12 +11,24 @@ module Decidim
 
         private
 
-        def field_id
+        def field_section_id
           "category_#{section.id}"
         end
 
         def top_categories
           @top_categories ||= categories.where(parent_id: nil)
+        end
+
+        def primary_category_prompt
+          if subcategories_available?
+            t(".select_a_primary_category")
+          else
+            t(".select_a_category")
+          end
+        end
+
+        def subcategories_available?
+          @subcategories_available ||= categories.where.not(parent_id: nil).any?
         end
 
         # Public: Generates a select field with the categories. Only leaf categories can be set as selected.

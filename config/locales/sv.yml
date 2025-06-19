@@ -281,7 +281,7 @@ sv:
         characters_min: "(minst %count% tecken krävs)"
         characters_used: "%count%/%total% tecken används"
         info_message: Du kan delta antingen genom att skriva en kommentar längst ner på sidan, eller be om rätt att redigera innehållet.
-        required_fields_text: Obligatoriska fält är markerade med stjärna * tecken.
+        required_fields_text: Fält markerade med en asterisk * är obligatoriska.
       plan_index:
         draft_plan_title: Du har ett oavslutat förslag!
         draft_plan_continue: Fortsätt ditt förslag
@@ -503,7 +503,8 @@ sv:
           edit_attachment_multi: Ändra bilagor
           remove: Ta bort
         field_category:
-          select_a_category: Välj ett primärt tema
+          select_a_category: Välj ett tema
+          select_a_primary_category: Välj ett primärt tema
           select_a_sub_category: Välj ett undertema
           sub_category_label: Välj ett undertema
         field_map_point:

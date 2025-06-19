@@ -6,6 +6,10 @@ module Decidim
       class FieldTextCell < Decidim::Plans::SectionEditCell
         private
 
+        def field_id(name)
+          "contents_#{model.section.id}_#{name}"
+        end
+
         def field_options(name = :body)
           base = super.merge(label: false)
           return base unless display_character_counter?

@@ -3,7 +3,12 @@
 <div class="row medium-unstack">
   <div class="columns medium-7">
     <div class="field">
-      <%= scopes_picker_field form, :scope_id, options: { label: false, include_blank: true }, html_options: { disabled: field_disabled? } %>
+      <%= scopes_picker_field(
+        form,
+        :scope_id,
+        options: { label: false, include_blank: true, help_text: help_text },
+        html_options: { disabled: field_disabled? })
+      %>
     </div>
   </div>
   <div class="columns medium-5">

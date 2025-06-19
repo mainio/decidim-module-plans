@@ -1,4 +1,4 @@
-<div class="field field-category" id="<%= field_id %>">
+<div class="field-category" id="<%= field_section_id %>">
   <div class="row medium-unstack">
     <div class="columns medium-7 large-8">
       <%= content_tag :div, class: field_label_classes do %>
@@ -17,11 +17,12 @@
           top_categories,
           {
             label: false,
-            prompt: t(".select_a_category")
+            prompt: primary_category_prompt,
+            help_text: help_text
           },
           disabled: field_disabled?,
           data: {
-            field_toggle: "##{field_id} .field-subcategory .subcategories"
+            field_toggle: "##{field_section_id} .field-subcategory .subcategories"
           }
         ) %>
       </div>
@@ -38,31 +39,33 @@
     </div>
   </div>
 
-  <div class="field">
-    <div class="row medium-unstack">
-      <div class="columns medium-7">
-        <div class="field-subcategory">
-          <% top_categories.each do |category| %>
-            <% next if category.subcategories.blank? %>
+  <% if subcategories_available? %>
+    <div class="field">
+      <div class="row medium-unstack">
+        <div class="columns medium-7">
+          <div class="field-subcategory">
+            <% top_categories.each do |category| %>
+              <% next if category.subcategories.blank? %>
 
-            <div class="subcategories hide" data-field-toggle-value="<%= category.id %>">
-              <%= plain_label form, :sub_category_id, text: t(".sub_category_label") %>
+              <div class="subcategories hide" data-field-toggle-value="<%= category.id %>">
+                <%= plain_label form, :sub_category_id, text: t(".sub_category_label") %>
 
-              <%= categories_select(
-                form,
-                :sub_category_id,
-                category.subcategories,
-                {
-                  label: false,
-                  include_blank: t(".select_a_sub_category")
-                },
-                id: "#{field_id}_sub_category_id_for_#{category.id}",
-                disabled: field_disabled?
-              ) %>
-            </div>
-          <% end %>
+                <%= categories_select(
+                  form,
+                  :sub_category_id,
+                  category.subcategories,
+                  {
+                    label: false,
+                    include_blank: t(".select_a_sub_category")
+                  },
+                  id: "#{field_section_id}_sub_category_id_for_#{category.id}",
+                  disabled: field_disabled?
+                ) %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

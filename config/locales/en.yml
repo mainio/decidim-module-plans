@@ -285,7 +285,7 @@ en:
         characters_min: "(at least %count% characters required)"
         characters_used: "%count%/%total% characters used"
         info_message: You can participate either by submitting a comment or by asking for a permission to edit content directly.
-        required_fields_text: Required fields are marked with the star * character.
+        required_fields_text: Fields marked with an asterisk * must be filled.
       plan_index:
         draft_plan_title: You have a proposal draft!
         draft_plan_continue: Continue your proposal
@@ -510,7 +510,8 @@ en:
           edit_attachment_multi: Change attachments
           remove: Remove
         field_category:
-          select_a_category: Choose a primary theme
+          select_a_category: Choose a theme
+          select_a_primary_category: Choose a primary theme
           select_a_sub_category: Choose a subtheme
           sub_category_label: Choose a subtheme
         field_map_point:
