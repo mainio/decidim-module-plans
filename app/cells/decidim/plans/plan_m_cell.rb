@@ -182,6 +182,8 @@ module Decidim
       end
 
       def default_plan_image
+        return unless Decidim::Plans.default_card_image
+
         asset_pack_path(Decidim::Plans.default_card_image)
       end
 
