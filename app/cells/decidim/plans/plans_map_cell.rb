@@ -39,7 +39,7 @@ module Decidim
       end
 
       def geolocated_data_for(plan)
-        Decidim::Plans::Plan.where(id: plan.id).geocoded_data_for(plan.component)
+        Decidim::Plans::Plan.where(id: plan.id).geocoded_data_for(plan.component, published_only: plan.published?)
       end
     end
   end

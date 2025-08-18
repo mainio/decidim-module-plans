@@ -178,25 +178,26 @@ module Decidim
       end
 
       # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      def self.geocoded_data_for(component)
+      def self.geocoded_data_for(component, published_only: true)
         types = %w(
           field_map_point
           field_area_scope
           field_text_multiline
         )
         cls = Arel.sql("Decidim::Plans::Plan")
-        raw_data = Decidim::Plans::Content.joins(:section).joins(
+        query = Decidim::Plans::Content.joins(:section).joins(
           "INNER JOIN decidim_plans_plans ON decidim_plans_plans.id = decidim_plans_plan_contents.decidim_plan_id"
         ).joins(
           "LEFT OUTER JOIN decidim_moderations ON decidim_moderations.decidim_reportable_type = '#{cls}' AND decidim_moderations.decidim_reportable_id = decidim_plans_plans.id"
         ).where(
           decidim_plans_sections: { decidim_component_id: component.id },
           decidim_plans_plans: { id: pluck(:id) }
-        ).where.not(
-          decidim_plans_plans: { published_at: nil }
         ).where(
           decidim_moderations: { hidden_at: nil }
-        ).with_section_type(types).pluck(
+        ).with_section_type(types)
+        query = query.where.not(decidim_plans_plans: { published_at: nil }) if published_only
+
+        raw_data = query.pluck(
           :decidim_plan_id,
           "decidim_plans_plans.title",
           "decidim_plans_sections.section_type",
