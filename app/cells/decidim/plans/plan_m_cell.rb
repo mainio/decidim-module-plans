@@ -50,7 +50,8 @@ module Decidim
       end
 
       def title
-        decidim_html_escape(present(model).title)
+        # The title is already escaped and sanitized at the presenter level.
+        present(model).title
       end
 
       def body
