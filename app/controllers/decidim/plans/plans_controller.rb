@@ -298,7 +298,7 @@ module Decidim
       def default_filter_params
         {
           search_text: "",
-          with_any_origin: default_filter_origin_params,
+          with_any_origin: "",
           with_any_category: "",
           with_any_state: "",
           with_any_scope: nil,
@@ -316,12 +316,6 @@ module Decidim
 
           [section.id, control.search_params_for(section)]
         end
-      end
-
-      def default_filter_origin_params
-        filter_origin_params = %w(participants official)
-        filter_origin_params << "user_group" if current_organization.user_groups_enabled?
-        filter_origin_params
       end
 
       def routes_proxy
