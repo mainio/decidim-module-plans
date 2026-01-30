@@ -613,17 +613,17 @@ fi:
           notification_title: Sinua <strong>ei hyväksytty osallistujaksi</strong> ehdotukseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" on hyväksytty. Voit lukea vastauksen täältä:'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi kohde on hyväksytty
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat ehdotusta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
+          email_subject: Ehdotus on hyväksytty
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on hyväksytty.
         plan_evaluating:
           email_intro: '"%{resource_title}" arvioidaan parhaillaan. Voit tarkistaa vastauksen tältä sivulla:'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi kohde on arvioitavana
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat ehdotusta "%{resource_title}". Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
+          email_subject: Seuraamasi ehdotus on arvioitavana
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on arvioitavana.
         plan_published:
           email_intro: '"%{resource_title}" on julkaistu. Näet sen täältä:'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohteen "%{resource_title}" laatijaa. Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat ehdotuksen "%{resource_title}" laatijaa. Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi käyttäjä on julkaissut uutta sisältöä
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_published_author:
@@ -633,16 +633,16 @@ fi:
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_published_for_proposals:
           email_intro: 'Laatimasi ehdotus on linkitetty kohteeseen "%{resource_title}". Näet sen täältä:'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}" laatimisesi ehdotusten kautta. Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat ehdotusta "%{resource_title}" laatimisesi ehdotusten kautta. Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
           email_subject: Laatimasi ehdotus on linkitetty uuteen sisältöön
           notification_title: Laatimasi ehdotus on linkitetty kohteeseen <a href="%{resource_url}">%{resource_title}</a>.
         plan_published_for_space:
           email_intro: '"%{resource_title}" on julkaistu. Näet sen täältä:'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi kohde on julkaistu
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat ehdotusta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
+          email_subject: Ehdotus on julkaistu sivustolla
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_rejected:
-          email_intro: '"%{resource_title}" on hylätty. Voit lukea vastauksen täältä:'
-          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
-          email_subject: Seuraamasi kohde on hylätty
+          email_intro: '"%{resource_title}" on hylätty. Voit lukea hylkäyksen perustelun täältä:'
+          email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat ehdotusta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
+          email_subject: Seuraamasi ehdotus on hylätty
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on hylätty.

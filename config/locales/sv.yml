@@ -613,13 +613,13 @@ sv:
           notification_title: Du <strong>har inte godkänts som deltagare</strong> för förslaget <a href="%{resource_url}">%{resource_title}</a>.
         plan_accepted:
           email_intro: '"%{resource_title}" har godkänts. Du kan läsa svaret här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
-          email_subject: Objektet som du följer har godkänts
+          email_outro: Du fick detta meddelande eftersom du följer förslaget "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Ett förslag som du följer har godkänts
           notification_title: <a href="%{resource_url}">%{resource_title}</a> har godkänts.
         plan_evaluating:
           email_intro: '"%{resource_title}" bedöms just nu. Du kan kontrollera svaret här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
-          email_subject: Objektet som du följer bedöms
+          email_outro: Du fick detta meddelande eftersom du följer förslaget "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Ett förslag som du följer bedöms
           notification_title: <a href="%{resource_url}">%{resource_title}</a> bedöms.
         plan_published:
           email_intro: '"%{resource_title}" har publicerats. Du kan se den här:'
@@ -638,11 +638,11 @@ sv:
           notification_title: Ett förslag som du har skapat har kopplats till <a href="%{resource_url}">%{resource_title}</a>.
         plan_published_for_space:
           email_intro: '"%{resource_title}" har publicerats. Du kan se det här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
-          email_subject: Objektet som du följer har publicerats
+          email_outro: Du fick detta meddelande eftersom du följer förslaget "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Ett förslag som du följer har publicerats
           notification_title: <a href="%{resource_url}">%{resource_title}</a> har publicerats.
         plan_rejected:
-          email_intro: '"%{resource_title}" har avslagits. Du kan läsa svaret här:'
-          email_outro: Du fick detta meddelande eftersom du följer objektet "%{resource_title}". Klicka på länken ovan för att sluta följa det.
-          email_subject: Objektet som du följer har avslagits
+          email_intro: '"%{resource_title}" har avslagits. Du kan läsa motiveringar för bedömningen här:'
+          email_outro: Du fick detta meddelande eftersom du följer förslaget "%{resource_title}". Klicka på länken ovan för att sluta följa det.
+          email_subject: Ett förslag som du följer har avslagits
           notification_title: <a href="%{resource_url}">%{resource_title}</a> har avslagits.

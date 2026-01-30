@@ -621,17 +621,17 @@ en:
         plan_accepted:
           email_intro: '"%{resource_title}" has been accepted. You can read the answer in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been accepted
+          email_subject: A proposal you're following has been accepted
           notification_title: <a href="%{resource_url}">%{resource_title}</a> has been accepted.
         plan_evaluating:
           email_intro: '"%{resource_title}" is currently being evaluated. You can check for an answer in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following is being evaluated
+          email_subject: A proposal you're following is being evaluated
           notification_title: <a href="%{resource_url}">%{resource_title}</a> is being evaluated.
         plan_published:
           email_intro: '"%{resource_title}" has been published. You can see it here:'
           email_outro: You have received this notification because you are following the author of "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A user you're following has published a resource
+          email_subject: A user you're following has published a proposal
           notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
         plan_published_author:
           email_intro: '"%{resource_title}" has been published. You can see it here:'
@@ -646,10 +646,10 @@ en:
         plan_published_for_space:
           email_intro: '"%{resource_title}" has been published. You can see it here:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been published
+          email_subject: A proposal you're following has been published
           notification_title: <a href="%{resource_url}">%{resource_title}</a> has been published.
         plan_rejected:
-          email_intro: '"%{resource_title}" has been rejected. You can read the answer in this page:'
+          email_intro: '"%{resource_title}" has been rejected. You can read the reasons for the assessment in this page:'
           email_outro: You have received this notification because you are following "%{resource_title}". You can unfollow it from the previous link.
-          email_subject: A resource you're following has been rejected
+          email_subject: A proposal you're following has been rejected
           notification_title: <a href="%{resource_url}">%{resource_title}</a> has been rejected.
