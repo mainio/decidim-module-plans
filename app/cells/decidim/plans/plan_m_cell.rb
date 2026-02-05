@@ -207,11 +207,9 @@ module Decidim
 
       def category_image_path(cat)
         return unless has_category?
-        return unless cat.respond_to?(:category_image)
-        return unless cat.category_image
-        return unless cat.category_image.attached?
+        return unless cat.respond_to?(:category_image_url_for)
 
-        cat.attached_uploader(:category_image).variant_url(category_image_variant)
+        cat.category_image_url_for(model, category_image_variant)
       end
 
       def category_image_variant
