@@ -31,17 +31,8 @@ gem "puma", ">= 6.4.2"
 
 gem "faker", "~> 3.2.2"
 
-# This locks nokogiri to a version < 1.17 so it doesn't cause issues
-gem "nokogiri", "1.16.8"
-
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-
-  # rubocop & rubocop-rspec are set to the following versions because of a change where FactoryBot/CreateList
-  # must be a boolean instead of contextual. These version locks can be removed when this problem is handled
-  # through decidim-dev.
-  gem "rubocop", "~>1.28"
-  gem "rubocop-rspec", "2.20"
 
   # Fix issue with simplecov-cobertura
   # See: https://github.com/jessebs/simplecov-cobertura/pull/44
@@ -54,7 +45,5 @@ group :development do
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.8"
   gem "rubocop-faker"
-  gem "spring", "~> 4.1.3"
-  gem "spring-watcher-listen", "~> 2.1"
   gem "web-console", "~> 4.2"
 end
