@@ -8,18 +8,18 @@ module Decidim
       end
 
       def withdrawable?
-        return unless from_context
-        return unless plans_controller?
-        return if index_action?
+        return false unless from_context
+        return false unless plans_controller?
+        return false if index_action?
 
         from_context.withdrawable_by?(current_user)
       end
 
       def flaggable?
-        return unless from_context
-        return unless plans_controller?
-        return if index_action?
-        return if from_context.try(:official?)
+        return false unless from_context
+        return false unless plans_controller?
+        return false if index_action?
+        return false if from_context.try(:official?)
 
         true
       end

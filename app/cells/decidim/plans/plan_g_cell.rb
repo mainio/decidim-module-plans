@@ -108,7 +108,8 @@ module Decidim
       def state_class
         return "success" if model.accepted?
         return "warning" if model.evaluating?
-        return "alert" if model.answered? || model.rejected? || model.withdrawn?
+
+        "alert" if model.answered? || model.rejected? || model.withdrawn?
       end
 
       def comments_count_status
@@ -155,7 +156,7 @@ module Decidim
         model_body = strip_tags(body)
 
         if options[:full_description]
-          model_body.gsub(/\n/, "<br>")
+          model_body.gsub("\n", "<br>")
         else
           truncate(model_body, length: 100)
         end

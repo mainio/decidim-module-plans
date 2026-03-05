@@ -7,7 +7,7 @@ module Decidim
       class PlanSectionsForm < Decidim::Form
         include Decidim::ApplicationHelper
 
-        attribute :sections, Array[SectionForm]
+        attribute :sections, [SectionForm]
 
         def map_model(sections)
           self.sections = sections.map do |section|
