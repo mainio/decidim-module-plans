@@ -20,7 +20,7 @@
         <tbody>
           <% plan.authors.each do |author| %>
             <tr data-id="<%= author.id %>">
-              <td><%= author.name %></td>
+              <td><%= translated_attribute author.name %></td>
               <td>
                 <% if author.is_a?(Decidim::Organization) %>
                   (<%= t(".organization_author") %>)
