@@ -1,5 +1,5 @@
 <% plans.each do |plan| %>
-  <%= render partial: "decidim/plans/plans/plan.html", locals: {
+  <%= render partial: "decidim/plans/plans/plan", formats: [:html], locals: {
     plan: plan,
     card_cell: defined?(card_cell) ? card_cell : nil
   } %>

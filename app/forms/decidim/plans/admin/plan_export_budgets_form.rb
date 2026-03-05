@@ -11,11 +11,11 @@ module Decidim
         attribute :scope_id, Integer
         attribute :area_scope_id, Integer
         attribute :target_component_id, Integer
-        attribute :target_details, Array[PlanExportBudgetsTargetDetailsForm]
+        attribute :target_details, [PlanExportBudgetsTargetDetailsForm]
         attribute :default_budget_amount, Integer
         attribute :export_all_closed_plans, Boolean
 
-        attribute :content_sections, Array[Integer]
+        attribute :content_sections, [Integer]
         attribute :budget_section, Integer
         attribute :summary_section, Integer
         attribute :image_section, Integer

@@ -20,7 +20,7 @@ module Decidim
             # In case the search term starts with a hash character and contains
             # only numbers, the user wants to search with the ID.
             query = if params[:term] =~ /^#[0-9]+$/
-                      idterm = params[:term].sub(/#/, "")
+                      idterm = params[:term].sub("#", "")
                       query&.where(
                         "decidim_plans_plans.id::text like ?",
                         "%#{idterm}%"

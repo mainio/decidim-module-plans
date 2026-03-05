@@ -81,10 +81,10 @@ module Decidim
 
       def plans
         @plans ||= Decidim.find_resource_manifest(:plans).try(:resource_scope, component)
-                     &.published
-                     &.not_hidden
-                     &.except_withdrawn
-                     &.order(id: :asc)
+                          &.published
+                          &.not_hidden
+                          &.except_withdrawn
+                          &.order(id: :asc)
       end
 
       def plans_collection_name

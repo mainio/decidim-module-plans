@@ -7,7 +7,7 @@ module Decidim
       class LinkProposalsForm < Decidim::Plans::ContentData::BaseForm
         mimic :plan_link_proposals
 
-        attribute :proposal_ids, Array[Integer]
+        attribute :proposal_ids, [Integer]
 
         validates :proposal_ids, presence: true, if: ->(form) { form.mandatory }
 

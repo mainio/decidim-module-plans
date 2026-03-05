@@ -15,20 +15,21 @@ module Decidim
             query = Decidim
                     .find_resource_manifest(:proposals)
                     .try(:resource_scope, current_component)
-                    &.order(title: :asc)
-                    &.where("state IS NULL OR state != ?", -10)
+                    .joins(:proposal_state)
+                    &.order("decidim_proposals_proposals.title ASC")
+                    &.where&.not(decidim_proposals_proposal_states: { token: "rejected" })
                     &.where&.not(published_at: nil)
 
             # In case the search term starts with a hash character and contains
             # only numbers, the user wants to search with the ID.
             query = if params[:term] =~ /^#[0-9]+$/
-                      idterm = params[:term].sub(/#/, "")
+                      idterm = params[:term].sub("#", "")
                       query&.where(
                         "decidim_proposals_proposals.id::text like ?",
                         "%#{idterm}%"
                       )
                     else
-                      query&.where("title->>'#{current_locale}' ilike ?", "%#{params[:term]}%")
+                      query&.where("decidim_proposals_proposals.title->>'#{current_locale}' ilike ?", "%#{params[:term]}%")
                     end
 
             proposals_list = query.all.collect do |p|

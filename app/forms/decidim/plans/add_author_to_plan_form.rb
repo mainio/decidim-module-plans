@@ -8,7 +8,7 @@ module Decidim
 
       # The field is named "recipient_id" because this is the default field name
       # added by the mentions script.
-      attribute :recipient_id, Array[Integer]
+      attribute :recipient_id, [Integer]
 
       def plan
         @plan ||= Decidim::Plans::Plan.find(id) if id

@@ -101,6 +101,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         create_list(
           :proposal,
           amount,
+          :not_answered,
           :published,
           component: proposal_component
         )
@@ -108,14 +109,14 @@ describe Decidim::Plans::AttachedProposalsHelper do
           :proposal,
           amount,
           :accepted,
-          published_at: Time.current,
+          :published,
           component: proposal_component
         )
         create_list(
           :proposal,
           amount,
           :rejected,
-          published_at: Time.current,
+          :published,
           component: proposal_component
         )
       end
@@ -134,12 +135,13 @@ describe Decidim::Plans::AttachedProposalsHelper do
         # json
         proposals = Decidim::Proposals::Proposal.where(
           component: proposal_component
+        ).joins(
+          :proposal_state
         ).where.not(
           published_at: nil
-        ).where(
-          "state IS NULL OR state != ?",
-          -10
-        ).order(title: :asc).all.collect { |p| ["#{translated(p.title)} (##{p.id})", p.id] }
+        ).where.not(
+          decidim_proposals_proposal_states: { token: "rejected" }
+        ).order("decidim_proposals_proposals.title ASC").all.collect { |p| ["#{translated(p.title)} (##{p.id})", p.id] }
         expect(helper).to receive(:render).with(
           hash_including(
             json: proposals
@@ -157,6 +159,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         create(
           :proposal,
           :published,
+          :evaluating,
           component: proposal_component,
           title:
         )
@@ -220,6 +223,7 @@ describe Decidim::Plans::AttachedProposalsHelper do
         create(
           :proposal,
           :published,
+          :evaluating,
           component: proposal_component
         )
       end
