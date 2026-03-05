@@ -31,11 +31,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "decidim-feedback", Decidim::Plans.decidim_version
   spec.add_dependency "decidim-tags", Decidim::Plans.decidim_version
   spec.add_dependency "paper_trail-association_tracking", "~> 2.0"
-
-  spec.add_development_dependency "decidim-admin", Decidim::Plans.decidim_version
-  spec.add_development_dependency "decidim-assemblies", Decidim::Plans.decidim_version
-  spec.add_development_dependency "decidim-budgets", Decidim::Plans.decidim_version
-  spec.add_development_dependency "decidim-dev", Decidim::Plans.decidim_version
-  spec.add_development_dependency "decidim-participatory_processes", Decidim::Plans.decidim_version
-  spec.add_development_dependency "decidim-proposals", Decidim::Plans.decidim_version
 end

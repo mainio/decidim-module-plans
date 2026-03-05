@@ -15,17 +15,13 @@ DECIDIM_VERSION = Decidim::Plans.decidim_version
 gem "decidim", DECIDIM_VERSION
 gem "decidim-proposals", DECIDIM_VERSION
 
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "main"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.28-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.28-stable"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback"
+gem "decidim-tags", github: "mainio/decidim-module-tags"
 
 gem "decidim-plans", path: "."
 
 gem "bootsnap", "~> 1.17"
-
-# This is a temporary fix for: https://github.com/rails/rails/issues/54263
-# Without this downgrade Activesupport will give error for missing Logger
-gem "concurrent-ruby", "1.3.4"
 
 gem "puma", ">= 6.4.2"
 
@@ -42,6 +38,10 @@ group :development, :test do
 end
 
 group :development do
+  gem "decidim-admin", DECIDIM_VERSION
+  gem "decidim-assemblies", DECIDIM_VERSION
+  gem "decidim-budgets", DECIDIM_VERSION
+  gem "decidim-participatory_processes", DECIDIM_VERSION
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.8"
   gem "rubocop-faker"
