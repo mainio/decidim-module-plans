@@ -177,6 +177,11 @@ module Decidim
           .where("decidim_coauthorships.decidim_author_id = ? AND decidim_coauthorships.decidim_author_type = ? ", author.id, author.class.base_class.name)
       end
 
+      # Required method by the DownloadYourData export.
+      def self.download_your_data_images(_author)
+        nil
+      end
+
       # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       def self.geocoded_data_for(component, published_only: true)
         types = %w(
