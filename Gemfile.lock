@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/mainio/decidim-module-favorites.git
   revision: ec98fcfa06b21160abd5b6a68325e5c0d4c398b3
+  branch: release/0.29-stable
   specs:
     decidim-favorites (0.29.0)
       decidim-core (~> 0.29.0)
@@ -9,6 +10,7 @@ GIT
 GIT
   remote: https://github.com/mainio/decidim-module-feedback.git
   revision: a036a4d9a2beda01c5279e57a7e525eba995b0c8
+  branch: release/0.29-stable
   specs:
     decidim-feedback (0.29.0)
       decidim-admin (~> 0.29.0)
