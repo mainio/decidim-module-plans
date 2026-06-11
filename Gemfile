@@ -15,9 +15,9 @@ DECIDIM_VERSION = Decidim::Plans.decidim_version
 gem "decidim", DECIDIM_VERSION
 gem "decidim-proposals", DECIDIM_VERSION
 
-gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "release/0.29-stable"
-gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "release/0.29-stable"
-gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "release/0.29-stable"
+gem "decidim-favorites", github: "mainio/decidim-module-favorites", branch: "main"
+gem "decidim-feedback", github: "mainio/decidim-module-feedback", branch: "main"
+gem "decidim-tags", github: "mainio/decidim-module-tags", branch: "main"
 
 gem "decidim-plans", path: "."
 

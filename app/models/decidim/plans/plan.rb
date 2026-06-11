@@ -11,6 +11,7 @@ module Decidim
       include Decidim::HasComponent
       include Decidim::ScopableResource
       include Decidim::HasCategory
+      include Decidim::Taxonomizable
       include Decidim::Reportable
       include Decidim::HasAttachments
       include Decidim::Followable
@@ -393,6 +394,14 @@ module Decidim
           :with_any_tag,
           :related_to
         ]
+      end
+
+      def self.ransackable_attributes(_auth_object = nil)
+        %w(search_text)
+      end
+
+      def self.ransackable_associations(_auth_object = nil)
+        []
       end
 
       def self.export_serializer

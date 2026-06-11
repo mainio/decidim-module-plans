@@ -26,6 +26,7 @@ module Decidim
             id: plan.scope.try(:id),
             name: plan.scope.try(:name)
           },
+          taxonomies: serialize_taxonomies, 
           participatory_space: {
             id: plan.participatory_space.id,
             url: Decidim::ResourceLocatorPresenter.new(plan.participatory_space).url
@@ -87,6 +88,15 @@ module Decidim
 
       def url
         Decidim::ResourceLocatorPresenter.new(plan).url
+      end
+
+      def serialize_taxonomies
+        plan.taxonomies.map do |taxonomy|
+          {
+            id: taxonomy.id,
+            name: taxonomy.name
+          }
+        end
       end
     end
   end
