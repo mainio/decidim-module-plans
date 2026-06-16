@@ -26,8 +26,7 @@ RSpec.describe "PlanSearch" do
     )
   end
 
-  it_behaves_like "a resource search with scopes", :plan
-  it_behaves_like "a resource search with categories", :plan
+  it_behaves_like "a resource search with taxonomies", :plan
 
   context "without filters" do
     let(:plan) { create(:plan, component:) }

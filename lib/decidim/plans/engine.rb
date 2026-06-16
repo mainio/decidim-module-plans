@@ -107,6 +107,14 @@ module Decidim
           type.content_control_class_name = "Decidim::Plans::SectionControl::Category"
           type.api_type_class_name = "Decidim::Plans::SectionContent::FieldCategoryType"
         end
+
+        registry.register(:field_taxonomy) do |type|
+          type.edit_cell = "decidim/plans/section_type_edit/field_taxonomy"
+          type.display_cell = "decidim/plans/section_type_display/field_taxonomy"
+          type.content_form_class_name = "Decidim::Plans::ContentData::FieldTaxonomyForm"
+          type.content_control_class_name = "Decidim::Plans::SectionControl::Taxonomy"
+        end
+
         registry.register(:field_tags) do |type|
           type.edit_cell = "decidim/plans/section_type_edit/field_tags"
           type.display_cell = "decidim/plans/section_type_display/field_tags"

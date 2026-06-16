@@ -302,6 +302,7 @@ module Decidim
           with_any_state: "",
           with_any_scope: nil,
           with_any_tag: [],
+          with_any_taxonomies: [],
           related_to: "",
           activity: "",
           section: default_section_filter_params

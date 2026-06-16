@@ -203,7 +203,44 @@ import "src/decidim/plans/exit_handler";
       $(".address-input", $form).each((_j, addressEl) => {
         bindAddressLookup($(addressEl));
       });
+      const bindTaxonomySelectors = () => {
+        $("[data-taxonomy-filter]").each((_k, select) => {
+          const $filterGroup = $(select).closest("[data-filter-group]");
+          const subDivs = {};
 
+          // Store and remove all sub-taxonomy divs from DOM
+          $filterGroup.find("[data-parent-taxonomy]").each((_j, div) => {
+            const $div = $(div);
+            const parentId = $div.data("parent-taxonomy");
+            subDivs[parentId] = $div;
+            $div.detach();
+          });
+
+          // Re-attach if a child was already selected (edit mode)
+          Object.entries(subDivs).forEach(([parentId, $div]) => {
+            const childVal = $div.find("select").val();
+            if (childVal) {
+              $(select).val(parentId);
+              $filterGroup.append($div);
+            }
+          });
+
+          $(select).on("change.decidim.plans", (ev) => {
+            // Remove all sub-taxonomy divs
+            Object.values(subDivs).forEach(($div) => $div.detach());
+            $filterGroup.find("[data-parent-taxonomy]").each((_j, div) => $(div).detach());
+
+            // Append the matching one
+            const selectedValue = $(ev.target).val();
+            if (selectedValue && subDivs[selectedValue]) {
+              $filterGroup.append(subDivs[selectedValue]);
+              $filterGroup.find("[data-parent-taxonomy] select").val("");
+            }
+          });
+        });
+      };
+
+      bindTaxonomySelectors();
       bindFormValidation($form);
     });
   });

@@ -1,0 +1,46 @@
+<div class="field field-taxonomy" id="<%= field_id %>">
+  <%= hidden_field_tag "contents[#{section.id}][taxonomy_ids][]", "" %>
+  
+  <% taxonomy_filters.each do |filter| %>
+    <div data-filter-group="<%= filter.id %>_<%= section.id %>">
+      <div class="row column">
+        <%= content_tag :div, class: field_label_classes do %>
+          <%= plain_label form, :taxonomy_ids, text: translated_attribute(filter.root_taxonomy.name) %>
+          <%= render :tooltip %>
+        <% end %>
+        <%= select_tag(
+          "contents[#{section.id}][taxonomy_ids][]",
+          options_for_select(
+            grouped_filter_taxonomies(filter).map { |id, node| [translated_attribute(node[:taxonomy].name), id] },
+            form.object.taxonomy_ids
+          ),
+          prompt: t(".select_a_taxonomy"),
+          id: "taxonomy_filter_#{filter.id}_#{section.id}",
+          disabled: field_disabled?,
+          data: { taxonomy_filter: "#{filter.id}_#{section.id}" }  # ← matches JS selector
+        ) %>
+      </div>
+
+      <% grouped_filter_taxonomies(filter).each do |id, node| %>
+        <% next if node[:children].blank? %>
+        <div class="row column ml-4 pl-2"
+             id="sub_taxonomy_<%= id %>"                       
+             data-parent-taxonomy="<%= id %>">
+          <label class="text-sm">
+            <%= t(".select_a_sub_taxonomy") %>
+          </label>
+          <%= select_tag(
+            "contents[#{section.id}][taxonomy_ids][]",
+            options_for_select(
+              node[:children].map { |child_id, child_node| [translated_attribute(child_node[:taxonomy].name), child_id] },
+              form.object.taxonomy_ids
+            ),
+            prompt: t(".select_a_sub_taxonomy"),
+            id: "sub_taxonomy_select_#{id}_#{section.id}",
+            disabled: field_disabled?
+          ) %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

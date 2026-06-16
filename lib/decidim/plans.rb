@@ -23,6 +23,7 @@ module Decidim
     autoload :LayoutManifest, "decidim/plans/layout_manifest"
     autoload :LayoutRegistry, "decidim/plans/layout_registry"
     autoload :FormBuilder, "decidim/plans/form_builder"
+    autoload :Seeds, "decidim/plans/seeds"
 
     include ActiveSupport::Configurable
 

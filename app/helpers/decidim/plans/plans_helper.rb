@@ -50,6 +50,31 @@ module Decidim
         end
       end
 
+      def filter_plans_taxonomy_values
+        filter_ids = current_component.settings.taxonomy_filters.map(&:to_i)
+
+        Decidim::TaxonomyFilter
+          .where(id: filter_ids)
+          .includes(filter_items: :taxonomy_item)
+          .map do |filter|
+            items = filter.filter_items.map(&:taxonomy_item)
+            grouped = items.group_by(&:parent_id)
+
+            values = []
+            grouped.each do |parent_id, children|
+              parent = Decidim::Taxonomy.find_by(id: parent_id)
+              next unless parent
+
+              values << [translated_attribute(parent.name), parent.id]
+              children.sort_by { |t| translated_attribute(t.name) }.each do |child|
+                values << ["— #{translated_attribute(child.name)}", child.id]
+              end
+            end
+
+            [filter, values]
+          end
+      end
+
       # Retrieves the first address section which is used for some settings.
       def address_section
         @address_section ||= Decidim::Plans::Section.order(:position).find_by(

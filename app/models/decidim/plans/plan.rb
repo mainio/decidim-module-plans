@@ -392,6 +392,7 @@ module Decidim
           :with_any_scope,
           :with_any_state,
           :with_any_tag,
+          :with_any_taxonomies,
           :related_to
         ]
       end

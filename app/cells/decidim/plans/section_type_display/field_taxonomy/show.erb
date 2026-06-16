@@ -1,0 +1,10 @@
+<% if taxonomies.any? %>
+  <div class="field-taxonomy-display">
+    <%= plain_label form, :taxonomy_ids %>
+    <ul>
+      <% taxonomies.each do |taxonomy| %>
+        <li><%= translated_attribute(taxonomy.name) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

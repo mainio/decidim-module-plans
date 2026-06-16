@@ -83,13 +83,23 @@ module Decidim
           section_type: "field_title"
         )
 
+        Decidim::Plans::Section.create!(
+          component:,
+          body: Decidim::Faker::Localized.literal("Taxonomies"),
+          help: Decidim::Faker::Localized.literal(""),
+          mandatory: false,
+          position: 1,
+          handle: "taxonomy",
+          section_type: "field_taxonomy"
+        )
+
         5.times do |n|
           Decidim::Plans::Section.create!(
             component:,
             body: Decidim::Faker::Localized.paragraph,
             help: Decidim::Faker::Localized.paragraph,
             mandatory: false,
-            position: n + 1,
+            position: n + 2,
             handle: "section_#{n}",
             section_type: "field_text_multiline"
           )
@@ -126,7 +136,7 @@ module Decidim
             plan = Decidim::Plans::Plan.new(
               component:,
               category: participatory_space.categories.sample,
-              scope: Faker::Boolean.boolean(true_ratio: 0.5) ? global : scopes.sample,
+              scope: ::Faker::Boolean.boolean(true_ratio: 0.5) ? global : scopes.sample,
               title: Decidim::Faker::Localized.sentence(word_count: 2),
               state:,
               answer:,
@@ -150,7 +160,7 @@ module Decidim
           end
 
           # Assign taxonomies on top of legacy category/scope
-          assign_taxonomies(plan, selected_filters)
+          assign_taxonomies(plan, selected_filters, component)
 
           if n.positive?
             Decidim::User.where(decidim_organization_id: participatory_space.decidim_organization_id).all.sample(n).each do |author|
@@ -160,6 +170,8 @@ module Decidim
           end
 
           Decidim::Plans::Section.where(component:).each do |section|
+            next if section.section_type == "field_taxonomy"
+
             plan.contents.create!(
               body: Decidim::Faker::Localized.paragraph,
               section:,
@@ -179,12 +191,30 @@ module Decidim
         @organization ||= participatory_space.organization
       end
 
-      def assign_taxonomies(plan, filter_ids)
+      def assign_taxonomies(plan, filter_ids, component)
+        taxonomy_section = Decidim::Plans::Section.find_by(
+          component:,
+          section_type: "field_taxonomy"
+        )
+
+        selected_taxonomy_ids = []
+
         Decidim::TaxonomyFilter.where(id: filter_ids).each do |filter|
           taxonomy_ids = filter.filter_items.map(&:taxonomy_item_id)
           next if taxonomy_ids.empty?
 
-          plan.taxonomizations.find_or_create_by(taxonomy_id: taxonomy_ids.sample)
+          taxonomy_id = taxonomy_ids.sample
+          plan.taxonomizations.find_or_create_by(taxonomy_id:)
+          selected_taxonomy_ids << taxonomy_id
+        end
+
+        # Create the content record for the field_taxonomy section
+        if taxonomy_section && selected_taxonomy_ids.any?
+          plan.contents.create!(
+            section: taxonomy_section,
+            body: { taxonomy_ids: selected_taxonomy_ids },
+            user: admin_user
+          )
         end
       end
     end

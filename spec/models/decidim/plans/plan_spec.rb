@@ -14,8 +14,7 @@ module Decidim
 
       include_examples "coauthorable"
       include_examples "has component"
-      include_examples "has scope"
-      include_examples "has category"
+      include_examples "has taxonomies"
       include_examples "reportable"
 
       it { is_expected.to be_valid }

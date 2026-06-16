@@ -8,6 +8,7 @@ module Decidim
         include Decidim::ApplicationHelper
 
         helper Plans::ApplicationHelper
+        helper Plans::Admin::SectionsHelper
 
         helper_method :blank_section, :section_types, :attachment_input_types
 

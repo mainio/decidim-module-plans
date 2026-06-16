@@ -78,6 +78,8 @@ en:
             proposal_linking_enabled: Proposal linking enabled
             scopes_enabled: Scopes enabled
             scope_id: Scope ID
+            taxonomy_filters: Taxonomy filters
+            taxonomy_filters_add: Add taxonomy filter
             title_help: Title help text
             title_text: Title text
           step:
@@ -527,6 +529,11 @@ en:
           edit_attachment: Change image
           edit_attachment_multi: Change images
           remove: Remove
+        field_taxonomy:
+          select_a_taxonomy: Choose a primary taxonomy
+          select_a_sub_taxonomy: Choose a subtaxonomy
+          sub_taxonomy_label: Choose a subtaxonomy
+          taxonomy_for: "%{root_taxonomy} taxonomy"
       sections:
         actions:
           new: New section
@@ -542,6 +549,7 @@ en:
         field_number: Field - Number
         field_scope: Field - Scope
         field_tags: Field - Tags
+        field_taxonomy: Field - Taxonomy
         field_text_multiline: Field - Multiple lines
         field_text: Field - Single line
         field_title: Field - Title
