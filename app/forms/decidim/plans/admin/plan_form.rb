@@ -73,6 +73,12 @@ module Decidim
           current_organization
         end
 
+        def valid?(options = {})
+          base_valid = super
+
+          contents.all? { |cf| cf.valid?(options) } && base_valid
+        end
+
         private
 
         # Returns the categories association if the component still supports
