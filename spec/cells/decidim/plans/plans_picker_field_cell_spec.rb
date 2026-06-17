@@ -11,7 +11,7 @@ module Decidim::Plans
 
     let(:dummy_form_class) do
       Class.new(Decidim::Form) do
-        attribute :plan_ids, Array[Integer]
+        attribute :plan_ids, [Integer]
 
         def plans
           Decidim::Plans::Plan.where(id: plan_ids)
@@ -52,11 +52,6 @@ module Decidim::Plans
         it "sets the picker name based on the field" do
           html = my_cell.call
           expect(html).to have_css("[data-picker-name='dummy[plan_ids]']")
-        end
-
-        it "debugs the rendered html" do
-          html = my_cell.call
-          puts html.native.to_s
         end
       end
 
