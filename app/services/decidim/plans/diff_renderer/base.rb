@@ -93,7 +93,7 @@ module Decidim
             last_value = values.last.try(:[], locale) if values.last.is_a? Hash
             next if first_value == last_value
 
-            attribute_locale = "#{attribute}_#{locale}".to_sym
+            attribute_locale = :"#{attribute}_#{locale}"
             diff.update(
               attribute_locale => {
                 type: :string,

@@ -29,7 +29,7 @@ module Decidim
 
         def save!(plan)
           sync_taxonomizations(plan)
-          
+
           super
         end
 

@@ -4,7 +4,6 @@ module Decidim
   module Plans
     module SectionTypeDisplay
       class FieldTaxonomyCell < Decidim::Plans::SectionDisplayCell
-
         def show
           return if taxonomies.empty?
 

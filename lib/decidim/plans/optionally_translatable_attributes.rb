@@ -37,7 +37,7 @@ module Decidim
             opts[:if] = proc { |record|
               current_locale.to_sym == locale.to_sym && !multilingual_proc.call(record) && if_conditional_proc.call(record)
             }
-            localized_attribute = "#{attribute}_#{locale}".to_sym
+            localized_attribute = :"#{attribute}_#{locale}"
             validates localized_attribute, opts
           end
         end

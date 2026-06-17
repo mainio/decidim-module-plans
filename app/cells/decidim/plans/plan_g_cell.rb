@@ -25,7 +25,7 @@ module Decidim
           end
         else
           aria_options = { role: "region" }
-          content_tag :div, **aria_options.merge(wrapper_options) do
+          content_tag :div, **aria_options, **wrapper_options do
             yield
           end
         end

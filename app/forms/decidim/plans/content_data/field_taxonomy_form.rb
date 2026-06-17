@@ -6,7 +6,7 @@ module Decidim
       class FieldTaxonomyForm < Decidim::Plans::ContentData::BaseForm
         mimic :plan_taxonomy_field
 
-        attribute :taxonomy_ids, Array[Integer]
+        attribute :taxonomy_ids, [Integer]
 
         validates :taxonomy_ids, presence: true, if: ->(form) { form.mandatory }
 
@@ -27,6 +27,7 @@ module Decidim
 
         def body=(data)
           return unless data.is_a?(Hash)
+
           self.taxonomy_ids = Array(data["taxonomy_ids"] || data[:taxonomy_ids])
         end
 

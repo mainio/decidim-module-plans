@@ -60,7 +60,7 @@ module Decidim::Plans
       it "renders only the taxonomies that still exist" do
         html = my_cell.call
         expect(html).to have_content(translated(other_taxonomy.name))
-        expect(html).not_to have_content(translated(taxonomy.name))
+        expect(html).to have_no_content(translated(taxonomy.name))
       end
     end
 

@@ -16,10 +16,10 @@ module Decidim
       implements Decidim::Favorites::Api::FavoritesInterface
       implements Decidim::Tags::TagsInterface
 
-      field :id, GraphQL::Types::ID, null: false
-      field :title, Decidim::Core::TranslatedFieldType, description: "This plan's title", null: false
-      field :state, GraphQL::Types::String, description: "The answer status in which plan is in", null: true
       field :answer, Decidim::Core::TranslatedFieldType, description: "The answer feedback for the status for this plan", null: true
+      field :id, GraphQL::Types::ID, description: "ID", null: false
+      field :state, GraphQL::Types::String, description: "The answer status in which plan is in", null: true
+      field :title, Decidim::Core::TranslatedFieldType, description: "This plan's title", null: false
 
       field :closed_at, Decidim::Core::DateTimeType, null: true do
         description "The date and time this plan was closed"

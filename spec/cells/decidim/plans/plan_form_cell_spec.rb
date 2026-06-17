@@ -38,7 +38,7 @@ describe Decidim::Plans::PlanFormCell, type: :cell do
       sections.each do |section|
         case section.section_type
         when "field_category"
-          expect(subject).not_to have_content(translated(section.body))
+          expect(subject).to have_no_content(translated(section.body))
           next
         when "field_taxonomy"
           # The taxonomy field's label is derived from the root taxonomy name,

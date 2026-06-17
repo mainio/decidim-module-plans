@@ -11,9 +11,9 @@ module Decidim
 
         implements Decidim::Plans::Api::ContentInterface
 
-        field :value, GraphQL::Types::Int, description: "The answer response.", null: true
-        field :unit, GraphQL::Types::String, description: "The currency unit.", null: false
         field :text, GraphQL::Types::String, description: "The answer response as formatted text.", null: true
+        field :unit, GraphQL::Types::String, description: "The currency unit.", null: false
+        field :value, GraphQL::Types::Int, description: "The answer response.", null: true
 
         def value
           return nil unless object.body
@@ -28,7 +28,7 @@ module Decidim
         def text
           return nil unless value
 
-          precision = (value % 1).zero? ? 0 : 2
+          precision = 0.zero? ? 0 : 2
           number_to_currency(
             value,
             unit:,

@@ -26,7 +26,7 @@ module Decidim
             id: plan.scope.try(:id),
             name: plan.scope.try(:name)
           },
-          taxonomies: serialize_taxonomies, 
+          taxonomies: serialize_taxonomies,
           participatory_space: {
             id: plan.participatory_space.id,
             url: Decidim::ResourceLocatorPresenter.new(plan.participatory_space).url
@@ -49,7 +49,7 @@ module Decidim
         # Add section content
         plan.sections.each do |sect|
           content = plan.contents.find_by(section: sect)
-          values["section_#{sect.id}".to_sym] = {
+          values[:"section_#{sect.id}"] = {
             title: sect.body,
             value: content.try(:body)
           }

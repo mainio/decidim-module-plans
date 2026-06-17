@@ -30,7 +30,7 @@ module Decidim
         end
 
         def currency_precision
-          (number % 1).zero? ? 0 : 2
+          0.zero? ? 0 : 2
         end
 
         def currency_type?

@@ -35,12 +35,14 @@ A typical query would look like:
             the withdrawn plans will not be included.
           DESC
         required: false,
-        prepare: lambda { |states, _ctx|
-                   valid = %w(open accepted evaluating rejected withdrawn) & states
-                   valid << nil if valid.include?("open")
-                   { state: valid } if valid.any?
-                 }
+        prepare: :prepare_state
       )
+
+      def self.prepare_state(states, _ctx)
+        valid = %w(open accepted evaluating rejected withdrawn) & states
+        valid << nil if valid.include?("open")
+        { state: valid } if valid.any?
+      end
     end
   end
 end

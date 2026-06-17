@@ -6,21 +6,21 @@ module Decidim
       graphql_name "PlanMutation"
       description "A plan which includes its available mutations"
 
-      field :id, GraphQL::Types::ID, null: false
+      field :id, GraphQL::Types::ID, description: "ID", null: false
 
       field :update, Decidim::Plans::PlanType, null: true do
         description "The content mutations to be updated."
 
+        argument :contents, [Decidim::Plans::ContentMutationAttributes], description: "Contents", required: true
         argument :title, GraphQL::Types::JSON, description: "The plan title localized hash, e.g. {\"en\": \"English title\"}", required: false
-        argument :contents, [Decidim::Plans::ContentMutationAttributes], required: true
         argument :version_comment, GraphQL::Types::JSON, description: "The plan version comment localized hash, e.g. {\"en\": \"Fixed a typo\"}", required: false
       end
 
       field :answer, Decidim::Plans::PlanType, null: true do
         description "Answer a plan"
 
-        argument :state, GraphQL::Types::String, description: "The answer status in which plan is in. Can be one of 'accepted', 'rejected' or 'evaluating'", required: true
         argument :answer_content, GraphQL::Types::JSON, description: "The answer feedback for the status for this plan", required: false
+        argument :state, GraphQL::Types::String, description: "The answer status in which plan is in. Can be one of 'accepted', 'rejected' or 'evaluating'", required: true
       end
 
       def update(contents:, title: nil, version_comment: nil)
@@ -173,8 +173,10 @@ module Decidim
         }
       end
 
+      # rubocop:disable GraphQL/ObjectDescription
       class ::Decidim::Plans::ActionForbidden < StandardError
       end
+      # rubocop:enable GraphQL/ObjectDescription
     end
   end
 end

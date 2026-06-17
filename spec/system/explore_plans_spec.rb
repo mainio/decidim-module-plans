@@ -350,9 +350,9 @@ describe "ExplorePlans" do
         plan = Decidim::Plans::Plan.last
         content = plan.contents.find_by(section: taxonomy_section)
 
-        expect(content.body["taxonomy_ids"]).to match_array([parent_taxonomy.id, taxonomy.id])
+        expect(content.body["taxonomy_ids"]).to contain_exactly(parent_taxonomy.id, taxonomy.id)
         expect(plan.taxonomizations.count).to eq(2)
-        expect(plan.taxonomizations.pluck(:taxonomy_id)).to match_array([parent_taxonomy.id, taxonomy.id])
+        expect(plan.taxonomizations.pluck(:taxonomy_id)).to contain_exactly(parent_taxonomy.id, taxonomy.id)
       end
 
       context "when updating plan with taxonomy" do
@@ -402,7 +402,7 @@ describe "ExplorePlans" do
           expect(page).to have_content("saved successfully").or have_content("Updated successfully")
 
           content = plan.contents.reload.find_by(section: taxonomy_section)
-          expect(content.body["taxonomy_ids"]).to match_array([parent_taxonomy.id, other_taxonomy.id])
+          expect(content.body["taxonomy_ids"]).to contain_exactly(parent_taxonomy.id, other_taxonomy.id)
         end
       end
     end

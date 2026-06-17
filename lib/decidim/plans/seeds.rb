@@ -9,6 +9,7 @@ module Decidim
         @participatory_space = participatory_space
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       def call
         step_settings = if participatory_space.allows_steps?
                           { participatory_space.active_step.id => { creation_enabled: true } }
@@ -182,6 +183,7 @@ module Decidim
           Decidim::Comments::Seed.comments_for(plan)
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
       private
 

@@ -17,7 +17,7 @@ describe Decidim::Plans::PlanSerializer do
 
   describe "#serialize" do
     it "serializes the plan to correct format" do
-      sectionkeys = plan.sections.map { |s| "section_#{s.id}".to_sym }
+      sectionkeys = plan.sections.map { |s| :"section_#{s.id}" }
 
       expect(subject.serialize.keys).to include(
         *[
