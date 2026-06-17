@@ -164,7 +164,7 @@ describe "ExplorePlans" do
           expect(page).to have_link("Go to proposals list", href: decidim_plan.plans_path)
           expect(page).to have_button("Publish")
           expect(page).to have_link("Modify", href: decidim_plan.edit_plan_path(created_plan.id))
-          expect(page).to have_css("span", text: "Withdraw proposal")
+          expect(page).to have_css("span", text: "Withdraw")
           expect(page).to have_content("Version 1 (of 1)")
           within ".card-data__item.authors_status" do
             expect(page).to have_content("1")
@@ -223,8 +223,8 @@ describe "ExplorePlans" do
         end
 
         it "withdraws the plan" do
-          expect(page).to have_link("Withdraw proposal")
-          click_on "Withdraw proposal"
+          expect(page).to have_link("Withdraw")
+          click_on "Withdraw"
           expect(page).to have_content("Are you sure you want to withdraw this proposal?")
           click_on "OK"
           expect(page).to have_content("Item withdrawn successfully.")
@@ -303,6 +303,106 @@ describe "ExplorePlans" do
 
           expect(page).to have_content(translated(plan.title))
           expect(page).to have_content("Update text")
+        end
+      end
+    end
+
+    describe "plan with taxonomy" do
+      let(:root_taxonomy) { create(:taxonomy, organization:, skip_injection: true) }
+      let(:parent_taxonomy) { create(:taxonomy, parent: root_taxonomy, organization:, skip_injection: true) }
+      let(:taxonomy) { create(:taxonomy, parent: parent_taxonomy, organization:, skip_injection: true) }
+      let!(:taxonomy_filter) do
+        create(
+          :taxonomy_filter,
+          root_taxonomy:,
+          participatory_space_manifests: [component.participatory_space.manifest.name]
+        )
+      end
+      let!(:parent_filter_item) do
+        create(:taxonomy_filter_item, taxonomy_filter:, taxonomy_item: parent_taxonomy)
+      end
+      let!(:child_filter_item) do
+        create(:taxonomy_filter_item, taxonomy_filter:, taxonomy_item: taxonomy)
+      end
+      let!(:section) { create(:section, component:, mandatory: true) }
+      let!(:taxonomy_section) { create(:section, :field_taxonomy, component:) }
+
+      before do
+        component.settings = component.settings.to_h.merge(taxonomy_filters: [taxonomy_filter.id])
+        component.save!
+
+        switch_to_host(organization.host)
+        sign_in user
+        visit decidim_plan.new_plan_path
+      end
+
+      it "selects a taxonomy and saves it with the plan" do
+        fill_in "contents[#{section.id}][body_en]", with: "Dummy text"
+
+        select translated(parent_taxonomy.name), from: "taxonomy_filter_#{taxonomy_filter.id}_#{taxonomy_section.id}"
+        expect(page).to have_select("sub_taxonomy_select_#{parent_taxonomy.id}_#{taxonomy_section.id}")
+
+        select translated(taxonomy.name), from: "sub_taxonomy_select_#{parent_taxonomy.id}_#{taxonomy_section.id}"
+
+        click_on "Save as draft"
+        expect(page).to have_content("Created successfully.")
+
+        plan = Decidim::Plans::Plan.last
+        content = plan.contents.find_by(section: taxonomy_section)
+
+        expect(content.body["taxonomy_ids"]).to match_array([parent_taxonomy.id, taxonomy.id])
+        expect(plan.taxonomizations.count).to eq(2)
+        expect(plan.taxonomizations.pluck(:taxonomy_id)).to match_array([parent_taxonomy.id, taxonomy.id])
+      end
+
+      context "when updating plan with taxonomy" do
+        let!(:plan) { create(:plan, :open, component:, published_at: nil, users: [user]) }
+        let!(:text_content) { create(:content, section:, plan:, body: { en: "Existing text" }) }
+        let!(:taxonomy_content) do
+          create(:content, section: taxonomy_section, plan:, body: { "taxonomy_ids" => [parent_taxonomy.id, taxonomy.id] })
+        end
+
+        before do
+          component.settings = component.settings.to_h.merge(taxonomy_filters: [taxonomy_filter.id])
+          component.save!
+
+          plan.taxonomizations.find_or_create_by(taxonomy_id: parent_taxonomy.id)
+          plan.taxonomizations.find_or_create_by(taxonomy_id: taxonomy.id)
+
+          switch_to_host(organization.host)
+          sign_in user
+          visit decidim_plan.edit_plan_path(plan.id)
+        end
+
+        it "pre-populates the parent select and reveals the sub-taxonomy select with the correct value" do
+          parent_select = find("select##{"taxonomy_filter_#{taxonomy_filter.id}_#{taxonomy_section.id}"}")
+          expect(parent_select.value).to eq(parent_taxonomy.id.to_s)
+
+          sub_select_id = "sub_taxonomy_select_#{parent_taxonomy.id}_#{taxonomy_section.id}"
+          expect(page).to have_select(sub_select_id)
+
+          sub_div = find("#sub_taxonomy_#{parent_taxonomy.id}")
+          expect(sub_div[:class]).not_to include("hide")
+          expect(sub_div[:class]).not_to include("hidden")
+
+          sub_select = find("select##{sub_select_id}")
+          expect(sub_select.value).to eq(taxonomy.id.to_s)
+        end
+
+        it "allows changing the sub-taxonomy and persists the new selection" do
+          other_taxonomy = create(:taxonomy, parent: parent_taxonomy, organization:, skip_injection: true)
+          create(:taxonomy_filter_item, taxonomy_filter:, taxonomy_item: other_taxonomy)
+
+          visit decidim_plan.edit_plan_path(plan.id)
+
+          sub_select_id = "sub_taxonomy_select_#{parent_taxonomy.id}_#{taxonomy_section.id}"
+          select translated(other_taxonomy.name), from: sub_select_id
+
+          click_on "Save as draft"
+          expect(page).to have_content("saved successfully").or have_content("Updated successfully")
+
+          content = plan.contents.reload.find_by(section: taxonomy_section)
+          expect(content.body["taxonomy_ids"]).to match_array([parent_taxonomy.id, other_taxonomy.id])
         end
       end
     end

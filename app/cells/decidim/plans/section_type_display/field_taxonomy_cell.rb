@@ -14,7 +14,7 @@ module Decidim
         private
 
         def taxonomy_ids
-          Array(body["taxonomy_ids"]).map(&:to_i).reject(&:zero?)
+          Array(model.body["taxonomy_ids"]).map(&:to_i).reject(&:zero?)
         end
 
         def taxonomies

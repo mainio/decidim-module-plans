@@ -22,8 +22,6 @@ module Decidim
 
         validate :scope_belongs_to_participatory_space_scope
 
-        delegate :categories, to: :current_component
-
         def self.from_params(params, additional_params = {})
           form = super
           form.contents = form.contents.map do |section_params|
@@ -50,8 +48,10 @@ module Decidim
 
         # Finds the Category from the category_id.
         #
-        # Returns a Decidim::Category
+        # Returns a Decidim::Category or nil if categories are unavailable.
         def category
+          return unless categories
+
           @category ||= categories.find_by(id: category_id)
         end
 
@@ -74,6 +74,15 @@ module Decidim
         end
 
         private
+
+        # Returns the categories association if the component still supports
+        # it, otherwise nil. Categories were removed from core components in
+        # Decidim v0.30.
+        def categories
+          return unless current_component.respond_to?(:categories)
+
+          current_component.categories
+        end
 
         def scope_belongs_to_participatory_space_scope
           errors.add(:scope_id, :invalid) if current_participatory_space.out_of_scope?(scope)

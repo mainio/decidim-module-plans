@@ -3,34 +3,25 @@
 module Decidim
   module Plans
     # This cell renders:
-    # - The category of a resource shown with the translated name (parent)
-    # - The scope of a resource shown with the translated name (parent)
+    # - The taxonomies of a resource shown with the translated name
     # - The assigned tags from the plans
     #
     # The context `resource` must be present example use inside another `cell`:
-    #   <%= cell("decidim/category", model.category, context: {resource: model}) %>
+    #   <%= cell("decidim/plans/tags", model, context: {resource: model}) %>
     #
     class TagsCell < Decidim::TagsCell
       def show
-        render if category? || scope? || taggings?
-      end
-
-      def taggings
-        render if taggings?
+        render if taxonomies.any? || taggings?
       end
 
       private
 
-      def category?
-        model.category.present?
-      end
-
-      def scope?
-        model.scope.present?
-      end
-
       def taggings?
         model.tags.any?
+      end
+
+      def taggings_path
+        resource_locator(model).index(filter: { tag_id: model.tags.map { |tag| tag.id.to_s } })
       end
 
       def tag_name(tag)

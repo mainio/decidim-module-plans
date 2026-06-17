@@ -36,6 +36,17 @@ describe Decidim::Plans::PlanFormCell, type: :cell do
   context "when rendering" do
     it "renders the form" do
       sections.each do |section|
+        case section.section_type
+        when "field_category"
+          expect(subject).not_to have_content(translated(section.body))
+          next
+        when "field_taxonomy"
+          # The taxonomy field's label is derived from the root taxonomy name,
+          # not from section.body, so check for that instead.
+          expect(subject).to have_content(translated(taxonomy_filter.root_taxonomy.name))
+          next
+        end
+
         expect(subject).to have_content(translated(section.body))
 
         case section.section_type

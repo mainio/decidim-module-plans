@@ -29,22 +29,11 @@ module Decidim
 
         def grouped_filter_taxonomies(filter)
           groups = {}
-          filter_ids = filter.taxonomies.keys.map(&:to_i)
 
           filter.taxonomies.each do |id, node|
-            taxonomy = node[:taxonomy]
-            parent_id = taxonomy.parent_id
-
-            if parent_id.present? && parent_id != filter.root_taxonomy_id && filter_ids.exclude?(parent_id)
-              parent = Decidim::Taxonomy.find_by(id: parent_id)
-              next unless parent
-
-              groups[parent.id] ||= { taxonomy: parent, children: {} }
-              groups[parent.id][:children][id] = node
-            else
-              groups[id] ||= { taxonomy: taxonomy, children: {} }
-            end
+            groups[id] = { taxonomy: node[:taxonomy], children: node[:children] }
           end
+
           groups
         end
       end

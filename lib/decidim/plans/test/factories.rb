@@ -40,6 +40,10 @@ FactoryBot.define do
       section_type { "field_checkbox" }
     end
 
+    trait :field_taxonomy do
+      section_type { "field_taxonomy" }
+    end
+
     trait :field_scope do
       transient do
         scope_parent { create(:scope, organization: component.organization) }
@@ -121,6 +125,15 @@ FactoryBot.define do
     trait :field_checkbox do
       body { { value: Faker::Boolean.boolean } }
       section { create(:section, :field_checkbox, component: plan.component) }
+    end
+
+    trait :field_taxonomy do
+      transient do
+        taxonomy { create(:taxonomy, :with_parent, organization: plan.organization) }
+      end
+
+      body { { taxonomy_ids: [taxonomy.id] } }
+      section { create(:section, :field_taxonomy, component: plan.component) }
     end
 
     trait :field_scope do

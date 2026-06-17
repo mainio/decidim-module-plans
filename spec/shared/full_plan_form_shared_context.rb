@@ -3,6 +3,21 @@
 require "spec_helper"
 
 shared_context "with full plan form" do
+  let(:root_taxonomy) { create(:taxonomy, organization: plan.organization, skip_injection: true) }
+  let(:taxonomy) { create(:taxonomy, parent: root_taxonomy, organization: plan.organization, skip_injection: true) }
+  let(:taxonomy_filter) do
+    create(
+      :taxonomy_filter,
+      root_taxonomy:,
+      participatory_space_manifests: [plan.participatory_space.manifest.name]
+    )
+  end
+
+  before do
+    plan.component.settings = plan.component.settings.to_h.merge(taxonomy_filters: [taxonomy_filter.id])
+    plan.component.save!
+  end
+
   let(:section_types) { Decidim::Plans.section_types.all.map(&:name) }
   let(:sections) do
     section_types.map do |type|
@@ -11,7 +26,11 @@ shared_context "with full plan form" do
   end
   let!(:contents) do
     sections.map do |sect|
-      create(:content, sect.section_type.to_sym, section: sect, plan:) if sect.section_type.match(/^(field|link)_/)
+      if sect.section_type == "field_taxonomy"
+        create(:content, :field_taxonomy, section: sect, plan:, taxonomy:)
+      elsif sect.section_type.match(/^(field|link)_/)
+        create(:content, sect.section_type.to_sym, section: sect, plan:)
+      end
     end.compact
   end
 end

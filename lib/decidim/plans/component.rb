@@ -76,6 +76,6 @@ Decidim.register_component(:plans) do |component|
   end
 
   component.seeds do |participatory_space|
-    Decidim::Plans::Seeds.new(participatory_space).call
+    Decidim::Plans::Seeds.new(participatory_space:).call
   end
 end

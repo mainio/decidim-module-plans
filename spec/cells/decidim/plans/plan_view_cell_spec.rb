@@ -46,6 +46,8 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
           expect_number(section, content, contents)
         when "field_tags"
           expect_tags(section, content, contents)
+        when "field_taxonomy"
+          expect_taxonomy(section, content, contents)
         when "link_proposals"
           expect_proposals(section, content, contents)
         when "field_title"
@@ -81,6 +83,17 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
         expect(node).to have_content("Yes")
       else
         expect(node).to have_content("No")
+      end
+    end
+
+    def expect_taxonomy(section, content, node)
+      expect(node).to have_content(translated(section.body))
+
+      taxonomy_ids = Array(content.body["taxonomy_ids"]).map(&:to_i)
+      taxonomies = Decidim::Taxonomy.where(id: taxonomy_ids)
+
+      taxonomies.each do |taxonomy|
+        expect(node).to have_content(translated(taxonomy.name))
       end
     end
 

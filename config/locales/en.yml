@@ -565,6 +565,7 @@ en:
           add_attachment: Add attachment
       tags:
         filter_results_for_tags: Filter results for tags
+        filter_results_for_taxonomy: Filter results for taxonomy
       update:
         invalid: Error updating content.
         success: Updated successfully.
