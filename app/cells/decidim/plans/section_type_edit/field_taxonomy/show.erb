@@ -14,10 +14,10 @@
             grouped_filter_taxonomies(filter).map { |id, node| [translated_attribute(node[:taxonomy].name), id] },
             form.object.taxonomy_ids
           ),
-          prompt: t(".select_a_taxonomy"),
+          prompt: t(".select_a_taxonomy", taxonomy_name: translated_attribute(filter.root_taxonomy.name)),
           id: "taxonomy_filter_#{filter.id}_#{section.id}",
           disabled: field_disabled?,
-          data: { taxonomy_filter: "#{filter.id}_#{section.id}" }  # ← matches JS selector
+          data: { taxonomy_filter: "#{filter.id}_#{section.id}" }
         ) %>
       </div>
 

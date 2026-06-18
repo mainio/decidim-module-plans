@@ -530,10 +530,8 @@ en:
           edit_attachment_multi: Change images
           remove: Remove
         field_taxonomy:
-          select_a_taxonomy: Choose a primary taxonomy
-          select_a_sub_taxonomy: Choose a subtaxonomy
-          sub_taxonomy_label: Choose a subtaxonomy
-          taxonomy_for: "%{root_taxonomy} taxonomy"
+          select_a_taxonomy: Choose a primary %{taxonomy_name} for the plan
+          select_a_sub_taxonomy: Choose a primary %{taxonomy_name} for the plan
       sections:
         actions:
           new: New section
