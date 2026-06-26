@@ -18,13 +18,15 @@ module Decidim
         let(:target_details) { [{ component_id: target_component.try(:id), budget_id: budget.try(:id) }] }
         let(:default_budget_amount) { 50_000 }
         let(:acceptance) { true }
+        let(:taxonomy_ids) { [] }
         let(:params) do
           {
             target_component_id: target_component.try(:id),
             content_sections:,
             default_budget_amount:,
             target_details:,
-            export_all_closed_plans: acceptance
+            export_all_closed_plans: acceptance,
+            taxonomy_ids:
           }
         end
 
@@ -56,6 +58,43 @@ module Decidim
           let(:acceptance) { false }
 
           it { is_expected.to be_invalid }
+        end
+
+        describe "#taxonomies" do
+          context "when no taxonomy_ids are provided" do
+            let(:taxonomy_ids) { [] }
+
+            it "returns an empty collection" do
+              expect(subject.taxonomies).to be_empty
+            end
+          end
+
+          context "when taxonomy_ids contains blank values" do
+            let(:taxonomy_ids) { ["", "0"] }
+
+            it "returns an empty collection" do
+              expect(subject.taxonomies).to be_empty
+            end
+          end
+
+          context "when valid taxonomy_ids are provided" do
+            let(:root_taxonomy) { create(:taxonomy, organization: participatory_space.organization, skip_injection: true) }
+            let(:taxonomy) { create(:taxonomy, parent: root_taxonomy, organization: participatory_space.organization, skip_injection: true) }
+            let(:taxonomy_ids) { [taxonomy.id.to_s] }
+
+            it "returns the matching taxonomies" do
+              expect(subject.taxonomies).to contain_exactly(taxonomy)
+            end
+          end
+
+          context "when taxonomy_ids references a deleted taxonomy" do
+            let(:taxonomy_ids) { ["99999"] }
+
+            it "returns an empty collection without raising" do
+              expect { subject.taxonomies }.not_to raise_error
+              expect(subject.taxonomies).to be_empty
+            end
+          end
         end
 
         describe "#target_component" do

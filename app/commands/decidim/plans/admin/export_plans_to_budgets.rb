@@ -59,6 +59,11 @@ module Decidim
 
               # Link the plan to the project
               project.link_resources([original_plan], "included_plans")
+              original_plan.taxonomizations.each do |taxonomization|
+                project.taxonomizations.find_or_create_by(
+                  taxonomy: taxonomization.taxonomy
+                )
+              end
             end.compact
           end
         end
@@ -67,7 +72,6 @@ module Decidim
           {
             component: target_component,
             budget: project_budget,
-            scope: project_scope,
             category: project_category_from(original_plan),
             title: sanitize_localized(original_plan.title),
             description: project_description_from(original_plan),
@@ -88,10 +92,6 @@ module Decidim
           }
         end
 
-        def project_scope
-          form.area_scope || form.scope
-        end
-
         def project_budget
           form.target_budget
         end
@@ -100,37 +100,14 @@ module Decidim
           results = Decidim::Plans::Plan.where(
             component: origin_component
           ).where.not(closed_at: nil)
-          if form.scope && scope_section
-            scoped_results = scoped_plans_for(scope_section, form.scope)
-            results = results.where(id: scoped_results.pluck(:id))
-          end
-          if form.area_scope && area_scope_section
-            area_scoped_results = scoped_plans_for(area_scope_section, form.area_scope)
-            results = results.where(id: area_scoped_results.pluck(:id))
+
+          if form.taxonomies.any?
+            results = results.joins(:taxonomizations).where(
+              decidim_taxonomizations: { taxonomy_id: form.taxonomies.map(&:id) }
+            ).distinct
           end
 
           results.accepted
-        end
-
-        def scoped_plans_for(section, scope)
-          Decidim::Plans::Plan.joins(
-            <<~SQL.squish
-              LEFT JOIN decidim_plans_sections
-                ON decidim_plans_sections.decidim_component_id = decidim_plans_plans.decidim_component_id
-                AND decidim_plans_sections.id = #{section.id}
-            SQL
-          ).joins(
-            <<~SQL.squish
-              LEFT JOIN decidim_plans_plan_contents AS scope_contents
-                ON scope_contents.decidim_plan_id = decidim_plans_plans.id
-                AND scope_contents.decidim_section_id = decidim_plans_sections.id
-            SQL
-          ).where(
-            component: origin_component
-          ).where(
-            "CAST(NULLIF(COALESCE(scope_contents.body->>'scope_id', '0'), '') AS INTEGER) =?",
-            scope
-          ).group(:id)
         end
 
         def origin_component
@@ -165,20 +142,6 @@ module Decidim
           @category_section ||= Decidim::Plans::Section.find_by(
             component: origin_component,
             section_type: "field_category"
-          )
-        end
-
-        def scope_section
-          @scope_section ||= Decidim::Plans::Section.find_by(
-            component: origin_component,
-            section_type: "field_scope"
-          )
-        end
-
-        def area_scope_section
-          @area_scope_section ||= Decidim::Plans::Section.find_by(
-            component: origin_component,
-            section_type: "field_area_scope"
           )
         end
 

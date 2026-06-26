@@ -4,12 +4,13 @@ module Decidim
   module Plans
     module Admin
       module BudgetsExportsHelper
-        def has_scope?
-          sections.where(section_type: "field_scope").any?
+        def has_taxonomy?
+          current_component.settings.taxonomy_filters.any?
         end
 
-        def has_area_scope?
-          sections.where(section_type: "field_area_scope").any?
+        def taxonomy_filters
+          filter_ids = current_component.settings.taxonomy_filters.map(&:to_i)
+          Decidim::TaxonomyFilter.where(id: filter_ids)
         end
 
         def content_sections

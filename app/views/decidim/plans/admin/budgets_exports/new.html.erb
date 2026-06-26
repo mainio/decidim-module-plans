@@ -27,17 +27,13 @@
                 </div>
               <% end %>
 
-              <% if has_scope? %>
+            <% if has_taxonomy? %>
+              <% taxonomy_filters.each do |filter| %>
                 <div class="row column">
-                  <%= scopes_picker_field f, :scope_id %>
+                  <%= filter_taxonomy_items_select_field(f, :taxonomy_ids, filter) %>
                 </div>
               <% end %>
-
-              <% if has_area_scope? %>
-                <div class="row column">
-                  <%= scopes_picker_field f, :area_scope_id %>
-                </div>
-              <% end %>
+            <% end %>
 
               <% if defined?(Decidim::BudgetingPipeline) %>
                 <%= render partial: "form_content_sections", locals: { form: f, sections: content_sections } %>
