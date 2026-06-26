@@ -8,7 +8,7 @@ module Decidim
       class PlanExportBudgetsForm < Decidim::Form
         mimic :budgets_export
 
-        attribute :taxonomy_ids, Array[Integer]
+        attribute :taxonomy_ids, [Integer]
         attribute :target_component_id, Integer
         attribute :target_details, [PlanExportBudgetsTargetDetailsForm]
         attribute :default_budget_amount, Integer

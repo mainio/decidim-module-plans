@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "ExportPlansToBudgets", type: :system do
+describe "ExportPlansToBudgets" do
   let(:organization) { create(:organization) }
   let(:user) { create(:user, :admin, :confirmed, organization:) }
   let(:participatory_space) { create(:participatory_process, organization:) }
