@@ -47,8 +47,8 @@
             <% top_categories.each do |category| %>
               <% next if category.subcategories.blank? %>
 
-              <div class="subcategories hide" data-field-toggle-value="<%= category.id %>">
-                <%= plain_label form, :sub_category_id, text: t(".sub_category_label") %>
+            <div class="subcategories hide" data-field-toggle-value="<%= category.id %>">
+              <%= plain_label form, :sub_category_id, text: t(".sub_category_label"), for: "plans_section_#{section.id}_#{field_id}_sub_category_id_for_#{category.id}" %>
 
                 <%= categories_select(
                   form,
