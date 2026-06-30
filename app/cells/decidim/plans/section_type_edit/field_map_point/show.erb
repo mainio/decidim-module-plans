@@ -4,7 +4,7 @@
   <div class="row medium-unstack">
     <div class="columns medium-7">
       <div class="field" id="<%= address_id %>">
-        <%= form.geocoding_field :address, object: model, label: false, id: field_id(:address), class: "input-group-field address-input-address", data: {
+        <%= form.geocoding_field :address, object: model, id: field_id(:address), class: "input-group-field address-input-address", data: {
           "coordinates-url": geocoding_path,
           "address-url": reverse_geocoding_path,
           "screen-reader-announcement": t(".marker_added")
@@ -12,11 +12,11 @@
         <% unless field_disabled? %>
           <button type="button" class="link reset-input" data-target="#<%= address_id %>"><%= t(".reset_field") %></button>
         <% end %>
-        <%= form.hidden_field :latitude, field_options.merge(
+        <%= form.hidden_field :latitude, field_options.except(:label, :help_text).merge(
           id: "plan_section_answer_#{model.section.id}_latitude",
           class: "address-input-latitude"
         ) %>
-        <%= form.hidden_field :longitude, field_options.merge(
+        <%= form.hidden_field :longitude, field_options.except(:label, :help_text).merge(
           id: "plan_section_answer_#{model.section.id}_longitude",
           class: "address-input-longitude")
         %>
