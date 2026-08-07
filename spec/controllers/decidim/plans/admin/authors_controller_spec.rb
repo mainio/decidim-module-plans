@@ -6,8 +6,6 @@ module Decidim
   module Plans
     module Admin
       describe AuthorsController do
-        routes { Decidim::Plans::AdminEngine.routes }
-
         let(:component) { create(:plan_component) }
         let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
         let(:plan) { create(:plan, component:, users: [user]) }
@@ -19,8 +17,10 @@ module Decidim
         end
 
         describe "index" do
+          include_context "with full participatory process params"
+
           it "renders index" do
-            get :index, params: { plan_id: plan.id }
+            get :index, params: params.merge(plan_id: plan.id)
             expect(subject).to render_template(:index)
             expect(response).to have_http_status(:ok)
           end
@@ -42,7 +42,9 @@ module Decidim
             it "gives error and redirects the user" do
               put(:create, params:)
               expect(flash[:alert]).to be_present
-              expect(subject).to redirect_to("/plans/#{plan_id}/authors")
+              expect(subject).to redirect_to(
+                Decidim::EngineRouter.admin_proxy(component).plan_authors_path(plan_id)
+              )
             end
           end
         end
@@ -54,7 +56,9 @@ module Decidim
             patch(:confirm, params:)
 
             expect(flash[:success]).to be_present
-            expect(subject).to redirect_to("/plans/#{plan_id}/authors")
+            expect(subject).to redirect_to(
+              Decidim::EngineRouter.admin_proxy(component).plan_authors_path(plan_id)
+            )
             expect(plan.authors).to include(user)
           end
 
@@ -65,7 +69,9 @@ module Decidim
               patch(:confirm, params:)
 
               expect(flash[:alert]).to be_present
-              expect(subject).to redirect_to("/plans/#{plan_id}/authors")
+              expect(subject).to redirect_to(
+                Decidim::EngineRouter.admin_proxy(component).plan_authors_path(plan_id)
+              )
             end
           end
         end
@@ -88,7 +94,9 @@ module Decidim
             it "deletes the user and redirects" do
               delete(:destroy, params:)
               expect(flash[:success]).to be_present
-              expect(subject).to redirect_to("/plans/#{plan.id}/authors")
+              expect(subject).to redirect_to(
+                Decidim::EngineRouter.admin_proxy(component).plan_authors_path(plan.id)
+              )
               expect(plan.reload.authors).not_to include(user2)
             end
 
@@ -98,7 +106,9 @@ module Decidim
               it "renders error and redirects" do
                 delete(:destroy, params:)
                 expect(flash[:alert]).to be_present
-                expect(subject).to redirect_to("/plans/#{plan.id}/authors")
+                expect(subject).to redirect_to(
+                  Decidim::EngineRouter.admin_proxy(component).plan_authors_path(plan.id)
+                )
                 expect(plan.reload.authors).to include(user2)
               end
             end

@@ -22,7 +22,7 @@ module Decidim
       end
 
       def routes_proxy
-        @routes_proxy ||= EngineRouter.main_proxy(current_component)
+        @routes_proxy ||= Decidim::EngineRouter.main_proxy(current_component)
       end
     end
   end

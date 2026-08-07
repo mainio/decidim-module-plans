@@ -6,6 +6,7 @@ module Decidim
       include Decidim::Plans::ApplicationHelper
       include ActionView::Helpers::FormOptionsHelper
       include ::Decidim::LayoutHelper
+      include Decidim::Plans::CellRouteOptions
 
       delegate(
         :current_user,
@@ -18,14 +19,6 @@ module Decidim
       )
 
       delegate :new_plan_path, to: :routes_proxy
-
-      def user_group_field
-        return if preview_mode?
-        return if options[:disable_user_group_field]
-        return unless manageable_user_groups.any?
-
-        render :user_group_field
-      end
 
       def contents_edit
         render :contents_edit
@@ -71,31 +64,12 @@ module Decidim
         form.object
       end
 
-      def manageable_user_groups
-        @manageable_user_groups ||= Decidim::UserGroups::ManageableUserGroups.for(current_user).verified
-      end
-
-      # Renders a user_group select field in a form.
-      # form - FormBuilder object
-      # name - attribute user_group_id
-      #
-      # Returns nothing.
-      def user_group_select_field(name)
-        selected = object.user_group_id.presence
-        form.select(
-          name,
-          manageable_user_groups.map { |g| [g.name, g.id] },
-          selected:,
-          include_blank: current_user.name
-        )
-      end
-
       def current_locale
         I18n.locale.to_s
       end
 
       def routes_proxy
-        @routes_proxy ||= EngineRouter.main_proxy(current_component)
+        @routes_proxy ||= Decidim::EngineRouter.main_proxy(current_component)
       end
     end
   end

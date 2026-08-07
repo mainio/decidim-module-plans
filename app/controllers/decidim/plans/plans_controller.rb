@@ -4,7 +4,6 @@ module Decidim
   module Plans
     # Exposes the plan resource so users can view and create them.
     class PlansController < Decidim::Plans::ApplicationController
-      helper UserGroupHelper
       helper TooltipHelper
       helper Plans::AttachmentsHelper
       helper Plans::RemainingCharactersHelper
@@ -325,7 +324,7 @@ module Decidim
       end
 
       def routes_proxy
-        @routes_proxy ||= EngineRouter.main_proxy(current_component)
+        @routes_proxy ||= Decidim::EngineRouter.main_proxy(current_component)
       end
     end
   end

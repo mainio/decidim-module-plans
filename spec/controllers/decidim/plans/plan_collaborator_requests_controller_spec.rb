@@ -5,13 +5,13 @@ require "spec_helper"
 module Decidim
   module Plans
     describe PlanCollaboratorRequestsController do
-      routes { Decidim::Plans::Engine.routes }
+      include_context "with full participatory process params"
 
       let(:component) { create(:plan_component) }
       let(:user) { create(:user, :confirmed, organization: component.organization) }
       let(:plan_creator) { create(:user, :confirmed, organization: component.organization) }
       let(:plan) { create(:plan, :open, component:, users: [plan_creator]) }
-      let(:params) { { id: plan.id, state: "open" } }
+      let(:plan_params) { params.merge(id: plan.id, state: "open") }
 
       before do
         request.env["decidim.current_organization"] = component.organization
@@ -22,7 +22,7 @@ module Decidim
       describe "POST request_access" do
         context "when user is not signed in" do
           it "raises an error" do
-            post(:request_access, params:)
+            post(:request_access, params: plan_params)
 
             expect(flash[:alert]).not_to be_empty
           end
@@ -34,7 +34,7 @@ module Decidim
           end
 
           it "creates the request" do
-            post(:request_access, params:)
+            post(:request_access, params: plan_params)
 
             expect(flash[:notice]).not_to be_empty
           end
@@ -42,7 +42,7 @@ module Decidim
       end
 
       describe "POST request_accept" do
-        let(:access_params) { params.merge(requester_user_id: user.id) }
+        let(:access_params) { plan_params.merge(requester_user_id: user.id) }
 
         before do
           sign_in plan_creator
@@ -70,7 +70,7 @@ module Decidim
       end
 
       describe "POST request_reject" do
-        let(:access_params) { params.merge(requester_user_id: user.id) }
+        let(:access_params) { plan_params.merge(requester_user_id: user.id) }
 
         before do
           sign_in plan_creator

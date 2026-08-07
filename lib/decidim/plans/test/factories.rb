@@ -288,9 +288,8 @@ FactoryBot.define do
     after(:build) do |plan, evaluator|
       if plan.component
         users = evaluator.users || [create(:user, :confirmed, organization: plan.component.participatory_space.organization)]
-        users.each_with_index do |user, idx|
-          user_group = evaluator.user_groups[idx]
-          plan.coauthorships.build(author: user, user_group:)
+        users.each do |user|
+          plan.coauthorships.build(author: user)
         end
 
         if FactoryBot.factories.registered?(:proposal_component)

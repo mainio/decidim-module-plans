@@ -5,7 +5,7 @@ require "spec_helper"
 module Decidim
   module Plans
     describe PlanWidgetsController do
-      routes { Decidim::Plans::Engine.routes }
+      include_context "with full participatory process params"
 
       let(:component) { create(:plan_component) }
       let(:plan) { create(:plan, component:) }
@@ -18,7 +18,8 @@ module Decidim
 
       describe "GET show" do
         it "sorts plans by search defaults" do
-          get :show, params: { plan_id: plan.id }
+          get :show, params: params.merge(plan_id: plan.id)
+
           expect(response).to have_http_status(:ok)
           expect(subject).to render_template(:show)
         end

@@ -10,6 +10,7 @@ module Decidim
       include PlanCellsHelper
       include Cell::ViewModel::Partial
       include Messaging::ConversationHelper
+      include Decidim::Plans::CellRouteOptions
 
       delegate :user_signed_in?, to: :parent_controller
 

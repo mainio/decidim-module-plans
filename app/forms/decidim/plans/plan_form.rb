@@ -29,8 +29,6 @@ module Decidim
               .first_or_initialize(plan: model, section:, body: {})
           ).with_context(current_component: model.component)
         end
-
-        self.user_group_id = model.user_groups.first&.id
       end
 
       def user_group

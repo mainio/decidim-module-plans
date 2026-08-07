@@ -6,6 +6,7 @@ module Decidim
       include Cell::ViewModel::Partial
       include ERB::Util
       include Decidim::FormFactory
+      include Decidim::Plans::CellRouteOptions
 
       delegate :allowed_to?, :current_component, :current_user, to: :controller
 

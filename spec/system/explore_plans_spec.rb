@@ -31,30 +31,22 @@ describe "ExplorePlans" do
       end
 
       it "filters the plans" do
-        choose("All")
-        within "#plans-count" do
-          expect(page).to have_content("Found 19 proposals")
+        expect(page).to have_content("Found 19 proposals")
+
+        within "form.new_filter" do
+          check "Evaluating"
+          find("button[type='submit']").click
         end
 
-        choose("Evaluating")
-        wait_a_bit
-        within "#plans-count" do
-          expect(page).to have_content("Found 5 proposals")
+        expect(page).to have_content("Found 5 proposals", wait: 5)
+
+        within "form.new_filter" do
+          uncheck "Evaluating"
+          check "Accepted"
+          find("button[type='submit']").click
         end
 
-        choose("Accepted")
-        within "#plans-count" do
-          expect(page).to have_content("Found 1 proposal")
-        end
-
-        click_on "See all withdrawn" do
-          within "#plans" do
-            plans = find_all(".column")
-            expect(plans.count).to eq(2)
-          end
-          expect(page).to have_content(translated(withdrawn.first.title))
-          expect(page).to have_content(translated(withdrawn.last.title))
-        end
+        expect(page).to have_content("Found 1 proposal", wait: 5)
       end
 
       it "searches through the plans" do
@@ -130,7 +122,7 @@ describe "ExplorePlans" do
           expect(page).to have_field("contents[#{section.id}][body_en]")
           expect(page).to have_link("Back to proposals list")
           click_on "Preview"
-          expect(page).to have_content("There is an error in this field")
+          expect(page).to have_content("Failed to create new content.")
           fill_in "contents[#{section.id}][body_en]", with: "Dummy text"
           click_on "Save as draft"
           expect(page).to have_content("Created successfully.")

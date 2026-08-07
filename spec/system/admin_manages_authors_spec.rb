@@ -10,7 +10,6 @@ describe "AdminManagesAuthors" do
   let(:user) { create(:user, :confirmed, :admin, organization:) }
   let(:user2) { create(:user, :confirmed, :admin, organization:) }
   let!(:plan) { create(:plan, component:, category:, users: [user, user2]) }
-  let!(:user_group) { create(:user_group, organization:) }
   let!(:authors) { create_list(:user, 5, :confirmed, organization:) }
   let(:author) { authors.first }
   let(:category) { create(:category, participatory_space: component.participatory_space) }
@@ -49,19 +48,16 @@ describe "AdminManagesAuthors" do
       click_on "Manage authors"
       click_on "Add author"
       expect(page).to have_content("Add authors for proposal")
-      expect(page).to have_field("add_plan_authors")
-      fill_in "add_plan_authors", with: user_group.name
-      expect(page).to have_no_css("#autoComplete_list_1")
       fill_in "add_plan_authors", with: author.name
-      expect(page).to have_css("#autoComplete_list_1", count: 1)
+      expect(page).to have_css("[id^='autoComplete_list'] li", minimum: 1, wait: 5)
       expect(page).to have_content(author.nickname)
-      find_by_id("autoComplete_list_1").click
+      all("[id^='autoComplete_list'] li").last.click
       click_on "Next"
       expect(page).to have_content "Add authors for proposal"
       expect(page).to have_content "#{author.name} (@#{author.nickname})"
       expect(page).to have_button("Add authors")
       click_on "Add authors"
-      expect(page).to have_current_path(decidim_plan.plan_authors_path(plan))
+      expect(page).to have_current_path(%r{/plans/#{plan.id}/authors$})
       expect(page).to have_content("Successfully added authors for the proposal.")
       plan.reload
       expect(plan.authors).to include(author)

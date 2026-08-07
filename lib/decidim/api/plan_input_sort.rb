@@ -4,7 +4,7 @@ module Decidim
   module Plans
     class PlanInputSort < Decidim::Core::BaseInputSort
       include Decidim::Core::HasPublishableInputSort
-      include Decidim::Core::HasEndorsableInputSort
+      include Decidim::Core::HasLikeableInputSort
 
       graphql_name "PlanSort"
       description "A type used for sorting plans"

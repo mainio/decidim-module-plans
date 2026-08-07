@@ -110,7 +110,7 @@ module Decidim
         private
 
         def main_component_path(sub_path)
-          path, url_params = EngineRouter.main_proxy(current_component).root_path(
+          path, url_params = Decidim::EngineRouter.main_proxy(current_component).root_path(
             locale: params[:locale]
           ).split("?")
           suffix = url_params.blank? ? "" : "?#{url_params}"
@@ -142,7 +142,7 @@ module Decidim
         end
 
         def routes_proxy
-          @routes_proxy ||= EngineRouter.admin_proxy(current_component)
+          @routes_proxy ||= Decidim::EngineRouter.admin_proxy(current_component)
         end
       end
     end

@@ -80,7 +80,7 @@ describe "AdminManageSections" do
       fill_in "sections[#{section.id}][handle]", with: ""
 
       click_on "Save"
-      expect(page).to have_content("There are errors on the form, please correct them.")
+      expect(page).to have_content("There is an error in this field.")
     end
   end
 

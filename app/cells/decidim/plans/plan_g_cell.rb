@@ -8,6 +8,7 @@ module Decidim
     class PlanGCell < Decidim::CardGCell
       include PlanCellsHelper
       include Decidim::Plans::CellContentHelper
+      include Decidim::Plans::CellRouteOptions
 
       alias plan model
 

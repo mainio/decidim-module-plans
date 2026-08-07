@@ -163,13 +163,6 @@ module Decidim
           # Assign taxonomies on top of legacy category/scope
           assign_taxonomies(plan, selected_filters, component)
 
-          if n.positive?
-            Decidim::User.where(decidim_organization_id: participatory_space.decidim_organization_id).all.sample(n).each do |author|
-              user_group = [true, false].sample ? Decidim::UserGroups::ManageableUserGroups.for(author).verified.sample : nil
-              plan.add_coauthor(author, user_group:)
-            end
-          end
-
           Decidim::Plans::Section.where(component:).each do |section|
             next if section.section_type == "field_taxonomy"
 

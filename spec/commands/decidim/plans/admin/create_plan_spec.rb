@@ -93,7 +93,6 @@ module Decidim
             let(:form_params) do
               {
                 title: { en: "This is the plan title" },
-                user_group_id: nil,
                 contents: [
                   {
                     section_id: taxonomy_section.id,

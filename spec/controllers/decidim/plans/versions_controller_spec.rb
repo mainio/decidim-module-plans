@@ -6,7 +6,7 @@ require "paper_trail/frameworks/rspec"
 module Decidim
   module Plans
     describe VersionsController do
-      routes { Decidim::Plans::Engine.routes }
+      include_context "with full participatory process params"
 
       with_versioning do
         let(:user) { create(:user, :confirmed, organization: component.organization) }
@@ -28,7 +28,7 @@ module Decidim
           end
 
           it "sorts plans by search defaults" do
-            get :index, params: { plan_id: plan.id }
+            get :index, params: params.merge(plan_id: plan.id)
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:index)
           end
@@ -36,7 +36,7 @@ module Decidim
 
         describe "GET show" do
           it "sorts plans by search defaults" do
-            get :show, params: { id: 1, plan_id: plan.id }
+            get :show, params: params.merge(id: 1, plan_id: plan.id)
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:show)
           end

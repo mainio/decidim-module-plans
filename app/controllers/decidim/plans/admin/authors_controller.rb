@@ -20,7 +20,7 @@ module Decidim
 
           unless @form.authors.any?
             flash[:alert] = t("add_authors.no_authors", scope: "decidim.plans.plans")
-            redirect_to plan_authors_path(plan)
+            redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
           end
         end
 
@@ -33,12 +33,12 @@ module Decidim
           AddAuthorsToPlan.call(@form, @plan, current_user) do
             on(:ok) do
               flash[:success] = t("add_authors.success", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
 
             on(:invalid) do
               flash[:alert] = t("add_authors.error", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
           end
         end
@@ -56,12 +56,12 @@ module Decidim
           RemoveAuthorFromPlan.call(plan, author) do
             on(:ok) do
               flash[:success] = t("remove_author.success", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
 
             on(:invalid) do
               flash[:alert] = t("remove_author.error", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
           end
         end

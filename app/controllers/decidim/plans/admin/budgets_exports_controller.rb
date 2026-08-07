@@ -21,7 +21,7 @@ module Decidim
           Admin::ExportPlansToBudgets.call(@form) do
             on(:ok) do |projects|
               flash[:notice] = I18n.t("budgets_exports.create.success", scope: "decidim.plans.admin", number: projects.length)
-              redirect_to EngineRouter.admin_proxy(current_component).root_path
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).root_path
             end
 
             on(:invalid) do

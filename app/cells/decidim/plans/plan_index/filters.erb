@@ -1,4 +1,4 @@
-<%= filter_form_for filter do |form| %>
+<%= filter_form_for filter, Decidim::EngineRouter.main_proxy(current_component).plans_path, html: { data: { controller: "form-filter" } } do |form| %>
   <div class="filters__section">
     <div class="filters__search">
       <div class="input-group">
@@ -13,7 +13,7 @@
   </div>
 
   <% if component.settings.plan_answering_enabled && component.current_settings.plan_answering_enabled %>
-    <%= form.collection_radio_buttons :with_any_state, [["all", t(".filters.state.all")], ["accepted", t(".filters.state.accepted")], ["rejected", t(".filters.state.rejected")], ["evaluating", t(".filters.state.evaluating")]], :first, :last, legend_title: t(".filters.state.legend") %>
+    <%= form.collection_check_boxes :with_any_state, [["accepted", t(".filters.state.accepted")], ["rejected", t(".filters.state.rejected")], ["evaluating", t(".filters.state.evaluating")]], :first, :last, legend_title: t(".filters.state.legend") %>
   <% end %>
 
   <% if available_tags.any? %>

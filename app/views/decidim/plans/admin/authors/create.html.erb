@@ -18,7 +18,7 @@
   </div>
 
   <div class="button--double form-general-submit">
-    <%= link_to t(".buttons.cancel"), plan_authors_path(plan), class: "button button__sm button__transparent-secondary" %>
+    <%= link_to t(".buttons.cancel"), Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan), class: "button button__sm button__transparent-secondary" %>
     <%= form.submit t(".buttons.add_authors"), class: "button button__sm button__secondary" %>
   </div>
 <% end %>

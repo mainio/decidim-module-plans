@@ -23,15 +23,10 @@ module Decidim
       let!(:plan) { create(:plan, component:, users: [author]) }
       let(:author) { create(:user, :confirmed, organization:) }
 
-      let(:user_group) do
-        create(:user_group, :confirmed, :verified, organization:, users: [author])
-      end
-
       describe "call" do
         let(:form_params) do
           {
-            title: { en: "This is the plan title" },
-            user_group_id: user_group.try(:id)
+            title: { en: "This is the plan title" }
           }
         end
 
@@ -90,8 +85,6 @@ module Decidim
           end
 
           context "with an author" do
-            let(:user_group) { nil }
-
             it "sets the author" do
               command.call
               plan = Decidim::Plans::Plan.last
@@ -125,7 +118,6 @@ module Decidim
             let(:form_params) do
               {
                 title: { en: "This is the plan title" },
-                user_group_id: user_group.try(:id),
                 contents: [
                   {
                     section_id: taxonomy_section.id,
@@ -164,7 +156,6 @@ module Decidim
               let(:form_params) do
                 {
                   title: { en: "This is the plan title" },
-                  user_group_id: user_group.try(:id),
                   contents: [
                     {
                       section_id: taxonomy_section.id,
@@ -187,7 +178,6 @@ module Decidim
               let(:form_params) do
                 {
                   title: { en: "This is the plan title" },
-                  user_group_id: user_group.try(:id),
                   contents: [
                     {
                       section_id: taxonomy_section.id,

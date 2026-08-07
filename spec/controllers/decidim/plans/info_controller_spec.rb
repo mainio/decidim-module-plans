@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe Decidim::Plans::InfoController do
-  routes { Decidim::Plans::Engine.routes }
+  include_context "with full participatory process params"
 
   let(:component) { create(:plan_component) }
   let(:participatory_space) { component.participatory_space }
@@ -16,7 +16,7 @@ describe Decidim::Plans::InfoController do
   end
 
   it "raises error when section does not exist" do
-    expect { get :show, params: { section: 123, component_id: component.id } }
+    expect { get :show, params: params.merge(section: 123) }
       .to raise_error(ActionController::RoutingError)
   end
 
@@ -24,7 +24,7 @@ describe Decidim::Plans::InfoController do
     let!(:section) { create(:section, :field_text, component:) }
 
     it "shows section" do
-      expect { get :show, params: { section: section.id, component_id: component.id } }
+      expect { get :show, params: params.merge(section: section.id) }
         .not_to raise_error
       expect(response).to render_template(:show)
       puts translated(section.information).inspect

@@ -10,6 +10,8 @@ module Decidim
     #   <%= cell("decidim/plans/tags", model, context: {resource: model}) %>
     #
     class TagsCell < Decidim::TagsCell
+      include Decidim::Plans::CellRouteOptions
+
       def show
         render if taxonomies.any? || taggings?
       end

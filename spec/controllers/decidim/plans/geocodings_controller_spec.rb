@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe Decidim::Plans::GeocodingsController do
-  routes { Decidim::Plans::Engine.routes }
+  include_context "with full participatory process params"
 
   let(:component) { create(:plan_component, :with_creation_enabled) }
   let!(:user) { create(:user, :admin, :confirmed) }
@@ -25,7 +25,7 @@ describe Decidim::Plans::GeocodingsController do
       end
 
       it "renders error json" do
-        put :create, params: { address:, latitude:, longitude: }
+        put :create, params: params.merge(address:, latitude:, longitude:)
 
         expect(response).to be_successful
         expect(response.content_type).to eq("application/json; charset=utf-8")
@@ -40,7 +40,7 @@ describe Decidim::Plans::GeocodingsController do
       let!(:address) { "" }
 
       it "renders the unsuccess" do
-        put :create, params: { address:, latitude:, longitude: }
+        put :create, params: params.merge(address:, latitude:, longitude:)
 
         expect(response).to be_successful
         expect(response.content_type).to eq("application/json; charset=utf-8")
@@ -57,7 +57,7 @@ describe Decidim::Plans::GeocodingsController do
       end
 
       it "renders the successful" do
-        put :create, params: { address:, latitude:, longitude: }
+        put :create, params: params.merge(address:, latitude:, longitude:)
 
         expect(response).to be_successful
         expect(response.content_type).to eq("application/json; charset=utf-8")

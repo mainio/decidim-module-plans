@@ -8,14 +8,13 @@ module Decidim
       #
       # attributes        - The Hash of attributes to create the Plan with.
       # author            - An Authorable the will be the first coauthor of the Plan.
-      # user_group_author - A User Group to, optionally, set it as the author too.
       # action_user       - The User to be used as the user who is creating the plan in the traceability logs.
       #
       # Returns a Plan.
-      def create(attributes:, author:, action_user:, user_group_author: nil)
+      def create(attributes:, author:, action_user:)
         Decidim.traceability.perform_action!(:create, Plan, action_user, visibility: "all") do
           plan = Plan.new(attributes)
-          plan.add_coauthor(author, user_group: user_group_author)
+          plan.add_coauthor(author)
           plan.save!
           plan
         end
@@ -27,7 +26,6 @@ module Decidim
       #
       # original_plan     - The Plan to be used as base to create the new one.
       # author            - An Authorable the will be the first coauthor of the Plan.
-      # user_group_author - A User Group to, optionally, set it as the author too.
       # action_user       - The User to be used as the user who is creating the plan in the traceability logs.
       # extra_attributes  - A Hash of attributes to create the new plan, will overwrite the original ones.
       # skip_link         - Whether to skip linking the two plans or not (default false).
@@ -35,7 +33,7 @@ module Decidim
       # Returns a Plan
       #
       # rubocop:disable Metrics/ParameterLists
-      def copy(original_plan, author:, action_user:, user_group_author: nil, extra_attributes: {}, skip_link: false)
+      def copy(original_plan, author:, action_user:, extra_attributes: {}, skip_link: false)
         origin_attributes = original_plan.attributes.except(
           "id",
           "created_at",
@@ -53,7 +51,6 @@ module Decidim
         plan = create(
           attributes: origin_attributes,
           author:,
-          user_group_author:,
           action_user:
         )
 

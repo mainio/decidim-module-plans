@@ -5,6 +5,7 @@ module Decidim
     module SectionTypeEdit
       class LinkProposalsCell < Decidim::Plans::SectionEditCell
         include Decidim::MapHelper
+        include Decidim::Plans::CellRouteOptions
 
         delegate :current_component, :snippets, to: :controller
         delegate :search_proposals_plans_path, to: :routes_proxy

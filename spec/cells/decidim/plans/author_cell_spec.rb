@@ -11,7 +11,6 @@ describe Decidim::Plans::AuthorCell, type: :cell do
 
   let!(:organization) { create(:organization, tos_version: Time.current) }
   let(:user) { create(:user, :confirmed, organization:) }
-  let(:user_group) { create(:user_group, :confirmed, :verified) }
   let(:plan) { create(:plan) }
 
   controller Decidim::Plans::PlansController
@@ -25,14 +24,6 @@ describe Decidim::Plans::AuthorCell, type: :cell do
     let(:model) { Decidim::UserPresenter.new(user) }
 
     it "renders a User author card" do
-      expect(subject).to have_css(".author__container")
-    end
-  end
-
-  context "when rendering a user group" do
-    let(:model) { Decidim::UserGroupPresenter.new(user_group) }
-
-    it "renders a User_group author card" do
       expect(subject).to have_css(".author__container")
     end
   end

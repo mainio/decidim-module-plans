@@ -14,9 +14,7 @@ module Decidim
       def author
         # The authors can also be organizations in specific situations.
         coauthorship = coauthorships.order(:created_at).first
-        @author ||= if coauthorship.user_group
-                      Decidim::UserGroupPresenter.new(coauthorship.user_group)
-                    elsif coauthorship.author.is_a?(Decidim::Organization)
+        @author ||= if coauthorship.author.is_a?(Decidim::Organization)
                       Decidim::Plans::OrganizationAuthorPresenter.new(coauthorship.author)
                     else
                       Decidim::UserPresenter.new(coauthorship.author)

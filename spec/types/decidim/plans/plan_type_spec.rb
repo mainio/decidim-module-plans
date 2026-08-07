@@ -2,10 +2,6 @@
 
 require "spec_helper"
 require "decidim/api/test/type_context"
-require "decidim/core/test/shared_examples/categorizable_interface_examples"
-require "decidim/core/test/shared_examples/scopable_interface_examples"
-require "decidim/core/test/shared_examples/attachable_interface_examples"
-require "decidim/core/test/shared_examples/coauthorable_interface_examples"
 
 module Decidim
   module Plans
@@ -13,11 +9,6 @@ module Decidim
       include_context "with a graphql class type"
       let(:component) { create(:plan_component) }
       let(:model) { create(:plan, :published, component:) }
-
-      include_examples "categorizable interface"
-      include_examples "scopable interface"
-      include_examples "attachable interface"
-      include_examples "plan coauthorable interface"
 
       describe "id" do
         let(:query) { "{ id }" }

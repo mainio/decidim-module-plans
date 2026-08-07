@@ -88,6 +88,10 @@ fi:
     filters:
       linked_classes:
         plan: Ehdotukset
+    forms:
+      current_file: Nykyinen tiedosto
+      current_image: Nykyinen kuva
+      default_image: Oletuskuva
     participatory_processes:
       statistics:
         plans_accepted: Hyväksyttyä ehdotusta

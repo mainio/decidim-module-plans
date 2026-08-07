@@ -15,6 +15,7 @@ module Decidim
       include Decidim::Plans::CellContentHelper
       include Decidim::Feedback::FeedbackHelper
       include Decidim::Plans::Engine.routes.url_helpers
+      include Decidim::Plans::CellRouteOptions
 
       delegate :allowed_to?, :current_user, to: :controller
       delegate :plans_path, :plan_url, :plan_path, :plan_versions_path, to: :routes_proxy
@@ -206,7 +207,7 @@ module Decidim
       end
 
       def routes_proxy
-        @routes_proxy ||= EngineRouter.main_proxy(current_component)
+        @routes_proxy ||= Decidim::EngineRouter.main_proxy(current_component)
       end
     end
   end

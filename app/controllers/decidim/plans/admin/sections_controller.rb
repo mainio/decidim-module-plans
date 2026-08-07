@@ -28,7 +28,7 @@ module Decidim
           Admin::UpdateSections.call(@form, sections) do
             on(:ok) do
               flash[:notice] = I18n.t("update.success", scope: i18n_flashes_scope)
-              redirect_to sections_url
+              redirect_to routes_proxy.sections_path
             end
 
             on(:invalid) do
@@ -70,6 +70,10 @@ module Decidim
           @attachment_input_types ||= Section.attachment_input_types.map do |input_type|
             [I18n.t("decidim.plans.attachment_input_types.#{input_type}"), input_type]
           end
+        end
+
+        def routes_proxy
+          @routes_proxy ||= Decidim::EngineRouter.admin_proxy(current_component)
         end
       end
     end

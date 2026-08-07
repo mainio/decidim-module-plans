@@ -61,7 +61,7 @@ module Decidim
             component: form.component,
             state: "open"
           )
-          plan.coauthorships.build(author: @current_user, user_group: @form.user_group)
+          plan.coauthorships.build(author: @current_user)
           plan.save!
           plan
         end

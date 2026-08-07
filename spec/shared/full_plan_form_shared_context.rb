@@ -48,3 +48,12 @@ shared_context "with plan author params" do
     }
   end
 end
+
+shared_context "with full participatory process params" do
+  let(:params) do
+    {
+      component_id: component.id,
+      participatory_process_slug: component.participatory_space.slug
+    }
+  end
+end

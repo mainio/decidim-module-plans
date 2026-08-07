@@ -9,6 +9,7 @@ module Decidim
       include Decidim::MapHelper
       include Decidim::Plans::PlansHelper
       include Decidim::Plans::Engine.routes.url_helpers
+      include Decidim::Plans::CellRouteOptions
 
       delegate :current_component, :snippets, to: :controller
 

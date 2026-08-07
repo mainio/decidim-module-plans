@@ -2,7 +2,7 @@
   <%= decidim_form_for(add_author_form, url: form_url, html: { class: "form form-defaults new_author" }) do |f| %>
     <div>
       <h2 id="dialog-title-add-authors" tabindex="-1" data-dialog-title><%= t(".modal_title") %></h2>
-        <div class="form__wrapper gap-1 js-multiple-mentions" data-name="recipient_id[]" data-multiple="true">
+        <div class="form__wrapper gap-1" data-controller="multiple-mentions" data-name="recipient_id[]" data-multiple="true">
           <label for="add_plan_authors">
             <%= t(".label") %>
           </label>

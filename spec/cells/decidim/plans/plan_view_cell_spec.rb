@@ -104,7 +104,8 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
 
     def expect_currency(section, content, node)
       expect(node).to have_content(translated(section.body))
-      expect(node).to have_content(number_to_currency(content.body["value"], unit: Decidim.currency_unit, precision: 0, locale: I18n.locale))
+      expected = number_to_currency(content.body["value"], unit: Decidim.currency_unit, precision: 0, locale: I18n.locale)
+      expect(node).to have_content(expected.gsub(" ", "\u00a0"))
     end
 
     def expect_map_point(section, content, node)

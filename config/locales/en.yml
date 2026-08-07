@@ -90,6 +90,10 @@ en:
     filters:
       linked_classes:
         plan: Proposals
+    forms:
+      current_file: Current file
+      current_image: Current image
+      default_image: Default image
     participatory_processes:
       statistics:
         plans_accepted: Accepted proposals
