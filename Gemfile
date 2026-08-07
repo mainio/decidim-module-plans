@@ -33,6 +33,7 @@ group :development, :test do
   gem "rexml", "3.4.1"
 
   gem "decidim-dev", DECIDIM_VERSION
+  gem "decidim-initiatives", DECIDIM_VERSION
 end
 
 group :development do
