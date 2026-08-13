@@ -29,7 +29,7 @@ module Decidim
       describe "#plan_path" do
         it "returns correct path" do
           expect(subject.plan_path).to eq(
-            "/processes/#{process_slug}/f/#{component_id}/plans/#{plan.id}"
+            "/en/processes/#{process_slug}/f/#{component_id}/plans/#{plan.id}"
           )
         end
       end

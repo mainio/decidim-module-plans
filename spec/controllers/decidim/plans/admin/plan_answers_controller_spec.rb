@@ -29,7 +29,7 @@ module Decidim
         describe "PUT update" do
           context "when the command fails" do
             it "renders the edit template" do
-              put :update, params: params
+              put(:update, params:)
               expect(response).to render_template(:edit)
             end
           end

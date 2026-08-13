@@ -34,7 +34,6 @@ cs:
         scope_id: Scope
         state: State
         title: Title
-        user_group_id: Create as
       section:
         area_scope_parent: Area scope parent
         scope_parent: Scope parent

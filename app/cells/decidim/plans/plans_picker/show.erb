@@ -1,6 +1,6 @@
 <div class="picker-header">
   <h1><%= t("plans_picker.choose_plans", scope: "decidim.plans") %></h1>
-  <input type="text" name="plans-filter" id="plans_filter" placeholder="<%= t("decidim.admin.filters.search_placeholder.id_string_or_title_cont", collection: plans_collection_name) %>">
+  <input type="text" name="plans-filter" id="plans_filter" placeholder="<%= t("plans_picker.search_placeholder", scope: "decidim.plans")%>
 </div>
 <div class="picker-content picker-list" data-picker-path="<%= picker_path %>" data-picker-more="<%= more_plans? %>">
   <%= render :plans %>

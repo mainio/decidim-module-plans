@@ -56,8 +56,8 @@ module Decidim
         context "when the plan doesn't belong to the component" do
           let!(:plan) { create(:plan, component: create(:plan_component)) }
 
-          it "returns null" do
-            expect(response["plan"]).to be_nil
+          it "returns not found error" do
+            expect { response }.to raise_error(Decidim::Api::Errors::NotFoundError)
           end
         end
       end

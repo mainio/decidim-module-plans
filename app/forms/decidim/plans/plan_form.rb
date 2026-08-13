@@ -5,11 +5,11 @@ module Decidim
     # A form object to be used when public users want to create a Plan.
     class PlanForm < Decidim::Form
       include OptionallyTranslatableAttributes
+
       mimic :plan
 
       alias component current_component
 
-      attribute :user_group_id, Integer
       attribute :contents, Array
 
       def self.from_params(params, additional_params = {})
@@ -29,10 +29,6 @@ module Decidim
               .first_or_initialize(plan: model, section:, body: {})
           ).with_context(current_component: model.component)
         end
-      end
-
-      def user_group
-        @user_group ||= Decidim::UserGroup.find user_group_id if user_group_id.present?
       end
 
       def valid?(options = {})

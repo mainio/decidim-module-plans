@@ -32,7 +32,7 @@ describe "AdminManagesAuthors" do
     it "removes the authors" do
       click_on "Manage authors"
       expect(plan.authors.count).to eq(2)
-      expect(page).to have_current_path("/admin/participatory_processes/#{slug}/components/#{component.id}/manage/plans/#{plan.id}/authors")
+      expect(page).to have_current_path("/en/admin/participatory_processes/#{slug}/components/#{component.id}/manage/plans/#{plan.id}/authors")
       within "table.table-list tbody" do
         expect(page).to have_content(user.name)
         expect(page).to have_content(user.nickname)
@@ -48,10 +48,10 @@ describe "AdminManagesAuthors" do
       click_on "Manage authors"
       click_on "Add author"
       expect(page).to have_content("Add authors for proposal")
-      fill_in "add_plan_authors", with: author.name
-      expect(page).to have_css("[id^='autoComplete_list'] li", minimum: 1, wait: 5)
+      find(".ts-control input[type='text']").fill_in(with: author.name)
+      expect(page).to have_css(".ts-dropdown .ts-dropdown-content .option", minimum: 1, wait: 5)
       expect(page).to have_content(author.nickname)
-      all("[id^='autoComplete_list'] li").last.click
+      find(".ts-dropdown-content .option", match: :first).click
       click_on "Next"
       expect(page).to have_content "Add authors for proposal"
       expect(page).to have_content "#{author.name} (@#{author.nickname})"

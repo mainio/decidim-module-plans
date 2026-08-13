@@ -276,8 +276,6 @@ FactoryBot.define do
     transient do
       users { nil }
       plan_proposals { nil }
-      # user_groups correspondence to users is by sorting order
-      user_groups { [] }
       tags { [] }
     end
 

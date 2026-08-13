@@ -27,7 +27,7 @@ describe Decidim::Plans::InfoController do
       expect { get :show, params: params.merge(section: section.id) }
         .not_to raise_error
       expect(response).to render_template(:show)
-      puts translated(section.information).inspect
+
       expect(response.headers["X-Robots-Tag"]).to eq("none")
     end
   end

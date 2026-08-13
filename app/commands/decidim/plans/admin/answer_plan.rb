@@ -51,7 +51,7 @@ module Decidim
         end
 
         def notify_followers
-          return unless plan.previous_changes.keys.intersect?(%w(state))
+          return unless plan.previous_changes.keys.include?("state")
 
           if plan.accepted?
             publish_event(

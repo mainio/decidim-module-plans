@@ -120,7 +120,7 @@ module Decidim
       def proposal_authors
         @proposal_authors ||= begin
           proposals = plan.linked_resources(:proposals, "included_proposals")
-          proposals.flat_map(&:authors).select { |a| a.is_a?(Decidim::User) }
+          proposals.flat_map(&:authors).grep(Decidim::User)
         end
       end
     end

@@ -192,10 +192,10 @@ describe "ExplorePlans" do
 
           click_on "Add authors for proposal"
           expect(page).to have_content("Add authors for proposal")
-          fill_in "Write the author's name or nickname", with: user1.name
+          fill_in "add_plan_authors-ts-control", with: user1.name
 
-          expect(page).to have_css("ul#autoComplete_list_1")
-          first_option = page.find("#autoComplete_list_1 li:first-child")
+          expect(page).to have_css(".ts-dropdown-content .option", minimum: 1, wait: 5)
+          first_option = find(".ts-dropdown-content .option", match: :first)
           first_option.click
           click_on "Next"
           expect(page).to have_current_path(decidim_plan.add_authors_plan_path(plan.id))

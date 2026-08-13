@@ -30,7 +30,7 @@ module Decidim
         let!(:plans) { create_list(:plan, 10, component:, tags: available_tags) }
 
         it "sorts plans by search defaults" do
-          get :index, params: params
+          get(:index, params:)
           expect(response).to have_http_status(:ok)
           expect(assigns(:plans).order_values.map(&:to_sql)).to eq([%("decidim_plans_plans"."created_at" DESC)])
           expect(assigns(:plans).to_a.count).to eq(plans.count)
@@ -61,7 +61,7 @@ module Decidim
 
         context "when NO draft plan exist" do
           it "renders the empty form" do
-            get :new, params: params
+            get(:new, params:)
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:new)
           end
@@ -71,7 +71,7 @@ module Decidim
           let!(:others_draft) { create(:plan, :draft, component:) }
 
           it "renders the empty form" do
-            get :new, params: params
+            get(:new, params:)
             expect(response).to have_http_status(:ok)
             expect(subject).to render_template(:new)
           end
@@ -81,9 +81,9 @@ module Decidim
           let!(:draft) { create(:plan, :draft, component:, users: [user]) }
 
           it "redirects to the draft edit view" do
-            get :new, params: params
+            get(:new, params:)
             expect(response).to have_http_status(:found)
-            expect(subject).to redirect_to("/processes/#{component.participatory_space.slug}/f/#{component.id}/plans/#{draft.id}/edit")
+            expect(subject).to redirect_to("/en/processes/#{component.participatory_space.slug}/f/#{component.id}/plans/#{draft.id}/edit")
           end
         end
       end
@@ -93,7 +93,7 @@ module Decidim
           let(:component) { create(:plan_component) }
 
           it "raises an error" do
-            post :create, params: params
+            post(:create, params:)
             expect(flash[:alert]).not_to be_empty
           end
         end

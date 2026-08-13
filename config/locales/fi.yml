@@ -34,7 +34,6 @@ fi:
         scope_id: Teema
         state: Tila
         title: Otsikko
-        user_group_id: Luo käyttäjänä
       section:
         area_scope_parent: Alueteeman isäntä
         scope_parent: Teeman isäntä

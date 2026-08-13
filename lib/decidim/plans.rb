@@ -25,25 +25,27 @@ module Decidim
     autoload :FormBuilder, "decidim/plans/form_builder"
     autoload :Seeds, "decidim/plans/seeds"
 
-    include ActiveSupport::Configurable
+    class << self
+      def config = self
+
+      def configure
+        yield self
+      end
+    end
 
     # Defines whether the help sections are shown as help texts below the fields
     # (false) or as tooltips (true).
-    config_accessor :section_edit_tooltips do
-      false
-    end
+    mattr_accessor :section_edit_tooltips, default: false
 
-    config_accessor :attachment_image_versions do
-      {
-        big: { resize_to_limit: [nil, 1000] },
-        main: { resize_to_fill: [1500, 920] },
-        thumbnail: { resize_to_fill: [860, 395] },
-        thumbnail_box: { resize_to_fill: [660, 450] }
-      }
-    end
+    mattr_accessor :attachment_image_versions, default: {
+      big: { resize_to_limit: [nil, 1000] },
+      main: { resize_to_fill: [1500, 920] },
+      thumbnail: { resize_to_fill: [860, 395] },
+      thumbnail_box: { resize_to_fill: [660, 450] }
+    }
 
     # Defines a default card image for the plan cards
-    config_accessor :default_card_image
+    mattr_accessor :default_card_image
 
     # Public: Stores an instance of Loggability
     def self.loggability

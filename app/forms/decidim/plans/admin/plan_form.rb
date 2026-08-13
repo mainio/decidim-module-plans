@@ -7,6 +7,7 @@ module Decidim
       class PlanForm < Decidim::Form
         include OptionallyTranslatableAttributes
         include Decidim::ApplicationHelper
+
         mimic :plan
 
         attribute :category_id, Integer

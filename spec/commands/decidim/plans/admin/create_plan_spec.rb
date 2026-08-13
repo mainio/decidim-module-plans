@@ -24,9 +24,7 @@ module Decidim
 
         describe "call" do
           let(:form_params) do
-            {
-              user_group_id: nil
-            }
+            {}
           end
 
           let(:command) do
@@ -140,7 +138,6 @@ module Decidim
               let(:form_params_with_blank) do
                 {
                   title: { en: "This is the plan title" },
-                  user_group_id: nil,
                   contents: [
                     {
                       section_id: taxonomy_section.id,

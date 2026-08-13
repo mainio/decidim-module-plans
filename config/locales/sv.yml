@@ -34,7 +34,6 @@ sv:
         scope_id: Tema
         state: Status
         title: Rubrik
-        user_group_id: Skapa som användare
       section:
         area_scope_parent: Områdetema förälder
         scope_parent: Tema förälder

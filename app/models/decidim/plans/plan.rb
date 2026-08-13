@@ -369,13 +369,13 @@ module Decidim
 
       # method for sort_link by number of comments
       ransacker :commentable_comments_count do
-        query = <<-SQL.squish
-        (SELECT COUNT(decidim_comments_comments.id)
-         FROM decidim_comments_comments
-         WHERE decidim_comments_comments.decidim_commentable_id = decidim_plans_plans.id
-         AND decidim_comments_comments.decidim_commentable_type = 'Decidim::Plans::Plan'
-         GROUP BY decidim_comments_comments.decidim_commentable_id
-         )
+        query = <<~SQL.squish
+          (SELECT COUNT(decidim_comments_comments.id)
+           FROM decidim_comments_comments
+           WHERE decidim_comments_comments.decidim_commentable_id = decidim_plans_plans.id
+           AND decidim_comments_comments.decidim_commentable_type = 'Decidim::Plans::Plan'
+           GROUP BY decidim_comments_comments.decidim_commentable_id
+           )
         SQL
         Arel.sql(query)
       end

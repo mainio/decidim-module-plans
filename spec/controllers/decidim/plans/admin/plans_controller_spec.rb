@@ -30,7 +30,7 @@ module Decidim
         end
 
         it "renders the index listing" do
-          get :index, params: params
+          get(:index, params:)
           expect(response).to have_http_status(:ok)
           expect(controller.send(:counts)).to include(
             published: 10,
@@ -43,7 +43,7 @@ module Decidim
         let(:component) { create(:plan_component, :with_creation_enabled) }
 
         it "renders the empty form" do
-          get :new, params: params
+          get(:new, params:)
           expect(response).to have_http_status(:ok)
           expect(subject).to render_template(:new)
         end
