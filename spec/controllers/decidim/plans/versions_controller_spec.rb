@@ -46,6 +46,7 @@ module Decidim
           allow(subject).to receive(:default_url_options).and_return(
             participatory_process_slug: component.participatory_space.slug,
             assembly_slug: component.participatory_space.slug,
+            initiative_slug: component.participatory_space.slug,
             component_id: component.id
           )
         end

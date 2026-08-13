@@ -32,7 +32,6 @@ module Decidim
       #
       # Returns a Plan
       #
-      # rubocop:disable Metrics/ParameterLists
       def copy(original_plan, author:, action_user:, extra_attributes: {}, skip_link: false)
         origin_attributes = original_plan.attributes.except(
           "id",
@@ -57,7 +56,6 @@ module Decidim
         plan.link_resources(original_plan, "copied_from_component") unless skip_link
         plan
       end
-      # rubocop:enable Metrics/ParameterLists
 
       module_function :copy
     end

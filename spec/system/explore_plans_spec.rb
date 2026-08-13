@@ -22,10 +22,9 @@ describe "ExplorePlans" do
       it "renders the index page" do
         expect(page).to have_content("Browse proposals")
         expect(page).to have_css("form.new_filter")
-        expect(page).to have_css("input[type='radio'][value='all']", count: 1)
-        expect(page).to have_css("input[type='radio'][value='accepted']", count: 1)
-        expect(page).to have_css("input[type='radio'][value='rejected']", count: 1)
-        expect(page).to have_css("input[type='radio'][value='evaluating']", count: 1)
+        expect(page).to have_css("input[type='checkbox'][value='accepted']", count: 1)
+        expect(page).to have_css("input[type='checkbox'][value='rejected']", count: 1)
+        expect(page).to have_css("input[type='checkbox'][value='evaluating']", count: 1)
         expect(page).to have_css("a.action-link", text: "Submit a proposal")
         expect(page).to have_link("Submit a proposal", href: decidim_plan.new_plan_path)
       end
@@ -35,7 +34,7 @@ describe "ExplorePlans" do
 
         within "form.new_filter" do
           check "Evaluating"
-          find("button[type='submit']").click
+          find("button[type='submit']").click # rubocop:disable Capybara/SpecificActions
         end
 
         expect(page).to have_content("Found 5 proposals", wait: 5)
@@ -43,7 +42,7 @@ describe "ExplorePlans" do
         within "form.new_filter" do
           uncheck "Evaluating"
           check "Accepted"
-          find("button[type='submit']").click
+          find("button[type='submit']").click # rubocop:disable Capybara/SpecificActions
         end
 
         expect(page).to have_content("Found 1 proposal", wait: 5)
