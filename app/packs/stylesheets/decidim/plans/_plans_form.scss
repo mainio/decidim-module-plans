@@ -1,57 +1,57 @@
-.address-input{
+.address-input {
   position: relative;
 
-  .tribute-container{
+  .tribute-container {
     top: 51px;
   }
 }
 
-.attachments-section{
-  .attachment-fields{
+.attachments-section {
+  .attachment-fields {
     display: none;
   }
 
-  .active-uploads{
+  .active-uploads {
     margin-bottom: 1.5rem;
   }
 }
 
-.plan_form_admin{
-  .plans-map{
+.plan_form_admin {
+  .plans-map {
     width: 100%;
     height: 200px;
     margin-bottom: 2rem;
 
     // Breakpoint for 'mediumlarge' but we don't have access to the mixins.
-    @media screen and (min-width: 800px){
+    @media screen and (min-width: 800px) {
       height: 450px;
     }
   }
 }
 
-.field-info{
+.field-info {
   position: relative;
 
-  &.with-tooltip{
+  &.with-tooltip {
     display: flex;
     justify-content: space-between;
   }
 
-  .form-help-tooltip{
+  .form-help-tooltip {
     position: relative;
     display: block;
     margin-left: 1rem;
     text-align: right;
     line-height: 1.8;
 
-    .form-help-tooltip__label{
+    .form-help-tooltip__label {
       margin-right: 0;
     }
   }
 }
 
-.form-help-tooltip{
-  .icon--information{
+.form-help-tooltip {
+  .icon--information {
     position: relative;
     vertical-align: top;
     top: 2px;
@@ -61,26 +61,26 @@
   }
 }
 
-.actions{
+.actions {
   margin-top: 2rem;
 }
 
-.flex-row{
+.flex-row {
   display: flex;
 
-  .columns{
+  .columns {
     flex-direction: column;
   }
 
-  .align-end{
+  .align-end {
     align-self: self-end;
   }
 }
 
-.margin-bottom-0{
+.margin-bottom-0 {
   margin-bottom: 0;
 }
 
-.form-spacing-top{
+.form-spacing-top {
   margin-top: $form-spacing;
 }

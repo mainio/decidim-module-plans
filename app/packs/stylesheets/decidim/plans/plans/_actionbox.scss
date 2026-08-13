@@ -2,56 +2,56 @@ $primary: #cb3c29 !default;
 $white: #fff !default;
 $global-weight-normal: normal !default;
 
-.actionbox{
+.actionbox {
   background: $primary;
   padding: 2rem;
 
   &,
   a,
-  .link{
+  .link {
     color: $white;
     font-weight: $global-weight-normal;
   }
 
-  .actionbox-links{
+  .actionbox-links {
     margin: 0;
     padding: 0;
     list-style-type: none;
   }
 
-  .action-link{
+  .action-link {
     display: flex;
     margin-top: 1rem;
     align-items: center;
     font-size: 1.3rem;
 
     &:hover,
-    &:focus{
+    &:focus {
       text-decoration: none;
 
-      .link-text{
+      .link-text {
         text-decoration: underline;
       }
     }
 
-    &.favorite-button{
-      .icon-wrap{
-        .heart-icon{
+    &.favorite-button {
+      .icon-wrap {
+        .heart-icon {
           color: $white;
 
-          svg{
+          svg {
             width: 30px;
             height: 27px;
           }
         }
 
         .heart-icon,
-        .indicator-wrap{
+        .indicator-wrap {
           margin: 0;
         }
       }
 
-      .indicator-wrap{
+      .indicator-wrap {
         width: 17px;
         height: 17px;
         font-size: 1rem;
@@ -66,16 +66,16 @@ $global-weight-normal: normal !default;
     }
 
     &.favorite-button .icon-wrap,
-    .icon{
+    .icon {
       margin-right: 1rem;
     }
 
-    .icon{
+    .icon {
       width: 30px;
       height: 30px;
     }
 
-    .link-text{
+    .link-text {
       text-align: left;
     }
   }
