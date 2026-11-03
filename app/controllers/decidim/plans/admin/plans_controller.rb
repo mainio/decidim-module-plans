@@ -93,6 +93,9 @@ module Decidim
         end
 
         # Possibly needed by the views
+        # Disable rubocop since methods are used in cells too and moving them to
+        # private and using helper_method doesn't work for cells
+        # rubocop:disable Decidim/EnforcePermissionTo
         def info_path(section_id)
           main_component_path("info/#{section_id}")
         end
@@ -106,6 +109,7 @@ module Decidim
         def reverse_geocoding_path(*_args)
           main_component_path("geocoding/reverse")
         end
+        # rubocop:enable Decidim/EnforcePermissionTo
 
         private
 

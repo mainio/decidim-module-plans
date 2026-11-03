@@ -150,7 +150,9 @@ module Decidim
         redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
       end
 
-      def preview; end
+      def preview
+        enforce_permission_to :read, :plan, plan: @plan
+      end
 
       def publish
         enforce_permission_to :publish, :plan, plan: @plan

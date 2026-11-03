@@ -10,6 +10,8 @@ module Decidim
 
       def show
         raise ActionController::RoutingError, "Not Found" if item.blank? || current_version.blank?
+
+        enforce_permission_to :read, :item, item:
       end
 
       private

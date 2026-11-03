@@ -48,9 +48,9 @@ module Decidim
 
           plan = @plan
           author = if author_type == "organization"
-                     Decidim::Organization.find_by(id: params[:id])
+                     Decidim::Organization.where(organization: current_organization).find_by(id: params[:id])
                    else
-                     Decidim::UserBaseEntity.find_by(id: params[:id])
+                     Decidim::UserBaseEntity.where(organization: current_organization).find_by(id: params[:id])
                    end
 
           RemoveAuthorFromPlan.call(plan, author) do
@@ -66,11 +66,14 @@ module Decidim
           end
         end
 
+        # Remove rubocop since authorization check is done in the "destroy" -method
+        # rubocop:disable Decidim/EnforcePermissionTo
         def destroy_organization
           @author_type = "organization"
 
           destroy
         end
+        # rubocop:enable Decidim/EnforcePermissionTo
 
         private
 

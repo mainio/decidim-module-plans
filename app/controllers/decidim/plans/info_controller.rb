@@ -8,6 +8,8 @@ module Decidim
       def show
         raise ActionController::RoutingError, "Not found" unless section
 
+        enforce_permission_to(:read, :section, section:)
+
         @text = translated_attribute(section.information)
 
         headers["X-Robots-Tag"] = "none"
@@ -21,7 +23,7 @@ module Decidim
       private
 
       def section
-        @section ||= Decidim::Plans::Section.find_by(id: params[:section])
+        @section ||= Decidim::Plans::Section.where(component: current_component).find_by(id: params[:section])
       end
     end
   end
