@@ -11,6 +11,12 @@ Decidim.register_component(:plans) do |component|
     raise "Can't destroy this component when there are plans" if Decidim::Plans::Plan.where(component: instance).any?
   end
 
+  component.on(:duplicate) do |context|
+    old_component = context[:old_component]
+    new_component = context[:new_component]
+    Decidim::Plans::Admin::DuplicateSections.call(old_component, new_component)
+  end
+
   component.data_portable_entities = ["Decidim::Plans::Plan"]
 
   component.actions = %w(create withdraw close reopen)

@@ -86,4 +86,18 @@ describe "Plans component" do # rubocop:disable RSpec/DescribeClass
       expect { component.manifest.seed!(space) }.not_to raise_error
     end
   end
+
+  describe "duplicate" do
+    let(:old_component) { create(:plan_component) }
+    let(:new_component) { create(:plan_component) }
+
+    it "calls DuplicateSections with the correct components" do
+      allow(Decidim::Plans::Admin::DuplicateSections).to receive(:call)
+
+      old_component.manifest.run_hooks(:duplicate, new_component:, old_component:)
+
+      expect(Decidim::Plans::Admin::DuplicateSections)
+        .to have_received(:call).with(old_component, new_component)
+    end
+  end
 end
