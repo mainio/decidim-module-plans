@@ -19,7 +19,7 @@ module Decidim
           Admin::AnswerPlan.call(@form, plan) do
             on(:ok) do
               flash[:notice] = I18n.t("plans.answer.success", scope: "decidim.plans.admin")
-              redirect_to plans_path
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plans_path
             end
 
             on(:invalid) do

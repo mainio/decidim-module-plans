@@ -10,11 +10,11 @@ module Decidim
       description "A content body field"
 
       field :locales, [GraphQL::Types::String], description: "Lists all the locales in which this content is available in.", null: true
-      field :translations, [Decidim::Core::LocalizedStringType], description: "All the localized strings for this content.", null: false do
-        argument :locales, [GraphQL::Types::String], description: "A list of locales to scope the translations to.", required: false
-      end
       field :translation, GraphQL::Types::String, description: "Returns a single translation given a locale.", null: true do
         argument :locale, GraphQL::Types::String, description: "A locale to search for", required: true
+      end
+      field :translations, [Decidim::Core::LocalizedStringType], description: "All the localized strings for this content.", null: false do
+        argument :locales, [GraphQL::Types::String], description: "A list of locales to scope the translations to.", required: false
       end
 
       def locales
@@ -25,7 +25,7 @@ module Decidim
         translations = object.stringify_keys
         translations = translations.slice(*locales) if locales
 
-        translations.map { |locale, text| OpenStruct.new(locale: locale, text: text) }
+        translations.map { |locale, text| OpenStruct.new(locale:, text:) }
       end
 
       def translation(locale:)

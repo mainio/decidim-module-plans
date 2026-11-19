@@ -7,6 +7,8 @@ module Decidim
 
       before_action :ensure_geocoder!, only: [:create, :reverse]
 
+      skip_before_action :verify_authenticity_token
+
       def create
         enforce_permission_to :create, :plan
 
@@ -37,7 +39,7 @@ module Decidim
         if address.present?
           render json: {
             success: true,
-            result: { address: address }
+            result: { address: }
           }
         else
           render json: {

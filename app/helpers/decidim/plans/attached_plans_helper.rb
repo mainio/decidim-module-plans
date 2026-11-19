@@ -9,18 +9,20 @@ module Decidim
             render partial: "decidim/plans/attached_plans/plans", layout: false
           end
           format.json do
-            query = Decidim
-                    .find_resource_manifest(:plans)
-                    .try(:resource_scope, current_component)
-                    &.published
-                    &.order("title->>#{current_locale}")
-                    &.where("state IS NULL OR state NOT IN ?", %w(rejected withdrawn))
-                    &.where&.not(published_at: nil)
+            scope = Decidim.find_resource_manifest(:plans).try(:resource_scope, current_component)
+            query = if scope
+                      scope.published
+                           .order("title->>#{current_locale}")
+                           .where("state IS NULL OR state NOT IN ?", [-10, -20])
+                           .where.not(published_at: nil)
+                    else
+                      Decidim::Plans::Plan.none
+                    end
 
             # In case the search term starts with a hash character and contains
             # only numbers, the user wants to search with the ID.
             query = if params[:term] =~ /^#[0-9]+$/
-                      idterm = params[:term].sub(/#/, "")
+                      idterm = params[:term].sub("#", "")
                       query&.where(
                         "decidim_plans_plans.id::text like ?",
                         "%#{idterm}%"

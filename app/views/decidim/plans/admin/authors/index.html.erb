@@ -20,7 +20,7 @@
         <tbody>
           <% plan.authors.each do |author| %>
             <tr data-id="<%= author.id %>">
-              <td><%= author.name %></td>
+              <td><%= translated_attribute author.name %></td>
               <td>
                 <% if author.is_a?(Decidim::Organization) %>
                   (<%= t(".organization_author") %>)
@@ -31,7 +31,7 @@
               <td class="table-list__actions">
                 <% if allowed_to? :edit, :plan, plan: plan %>
                   <%= icon_link_to(
-                    "circle-x",
+                    "close-circle-line",
                     destroy_author_path_for(plan, author),
                     t("actions.remove_author", scope: "decidim.plans"),
                     method: :delete,
@@ -49,11 +49,9 @@
 </div>
 
 <div class="button--double form-general-submit">
-  <button class="button" data-open="plan-author-add-modal-for-<%= plan.id %>">
+  <button class="button button__sm button__secondary" data-dialog-open="plan-author-add-modal-for-<%= plan.id %>">
     <%= t(".add_author") %>
   </button>
 </div>
 
 <%= cell("decidim/plans/plan_add_authors", plan, mode: :admin) %>
-
-<%= javascript_pack_tag "decidim_plans_admin_authors" %>

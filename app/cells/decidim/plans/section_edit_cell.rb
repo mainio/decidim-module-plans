@@ -6,7 +6,7 @@ module Decidim
       include Decidim::LayoutHelper # For the icon helper
       include Decidim::Plans::RemainingCharactersHelper
 
-      delegate :info_path, :user_signed_in?, to: :controller
+      delegate :info_path, :user_signed_in?, :user_public?, to: :controller
 
       private
 
@@ -22,12 +22,22 @@ module Decidim
         options[:multilingual_answers]
       end
 
-      def field_options
+      def field_options(name = :body)
         {
-          id: "plan_section_answer_#{model.section.id}",
+          id: field_id(name),
           label: false,
-          help_text: tooltip_help? ? nil : model.help
+          disabled: field_disabled?,
+          help_text: tooltip_help? ? nil : model.help,
+          abide_error: translated_attribute(model.section.error_text).presence
         }
+      end
+
+      def field_id(name)
+        "plans_section_#{model.section.id}_contents_#{model.section.id}_#{name}"
+      end
+
+      def field_disabled?
+        !user_signed_in? || !user_public?
       end
 
       # This is a wrapper method to print out correctly style "plain" labels
@@ -53,9 +63,10 @@ module Decidim
         @help_text ||= translated_attribute(section.help).strip
       end
 
-      def field_info_classes
-        classes = %w(field-info)
+      def field_label_classes
+        classes = []
         classes << "with-tooltip" if show_tooltip?
+        return if classes.blank?
 
         classes.join(" ")
       end

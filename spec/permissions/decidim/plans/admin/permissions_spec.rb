@@ -5,15 +5,15 @@ require "spec_helper"
 describe Decidim::Plans::Admin::Permissions do
   subject { described_class.new(user, permission_action, context).permissions.allowed? }
 
-  let(:user) { build :user }
+  let(:user) { build(:user) }
   let(:current_component) { create(:plan_component) }
   let(:plan) { nil }
   let(:context) do
     {
-      plan: plan,
-      current_component: current_component,
-      current_settings: current_settings,
-      component_settings: component_settings
+      plan:,
+      current_component:,
+      current_settings:,
+      component_settings:
     }
   end
   let(:component_settings) do
@@ -58,7 +58,7 @@ describe Decidim::Plans::Admin::Permissions do
         { scope: :admin, action: :edit, subject: :plan }
       end
 
-      let(:plan) { create :plan, component: current_component }
+      let(:plan) { create(:plan, component: current_component) }
 
       it { is_expected.to be true }
     end
@@ -90,7 +90,7 @@ describe Decidim::Plans::Admin::Permissions do
         { scope: :admin, action: :close, subject: :plan }
       end
 
-      let(:plan) { create :plan, component: current_component }
+      let(:plan) { create(:plan, component: current_component) }
 
       it { is_expected.to be true }
     end

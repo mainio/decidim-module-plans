@@ -18,7 +18,7 @@ module Decidim
         end
 
         def body
-          { value: value }
+          { value: }
         end
 
         def body=(data)

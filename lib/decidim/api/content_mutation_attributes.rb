@@ -6,8 +6,8 @@ module Decidim
       graphql_name "PlanContentMutationAttributes"
       description "A plan content attributes"
 
-      argument :id, GraphQL::Types::ID, required: false
-      argument :section_id, GraphQL::Types::ID, required: false
+      argument :id, GraphQL::Types::ID, description: "ID", required: false
+      argument :section_id, GraphQL::Types::ID, description: "Section ID", required: false
 
       def prepare
         raise GraphQL::ExecutionError, "Must specify exactly one of id or sectionId" if (id && section_id) || (!id && !section_id)
@@ -39,7 +39,7 @@ module Decidim
       private
 
       def find_content
-        cnt = Decidim::Plans::Content.find_by(id: id)
+        cnt = Decidim::Plans::Content.find_by(id:)
         raise GraphQL::ExecutionError, "Invalid id provided for content: #{id}" unless cnt
 
         cnt

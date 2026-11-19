@@ -19,7 +19,7 @@ describe Decidim::Plans::PlanCell, type: :cell do
     let(:model) { user_plan }
 
     it "renders the card" do
-      expect(subject).to have_css(".card--plan")
+      expect(subject).to have_css(".card__info")
     end
   end
 end

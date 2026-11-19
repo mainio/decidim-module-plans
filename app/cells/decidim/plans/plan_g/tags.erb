@@ -1,0 +1,7 @@
+<% if answered? || model.tags.any? %>
+  <div class="card__tags">
+    <%= render :state if answered? %>
+
+    <%= cell("decidim/tags/tags", model) %>
+  </div>
+<% end %>

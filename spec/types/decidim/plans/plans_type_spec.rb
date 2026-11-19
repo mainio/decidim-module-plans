@@ -29,6 +29,8 @@ module Decidim
 
       describe "sections" do
         let(:query) { "{ sections { edges { node { id } } } }" }
+        let!(:generated_sections) { create_list(:section, 3, component: model) }
+
         let(:sections) do
           Section.where(component: model).order(:position)
         end
@@ -54,8 +56,8 @@ module Decidim
         context "when the plan doesn't belong to the component" do
           let!(:plan) { create(:plan, component: create(:plan_component)) }
 
-          it "returns null" do
-            expect(response["plan"]).to be_nil
+          it "returns not found error" do
+            expect { response }.to raise_error(Decidim::Api::Errors::NotFoundError)
           end
         end
       end

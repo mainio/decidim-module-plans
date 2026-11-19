@@ -9,12 +9,12 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
   let(:organization) { component.organization }
   let(:participatory_space) { component.participatory_space }
 
-  let(:sections) { create_list(:section, 2, :field_text, component: component) }
+  let(:sections) { create_list(:section, 2, :field_text, component:) }
 
-  let(:target_component) { create(:budgets_component, participatory_space: participatory_space) }
+  let(:target_component) { create(:budgets_component, participatory_space:) }
   let(:budget) { create(:budget, component: target_component) }
 
-  let(:user) { create :user, :admin, :confirmed, organization: organization }
+  let(:user) { create(:user, :admin, :confirmed, organization:) }
   let(:form) do
     form_klass.from_params(
       form_params
@@ -24,7 +24,7 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
     )
   end
 
-  let!(:plans) { create_list :plan, 10, :published, :accepted, closed_at: Time.current, component: component }
+  let!(:plans) { create_list(:plan, 10, :published, :accepted, closed_at: Time.current, component:) }
 
   describe "call" do
     let(:sections_param) { sections.map(&:id) }
@@ -36,7 +36,8 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
           { component_id: target_component.try(:id), budget_id: budget.try(:id) }
         ],
         default_budget_amount: 50_000,
-        export_all_closed_plans: true
+        export_all_closed_plans: true,
+        taxonomy_ids: []
       }
     end
 
@@ -71,6 +72,58 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
         end.to change(Decidim::Budgets::Project, :count).by(10)
       end
 
+      context "when filtering by taxonomy" do
+        let(:root_taxonomy) { create(:taxonomy, organization:, skip_injection: true) }
+        let(:taxonomy) { create(:taxonomy, parent: root_taxonomy, organization:, skip_injection: true) }
+        let(:other_taxonomy) { create(:taxonomy, parent: root_taxonomy, organization:, skip_injection: true) }
+
+        let(:form_params) do
+          {
+            target_component_id: target_component.try(:id),
+            content_sections: sections_param,
+            target_details: [
+              { component_id: target_component.try(:id), budget_id: budget.try(:id) }
+            ],
+            default_budget_amount: 50_000,
+            export_all_closed_plans: true,
+            taxonomy_ids: [taxonomy.id.to_s]
+          }
+        end
+
+        before do
+          # Tag only 3 plans with the selected taxonomy
+          plans.first(3).each do |plan|
+            plan.taxonomizations.find_or_create_by(taxonomy:)
+          end
+          # Tag 2 plans with a different taxonomy (should not be exported)
+          plans.last(2).each do |plan|
+            plan.taxonomizations.find_or_create_by(taxonomy: other_taxonomy)
+          end
+        end
+
+        it "only exports plans with the selected taxonomy" do
+          expect { command.call }.to change(Decidim::Budgets::Project, :count).by(3)
+        end
+
+        it "copies taxonomizations to the exported projects" do
+          command.call
+          Decidim::Budgets::Project.all.each do |project|
+            expect(project.taxonomizations.pluck(:taxonomy_id)).to include(taxonomy.id)
+          end
+        end
+      end
+
+      context "when no taxonomy filter is applied" do
+        it "exports all accepted closed plans" do
+          expect { command.call }.to change(Decidim::Budgets::Project, :count).by(10)
+        end
+
+        it "does not create any taxonomizations on projects" do
+          command.call
+          expect(Decidim::Budgets::Project.all.flat_map(&:taxonomizations)).to be_empty
+        end
+      end
+
       context "when the plans contain malicious HTML" do
         let(:malicious_content_array) do
           [
@@ -88,22 +141,22 @@ describe Decidim::Plans::Admin::ExportPlansToBudgets do
             :published,
             title: Decidim::Faker::Localized.localized { malicious_content },
             closed_at: Time.current,
-            component: component
+            component:
           )
         end
 
         before do
           section = create(
             :section,
-            component: component,
+            component:,
             body: Decidim::Faker::Localized.localized { malicious_content }
           )
 
           plans.each do |plan|
             create(
               :content,
-              plan: plan,
-              section: section,
+              plan:,
+              section:,
               body: Decidim::Faker::Localized.localized { malicious_content }
             )
           end

@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe "Plan search", type: :request do
+RSpec.describe "PlanSearch" do
   include Decidim::ComponentPathHelper
 
   subject { response.body }
@@ -26,11 +26,10 @@ RSpec.describe "Plan search", type: :request do
     )
   end
 
-  it_behaves_like "a resource search with scopes", :plan
-  it_behaves_like "a resource search with categories", :plan
+  it_behaves_like "a resource search with taxonomies", :plan
 
   context "without filters" do
-    let(:plan) { create(:plan, component: component) }
+    let(:plan) { create(:plan, component:) }
     let(:other_plan) { create(:plan) }
     let(:search_resources) { plan && other_plan }
 
@@ -41,11 +40,11 @@ RSpec.describe "Plan search", type: :request do
   end
 
   describe "text filter" do
-    let(:filter_params) { { search_text: search_text } }
+    let(:filter_params) { { search_text: } }
 
     let(:search_text) { translated(plan_to_find.title) }
-    let(:plan_to_find) { create(:plan, title: { en: "This plan should be in the results" }, component: component) }
-    let(:other_plans) { create_list(:plan, 10, component: component) }
+    let(:plan_to_find) { create(:plan, title: { en: "This plan should be in the results" }, component:) }
+    let(:other_plans) { create_list(:plan, 10, component:) }
     let(:search_resources) { plan_to_find && other_plans }
 
     it "displays the matching plan" do
@@ -77,8 +76,8 @@ RSpec.describe "Plan search", type: :request do
     context "when filtering official plans" do
       let(:origin) { "official" }
 
-      let(:official_plans) { create_list(:plan, 3, :official, component: component) }
-      let(:other_plans) { create_list(:plan, 5, component: component) }
+      let(:official_plans) { create_list(:plan, 3, :official, component:) }
+      let(:other_plans) { create_list(:plan, 5, component:) }
       let(:search_resources) { official_plans && other_plans }
 
       it "returns only official plans" do
@@ -95,8 +94,8 @@ RSpec.describe "Plan search", type: :request do
     context "when filtering participant plans" do
       let(:origin) { "participants" }
 
-      let(:official_plans) { create_list(:plan, 3, :official, component: component) }
-      let(:participant_plans) { create_list(:plan, 5, component: component) }
+      let(:official_plans) { create_list(:plan, 3, :official, component:) }
+      let(:participant_plans) { create_list(:plan, 5, component:) }
       let(:search_resources) { official_plans && participant_plans }
 
       it "returns only participants plans" do
@@ -114,8 +113,8 @@ RSpec.describe "Plan search", type: :request do
   describe "availability filter" do
     let(:filter_params) { { with_availability: availability } }
 
-    let(:other_plans) { create_list(:plan, 3, component: component) }
-    let(:withdrawn_plans) { create_list(:plan, 3, :withdrawn, component: component) }
+    let(:other_plans) { create_list(:plan, 3, component:) }
+    let(:withdrawn_plans) { create_list(:plan, 3, :withdrawn, component:) }
     let(:search_resources) { other_plans && withdrawn_plans }
 
     context "when filtering with empty availability" do
@@ -151,8 +150,8 @@ RSpec.describe "Plan search", type: :request do
     let(:filter_params) { { with_any_state: state } }
     let(:state) { %w(accepted rejected evaluating not_answered) }
 
-    let(:withdrawn_plans) { create_list(:plan, 3, :withdrawn, component: component) }
-    let(:other_plans) { create_list(:plan, 3, component: component) }
+    let(:withdrawn_plans) { create_list(:plan, 3, :withdrawn, component:) }
+    let(:other_plans) { create_list(:plan, 3, component:) }
     let(:search_resources) { withdrawn_plans && other_plans }
 
     context "when filtering for default states" do
@@ -170,10 +169,10 @@ RSpec.describe "Plan search", type: :request do
     context "when filtering except_rejected plans" do
       let(:state) { "except_rejected" }
 
-      let(:withdrawn_plan) { create(:plan, :withdrawn, component: component) }
-      let(:rejected_plan) { create(:plan, :rejected, component: component) }
-      let(:accepted_plan) { create(:plan, :accepted, component: component) }
-      let(:unanswered_plan) { create(:plan, component: component) }
+      let(:withdrawn_plan) { create(:plan, :withdrawn, component:) }
+      let(:rejected_plan) { create(:plan, :rejected, component:) }
+      let(:accepted_plan) { create(:plan, :accepted, component:) }
+      let(:unanswered_plan) { create(:plan, component:) }
       let(:search_resources) { withdrawn_plan && rejected_plan && accepted_plan && unanswered_plan }
 
       it "hides withdrawn and rejected plans" do
@@ -188,8 +187,8 @@ RSpec.describe "Plan search", type: :request do
     context "when filtering accepted plans" do
       let(:state) { "accepted" }
 
-      let(:accepted_plans) { create_list(:plan, 3, :accepted, component: component) }
-      let(:other_plans) { create_list(:plan, 3, component: component) }
+      let(:accepted_plans) { create_list(:plan, 3, :accepted, component:) }
+      let(:other_plans) { create_list(:plan, 3, component:) }
       let(:search_resources) { accepted_plans && other_plans }
 
       it "returns only accepted plans" do
@@ -206,42 +205,12 @@ RSpec.describe "Plan search", type: :request do
     context "when filtering rejected plans" do
       let(:state) { "rejected" }
 
-      let(:rejected_plans) { create_list(:plan, 3, :rejected, component: component) }
-      let(:other_plans) { create_list(:plan, 3, component: component) }
+      let(:rejected_plans) { create_list(:plan, 3, :rejected, component:) }
+      let(:other_plans) { create_list(:plan, 3, component:) }
       let(:search_resources) { rejected_plans && other_plans }
 
       it "returns only rejected plans" do
         rejected_plans.each do |pl|
-          expect(subject).to have_escaped_html(translated(pl.title))
-        end
-
-        other_plans.each do |pl|
-          expect(subject).not_to have_escaped_html(translated(pl.title))
-        end
-      end
-    end
-  end
-
-  describe "related_to filter" do
-    let(:filter_params) { { related_to: related_to } }
-
-    context "when filtering by related to resources" do
-      let(:related_to) { "Decidim::DummyResources::DummyResource".underscore }
-      let(:dummy_component) { create(:component, manifest_name: "dummy", participatory_space: participatory_space) }
-      let(:dummy_resource) { create :dummy_resource, component: dummy_component }
-
-      let(:related_plan) { create(:plan, :accepted, component: component) }
-      let(:related_plan2) { create(:plan, :accepted, component: component) }
-      let(:other_plans) { create_list(:plan, 3, component: component) }
-      let(:search_resources) do
-        other_plans
-
-        dummy_resource.link_resources([related_plan], "included_plans")
-        related_plan2.link_resources([dummy_resource], "included_plans")
-      end
-
-      it "returns only plans related to results" do
-        [related_plan, related_plan2].each do |pl|
           expect(subject).to have_escaped_html(translated(pl.title))
         end
 
@@ -258,7 +227,7 @@ RSpec.describe "Plan search", type: :request do
     context "with no tags" do
       let(:tags) { [] }
 
-      let(:plans) { create_list(:plan, 10, component: component) }
+      let(:plans) { create_list(:plan, 10, component:) }
       let(:search_resources) { plans }
 
       it "does not filter by tags" do
@@ -270,11 +239,11 @@ RSpec.describe "Plan search", type: :request do
 
     context "with a single tag" do
       let(:tags) { [tag.id] }
-      let(:tag) { create(:tag, organization: organization) }
-      let(:loose_tag) { create(:tag, organization: organization) }
+      let(:tag) { create(:tag, organization:) }
+      let(:loose_tag) { create(:tag, organization:) }
 
-      let(:tagged_plans) { create_list(:plan, 10, component: component, tags: [tag]) }
-      let(:not_tagged_plans) { create_list(:plan, 10, component: component) }
+      let(:tagged_plans) { create_list(:plan, 10, component:, tags: [tag]) }
+      let(:not_tagged_plans) { create_list(:plan, 10, component:) }
       let(:search_resources) { tagged_plans && not_tagged_plans }
 
       it "filters by tags" do
@@ -288,14 +257,14 @@ RSpec.describe "Plan search", type: :request do
     end
 
     context "with multiple tags" do
-      let(:tags) { [tag1.id, tag2.id] }
-      let(:tag1) { create(:tag, organization: organization) }
-      let(:tag2) { create(:tag, organization: organization) }
-      let(:loose_tag) { create(:tag, organization: organization) }
+      let(:tags) { [first_tag.id, second_tag.id] }
+      let(:first_tag) { create(:tag, organization:) }
+      let(:second_tag) { create(:tag, organization:) }
+      let(:loose_tag) { create(:tag, organization:) }
 
-      let(:tagged_plans) { create_list(:plan, 10, component: component, tags: [tag1]) }
-      let(:other_tagged_plans) { create_list(:plan, 10, component: component, tags: [tag2]) }
-      let(:not_tagged_plans) { create_list(:plan, 10, component: component) }
+      let(:tagged_plans) { create_list(:plan, 10, component:, tags: [first_tag]) }
+      let(:other_tagged_plans) { create_list(:plan, 10, component:, tags: [second_tag]) }
+      let(:not_tagged_plans) { create_list(:plan, 10, component:) }
       let(:search_resources) { tagged_plans && other_tagged_plans && not_tagged_plans }
 
       it "filters by tags" do
@@ -312,15 +281,15 @@ RSpec.describe "Plan search", type: :request do
     end
 
     context "with multiple tags and some plans matching all the tags" do
-      let(:tags) { [tag1.id, tag2.id] }
-      let(:tag1) { create(:tag, organization: organization) }
-      let(:tag2) { create(:tag, organization: organization) }
-      let(:loose_tag) { create(:tag, organization: organization) }
+      let(:tags) { [first_tag.id, second_tag.id] }
+      let(:first_tag) { create(:tag, organization:) }
+      let(:second_tag) { create(:tag, organization:) }
+      let(:loose_tag) { create(:tag, organization:) }
 
-      let(:tagged_plans) { create_list(:plan, 10, component: component, tags: [tag1]) }
-      let(:other_tagged_plans) { create_list(:plan, 10, component: component, tags: [tag2]) }
-      let(:both_tagged_plans) { create_list(:plan, 10, component: component, tags: [tag1, tag2]) }
-      let(:not_tagged_plans) { create_list(:plan, 10, component: component) }
+      let(:tagged_plans) { create_list(:plan, 10, component:, tags: [first_tag]) }
+      let(:other_tagged_plans) { create_list(:plan, 10, component:, tags: [second_tag]) }
+      let(:both_tagged_plans) { create_list(:plan, 10, component:, tags: [first_tag, second_tag]) }
+      let(:not_tagged_plans) { create_list(:plan, 10, component:) }
       let(:search_resources) { tagged_plans && other_tagged_plans && both_tagged_plans && not_tagged_plans }
 
       it "filters by tags" do

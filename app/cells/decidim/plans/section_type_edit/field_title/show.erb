@@ -1,25 +1,15 @@
 <div class="field with-character-counter">
-  <div class="row field-label-with-info">
-    <div class="columns large-8">
-      <%= content_tag :div, class: field_info_classes do %>
+  <div class="row medium-unstack">
+    <div class="columns medium-7 large-8">
+      <%= content_tag :div, class: field_label_classes do %>
         <%= plain_label form, "body_#{current_locale}".to_sym %>
         <%= render :tooltip %>
       <% end %>
     </div>
-    <% if show_info_link? %>
-      <div class="columns large-4">
-        <div class="field-info field-info-with-icon">
-          <%= link_to info_path(section.id), class: "info-modal-link" do %>
-            <%= icon "information", aria_hidden: true %>
-            <%= information_label %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
   </div>
 
-  <div class="row">
-    <div class="columns large-8">
+  <div class="row medium-unstack">
+    <div class="columns medium-7">
       <% if multilingual_answers? %>
         <%= form.translated(
           :text_field,
@@ -31,14 +21,29 @@
       <% else %>
         <%= form.text_field(
           "body_#{current_locale}".to_sym,
-          field_options
+          field_options("body_#{current_locale}".to_sym)
         ) %>
       <% end %>
     </div>
-    <div class="columns large-4">
-      <div class="field-character-counter-info field-info"></div>
-    </div>
+    <% if show_info_link? %>
+      <div class="columns medium-5">
+        <div class="field-info field-info-with-icon">
+          <%= link_to info_path(section.id), class: "info-modal-link" do %>
+            <%= icon "information-line", aria_hidden: true %>
+            <span><%= information_label %></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
+
+  <% if display_character_counter? %>
+    <div class="row medium-unstack">
+      <div class="columns medium-7">
+        <div class="field-character-counter-info help-text"></div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <div id="plans-dummy-counter-<%= section.id %>" class="hide" aria-hidden="true"></div>

@@ -10,22 +10,22 @@ module Decidim
         helper_method :plan
 
         def index
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to :edit, :plan, plan:
         end
 
         def create
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           @form = form(AddAuthorToPlanForm).from_params(params, component: current_component)
 
           unless @form.authors.any?
             flash[:alert] = t("add_authors.no_authors", scope: "decidim.plans.plans")
-            redirect_to plan_authors_path(plan)
+            redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
           end
         end
 
         def confirm
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           @form = form(AddAuthorToPlanForm).from_params(params, component: current_component)
 
@@ -33,44 +33,47 @@ module Decidim
           AddAuthorsToPlan.call(@form, @plan, current_user) do
             on(:ok) do
               flash[:success] = t("add_authors.success", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
 
             on(:invalid) do
               flash[:alert] = t("add_authors.error", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
           end
         end
 
         def destroy
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           plan = @plan
           author = if author_type == "organization"
-                     Decidim::Organization.find_by(id: params[:id])
+                     Decidim::Organization.where(organization: current_organization).find_by(id: params[:id])
                    else
-                     Decidim::UserBaseEntity.find_by(id: params[:id])
+                     Decidim::UserBaseEntity.where(organization: current_organization).find_by(id: params[:id])
                    end
 
           RemoveAuthorFromPlan.call(plan, author) do
             on(:ok) do
               flash[:success] = t("remove_author.success", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
 
             on(:invalid) do
               flash[:alert] = t("remove_author.error", scope: "decidim.plans.plans")
-              redirect_to plan_authors_path(plan)
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plan_authors_path(plan)
             end
           end
         end
 
+        # Remove rubocop since authorization check is done in the "destroy" -method
+        # rubocop:disable Decidim/EnforcePermissionTo
         def destroy_organization
           @author_type = "organization"
 
           destroy
         end
+        # rubocop:enable Decidim/EnforcePermissionTo
 
         private
 

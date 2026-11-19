@@ -53,7 +53,7 @@ module Decidim
 
         def locale_name(locale)
           if I18n.available_locales.include?(locale.to_sym)
-            I18n.t("locale.name", locale: locale)
+            I18n.t("locale.name", locale:)
           else
             locale
           end
@@ -77,7 +77,7 @@ module Decidim
 
           diff.update(
             attribute => {
-              type: type,
+              type:,
               label: generate_label(attribute),
               old_value: values[0],
               new_value: values[1]
@@ -93,7 +93,7 @@ module Decidim
             last_value = values.last.try(:[], locale) if values.last.is_a? Hash
             next if first_value == last_value
 
-            attribute_locale = "#{attribute}_#{locale}".to_sym
+            attribute_locale = :"#{attribute}_#{locale}"
             diff.update(
               attribute_locale => {
                 type: :string,

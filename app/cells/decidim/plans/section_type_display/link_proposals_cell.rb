@@ -18,7 +18,7 @@ module Decidim
           return [] unless model.body["proposal_ids"]
 
           @proposals ||= model.body["proposal_ids"].map do |id|
-            Decidim::Proposals::Proposal.find_by(id: id)
+            Decidim::Proposals::Proposal.find_by(id:)
           end.compact
         end
       end

@@ -28,8 +28,8 @@ module Decidim
       # by a range of dates.
       def query
         plans = Decidim::Plans::Plan.where(component: @components)
-        plans = plans.where("created_at >= ?", @start_at) if @start_at.present?
-        plans = plans.where("created_at <= ?", @end_at) if @end_at.present?
+        plans = plans.where(created_at: @start_at..) if @start_at.present?
+        plans = plans.where(created_at: ..@end_at) if @end_at.present?
         plans
       end
     end

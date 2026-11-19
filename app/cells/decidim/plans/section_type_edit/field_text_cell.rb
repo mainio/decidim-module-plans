@@ -6,15 +6,23 @@ module Decidim
       class FieldTextCell < Decidim::Plans::SectionEditCell
         private
 
-        def field_options
+        def field_options(name = :body)
           base = super.merge(label: false)
-          return base if model.section.settings["answer_length"].to_i < 1
+          return base unless display_character_counter?
 
           base.merge(
-            maxlength: model.section.settings["answer_length"],
+            maxlength: answer_length,
             # Disable the core character counter with a hidden dummy element
             "data-remaining-characters": "#plans-dummy-counter-#{section.id}"
           )
+        end
+
+        def display_character_counter?
+          answer_length.positive?
+        end
+
+        def answer_length
+          model.section.settings["answer_length"].to_i
         end
       end
     end

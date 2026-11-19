@@ -5,7 +5,7 @@ require "spec_helper"
 describe Decidim::Plans::PlanFormCell, type: :cell do
   subject { my_cell.call }
 
-  let(:my_cell) { cell("decidim/plans/plan_form", model, disable_user_group_field: true, context: { plan: plan }) }
+  let(:my_cell) { cell("decidim/plans/plan_form", model, context: { plan: }) }
   let(:model) { Decidim::FormBuilder.new(:plan, form, view, {}) }
 
   let(:template_class) do
@@ -36,6 +36,17 @@ describe Decidim::Plans::PlanFormCell, type: :cell do
   context "when rendering" do
     it "renders the form" do
       sections.each do |section|
+        case section.section_type
+        when "field_category"
+          expect(subject).to have_no_content(translated(section.body))
+          next
+        when "field_taxonomy"
+          # The taxonomy field's label is derived from the root taxonomy name,
+          # not from section.body, so check for that instead.
+          expect(subject).to have_content(translated(taxonomy_filter.root_taxonomy.name))
+          next
+        end
+
         expect(subject).to have_content(translated(section.body))
 
         case section.section_type

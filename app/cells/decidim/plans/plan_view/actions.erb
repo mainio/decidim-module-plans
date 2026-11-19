@@ -6,7 +6,7 @@
           <%= form.hidden_field :id, value: plan.id %>
           <%= form.hidden_field :state, value: plan.state %>
           <button type="submit" class="link action-link">
-            <%= icon "pencil", role: "img", "aria-hidden": true %>
+            <%= icon "pencil-line", role: "img", "aria-hidden": true %>
             <span class="link-text"><%= t ".request_access" %></span>
           </button>
         <% end %>
@@ -22,17 +22,19 @@
         <span class="link-text"><%= t ".share" %></span>
       </button>
     </li>
-    <li>
-      <%= link_to "#comments", class: "action-link" do %>
-        <%= icon "comment-square", role: "img", "aria-hidden": true %>
-        <span class="link-text"><%= t ".show_comments" %></span>
-      <% end %>
-    </li>
+    <% if plan.commentable? %>
+      <li>
+        <%= link_to "#comments", class: "action-link" do %>
+          <%= icon "question-answer-line", role: "img", "aria-hidden": true %>
+          <span class="link-text"><%= t ".show_comments" %></span>
+        <% end %>
+      </li>
+    <% end %>
   <% end %>
   <% if has_map_position? %>
     <li>
       <%= link_to plan_map_link, class: "action-link", target: "_blank" do %>
-        <%= icon "map-marker", role: "img", "aria-hidden": true %>
+        <%= icon "map-pin-line", role: "img", "aria-hidden": true %>
         <span class="link-text"><%= t ".show_on_map" %></span>
       <% end %>
     </li>
@@ -48,7 +50,7 @@
   <% if flaggable? %>
     <li>
     <button type="button" class="link action-link" data-open="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-controls="<%= current_user.present? ? "flagModal" : "loginModal" %>" aria-haspopup="true">
-      <%= icon "flag", role: "img", "aria-hidden": true %>
+      <%= icon "flag-line", role: "img", "aria-hidden": true %>
       <span class="link-text"><%= t ".flag" %></span>
     </button>
     </li>

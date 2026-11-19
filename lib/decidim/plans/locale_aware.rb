@@ -25,7 +25,7 @@ module Decidim
       #
       # Returns an Array of Strings.
       def available_locales
-        @available_locales ||= (current_organization || Decidim).public_send(:available_locales)
+        @available_locales ||= (current_organization || Decidim).available_locales
       end
     end
   end

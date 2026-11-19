@@ -6,10 +6,10 @@ describe Decidim::Plans::DestroyPlan do
   let(:component) { create(:plan_component) }
   let(:organization) { component.organization }
   let(:state) { :published }
-  let(:author) { create :user, :confirmed, organization: organization }
-  let(:non_author) { create :user, :confirmed, organization: organization }
-  let(:plan_published) { create(:plan, state, component: component, users: [author]) }
-  let(:plan_draft) { create(:plan, state, component: component, users: [author]) }
+  let(:author) { create(:user, :confirmed, organization:) }
+  let(:non_author) { create(:user, :confirmed, organization:) }
+  let(:plan_published) { create(:plan, state, component:, users: [author]) }
+  let(:plan_draft) { create(:plan, state, component:, users: [author]) }
 
   describe "call" do
     describe "when called for draft plan" do

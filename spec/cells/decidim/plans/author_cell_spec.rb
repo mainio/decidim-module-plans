@@ -10,8 +10,7 @@ describe Decidim::Plans::AuthorCell, type: :cell do
   let(:current_user) { create(:user, :confirmed) }
 
   let!(:organization) { create(:organization, tos_version: Time.current) }
-  let(:user) { create(:user, :confirmed, organization: organization) }
-  let(:user_group) { create(:user_group, :confirmed, :verified) }
+  let(:user) { create(:user, :confirmed, organization:) }
   let(:plan) { create(:plan) }
 
   controller Decidim::Plans::PlansController
@@ -25,33 +24,13 @@ describe Decidim::Plans::AuthorCell, type: :cell do
     let(:model) { Decidim::UserPresenter.new(user) }
 
     it "renders a User author card" do
-      expect(subject).to have_css(".author-data")
-    end
-  end
-
-  context "when rendering a user group" do
-    let(:model) { Decidim::UserGroupPresenter.new(user_group) }
-
-    it "renders a User_group author card" do
-      expect(subject).to have_css(".author-data")
+      expect(subject).to have_css(".author__container")
     end
   end
 
   context "when has a plan context" do
     let(:model) { Decidim::UserPresenter.new(user) }
     let(:my_cell) { cell("decidim/plans/author", model, from: plan) }
-
-    it "renders the flag button with report modal target" do
-      expect(subject).to have_css("button[data-open='flagModal'][title='Report']")
-    end
-
-    context "when there's no current user" do
-      let(:current_user) { nil }
-
-      it "renders the flag button with login modal target" do
-        expect(subject).to have_css("button[data-open='loginModal'][title='Report']")
-      end
-    end
 
     context "when is withdrawable" do
       before do

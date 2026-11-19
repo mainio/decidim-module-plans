@@ -8,7 +8,7 @@ module Decidim
       subject { section }
 
       let(:component) { create(:dummy_component) }
-      let(:section) { build(:section, component: component) }
+      let(:section) { build(:section, component:) }
 
       it { is_expected.to be_valid }
 

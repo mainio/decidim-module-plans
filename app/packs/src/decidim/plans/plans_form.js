@@ -2,12 +2,10 @@ import "src/decidim/plans/character_counter";
 import "src/decidim/plans/tab_focus";
 import "src/decidim/plans/reset_inputs";
 import "src/decidim/plans/info_modals";
+import "src/decidim/plans/exit_handler";
 
 ((exports) => {
   const $ = exports.$; // eslint-disable-line id-length
-
-  // Defines whether the user can exit the view without a warning or not
-  let canExit = false;
 
   const bindAddressLookup = ($container) => {
     const $map = $(".plans-map");
@@ -58,6 +56,18 @@ import "src/decidim/plans/info_modals";
       });
     }
 
+    const announceMarkerAdded = ($field) => {
+      // This is a method that is not available by default but it can be added.
+      // See:
+      // https://github.com/decidim/decidim/pull/12707
+      if (!window.Decidim.announceForScreenReader) {
+        return;
+      }
+
+      const message = $field.data("screen-reader-announcement");
+      window.Decidim.announceForScreenReader(message);
+    }
+
     // Prevent the form submit event on keydown event in the address field
     $address.on("keydown.decidim-plans", (ev) => {
       if (ev.keyCode === 13) {
@@ -96,10 +106,13 @@ import "src/decidim/plans/info_modals";
       $longitude.val(coordinates.lng).attr("value", coordinates.lng);
     });
 
-    // Listen for the autocompletion event from Tribute
-    $address.on("tribute-replaced", (ev) => {
-      const selected = ev.detail.item.original;
-      if (selected.coordinates) {
+    // Listen for the autocompletion event from AutocompleteJS
+    const autocomplete = $address[0].ac;
+    $address[0].addEventListener("selection", (ev) => {
+      autocomplete.close();
+
+      const selected = ev.detail?.selection?.value;
+      if (selected && selected.coordinates) {
         $latitude.val(selected.coordinates[0]).attr("value", selected.coordinates[0]);
         $longitude.val(selected.coordinates[1]).attr("value", selected.coordinates[1]);
 
@@ -110,11 +123,14 @@ import "src/decidim/plans/info_modals";
       } else {
         performCoordinatesLookup();
       }
+      announceMarkerAdded($address);
     });
 
     $lookup.on("click.decidim-plans", (ev) => {
       ev.preventDefault();
+      autocomplete.close();
       performCoordinatesLookup();
+      announceMarkerAdded($address);
     });
 
     if ($latitude.val().length > 0 && $longitude.val().length > 0) {
@@ -136,7 +152,6 @@ import "src/decidim/plans/info_modals";
    */
   const bindFormValidation = ($form) => {
     const $submits = $("[type='submit']", $form);
-    const $discardLink = $(".discard-draft-link", $form);
     const $submitMessage = $(".form-submit-message", $form);
 
     $submits.off("click.decidim-plans.form").on(
@@ -154,7 +169,6 @@ import "src/decidim/plans/info_modals";
         if (!ev.key || (ev.key === " " || ev.key === "Enter")) {
           ev.preventDefault();
 
-          canExit = true;
           $form.submit();
 
           const $firstField = $("input.is-invalid-input, textarea.is-invalid-input, select.is-invalid-input").first();
@@ -168,39 +182,9 @@ import "src/decidim/plans/info_modals";
         }
       }
     );
-
-    $discardLink.off("click.decidim-plans.form").on(
-      "click.decidim-plans.form",
-      () => {
-        canExit = true;
-      }
-    );
-  };
-
-  const bindAccidentalExitDisabling = () => {
-    $(document).on("click", "a, input, button", (ev) => {
-      const $target = $(ev.target);
-      if ($target.closest(".idea-form-container").length > 0) {
-        canExit = true;
-      } else if ($target.closest(".plan-form-container").length > 0) {
-        canExit = true;
-      } else if ($target.closest("#loginModal").length > 0) {
-        canExit = true;
-      }
-    });
-
-    window.onbeforeunload = () => {
-      if (canExit) {
-        return null;
-      }
-
-      return "";
-    }
   };
 
   $(() => {
-    bindAccidentalExitDisabling();
-
     $("form.plans-form").each((_i, el) => {
       const $form = $(el);
 
@@ -219,7 +203,44 @@ import "src/decidim/plans/info_modals";
       $(".address-input", $form).each((_j, addressEl) => {
         bindAddressLookup($(addressEl));
       });
+      const bindTaxonomySelectors = () => {
+        $("[data-taxonomy-filter]").each((_k, select) => {
+          const $filterGroup = $(select).closest("[data-filter-group]");
+          const subDivs = {};
 
+          // Store and remove all sub-taxonomy divs from DOM
+          $filterGroup.find("[data-parent-taxonomy]").each((_j, div) => {
+            const $div = $(div);
+            const parentId = $div.data("parent-taxonomy");
+            subDivs[parentId] = $div;
+            $div.detach();
+          });
+
+          // Re-attach if a child was already selected (edit mode)
+          Object.entries(subDivs).forEach(([parentId, $div]) => {
+            const childVal = $div.find("select").val();
+            if (childVal) {
+              $(select).val(parentId);
+              $filterGroup.append($div);
+            }
+          });
+
+          $(select).on("change.decidim.plans", (ev) => {
+            // Remove all sub-taxonomy divs
+            Object.values(subDivs).forEach(($div) => $div.detach());
+            $filterGroup.find("[data-parent-taxonomy]").each((_j, div) => $(div).detach());
+
+            // Append the matching one
+            const selectedValue = $(ev.target).val();
+            if (selectedValue && subDivs[selectedValue]) {
+              $filterGroup.append(subDivs[selectedValue]);
+              $filterGroup.find("[data-parent-taxonomy] select").val("");
+            }
+          });
+        });
+      };
+
+      bindTaxonomySelectors();
       bindFormValidation($form);
     });
   });

@@ -7,11 +7,11 @@ module Decidim
         graphql_name "PlanProposalsFieldAttributes"
         description "A plan attributes for linked proposals field"
 
-        argument :ids, [GraphQL::Types::ID], required: true
+        argument :ids, [GraphQL::Types::ID], description: "Linked proposal IDs", required: true
 
         def to_h
           existing_ids = ids.map do |id|
-            proposal = Decidim::Proposals::Proposal.find_by(id: id)
+            proposal = Decidim::Proposals::Proposal.find_by(id:)
             proposal&.id
           end
 

@@ -9,16 +9,16 @@ module Decidim
       let(:component) { create(:plan_component) }
       let(:participatory_space) { component.participatory_space }
       let(:organization) { component.organization }
-      let(:author) { create(:user, :confirmed, organization: organization) }
-      let(:category) { create(:category, participatory_space: participatory_space) }
+      let(:author) { create(:user, :confirmed, organization:) }
+      let(:category) { create(:category, participatory_space:) }
 
       with_versioning do
-        let(:plan) { create(:plan, component: component, category: category) }
+        let(:plan) { create(:plan, component:, category:) }
 
         describe "#diff" do
           subject { described_class.new(version, "en") }
 
-          let(:other_category) { create(:category, participatory_space: participatory_space) }
+          let(:other_category) { create(:category, participatory_space:) }
           let(:version) { plan.categorization.versions.last }
 
           before do

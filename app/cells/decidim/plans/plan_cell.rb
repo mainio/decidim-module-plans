@@ -10,6 +10,7 @@ module Decidim
       include PlanCellsHelper
       include Cell::ViewModel::Partial
       include Messaging::ConversationHelper
+      include Decidim::Plans::CellRouteOptions
 
       delegate :user_signed_in?, to: :parent_controller
 
@@ -24,7 +25,7 @@ module Decidim
       end
 
       def card_size
-        "decidim/plans/plan_m"
+        "decidim/plans/plan_g"
       end
 
       def resource_path

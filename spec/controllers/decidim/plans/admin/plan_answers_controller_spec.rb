@@ -5,9 +5,7 @@ require "spec_helper"
 module Decidim
   module Plans
     module Admin
-      describe PlanAnswersController, type: :controller do
-        routes { Decidim::Plans::AdminEngine.routes }
-
+      describe PlanAnswersController do
         let(:component) { plan.component }
         let(:plan) { create(:plan) }
         let(:user) { create(:user, :confirmed, :admin, organization: component.organization) }
@@ -31,8 +29,7 @@ module Decidim
         describe "PUT update" do
           context "when the command fails" do
             it "renders the edit template" do
-              put :update, params: params
-
+              put(:update, params:)
               expect(response).to render_template(:edit)
             end
           end

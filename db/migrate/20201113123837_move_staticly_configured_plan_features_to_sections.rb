@@ -6,7 +6,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
     Decidim::Component.where(manifest_name: "plans").find_each do |component|
       space = component.participatory_space
       max_position = Decidim::Plans::Section.where(
-        component: component
+        component:
       ).order(position: :desc).limit(1).pick(:position) || 0
 
       settings = component.read_attribute(:settings)
@@ -21,7 +21,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       add_position += 1 if global["attachments_allowed"]
 
       # Update the existing section positions
-      Decidim::Plans::Section.where(component: component).find_each do |section|
+      Decidim::Plans::Section.where(component:).find_each do |section|
         section.update(position: section.position + add_position)
       end
 
@@ -34,7 +34,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       if global["proposal_linking_enabled"]
         proposals_section = Decidim::Plans::Section.create(
           section_attributes(
-            component: component,
+            component:,
             type: "link_proposals",
             handle: "proposals",
             position: 0,
@@ -50,7 +50,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       title_help = translated_value("") if title_help.empty?
       title_section = Decidim::Plans::Section.create(
         section_attributes(
-          component: component,
+          component:,
           type: "field_title",
           handle: "title",
           position: 1,
@@ -65,7 +65,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
         scope = Decidim::Scope.find_by(id: global["scope_id"]) || space&.scope
         scope_section = Decidim::Plans::Section.create(
           section_attributes(
-            component: component,
+            component:,
             type: "field_scope",
             handle: "scope",
             position: 2,
@@ -79,7 +79,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       if global["categories_enabled"]
         category_section = Decidim::Plans::Section.create(
           section_attributes(
-            component: component,
+            component:,
             type: "field_category",
             handle: "category",
             position: 3,
@@ -92,7 +92,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       if global["attachments_allowed"]
         attachments_section = Decidim::Plans::Section.create(
           section_attributes(
-            component: component,
+            component:,
             type: "field_attachments",
             handle: "attachments",
             position: max_position + add_position + 1,
@@ -104,12 +104,12 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       end
 
       # Go through all the plans and move the values to the content elements
-      Decidim::Plans::Plan.where(component: component).find_each do |plan|
+      Decidim::Plans::Plan.where(component:).find_each do |plan|
         if proposals_section
           proposal_ids = plan.linked_resources(:proposals, "included_proposals").map(&:id)
           plan.contents.create(
             section: proposals_section,
-            body: { proposal_ids: proposal_ids }
+            body: { proposal_ids: }
           )
         end
         if scope_section
@@ -128,7 +128,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
           attachment_ids = plan.attachments.map(&:id)
           plan.contents.create(
             section: attachments_section,
-            body: { attachment_ids: attachment_ids }
+            body: { attachment_ids: }
           )
         end
       end
@@ -143,11 +143,11 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       global_hash ||= {}
       global = defaults.merge(global_hash)
 
-      proposals_section = Decidim::Plans::Section.find_by(component: component, handle: "proposals")
-      title_section = Decidim::Plans::Section.find_by(component: component, handle: "title")
-      scope_section = Decidim::Plans::Section.find_by(component: component, handle: "scope")
-      category_section = Decidim::Plans::Section.find_by(component: component, handle: "category")
-      attachments_section = Decidim::Plans::Section.find_by(component: component, handle: "attachments")
+      proposals_section = Decidim::Plans::Section.find_by(component:, handle: "proposals")
+      title_section = Decidim::Plans::Section.find_by(component:, handle: "title")
+      scope_section = Decidim::Plans::Section.find_by(component:, handle: "scope")
+      category_section = Decidim::Plans::Section.find_by(component:, handle: "category")
+      attachments_section = Decidim::Plans::Section.find_by(component:, handle: "attachments")
 
       if proposals_section
         global["proposal_linking_enabled"] = true
@@ -216,11 +216,11 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
     settings: {}
   )
     {
-      component: component,
+      component:,
       section_type: type,
-      handle: handle,
-      mandatory: mandatory,
-      position: position,
+      handle:,
+      mandatory:,
+      position:,
       body: body || translated_value(""),
       help: help || translated_value(""),
       information_label: translated_value(""),
@@ -228,7 +228,7 @@ class MoveStaticlyConfiguredPlanFeaturesToSections < ActiveRecord::Migration[5.2
       visible_form: true,
       visible_view: true,
       visible_api: false,
-      settings: settings
+      settings:
     }
   end
 

@@ -34,7 +34,6 @@ sv:
         scope_id: Tema
         state: Status
         title: Rubrik
-        user_group_id: Skapa som användare
       section:
         area_scope_parent: Områdesomfång förälder
         scope_parent: Tema förälder
@@ -315,9 +314,9 @@ sv:
       plan_l:
         card_label: "Förslag: %{title}"
         view_plan: Visa förslag
-      plan_g:
-        card_label: "Proposal: %{title}"
-        view_plan: View proposal
+      plan_m:
+        card_label: "Förslag: %{title}"
+        view_plan: Visa förslag
       plan_notification:
         accepted:
           title: Förslaget har godkänts

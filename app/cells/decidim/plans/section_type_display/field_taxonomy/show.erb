@@ -1,0 +1,12 @@
+<% if taxonomies.any? %>
+  <div class="section">
+    <%= render :section_title %>
+    <div class="section-content">
+      <ul>
+        <% taxonomies.each do |taxonomy| %>
+          <li><%= translated_attribute(taxonomy.name) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

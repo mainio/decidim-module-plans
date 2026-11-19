@@ -4,8 +4,6 @@ module Decidim
   module Plans
     # Exposes the plan resource so users can view and create them.
     class PlansController < Decidim::Plans::ApplicationController
-      helper Decidim::WidgetUrlsHelper
-      helper UserGroupHelper
       helper TooltipHelper
       helper Plans::AttachmentsHelper
       helper Plans::RemainingCharactersHelper
@@ -16,13 +14,15 @@ module Decidim
       include Decidim::Orderable
       include Plans::Orderable
       include Paginable
+      include UserPublicityHelper
 
-      helper_method :trigger_feedback?
+      helper_method :trigger_feedback?, :user_public?
 
-      before_action :authenticate_user!, only: [:new, :create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
+      before_action :authenticate_user!, only: [:create, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :check_draft, only: [:new]
       before_action :retrieve_plan, only: [:show, :edit, :update, :withdraw, :preview, :publish, :close, :destroy, :add_authors, :add_authors_confirm, :disjoin]
       before_action :ensure_published!, only: [:show, :withdraw, :add_authors, :add_authors_confirm]
+      before_action :set_breadcrumbs, only: [:new, :show, :edit, :preview]
 
       def index
         enforce_permission_to :read, :plans
@@ -31,11 +31,16 @@ module Decidim
         @plans = base_query
         @geocoded_plans = base_query.geocoded_data_for(current_component)
 
+        # The random ordering does not work with `.distinct` so we need to wrap
+        # it in a subquery that is ordered randomly.
+        @plans = Plan.where(id: @plans)
         @plans = paginate(@plans)
         @plans = reorder(@plans)
       end
 
       def show
+        raise ActionController::RoutingError, "Not Found" if @plan.blank? || !can_show_plan?
+
         enforce_permission_to :read, :plan, plan: @plan
 
         @report_form = form(Decidim::ReportForm).from_params(reason: "spam")
@@ -45,9 +50,19 @@ module Decidim
       end
 
       def new
-        enforce_permission_to :create, :plan
+        if component_settings.form_preview_allowed? && (!user_signed_in? || !user_public?)
+          @preview = true
+        else
+          enforce_permission_to :create, :plan
+        end
 
         @form = form(PlanForm).from_model(Plan.new(component: current_component))
+      end
+
+      def edit
+        enforce_permission_to :edit, :plan, plan: @plan
+
+        @form = form(PlanForm).from_model(@plan)
       end
 
       def create
@@ -71,12 +86,6 @@ module Decidim
             render :new
           end
         end
-      end
-
-      def edit
-        enforce_permission_to :edit, :plan, plan: @plan
-
-        @form = form(PlanForm).from_model(@plan)
       end
 
       def update
@@ -141,7 +150,9 @@ module Decidim
         redirect_to Decidim::ResourceLocatorPresenter.new(@plan).path
       end
 
-      def preview; end
+      def preview
+        enforce_permission_to :read, :plan, plan: @plan
+      end
 
       def publish
         enforce_permission_to :publish, :plan, plan: @plan
@@ -223,6 +234,21 @@ module Decidim
 
       private
 
+      def set_breadcrumbs
+        return unless respond_to?(:add_breadcrumb, true)
+
+        add_breadcrumb(translated_attribute(current_component.name), plans_path)
+
+        case action_name
+        when "show"
+          add_breadcrumb(translated_attribute(@plan.title), plan_path(@plan))
+        when "new"
+          add_breadcrumb(t("decidim.plans.plans.new.title"), new_plan_path)
+        when "edit"
+          add_breadcrumb(t("decidim.plans.plans.edit.title"), edit_plan_path(@plan))
+        end
+      end
+
       def trigger_feedback?
         @trigger_feedback ||= session.delete("decidim-plans.published")
       end
@@ -241,6 +267,8 @@ module Decidim
       end
 
       def plan_draft
+        return unless user_signed_in?
+
         @plan_draft ||= Plan.drafts.from_all_author_identities(current_user).not_hidden.find_by(component: current_component)
       end
 
@@ -257,6 +285,12 @@ module Decidim
         redirect_to routes_proxy.preview_plan_path(@plan)
       end
 
+      def can_show_plan?
+        return true if current_user&.admin?
+
+        !@plan.hidden?
+      end
+
       def search_collection
         Plan.where(component: current_component).published.not_hidden.with_availability(params[:filter].try(:[], :with_availability))
       end
@@ -266,9 +300,10 @@ module Decidim
           search_text: "",
           with_any_origin: default_filter_origin_params,
           with_any_category: "",
-          with_any_state: %w(accepted rejected evaluating not_answered),
+          with_any_state: "",
           with_any_scope: nil,
           with_any_tag: [],
+          with_any_taxonomies: [],
           related_to: "",
           activity: "",
           section: default_section_filter_params
@@ -285,13 +320,11 @@ module Decidim
       end
 
       def default_filter_origin_params
-        filter_origin_params = %w(participants official)
-        filter_origin_params << "user_group" if current_organization.user_groups_enabled?
-        filter_origin_params
+        %w(participants official)
       end
 
       def routes_proxy
-        @routes_proxy ||= EngineRouter.main_proxy(current_component)
+        @routes_proxy ||= Decidim::EngineRouter.main_proxy(current_component)
       end
     end
   end

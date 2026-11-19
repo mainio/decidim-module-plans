@@ -7,7 +7,12 @@ module Decidim
         include ActionView::Helpers::FormOptionsHelper
 
         delegate :current_component, to: :controller
-        delegate :categories, to: :current_component
+
+        def show
+          return unless top_categories&.any?
+
+          render
+        end
 
         private
 
@@ -16,7 +21,7 @@ module Decidim
         end
 
         def top_categories
-          @top_categories ||= categories.where(parent_id: nil)
+          @top_categories ||= categories&.where(parent_id: nil)
         end
 
         # Public: Generates a select field with the categories. Only leaf categories can be set as selected.
@@ -34,6 +39,7 @@ module Decidim
           selected = form.object.send(name)
           selected = selected.first if selected.is_a?(Array) && selected.length > 1
           categories = categories_for_select(collection)
+          options[:abide_error] ||= translated_attribute(section.error_text).presence
 
           form.select(name, options_for_select(categories, selected), options, html_options)
         end
@@ -49,6 +55,15 @@ module Decidim
 
             parent
           end
+        end
+
+        # Returns the categories association if the component still supports
+        # it, otherwise nil. Categories were removed from core components in
+        # Decidim v0.30.
+        def categories
+          return unless current_component.respond_to?(:categories)
+
+          current_component.categories
         end
       end
     end

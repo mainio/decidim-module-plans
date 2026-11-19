@@ -7,6 +7,7 @@ module Decidim
       class PlanForm < Decidim::Form
         include OptionallyTranslatableAttributes
         include Decidim::ApplicationHelper
+
         mimic :plan
 
         attribute :category_id, Integer
@@ -22,8 +23,6 @@ module Decidim
 
         validate :scope_belongs_to_participatory_space_scope
 
-        delegate :categories, to: :current_component
-
         def self.from_params(params, additional_params = {})
           form = super
           form.contents = form.contents.map do |section_params|
@@ -37,8 +36,8 @@ module Decidim
           self.contents = model.sections.map do |section|
             ContentForm.from_model(
               Content
-                .where(plan: model, section: section)
-                .first_or_initialize(plan: model, section: section, body: {})
+                .where(plan: model, section:)
+                .first_or_initialize(plan: model, section:, body: {})
             ).with_context(current_component: model.component)
           end
 
@@ -50,8 +49,10 @@ module Decidim
 
         # Finds the Category from the category_id.
         #
-        # Returns a Decidim::Category
+        # Returns a Decidim::Category or nil if categories are unavailable.
         def category
+          return unless categories
+
           @category ||= categories.find_by(id: category_id)
         end
 
@@ -73,7 +74,22 @@ module Decidim
           current_organization
         end
 
+        def valid?(options = {})
+          base_valid = super
+
+          contents.all? { |cf| cf.valid?(options) } && base_valid
+        end
+
         private
+
+        # Returns the categories association if the component still supports
+        # it, otherwise nil. Categories were removed from core components in
+        # Decidim v0.30.
+        def categories
+          return unless current_component.respond_to?(:categories)
+
+          current_component.categories
+        end
 
         def scope_belongs_to_participatory_space_scope
           errors.add(:scope_id, :invalid) if current_participatory_space.out_of_scope?(scope)

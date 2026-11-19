@@ -17,7 +17,7 @@ module Decidim
                 AND #{ref}.decidim_section_id = #{section.id}
               SQL
             )
-          ).where(Arel.sql("#{ref}.body->>'scope_id' =?"), params["scope_id"])
+          ).where(Arel.sql("#{ref}.body->>'scope_id'").eq(params["scope_id"]))
         end
 
         def search_params_for(_section)

@@ -7,13 +7,13 @@ describe Decidim::Plans::DiffCell, type: :cell do
   with_versioning do
     subject { my_cell.call }
 
-    let!(:pt_was_enabled) { ::PaperTrail.enabled? }
+    let!(:pt_was_enabled) { PaperTrail.enabled? }
     let(:my_cell) do
       cell(
         "decidim/plans/diff",
         model,
-        item_versions: item_versions,
-        content_versions: content_versions
+        item_versions:,
+        content_versions:
       )
     end
     let(:model) { create(:plan, :published) }
@@ -26,7 +26,7 @@ describe Decidim::Plans::DiffCell, type: :cell do
     end
     let(:content_versions) do
       model.sections.map do |section|
-        content = model.contents.find_by(section: section)
+        content = model.contents.find_by(section:)
         next unless content
 
         content.versions.find_by(

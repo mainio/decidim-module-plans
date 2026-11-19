@@ -1,41 +1,42 @@
 <%= plain_label form, :address, show_required: false %>
 
 <div class="address-input">
-  <div class="row">
-    <div class="columns large-8">
+  <div class="row medium-unstack">
+    <div class="columns medium-7">
       <div class="field" id="<%= address_id %>">
-        <div class="input-group">
-          <span class="input-group-label">
-            <%= icon "map-marker", aria_hidden: true %>
-          </span>
-          <%= form.geocoding_field :address, object: model, label: false, class: "input-group-field address-input-address", data: {
-            "coordinates-url": geocoding_path,
-            "address-url": reverse_geocoding_path
-          } %>
-          <div class="input-group-button">
-            <%= form.button t(".address_lookup_button"), type: :button, class: "button primary hollow address-input-lookup" %>
-          </div>
-        </div>
-        <%= form.hidden_field :latitude, field_options.merge(
+        <%= form.geocoding_field :address, object: model, id: field_id(:address), class: "input-group-field address-input-address", data: {
+          "coordinates-url": geocoding_path,
+          "address-url": reverse_geocoding_path,
+          "screen-reader-announcement": t(".marker_added")
+        }, disabled: field_disabled? %>
+        <% unless field_disabled? %>
+          <button type="button" class="link reset-input" data-target="#<%= address_id %>"><%= t(".reset_field") %></button>
+        <% end %>
+        <%= form.hidden_field :latitude, field_options.except(:label, :help_text).merge(
           id: "plan_section_answer_#{model.section.id}_latitude",
           class: "address-input-latitude"
         ) %>
-        <%= form.hidden_field :longitude, field_options.merge(
+        <%= form.hidden_field :longitude, field_options.except(:label, :help_text).merge(
           id: "plan_section_answer_#{model.section.id}_longitude",
           class: "address-input-longitude")
         %>
       </div>
     </div>
-    <div class="columns large-4">
-      <div class="field-info">
-        <%= link_to t(".reset_field"), "#", class: "reset-input", data: { target: "##{address_id}" } %>
-      </div>
+    <div class="columns medium-5">
+      <%= form.button type: :button, class: "button button--icon address-input-lookup", disabled: field_disabled? do %>
+        <%= t(".address_lookup_button") %>
+        <%= icon "focus-3-line", aria_hidden: true, role: "img" %>
+      <% end %>
     </div>
   </div>
 
-  <%= form_map(
-    id: "#{address_id}_map",
-    class: "plans-map google-map",
-    "data-connected-input" => user_signed_in? ? "##{address_id} .address-input-address" : nil
-  ) %>
+  <div class="row medium-unstack">
+    <div class="columns medium-11">
+      <%= form_map(
+        id: "#{address_id}_map",
+        class: "plans-map google-map",
+        "data-connected-input" => user_signed_in? ? "##{address_id} .address-input-address" : nil
+      ) %>
+    </div>
+  </div>
 </div>

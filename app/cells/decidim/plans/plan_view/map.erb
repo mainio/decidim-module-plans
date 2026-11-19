@@ -1,0 +1,5 @@
+<div id="plan_map" class="margin-top-3">
+  <h2><%= t(".map_title") %></h2>
+
+  <%= cell("decidim/plans/plans_map", plan, map_options: { type: "resource-markers" }, disable_popup: true) %>
+</div>

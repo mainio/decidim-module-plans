@@ -17,7 +17,7 @@ module Decidim
         # Otherwise the cell provided by the Tags module would display all tags
         # related to the plan.
         def tags_object
-          @tags_object ||= OpenStruct.new(tags: tags)
+          @tags_object ||= OpenStruct.new(tags:)
         end
 
         def tags

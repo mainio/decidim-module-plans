@@ -9,9 +9,9 @@ module Decidim
 
       let(:organization) { create(:organization, tos_version: Time.current) }
       let(:body_en) { "English body" }
-      let(:plan) { create :plan }
+      let(:plan) { create(:plan) }
       let(:plan_id) { plan.id }
-      let(:section) { create :section, component: component }
+      let(:section) { create(:section, component:) }
       let(:section_id) { section.id }
 
       let(:form) do
@@ -22,12 +22,12 @@ module Decidim
       end
 
       context "with multiple languages" do
-        let(:component) { create :plan_component, :with_multilingual_answers }
+        let(:component) { create(:plan_component, :with_multilingual_answers) }
         let(:params) do
           {
-            body_en: body_en,
-            section_id: section_id,
-            plan_id: plan_id
+            body_en:,
+            section_id:,
+            plan_id:
           }
         end
 
@@ -36,7 +36,7 @@ module Decidim
         end
 
         context "when the section is mandatory" do
-          let(:section) { create :section, component: component, mandatory: true }
+          let(:section) { create(:section, component:, mandatory: true) }
 
           context "with body" do
             it { is_expected.to be_valid }
@@ -51,12 +51,12 @@ module Decidim
       end
 
       context "with single language" do
-        let(:component) { create :plan_component }
+        let(:component) { create(:plan_component) }
         let(:params) do
           {
-            body_en: body_en,
-            section_id: section_id,
-            plan_id: plan_id
+            body_en:,
+            section_id:,
+            plan_id:
           }
         end
 
@@ -65,7 +65,7 @@ module Decidim
         end
 
         context "when the section is mandatory" do
-          let(:section) { create :section, component: component, mandatory: true }
+          let(:section) { create(:section, component:, mandatory: true) }
 
           context "with body" do
             it { is_expected.to be_valid }

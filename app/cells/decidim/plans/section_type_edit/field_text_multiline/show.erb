@@ -1,58 +1,50 @@
+<%
+form_field_options = field_options("body_#{current_locale}".to_sym)
+form_field_options.delete(:help_text)
+%>
+
 <div class="field with-character-counter">
-  <div class="row field-label-with-info">
-    <div class="columns large-8">
-      <%= content_tag :div, class: field_info_classes do %>
+  <div class="row medium-unstack field-label-with-info">
+    <div class="columns medium-11">
+      <%= content_tag :div, class: field_label_classes do %>
         <%= plain_label form, "body_#{current_locale}".to_sym %>
-        <%= render :tooltip %>
+        <% if show_tooltip? %>
+          <%= render :tooltip %>
+        <% elsif help_text.present? %>
+          <span class="form-help-tooltip help margin-bottom-1 medium-margin-bottom-0"><%= help_text %></span>
+        <% end %>
       <% end %>
     </div>
-    <% if show_info_link? %>
-      <div class="columns large-4">
-        <div class="field-info field-info-with-icon">
-          <%= link_to info_path(section.id), class: "info-modal-link" do %>
-            <%= icon "information", aria_hidden: true %>
-            <%= information_label %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
   </div>
 
-  <div class="row flex-row">
-    <%
-    text_options = field_options
-    text_options[:class] ||= ""
-    text_options[:class] += " margin-bottom-0"
-    help_text = text_options.delete(:help_text)
-    %>
-
-    <div class="columns large-8">
+  <div class="row medium-unstack">
+    <div class="columns medium-11">
       <% if multilingual_answers? %>
         <%= form.translated(
           :text_area,
           :body,
           {
             tabs_id: "field-#{section.id}"
-          }.merge(text_options).merge(rc_opts)
+          }.merge(form_field_options).merge(rc_opts)
         ) %>
       <% else %>
         <%= form.text_area(
           "body_#{current_locale}".to_sym,
-          text_options.merge(rows: 10)
+          form_field_options.merge(rows: 10)
         ) %>
       <% end %>
-    </div>
-    <div class="columns large-4 align-end">
-      <div class="field-character-counter-info field-info"></div>
-    </div>
-  </div>
-  <% if help_text %>
-    <div class="row form-spacing-top">
-      <div class="columns large-8">
-        <span class="help-text"><%= help_text %></span>
+
+      <div class="help-text flex--sbc flex--column flex-medium--row">
+        <div class="field-character-counter-info"></div>
+        <% if show_info_link? %>
+          <%= link_to info_path(section.id), class: "info-modal-link margin-top-1 medium-margin-top-0" do %>
+            <%= icon "information-line", aria_hidden: true %>
+            <span><%= information_label %></span>
+          <% end %>
+        <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
 
 <div id="plans-dummy-counter-<%= section.id %>" class="hide" aria-hidden="true"></div>

@@ -14,9 +14,7 @@ module Decidim
       def author
         # The authors can also be organizations in specific situations.
         coauthorship = coauthorships.order(:created_at).first
-        @author ||= if coauthorship.user_group
-                      Decidim::UserGroupPresenter.new(coauthorship.user_group)
-                    elsif coauthorship.author.is_a?(Decidim::Organization)
+        @author ||= if coauthorship.author.is_a?(Decidim::Organization)
                       Decidim::Plans::OrganizationAuthorPresenter.new(coauthorship.author)
                     else
                       Decidim::UserPresenter.new(coauthorship.author)
@@ -61,7 +59,7 @@ module Decidim
 
       def each_section
         plan.sections.where(visible_view: true).map do |section|
-          content = plan.contents.find_by(section: section)
+          content = plan.contents.find_by(section:)
           next if content.nil?
 
           section_title = plain_content(translated_attribute(content.title))

@@ -34,7 +34,6 @@ fi:
         scope_id: Teema
         state: Tila
         title: Otsikko
-        user_group_id: Luo käyttäjänä
       section:
         area_scope_parent: Alueteeman isäntä
         scope_parent: Teeman isäntä
@@ -88,6 +87,10 @@ fi:
     filters:
       linked_classes:
         plan: Ehdotukset
+    forms:
+      current_file: Nykyinen tiedosto
+      current_image: Nykyinen kuva
+      default_image: Oletuskuva
     participatory_processes:
       statistics:
         plans_accepted: Hyväksyttyä ehdotusta
@@ -315,9 +318,9 @@ fi:
       plan_l:
         card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
-      plan_g:
-        card_label: "Proposal: %{title}"
-        view_plan: View proposal
+      plan_m:
+        card_label: "Ehdotus: %{title}"
+        view_plan: Näytä ehdotus
       plan_notification:
         accepted:
           title: Tämä ehdotus on hyväksytty
@@ -644,7 +647,7 @@ fi:
           email_subject: Seuraamasi kohde on julkaistu
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on julkaistu.
         plan_rejected:
-          email_intro: '"%{resource_title}" on hylätty. Voit lukea vastauksen tällä sivulla:'
+          email_intro: '"%{resource_title}" on hylätty. Voit lukea vastauksen täältä:'
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{resource_title}". Voit lopettaa sen seuraamisen edellä esitetyn linkin kautta.
           email_subject: Seuraamasi kohde on hylätty
           notification_title: <a href="%{resource_url}">%{resource_title}</a> on hylätty.

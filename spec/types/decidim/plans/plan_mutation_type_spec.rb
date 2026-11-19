@@ -10,7 +10,7 @@ module Decidim
 
       let(:participatory_process) { create(:participatory_process, organization: current_organization) }
       let(:component) { create(:plan_component, participatory_space: participatory_process) }
-      let(:model) { create(:plan, :published, component: component) }
+      let(:model) { create(:plan, :published, component:) }
       let(:state) { "accepted" }
       let(:answer_content) { "Answer in English" }
 
@@ -33,8 +33,8 @@ module Decidim
 
             params = { "plan_answer" => { "state" => state, "answer" => answer_json } }
             context = {
-              current_organization: current_organization,
-              current_user: current_user
+              current_organization:,
+              current_user:
             }
             expect(Decidim::Plans::Admin::PlanAnswerForm).to receive(:from_params).with(params).and_call_original
             expect_any_instance_of(Decidim::Plans::Admin::PlanAnswerForm) # rubocop:disable RSpec/AnyInstance

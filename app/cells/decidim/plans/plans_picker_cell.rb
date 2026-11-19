@@ -65,15 +65,14 @@ module Decidim
       end
 
       def filtered_plans_query
-        params = {
+        options = {
           organization: model.organization,
           component: plan_components,
-          current_user: current_user,
-          search_text: search_text
+          current_user:,
+          search_text:
         }
-
-        search = Decidim::Plans::PlanSearch.new(params)
-        search.results.published.not_hidden.except_withdrawn.order(id: :asc)
+        search = Decidim::Plans::PlanSearch.new(plans, params[:q], options)
+        search.result
       end
 
       def plan_components
@@ -81,11 +80,12 @@ module Decidim
       end
 
       def plans
-        @plans ||= Decidim.find_resource_manifest(:plans).try(:resource_scope, component)
-                     &.published
-                     &.not_hidden
-                     &.except_withdrawn
-                     &.order(id: :asc)
+        return @plans if defined?(@plans)
+
+        scope = Decidim.find_resource_manifest(:plans).try(:resource_scope, component)
+        return @plans = nil unless scope
+
+        @plans = scope.published.not_hidden.except_withdrawn.order(id: :asc)
       end
 
       def plans_collection_name

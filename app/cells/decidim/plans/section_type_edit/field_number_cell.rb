@@ -10,7 +10,7 @@ module Decidim
           section.section_type == "field_currency"
         end
 
-        def field_options
+        def field_options(name = :value)
           base = super
           base_class = base[:class] || ""
 

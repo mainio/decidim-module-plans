@@ -45,7 +45,10 @@
     $links.on("click.decidim-plans-info-modal", (ev) => {
       ev.preventDefault();
 
-      const $link = $(ev.target);
+      let $link = $(ev.target);
+      if (!$link.is("a")) {
+        $link = $link.closest("a")
+      }
       modal.show($link.attr("href"));
     });
   }

@@ -8,12 +8,17 @@ module Decidim
         include Decidim::ApplicationHelper
 
         helper Plans::ApplicationHelper
+        helper Plans::Admin::SectionsHelper
 
         helper_method :blank_section, :section_types, :attachment_input_types
 
         def index
           enforce_permission_to :create, :sections
           @form = form(Admin::PlanSectionsForm).from_model(sections)
+        end
+
+        def edit
+          enforce_permission_to :edit, :section, section:
         end
 
         def create
@@ -23,7 +28,7 @@ module Decidim
           Admin::UpdateSections.call(@form, sections) do
             on(:ok) do
               flash[:notice] = I18n.t("update.success", scope: i18n_flashes_scope)
-              redirect_to sections_url
+              redirect_to routes_proxy.sections_path
             end
 
             on(:invalid) do
@@ -33,12 +38,8 @@ module Decidim
           end
         end
 
-        def edit
-          enforce_permission_to :edit, :section, section: section
-        end
-
         def update
-          enforce_permission_to :edit, :section, section: section
+          enforce_permission_to :edit, :section, section:
         end
 
         private
@@ -69,6 +70,10 @@ module Decidim
           @attachment_input_types ||= Section.attachment_input_types.map do |input_type|
             [I18n.t("decidim.plans.attachment_input_types.#{input_type}"), input_type]
           end
+        end
+
+        def routes_proxy
+          @routes_proxy ||= Decidim::EngineRouter.admin_proxy(current_component)
         end
       end
     end

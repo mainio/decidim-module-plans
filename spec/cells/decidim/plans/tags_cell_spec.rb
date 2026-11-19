@@ -7,10 +7,11 @@ module Decidim::Plans
     controller Decidim::Plans::PlansController
 
     let(:organization) { create(:organization, tos_version: Time.current) }
-    let(:participatory_space) { create(:participatory_process, organization: organization) }
-    let(:component) { create(:plan_component, participatory_space: participatory_space) }
+    let(:participatory_space) { create(:participatory_process, organization:) }
+    let(:component) { create(:plan_component, participatory_space:) }
     let(:model) { plan }
-    let(:user) { create :user, organization: organization }
+    let(:user) { create(:user, organization:) }
+    let(:skip_injection) { true }
 
     before do
       allow(controller).to receive(:current_user).and_return(user)
@@ -21,84 +22,56 @@ module Decidim::Plans
 
       it "doesn't render the tags of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).not_to have_css(".tags.tags--plan")
+        expect(html).to have_no_css(".tag-container.tags--plan")
       end
     end
 
-    context "when a resource has scope" do
-      let(:scope) { create(:scope, organization: organization) }
-      let(:plan) { create(:plan, :published, component: component, scope: scope) }
+    context "when a resource has a taxonomy" do
+      let(:taxonomy) { create(:taxonomy, :with_parent, organization:, skip_injection:) }
+      let(:plan) { create(:plan, :published, component:, taxonomies: [taxonomy]) }
 
-      it "renders the scope of the model" do
+      it "renders the taxonomy of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
-        expect(html).to have_content(translated(scope.name))
+        expect(html).to have_css(".tag-container.tags--plan")
+        expect(html).to have_content(translated(taxonomy.name))
       end
     end
 
-    context "when a resource has subscope" do
-      let(:scope) { create(:scope, organization: organization) }
-      let(:subscope) { create(:scope, organization: organization, parent: scope) }
-      let(:plan) { create(:plan, :published, component: component, scope: subscope) }
+    context "when a resource has multiple taxonomies" do
+      let(:taxonomies) { create_list(:taxonomy, 2, :with_parent, organization:, skip_injection:) }
+      let(:plan) { create(:plan, :published, component:, taxonomies:) }
 
-      it "renders the subscope of the model" do
+      it "renders all the taxonomies of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
-        expect(html).to have_content(translated(subscope.name))
-      end
-    end
-
-    context "when a resource has category" do
-      let(:category) { create(:category, participatory_space: participatory_space) }
-      let(:plan) { create(:plan, :published, component: component, category: category) }
-
-      it "renders the category of the model" do
-        html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
-        expect(html).to have_content(translated(category.name))
-      end
-    end
-
-    context "when a resource has subcategory" do
-      let(:category) { create(:category, participatory_space: participatory_space) }
-      let(:subcategory) { create(:category, participatory_space: participatory_space, parent: category) }
-      let(:plan) { create(:plan, :published, component: component, category: subcategory) }
-
-      it "renders the subcategory of the model" do
-        html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
-        expect(html).to have_content(translated(subcategory.name))
+        expect(html).to have_css(".tag-container.tags--plan")
+        taxonomies.each do |taxonomy|
+          expect(html).to have_content(translated(taxonomy.name))
+        end
       end
     end
 
     context "when a resource has taggings" do
-      let(:tags) { create_list(:tag, 5, organization: organization) }
-      let(:plan) { create(:plan, :published, component: component, tags: tags) }
+      let(:tags) { create_list(:tag, 5, organization:) }
+      let(:plan) { create(:plan, :published, component:, tags:) }
 
       it "renders the taggings of the model" do
         html = cell("decidim/plans/tags", model, context: { extra_classes: ["tags--plan"] }).call
-        expect(html).to have_css(".tags.tags--plan")
-        tags.each do |tag|
-          expect(html).to have_content(translated(tag.name))
-        end
+        expect(html).to have_css(".tag-container.tags--plan")
+        expect(html).to have_content("Filter results for tags")
       end
     end
 
-    context "when a resource has scope, category and taggings" do
-      let(:scope) { create(:scope, organization: organization) }
-      let(:category) { create(:category, participatory_space: participatory_space) }
-      let(:tags) { create_list(:tag, 5, organization: organization) }
-      let(:plan) { create(:plan, :published, component: component, scope: scope, category: category, tags: tags) }
+    context "when a resource has taxonomy and taggings" do
+      let(:taxonomy) { create(:taxonomy, :with_parent, organization:, skip_injection:) }
+      let(:tags) { create_list(:tag, 5, organization:) }
+      let(:plan) { create(:plan, :published, component:, taxonomies: [taxonomy], tags:) }
 
-      it "renders the scope, category and taggings of the model" do
+      it "renders the taxonomy and taggings of the model" do
         html = cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }).call
 
-        expect(html).to have_css(".tags.tags--plan")
-        expect(html).to have_content(translated(scope.name))
-        expect(html).to have_content(translated(category.name))
-        tags.each do |tag|
-          expect(html).to have_content(translated(tag.name))
-        end
+        expect(html).to have_css(".tag-container.tags--plan")
+        expect(html).to have_content(translated(taxonomy.name))
+        expect(html).to have_content("Filter results for tags")
       end
     end
   end

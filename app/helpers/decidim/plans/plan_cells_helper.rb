@@ -21,7 +21,7 @@ module Decidim
       end
 
       def plans_controller?
-        context[:controller].class.to_s == "Decidim::Plans::PlansController"
+        context[:controller].instance_of?(::Decidim::Plans::PlansController)
       end
 
       def index_action?
@@ -46,19 +46,6 @@ module Decidim
 
       def badge_name
         humanize_plan_state state
-      end
-
-      def state_classes
-        case state
-        when "accepted"
-          ["success"]
-        when "rejected", "withdrawn"
-          ["alert"]
-        when "evaluating"
-          ["warning"]
-        else
-          ["muted"]
-        end
       end
     end
   end

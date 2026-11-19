@@ -6,18 +6,18 @@ describe Decidim::Plans::PlanSerializer do
   subject { described_class.new(plan) }
 
   let(:component) { create(:plan_component) }
-  let(:plan) { create(:plan, component: component) }
+  let(:plan) { create(:plan, component:) }
 
   before do
-    sections = create_list(:section, 3, component: component)
+    sections = create_list(:section, 3, component:)
     sections.each do |s|
-      create(:content, plan: plan, section: s)
+      create(:content, plan:, section: s)
     end
   end
 
   describe "#serialize" do
     it "serializes the plan to correct format" do
-      sectionkeys = plan.sections.map { |s| "section_#{s.id}".to_sym }
+      sectionkeys = plan.sections.map { |s| :"section_#{s.id}" }
 
       expect(subject.serialize.keys).to include(
         *[

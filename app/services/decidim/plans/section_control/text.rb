@@ -18,7 +18,7 @@ module Decidim
                 AND #{ref}.decidim_section_id = #{section.id}
               SQL
             )
-          ).where(Arel.sql("#{ref}.body->>'#{locale}' ILIKE ?"), "%#{params["text"]}%")
+          ).where(Arel.sql("#{ref}.body->>'#{locale}'").matches("%#{params["text"]}%"))
         end
       end
     end

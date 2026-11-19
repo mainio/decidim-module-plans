@@ -7,11 +7,11 @@ module Decidim
         graphql_name "PlanTagsFieldAttributes"
         description "A plan attributes for tags field"
 
-        argument :ids, [GraphQL::Types::ID], required: true
+        argument :ids, [GraphQL::Types::ID], description: "IDs of the tags", required: true
 
         def to_h
           existing_ids = ids.map do |id|
-            tag = Decidim::Tags::Tag.find_by(id: id)
+            tag = Decidim::Tags::Tag.find_by(id:)
             tag&.id
           end
 

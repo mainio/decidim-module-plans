@@ -3,7 +3,7 @@
 module Decidim
   module Plans
     module PaperTrail
-      class VersionAssociation < ::ActiveRecord::Base
+      class VersionAssociation < ApplicationRecord
         self.table_name = "version_associations"
 
         belongs_to :version,

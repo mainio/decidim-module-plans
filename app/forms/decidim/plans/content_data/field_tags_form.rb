@@ -21,7 +21,7 @@ module Decidim
               []
             end
 
-          self.taggings = Decidim::Tags::TaggingsForm.from_params(tags: tags)
+          self.taggings = Decidim::Tags::TaggingsForm.from_params(tags:)
         end
 
         def body
@@ -40,7 +40,7 @@ module Decidim
               []
             end
 
-          self.taggings = Decidim::Tags::TaggingsForm.from_params(tags: tags)
+          self.taggings = Decidim::Tags::TaggingsForm.from_params(tags:)
         end
       end
     end

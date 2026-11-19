@@ -72,7 +72,7 @@ module Decidim
         raise "Please define a component" unless component
         raise "No images or attachments provided" if images.blank? && attachments.blank?
 
-        Plan.where(component: component).each do |plan|
+        Plan.where(component:).each do |plan|
           # No need to seed when the plan already has attachments
           next if plan.attachments.count.positive?
 
@@ -121,7 +121,7 @@ module Decidim
       def generate_plan
         title = ::Faker::Lorem.sentence(word_count: 2)
         plan = Plan.new(
-          component: component,
+          component:,
           title: Decidim::Faker::Localized.localized { title },
           published_at: Time.current
         )
@@ -157,8 +157,8 @@ module Decidim
                  end
 
           plan.contents.create!(
-            body: body,
-            section: section
+            body:,
+            section:
           )
 
           ideas = ideas_sample
@@ -196,10 +196,10 @@ module Decidim
         plan.sections.each do |section|
           next unless %w(field_attachments field_image_attachments).include?(section.section_type)
 
-          content = plan.contents.find_by(section: section)
+          content = plan.contents.find_by(section:)
           content ||= plan.contents.create!(
             body: { "attachment_ids" => [] },
-            section: section
+            section:
           )
 
           if add_image && section.section_type == "field_image_attachments"
@@ -278,9 +278,9 @@ module Decidim
         weight = start_weight
         files.map do |file|
           attachment = plan.attachments.create!(
-            weight: weight,
+            weight:,
             title: ::Faker::Lorem.sentence(word_count: rand(3..6)),
-            file: file
+            file:
           )
           weight += 1
 

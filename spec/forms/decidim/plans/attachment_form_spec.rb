@@ -5,8 +5,8 @@ require "spec_helper"
 describe Decidim::Plans::AttachmentForm do
   subject do
     described_class.new(
-      title: title,
-      file: file
+      title:,
+      file:
     ).with_context(current_organization: organization)
   end
 
@@ -43,7 +43,7 @@ describe Decidim::Plans::AttachmentForm do
   end
 
   describe "#to_param" do
-    subject { described_class.new(id: id) }
+    subject { described_class.new(id:) }
 
     context "with actual ID" do
       let(:id) { double }

@@ -10,6 +10,8 @@ module Decidim
 
       def show
         raise ActionController::RoutingError, "Not Found" if item.blank? || current_version.blank?
+
+        enforce_permission_to :read, :item, item:
       end
 
       private
@@ -38,7 +40,7 @@ module Decidim
         return [] if current_version.transaction_id.nil?
 
         @content_versions ||= item.sections.map do |section|
-          content = item.contents.find_by(section: section)
+          content = item.contents.find_by(section:)
           next unless content
 
           content.versions.find_by(

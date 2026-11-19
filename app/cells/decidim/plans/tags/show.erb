@@ -1,7 +1,6 @@
-<%= content_tag :ul, class: tags_classes do %>
-  <%= cell("decidim/plans/tags", model).category %>
-
-  <%= cell("decidim/plans/tags", model).scope %>
-
-  <%= cell("decidim/plans/tags", model).taggings %>
+<%= content_tag :ul, class: tags_classes, data: { tags: "" } do %>
+  <% taxonomies.each do |tax| %>
+    <%= content_tag :li, link_to_tag(tax[:url], tax[:name], t("decidim.tags.filter_results_for_taxonomy", resource: tax[:name])) %>
+  <% end %>
+  <%= content_tag :li, link_to(t("decidim.plans.tags.filter_results_for_tags"), taggings_path) if taggings? %>
 <% end %>

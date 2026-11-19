@@ -6,7 +6,7 @@ module Decidim
       class FieldCheckboxCell < Decidim::Plans::SectionEditCell
         private
 
-        def field_options
+        def field_options(name = :body)
           base = super
           base.delete(:help_text) # Causes the display of the checkbox to break
           base

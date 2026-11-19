@@ -1,22 +1,30 @@
-<div class="row">
-  <div class="columns small-centered large-8">
-    <div class="callout announcement main-announcement warning cell-announcement text-center">
-      <h3><%= t(".not_published") %></h3>
+<% add_decidim_page_title(t("decidim.plans.plan_form.buttons.create")) %>
+
+<div class="row columns margin-bottom-3">
+  <div class="banner bg-secondary">
+    <div class="banner__icon">
+      <%= icon("information-line", role: "img", "aria-hidden": true) %>
+    </div>
+    <div class="banner__content">
+      <p class="h3"><%= t(".not_published") %></p>
       <p><%= t(".not_published_description") %></p>
     </div>
   </div>
 </div>
 
 <%= render partial: "plan_preview", locals: { plan: @plan } %>
-
-<div class="row">
-  <div class="columns large-12">
-    <div class="p-l">
-      <div class="row column flex-center actions">
-        <%= link_to t(".modify"), edit_plan_path(@plan), class: "mr-2" %>
-        <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button large button--nomargin" %>
+<div class="row margin-bottom-3">
+  <div class="columns small-12 medium-8">
+    <div class="resource__main">
+      <div class="actions">
+        <div class="flex--sbc">
+          <span class="button button__sm button__transparent-secondary w-full" title="<%= t('withdraw_btn_hint', scope: 'decidim.proposals.proposals.show') %>" disabled="true">
+            <%= t("withdraw_proposal", scope: "decidim.proposals.proposals.show") %>
+          </span>
+          <%= link_to t(".modify"), edit_plan_path(@plan) %>
+          <%= button_to t(".publish"), publish_plan_path(@plan), method: :post, class: "button" %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="columns large-3"></div>
 </div>

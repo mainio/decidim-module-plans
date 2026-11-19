@@ -8,14 +8,13 @@ module Decidim
       class PlanExportBudgetsForm < Decidim::Form
         mimic :budgets_export
 
-        attribute :scope_id, Integer
-        attribute :area_scope_id, Integer
+        attribute :taxonomy_ids, [Integer]
         attribute :target_component_id, Integer
-        attribute :target_details, Array[PlanExportBudgetsTargetDetailsForm]
+        attribute :target_details, [PlanExportBudgetsTargetDetailsForm]
         attribute :default_budget_amount, Integer
         attribute :export_all_closed_plans, Boolean
 
-        attribute :content_sections, Array[Integer]
+        attribute :content_sections, [Integer]
         attribute :budget_section, Integer
         attribute :summary_section, Integer
         attribute :image_section, Integer
@@ -43,12 +42,10 @@ module Decidim
           end
         end
 
-        def scope
-          @scope ||= Decidim::Scope.find_by(id: scope_id)
-        end
-
-        def area_scope
-          @area_scope ||= Decidim::Scope.find_by(id: area_scope_id)
+        def taxonomies
+          @taxonomies ||= Decidim::Taxonomy.where(
+            id: Array(taxonomy_ids).map(&:to_i).reject(&:zero?)
+          )
         end
 
         def target_component

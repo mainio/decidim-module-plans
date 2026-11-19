@@ -8,28 +8,50 @@ module Decidim
       include Decidim::ApplicationHelper # For presenter
       include Decidim::LayoutHelper # For the icon helper
       include Decidim::FormFactory
+      include Decidim::SocialShareButtonHelper
       include Decidim::TooltipHelper
       include Decidim::MetaTagsHelper
       include Decidim::Plans::LinksHelper
       include Decidim::Plans::CellContentHelper
       include Decidim::Feedback::FeedbackHelper
-      include SocialShareButton::Helper
       include Decidim::Plans::Engine.routes.url_helpers
+      include Decidim::Plans::CellRouteOptions
 
-      delegate :allowed_to?, :current_component, :current_user, to: :controller
+      delegate :allowed_to?, :current_user, to: :controller
       delegate :plans_path, :plan_url, :plan_path, :plan_versions_path, to: :routes_proxy
 
+      def contents
+        render :contents
+      end
+
       def collaborator_requests
-        return unless allowed_to?(:edit, :plan, plan: plan)
+        return unless allowed_to?(:edit, :plan, plan:)
         return unless plan.requesters.any?
 
         render :collaborator_requests
+      end
+
+      def plan_notification(data = {})
+        context = data[:context] || {}
+        data = data.merge(
+          context: context.merge(current_component:)
+        )
+
+        cell(
+          layout_manifest.notification_layout,
+          plan,
+          data
+        )
       end
 
       private
 
       def plan
         model
+      end
+
+      def current_component
+        context[:current_component] || controller.current_component
       end
 
       def trigger_feedback?
@@ -45,7 +67,7 @@ module Decidim
       end
 
       def show_controls?
-        !preview_mode? && allowed_to?(:edit, :plan, plan: plan)
+        !preview_mode? && allowed_to?(:edit, :plan, plan:)
       end
 
       def has_map_position?
@@ -67,7 +89,7 @@ module Decidim
         @map_utility_static.link(
           latitude: address_content.body["latitude"],
           longitude: address_content.body["longitude"],
-          options: options
+          options:
         )
       end
 
@@ -180,8 +202,12 @@ module Decidim
         I18n.locale.to_s
       end
 
+      def layout_manifest
+        @layout_manifest ||= Decidim::Plans.layouts.find(current_component.settings.layout)
+      end
+
       def routes_proxy
-        @routes_proxy ||= EngineRouter.main_proxy(current_component)
+        @routes_proxy ||= Decidim::EngineRouter.main_proxy(current_component)
       end
     end
   end

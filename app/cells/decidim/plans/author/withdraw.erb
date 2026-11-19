@@ -1,6 +1,6 @@
 <% if withdrawable? %>
   <%= action_authorized_link_to :withdraw, withdraw_path, method: :put, class: "title-action__action button small hollow", title: t("withdraw_btn_hint", scope: "decidim.plans.plans.show"), data: { confirm: t("withdraw_confirmation", scope: "decidim.plans.plans.show") }  do %>
     <%= t("withdraw_btn", scope: "decidim.plans.plans.show") %>
-    <%= icon "x" %>
+    <%= icon "close-circle-line" %>
   <% end %>
 <% end %>

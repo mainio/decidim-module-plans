@@ -40,6 +40,10 @@ FactoryBot.define do
       section_type { "field_checkbox" }
     end
 
+    trait :field_taxonomy do
+      section_type { "field_taxonomy" }
+    end
+
     trait :field_scope do
       transient do
         scope_parent { create(:scope, organization: component.organization) }
@@ -123,6 +127,15 @@ FactoryBot.define do
       section { create(:section, :field_checkbox, component: plan.component) }
     end
 
+    trait :field_taxonomy do
+      transient do
+        taxonomy { create(:taxonomy, :with_parent, organization: plan.organization) }
+      end
+
+      body { { taxonomy_ids: [taxonomy.id] } }
+      section { create(:section, :field_taxonomy, component: plan.component) }
+    end
+
     trait :field_scope do
       transient do
         scope { create(:scope, organization: plan.organization) }
@@ -166,7 +179,7 @@ FactoryBot.define do
         longitude { Faker::Address.longitude }
       end
 
-      body { { address: address, latitude: latitude, longitude: longitude } }
+      body { { address:, latitude:, longitude: } }
       section { create(:section, :field_map_point, component: plan.component) }
     end
 
@@ -202,7 +215,7 @@ FactoryBot.define do
   factory :plan_component, parent: :component do
     name { Decidim::Components::Namer.new(participatory_space.organization.available_locales, :plans).i18n_name }
     manifest_name { :plans }
-    participatory_space { create(:participatory_process, :with_steps, organization: organization) }
+    participatory_space { create(:participatory_process, :with_steps, organization:) }
 
     trait :with_creation_enabled do
       step_settings do
@@ -252,8 +265,8 @@ FactoryBot.define do
 
       settings do
         {
-          default_state: default_state,
-          default_answer: default_answer
+          default_state:,
+          default_answer:
         }
       end
     end
@@ -263,8 +276,6 @@ FactoryBot.define do
     transient do
       users { nil }
       plan_proposals { nil }
-      # user_groups correspondence to users is by sorting order
-      user_groups { [] }
       tags { [] }
     end
 
@@ -275,9 +286,8 @@ FactoryBot.define do
     after(:build) do |plan, evaluator|
       if plan.component
         users = evaluator.users || [create(:user, :confirmed, organization: plan.component.participatory_space.organization)]
-        users.each_with_index do |user, idx|
-          user_group = evaluator.user_groups[idx]
-          plan.coauthorships.build(author: user, user_group: user_group)
+        users.each do |user|
+          plan.coauthorships.build(author: user)
         end
 
         if FactoryBot.factories.registered?(:proposal_component)
@@ -335,6 +345,12 @@ FactoryBot.define do
 
     trait :draft do
       published_at { nil }
+    end
+
+    trait :hidden do
+      after :create do |plan|
+        create(:moderation, hidden_at: Time.current, reportable: plan)
+      end
     end
   end
 

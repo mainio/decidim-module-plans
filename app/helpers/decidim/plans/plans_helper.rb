@@ -26,7 +26,7 @@ module Decidim
         end
       end
 
-      def plans_map(geocoded_plans)
+      def plans_map(geocoded_plans, **options)
         map_options = { type: "plans", markers: geocoded_plans }
 
         if address_section
@@ -36,9 +36,43 @@ module Decidim
           map_options[:center_coordinates] = [lat, lng].map(&:to_f) if lat && lng
         end
 
-        dynamic_map_for(map_options) do
+        dynamic_map_for(map_options.merge(options)) do
+          # These snippets need to be added AFTER the other map scripts have
+          # been added which is why they cannot be within the block. Otherwise
+          # e.g. the markercluser would not be available when the plans map is
+          # loaded.
+          unless snippets.any?(:plans_map_scripts)
+            snippets.add(:plans_map_scripts, append_javascript_pack_tag("decidim_plans_map"))
+            snippets.add(:foot, snippets.for(:plans_map_scripts))
+          end
+
           yield
         end
+      end
+
+      def filter_plans_taxonomy_values
+        filter_ids = current_component.settings.taxonomy_filters.map(&:to_i)
+
+        Decidim::TaxonomyFilter
+          .where(id: filter_ids)
+          .includes(filter_items: :taxonomy_item)
+          .map do |filter|
+            items = filter.filter_items.map(&:taxonomy_item)
+            grouped = items.group_by(&:parent_id)
+
+            values = []
+            grouped.each do |parent_id, children|
+              parent = Decidim::Taxonomy.find_by(id: parent_id)
+              next unless parent
+
+              values << [translated_attribute(parent.name), parent.id]
+              children.sort_by { |t| translated_attribute(t.name) }.each do |child|
+                values << ["— #{translated_attribute(child.name)}", child.id]
+              end
+            end
+
+            [filter, values]
+          end
       end
 
       # Retrieves the first address section which is used for some settings.

@@ -6,6 +6,7 @@ module Decidim
       # A form object to be used when admin users want to answer a plan.
       class PlanAnswerForm < Decidim::Form
         include TranslatableAttributes
+
         mimic :plan_answer
 
         translatable_attribute :answer, String

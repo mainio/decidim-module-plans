@@ -8,7 +8,7 @@ describe Decidim::Plans::AttachmentsCell, type: :cell do
   let(:my_cell) { cell("decidim/plans/attachments", model) }
   let(:model) { create(:plan) }
 
-  let!(:content) { create(:content, :field_attachments, plan: model, documents: documents, images: images) }
+  let!(:content) { create(:content, :field_attachments, plan: model, documents:, images:) }
   let(:documents) { create_list(:attachment, 3, :with_pdf, attached_to: model) }
   let(:images) { create_list(:attachment, 3, :with_image, attached_to: model) }
 
@@ -24,7 +24,7 @@ describe Decidim::Plans::AttachmentsCell, type: :cell do
         expect(subject).to have_content(translated(doc.title))
       end
       images.each do |img|
-        expect(subject).to have_css(%(img[alt="#{translated(img.title)}"]))
+        expect(subject).to have_css("img[alt=\"#{strip_tags(translated(img.title))}\"]")
       end
     end
   end

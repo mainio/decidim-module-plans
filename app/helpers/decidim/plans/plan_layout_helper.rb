@@ -24,7 +24,7 @@ module Decidim
       def render_plan_form(form, plan, data = {})
         context = data[:context] || {}
         data = data.merge(
-          context: context.merge(plan: plan, current_component: current_component)
+          context: context.merge(plan:, current_component:)
         )
 
         cell(
@@ -37,7 +37,7 @@ module Decidim
       def render_plan_view(plan, data = {})
         context = data[:context] || {}
         data = data.merge(
-          context: context.merge(current_component: current_component)
+          context: context.merge(current_component:)
         )
 
         cell(

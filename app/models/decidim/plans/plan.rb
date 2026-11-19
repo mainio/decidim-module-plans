@@ -11,6 +11,7 @@ module Decidim
       include Decidim::HasComponent
       include Decidim::ScopableResource
       include Decidim::HasCategory
+      include Decidim::Taxonomizable
       include Decidim::Reportable
       include Decidim::HasAttachments
       include Decidim::Followable
@@ -153,7 +154,7 @@ module Decidim
       end
 
       def sections
-        Section.where(component: component).order(:position)
+        Section.where(component:).order(:position)
       end
 
       def self.order_randomly(seed)
@@ -190,7 +191,8 @@ module Decidim
         ).joins(
           "LEFT OUTER JOIN decidim_moderations ON decidim_moderations.decidim_reportable_type = '#{cls}' AND decidim_moderations.decidim_reportable_id = decidim_plans_plans.id"
         ).where(
-          decidim_plans_sections: { decidim_component_id: component.id }
+          decidim_plans_sections: { decidim_component_id: component.id },
+          decidim_plans_plans: { id: pluck(:id) }
         ).where.not(
           decidim_plans_plans: { published_at: nil }
         ).where(
@@ -240,7 +242,7 @@ module Decidim
             next if point[:latitude].blank? || point[:longitude].blank?
 
             {
-              id: id,
+              id:,
               title: plan[:title],
               body: plan[:body],
               address: point[:address],
@@ -367,13 +369,13 @@ module Decidim
 
       # method for sort_link by number of comments
       ransacker :commentable_comments_count do
-        query = <<-SQL.squish
-        (SELECT COUNT(decidim_comments_comments.id)
-         FROM decidim_comments_comments
-         WHERE decidim_comments_comments.decidim_commentable_id = decidim_plans_plans.id
-         AND decidim_comments_comments.decidim_commentable_type = 'Decidim::Plans::Plan'
-         GROUP BY decidim_comments_comments.decidim_commentable_id
-         )
+        query = <<~SQL.squish
+          (SELECT COUNT(decidim_comments_comments.id)
+           FROM decidim_comments_comments
+           WHERE decidim_comments_comments.decidim_commentable_id = decidim_plans_plans.id
+           AND decidim_comments_comments.decidim_commentable_type = 'Decidim::Plans::Plan'
+           GROUP BY decidim_comments_comments.decidim_commentable_id
+           )
         SQL
         Arel.sql(query)
       end
@@ -390,8 +392,17 @@ module Decidim
           :with_any_scope,
           :with_any_state,
           :with_any_tag,
+          :with_any_taxonomies,
           :related_to
         ]
+      end
+
+      def self.ransackable_attributes(_auth_object = nil)
+        %w(search_text)
+      end
+
+      def self.ransackable_associations(_auth_object = nil)
+        []
       end
 
       def self.export_serializer

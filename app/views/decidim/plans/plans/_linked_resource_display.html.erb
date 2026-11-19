@@ -1,0 +1,3 @@
+<% layout_manifest = Decidim::Plans.layouts.find(resource.component.settings.layout) %>
+
+<%== cell(layout_manifest.view_layout, resource, context: { current_component: resource.component }).contents %>

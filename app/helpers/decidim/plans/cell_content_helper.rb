@@ -74,7 +74,7 @@ module Decidim
       end
 
       def content_for(section)
-        plan.contents.find_by(section: section)
+        plan.contents.find_by(section:)
       end
 
       def first_section_with_type(type)
@@ -87,7 +87,7 @@ module Decidim
       def section_with_handle(handle)
         Decidim::Plans::Section.order(:position).find_by(
           component: current_component,
-          handle: handle
+          handle:
         )
       end
     end

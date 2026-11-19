@@ -1,27 +1,3 @@
-<% if plan.answered? && translated_attribute(plan.answer).present? %>
-  <div class="row">
-    <div class="columns small-centered large-8">
-      <% if plan.accepted? %>
-        <div class="callout announcement text-center success">
-          <p class="h2"><%= t(".plan_accepted_reason") %></p>
-          <%= decidim_sanitize translated_attribute plan.answer %>
-        </div>
-      <% elsif plan.rejected? %>
-        <div class="callout announcement text-center warning">
-          <p class="h2"><%= t(".plan_rejected_reason") %></p>
-          <%= decidim_sanitize translated_attribute plan.answer %>
-        </div>
-      <% else %>
-        <div class="callout announcement text-center secondary">
-          <p class="h2"><%= t(".plan_in_evaluation_reason") %></p>
-          <%= decidim_sanitize translated_attribute plan.answer %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
-
 <% if current_user.nil? || allowed_to?(:request_access, :plan, plan: plan) %>
   <div class="row">
     <div class="columns">
@@ -39,7 +15,7 @@
 <div class="row column view-header">
   <p class="h5">
     <%= link_to plans_path(request_params) do %>
-      <%= icon "chevron-left", class: "icon--small", role: "img", "aria-hidden": true %>
+      <%= icon "arrow-left-line", class: "icon--small", role: "img", "aria-hidden": true %>
       <%= t(".back") %>
     <% end %>
   </p>
@@ -58,17 +34,25 @@
   </div>
 
   <%= cell("decidim/plans/coauthorships", plan, has_actions: true, size: 3, context: { current_user: current_user }) %>
-
   <% if plan.published? && allowed_to?(:edit, :plan, plan: plan) %>
-    <button class="title-action__action button small primary hollow" data-open="plan-author-add-modal-for-<%= plan.id %>">
+    <button class="title-action__action button small primary hollow" data-dialog-open="plan-author-add-modal-for-<%= plan.id %>">
       <%= t(".controls.add_author") %>
     </button>
 
     <%= cell("decidim/plans/plan_add_authors", plan) %>
   <% end %>
+
+  <%== plan_notification %>
 </div>
 <div class="row">
-  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+  <div class="columns medium-8">
+    <div class="section">
+      <%== cell("decidim/plans/plan_g", plan, full_badge: true).state %>
+      <%= contents %>
+      <%= cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }) %>
+    </div>
+  </div>
+  <div class="columns medium-4">
     <% if show_actions? %>
       <div class="actionbox" data-equalizer-watch>
         <%= render :actions %>
@@ -118,7 +102,7 @@
           <li class="card-data__item authors_status">
             <span aria-hidden="true">
               <%= with_tooltip t("decidim.plans.models.plan.fields.authors") do %>
-                <%= icon("people", class: "icon--small") + " " + "#{plan.versions.group_by(&:whodunnit).size}" %>
+                <%= icon("group-line", class: "icon--small") + " " + "#{plan.versions.group_by(&:whodunnit).size}" %>
               <% end %>
             </span>
             <span class="show-for-sr">
@@ -130,7 +114,7 @@
             <%= link_to plan_versions_path(plan) do %>
               <span aria-hidden="true">
                 <%= with_tooltip t("decidim.plans.models.plan.fields.contributions") do %>
-                  <%= icon("pencil", class: "icon--small", "aria-hidden": true) + " " + "#{plan.versions.count}" %>
+                  <%= icon("pencil-line", class: "icon--small", "aria-hidden": true) + " " + "#{plan.versions.count}" %>
                 <% end %>
               </span>
               <span class="show-for-sr">
@@ -143,12 +127,5 @@
     </div>
 
     <%= collaborator_requests %>
-  </div>
-  <div class="columns mediumlarge-8 mediumlarge-pull-4">
-    <div class="section">
-      <%== cell("decidim/plans/plan_m", plan, full_badge: true).badge %>
-      <%= render :contents %>
-      <%= cell("decidim/plans/tags", plan, context: { extra_classes: ["tags--plan"] }) %>
-    </div>
   </div>
 </div>

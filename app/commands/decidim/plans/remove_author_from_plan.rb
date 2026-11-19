@@ -41,7 +41,7 @@ module Decidim
       def coauthorship
         @coauthorship ||= Decidim::Coauthorship.find_by(
           coauthorable: plan,
-          author: author
+          author:
         )
       end
 

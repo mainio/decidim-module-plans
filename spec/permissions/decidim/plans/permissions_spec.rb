@@ -9,13 +9,13 @@ describe Decidim::Plans::Permissions do
   let(:context) do
     {
       current_component: plan_component,
-      current_settings: current_settings,
-      plan: plan,
-      component_settings: component_settings
+      current_settings:,
+      plan:,
+      component_settings:
     }
   end
-  let(:plan_component) { create :plan_component }
-  let(:plan) { create :plan, component: plan_component }
+  let(:plan_component) { create(:plan_component) }
+  let(:plan) { create(:plan, component: plan_component) }
   let(:component_settings) do
     double(vote_limit: 2)
   end
@@ -105,7 +105,7 @@ describe Decidim::Plans::Permissions do
     end
 
     context "when trying by another user" do
-      let(:user) { build :user }
+      let(:user) { build(:user) }
 
       it { is_expected.to be false }
     end
@@ -126,7 +126,7 @@ describe Decidim::Plans::Permissions do
       end
 
       context "when trying by another user" do
-        let(:user) { build :user }
+        let(:user) { build(:user) }
 
         it { is_expected.to be false }
       end
@@ -142,7 +142,7 @@ describe Decidim::Plans::Permissions do
       end
 
       context "when trying by another user" do
-        let(:user) { build :user }
+        let(:user) { build(:user) }
 
         it { is_expected.to be false }
       end

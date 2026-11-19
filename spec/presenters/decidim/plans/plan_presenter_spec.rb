@@ -29,7 +29,7 @@ module Decidim
       describe "#plan_path" do
         it "returns correct path" do
           expect(subject.plan_path).to eq(
-            "/processes/#{process_slug}/f/#{component_id}/plans/#{plan.id}"
+            "/en/processes/#{process_slug}/f/#{component_id}/plans/#{plan.id}"
           )
         end
       end
@@ -58,7 +58,7 @@ module Decidim
       describe "#body" do
         it "returns body in current locale" do
           fields = plan.sections.map do |section|
-            content = plan.contents.find_by(section: section)
+            content = plan.contents.find_by(section:)
             next if content.nil?
 
             title = translated_attribute(content.title)
@@ -81,8 +81,8 @@ module Decidim
           before do
             create(
               :content,
-              plan: plan,
-              section: section,
+              plan:,
+              section:,
               body: Decidim::Faker::Localized.localized { malicious_content }
             )
           end

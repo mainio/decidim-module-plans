@@ -28,7 +28,7 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       contents = subject.find(".plan-contents")
 
       sections.each do |section|
-        content = model.contents.find_by(section: section)
+        content = model.contents.find_by(section:)
         case section.section_type
         when "field_area_scope", "field_scope"
           expect_scope(section, content, contents)
@@ -40,14 +40,14 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
           expect_checkbox(section, content, contents)
         when "field_currency"
           expect_currency(section, content, contents)
-        when "field_image_attachments"
-          expect_image_attachments(section, content, contents)
         when "field_map_point"
           expect_map_point(section, content, contents)
         when "field_number"
           expect_number(section, content, contents)
         when "field_tags"
           expect_tags(section, content, contents)
+        when "field_taxonomy"
+          expect_taxonomy(section, content, contents)
         when "link_proposals"
           expect_proposals(section, content, contents)
         when "field_title"
@@ -74,7 +74,7 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       category = Decidim::Category.find(content.body["category_id"])
 
       expect(node).to have_content(translated(section.body))
-      expect(node).to have_content(translated(category.name))
+      expect(node).to have_content(category.name["es"])
     end
 
     def expect_checkbox(section, content, node)
@@ -86,6 +86,17 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       end
     end
 
+    def expect_taxonomy(section, content, node)
+      expect(node).to have_content(translated(section.body))
+
+      taxonomy_ids = Array(content.body["taxonomy_ids"]).map(&:to_i)
+      taxonomies = Decidim::Taxonomy.where(id: taxonomy_ids)
+
+      taxonomies.each do |taxonomy|
+        expect(node).to have_content(translated(taxonomy.name))
+      end
+    end
+
     def expect_number(section, content, node)
       expect(node).to have_content(translated(section.body))
       expect(node).to have_content(number_with_delimiter(content.body["value"], locale: I18n.locale))
@@ -93,7 +104,8 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
 
     def expect_currency(section, content, node)
       expect(node).to have_content(translated(section.body))
-      expect(node).to have_content(number_to_currency(content.body["value"], unit: Decidim.currency_unit, precision: 0, locale: I18n.locale))
+      expected = number_to_currency(content.body["value"], unit: Decidim.currency_unit, precision: 0, locale: I18n.locale)
+      expect(node).to have_content(expected.gsub(" ", "\u00a0"))
     end
 
     def expect_map_point(section, content, node)
@@ -115,7 +127,7 @@ describe Decidim::Plans::PlanViewCell, type: :cell do
       content.body["attachment_ids"].each do |attachment_id|
         attachment = Decidim::Attachment.find(attachment_id)
         if attachment.photo?
-          expect(node).to have_css(%(img[alt="#{translated(attachment.title)}"]))
+          expect(node).to have_css("img[alt='#{strip_tags translated(attachment.title)}']")
         else
           expect(node).to have_content(translated(attachment.title))
         end

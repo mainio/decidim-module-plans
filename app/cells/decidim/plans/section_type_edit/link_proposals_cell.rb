@@ -5,6 +5,7 @@ module Decidim
     module SectionTypeEdit
       class LinkProposalsCell < Decidim::Plans::SectionEditCell
         include Decidim::MapHelper
+        include Decidim::Plans::CellRouteOptions
 
         delegate :current_component, :snippets, to: :controller
         delegate :search_proposals_plans_path, to: :routes_proxy
@@ -12,8 +13,7 @@ module Decidim
         def show
           unless snippets.any?(:plans_link_proposals)
             snippets.add(
-              :plans_link_proposals,
-              stylesheet_pack_tag("decidim_plans_data_picker")
+              :plans_link_proposals
             )
 
             # This will display the snippets in the <head> part of the page.
@@ -37,12 +37,12 @@ module Decidim
           url = search_proposals_plans_path(current_component, format: :html)
 
           prompt_params = {
-            url: url,
+            url:,
             text: t("proposals_picker.choose_proposals", scope: "decidim.proposals")
           }
 
           form.data_picker(field, picker_options, prompt_params) do |item|
-            { url: url, text: item.title }
+            { url:, text: item.title }
           end
         end
       end

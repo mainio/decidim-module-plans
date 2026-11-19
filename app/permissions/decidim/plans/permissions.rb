@@ -3,6 +3,8 @@
 module Decidim
   module Plans
     class Permissions < Decidim::DefaultPermissions
+      include Decidim::Plans::UserPublicityHelper
+
       def permissions
         # Delegate the admin permission checks to the admin permissions class
         return Decidim::Plans::Admin::Permissions.new(user, permission_action, context).permissions if permission_action.scope == :admin
@@ -13,6 +15,10 @@ module Decidim
           apply_plan_permissions(permission_action)
         when :plans
           apply_plans_permissions(permission_action)
+        when :item
+          apply_item_permissions(permission_action)
+        when :section
+          apply_section_permissions(permission_action)
         else
           permission_action
         end
@@ -21,6 +27,32 @@ module Decidim
       end
 
       private
+
+      def section
+        @section ||= context.fetch(:section, nil)
+      end
+
+      def apply_section_permissions(permission_action)
+        case permission_action.action
+        when :read
+          toggle_allow(section.present?)
+        end
+      end
+
+      def item
+        @item ||= context.fetch(:item, nil)
+      end
+
+      def apply_item_permissions(permission_action)
+        case permission_action.action
+        when :read
+          can_read_item?
+        end
+      end
+
+      def can_read_item?
+        toggle_allow(item.present?)
+      end
 
       def plan
         @plan ||= context.fetch(:plan, nil)
@@ -63,7 +95,7 @@ module Decidim
       end
 
       def can_create_plan?
-        toggle_allow(authorized?(:create) && current_settings&.creation_enabled?)
+        toggle_allow(authorized?(:create) && current_settings&.creation_enabled? && user_public?)
       end
 
       def can_edit_plan?

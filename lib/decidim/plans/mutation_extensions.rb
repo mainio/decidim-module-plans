@@ -19,7 +19,7 @@ module Decidim
       end
 
       def plan(id:)
-        Plan.find(id)
+        Plan.published.not_hidden.find(id)
       end
     end
   end

@@ -1,18 +1,23 @@
 var $plans = $('#plans');
 var $map = $('#map');
 var $plansCount = $('#plans-count');
-var $orderFilterInput = $('.order_filter');
+var $order = $('.order-by__dropdown a[data-order="<%= order %>"]');
 
 $plans.html('<%= j(render partial: "plans", locals: { plans: @plans, card_cell: plan_card_layout }).strip.html_safe %>');
-$plansCount.html('<%= j(render partial: "count", locals: { plans: @plans }).strip.html_safe %>');
-$orderFilterInput.val('<%= order %>');
+if ($plansCount.length > 0) {
+  $plansCount.html('<%= j(render partial: "count", locals: { plans: @plans }).strip.html_safe %>');
+}
+
+if ($order) {
+  $(".order-by__dropdown .is-dropdown-submenu-parent > button").text($order.text());
+}
 
 var $dropdownMenu = $('.dropdown.menu', $plans);
 $dropdownMenu.foundation();
 
 var mapController = $map.data("map-controller");
 if (mapController) {
-  var ideasData = JSON.parse('<%== escape_javascript plans_data_for_map(@geocoded_plans).to_json %>');
+  var plansData = JSON.parse('<%== escape_javascript plans_data_for_map(@geocoded_plans).to_json %>');
   mapController.clearMarkers();
-  mapController.addMarkers(ideasData);
+  mapController.addMarkers(plansData);
 }

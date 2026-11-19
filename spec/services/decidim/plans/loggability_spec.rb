@@ -7,8 +7,8 @@ module Decidim
     describe Loggability do
       let(:component) { create(:plan_component) }
       let(:organization) { component.organization }
-      let(:author) { create(:user, :confirmed, organization: organization) }
-      let(:plan) { create(:plan, component: component) }
+      let(:author) { create(:user, :confirmed, organization:) }
+      let(:plan) { create(:plan, component:) }
       let(:action) { "test" }
 
       it "logs the action" do

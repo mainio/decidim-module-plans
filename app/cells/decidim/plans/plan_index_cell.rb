@@ -8,13 +8,14 @@ module Decidim
       include Decidim::ResourceHelper
       include Decidim::SanitizeHelper
       include Decidim::LayoutHelper # For the icon helper
-      include Decidim::MapHelper
+      # include Decidim::MapHelper
       include Decidim::FiltersHelper
       include Decidim::OrdersHelper
       include Decidim::CardHelper
       include Decidim::CellsPaginateHelper
       include Decidim::Plans::PlansHelper
       include Decidim::Plans::Engine.routes.url_helpers
+      include Decidim::Plans::CellRouteOptions
 
       alias component model
       alias current_component model
@@ -33,7 +34,7 @@ module Decidim
 
       def order_selector(orders, options = {})
         render partial: "decidim/shared/orders.html", locals: {
-          orders: orders,
+          orders:,
           i18n_scope: options[:i18n_scope]
         }
       end
@@ -72,19 +73,27 @@ module Decidim
         return unless component.current_settings&.creation_enabled?
         return unless allowed_to?(:edit, :plan, plan: plan_draft)
 
-        @draft_idea_link = edit_plan_path(plan_draft)
+        @draft_idea_link = Decidim::EngineRouter.main_proxy(component).edit_plan_path(plan_draft)
       end
 
       def plan_draft
         return nil unless user_signed_in?
 
         @plan_draft = Plan.from_all_author_identities(current_user).not_hidden.where(
-          component: component
+          component:
         ).find_by(published_at: nil)
       end
 
       def current_locale
         I18n.locale.to_s
+      end
+
+      def url_for(options = {})
+        if options.is_a?(Hash)
+          options[:participatory_process_slug] ||= component.participatory_space.slug
+          options[:component_id] ||= component.id
+        end
+        super
       end
     end
   end

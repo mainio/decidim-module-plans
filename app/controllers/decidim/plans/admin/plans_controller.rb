@@ -8,6 +8,7 @@ module Decidim
         include Decidim::ApplicationHelper
         include Plans::AttachedProposalsHelper
         include Decidim::Plans::AttachedPlansHelper
+        include Decidim::Plans::UserPublicityHelper
 
         helper Plans::ApplicationHelper
         helper Plans::AttachmentsHelper
@@ -18,6 +19,11 @@ module Decidim
         def new
           enforce_permission_to :create, :plans
           @form = form(Admin::PlanForm).from_model(Plan.new(component: current_component))
+        end
+
+        def edit
+          enforce_permission_to(:edit, :plan, plan:)
+          @form = form(Admin::PlanForm).from_model(plan)
         end
 
         def create
@@ -37,13 +43,8 @@ module Decidim
           end
         end
 
-        def edit
-          enforce_permission_to :edit, :plan, plan: plan
-          @form = form(Admin::PlanForm).from_model(plan)
-        end
-
         def update
-          enforce_permission_to :edit, :plan, plan: plan
+          enforce_permission_to(:edit, :plan, plan:)
 
           @form = form(Admin::PlanForm).from_params(params)
           Admin::UpdatePlan.call(@form, @plan) do
@@ -60,7 +61,7 @@ module Decidim
         end
 
         def close
-          enforce_permission_to :close, :plan, plan: plan
+          enforce_permission_to(:close, :plan, plan:)
 
           ClosePlan.call(plan, current_user) do
             on(:ok) do
@@ -76,7 +77,7 @@ module Decidim
         end
 
         def reopen
-          enforce_permission_to :close, :plan, plan: plan
+          enforce_permission_to(:close, :plan, plan:)
 
           ReopenPlan.call(plan, current_user) do
             on(:ok) do
@@ -92,6 +93,9 @@ module Decidim
         end
 
         # Possibly needed by the views
+        # Disable rubocop since methods are used in cells too and moving them to
+        # private and using helper_method doesn't work for cells
+        # rubocop:disable Decidim/EnforcePermissionTo
         def info_path(section_id)
           main_component_path("info/#{section_id}")
         end
@@ -105,11 +109,12 @@ module Decidim
         def reverse_geocoding_path(*_args)
           main_component_path("geocoding/reverse")
         end
+        # rubocop:enable Decidim/EnforcePermissionTo
 
         private
 
         def main_component_path(sub_path)
-          path, url_params = EngineRouter.main_proxy(current_component).root_path(
+          path, url_params = Decidim::EngineRouter.main_proxy(current_component).root_path(
             locale: params[:locale]
           ).split("?")
           suffix = url_params.blank? ? "" : "?#{url_params}"
@@ -141,7 +146,7 @@ module Decidim
         end
 
         def routes_proxy
-          @routes_proxy ||= EngineRouter.admin_proxy(current_component)
+          @routes_proxy ||= Decidim::EngineRouter.admin_proxy(current_component)
         end
       end
     end

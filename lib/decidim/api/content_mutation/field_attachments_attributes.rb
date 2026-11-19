@@ -7,11 +7,11 @@ module Decidim
         graphql_name "PlanAttachmentsFieldAttributes"
         description "A plan attributes for attachments field"
 
-        argument :ids, [GraphQL::Types::ID], required: true
+        argument :ids, [GraphQL::Types::ID], description: "IDs of the attachments", required: true
 
         def to_h
           existing_ids = ids.map do |id|
-            attachment = Decidim::Attachment.find_by(id: id)
+            attachment = Decidim::Attachment.find_by(id:)
             attachment&.id
           end
 
