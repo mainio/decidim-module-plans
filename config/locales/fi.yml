@@ -318,7 +318,7 @@ fi:
       plan_l:
         card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
-      plan_m:
+      plan_g:
         card_label: "Ehdotus: %{title}"
         view_plan: Näytä ehdotus
       plan_notification:

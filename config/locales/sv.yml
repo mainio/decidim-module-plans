@@ -314,7 +314,7 @@ sv:
       plan_l:
         card_label: "Förslag: %{title}"
         view_plan: Visa förslag
-      plan_m:
+      plan_g:
         card_label: "Förslag: %{title}"
         view_plan: Visa förslag
       plan_notification:
