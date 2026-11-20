@@ -551,6 +551,8 @@ fi:
         attachments:
           legend: Liitteet
           add_attachment: Lisää liite
+      tags:
+        filter_results_for_tags: Filter results for tags
       update:
         invalid: Sisällön päivittäminen epäonnistui.
         success: Päivitys onnistui.
