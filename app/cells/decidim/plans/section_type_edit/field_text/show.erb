@@ -16,7 +16,7 @@
           :body,
           {
             tabs_id: "field-#{section.id}"
-          }.merge(field_options).merge(rc_opts)
+          }.merge(field_options)
         ) %>
       <% else %>
         <%= form.text_field(

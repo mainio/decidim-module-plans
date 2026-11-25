@@ -25,7 +25,7 @@ form_field_options.delete(:help_text)
           :body,
           {
             tabs_id: "field-#{section.id}"
-          }.merge(form_field_options).merge(rc_opts)
+          }.merge(form_field_options)
         ) %>
       <% else %>
         <%= form.text_area(
