@@ -21,11 +21,11 @@ module Decidim
                                       permission_action.subject != :plan_tags
 
           case permission_action.action
-          when :read, :create, :export_budgets
+          when :read, :create, :export_budgets, :transfer
             permission_action.allow!
           when :edit, :update, :destroy
             permission_action.allow! if plan.present? || section.present? || tag.present?
-          when :close, :edit_taggings
+          when :close, :edit_taggings, :export
             permission_action.allow! if plan.present?
           end
 

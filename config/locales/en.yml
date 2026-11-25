@@ -43,6 +43,10 @@ en:
           attributes:
             file:
               needs_to_be_reattached: Needs to be reattached
+        transfer:
+          attributes:
+            target_component_id:
+              section_count_mismatch: needs to have exactly the same amount of sections
   decidim:
     assemblies:
       statistics:
@@ -110,6 +114,7 @@ en:
         manage_authors: Manage authors
         new: Submit new proposal
         taggings: Tags
+        transfer: Transfer component
         remove_author: Remove author
         reopen_plan: Open for editing
         sections: Sections
@@ -200,6 +205,18 @@ en:
             body: Body
             created_at: Creation date
             plans: Proposals
+        transfer:
+          create:
+            success: Component successfully transferred!
+        transfers:
+          new:
+            confirm: Confirm
+            continue: Continue
+            mapping_help: Choose which section transfers to which target section
+            select_target: Select target
+            submit: Submit
+            target_component: Target component
+            title: Transfer component
       admin_log:
         plan:
           answer: "%{user_name} answered %{resource_name} on the %{space_name}
@@ -271,6 +288,7 @@ en:
             scope: Scope
             state: State
             tags: Tags
+            taxonomies: Taxonomies
             title: Title
       plan_add_authors:
         add_users_placeholder: Write the author's name or nickname

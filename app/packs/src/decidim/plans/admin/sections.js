@@ -2,7 +2,6 @@ import AutoButtonsByPositionComponent from "src/decidim/admin/auto_buttons_by_po
 import AutoLabelByPositionComponent from "src/decidim/admin/auto_label_by_position.component";
 import createDynamicFields from "src/decidim/admin/dynamic_fields.component";
 import createSortList from "src/decidim/admin/sort_list.component";
-import createQuillEditor from "src/decidim/editor";
 
 ((exports) => {
   const wrapperSelector = ".plan-sections";
@@ -96,20 +95,6 @@ import createQuillEditor from "src/decidim/editor";
     removeFieldButtonSelector: ".remove-section",
     moveUpFieldButtonSelector: ".move-up-section",
     moveDownFieldButtonSelector: ".move-down-section",
-    onAddField: ($field) => {
-      createSortableList();
-      setupSection($field);
-      $(".data-picker", $field).each((_i, el) => {
-        exports.theDataPicker.activate($(el));
-      })
-      fixDataPickerFieldNames($field);
-      $(".editor-container", $field).each((_idx, container) => {
-        createQuillEditor(container);
-      });
-
-      autoLabelByPosition.run();
-      autoButtonsByPosition.run();
-    },
     onRemoveField: () => {
       autoLabelByPosition.run();
       autoButtonsByPosition.run();

@@ -1,0 +1,70 @@
+<div class="item_show__header">
+  <h1 class="item_show__header-title"><%= t(".title") %></h1>
+</div>
+
+<%= form_with url: new_transfer_path, method: :get, scope: :transfer, class: "form form-defaults" do |form| %>
+  <div class="form__wrapper">
+    <div class="card pt-4">
+      <div class="card-section">
+        <%= form.select :target_component_id,
+                        grouped_options_for_select(
+                          @form.available_components.group_by do |c|
+                            translated_attribute(c.participatory_space.title)
+                          end.transform_values do |cs|
+                            cs.map { |c| [translated_attribute(c.name), c.id] }
+                          end,
+                          @form.target_component_id
+                        ),
+                        include_blank: t(".select_target") %>
+        <%= form.submit t(".continue"), class: "button button__sm button__secondary mt-2" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @form.target_component %>
+  <%= form_with url: transfer_path, method: :post, scope: :transfer, class: "form form-defaults" do |form| %>
+    <%= form.hidden_field :target_component_id, value: @form.target_component.id %>
+
+    <div class="form__wrapper">
+      <div class="card pt-4">
+        <div class="card-section">
+          <p class="help-text"><%= t(".mapping_help") %></p>
+
+          <% target_options = @form.target_sections.map { |s| [translated_attribute(s.handle), s.id] } %>
+          <% @form.source_sections.each_with_index do |section, index| %>
+            <div class="row column">
+              <%= label_tag "transfer_section_mapping_#{section.id}", translated_attribute(section.handle) %>
+              <%= select_tag "transfer[section_mapping][#{section.id}]",
+                              options_for_select(target_options, @form.mapping[section.id] || target_options[index]&.last),
+                              id: "transfer_section_mapping_#{section.id}" %>
+            </div>
+          <% end %>
+
+          <% if @form.taxonomy_mapping_needed? %>
+            <div class="row column">
+              <p class="help-text"><%= t(".taxonomy_mapping_help") %></p>
+
+              <% target_options = @form.target_taxonomies.map { |taxonomy| [translated_attribute(taxonomy.name), taxonomy.id] } %>
+              <% @form.source_taxonomies.each do |taxonomy| %>
+                <%= label_tag "transfer_taxonomy_mapping_#{taxonomy.id}", translated_attribute(taxonomy.name) %>
+                <%= select_tag "transfer[taxonomy_mapping][#{taxonomy.id}]",
+                               options_for_select(target_options, @form.taxonomy_map[taxonomy.id]),
+                               include_blank: t(".destroy_taxonomy"),
+                               id: "transfer_taxonomy_mapping_#{taxonomy.id}" %>
+              <% end %>
+            </div>
+          <% elsif @form.target_component && !@form.same_space? && @form.source_taxonomies.any? %>
+            <p class="help-text"><%= t(".destroy_taxonomies") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="item__edit-sticky">
+      <div class="item__edit-sticky-container">
+        <%= form.submit t(".submit"), class: "button button__sm button__secondary", data: { confirm: t(".confirm") } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

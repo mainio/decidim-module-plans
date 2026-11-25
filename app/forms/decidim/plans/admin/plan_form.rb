@@ -7,6 +7,7 @@ module Decidim
       class PlanForm < Decidim::Form
         include OptionallyTranslatableAttributes
         include Decidim::ApplicationHelper
+        include Decidim::HasTaxonomyFormAttributes
 
         mimic :plan
 

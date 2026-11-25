@@ -43,6 +43,10 @@ fi:
           attributes:
             file:
               needs_to_be_reattached: Pitää liittää uudestaan
+        transfer:
+          attributes:
+            target_component_id:
+              section_count_mismatch: ei sisällä saman verran osioita
   decidim:
     assemblies:
       statistics:
@@ -108,6 +112,7 @@ fi:
         manage_authors: Hallinnoi tekijöitä
         new: Tee uusi ehdotus
         taggings: Merkinnät
+        transfer: Siirrä komponentti
         remove_author: Poista tekijä
         reopen_plan: Avaa muokattavaksi
         sections: Osiot
@@ -198,6 +203,18 @@ fi:
             body: Runkoteksti
             created_at: Luontipäivä
             plans: Ehdotukset
+        transfer:
+          create:
+          success: Komponentti siirretty onnistuneesti!
+        transfers:
+          new:
+            confirm: Vahvista
+            continue: Jatka
+            mapping_help: Valitse mikä osio siirtyy millekin kohde osiolle
+            select_target: Valitse kohde
+            submit: Valmis
+            target_component: Kohde komponentti
+            title: Siirrä komponentti
       admin_log:
         plan:
           answer: "%{user_name} vastasi sisältöön %{resource_name} osallistumistilassa %{space_name}."
@@ -265,6 +282,7 @@ fi:
             scope: Teema
             state: Tila
             tags: Merkinnät
+            taxonomies: Luokittelut
             title: Otsikko
       plan_add_authors:
         add_users_placeholder: Kirjoita tekijän nimi tai nimimerkki

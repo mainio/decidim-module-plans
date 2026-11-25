@@ -37,6 +37,7 @@ module Decidim
         end
         resources :sections, only: [:index, :new, :create, :edit, :update]
         resources :scopes, only: [:index]
+        resource :transfer, only: [:new, :create]
 
         root to: "plans#index"
       end
