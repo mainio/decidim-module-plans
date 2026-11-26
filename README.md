@@ -31,6 +31,20 @@ following differences:
   converted to sub-headings in the budgeting project's description and the
   budget needs to be specified by the user doing the conversion.
 
+** VERSION 0.32 NEW FEATURE **
+
+You can now transfer plans from component to component, including component
+settings, plan records, and sections. This feature is found in the component's
+index view in the admin panel with a new button "Transfer component". You
+choose the target component from any participatory space inside the organization
+and choose which section replaces which target component's section. Transfer
+requires the target component to have exactly the same amount of sections as
+the "root component". Transferring the component to another also replaces the
+target component's taxonomies since taxonomies are organization wide instead of
+participatory space wide.
+
+*************** **************
+
 Development of this gem has been sponsored by the
 [City of Helsinki](https://www.hel.fi/).
 
