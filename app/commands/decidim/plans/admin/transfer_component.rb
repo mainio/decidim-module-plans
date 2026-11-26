@@ -30,9 +30,12 @@ module Decidim
 
         def copy_sections
           form.mapping.each do |source_id, target_id|
-            Section.find(target_id).update!(
-              Section.find(source_id).attributes.except(*SECTION_EXCLUDES)
+            # component scopes it to organization
+            # rubocop:disable Decidim/OrganizationScopedFinder
+            Section.where(component: target).find(target_id).update!(
+              Section.where(component: source).find(source_id).attributes.except(*SECTION_EXCLUDES)
             )
+            # rubocop:enable Decidim/OrganizationScopedFinder
           end
         end
 
@@ -41,7 +44,11 @@ module Decidim
         end
 
         def move_plans
+          # component scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           Plan.where(component: source).find_each do |plan|
+            # rubocop:enable Decidim/OrganizationScopedFinder
+
             move_contents(plan)
             plan.update!(component: target)
             move_taxonomies(plan)
@@ -49,7 +56,11 @@ module Decidim
         end
 
         def move_contents(plan)
+          # plan scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           Content.where(decidim_plan_id: plan.id).find_each do |content|
+            # rubocop:enable Decidim/OrganizationScopedFinder
+
             new_section_id = form.mapping[content.decidim_section_id]
 
             if new_section_id
@@ -70,7 +81,10 @@ module Decidim
           end
 
           mapped_ids = plan.taxonomies.filter_map { |taxonomy| form.taxonomy_map[taxonomy.id] }
+          # plan scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           plan.taxonomies = Decidim::Taxonomy.where(id: mapped_ids)
+          # rubocop:enable Decidim/OrganizationScopedFinder
         end
 
         def copy_settings

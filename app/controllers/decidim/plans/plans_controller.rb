@@ -33,7 +33,7 @@ module Decidim
 
         # The random ordering does not work with `.distinct` so we need to wrap
         # it in a subquery that is ordered randomly.
-        @plans = Plan.where(id: @plans)
+        @plans = Plan.where(component: current_component, id: @plans)
         @plans = paginate(@plans)
         @plans = reorder(@plans)
       end

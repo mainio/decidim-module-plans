@@ -8,7 +8,10 @@ module Decidim
       private
 
       def model
+        # component scopes it to organization
+        # rubocop:disable Decidim/OrganizationScopedFinder
         @model ||= Plan.where(component: params[:component_id]).find(params[:plan_id])
+        # rubocop:enable Decidim/OrganizationScopedFinder
       end
 
       def iframe_url

@@ -39,7 +39,10 @@ module Decidim
       end
 
       def coauthorship
+        # plan scopes it to organization
+        # rubocop:disable Decidim/OrganizationScopedFinder
         @coauthorship ||= Decidim::Coauthorship.find_by(
+          # rubocop:enable Decidim/OrganizationScopedFinder
           coauthorable: plan,
           author:
         )

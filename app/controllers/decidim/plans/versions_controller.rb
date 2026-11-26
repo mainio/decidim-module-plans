@@ -30,7 +30,11 @@ module Decidim
         return [] if current_version.transaction_id.nil?
 
         # There may be multiple updates on the item during the same transaction
+
+        # item scopes it to organization
+        # rubocop:disable Decidim/OrganizationScopedFinder
         Decidim::Plans::PaperTrail::Version.where(
+          # rubocop:enable Decidim/OrganizationScopedFinder
           transaction_id: current_version.transaction_id,
           item_type: "Decidim::Plans::Plan"
         ).order(:created_at)

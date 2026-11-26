@@ -10,7 +10,10 @@ module Decidim
         end
 
         def call
+          # component scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           Decidim::Plans::Section.where(component: @old_component).find_each do |section|
+            # rubocop:enable Decidim/OrganizationScopedFinder
             new_section = section.dup
             new_section.component = @new_component
             new_section.save!

@@ -97,7 +97,10 @@ module Decidim
         end
 
         def plans
+          # component scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           results = Decidim::Plans::Plan.where(
+            # rubocop:enable Decidim/OrganizationScopedFinder
             component: origin_component
           ).where.not(closed_at: nil)
 
@@ -139,14 +142,20 @@ module Decidim
         end
 
         def category_section
+          # component scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           @category_section ||= Decidim::Plans::Section.find_by(
+            # rubocop:enable Decidim/OrganizationScopedFinder
             component: origin_component,
             section_type: "field_category"
           )
         end
 
         def attachments_section
+          # component scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           @attachments_section ||= Decidim::Plans::Section.find_by(
+            # rubocop:enable Decidim/OrganizationScopedFinder
             component: origin_component,
             section_type: "field_attachments"
           )
@@ -168,7 +177,10 @@ module Decidim
           return [] unless content
           return [] unless content.body
 
+          # plan scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           Decidim::Attachment.where(id: content.body["attachment_ids"])
+          # rubocop:enable Decidim/OrganizationScopedFinder
         end
 
         def project_image_from(original_plan)
@@ -178,7 +190,10 @@ module Decidim
           return {} unless content
           return {} unless content.body
 
+          # plan scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           attachment = Decidim::Attachment.find_by(id: content.body["attachment_ids"].first)
+          # rubocop:enable Decidim/OrganizationScopedFinder
           attachment&.file
         end
 
@@ -189,7 +204,10 @@ module Decidim
           return original_plan.category unless content
           return original_plan.category unless content.body
 
+          # plan scopes it to organization
+          # rubocop:disable Decidim/OrganizationScopedFinder
           Decidim::Category.find_by(id: content.body["category_id"]) || original_plan.category
+          # rubocop:enable Decidim/OrganizationScopedFinder
         end
 
         def project_description_from(original_plan)
