@@ -102,5 +102,13 @@ describe Decidim::Plans::Admin::Permissions do
 
       it { is_expected.to be true }
     end
+
+    describe "when transferring plans" do
+      let(:action) do
+        { scope: :admin, action: :transfer, subject: :plans }
+      end
+
+      it { is_expected.to be true }
+    end
   end
 end

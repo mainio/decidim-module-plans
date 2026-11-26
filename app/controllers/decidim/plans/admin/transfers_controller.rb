@@ -18,7 +18,7 @@ module Decidim
           TransferComponent.call(@form, current_component, current_user) do
             on(:ok) do
               flash[:notice] = t("transfer.create.success", scope: "decidim.plans.admin")
-              redirect_to plans_path
+              redirect_to Decidim::EngineRouter.admin_proxy(current_component).plans_path
             end
 
             on(:invalid) do
