@@ -3,7 +3,7 @@ import AutoLabelByPositionComponent from "src/decidim/admin/auto_label_by_positi
 import createDynamicFields from "src/decidim/admin/dynamic_fields.component";
 import createSortList from "src/decidim/admin/sort_list.component";
 
-((exports) => {
+(() => {
   const wrapperSelector = ".plan-sections";
   const fieldSelector = ".plan-section";
 
